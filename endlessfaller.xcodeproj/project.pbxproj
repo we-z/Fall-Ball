@@ -15,6 +15,7 @@
 		7AD2345B2A5F824900ED626D /* endlessfallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2345A2A5F824900ED626D /* endlessfallerUITests.swift */; };
 		7AD2345D2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2345C2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift */; };
 		7AD2346B2A5F848700ED626D /* VTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD2346A2A5F848700ED626D /* VTabView */; };
+		7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346C2A60A9E100ED626D /* IconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7AD2343B2A5F824800ED626D /* endlessfaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = endlessfaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD2343B2A5F824800ED626D /* Endless Fall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Fall.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerApp.swift; sourceTree = "<group>"; };
 		7AD234402A5F824800ED626D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7AD234422A5F824900ED626D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		7AD234562A5F824900ED626D /* endlessfallerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = endlessfallerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD2345A2A5F824900ED626D /* endlessfallerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerUITests.swift; sourceTree = "<group>"; };
 		7AD2345C2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7AD2346C2A60A9E100ED626D /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +89,7 @@
 		7AD2343C2A5F824800ED626D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7AD2343B2A5F824800ED626D /* endlessfaller.app */,
+				7AD2343B2A5F824800ED626D /* Endless Fall.app */,
 				7AD2344C2A5F824900ED626D /* endlessfallerTests.xctest */,
 				7AD234562A5F824900ED626D /* endlessfallerUITests.xctest */,
 			);
@@ -99,6 +101,7 @@
 			children = (
 				7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */,
 				7AD234402A5F824800ED626D /* ContentView.swift */,
+				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
 				7AD234442A5F824900ED626D /* endlessfaller.entitlements */,
 				7AD234452A5F824900ED626D /* Preview Content */,
@@ -134,9 +137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7AD2343A2A5F824800ED626D /* endlessfaller */ = {
+		7AD2343A2A5F824800ED626D /* Endless Fall */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "endlessfaller" */;
+			buildConfigurationList = 7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "Endless Fall" */;
 			buildPhases = (
 				7AD234372A5F824800ED626D /* Sources */,
 				7AD234382A5F824800ED626D /* Frameworks */,
@@ -146,12 +149,12 @@
 			);
 			dependencies = (
 			);
-			name = endlessfaller;
+			name = "Endless Fall";
 			packageProductDependencies = (
 				7AD2346A2A5F848700ED626D /* VTabView */,
 			);
 			productName = endlessfaller;
-			productReference = 7AD2343B2A5F824800ED626D /* endlessfaller.app */;
+			productReference = 7AD2343B2A5F824800ED626D /* Endless Fall.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7AD2344B2A5F824900ED626D /* endlessfallerTests */ = {
@@ -229,7 +232,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7AD2343A2A5F824800ED626D /* endlessfaller */,
+				7AD2343A2A5F824800ED626D /* Endless Fall */,
 				7AD2344B2A5F824900ED626D /* endlessfallerTests */,
 				7AD234552A5F824900ED626D /* endlessfallerUITests */,
 			);
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
+				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,12 +298,12 @@
 /* Begin PBXTargetDependency section */
 		7AD2344E2A5F824900ED626D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7AD2343A2A5F824800ED626D /* endlessfaller */;
+			target = 7AD2343A2A5F824800ED626D /* Endless Fall */;
 			targetProxy = 7AD2344D2A5F824900ED626D /* PBXContainerItemProxy */;
 		};
 		7AD234582A5F824900ED626D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7AD2343A2A5F824800ED626D /* endlessfaller */;
+			target = 7AD2343A2A5F824800ED626D /* Endless Fall */;
 			targetProxy = 7AD234572A5F824900ED626D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -592,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "endlessfaller" */ = {
+		7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "Endless Fall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7AD234612A5F824900ED626D /* Debug */,
