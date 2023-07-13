@@ -14,6 +14,7 @@
 		7AD234512A5F824900ED626D /* endlessfallerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234502A5F824900ED626D /* endlessfallerTests.swift */; };
 		7AD2345B2A5F824900ED626D /* endlessfallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2345A2A5F824900ED626D /* endlessfallerUITests.swift */; };
 		7AD2345D2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2345C2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift */; };
+		7AD2346B2A5F848700ED626D /* VTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD2346A2A5F848700ED626D /* VTabView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AD2346B2A5F848700ED626D /* VTabView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +147,9 @@
 			dependencies = (
 			);
 			name = endlessfaller;
+			packageProductDependencies = (
+				7AD2346A2A5F848700ED626D /* VTabView */,
+			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* endlessfaller.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +222,9 @@
 				Base,
 			);
 			mainGroup = 7AD234322A5F824800ED626D;
+			packageReferences = (
+				7AD234692A5F848700ED626D /* XCRemoteSwiftPackageReference "swiftui-vertical-tab-view" */,
+			);
 			productRefGroup = 7AD2343C2A5F824800ED626D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -612,6 +620,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7AD234692A5F848700ED626D /* XCRemoteSwiftPackageReference "swiftui-vertical-tab-view" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-vertical-tab-view";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7AD2346A2A5F848700ED626D /* VTabView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7AD234692A5F848700ED626D /* XCRemoteSwiftPackageReference "swiftui-vertical-tab-view" */;
+			productName = VTabView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7AD234332A5F824800ED626D /* Project object */;
 }
