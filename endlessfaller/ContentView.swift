@@ -8,11 +8,13 @@
 import SwiftUI
 import VTabView
 
+let bestScoreKey = "BestScore"
+
 struct ContentView: View {
     
     @State var score: Int = 0
     @State var currentScore: Int = 0
-    @State var best: Int = 0
+    @AppStorage("BestScore") var best: Int = UserDefaults.standard.integer(forKey: "BestScore")
     @State var currentIndex: Int = -1
     @State var isAnimating = false
     @State var firstScreen = true
@@ -109,6 +111,7 @@ struct ContentView: View {
                             currentScore = score
                             if currentScore > best {
                                 best = currentScore
+                                UserDefaults.standard.set(best, forKey: bestScoreKey)
                             }
                             self.isAnimating = false
                             self.colors = (1...1000).map { _ in
