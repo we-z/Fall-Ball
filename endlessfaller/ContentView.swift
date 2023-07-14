@@ -11,7 +11,7 @@ import VTabView
 struct ContentView: View {
     
     @State var score: Int = 0
-    @State var currentIndex: Int = 0
+    @State var currentIndex: Int = -1
     @State var isAnimating = false
     @State var firstScreen = true
     @State var speed: Double = 2
@@ -24,15 +24,17 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-//                    VStack{
-//                        Text("Swipe up \nto play")
-//                            .multilineTextAlignment(.center)
-//                            .padding()
-//                        Image(systemName: "arrow.up")
-//                    }
-//                    .bold()
-//                    .font(.largeTitle)
-//                    .tag(0)
+                    
+                    VStack{
+                        Text("Swipe up \nto play")
+                            .multilineTextAlignment(.center)
+                            .padding()
+                        Image(systemName: "arrow.up")
+                    }
+                    .bold()
+                    .font(.largeTitle)
+                    .tag(-1)
+                    
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             Rectangle()
@@ -42,6 +44,7 @@ struct ContentView: View {
                                 .frame(width: 46)
                                 .colorInvert()
                                 .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? 960 : -23)
+                            
                         }
                     }
                 }
@@ -51,26 +54,28 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
+                    firstScreen = false
                     score = newValue
                     speed = 2.0 / ((Double(newValue) / 39) + 1)
                     self.isAnimating = false
                     dropCircle()
                 }
-
-                VStack{
-                    HStack{
-                        Text(String(score))
-                            .font(.system(size: 60))
-                            .bold()
-                            .padding(36)
-                            .padding(.top, 30)
+                if currentIndex >= 0 {
+                    VStack{
+                        HStack{
+                            Text(String(score))
+                                .font(.system(size: 60))
+                                .bold()
+                                .padding(36)
+                                .padding(.top, 30)
+                            Spacer()
+                            //                        Text(String(speed))
+                            //                            .padding()
+                        }
                         Spacer()
-//                        Text(String(speed))
-//                            .padding()
                     }
-                    Spacer()
+                    .allowsHitTesting(false)
                 }
-                .allowsHitTesting(false)
 
             }
             
@@ -82,7 +87,6 @@ struct ContentView: View {
     func dropCircle() {
         withAnimation(
             Animation.linear(duration: speed)
-                //.repeatForever(autoreverses: false)
         ) {
             self.isAnimating = true
         }
