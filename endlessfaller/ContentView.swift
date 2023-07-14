@@ -17,6 +17,7 @@ struct ContentView: View {
     @State var isAnimating = false
     @State var firstScreen = true
     @State var gameOver = false
+    @State var freezeScrolling = false
     @State var speed: Double = 2
     
     @State var colors: [Color] = (1...1000).map { _ in
@@ -99,11 +100,12 @@ struct ContentView: View {
                     gameOver = true
                     firstScreen = false
                     score = newValue
-                    speed = 2.0 / ((Double(newValue) / 39) + 1)
+                    speed = 2.0 / ((Double(newValue) / 3) + 1)
                     self.isAnimating = false
                     dropCircle()
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
+                            freezeScrolling = true
                             currentScore = score
                             if currentScore > best {
                                 best = currentScore
@@ -113,6 +115,9 @@ struct ContentView: View {
                                 Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
                             }
                             currentIndex = -1
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                freezeScrolling = false
+                            }
                         }
                     }
                 }
@@ -127,8 +132,8 @@ struct ContentView: View {
                                 .padding(36)
                                 .padding(.top, 30)
                             Spacer()
-                            //                        Text(String(speed))
-                            //                            .padding()
+//                                                    Text(String(speed))
+//                                                        .padding()
                         }
                         Spacer()
                     }
@@ -139,6 +144,7 @@ struct ContentView: View {
             
         }
         .edgesIgnoringSafeArea(.all)
+        .allowsHitTesting(!freezeScrolling)
 
     }
         
