@@ -11,6 +11,7 @@ import VTabView
 struct ContentView: View {
     
     @State var score: Int = 0
+    @State var currentScore: Int = 0
     @State var best: Int = 0
     @State var currentIndex: Int = -1
     @State var isAnimating = false
@@ -18,24 +19,63 @@ struct ContentView: View {
     @State var gameOver = false
     @State var speed: Double = 2
     
-    let colors: [Color] = (1...1000).map { _ in
-        Color(red: .random(in: 0.2...0.9), green: .random(in: 0.2...0.9), blue: .random(in: 0.2...0.9))
+    @State var colors: [Color] = (1...1000).map { _ in
+        Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
     }
     
     var body: some View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    
-                    VStack{
-                        Text("Swipe up \nto play")
-                            .multilineTextAlignment(.center)
-                            .padding()
-                        Image(systemName: "arrow.up")
+                    if !gameOver {
+                        VStack{
+                            Text("Swipe up \nto play")
+                                .multilineTextAlignment(.center)
+                                .padding()
+                            Image(systemName: "arrow.up")
+                        }
+                        .bold()
+                        .font(.largeTitle)
+                        .tag(-1)
+                    } else {
+                        
+                        VStack{
+                            Text("Game Over")
+                                .bold()
+                                .font(.largeTitle)
+                            ZStack{
+                                Rectangle()
+                                    .foregroundColor(.primary.opacity(0.1))
+                                    .cornerRadius(30)
+                                HStack{
+                                    VStack(alignment: .leading){
+                                        Text("Score")
+                                        Text(String(currentScore))
+                                            .padding(.bottom, 3)
+                                        Text("Best")
+                                        Text(String(best))
+                                    }
+                                    .padding(.leading, 50)
+                                    .bold()
+                                    .font(.largeTitle)
+                                    Spacer()
+                                }
+                            }
+                            .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
+                            
+                            VStack{
+                                Text("Swipe up to \nplay again")
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                                Image(systemName: "arrow.up")
+                            }
+                            .foregroundColor(.primary)
+                            .bold()
+                            .font(.largeTitle)
+                            .tag(-1)
+                        }
+                        .offset(y: UIScreen.main.bounds.height * 0.05)
                     }
-                    .bold()
-                    .font(.largeTitle)
-                    .tag(-1)
                     
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
@@ -56,6 +96,7 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
+                    gameOver = true
                     firstScreen = false
                     score = newValue
                     speed = 2.0 / ((Double(newValue) / 39) + 1)
@@ -63,59 +104,20 @@ struct ContentView: View {
                     dropCircle()
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
-                            gameOver = true
-                            if score > best {
-                                best = score
+                            currentScore = score
+                            if currentScore > best {
+                                best = currentScore
                             }
-                        }
-                    }
-                }
-                .allowsHitTesting(!gameOver)
-                
-                if gameOver {
-                    VStack{
-                        Text("Game Over")
-                            .bold()
-                            .font(.largeTitle)
-                        ZStack{
-                            Rectangle()
-                                .foregroundColor(.primary.opacity(0.1))
-                                .cornerRadius(30)
-                            HStack{
-                                VStack(alignment: .leading){
-                                    Text("Score")
-                                    Text(String(score))
-                                        .foregroundColor(.white)
-                                        .padding(.bottom, 3)
-                                    Text("Best")
-                                    Text(String(best))
-                                        .foregroundColor(.white)
-                                }
-                                .padding(.leading, 50)
-                                .bold()
-                                .font(.largeTitle)
-                                Spacer()
-                            }
-                        }
-                        .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.24)
-                        Button(action: {
-                            gameOver = false
                             self.isAnimating = false
-                            currentIndex = -1
-                        }) {
-                            VStack{
-                                Text("play again")
-                                    .multilineTextAlignment(.center)
-                                    .padding()
+                            self.colors = (1...1000).map { _ in
+                                Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
                             }
-                            .foregroundColor(.primary)
-                            .bold()
-                            .font(.largeTitle)
-                            .tag(-1)
+                            currentIndex = -1
                         }
                     }
-                    .offset(y: UIScreen.main.bounds.height * 0.05)
                 }
+                
+                
                 if currentIndex >= 0 {
                     VStack{
                         HStack{
