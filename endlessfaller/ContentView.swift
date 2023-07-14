@@ -30,55 +30,67 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    if !gameOver {
-                        VStack{
-                            Text("Swipe up \nto play")
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Image(systemName: "arrow.up")
-                        }
-                        .bold()
-                        .font(.largeTitle)
-                        .tag(-1)
-                    } else {
-                        
-                        VStack{
-                            Text("Game Over")
-                                .bold()
-                                .font(.largeTitle)
-                            ZStack{
-                                Rectangle()
-                                    .foregroundColor(.primary.opacity(0.1))
-                                    .cornerRadius(30)
-                                HStack{
-                                    VStack(alignment: .leading){
-                                        Text("Score")
-                                        Text(String(currentScore))
-                                            .padding(.bottom, 3)
-                                        Text("Best")
-                                        Text(String(best))
-                                    }
-                                    .padding(.leading, 50)
-                                    .bold()
-                                    .font(.largeTitle)
-                                    Spacer()
-                                }
-                            }
-                            .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
-                            
+                        if !gameOver {
                             VStack{
-                                Text("Swipe up to \nplay again")
+                                Text("Swipe up \nto play")
                                     .multilineTextAlignment(.center)
                                     .padding()
                                 Image(systemName: "arrow.up")
                             }
-                            .foregroundColor(.primary)
                             .bold()
                             .font(.largeTitle)
                             .tag(-1)
+                        } else {
+                            ZStack{
+                                VStack{
+                                    HStack{
+                                        Spacer()
+                                        Image(systemName: "cart")
+                                            .bold()
+                                            .font(.largeTitle)
+                                            .padding()
+                                            .padding(.top, 60)
+                                    }
+                                    Spacer()
+                                }
+                                VStack{
+                                    Text("Game Over")
+                                        .bold()
+                                        .font(.largeTitle)
+                                    ZStack{
+                                        Rectangle()
+                                            .foregroundColor(.primary.opacity(0.1))
+                                            .cornerRadius(30)
+                                        HStack{
+                                            VStack(alignment: .leading){
+                                                Text("Score")
+                                                Text(String(currentScore))
+                                                    .padding(.bottom, 3)
+                                                Text("Best")
+                                                Text(String(best))
+                                            }
+                                            .padding(.leading, 50)
+                                            .bold()
+                                            .font(.largeTitle)
+                                            Spacer()
+                                        }
+                                    }
+                                    .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
+                                    
+                                    VStack{
+                                        Text("Swipe up to \nplay again")
+                                            .multilineTextAlignment(.center)
+                                            .padding()
+                                        Image(systemName: "arrow.up")
+                                    }
+                                    .foregroundColor(.primary)
+                                    .bold()
+                                    .font(.largeTitle)
+                                    .tag(-1)
+                                }
+                                .offset(y: UIScreen.main.bounds.height * 0.05)
+                            }
                         }
-                        .offset(y: UIScreen.main.bounds.height * 0.05)
-                    }
                     
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
@@ -124,7 +136,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                
                 
                 if currentIndex >= 0 {
                     VStack{
