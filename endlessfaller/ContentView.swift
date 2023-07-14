@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var score: Int = 0
     @State var currentIndex: Int = 0
     @State var isAnimating = false
+    @State var firstScreen = true
     @State var speed: Double = 2
     
     let colors: [Color] = (1...1000).map { _ in
@@ -23,6 +24,15 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
+//                    VStack{
+//                        Text("Swipe up \nto play")
+//                            .multilineTextAlignment(.center)
+//                            .padding()
+//                        Image(systemName: "arrow.up")
+//                    }
+//                    .bold()
+//                    .font(.largeTitle)
+//                    .tag(0)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             Rectangle()
@@ -32,9 +42,6 @@ struct ContentView: View {
                                 .frame(width: 46)
                                 .colorInvert()
                                 .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? 960 : -23)
-//                                .onAppear{
-//                                    dropCircle()
-//                                }
                         }
                     }
                 }
@@ -58,8 +65,8 @@ struct ContentView: View {
                             .padding(36)
                             .padding(.top, 30)
                         Spacer()
-                        Text(String(speed))
-                            .padding()
+//                        Text(String(speed))
+//                            .padding()
                     }
                     Spacer()
                 }
@@ -75,7 +82,7 @@ struct ContentView: View {
     func dropCircle() {
         withAnimation(
             Animation.linear(duration: speed)
-                .repeatForever(autoreverses: false)
+                //.repeatForever(autoreverses: false)
         ) {
             self.isAnimating = true
         }
