@@ -11,9 +11,11 @@ import VTabView
 struct ContentView: View {
     
     @State var score: Int = 0
+    @State var best: Int = 0
     @State var currentIndex: Int = -1
     @State var isAnimating = false
     @State var firstScreen = true
+    @State var gameOver = false
     @State var speed: Double = 2
     
     let colors: [Color] = (1...1000).map { _ in
@@ -43,14 +45,14 @@ struct ContentView: View {
                                 .allowsHitTesting(false)
                                 .frame(width: 46)
                                 .colorInvert()
-                                .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? 960 : -23)
+                                .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
                             
                         }
                     }
                 }
                 .frame(
                     width: UIScreen.main.bounds.width,
-                    height: 940
+                    height: UIScreen.main.bounds.height
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
@@ -59,6 +61,60 @@ struct ContentView: View {
                     speed = 2.0 / ((Double(newValue) / 39) + 1)
                     self.isAnimating = false
                     dropCircle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
+                        if currentIndex <= newValue && currentIndex != -1 {
+                            gameOver = true
+                            if score > best {
+                                best = score
+                            }
+                        }
+                    }
+                }
+                .allowsHitTesting(!gameOver)
+                
+                if gameOver {
+                    VStack{
+                        Text("Game Over")
+                            .bold()
+                            .font(.largeTitle)
+                        ZStack{
+                            Rectangle()
+                                .foregroundColor(.primary.opacity(0.1))
+                                .cornerRadius(30)
+                            HStack{
+                                VStack(alignment: .leading){
+                                    Text("Score")
+                                    Text(String(score))
+                                        .foregroundColor(.white)
+                                        .padding(.bottom, 3)
+                                    Text("Best")
+                                    Text(String(best))
+                                        .foregroundColor(.white)
+                                }
+                                .padding(.leading, 50)
+                                .bold()
+                                .font(.largeTitle)
+                                Spacer()
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.24)
+                        Button(action: {
+                            gameOver = false
+                            self.isAnimating = false
+                            currentIndex = -1
+                        }) {
+                            VStack{
+                                Text("play again")
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                            }
+                            .foregroundColor(.primary)
+                            .bold()
+                            .font(.largeTitle)
+                            .tag(-1)
+                        }
+                    }
+                    .offset(y: UIScreen.main.bounds.height * 0.05)
                 }
                 if currentIndex >= 0 {
                     VStack{
