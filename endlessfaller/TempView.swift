@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct TempView: View {
-    @State private var isTouching = false
-        
+    @State private var offset = CGSize.zero
+
         var body: some View {
-            Circle()
-                .foregroundColor(isTouching ? .blue : .red)
-                .frame(width: 200, height: 200)
+            Text("Swipe me!")
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
+                .offset(offset)
                 .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { _ in
-                            isTouching = true
+                    DragGesture()
+                        .onChanged { gesture in
+                            if gesture.translation.height < 0 {
+                                offset = gesture.translation
+                            }
                         }
-                        .onEnded { _ in
-                            isTouching = false
+                        .onEnded { gesture in
+                            offset = CGSize.zero
                         }
+                        .simultaneously(with: TapGesture().onEnded { _ in })
                 )
         }
 }
