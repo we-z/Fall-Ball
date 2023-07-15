@@ -123,7 +123,7 @@ struct ContentView: View {
                 .onChange(of: currentIndex) { newValue in
                     gameOver = true
                     score = newValue
-                    speed = 2.0 / ((Double(newValue) / 3) + 1)
+                    speed = (2.0 / (Double(newValue) + 6)) * 6
                     isAnimating = false
                     dropCircle()
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
@@ -133,14 +133,14 @@ struct ContentView: View {
                                 best = currentScore
                                 UserDefaults.standard.set(best, forKey: bestScoreKey)
                             }
-                            self.colors = (1...1000).map { _ in
-                                Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
-                            }
-                            currentIndex = -1
                             freezeScrolling = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.colors = (1...1000).map { _ in
+                                    Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+                                }
                                 freezeScrolling = false
                             }
+                            currentIndex = -1
                         }
                     }
                 }
