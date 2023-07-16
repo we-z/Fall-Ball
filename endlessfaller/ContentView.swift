@@ -93,6 +93,7 @@ struct ContentView: View {
                                                 .bold()
                                                 .font(.title2)
                                             BallView()
+                                                .foregroundColor(.white)
                                         }
                                         .offset(y: -(UIScreen.main.bounds.height * 0.02))
                                         .padding(.trailing, 60)
@@ -121,6 +122,7 @@ struct ContentView: View {
                                 .fill(colors[index])
                             if highestScoreInGame == index {
                                 BallView()
+                                    .foregroundColor(.white)
                                     .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
                                 
                             }
@@ -183,7 +185,7 @@ struct ContentView: View {
            onDismiss: {
                self.showScreen = false
            }, content: {
-               CharactersView()
+               CharactersMenuView()
                    .presentationDetents([.medium])
                    .presentationDragIndicator(.visible)
            }
@@ -198,7 +200,6 @@ struct BallView: View {
         Circle()
             .allowsHitTesting(false)
             .frame(width: 46)
-            .foregroundColor(.white)
     }
 }
 
