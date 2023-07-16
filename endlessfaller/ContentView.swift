@@ -199,14 +199,6 @@ struct ContentView: View {
     }
 }
 
-struct BallView: View {
-    var body: some View {
-        Circle()
-            .allowsHitTesting(false)
-            .frame(width: 46)
-    }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
