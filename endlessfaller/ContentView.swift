@@ -140,16 +140,19 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
-                    gameOver = true
+                    if newValue > 0{
+                        gameOver = true
+                    }
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        speed = (2.0 / (Double(newValue) + 9)) * 9
+                        speed = 2.0 / ((Double(newValue) / 3) + 1)
                         isAnimating = false
                         dropCircle()
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
+                            gameOver = true
                             currentScore = highestScoreInGame
                             if currentScore > bestScore {
                                 bestScore = currentScore
