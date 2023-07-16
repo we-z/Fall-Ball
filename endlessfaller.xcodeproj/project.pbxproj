@@ -18,6 +18,7 @@
 		7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346C2A60A9E100ED626D /* IconView.swift */; };
 		7AD2346F2A62019800ED626D /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346E2A62019700ED626D /* TempView.swift */; };
 		7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */; };
+		7AD234752A64533700ED626D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234742A64533700ED626D /* AppModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		7AD2346C2A60A9E100ED626D /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		7AD2346E2A62019700ED626D /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersMenuView.swift; sourceTree = "<group>"; };
+		7AD234742A64533700ED626D /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */,
+				7AD234742A64533700ED626D /* AppModel.swift */,
 				7AD234402A5F824800ED626D /* ContentView.swift */,
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
 				7AD2346E2A62019700ED626D /* TempView.swift */,
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
+				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,

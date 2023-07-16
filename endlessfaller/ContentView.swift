@@ -12,7 +12,8 @@ let bestScoreKey = "BestScore"
 
 struct ContentView: View {
     
-    @AppStorage("BestScore") var bestScore: Int = UserDefaults.standard.integer(forKey: "BestScore")
+    @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
+    @StateObject var model = AppModel()
     @State var score: Int = 0
     @State var highestScoreInGame: Int = 0
     @State var currentScore: Int = 0
@@ -92,8 +93,8 @@ struct ContentView: View {
                                             Text("Ball")
                                                 .bold()
                                                 .font(.title2)
-                                            BallView()
-                                                .foregroundColor(.white)
+                                            let character = model.characters[model.selectedCharacter]
+                                            AnyView(character.character)
                                         }
                                         .offset(y: -(UIScreen.main.bounds.height * 0.02))
                                         .padding(.trailing, 60)
@@ -115,16 +116,20 @@ struct ContentView: View {
                             .offset(y: UIScreen.main.bounds.height * 0.05)
                         }
                     }
-                    
+                    let character = model.characters[model.selectedCharacter]
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             Rectangle()
                                 .fill(colors[index])
                             if highestScoreInGame == index {
-                                BallView()
-                                    .foregroundColor(.white)
+                                AnyView(character.character)
                                     .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
-                                
+                            }
+                            if index == 0{
+                                Rectangle()
+                                    .frame(width: 46, height: 46)
+                                    .foregroundColor(.white)
+                                    .position(x: UIScreen.main.bounds.width/2, y: -23)
                             }
                         }
                     }
@@ -139,7 +144,7 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        speed = (2.0 / (Double(newValue) + 12)) * 12
+                        speed = (2.0 / (Double(newValue) + 9)) * 9
                         isAnimating = false
                         dropCircle()
                     }
@@ -172,7 +177,7 @@ struct ContentView: View {
                                 .padding(36)
                                 .padding(.top, 30)
                             Spacer()
-//                            Text(String(highestScoreInGame))
+//                            Text(String(currentIndex))
 //                                .padding()
                         }
                         Spacer()
@@ -181,15 +186,11 @@ struct ContentView: View {
                 }
             }
         }
-        .sheet(isPresented: self.$showScreen,
-           onDismiss: {
-               self.showScreen = false
-           }, content: {
+        .sheet(isPresented: self.$showScreen){
                CharactersMenuView()
                    .presentationDetents([.medium])
                    .presentationDragIndicator(.visible)
-           }
-       )
+        }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
     }
