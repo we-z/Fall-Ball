@@ -17,6 +17,7 @@
 		7AD2346B2A5F848700ED626D /* VTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD2346A2A5F848700ED626D /* VTabView */; };
 		7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346C2A60A9E100ED626D /* IconView.swift */; };
 		7AD2346F2A62019800ED626D /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346E2A62019700ED626D /* TempView.swift */; };
+		7AD234732A63A1FA00ED626D /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234722A63A1FA00ED626D /* CharactersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		7AD2345C2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7AD2346C2A60A9E100ED626D /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		7AD2346E2A62019700ED626D /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
+		7AD234722A63A1FA00ED626D /* CharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */,
 				7AD234402A5F824800ED626D /* ContentView.swift */,
+				7AD234722A63A1FA00ED626D /* CharactersView.swift */,
 				7AD2346E2A62019700ED626D /* TempView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
+				7AD234732A63A1FA00ED626D /* CharactersView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
@@ -443,8 +447,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -481,8 +485,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
