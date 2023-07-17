@@ -18,12 +18,18 @@ class AppModel: ObservableObject {
         Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.white))), cost: "Free", characterID: "white"),
         Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.black))), cost: "$2.99", characterID: "black"),
         Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.orange))), cost: "$2.99", characterID: "orange"),
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.blue))), cost: "$4.99", characterID: "blue"),
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.red))), cost: "$4.99", characterID: "red"),
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.green))), cost: "$4.99", characterID: "green"),
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.purple))), cost: "$9.99", characterID: "purple"),
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.cyan))), cost: "$9.99", characterID: "cyan"),
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.yellow))), cost: "$9.99", characterID: "yellow")
+        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.blue))), cost: "$2.99", characterID: "blue"),
+        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.red))), cost: "$2.99", characterID: "red"),
+        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.green))), cost: "$2.99", characterID: "green"),
+        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.purple))), cost: "$2.99", characterID: "purple"),
+        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.pink.opacity(0.6)))), cost: "$2.99", characterID: "pink"),
+        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.yellow))), cost: "$2.99", characterID: "yellow"),
+        Character(character: AnyView(ChinaView()), cost: "$4.99", characterID: "china"),
+        Character(character: AnyView(AmericaView()), cost: "$4.99", characterID: "america"),
+        Character(character: AnyView(IndiaView()), cost: "$4.99", characterID: "india"),
+        Character(character: AnyView(AlbertView()), cost: "$9.99", characterID: "albert"),
+        Character(character: AnyView(MonkeyView()), cost: "$9.99", characterID: "monkey"),
+        Character(character: AnyView(IceSpiceView()), cost: "$9.99", characterID: "IceSpice")
         
     ]
 }

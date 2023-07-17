@@ -146,7 +146,9 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        speed = 2.0 / ((Double(newValue) / 3) + 1)
+                        if currentIndex < 27{
+                            speed = 2.0 / ((Double(newValue) / 3) + 1)
+                        }
                         isAnimating = false
                         dropCircle()
                     }
@@ -180,7 +182,7 @@ struct ContentView: View {
                                 .padding(36)
                                 .padding(.top, 30)
                             Spacer()
-//                            Text(String(currentIndex))
+//                            Text(String(speed))
 //                                .padding()
                         }
                         Spacer()

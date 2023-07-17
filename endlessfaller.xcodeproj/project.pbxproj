@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */; };
 		7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */; };
 		7AD234412A5F824800ED626D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234402A5F824800ED626D /* ContentView.swift */; };
 		7AD234432A5F824900ED626D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234422A5F824900ED626D /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDesignsView.swift; sourceTree = "<group>"; };
 		7AD2343B2A5F824800ED626D /* Endless Fall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Fall.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerApp.swift; sourceTree = "<group>"; };
 		7AD234402A5F824800ED626D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				7AD234742A64533700ED626D /* AppModel.swift */,
 				7AD234402A5F824800ED626D /* ContentView.swift */,
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
+				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
 				7AD2346E2A62019700ED626D /* TempView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
+				7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */,
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,

@@ -23,6 +23,10 @@ struct CharactersMenuView: View {
                                 .fill(Color.gray.opacity(0.2))
                                 .cornerRadius(20)
                                 .frame(width: UIScreen.main.bounds.width/3.3, height: UIScreen.main.bounds.width/3.3)
+                                .overlay{
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(index == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)
+                                }
                                 .onTapGesture {
                                     model.selectedCharacter = index
                                 }
@@ -36,8 +40,6 @@ struct CharactersMenuView: View {
                                             
                                         }
                                         .padding()
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(index == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)
                                     }
                                 )
                                 .padding(1)
