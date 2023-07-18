@@ -127,9 +127,10 @@ struct ContentView: View {
                             }
                             if index == 0{
                                 Rectangle()
-                                    .frame(width: 46, height: 46)
+                                    .frame(width: 100, height: 100)
                                     .foregroundColor(.white)
-                                    .position(x: UIScreen.main.bounds.width/2, y: -23)
+                                    .position(x: UIScreen.main.bounds.width/2, y: -50)
+                                
                             }
                         }
                     }
@@ -146,7 +147,7 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        if currentIndex < 27{
+                        if currentIndex < 27 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false

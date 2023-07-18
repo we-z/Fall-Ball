@@ -6,61 +6,69 @@
 //
 
 import SwiftUI
-
-struct Person {
-    let name: String
-    let cost: Int
-    let character: any View
-}
+import StoreKit
 
 
 struct TempView: View {
-    @State private var highlightedBox: Int = 0
-
-    let people: [Person] = [
-        Person(name: "John", cost: 25, character: BallView()),
-        Person(name: "Emily", cost: 32, character: BallView()),
-        Person(name: "Michael", cost: 40, character: BallView()),
-        Person(name: "Sarah", cost: 28, character: BallView()),
-        Person(name: "David", cost: 36, character: BallView()),
-        Person(name: "Olivia", cost: 31, character: BallView()),
-        Person(name: "Daniel", cost: 42, character: BallView()),
-        Person(name: "Sophia", cost: 27, character: BallView()),
-        Person(name: "James", cost: 33, character: BallView())
-    ]
-
+    @StateObject var storeKit = StoreKitManager()
+    
     var body: some View {
-        VStack(spacing: 20) {
-            ForEach(0..<people.count/3, id: \.self) { rowIndex in
-                HStack(spacing: 20) {
-                    ForEach(0..<3, id: \.self) { columnIndex in
-                        let index = rowIndex * 3 + columnIndex
-                        if index < people.count {
-                            let person = people[index]
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.2))
-                                .cornerRadius(20)
-                                .frame(width: 100, height: 100)
-                                .onTapGesture {
-                                    highlightedBox = index
-                                }
-                                .overlay(
-                                    ZStack{
-                                        VStack(spacing: 4) {
-                                            AnyView(person.character)
-                                            Text("Age: \(person.cost)")
-                                            
-                                        }
-                                        RoundedRectangle(cornerRadius: 20)
-                                        .stroke(index == highlightedBox ? Color.primary : Color.clear, lineWidth: 2)
-                                    }
-                                )
+        VStack(alignment: .leading) {
+            Text("In-App Purchase Demo")
+                .bold()
+            Divider()
+            ForEach(storeKit.storeProducts) {product in
+                HStack {
+                    Text(product.displayName)
+                    Spacer()
+                    Button(action: {
+                        // purchase this product
+                        print(product.id)
+                        Task {
+                            try await storeKit.purchase(product)
                         }
+                        
+                    }) {
+                        CourseItem(storeKit: storeKit, product: product)
                     }
                 }
+                
             }
+            Divider()
+            Button("Restore Purchases", action: {
+                Task {
+                    //This call displays a system prompt that asks users to authenticate with their App Store credentials.
+                    //Call this function only in response to an explicit user action, such as tapping a button.
+                    try? await AppStore.sync()
+                }
+            })
         }
         .padding()
+        
+    }
+}
+
+struct CourseItem: View {
+    @ObservedObject var storeKit : StoreKitManager
+    @State var isPurchased: Bool = false
+    var product: Product
+    
+    var body: some View {
+        VStack {
+            if isPurchased {
+                Text(Image(systemName: "checkmark"))
+                    .bold()
+                    .padding(10)
+            } else {
+                Text(product.displayPrice)
+                    .padding(10)
+            }
+        }
+        .onChange(of: storeKit.purchasedCourses) { course in
+            Task {
+                isPurchased = (try? await storeKit.isPurchased(product)) ?? false
+            }
+        }
     }
 }
 
