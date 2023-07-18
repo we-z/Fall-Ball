@@ -18,16 +18,17 @@ struct CharactersMenuView: View {
                     ForEach(0..<3, id: \.self) { columnIndex in
                         let index = rowIndex * 3 + columnIndex
                         let storeIndex = index - 1
+                        let currentStoreKit = storeKit
                         if index < model.characters.count {
                             let character = model.characters[index]
                             Button {
-                                let currentStoreKit = storeKit
-                                if storeIndex >= 0 {
+                                if model.characters[index].isPurchased{
+                                    model.selectedCharacter = index
+                                } else if storeIndex >= 0 {
                                     Task {
                                         try await storeKit.purchase(currentStoreKit.storeProducts[storeIndex])
                                     }
                                 }
-                                model.selectedCharacter = index
                             } label: {
                                 Rectangle()
                                     .fill(Color.gray.opacity(0.2))
@@ -42,7 +43,7 @@ struct CharactersMenuView: View {
                                             VStack(spacing: 4) {
                                                 AnyView(character.character)
                                                 Spacer()
-                                                if model.characters[index].isPurchased{
+                                                if model.characters[index].isPurchased && index != 0 {
                                                     Text("Available")
                                                         .bold()
                                                 } else {
@@ -56,6 +57,13 @@ struct CharactersMenuView: View {
                                     )
                                     .accentColor(.primary)
                                     .padding(1)
+                                    .onChange(of: storeKit.purchasedCourses) { course in
+                                        if storeIndex >= 0 {
+                                            Task {
+                                                model.characters[index].isPurchased = (try? await storeKit.isPurchased(currentStoreKit.storeProducts[storeIndex])) ?? false
+                                            }
+                                        }
+                                    }
                             }
                         }
                     }
