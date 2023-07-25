@@ -25,8 +25,9 @@ struct CharactersMenuView: View {
                                 if model.characters[index].isPurchased{
                                     model.selectedCharacter = index
                                 } else if storeIndex >= 0 {
+                                    print("chosen product \(currentStoreKit.storeProducts[storeIndex])")
                                     Task {
-                                        try await storeKit.purchase(currentStoreKit.storeProducts[storeIndex])
+                                        try await storeKit.purchase(characterID: character.characterID)
                                     }
                                 }
                             } label: {
@@ -57,10 +58,10 @@ struct CharactersMenuView: View {
                                     )
                                     .accentColor(.primary)
                                     .padding(1)
-                                    .onChange(of: storeKit.purchasedCourses) { course in
+                                    .onChange(of: storeKit.purchasedProducts) { course in
                                         if storeIndex >= 0 {
                                             Task {
-                                                model.characters[index].isPurchased = (try? await storeKit.isPurchased(currentStoreKit.storeProducts[storeIndex])) ?? false
+                                                model.characters[index].isPurchased = (try? await storeKit.isPurchased(characterID: character.characterID)) ?? false
                                             }
                                         }
                                     }

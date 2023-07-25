@@ -16,7 +16,7 @@ public enum StoreError: Error {
 class StoreKitManager: ObservableObject {
     // if there are multiple product types - create multiple variable for each .consumable, .nonconsumable, .autoRenewable, .nonRenewable.
     @Published var storeProducts: [Product] = []
-    @Published var purchasedCourses : [Product] = []
+    @Published var purchasedProducts : [Product] = []
     
     var updateListenerTask: Task<Void, Error>? = nil
     
@@ -100,7 +100,7 @@ class StoreKitManager: ObservableObject {
     // update the customers products
     @MainActor
     func updateCustomerProductStatus() async {
-        var purchasedCourses: [Product] = []
+        var purchasedProducts: [Product] = []
         
         //iterate through all the user's purchased products
         for await result in Transaction.currentEntitlements {
@@ -109,7 +109,7 @@ class StoreKitManager: ObservableObject {
                 let transaction = try checkVerified(result)
                 // since we only have one type of producttype - .nonconsumables -- check if any storeProducts matches the transaction.productID then add to the purchasedCourses
                 if let course = storeProducts.first(where: { $0.id == transaction.productID}) {
-                    purchasedCourses.append(course)
+                    purchasedProducts.append(course)
                 }
                 
             } catch {
@@ -118,12 +118,17 @@ class StoreKitManager: ObservableObject {
             }
             
             //finally assign the purchased products
-            self.purchasedCourses = purchasedCourses
+            self.purchasedProducts = purchasedProducts
         }
     }
     
     // call the product purchase and returns an optional transaction
-    func purchase(_ product: Product) async throws -> Transaction? {
+    func purchase(characterID: String) async throws -> Transaction? {
+            // Find the product that matches the characterID
+            guard let product = storeProducts.first(where: { $0.matchesCharacterID(characterID) }) else {
+                print("Product not found for characterID: \(characterID)")
+                return nil
+            }
         //make a purchase request - optional parameters available
         let result = try await product.purchase()
         
@@ -149,10 +154,23 @@ class StoreKitManager: ObservableObject {
     }
     
     //check if product has already been purchased
-    func isPurchased(_ product: Product) async throws -> Bool {
+    func isPurchased(characterID: String) async throws -> Bool {
         //as we only have one product type grouping .nonconsumable - we check if it belongs to the purchasedCourses which ran init()
-        return purchasedCourses.contains(product)
+        guard let product = storeProducts.first(where: { $0.matchesCharacterID(characterID) }) else {
+            print("Product not found for characterID: \(characterID)")
+            return false
+        }
+        return purchasedProducts.contains(product)
     }
     
     
 }
+
+// StoreKitManager.swift
+
+extension Product {
+    func matchesCharacterID(_ characterID: String) -> Bool {
+        return id == characterID
+    }
+}
+
