@@ -9,10 +9,18 @@ import Foundation
 import SwiftUI
 
 let selectedCharacterKey = "SelectedCharacter"
+let purchasedCharactersKey = "PurchasedCharacters"
+
+
 
 class AppModel: ObservableObject {
     
     @AppStorage(selectedCharacterKey) var selectedCharacter: Int = UserDefaults.standard.integer(forKey: selectedCharacterKey)
+    @Published var purchasedCharacters: [String] = [] {
+        didSet{
+            savePurchasedCharacters()
+        }
+    }
         
     @Published var characters: [Character] = [
         Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.white))), cost: "Free", characterID: "io.endlessfall.white", isPurchased: true),
@@ -31,7 +39,51 @@ class AppModel: ObservableObject {
         Character(character: AnyView(MonkeyView()), cost: "$9.99", characterID: "io.endlessfall.monkey", isPurchased: false),
         Character(character: AnyView(IceSpiceView()), cost: "$9.99", characterID: "io.endlessfall.icespice", isPurchased: false)
         
-    ]
+    ] 
+    
+    func updatePurchasedCharacters(){
+        print("updatePurchasedCharacters called")
+        characters.forEach{ character in
+            if character.isPurchased == true {
+                if !purchasedCharacters.contains(character.characterID){
+                    purchasedCharacters.append(character.characterID)
+                }
+            }
+        }
+        print("updatePurchasedCharacters: \(purchasedCharacters)")
+    }
+    
+    func savePurchasedCharacters(){
+        if let purchasedCharactes = try? JSONEncoder().encode(purchasedCharacters){
+            UserDefaults.standard.set(purchasedCharactes, forKey: purchasedCharactersKey)
+        }
+        
+    }
+    func getPurchasedCharacters(){
+        guard
+            let charactersData = UserDefaults.standard.data(forKey: purchasedCharactersKey),
+            let savedCharacters = try? JSONDecoder().decode([String].self, from: charactersData)
+        else {return}
+        
+        self.purchasedCharacters = savedCharacters
+        
+        print("purchasedCharacters retrieved: \(purchasedCharacters)")
+        
+        purchasedCharacters.forEach{ purchasedCharacterID in
+            for index in characters.indices {
+                let character = characters[index]
+                if character.characterID == purchasedCharacterID {
+                    characters[index].isPurchased = true
+                }
+            }
+        }
+        print("purchasedCharacters assigned")
+    }
+    
+    
+    init() {
+        getPurchasedCharacters()
+    }
 }
 
 struct Character {

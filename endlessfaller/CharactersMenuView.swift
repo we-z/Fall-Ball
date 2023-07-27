@@ -62,10 +62,14 @@ struct CharactersMenuView: View {
                                         if storeIndex >= 0 {
                                             Task {
                                                 model.characters[index].isPurchased = (try? await storeKit.isPurchased(characterID: character.characterID)) ?? false
+                                                model.updatePurchasedCharacters()
                                             }
                                         }
                                     }
                             }
+//                            .onChange(of: character.isPurchased) {
+//                                model.updatePurchasedCharacters()
+//                            }
                         }
                     }
                 }
