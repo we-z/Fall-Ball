@@ -46,7 +46,7 @@
 		7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		7AB05CE32A65C65500EE4D7B /* products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = products.storekit; sourceTree = "<group>"; };
 		7AB05CE42A65C67A00EE4D7B /* ProductList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ProductList.plist; sourceTree = "<group>"; };
-		7AD2343B2A5F824800ED626D /* Endless Fall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Fall.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD2343B2A5F824800ED626D /* Fall Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fall Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerApp.swift; sourceTree = "<group>"; };
 		7AD234402A5F824800ED626D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7AD234422A5F824900ED626D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		7AD2343C2A5F824800ED626D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7AD2343B2A5F824800ED626D /* Endless Fall.app */,
+				7AD2343B2A5F824800ED626D /* Fall Ball.app */,
 				7AD2344C2A5F824900ED626D /* endlessfallerTests.xctest */,
 				7AD234562A5F824900ED626D /* endlessfallerUITests.xctest */,
 			);
@@ -157,9 +157,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7AD2343A2A5F824800ED626D /* Endless Fall */ = {
+		7AD2343A2A5F824800ED626D /* Fall Ball */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "Endless Fall" */;
+			buildConfigurationList = 7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "Fall Ball" */;
 			buildPhases = (
 				7AD234372A5F824800ED626D /* Sources */,
 				7AD234382A5F824800ED626D /* Frameworks */,
@@ -169,12 +169,12 @@
 			);
 			dependencies = (
 			);
-			name = "Endless Fall";
+			name = "Fall Ball";
 			packageProductDependencies = (
 				7AD2346A2A5F848700ED626D /* VTabView */,
 			);
 			productName = endlessfaller;
-			productReference = 7AD2343B2A5F824800ED626D /* Endless Fall.app */;
+			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7AD2344B2A5F824900ED626D /* endlessfallerTests */ = {
@@ -252,7 +252,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7AD2343A2A5F824800ED626D /* Endless Fall */,
+				7AD2343A2A5F824800ED626D /* Fall Ball */,
 				7AD2344B2A5F824900ED626D /* endlessfallerTests */,
 				7AD234552A5F824900ED626D /* endlessfallerUITests */,
 			);
@@ -324,12 +324,12 @@
 /* Begin PBXTargetDependency section */
 		7AD2344E2A5F824900ED626D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7AD2343A2A5F824800ED626D /* Endless Fall */;
+			target = 7AD2343A2A5F824800ED626D /* Fall Ball */;
 			targetProxy = 7AD2344D2A5F824900ED626D /* PBXContainerItemProxy */;
 		};
 		7AD234582A5F824900ED626D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7AD2343A2A5F824800ED626D /* Endless Fall */;
+			target = 7AD2343A2A5F824800ED626D /* Fall Ball */;
 			targetProxy = 7AD234572A5F824900ED626D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -626,7 +626,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "Endless Fall" */ = {
+		7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "Fall Ball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7AD234612A5F824900ED626D /* Debug */,

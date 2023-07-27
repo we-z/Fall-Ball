@@ -10,16 +10,20 @@ import StoreKit
 
 
 struct TempView: View {
-    @StateObject var storeKit = StoreKitManager()
-    
+    let date = Date()
+    let formatter = DateFormatter()
+    @State var dateString = ""
     var body: some View {
         VStack(alignment: .leading) {
-            Text("In-App Purchase Demo")
+            Text(dateString)
                 .bold()
-        
         }
-        .padding()
         
+        
+        .onAppear{
+            formatter.dateFormat = "HH:mm:ss.SSS"
+            dateString = formatter.string(from: date)
+        }
     }
 }
 
