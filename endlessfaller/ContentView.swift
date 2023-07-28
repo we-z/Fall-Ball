@@ -121,16 +121,26 @@ struct ContentView: View {
                         ZStack{
                             Rectangle()
                                 .fill(colors[index])
-                            if highestScoreInGame == index {
-                                AnyView(character.character)
-                                    .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
-                            }
                             if index == 0{
                                 Rectangle()
                                     .frame(width: 100, height: 100)
                                     .foregroundColor(.white)
                                     .position(x: UIScreen.main.bounds.width/2, y: -50)
-                                
+                                if !gameOver {
+                                    VStack{
+                                        Text("Keep \nswiping")
+                                            .multilineTextAlignment(.center)
+                                            .padding()
+                                        Image(systemName: "arrow.up")
+                                    }
+                                    .bold()
+                                    .font(.largeTitle)
+                                    .blinking()
+                                }
+                            }
+                            if highestScoreInGame == index {
+                                AnyView(character.character)
+                                    .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
                             }
                         }
                     }
