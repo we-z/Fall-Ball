@@ -122,10 +122,6 @@ struct ContentView: View {
                             Rectangle()
                                 .fill(colors[index])
                             if index == 0{
-                                Rectangle()
-                                    .frame(width: 100, height: 100)
-                                    .foregroundColor(.white)
-                                    .position(x: UIScreen.main.bounds.width/2, y: -50)
                                 if !gameOver {
                                     VStack{
                                         Text("Keep \nswiping")
@@ -141,6 +137,12 @@ struct ContentView: View {
                             if highestScoreInGame == index {
                                 AnyView(character.character)
                                     .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
+                            }
+                            if index == 0{
+                                Rectangle()
+                                    .frame(width: 100, height: 100)
+                                    .foregroundColor(.white)
+                                    .position(x: UIScreen.main.bounds.width/2, y: -50)
                             }
                         }
                     }
