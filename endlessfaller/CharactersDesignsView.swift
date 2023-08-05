@@ -10,10 +10,10 @@ import SwiftUI
 struct CharactersDesignsView: View {
     var body: some View {
         VStack{
-            ZStack{
+            HStack{
                 AmericaView()
-                MonkeyView()
-                //AlbertView()
+                RickView()
+                MortyView()
             }
             Spacer()
         }
@@ -26,6 +26,24 @@ struct IceSpiceView: View {
         Image("icespice")
             .resizable()
             .frame(width: 50, height: 50)
+            .allowsHitTesting(false)
+    }
+}
+
+struct RickView: View {
+    var body: some View {
+        Image("rick")
+            .resizable()
+            .frame(width: 50, height: 50)
+            .allowsHitTesting(false)
+    }
+}
+
+struct MortyView: View {
+    var body: some View {
+        Image("morty")
+            .resizable()
+            .frame(width: 46, height: 46)
             .allowsHitTesting(false)
     }
 }

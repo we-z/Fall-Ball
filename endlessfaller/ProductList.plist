@@ -30,5 +30,11 @@
 	<string>io.endlessfall.monkey</string>
 	<key>icespice</key>
 	<string>io.endlessfall.icespice</string>
+	<key>kai</key>
+	<string>io.endlessfall.kai</string>
+	<key>rick</key>
+	<string>io.endlessfall.rick</string>
+	<key>morty</key>
+	<string>io.endlessfall.morty</string>
 </dict>
 </plist>
