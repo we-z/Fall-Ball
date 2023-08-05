@@ -22,28 +22,28 @@ struct IceSpiceView: View {
         ZStack {
             Image("afro")
                 .resizable()
-                .frame(width: 90, height: 80)
-                .offset(y: -15)
+                .frame(width: 70, height: 60)
+                .offset(y: -12)
             ZStack{
                 Circle()
                     .foregroundColor(.white)
-                    .frame(width: 46)
+                    .frame(width: 39)
                 Circle()
                     .foregroundColor(.orange.opacity(0.3))
-                    .frame(width: 46)
+                    .frame(width: 39)
                 Image("winklash")
                     .resizable()
-                    .frame(width: 40, height: 20)
-                    .offset(y: -7)
+                    .frame(width: 36, height: 18)
+                    .offset(y: -5)
                 Text("🫦")
-                    .font(.system(size: 20))
-                    .offset(y: 12)
+                    .font(.system(size: 12))
+                    .offset(y: 10)
             }
             .offset(x: 1)
             Image("afro2")
                 .resizable()
-                .frame(width: 80, height: 80)
-                .offset(y: -15)
+                .frame(width: 60, height: 60)
+                .offset(y: -12)
             
         }
         .offset(y: 15)
@@ -83,7 +83,7 @@ struct MonkeyView: View {
     var body: some View {
         Image("monkey")
             .resizable()
-            .frame(width: 70, height: 80)
+            .frame(width: 60, height: 70)
             .allowsHitTesting(false)
     }
 }

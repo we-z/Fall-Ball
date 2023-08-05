@@ -159,7 +159,7 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        if currentIndex < 27 {
+                        if currentIndex < 21 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false
@@ -190,7 +190,7 @@ struct ContentView: View {
                     VStack{
                         HStack{
                             Text(String(score))
-                                .font(.system(size: 60))
+                                .font(.system(size: 90))
                                 .bold()
                                 .padding(36)
                                 .padding(.top, 30)
