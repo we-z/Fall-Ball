@@ -11,11 +11,16 @@ import StoreKit
 struct CharactersMenuView: View {
     @StateObject var storeKit = StoreKitManager()
     @StateObject var model = AppModel()
+    
     var body: some View {
         GeometryReader { geometry in
             HStack{
                 Spacer()
-                ScrollView{
+                ScrollView(showsIndicators: false){
+                    HStack{
+                        Text("Ball Characters")
+                            .font(.largeTitle)
+                    }
                     ForEach(0..<model.characters.count/3, id: \.self) { rowIndex in
                         HStack {
                             ForEach(0..<3, id: \.self) { columnIndex in
@@ -49,10 +54,8 @@ struct CharactersMenuView: View {
                                                         Spacer()
                                                         if model.characters[index].isPurchased && index != 0 {
                                                             Text("Available")
-                                                                .bold()
                                                         } else {
                                                             Text("\(character.cost)")
-                                                                .bold()
                                                         }
                                                         
                                                     }
@@ -88,7 +91,7 @@ struct CharactersMenuView: View {
                     }
                 }
                 .padding(.top, 30)
-                .scrollIndicators(.hidden)
+                //.scrollIndicators(.hidden)
                 Spacer()
             }
         }

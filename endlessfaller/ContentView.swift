@@ -50,7 +50,7 @@ struct ContentView: View {
                                 } label: {
                                     Image(systemName: "cart")
                                         .foregroundColor(.primary)
-                                        .bold()
+                                        //.bold()
                                         .font(.largeTitle)
                                         .padding(36)
                                 }
@@ -64,14 +64,13 @@ struct ContentView: View {
                                     .padding()
                                 Image(systemName: "arrow.up")
                             }
-                            .bold()
+                            //.bold()
                             .font(.largeTitle)
                             .tag(-1)
                         } else {
                             
                             VStack{
                                 Text("Game Over")
-                                    .bold()
                                     .font(.largeTitle)
                                 ZStack{
                                     Rectangle()
@@ -86,12 +85,11 @@ struct ContentView: View {
                                             Text(String(bestScore))
                                         }
                                         .padding(.leading, 50)
-                                        .bold()
+                              //          .bold()
                                         .font(.largeTitle)
                                         Spacer()
                                         VStack{
                                             Text("Ball")
-                                                .bold()
                                                 .font(.title2)
                                             let character = model.characters[model.selectedCharacter]
                                             AnyView(character.character)
@@ -109,7 +107,7 @@ struct ContentView: View {
                                     Image(systemName: "arrow.up")
                                 }
                                 .foregroundColor(.primary)
-                                .bold()
+                                //.bold()
                                 .font(.largeTitle)
                                 .tag(-1)
                             }
@@ -129,7 +127,7 @@ struct ContentView: View {
                                             .padding()
                                         Image(systemName: "arrow.up")
                                     }
-                                    .bold()
+                                  //  .bold()
                                     .font(.largeTitle)
                                     .blinking()
                                 }
@@ -191,7 +189,6 @@ struct ContentView: View {
                         HStack{
                             Text(String(score))
                                 .font(.system(size: 90))
-                                .bold()
                                 .padding(36)
                                 .padding(.top, 30)
                             Spacer()
@@ -206,8 +203,8 @@ struct ContentView: View {
         }
         .sheet(isPresented: self.$showScreen){
                CharactersMenuView()
-                   .presentationDetents([.medium])
-                   .presentationDragIndicator(.visible)
+//                   .presentationDetents([.medium])
+//                   .presentationDragIndicator(.visible)
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
