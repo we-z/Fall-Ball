@@ -68,7 +68,6 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .tag(-1)
                         } else {
-                            
                             VStack{
                                 Text("Game Over")
                                     .font(.largeTitle)

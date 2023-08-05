@@ -9,45 +9,21 @@ import SwiftUI
 
 struct CharactersDesignsView: View {
     var body: some View {
-        VStack{
-            AlbertView()
-            MonkeyView()
+        HStack{
             IceSpiceView()
+            AmericaView()
+            KaiView()
         }
     }
 }
 
+
 struct IceSpiceView: View {
     var body: some View {
-        ZStack {
-            Image("afro")
-                .resizable()
-                .frame(width: 70, height: 60)
-                .offset(y: -12)
-            ZStack{
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 39)
-                Circle()
-                    .foregroundColor(.orange.opacity(0.3))
-                    .frame(width: 39)
-                Image("winklash")
-                    .resizable()
-                    .frame(width: 36, height: 18)
-                    .offset(y: -5)
-                Text("🫦")
-                    .font(.system(size: 12))
-                    .offset(y: 10)
-            }
-            .offset(x: 1)
-            Image("afro2")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .offset(y: -12)
-            
-        }
-        .offset(y: 15)
-        .allowsHitTesting(false)
+        Image("icespice")
+            .resizable()
+            .frame(width: 50, height: 50)
+            .allowsHitTesting(false)
     }
 }
 
@@ -84,6 +60,15 @@ struct MonkeyView: View {
         Image("monkey")
             .resizable()
             .frame(width: 60, height: 70)
+            .allowsHitTesting(false)
+    }
+}
+
+struct KaiView: View {
+    var body: some View {
+        Image("kai")
+            .resizable()
+            .frame(width: 46, height: 46)
             .allowsHitTesting(false)
     }
 }
