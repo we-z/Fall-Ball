@@ -7,6 +7,7 @@
 
 import SwiftUI
 import VTabView
+import AudioToolbox
 
 let bestScoreKey = "BestScore"
 
@@ -35,6 +36,8 @@ struct ContentView: View {
             isAnimating = true
         }
     }
+    
+    let impactMed = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
         ScrollView {
@@ -119,7 +122,6 @@ struct ContentView: View {
                             Rectangle()
                                 .fill(colors[index])
                             if index == 0{
-                                if !gameOver {
                                     VStack{
                                         Text("Keep \nswiping")
                                             .multilineTextAlignment(.center)
@@ -129,7 +131,6 @@ struct ContentView: View {
                                   //  .bold()
                                     .font(.largeTitle)
                                     .blinking()
-                                }
                             }
                             if highestScoreInGame == index {
                                 AnyView(character.character)
@@ -162,6 +163,7 @@ struct ContentView: View {
                         isAnimating = false
                         dropCircle()
                     }
+                    impactMed.impactOccurred()
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
                             gameOver = true
@@ -172,8 +174,7 @@ struct ContentView: View {
                             }
                             freezeScrolling = true
                             highestScoreInGame = 0
-                            let generator = UINotificationFeedbackGenerator()
-                            generator.notificationOccurred(.error)
+                            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.colors = (1...1000).map { _ in
                                     Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))

@@ -29,10 +29,6 @@ struct IconView: View {
                 .strokeBorder(Color.primary,lineWidth: 6)
                 .background(Circle().foregroundColor(Color.white))
                 .frame(width: 180)
-
-//            Image("monkey")
-//                .resizable()
-//                .frame(width: 280, height: 320)
             
             HStack{
                 Spacer()
