@@ -172,6 +172,8 @@ struct ContentView: View {
                             }
                             freezeScrolling = true
                             highestScoreInGame = 0
+                            let generator = UINotificationFeedbackGenerator()
+                            generator.notificationOccurred(.error)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.colors = (1...1000).map { _ in
                                     Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))

@@ -13,7 +13,8 @@ struct CharactersDesignsView: View {
             HStack{
                 AmericaView()
                 RickView()
-                MortyView()
+                KaiView()
+                IceSpiceView()
             }
             Spacer()
         }
@@ -25,7 +26,7 @@ struct IceSpiceView: View {
     var body: some View {
         Image("icespice")
             .resizable()
-            .frame(width: 50, height: 50)
+            .frame(width: 60, height: 60)
             .allowsHitTesting(false)
     }
 }
@@ -34,7 +35,7 @@ struct RickView: View {
     var body: some View {
         Image("rick")
             .resizable()
-            .frame(width: 50, height: 50)
+            .frame(width: 60, height: 60)
             .allowsHitTesting(false)
     }
 }
@@ -43,7 +44,7 @@ struct MortyView: View {
     var body: some View {
         Image("morty")
             .resizable()
-            .frame(width: 46, height: 46)
+            .frame(width: 56, height: 56)
             .allowsHitTesting(false)
     }
 }
@@ -71,7 +72,7 @@ struct KaiView: View {
     var body: some View {
         Image("kai")
             .resizable()
-            .frame(width: 46, height: 46)
+            .frame(width: 57, height: 57)
             .allowsHitTesting(false)
     }
 }

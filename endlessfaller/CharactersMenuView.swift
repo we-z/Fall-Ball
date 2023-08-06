@@ -26,14 +26,13 @@ struct CharactersMenuView: View {
                             ForEach(0..<3, id: \.self) { columnIndex in
                                 let index = rowIndex * 3 + columnIndex
                                 let storeIndex = index - 1
-                                let currentStoreKit = storeKit
                                 if index < model.characters.count {
                                     let character = model.characters[index]
                                     Button {
                                         if model.characters[index].isPurchased{
                                             model.selectedCharacter = index
                                         } else if storeIndex >= 0 {
-                                            print("chosen product \(currentStoreKit.storeProducts[storeIndex])")
+                                            //print("chosen product \(currentStoreKit.storeProducts[storeIndex])")
                                             Task {
                                                 try await storeKit.purchase(characterID: character.characterID)
                                             }
