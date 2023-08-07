@@ -63,6 +63,8 @@ struct ContentView: View {
                         if !gameOver {
                             VStack{
                                 Text("Swipe up \nto play")
+                                    .bold()
+                                    .italic()
                                     .multilineTextAlignment(.center)
                                     .padding()
                                 Image(systemName: "arrow.up")
@@ -73,6 +75,8 @@ struct ContentView: View {
                         } else {
                             VStack{
                                 Text("Game Over")
+                                    .bold()
+                                    .italic()
                                     .font(.largeTitle)
                                 ZStack{
                                     Rectangle()
@@ -81,18 +85,23 @@ struct ContentView: View {
                                     HStack{
                                         VStack(alignment: .leading){
                                             Text("Score")
+                                                .bold()
+                                                .italic()
                                             Text(String(currentScore))
                                                 .padding(.bottom, 3)
                                             Text("Best")
+                                                .bold()
+                                                .italic()
                                             Text(String(bestScore))
                                         }
                                         .padding(.leading, 50)
-                              //          .bold()
                                         .font(.largeTitle)
                                         Spacer()
                                         VStack{
                                             Text("Ball")
-                                                .font(.title2)
+                                                .bold()
+                                                .italic()
+                                                .font(.title)
                                             let character = model.characters[model.selectedCharacter]
                                             AnyView(character.character)
                                         }
@@ -104,6 +113,8 @@ struct ContentView: View {
                                 
                                 VStack{
                                     Text("Swipe up to \nplay again")
+                                        .bold()
+                                        .italic()
                                         .multilineTextAlignment(.center)
                                         .padding()
                                     Image(systemName: "arrow.up")
@@ -146,7 +157,7 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        if currentIndex < 24 {
+                        if currentIndex < 21 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false
@@ -194,6 +205,8 @@ struct ContentView: View {
                 if currentIndex >= 0 && currentIndex < 3 {
                         VStack{
                             Text("Keep \nswiping")
+                                .bold()
+                                .italic()
                                 .allowsHitTesting(false)
                                 .multilineTextAlignment(.center)
                                 .padding()
@@ -204,8 +217,10 @@ struct ContentView: View {
                         .blinking()
                 }
                 
-                if currentIndex > 30 && currentIndex < 50 {
+                if currentIndex > 30 && currentIndex < 55 {
                     Text("Keep Going!")
+                        .bold()
+                        .italic()
                         .allowsHitTesting(false)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -213,8 +228,10 @@ struct ContentView: View {
                         .blinking()
                 }
                 
-                if currentIndex > 100 && currentIndex < 120 {
+                if currentIndex > 100 && currentIndex < 125 {
                     Text("You're Good!")
+                        .bold()
+                        .italic()
                         .allowsHitTesting(false)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -222,6 +239,27 @@ struct ContentView: View {
                         .blinking()
                 }
                 
+                if currentIndex > 200 && currentIndex < 225 {
+                    Text("You're Insane!!")
+                        .bold()
+                        .italic()
+                        .allowsHitTesting(false)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .font(.largeTitle)
+                        .blinking()
+                }
+                
+                if currentIndex > 300 && currentIndex < 325 {
+                    Text("GO BERZERK!!!")
+                        .bold()
+                        .italic()
+                        .allowsHitTesting(false)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .font(.largeTitle)
+                        .blinking()
+                }
             }
         }
         .sheet(isPresented: self.$showScreen){

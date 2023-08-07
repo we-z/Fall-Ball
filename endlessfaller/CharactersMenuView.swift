@@ -19,6 +19,8 @@ struct CharactersMenuView: View {
                 ScrollView(showsIndicators: false){
                     HStack{
                         Text("Ball Characters")
+                            .bold()
+                            .italic()
                             .font(.largeTitle)
                     }
                     ForEach(0..<model.characters.count/3, id: \.self) { rowIndex in
