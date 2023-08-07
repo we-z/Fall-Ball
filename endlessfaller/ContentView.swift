@@ -37,7 +37,7 @@ struct ContentView: View {
         }
     }
     
-    let impactMed = UIImpactFeedbackGenerator(style: .light)
+    let impactMed = UIImpactFeedbackGenerator(style: .medium)
     
     var body: some View {
         ScrollView {
@@ -157,9 +157,13 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        if currentIndex < 21 {
+                        if currentIndex < 24 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
+//                        if currentIndex > 21 && currentIndex < 100 {
+//                            speed = speed - 0.0006
+//                        }
+                        
                         isAnimating = false
                         dropCircle()
                     }
