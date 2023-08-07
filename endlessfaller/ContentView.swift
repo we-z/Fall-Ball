@@ -121,17 +121,6 @@ struct ContentView: View {
                         ZStack{
                             Rectangle()
                                 .fill(colors[index])
-                            if index == 0{
-                                    VStack{
-                                        Text("Keep \nswiping")
-                                            .multilineTextAlignment(.center)
-                                            .padding()
-                                        Image(systemName: "arrow.up")
-                                    }
-                                  //  .bold()
-                                    .font(.largeTitle)
-                                    .blinking()
-                            }
                             if highestScoreInGame == index {
                                 AnyView(character.character)
                                     .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
@@ -160,10 +149,6 @@ struct ContentView: View {
                         if currentIndex < 24 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
-//                        if currentIndex > 21 && currentIndex < 100 {
-//                            speed = speed - 0.0006
-//                        }
-                        
                         isAnimating = false
                         dropCircle()
                     }
@@ -205,6 +190,38 @@ struct ContentView: View {
                     }
                     .allowsHitTesting(false)
                 }
+                
+                if currentIndex >= 0 && currentIndex < 3 {
+                        VStack{
+                            Text("Keep \nswiping")
+                                .allowsHitTesting(false)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                            Image(systemName: "arrow.up")
+                        }
+                      //  .bold()
+                        .font(.largeTitle)
+                        .blinking()
+                }
+                
+                if currentIndex > 30 && currentIndex < 50 {
+                    Text("Keep Going!")
+                        .allowsHitTesting(false)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .font(.largeTitle)
+                        .blinking()
+                }
+                
+                if currentIndex > 100 && currentIndex < 120 {
+                    Text("You're Good!")
+                        .allowsHitTesting(false)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .font(.largeTitle)
+                        .blinking()
+                }
+                
             }
         }
         .sheet(isPresented: self.$showScreen){

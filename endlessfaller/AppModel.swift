@@ -106,21 +106,21 @@ struct BallView: View {
 }
 
 struct BlinkViewModifier: ViewModifier {
-    
+
     let duration: Double
     @State private var blinking: Bool = false
-    
+
     func body(content: Content) -> some View {
         content
             .opacity(blinking ? 0 : 1)
-            .animation(.easeOut(duration: duration).repeatForever())
             .onAppear {
-                withAnimation {
+                withAnimation(.easeOut(duration: duration).repeatForever()) {
                     blinking = true
                 }
             }
     }
 }
+
 
 
 extension View {
