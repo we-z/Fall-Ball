@@ -12,7 +12,7 @@ struct CharactersDesignsView: View {
         VStack{
             HStack{
                 AmericaView()
-                RickView()
+                MonkeyView()
                 KaiView()
                 IceSpiceView()
             }
@@ -62,7 +62,7 @@ struct MonkeyView: View {
     var body: some View {
         Image("monkey")
             .resizable()
-            .frame(width: 45, height: 45)
+            .frame(width: 65, height: 75)
             .offset(x:1)
             .allowsHitTesting(false)
     }

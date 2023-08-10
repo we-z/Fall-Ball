@@ -8,6 +8,7 @@
 import SwiftUI
 import VTabView
 import AudioToolbox
+import AVKit
 
 let bestScoreKey = "BestScore"
 
@@ -23,7 +24,10 @@ struct ContentView: View {
     @State var isAnimating = false
     @State var gameOver = false
     @State var freezeScrolling = false
-    @State var showScreen = false
+    @State var showCharactersMenu = false
+    @State var mute = false
+    
+    @State var audioPlayer: AVAudioPlayer!
     
     @State var colors: [Color] = (1...1000).map { _ in
         Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
@@ -47,18 +51,31 @@ struct ContentView: View {
                         VStack{
                             Spacer()
                             HStack{
+                                Button {
+                                    mute.toggle()
+                                } label: {
+                                    Image(systemName: mute ? "speaker.slash" : "speaker.wave.2")
+                                        .foregroundColor(.primary)
+                                        .font(.largeTitle)
+                                        .padding(36)
+                                }
+                                .onChange(of: mute) { setting in
+                                    if setting == true {
+                                        self.audioPlayer.setVolume(0, fadeDuration: 0)
+                                    } else {
+                                        self.audioPlayer.setVolume(1, fadeDuration: 0)
+                                    }
+                                }
                                 Spacer()
                                 Button {
-                                    showScreen = true
+                                    showCharactersMenu = true
                                 } label: {
                                     Image(systemName: "cart")
                                         .foregroundColor(.primary)
-                                        //.bold()
                                         .font(.largeTitle)
                                         .padding(36)
                                 }
                             }
-                            
                         }
                         if !gameOver {
                             VStack{
@@ -69,9 +86,9 @@ struct ContentView: View {
                                     .padding()
                                 Image(systemName: "arrow.up")
                             }
-                            //.bold()
                             .font(.largeTitle)
                             .tag(-1)
+                            .blinking()
                         } else {
                             VStack{
                                 Text("Game Over")
@@ -120,7 +137,6 @@ struct ContentView: View {
                                     Image(systemName: "arrow.up")
                                 }
                                 .foregroundColor(.primary)
-                                //.bold()
                                 .font(.largeTitle)
                                 .tag(-1)
                             }
@@ -202,17 +218,16 @@ struct ContentView: View {
                     .allowsHitTesting(false)
                 }
                 
-                if currentIndex >= 0 && currentIndex < 3 {
+                if currentIndex >= 0 && currentIndex < 2 {
                         VStack{
                             Text("Keep \nswiping")
                                 .bold()
                                 .italic()
-                                .allowsHitTesting(false)
                                 .multilineTextAlignment(.center)
                                 .padding()
                             Image(systemName: "arrow.up")
                         }
-                      //  .bold()
+                        .allowsHitTesting(false)
                         .font(.largeTitle)
                         .blinking()
                 }
@@ -262,13 +277,17 @@ struct ContentView: View {
                 }
             }
         }
-        .sheet(isPresented: self.$showScreen){
+        .sheet(isPresented: self.$showCharactersMenu){
                CharactersMenuView()
-//                   .presentationDetents([.medium])
-//                   .presentationDragIndicator(.visible)
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
+        .onAppear {
+            let sound = Bundle.main.path(forResource: "FallBallOST", ofType: "mp3")
+            self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            self.audioPlayer.numberOfLoops = 1000
+            self.audioPlayer.play()
+        }
     }
 }
 
