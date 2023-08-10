@@ -128,7 +128,7 @@ struct FlashViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .opacity(flash ? 0 : 1)
+            .opacity(flash ? 0.1 : 1)
             .onAppear {
                 withAnimation(.linear(duration: duration).repeatForever()) {
                     flash = true
@@ -140,10 +140,10 @@ struct FlashViewModifier: ViewModifier {
 
 
 extension View {
-    func blinking(duration: Double = 1) -> some View {
+    func blinking(duration: Double = 0.25 ) -> some View {
         modifier(BlinkViewModifier(duration: duration))
     }
-    func flashing(duration: Double = 0.3) -> some View {
+    func flashing(duration: Double = 0.25) -> some View {
         modifier(FlashViewModifier(duration: duration))
     }
 }

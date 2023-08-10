@@ -232,7 +232,7 @@ struct ContentView: View {
                         .blinking()
                 }
                 
-                if currentIndex > 30 && currentIndex < 55 {
+                if currentIndex > 30 && currentIndex < 45 {
                     Text("Keep Going!")
                         .bold()
                         .italic()
@@ -240,10 +240,10 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                         .font(.largeTitle)
-                        .blinking()
+                        .flashing()
                 }
                 
-                if currentIndex > 100 && currentIndex < 125 {
+                if currentIndex > 100 && currentIndex < 115 {
                     Text("You're Good!")
                         .bold()
                         .italic()
@@ -251,10 +251,10 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                         .font(.largeTitle)
-                        .blinking()
+                        .flashing()
                 }
                 
-                if currentIndex > 200 && currentIndex < 225 {
+                if currentIndex > 200 && currentIndex < 215 {
                     Text("You're Insane!!")
                         .bold()
                         .italic()
@@ -262,10 +262,10 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                         .font(.largeTitle)
-                        .blinking()
+                        .flashing()
                 }
                 
-                if currentIndex > 300 && currentIndex < 325 {
+                if currentIndex > 300 && currentIndex < 315 {
                     Text("GO BERZERK!!!")
                         .bold()
                         .italic()
@@ -273,7 +273,7 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                         .font(.largeTitle)
-                        .blinking()
+                        .flashing()
                 }
             }
         }
@@ -283,7 +283,7 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
-            let sound = Bundle.main.path(forResource: "FallBallOST", ofType: "mp3")
+            let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
             self.audioPlayer.numberOfLoops = 1000
             self.audioPlayer.play()
