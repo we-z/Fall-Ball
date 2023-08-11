@@ -26,6 +26,7 @@ struct ContentView: View {
     @State var freezeScrolling = false
     @State var showCharactersMenu = false
     @State var mute = false
+    @State var showGameOver = false
     
     @State var audioPlayer: AVAudioPlayer!
     
@@ -149,8 +150,19 @@ struct ContentView: View {
                             Rectangle()
                                 .fill(colors[index])
                             if highestScoreInGame == index {
-                                AnyView(character.character)
-                                    .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
+                                ZStack{
+                                    VStack{
+                                        LinearGradient(
+                                            colors: [.gray.opacity(0.01), .gray.opacity(0.75)],
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        )
+                                    }
+                                    .frame(width: 46, height: 60)
+                                    .offset(x: 0, y:-23)
+                                    AnyView(character.character)
+                                }
+                                .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
                             }
                             if index == 0{
                                 Rectangle()
@@ -189,8 +201,15 @@ struct ContentView: View {
                                 UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
                             }
                             freezeScrolling = true
+//                            showGameOver = true
+//                            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+//                            sleep(1)
+//                            showGameOver = false
                             highestScoreInGame = 0
                             AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+//                            DispatchQueue.main.async {
+//                                currentIndex = -1
+//                            }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.colors = (1...1000).map { _ in
                                     Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
@@ -219,61 +238,23 @@ struct ContentView: View {
                 }
                 
                 if currentIndex >= 0 && currentIndex < 2 {
-                        VStack{
-                            Text("Keep \nswiping")
-                                .bold()
-                                .italic()
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Image(systemName: "arrow.up")
-                        }
-                        .allowsHitTesting(false)
-                        .font(.largeTitle)
-                        .blinking()
+                    KeepSwiping()
                 }
                 
                 if currentIndex > 30 && currentIndex < 45 {
-                    Text("Keep Going!")
-                        .bold()
-                        .italic()
-                        .allowsHitTesting(false)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .font(.largeTitle)
-                        .flashing()
+                    KeepGoing()
                 }
                 
                 if currentIndex > 100 && currentIndex < 115 {
-                    Text("You're Good!")
-                        .bold()
-                        .italic()
-                        .allowsHitTesting(false)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .font(.largeTitle)
-                        .flashing()
+                    YourGood()
                 }
                 
                 if currentIndex > 200 && currentIndex < 215 {
-                    Text("You're Insane!!")
-                        .bold()
-                        .italic()
-                        .allowsHitTesting(false)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .font(.largeTitle)
-                        .flashing()
+                    YourInsane()
                 }
                 
                 if currentIndex > 300 && currentIndex < 315 {
-                    Text("GO BERZERK!!!")
-                        .bold()
-                        .italic()
-                        .allowsHitTesting(false)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .font(.largeTitle)
-                        .flashing()
+                    GoBerzerk()
                 }
             }
         }

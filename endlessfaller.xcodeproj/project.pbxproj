@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7A723DDA2A84B842002E9F2C /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */; };
 		7A723DE82A859A35002E9F2C /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A723DE72A859A35002E9F2C /* FallBallOST120.mp3 */; };
+		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */; };
 		7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */; };
 		7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB05CE42A65C67A00EE4D7B /* ProductList.plist */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		7A723DE72A859A35002E9F2C /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FallBallOST120.mp3; path = "../../../Fall Ball OST Audio/FallBallOST120.mp3"; sourceTree = "<group>"; };
+		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
 		7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDesignsView.swift; sourceTree = "<group>"; };
 		7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		7AB05CE32A65C65500EE4D7B /* products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = products.storekit; sourceTree = "<group>"; };
@@ -116,11 +118,12 @@
 		7AD2343D2A5F824800ED626D /* endlessfaller */ = {
 			isa = PBXGroup;
 			children = (
-				7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
+				7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */,
 				7AD234402A5F824800ED626D /* ContentView.swift */,
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
 				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
+				7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */,
 				7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */,
 				7A723DE72A859A35002E9F2C /* FallBallOST120.mp3 */,
 				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
@@ -303,6 +306,7 @@
 				7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */,
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7A723DDA2A84B842002E9F2C /* LeaderBoardView.swift in Sources */,
+				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
@@ -459,7 +463,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.4;
+				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -479,7 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -499,7 +503,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.4;
+				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -519,7 +523,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
