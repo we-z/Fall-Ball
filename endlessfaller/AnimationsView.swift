@@ -9,14 +9,7 @@ import SwiftUI
 
 struct AnimationsView: View {    
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                    SVGCharacterView()
-                        .padding(60)
-            }
-        }
+        ReactionsView()
         
     }
 }
@@ -130,6 +123,263 @@ struct SVGCharacterView: View {
                 }
             }
         }
+    }
+}
+
+struct ReactionsView: View {
+    @State private var showReactions = false
+    let deviceHeight = UIScreen.main.bounds.height
+    
+    var body: some View {
+        VStack{
+            Spacer()
+            HStack {
+                ZStack {
+                    TearsOfJoyView()
+                        .hueRotation(.degrees(showReactions ? -deviceHeight : 0))
+                        .offset(y: showReactions ? -deviceHeight : -30)
+                        .scaleEffect(showReactions ? 1 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
+                        .rotationEffect(.degrees(showReactions ? -5 : 5))
+                        .animation(Animation.easeInOut(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                    
+                    //Image("handDefault")
+                    ClappingHandsEmojiView()
+                        .scaleEffect(showReactions ? 5 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
+                        .hueRotation(.degrees(showReactions ? -deviceHeight : 0))
+                        .offset(x: -20, y: showReactions ? -deviceHeight : -30)
+                        .rotationEffect(.degrees(showReactions ? 15 : -30))
+                        .animation(Animation.easeOut(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                    
+                    Image("handDefault")
+                    //ClappingHandsEmojiView()
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 38, height: 38)
+                        .scaleEffect(showReactions ? 3 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
+                        .hueRotation(.degrees(showReactions ? 0 : 220))
+                        .offset(y: showReactions ? -deviceHeight : -30)
+                        .rotationEffect(.degrees(showReactions ? -39 : 20))
+                        .animation(Animation.easeIn(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                    
+                    //Image("handDefault")
+                    ClappingHandsEmojiView()
+                }
+                .frame(width: 38, height: 38)
+                
+                ZStack {
+                    Image("heart3D")
+                    //RevolvingHeartView()
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 32, height: 32)
+                        .scaleEffect(showReactions ? 3 : 0, anchor: showReactions ? .bottomLeading: .top)
+                        .opacity(showReactions ? 2 : 0)
+                        .hueRotation(.degrees(showReactions ? 0 : 220))
+                        .offset(y: showReactions ? -deviceHeight : -30)
+                        .rotationEffect(.degrees(showReactions ? -7.5 : 15))
+                        .animation(Animation.easeOut(duration: 4).delay(1.1).repeatForever(autoreverses: false), value: showReactions)
+                    
+                    RevolvingHeartView()
+                        .scaleEffect(showReactions ? 1.2 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
+                        .offset(x: -30, y: showReactions ? -deviceHeight : -30)
+                        .rotationEffect(.degrees(showReactions ? -10 : 5))
+                        .animation(Animation.easeIn(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                    
+                    HeartExclamationView()
+                        .scaleEffect(showReactions ? 5 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
+                        .hueRotation(.degrees(showReactions ? 0 : 20))
+                        .offset(x: -20, y: showReactions ? -deviceHeight : -35)
+                        .rotationEffect(.degrees(showReactions ? -15 : 15))
+                        .animation(Animation.easeIn(duration: 4).delay(1.5).repeatForever(autoreverses: false), value: showReactions)
+                    
+                    Image("heart3D")
+                        .resizable()
+                        .hueRotation(.degrees(330))
+                        .scaledToFit()
+                        .frame(width: 38, height: 38)
+                }
+                .frame(width: 38, height: 38)
+                
+                HandRaisedIn3DY()
+                    .scaleEffect(1.4)
+            }
+            .onAppear {
+                showReactions.toggle()
+            }
+            
+        }
+    }
+}
+
+struct HeartExclamationView: View {
+    @State private var isYRotating: Double = 0
+    
+    var body: some View {
+        Button {
+            // Add tap action
+        } label: {
+            VStack(spacing: 0) {
+                Image("heartExclamation")
+                    .rotation3DEffect(.degrees(isYRotating), axis: (x: 0, y: 1, z: 0))
+                    .font(.system(size: 128))
+                    .animation(.easeOut(duration: 1).repeatForever(autoreverses: false), value: isYRotating)
+                    .onAppear {
+                        isYRotating = 360
+                    }
+                Image("circleExclamation")
+            }
+        }
+    }
+}
+
+struct HandRaisedIn3DY: View {
+    @State private var handIsRaised = false
+    
+    var body: some View {
+        Button {
+            // Add tap action
+        } label: {
+            Image("handRaised")
+                .rotation3DEffect(.degrees(handIsRaised ? 0 : -180), axis: (x: 0, y: 1, z: 0))
+                .offset(y: handIsRaised ? -150 : 0)
+                .onAppear{
+                    withAnimation(.easeInOut(duration: 1).delay(0.5).repeatForever(autoreverses: true)){
+                        handIsRaised.toggle()
+                    }
+                }
+        }
+    }
+}
+
+struct ClappingHandsEmojiView: View {
+    
+    // Initial Animation States
+    @State private var blinking = false
+    @State private var openingClosing = true
+    @State private var clapping = true
+    
+    var body: some View {
+        ZStack {
+            Image("head")
+            
+            VStack {
+                ZStack {
+                    Image("eyelid")
+                    
+                    Image("eye_blink")
+                    // 1. Eye Blink Animation
+                        .scaleEffect(y: blinking ? 0 : 1)
+                        .animation(.timingCurve(0.68, -0.6, 0.32, 1.6).delay(1).repeatForever(autoreverses: false), value: blinking)
+                }
+                
+                ZStack {
+                    Image("mouth")
+                    // 2. Mouth Opening Animation
+                        .scaleEffect(x: openingClosing ? 0.7 : 1)
+                        .animation(.timingCurve(0.68, -0.6, 0.32, 1.6).delay(1).repeatForever(autoreverses: true), value: openingClosing)
+                    
+                    
+                    HStack {
+                        Image("left_hand")
+                        // 3. Clapping Animation: Left Hand
+                            .rotationEffect(.degrees(clapping ? 15 : -5), anchor: .bottom)
+                            .offset(x: clapping ? 20 : -40)
+                            .animation(.easeInOut(duration: 0.2).repeatForever(autoreverses: true), value: clapping)
+                        
+                        Image("right_hand")
+                        // 4. Clapping Animation: Right Hand
+                            .rotationEffect(.degrees(clapping ? -15 : 5), anchor: .bottom)
+                            .offset(x: clapping ? -20 : 40)
+                            .animation(.easeInOut(duration: 0.2).repeatForever(autoreverses: true), value: clapping)
+                    }
+                }
+                
+            }
+            .onAppear{
+                // Final Animation States
+                clapping.toggle()
+                blinking.toggle()
+                openingClosing.toggle()
+            }
+            
+        }.frame(width: 58, height: 58)
+            .scaleEffect(0.13)
+        
+    }
+    
+}
+
+struct RevolvingHeartView: View {
+    
+    @State private var revolving = false
+    
+    var body: some View {
+       
+        VStack {
+            VStack(spacing: 50) {
+                ZStack {
+                    ZStack {
+                        Image("circular")
+                        Image("heart_top")
+                        // Do not rotate
+                            .rotationEffect(.degrees(revolving ? -360 : 360))
+                            .offset(x: 10, y: -20)
+                            
+                        Image("heart_bottom")
+                        // Do not rotate
+                            .rotationEffect(.degrees(revolving ? -360 : 360))
+                            .offset(x: -25, y: 20)
+                                
+                    }
+                    .rotationEffect(.degrees(revolving ? 360 : -360))
+                    .animation(.easeInOut(duration: 5).repeatForever(autoreverses: false), value: revolving)
+                    .offset(x: 12.5, y: -20)
+                    .onAppear {
+                            revolving.toggle()
+                    }
+                }
+            }
+        }
+            
+    }
+}
+
+
+struct TearsOfJoyView: View {
+    @State private var isJoyful = false
+    
+    var body: some View {
+        ZStack {
+            Image("tearHead")
+            
+            VStack(spacing: -30) {
+                Image("joyEyes")
+                    .rotationEffect(.degrees(isJoyful ? -16 : 8))
+                
+                Image("tearMouth")
+                    .resizable()
+                    .frame(width: 33, height: isJoyful ? 32 : 28)
+                    .scaleEffect(isJoyful ? 0.8 : 1)
+                    .rotationEffect(.degrees(isJoyful ? 8 : -8))
+                    .animation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: isJoyful)
+            }
+            
+            
+            HStack(spacing: 12){
+                Image("tearRight")
+                    .rotationEffect(.degrees(isJoyful ? 5 : -30), anchor: .topTrailing)
+                    .animation(.easeOut(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
+                
+                Image("tearLeft")
+                    .rotationEffect(.degrees(isJoyful ? -30 : 5), anchor: .topLeading)
+                    .animation(.easeIn(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
+            }
+        }.scaleEffect(3)
+            .onAppear{
+                withAnimation(.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+                    isJoyful.toggle()
+                }
+            }
     }
 }
 

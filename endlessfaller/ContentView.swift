@@ -241,7 +241,7 @@ struct ContentView: View {
                     KeepSwiping()
                 }
                 
-                if currentIndex > 30 && currentIndex < 45 {
+                if currentIndex > 21 && currentIndex < 36 {
                     KeepGoing()
                 }
                 
@@ -249,7 +249,7 @@ struct ContentView: View {
                     YourGood()
                 }
                 
-                if currentIndex > 21 {
+                if currentIndex > 36 {
                     VStack{
                         Spacer()
                         HStack{
