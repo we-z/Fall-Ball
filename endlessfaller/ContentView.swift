@@ -249,15 +249,16 @@ struct ContentView: View {
                     YourGood()
                 }
                 
-                if currentIndex > 50 && currentIndex < 65 {
+                if currentIndex > 21 {
                     VStack{
                         Spacer()
                         HStack{
                             Spacer()
                             SVGCharacterView()
-                                .scaleEffect(0.9)
+                                .padding(60)
                         }
                     }
+                    .allowsHitTesting(false)
                 }
                 
                 if currentIndex > 200 && currentIndex < 215 {

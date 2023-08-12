@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-struct AnimationsView: View {
+struct AnimationsView: View {    
     var body: some View {
-        VStack{
+        VStack {
             Spacer()
-            HStack{
+            HStack {
                 Spacer()
-                SVGCharacterView()
-                    .scaleEffect(0.9)
+                    SVGCharacterView()
+                        .padding(60)
             }
         }
+        
     }
 }
 struct BubblesView: View {
@@ -68,7 +69,8 @@ struct SVGCharacterView: View {
     @State private var isShowing = false
     @State private var isBlinking = false
     @State private var isTalking = false
-
+    @State private var isSVGCharacterVisible = false
+    
     var body: some View {
         HStack {
             BubblesView()
@@ -116,6 +118,17 @@ struct SVGCharacterView: View {
                 isBlinking.toggle()
                 isTalking.toggle()
         }
+        }
+        .scaleEffect(isSVGCharacterVisible ? 1 : 0)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 2)) {
+                isSVGCharacterVisible = true // Trigger animation when the view appears
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                withAnimation(.easeInOut(duration: 2)) {
+                    isSVGCharacterVisible = false // Trigger animation when the view appears
+                }
+            }
         }
     }
 }
