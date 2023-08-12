@@ -249,6 +249,17 @@ struct ContentView: View {
                     YourGood()
                 }
                 
+                if currentIndex > 50 && currentIndex < 65 {
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            SVGCharacterView()
+                                .scaleEffect(0.9)
+                        }
+                    }
+                }
+                
                 if currentIndex > 200 && currentIndex < 215 {
                     YourInsane()
                 }

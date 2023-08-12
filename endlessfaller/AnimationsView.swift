@@ -9,84 +9,116 @@ import SwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        CelebrationEffect()
+        VStack{
+            Spacer()
+            HStack{
+                Spacer()
+                SVGCharacterView()
+                    .scaleEffect(0.9)
+            }
+        }
     }
 }
+struct BubblesView: View {
+    @State private var showBubbles = false
 
-struct  CelebrationEffect: View {
-    @State private var messageEffect = 0
-
-    @State private var acceleration1 = false
-    @State private var emitterSize = 0
-    @State private var birth = 1
-    
     var body: some View {
         ZStack {
-            ForEach(0 ..< 12) { item in
-               
-                    VStack(spacing: 100) {
-                        Capsule()
-                            .frame(width: 6, height: 12)
-                            .foregroundColor(.teal)
-                            .hueRotation(.degrees(Double(item) *  30))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: false))
-                            .opacity(Double(birth))
-                            .animation(Animation.easeOut.delay(1.5).repeatForever(autoreverses: false))
-                        
-                        Capsule()
-                            .frame(width: 4, height: 8)
-                            .foregroundColor(.orange)
-                            .hueRotation(.degrees(Double(item) *  30))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeOut(duration: 2).repeatForever(autoreverses: false))
-                            .opacity(Double(birth))
-                            .animation(Animation.easeIn.delay(1.5).repeatForever(autoreverses: false))
-                        
-                        Capsule()
-                            .frame(width: 6, height: 12)
-                            .foregroundColor(.cyan)
-                            .hueRotation(.degrees(Double(item) *  CGFloat.pi * 2.0))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeIn(duration: 2).repeatForever(autoreverses: false))
-                            .opacity(Double(birth))
-                            .animation(Animation.easeInOut.delay(1.5).repeatForever(autoreverses: false))
-                        
-                        Capsule()
-                            .frame(width: 4, height: 8)
-                            .foregroundColor(.red)
-                            .hueRotation(.degrees(Double(item) *  30))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeOut(duration: 2).repeatForever(autoreverses: false))
-                            .opacity(Double(birth))
-                            .animation(Animation.easeIn.repeatForever(autoreverses: false))
-                    }
-                    
-            }
+            Image(systemName: "bubble.right.fill")
+                .font(.system(size: 90))
+                .overlay(Text("Nice").font(.title2).bold().foregroundColor(.white).padding(.bottom))
+                .scaleEffect(showBubbles ? 1 : 0)
+                .offset(y: showBubbles ? -200 : 0)
+                .rotationEffect(.degrees(showBubbles ? -25 : 0))
+                .animation(.easeInOut(duration: 2).delay(5).repeatForever(autoreverses: false), value: showBubbles)
+            Image(systemName: "bubble.right.fill")
+                .font(.system(size: 100))
+                .overlay(Text("Flawless").font(.title2).bold().foregroundColor(.white).padding(.bottom))
+                .scaleEffect(showBubbles ? 1 : 0)
+                .offset(y: showBubbles ? -200 : 0)
+                .animation(.easeOut(duration: 2).delay(4).repeatForever(autoreverses: false), value: showBubbles)
+            Image(systemName: "bubble.right.fill")
+                .font(.system(size: 72))
+                .overlay(Text("Super").font(.title2).bold().foregroundColor(.white).padding(.bottom))
+                .scaleEffect(showBubbles ? 1 : 0)
+                .offset(y: showBubbles ? -200 : 0)
+                .animation(.easeIn(duration: 2).delay(3).repeatForever(autoreverses: false), value: showBubbles)
+            Image(systemName: "bubble.right.fill")
+                .font(.system(size: 64))
+                .overlay(Text("Wow").font(.title2).bold().foregroundColor(.white).padding(.bottom))
+                .scaleEffect(showBubbles ? 1 : 0)
+                .offset(y: showBubbles ? -200 : 0)
+                .rotationEffect(.degrees(showBubbles ? -25 : 0))
+                .animation(.easeInOut(duration: 2).delay(2).repeatForever(autoreverses: false), value: showBubbles)
+            Image(systemName: "bubble.right.fill")
+                .font(.system(size: 72))
+                .overlay(Text("Yepee").font(.title2).bold().foregroundColor(.white).padding(.bottom))
+                .scaleEffect(showBubbles ? 1 : 0)
+                .offset(y: showBubbles ? -200 : 0)
+                .rotationEffect(.degrees(showBubbles ? 25 : 0))
+                .animation(.easeOut(duration: 2).delay(1).repeatForever(autoreverses: false), value: showBubbles)
         }
-        .task{
-            withAnimation
-            {
-               acceleration1 = true
-               emitterSize = 1
-               birth = 0
-            }
+        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+        .onAppear{
+            showBubbles.toggle()
         }
     }
 }
+struct SVGCharacterView: View {
+    @State private var isShowing = false
+    @State private var isBlinking = false
+    @State private var isTalking = false
 
+    var body: some View {
+        HStack {
+            BubblesView()
+            ZStack {
+                VStack(alignment: .leading, spacing: -5) {
+                    Image(systemName: "wand.and.stars")
+                        .font(.system(size: 48))
+                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                        .padding(.horizontal, -50)
+                        .hueRotation(.degrees(isShowing ? 0 : 140))
+                        .rotationEffect(.degrees(isShowing ? -15 : 50), anchor: .bottomTrailing)
+                        .animation(.easeInOut.delay(1).repeatForever(autoreverses: false), value: isShowing)
+                    Image("handR")
+                }
+                .rotationEffect(.degrees(isShowing ? 0 : 25), anchor: .trailing)
+                .offset(x: -70)
+                .animation(.timingCurve(0.68, -0.9, 0.32, 1.6).delay(1).repeatForever(autoreverses: false), value: isShowing)
+
+                Image("bodyFace")
+                VStack(spacing: -10) {
+                    HStack {
+                        Image("eyeR")
+                            .scaleEffect(isBlinking ? 0 : 1)
+                            .animation(.timingCurve(0.68, -0.6, 0.32, 1.6).delay(2).repeatForever(autoreverses: false), value: isBlinking)
+                        Image("eyeL")
+                            .scaleEffect(y: isBlinking ? 0.5 : 1)
+                            .animation(.timingCurve(0.68, -0.9, 0.32, 1.6).delay(2).repeatForever(autoreverses: false), value: isBlinking)
+                    }
+                    Image("mouth2")
+                        .padding(.horizontal, -35)
+                        .scaleEffect(x: isTalking ? 1 : 0.8, anchor: .top)
+                        .animation(.easeIn.delay(0.01).repeatForever(autoreverses: true), value: isTalking)
+                        .scaleEffect(y: isTalking ? 0.8 : 1, anchor: .top)
+                        .animation(.easeOut.delay(0.01).repeatForever(autoreverses: true), value: isTalking)
+                }
+                .padding(.horizontal, -45)
+
+                Image("handL")
+                    .padding(.top, 120)
+                    .offset(x: isShowing ? -2.5 : 2.5)
+                    .animation(.timingCurve(0.68, -0.9, 0.32, 1.6).delay(2).repeatForever(autoreverses: true), value: isBlinking)
+            }
+            .onAppear{
+                isShowing.toggle()
+                isBlinking.toggle()
+                isTalking.toggle()
+        }
+        }
+    }
+}
 
 struct KeepSwiping: View {
     var body: some View {
