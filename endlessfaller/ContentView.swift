@@ -241,7 +241,7 @@ struct ContentView: View {
                     KeepSwiping()
                 }
                 
-                if currentIndex > 21 && currentIndex < 36 {
+                if currentIndex > 21 && currentIndex < 33 {
                     KeepGoing()
                 }
                 
@@ -249,7 +249,12 @@ struct ContentView: View {
                     YourGood()
                 }
                 
-                if currentIndex > 36 {
+                if currentIndex > 115 {
+                    ReactionsView()
+                        .offset(y: 70)
+                }
+                
+                if currentIndex > 33 {
                     VStack{
                         Spacer()
                         HStack{

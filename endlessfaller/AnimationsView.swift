@@ -10,7 +10,7 @@ import SwiftUI
 struct AnimationsView: View {    
     var body: some View {
         ReactionsView()
-        
+            .offset(y: 70)
     }
 }
 struct BubblesView: View {
@@ -117,7 +117,7 @@ struct SVGCharacterView: View {
             withAnimation(.easeInOut(duration: 2)) {
                 isSVGCharacterVisible = true // Trigger animation when the view appears
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
                 withAnimation(.easeInOut(duration: 2)) {
                     isSVGCharacterVisible = false // Trigger animation when the view appears
                 }
@@ -127,7 +127,7 @@ struct SVGCharacterView: View {
 }
 
 struct ReactionsView: View {
-    @State private var showReactions = false
+    @State var showReactions = false
     let deviceHeight = UIScreen.main.bounds.height
     
     var body: some View {
@@ -136,11 +136,10 @@ struct ReactionsView: View {
             HStack {
                 ZStack {
                     TearsOfJoyView()
-                        .hueRotation(.degrees(showReactions ? -deviceHeight : 0))
-                        .offset(y: showReactions ? -deviceHeight : -30)
+                        .offset(y: showReactions ? -deviceHeight - 100 : -30)
                         .scaleEffect(showReactions ? 1 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
                         .rotationEffect(.degrees(showReactions ? -5 : 5))
-                        .animation(Animation.easeInOut(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                        .animation(Animation.easeInOut(duration: 4).delay(1).repeatCount(2, autoreverses: false), value: showReactions)
                     
                     //Image("handDefault")
                     ClappingHandsEmojiView()
@@ -148,7 +147,7 @@ struct ReactionsView: View {
                         .hueRotation(.degrees(showReactions ? -deviceHeight : 0))
                         .offset(x: -20, y: showReactions ? -deviceHeight : -30)
                         .rotationEffect(.degrees(showReactions ? 15 : -30))
-                        .animation(Animation.easeOut(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                        .animation(Animation.easeOut(duration: 4).delay(1).repeatCount(2, autoreverses: false), value: showReactions)
                     
                     Image("handDefault")
                     //ClappingHandsEmojiView()
@@ -159,7 +158,7 @@ struct ReactionsView: View {
                         .hueRotation(.degrees(showReactions ? 0 : 220))
                         .offset(y: showReactions ? -deviceHeight : -30)
                         .rotationEffect(.degrees(showReactions ? -39 : 20))
-                        .animation(Animation.easeIn(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                        .animation(Animation.easeIn(duration: 4).delay(1).repeatCount(2, autoreverses: false), value: showReactions)
                     
                     //Image("handDefault")
                     ClappingHandsEmojiView()
@@ -175,22 +174,22 @@ struct ReactionsView: View {
                         .scaleEffect(showReactions ? 3 : 0, anchor: showReactions ? .bottomLeading: .top)
                         .opacity(showReactions ? 2 : 0)
                         .hueRotation(.degrees(showReactions ? 0 : 220))
-                        .offset(y: showReactions ? -deviceHeight : -30)
+                        .offset(y: showReactions ? -deviceHeight - 90: -30)
                         .rotationEffect(.degrees(showReactions ? -7.5 : 15))
-                        .animation(Animation.easeOut(duration: 4).delay(1.1).repeatForever(autoreverses: false), value: showReactions)
+                        .animation(Animation.easeOut(duration: 4).delay(1.1).repeatCount(2, autoreverses: false), value: showReactions)
                     
                     RevolvingHeartView()
                         .scaleEffect(showReactions ? 1.2 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
-                        .offset(x: -30, y: showReactions ? -deviceHeight : -30)
+                        .offset(x: -30, y: showReactions ? -deviceHeight - 100 : -30)
                         .rotationEffect(.degrees(showReactions ? -10 : 5))
-                        .animation(Animation.easeIn(duration: 4).delay(1).repeatForever(autoreverses: false), value: showReactions)
+                        .animation(Animation.easeIn(duration: 4).delay(1).repeatCount(2, autoreverses: false), value: showReactions)
                     
                     HeartExclamationView()
                         .scaleEffect(showReactions ? 5 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
                         .hueRotation(.degrees(showReactions ? 0 : 20))
-                        .offset(x: -20, y: showReactions ? -deviceHeight : -35)
+                        .offset(x: -20, y: showReactions ? -deviceHeight - 90: -35)
                         .rotationEffect(.degrees(showReactions ? -15 : 15))
-                        .animation(Animation.easeIn(duration: 4).delay(1.5).repeatForever(autoreverses: false), value: showReactions)
+                        .animation(Animation.easeIn(duration: 4).delay(1.5).repeatCount(2, autoreverses: false), value: showReactions)
                     
                     Image("heart3D")
                         .resizable()
@@ -204,7 +203,7 @@ struct ReactionsView: View {
                     .scaleEffect(1.4)
             }
             .onAppear {
-                showReactions.toggle()
+                showReactions = true
             }
             
         }
