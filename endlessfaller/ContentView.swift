@@ -27,6 +27,7 @@ struct ContentView: View {
     @State var showCharactersMenu = false
     @State var mute = false
     @State var showGameOver = false
+    @State var showNewBestScore = false
     
     @State var audioPlayer: AVAudioPlayer!
     
@@ -192,8 +193,12 @@ struct ContentView: View {
                         dropCircle()
                     }
                     impactMed.impactOccurred()
+                    if currentIndex > bestScore && currentIndex > 3 {
+                        showNewBestScore = true
+                    }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
+                            showNewBestScore = false
                             gameOver = true
                             currentScore = highestScoreInGame
                             if currentScore > bestScore {
@@ -201,15 +206,8 @@ struct ContentView: View {
                                 UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
                             }
                             freezeScrolling = true
-//                            showGameOver = true
-//                            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-//                            sleep(1)
-//                            showGameOver = false
                             highestScoreInGame = 0
                             AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-//                            DispatchQueue.main.async {
-//                                currentIndex = -1
-//                            }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.colors = (1...1000).map { _ in
                                     Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
@@ -237,16 +235,30 @@ struct ContentView: View {
                     .allowsHitTesting(false)
                 }
                 
-                if currentIndex >= 0 && currentIndex < 2 {
-                    KeepSwiping()
-                }
-                
-                if currentIndex > 21 && currentIndex < 33 {
-                    KeepGoing()
-                }
-                
-                if currentIndex > 100 && currentIndex < 115 {
-                    YourGood()
+                if !showNewBestScore {
+                    if currentIndex >= 0 && currentIndex < 2 {
+                        KeepSwiping()
+                    }
+                    
+                    if currentIndex > 21 && currentIndex < 33 {
+                        KeepGoing()
+                    }
+                    
+                    if currentIndex > 100 && currentIndex < 115 {
+                        YourGood()
+                    }
+                    
+                    if currentIndex > 200 && currentIndex < 215 {
+                        YourInsane()
+                    }
+                    
+                    if currentIndex > 300 && currentIndex < 315 {
+                        GoBerzerk()
+                    }
+                    
+                } else {
+                    CelebrationEffect()
+                    NewBestScore()
                 }
                 
                 if currentIndex > 115 {
@@ -264,14 +276,6 @@ struct ContentView: View {
                         }
                     }
                     .allowsHitTesting(false)
-                }
-                
-                if currentIndex > 200 && currentIndex < 215 {
-                    YourInsane()
-                }
-                
-                if currentIndex > 300 && currentIndex < 315 {
-                    GoBerzerk()
                 }
             }
         }
