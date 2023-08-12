@@ -12,8 +12,8 @@ struct CharactersDesignsView: View {
         VStack{
             HStack{
                 AmericaView()
-                MonkeyView()
                 KaiView()
+                AlbertView()
                 IceSpiceView()
             }
             Spacer()
@@ -24,10 +24,35 @@ struct CharactersDesignsView: View {
 
 struct IceSpiceView: View {
     var body: some View {
-        Image("icespice")
-            .resizable()
-            .frame(width: 60, height: 60)
-            .allowsHitTesting(false)
+        ZStack {
+            Image("afro")
+                .resizable()
+                .frame(width: 70, height: 60)
+                .offset(y: -12)
+            ZStack{
+                Circle()
+                    .foregroundColor(.white)
+                    .frame(width: 39)
+                Circle()
+                    .foregroundColor(.orange.opacity(0.3))
+                    .frame(width: 39)
+                Image("winklash")
+                    .resizable()
+                    .frame(width: 36, height: 18)
+                    .offset(y: -5)
+                Text("🫦")
+                    .font(.system(size: 12))
+                    .offset(y: 10)
+            }
+            .offset(x: 1)
+            Image("afro2")
+                .resizable()
+                .frame(width: 60, height: 60)
+                .offset(y: -12)
+            
+        }
+        .offset(y: 15)
+        .allowsHitTesting(false)
     }
 }
 
@@ -51,10 +76,29 @@ struct MortyView: View {
 
 struct AlbertView: View {
     var body: some View {
-        Image("albert")
-            .resizable()
-            .frame(width: 60, height: 60)
-            .allowsHitTesting(false)
+        ZStack {
+            ZStack{
+                Circle()
+                    .foregroundColor(.white)
+                    .frame(width: 46)
+                Circle()
+                    .foregroundColor(.orange.opacity(0.3))
+                    .frame(width: 46)
+                Text("👀")
+                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 0, z: 1))
+                    .offset(x: -3, y: -3)
+                Image("alberttongue")
+                    .resizable()
+                    .frame(width: 18, height: 15)
+                    .offset(x: -2, y: 15)
+            }
+            Image("alberthair")
+                .resizable()
+                .frame(width: 70, height: 50)
+                .offset(x: 0, y: -5)
+            
+        }
+        .allowsHitTesting(false)
     }
 }
 
