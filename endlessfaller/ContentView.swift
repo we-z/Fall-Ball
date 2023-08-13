@@ -266,6 +266,13 @@ struct ContentView: View {
                         .offset(y: 70)
                 }
                 
+                if currentIndex > 315 {
+                    VStack{
+                        Spacer()
+                        SwiftUIXmasTree2()
+                    }
+                }
+                
                 if currentIndex > 33 {
                     VStack{
                         Spacer()
