@@ -283,6 +283,7 @@ struct ReactionsView: View {
             }
             
         }
+        .allowsHitTesting(false)
     }
 }
 

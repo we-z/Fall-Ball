@@ -51,7 +51,7 @@ struct IceSpiceView: View {
                 .offset(y: -12)
             
         }
-        .offset(y: 15)
+        .offset(y: 6)
         .allowsHitTesting(false)
     }
 }
@@ -112,12 +112,33 @@ struct MonkeyView: View {
     }
 }
 
+
 struct KaiView: View {
     var body: some View {
-        Image("kai")
-            .resizable()
-            .frame(width: 57, height: 57)
-            .allowsHitTesting(false)
+        ZStack {
+            ZStack{
+                Circle()
+                    .foregroundColor(Color(hex: "#B06C49"))
+                    .frame(width: 46)
+                Text("👀")
+                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 0, z: 1))
+                    .offset(x: 8, y: -1)
+                Image("kaigoatee")
+                    .resizable()
+                    .frame(width: 12, height: 7)
+                    .offset(x: 6, y: 21)
+                Image("kaimouth")
+                    .resizable()
+                    .frame(width: 12, height: 7)
+                    .offset(x: 7, y: 13)
+            }
+            Image("kaihat")
+                .resizable()
+                .frame(width: 70, height: 56)
+                .offset(x: -2, y: -2)
+            
+        }
+        .allowsHitTesting(false)
     }
 }
 
