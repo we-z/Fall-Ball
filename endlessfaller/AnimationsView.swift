@@ -237,6 +237,7 @@ struct SwiftUIXmasTree2: View {
                 isSpinning.toggle()
             }
         }
+        .allowsHitTesting(false)
         .scaleEffect(isTreeVisible ? 0.5 : 0)
         .onAppear {
             withAnimation(.easeInOut(duration: 2)) {
