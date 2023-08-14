@@ -196,27 +196,27 @@ struct ContentView: View {
                     if currentIndex > bestScore && currentIndex > 3 {
                         showNewBestScore = true
                     }
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
-//                        if currentIndex <= newValue && currentIndex != -1 {
-//                            showNewBestScore = false
-//                            gameOver = true
-//                            currentScore = highestScoreInGame
-//                            if currentScore > bestScore {
-//                                bestScore = currentScore
-//                                UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
-//                            }
-//                            freezeScrolling = true
-//                            highestScoreInGame = 0
-//                            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                                self.colors = (1...1000).map { _ in
-//                                    Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
-//                                }
-//                                freezeScrolling = false
-//                            }
-//                            currentIndex = -1
-//                        }
-//                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
+                        if currentIndex <= newValue && currentIndex != -1 {
+                            showNewBestScore = false
+                            gameOver = true
+                            currentScore = highestScoreInGame
+                            if currentScore > bestScore {
+                                bestScore = currentScore
+                                UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
+                            }
+                            freezeScrolling = true
+                            highestScoreInGame = 0
+                            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.colors = (1...1000).map { _ in
+                                    Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+                                }
+                                freezeScrolling = false
+                            }
+                            currentIndex = -1
+                        }
+                    }
                 }
                 
                 if currentIndex >= 0 {
@@ -261,6 +261,12 @@ struct ContentView: View {
                     NewBestScore()
                 }
                 
+                if currentIndex > 315 {
+                    VStack{
+                        Spacer()
+                        BearView()
+                    }
+                }
                 if currentIndex > 115 {
                     ReactionsView()
                         .offset(y: 70)

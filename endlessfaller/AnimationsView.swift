@@ -6,47 +6,36 @@
 //
 
 import SwiftUI
-import WebKit
-
-struct GifImage: UIViewRepresentable {
-    private let name: String
-
-    init(_ name: String) {
-        self.name = name
-    }
-
-    func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
-        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
-        let data = try! Data(contentsOf: url)
-        webView.load(
-            data,
-            mimeType: "image/gif",
-            characterEncodingName: "UTF-8",
-            baseURL: url.deletingLastPathComponent()
-        )
-        webView.scrollView.isScrollEnabled = false
-
-        return webView
-    }
-
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.reload()
-    }
-
-}
-
+import SDWebImageSwiftUI
 
 struct AnimationsView: View {
-    @State var isAnimating: Bool = true
     var body: some View {
-        ZStack{
-            Color.orange
-            GifImage("pokeball")
+        VStack{
+            Spacer()
+            BearView()
         }
     }
 }
 
+struct BearView: View {
+    @State var isVisible: Bool = false
+    var body: some View {
+        AnimatedImage(name: "bear.gif")
+            .frame(width: 200, height: 300)
+            .allowsHitTesting(false)
+            .scaleEffect(isVisible ? 0.75 : 0)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 2)) {
+                    isVisible = true // Trigger animation when the view appears
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
+                    withAnimation(.easeInOut(duration: 2)) {
+                        isVisible = false // Trigger animation when the view appears
+                    }
+                }
+            }
+    }
+}
 
 struct SwiftUIXmasTree2: View {
     
