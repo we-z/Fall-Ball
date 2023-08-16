@@ -93,31 +93,22 @@ struct ContentView: View {
                             .blinking()
                         } else {
                             VStack{
-                                Text("Game Over")
+                                Text("Game Over!")
+                                    .foregroundColor(.red)
                                     .bold()
-                                    .italic()
-                                    .font(.largeTitle)
+                                    .font(.system(size: UIScreen.main.bounds.width * 0.12))
                                 ZStack{
                                     Rectangle()
-                                        .foregroundColor(.primary.opacity(0.1))
+                                        .foregroundColor(.primary.opacity(0.05))
                                         .cornerRadius(30)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .stroke(Color.black, lineWidth: 2)
+                                        )
                                     HStack{
-                                        VStack(alignment: .leading){
-                                            Text("Score")
-                                                .bold()
-                                                .italic()
-                                            Text(String(currentScore))
-                                                .padding(.bottom, 3)
-                                            Text("Best")
-                                                .bold()
-                                                .italic()
-                                            Text(String(bestScore))
-                                        }
-                                        .padding(.leading, 50)
-                                        .font(.largeTitle)
-                                        Spacer()
                                         VStack{
                                             Text("Ball")
+                                                .foregroundColor(.black)
                                                 .bold()
                                                 .italic()
                                                 .font(.title)
@@ -125,7 +116,26 @@ struct ContentView: View {
                                             AnyView(character.character)
                                         }
                                         .offset(y: -(UIScreen.main.bounds.height * 0.02))
-                                        .padding(.trailing, 60)
+                                        .padding(.leading, UIScreen.main.bounds.width * 0.12)
+                                        Spacer()
+                                        VStack(alignment: .trailing){
+                                            Spacer()
+                                            Text("Score")
+                                                .foregroundColor(.blue)
+                                                .bold()
+                                                .italic()
+                                            Text(String(currentScore))
+                                            Spacer()
+                                            Text("Best")
+                                                .foregroundColor(.blue)
+                                                .bold()
+                                                .italic()
+                                            Text(String(bestScore))
+                                            Spacer()
+                                        }
+                                        .padding(.trailing, UIScreen.main.bounds.width * 0.07)
+                                        .padding()
+                                        .font(.largeTitle)
                                     }
                                 }
                                 .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
@@ -142,7 +152,7 @@ struct ContentView: View {
                                 .font(.largeTitle)
                                 .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.05)
+                            .offset(y: UIScreen.main.bounds.height * 0.04)
                         }
                     }
                     let character = model.characters[model.selectedCharacter]
@@ -207,8 +217,16 @@ struct ContentView: View {
                             }
                             freezeScrolling = true
                             highestScoreInGame = 0
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                                currentIndex = -1
+//                            }
+//                            //sleep(1)
+//                            DispatchQueue.main.asyncAfter(deadline: .now()) {
+//                                currentIndex = -1
+//                            }
                             AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                                currentIndex = -1
                                 self.colors = (1...1000).map { _ in
                                     Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
                                 }
