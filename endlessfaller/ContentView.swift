@@ -138,7 +138,7 @@ struct ContentView: View {
                                         .font(.largeTitle)
                                     }
                                 }
-                                .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
+                                .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.27)
                                 
                                 VStack{
                                     Text("Swipe up to \nplay again")
@@ -152,7 +152,7 @@ struct ContentView: View {
                                 .font(.largeTitle)
                                 .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.04)
+                            .offset(y: UIScreen.main.bounds.height * 0.036)
                         }
                     }
                     let character = model.characters[model.selectedCharacter]

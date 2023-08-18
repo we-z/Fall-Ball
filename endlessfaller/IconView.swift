@@ -11,24 +11,23 @@ struct IconView: View {
     var body: some View {
         ZStack{
             VStack(spacing: 0){
-                Color(red: 0, green: 0.9, blue: 1)
-                Color(red: 1, green: 0.6, blue: 0.9)
+                Color(red: 0, green: 0.3, blue: 1)
+                Color(red: 1, green: 0, blue: 0)
             }
             
             VStack{
                 LinearGradient(
-                    colors: [.gray.opacity(0.01), .gray.opacity(0.6)],
+                    colors: [.gray.opacity(0.02), .gray.opacity(0.9)],
                     startPoint: .top,
                     endPoint: .bottom
                 )
             }
-            .frame(width: 180, height: 210)
-            .offset(x: 0, y:-100)
+            .frame(width: 250, height: 270)
+            .offset(x: 0, y:-130)
             
-            Circle()
-                .strokeBorder(Color.primary,lineWidth: 6)
-                .background(Circle().foregroundColor(Color.white))
-                .frame(width: 180)
+            KaiView()
+                .offset(x:2)
+                .scaleEffect(5)
             
             HStack{
                 Spacer()

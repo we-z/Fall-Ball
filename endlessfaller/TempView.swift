@@ -6,46 +6,45 @@
 //
 
 import SwiftUI
-import StoreKit
-import AVKit
 
 struct TempView: View {
-    @State var audioPlayer: AVAudioPlayer!
-    
+    var textView: some View {
+        Text("Hello, SwiftUI")
+            .padding()
+            .background(.blue)
+            .foregroundStyle(.white)
+            .clipShape(Capsule())
+    }
+
     var body: some View {
         VStack {
-            Text("Play").font(.system(size: 45)).font(.largeTitle)
-            HStack {
-                Spacer()
-                Button(action: {
-                    self.audioPlayer.numberOfLoops = 1000
-                    self.audioPlayer.play()
-                }) {
-                    Image(systemName: "play.circle.fill").resizable()
-                        .frame(width: 50, height: 50)
-                        .aspectRatio(contentMode: .fit)
-                }
-                Spacer()
-                Button(action: {
-                    self.audioPlayer.pause()
-                }) {
-                    Image(systemName: "pause.circle.fill").resizable()
-                        .frame(width: 50, height: 50)
-                        .aspectRatio(contentMode: .fit)
-                }
-                Spacer()
+            textView
+
+            Button("Save to image") {
+                let image = textView.snapshot()
+
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
             }
-        }
-        .onAppear {
-            let sound = Bundle.main.path(forResource: "FallBallOST", ofType: "mp3")
-            self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-            self.audioPlayer.numberOfLoops = 1000
-            self.audioPlayer.play()
         }
     }
 }
 
+extension View {
+    func snapshot() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
 
+        let targetSize = controller.view.intrinsicContentSize
+        view?.bounds = CGRect(origin: .zero, size: targetSize)
+        view?.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+        }
+    }
+}
 
 struct TempView_Previews: PreviewProvider {
     static var previews: some View {
