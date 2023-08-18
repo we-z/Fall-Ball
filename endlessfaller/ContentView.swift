@@ -125,6 +125,8 @@ struct ContentView: View {
                                                 .font(.title)
                                             let character = model.characters[model.selectedCharacter]
                                             AnyView(character.character)
+                                                .scaleEffect(1.5)
+                                                .padding(.top)
                                         }
                                         .offset(y: -(UIScreen.main.bounds.height * 0.02))
                                         .padding(.leading, UIScreen.main.bounds.width * 0.12)
