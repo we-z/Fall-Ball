@@ -25,6 +25,7 @@ struct ContentView: View {
     @State var gameOver = false
     @State var freezeScrolling = false
     @State var showCharactersMenu = false
+    @State var showLeaderBoard = false
     @State var mute = false
     @State var showGameOver = false
     @State var showNewBestScore = false
@@ -52,27 +53,37 @@ struct ContentView: View {
                     ZStack{
                         VStack{
                             Spacer()
-                            HStack{
-                                Button {
-                                    mute.toggle()
-                                } label: {
-                                    Image(systemName: mute ? "speaker.slash" : "speaker.wave.2")
-                                        .foregroundColor(.primary)
-                                        .font(.largeTitle)
-                                        .padding(36)
-                                }
-                                .onChange(of: mute) { setting in
-                                    if setting == true {
-                                        self.audioPlayer.setVolume(0, fadeDuration: 0)
-                                    } else {
-                                        self.audioPlayer.setVolume(1, fadeDuration: 0)
+                            ZStack{
+                                HStack{
+                                    Button {
+                                        mute.toggle()
+                                    } label: {
+                                        Image(systemName: mute ? "speaker.slash" : "speaker.wave.2")
+                                            .foregroundColor(.primary)
+                                            .font(.largeTitle)
+                                            .padding(36)
+                                    }
+                                    .onChange(of: mute) { setting in
+                                        if setting == true {
+                                            self.audioPlayer.setVolume(0, fadeDuration: 0)
+                                        } else {
+                                            self.audioPlayer.setVolume(1, fadeDuration: 0)
+                                        }
+                                    }
+                                    Spacer()
+                                    Button {
+                                        showCharactersMenu = true
+                                    } label: {
+                                        Image(systemName: "cart")
+                                            .foregroundColor(.primary)
+                                            .font(.largeTitle)
+                                            .padding(36)
                                     }
                                 }
-                                Spacer()
                                 Button {
-                                    showCharactersMenu = true
+                                    showLeaderBoard = true
                                 } label: {
-                                    Image(systemName: "cart")
+                                    Image(systemName: "list.bullet")
                                         .foregroundColor(.primary)
                                         .font(.largeTitle)
                                         .padding(36)
@@ -94,7 +105,7 @@ struct ContentView: View {
                         } else {
                             VStack{
                                 Text("Game Over!")
-                                    .foregroundColor(.red)
+                                    .italic()
                                     .bold()
                                     .font(.system(size: UIScreen.main.bounds.width * 0.12))
                                 ZStack{
@@ -121,13 +132,13 @@ struct ContentView: View {
                                         VStack(alignment: .trailing){
                                             Spacer()
                                             Text("Score")
-                                                .foregroundColor(.blue)
+                                                //.foregroundColor(.blue)
                                                 .bold()
                                                 .italic()
                                             Text(String(currentScore))
                                             Spacer()
                                             Text("Best")
-                                                .foregroundColor(.blue)
+                                                //.foregroundColor(.blue)
                                                 .bold()
                                                 .italic()
                                             Text(String(bestScore))
@@ -176,10 +187,17 @@ struct ContentView: View {
                                 .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
                             }
                             if index == 0{
-                                Rectangle()
-                                    .frame(width: 100, height: 100)
-                                    .foregroundColor(.white)
-                                    .position(x: UIScreen.main.bounds.width/2, y: -50)
+                                ZStack{
+                                    Rectangle()
+                                        .frame(width: 100, height: 110)
+                                        .foregroundColor(.white)
+                                    Image(systemName: "list.bullet")
+                                        .foregroundColor(.primary)
+                                        .font(.largeTitle)
+                                        .padding(36)
+                                    
+                                }
+                                .position(x: UIScreen.main.bounds.width/2, y: -55)
                             }
                         }
                     }
@@ -313,6 +331,9 @@ struct ContentView: View {
         }
         .sheet(isPresented: self.$showCharactersMenu){
                CharactersMenuView()
+        }
+        .sheet(isPresented: self.$showLeaderBoard){
+               LeaderBoardView()
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
