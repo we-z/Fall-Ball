@@ -11,10 +11,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack{
             HStack{
-                AmericaView()
-                KaiView()
-                AlbertView()
-                IceSpiceView()
+                IndiaView()
+                BrazilView()
+                UkView()
             }
             Spacer()
         }
@@ -185,6 +184,150 @@ struct IndiaView: View {
                     .mask(
                         Circle()
                             .frame(width: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct BrazilView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Brazil")
+                    .resizable()
+                    .frame(width: 62, height: 44)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct CanadaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Canada")
+                    .resizable()
+                    .frame(width: 60, height: 30)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct ColombiaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Colombia")
+                    .resizable()
+                    .frame(width: 60, height: 45)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct FranceView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("France")
+                    .resizable()
+                    .frame(width: 50, height: 45)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct GermanyView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Germany")
+                    .resizable()
+                    .frame(width: 50, height: 45)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct JapanView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("japan")
+                    .resizable()
+                    .frame(width: 50, height: 33)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct ParaguayView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Paraguay")
+                    .resizable()
+                    .frame(width: 90, height: 50)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct SouthKoreaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("SouthKorea")
+                    .resizable()
+                    .frame(width: 43, height: 30)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
+                    )
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct UkView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Uk")
+                    .resizable()
+                    .frame(width: 44, height: 44)
+                    .mask(
+                        Circle()
+                            .frame(width: 46, height: 46)
                     )
             )
             .allowsHitTesting(false)
