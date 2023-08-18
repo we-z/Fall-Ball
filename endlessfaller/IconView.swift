@@ -17,13 +17,13 @@ struct IconView: View {
             
             VStack{
                 LinearGradient(
-                    colors: [.gray.opacity(0.02), .gray.opacity(0.9)],
+                    colors: [.gray.opacity(0.01), .white.opacity(0.75)],
                     startPoint: .top,
                     endPoint: .bottom
                 )
             }
-            .frame(width: 250, height: 270)
-            .offset(x: 0, y:-130)
+            .frame(width: 250, height: 240)
+            .offset(x:0, y:-90)
             
             KaiView()
                 .offset(x:2)
