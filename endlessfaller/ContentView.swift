@@ -181,7 +181,7 @@ struct ContentView: View {
                                         )
                                     }
                                     .frame(width: 46, height: 60)
-                                    .offset(x: 0, y:-23)
+                                    .offset(x: 0, y:-25)
                                     AnyView(character.character)
                                 }
                                 .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
