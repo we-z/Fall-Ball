@@ -11,9 +11,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack{
             HStack{
-                IndiaView()
-                BrazilView()
-                UkView()
+                JapanView()
+                CanadaView()
+                SouthKoreaView()
             }
             Spacer()
         }
@@ -210,13 +210,18 @@ struct CanadaView: View {
     var body: some View {
         BallView()
             .background(
-                Image("Canada")
-                    .resizable()
-                    .frame(width: 60, height: 30)
-                    .mask(
-                        Circle()
-                            .frame(width: 46, height: 46)
-                    )
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("Canada")
+                        .resizable()
+                        .frame(width: 60, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
             )
             .allowsHitTesting(false)
     }
@@ -274,13 +279,18 @@ struct JapanView: View {
     var body: some View {
         BallView()
             .background(
-                Image("japan")
-                    .resizable()
-                    .frame(width: 50, height: 33)
-                    .mask(
-                        Circle()
-                            .frame(width: 46, height: 46)
-                    )
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("japan")
+                        .resizable()
+                        .frame(width: 50, height: 33)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
             )
             .allowsHitTesting(false)
     }
@@ -306,13 +316,18 @@ struct SouthKoreaView: View {
     var body: some View {
         BallView()
             .background(
-                Image("SouthKorea")
-                    .resizable()
-                    .frame(width: 43, height: 30)
-                    .mask(
-                        Circle()
-                            .frame(width: 46, height: 46)
-                    )
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
             )
             .allowsHitTesting(false)
     }
