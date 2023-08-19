@@ -730,7 +730,7 @@ struct KeepSwiping: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
-        .blinking()
+        .flashing()
     }
 }
 

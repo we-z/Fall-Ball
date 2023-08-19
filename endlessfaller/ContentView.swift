@@ -29,6 +29,7 @@ struct ContentView: View {
     @State var mute = false
     @State var showGameOver = false
     @State var showNewBestScore = false
+    @State var gameShouldBeOver = false
     @State var levelYPosition: CGFloat = 0
     
     @State var audioPlayer: AVAudioPlayer!
@@ -43,6 +44,35 @@ struct ContentView: View {
         ) {
             isAnimating = true
         }
+    }
+    
+    func gameOverOperations() {
+        showNewBestScore = false
+        gameOver = true
+        currentScore = highestScoreInGame
+        if currentScore > bestScore {
+            bestScore = currentScore
+            UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
+        }
+        freezeScrolling = true
+        highestScoreInGame = 0
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                                currentIndex = -1
+//                            }
+//                            //sleep(1)
+//                            DispatchQueue.main.asyncAfter(deadline: .now()) {
+//                                currentIndex = -1
+//                            }
+        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                                currentIndex = -1
+            self.colors = (1...1000).map { _ in
+                Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+            }
+            freezeScrolling = false
+        }
+        gameShouldBeOver = false
+        currentIndex = -1
     }
     
     let impactMed = UIImpactFeedbackGenerator(style: .medium)
@@ -177,15 +207,17 @@ struct ContentView: View {
                             if highestScoreInGame == index {
                                 GeometryReader { geometry in
                                     ZStack{
-                                        VStack{
-                                            LinearGradient(
-                                                colors: [.gray.opacity(0.01), .white.opacity(0.75)],
-                                                startPoint: .top,
-                                                endPoint: .bottom
-                                            )
+                                        if !gameShouldBeOver{
+                                            VStack{
+                                                LinearGradient(
+                                                    colors: [.gray.opacity(0.01), .white.opacity(0.75)],
+                                                    startPoint: .top,
+                                                    endPoint: .bottom
+                                                )
+                                            }
+                                            .frame(width: 46, height: 60)
+                                            .offset(x: 0, y:-25)
                                         }
-                                        .frame(width: 46, height: 60)
-                                        .offset(x: 0, y:-25)
                                         AnyView(character.character)
                                     }
                                     .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
@@ -220,6 +252,7 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
+                    gameShouldBeOver = false
                     if newValue > 0{
                         gameOver = true
                     }
@@ -237,36 +270,19 @@ struct ContentView: View {
                         showNewBestScore = true
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
-                        if currentIndex <= newValue && currentIndex != -1 && levelYPosition >= 0{
-                            showNewBestScore = false
-                            gameOver = true
-                            currentScore = highestScoreInGame
-                            if currentScore > bestScore {
-                                bestScore = currentScore
-                                UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
+                        if currentIndex <= newValue && currentIndex != -1 {
+                            gameShouldBeOver = true
+                            if levelYPosition >= 0 {
+                                gameOverOperations()
                             }
-                            freezeScrolling = true
-                            highestScoreInGame = 0
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                                currentIndex = -1
-//                            }
-//                            //sleep(1)
-//                            DispatchQueue.main.asyncAfter(deadline: .now()) {
-//                                currentIndex = -1
-//                            }
-                            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                                currentIndex = -1
-                                self.colors = (1...1000).map { _ in
-                                    Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
-                                }
-                                freezeScrolling = false
-                            }
-                            currentIndex = -1
                         }
                     }
                 }
-                
+                .onChange(of: levelYPosition) { yPosition in
+                    if yPosition >= 0 && gameShouldBeOver {
+                        gameOverOperations()
+                    }
+                }
                 if currentIndex >= 0 {
                     VStack{
                         HStack{
