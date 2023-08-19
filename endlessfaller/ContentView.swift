@@ -29,6 +29,7 @@ struct ContentView: View {
     @State var mute = false
     @State var showGameOver = false
     @State var showNewBestScore = false
+    @State var levelYPosition: CGFloat = 0
     
     @State var audioPlayer: AVAudioPlayer!
     
@@ -100,6 +101,7 @@ struct ContentView: View {
                                 Image(systemName: "arrow.up")
                             }
                             .font(.system(size:UIScreen.main.bounds.width/10))
+                            .blinking()
                             .tag(-1)
                         } else {
                             VStack{
@@ -173,19 +175,24 @@ struct ContentView: View {
                             Rectangle()
                                 .fill(colors[index])
                             if highestScoreInGame == index {
-                                ZStack{
-                                    VStack{
-                                        LinearGradient(
-                                            colors: [.gray.opacity(0.01), .white.opacity(0.75)],
-                                            startPoint: .top,
-                                            endPoint: .bottom
-                                        )
+                                GeometryReader { geometry in
+                                    ZStack{
+                                        VStack{
+                                            LinearGradient(
+                                                colors: [.gray.opacity(0.01), .white.opacity(0.75)],
+                                                startPoint: .top,
+                                                endPoint: .bottom
+                                            )
+                                        }
+                                        .frame(width: 46, height: 60)
+                                        .offset(x: 0, y:-25)
+                                        AnyView(character.character)
                                     }
-                                    .frame(width: 46, height: 60)
-                                    .offset(x: 0, y:-25)
-                                    AnyView(character.character)
+                                    .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
+                                    .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
+                                        levelYPosition = newYPosition
+                                    }
                                 }
-                                .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
                             }
                             if index == 0{
                                 ZStack{
@@ -219,7 +226,7 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        if currentIndex < 21 {
+                        if currentIndex < 39 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false
@@ -230,7 +237,7 @@ struct ContentView: View {
                         showNewBestScore = true
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
-                        if currentIndex <= newValue && currentIndex != -1 {
+                        if currentIndex <= newValue && currentIndex != -1 && levelYPosition >= 0{
                             showNewBestScore = false
                             gameOver = true
                             currentScore = highestScoreInGame
@@ -269,7 +276,8 @@ struct ContentView: View {
                                 .padding(.top, 30)
                                 .foregroundColor(.black)
                             Spacer()
-//                            Text(String(speed))
+//                            Text("\(self.levelYPosition)")
+//                                .foregroundColor(.black)
 //                                .padding()
                         }
                         Spacer()
@@ -344,7 +352,7 @@ struct ContentView: View {
             let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
             self.audioPlayer.numberOfLoops = 1000
-            self.audioPlayer.play()
+            //self.audioPlayer.play()
         }
     }
 }

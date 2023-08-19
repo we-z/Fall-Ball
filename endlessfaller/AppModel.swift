@@ -112,7 +112,7 @@ struct BlinkViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .opacity(blinking ? 0 : 1)
+            .opacity(blinking ? 0.3 : 1)
             .onAppear {
                 withAnimation(.linear(duration: duration).repeatForever()) {
                     blinking = true
@@ -128,7 +128,7 @@ struct FlashViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .opacity(flash ? 0.1 : 1)
+            .opacity(flash ? 0.3 : 1)
             .onAppear {
                 withAnimation(.linear(duration: duration).repeatForever()) {
                     flash = true

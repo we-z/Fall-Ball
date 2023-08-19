@@ -798,12 +798,13 @@ struct NewBestScore: View {
                 Text("New Best Score!")
                     .bold()
                     .italic()
-                    .allowsHitTesting(false)
+                    
                     .multilineTextAlignment(.center)
                     .padding()
                     .font(.largeTitle)
                     .foregroundColor(.black)
                     .flashing()
+                    .allowsHitTesting(false)
             }
         }
         .onAppear{
