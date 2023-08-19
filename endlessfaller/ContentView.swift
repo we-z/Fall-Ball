@@ -352,7 +352,7 @@ struct ContentView: View {
             let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
             self.audioPlayer.numberOfLoops = 1000
-            //self.audioPlayer.play()
+            self.audioPlayer.play()
         }
     }
 }
