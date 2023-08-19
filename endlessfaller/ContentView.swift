@@ -99,9 +99,8 @@ struct ContentView: View {
                                     .padding()
                                 Image(systemName: "arrow.up")
                             }
-                            .font(.largeTitle)
+                            .font(.system(size:UIScreen.main.bounds.width/10))
                             .tag(-1)
-                            .blinking()
                         } else {
                             VStack{
                                 Text("Game Over!")
@@ -165,7 +164,7 @@ struct ContentView: View {
                                 .font(.largeTitle)
                                 .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.036)
+                            .offset(y: UIScreen.main.bounds.height * 0.03)
                         }
                     }
                     let character = model.characters[model.selectedCharacter]

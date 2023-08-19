@@ -12,7 +12,7 @@ struct CharactersDesignsView: View {
         VStack{
             HStack{
                 JapanView()
-                MonkeyView()
+                WhiteBallView()
                 SouthKoreaView()
             }
             Spacer()
@@ -351,6 +351,40 @@ struct UkView: View {
             .allowsHitTesting(false)
     }
 }
+
+struct BallView: View {
+    var body: some View {
+        Circle()
+            .strokeBorder(Color.black,lineWidth: 1.5)
+            .allowsHitTesting(false)
+            .frame(width: 46, height: 46)
+    }
+}
+
+struct WhiteBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 48)
+                .foregroundColor(.white)
+            BallView()
+                .background(Circle().foregroundColor(Color.white))
+        }
+    }
+}
+
+struct BlackBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 48)
+                .foregroundColor(.white)
+            BallView()
+                .background(Circle().foregroundColor(Color.black))
+        }
+    }
+}
+
 
 
 struct CharactersDesignsView_Previews: PreviewProvider {

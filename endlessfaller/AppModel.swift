@@ -23,8 +23,8 @@ class AppModel: ObservableObject {
     }
         
     @Published var characters: [Character] = [
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.white))), cost: "Free", characterID: "io.endlessfall.white", isPurchased: true),
-        Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.black))), cost: "$2.99", characterID: "io.endlessfall.black", isPurchased: false),
+        Character(character: AnyView(WhiteBallView()), cost: "Free", characterID: "io.endlessfall.white", isPurchased: true),
+        Character(character: AnyView(BlackBallView()), cost: "$2.99", characterID: "io.endlessfall.black", isPurchased: false),
         Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.orange))), cost: "$2.99", characterID: "io.endlessfall.orange", isPurchased: false),
         Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.blue))), cost: "$2.99", characterID: "io.endlessfall.blue", isPurchased: false),
         Character(character: AnyView(BallView().background(Circle().foregroundColor(Color.red))), cost: "$2.99", characterID: "io.endlessfall.red", isPurchased: false),
@@ -103,15 +103,6 @@ struct Character {
     let cost: String
     let characterID: String
     var isPurchased: Bool
-}
-
-struct BallView: View {
-    var body: some View {
-        Circle()
-            .strokeBorder(Color.black,lineWidth: 1.5)
-            .allowsHitTesting(false)
-            .frame(width: 46, height: 46)
-    }
 }
 
 struct BlinkViewModifier: ViewModifier {
