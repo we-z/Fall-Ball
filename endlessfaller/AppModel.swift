@@ -108,7 +108,7 @@ struct Character {
 struct BallView: View {
     var body: some View {
         Circle()
-            .strokeBorder(Color.primary,lineWidth: 1.5)
+            .strokeBorder(Color.black,lineWidth: 1.5)
             .allowsHitTesting(false)
             .frame(width: 46, height: 46)
     }

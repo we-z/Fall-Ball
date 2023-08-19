@@ -41,7 +41,7 @@ struct CharactersMenuView: View {
                                         }
                                     } label: {
                                         Rectangle()
-                                            .fill(Color.gray.opacity(0.2))
+                                            .fill(Color.gray.opacity(0.3))
                                             .cornerRadius(20)
                                             .frame(width: geometry.size.width/3.3, height: geometry.size.width/3.3)
                                             .overlay{

@@ -727,6 +727,7 @@ struct KeepSwiping: View {
                 .padding()
             Image(systemName: "arrow.up")
         }
+        .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .blinking()
@@ -742,6 +743,7 @@ struct KeepGoing: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
+            .foregroundColor(.black)
             .flashing()
     }
 }
@@ -755,6 +757,7 @@ struct YourGood: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
+            .foregroundColor(.black)
             .flashing()
     }
 }
@@ -768,6 +771,7 @@ struct YourInsane: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
+            .foregroundColor(.black)
             .flashing()
     }
 }
@@ -781,6 +785,7 @@ struct GoBerzerk: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
+            .foregroundColor(.black)
             .flashing()
     }
 }
@@ -797,6 +802,7 @@ struct NewBestScore: View {
                     .multilineTextAlignment(.center)
                     .padding()
                     .font(.largeTitle)
+                    .foregroundColor(.black)
                     .flashing()
             }
         }

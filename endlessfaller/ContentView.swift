@@ -110,16 +110,16 @@ struct ContentView: View {
                                     .font(.system(size: UIScreen.main.bounds.width * 0.12))
                                 ZStack{
                                     Rectangle()
-                                        .foregroundColor(.primary.opacity(0.05))
+                                        .foregroundColor(.primary.opacity(0.12))
                                         .cornerRadius(30)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.black, lineWidth: 2)
+                                                .stroke(Color.primary, lineWidth: 2)
                                         )
                                     HStack{
                                         VStack{
                                             Text("Ball")
-                                                .foregroundColor(.black)
+                                                .font(.largeTitle)
                                                 .bold()
                                                 .italic()
                                                 .font(.title)
@@ -192,7 +192,8 @@ struct ContentView: View {
                                 ZStack{
                                     Rectangle()
                                         .frame(width: 100, height: 110)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.primary)
+                                        .colorInvert()
                                     Image(systemName: "list.bullet")
                                         .foregroundColor(.primary)
                                         .font(.largeTitle)
@@ -200,6 +201,9 @@ struct ContentView: View {
                                     
                                 }
                                 .position(x: UIScreen.main.bounds.width/2, y: -55)
+                            }
+                            if currentIndex >= 0 && currentIndex < 2 {
+                                KeepSwiping()
                             }
                         }
                     }
@@ -264,6 +268,7 @@ struct ContentView: View {
                                 .font(.system(size: 90))
                                 .padding(36)
                                 .padding(.top, 30)
+                                .foregroundColor(.black)
                             Spacer()
 //                            Text(String(speed))
 //                                .padding()
@@ -274,9 +279,6 @@ struct ContentView: View {
                 }
                 
                 if !showNewBestScore {
-                    if currentIndex >= 0 && currentIndex < 2 {
-                        KeepSwiping()
-                    }
                     
                     if currentIndex > 21 && currentIndex < 33 {
                         KeepGoing()

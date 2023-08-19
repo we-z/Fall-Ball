@@ -12,7 +12,7 @@ struct CharactersDesignsView: View {
         VStack{
             HStack{
                 JapanView()
-                CanadaView()
+                MonkeyView()
                 SouthKoreaView()
             }
             Spacer()
@@ -106,7 +106,10 @@ struct MonkeyView: View {
         Image("monkey")
             .resizable()
             .frame(width: 65, height: 75)
-            .offset(x:1)
+            .mask(
+                Rectangle()
+                    .frame(width: 61, height: 56)
+            )
             .allowsHitTesting(false)
     }
 }
