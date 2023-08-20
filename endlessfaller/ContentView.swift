@@ -327,7 +327,10 @@ struct ContentView: View {
                 if currentIndex > 315 {
                     VStack{
                         Spacer()
-                        BearView()
+                        HStack{
+                            Spacer()
+                            BearView()
+                        }
                     }
                 }
                 if currentIndex > 115 {
