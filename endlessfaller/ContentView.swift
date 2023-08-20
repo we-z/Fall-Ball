@@ -35,7 +35,7 @@ struct ContentView: View {
     @State var audioPlayer: AVAudioPlayer!
     
     @State var colors: [Color] = (1...1000).map { _ in
-        Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+        Color(red: .random(in: 0.3...0.9), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
     }
     
     func dropCircle() {
@@ -67,7 +67,7 @@ struct ContentView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 //                                currentIndex = -1
             self.colors = (1...1000).map { _ in
-                Color(red: .random(in: 0.3...0.7), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+                Color(red: .random(in: 0.3...0.9), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
             }
             freezeScrolling = false
         }

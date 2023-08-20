@@ -11,9 +11,10 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack{
             HStack{
-                JapanView()
-                WhiteBallView()
+                BombBallView()
+                ShockedBallView()
                 YinYangBallView()
+                LaughBallView()
             }
             Spacer()
         }
@@ -397,6 +398,40 @@ struct BlackBallView: View {
     }
 }
 
+struct ShockedBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 48)
+                .foregroundColor(.white)
+            Text("😲")
+                .font(.system(size: 54))
+                .rotationEffect(.degrees(30))
+                .mask(
+                    Circle()
+                        .frame(width: 46, height: 46)
+                )
+        }
+    }
+}
+
+struct BombBallView: View {
+    var body: some View {
+        ZStack{
+            Text("💣")
+                .font(.system(size: 51))
+        }
+    }
+}
+
+struct LaughBallView: View {
+    var body: some View {
+        ZStack{
+            Text("😂")
+                .font(.system(size: 49))
+        }
+    }
+}
 
 
 struct CharactersDesignsView_Previews: PreviewProvider {
