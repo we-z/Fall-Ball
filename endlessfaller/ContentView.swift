@@ -131,7 +131,7 @@ struct ContentView: View {
                                 Image(systemName: "arrow.up")
                             }
                             .font(.system(size:UIScreen.main.bounds.width/9))
-                            //.blinking()
+                            .blinking()
                             .tag(-1)
                         } else {
                             VStack{
@@ -240,7 +240,7 @@ struct ContentView: View {
                                 }
                                 .position(x: UIScreen.main.bounds.width/2, y: -55)
                             }
-                            if currentIndex >= 0 && currentIndex < 2 {
+                            if currentIndex == 0 {
                                 KeepSwiping()
                             }
                         }

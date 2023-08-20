@@ -101,7 +101,7 @@ struct CharactersMenuView: View {
                 }
             }
             if isProcessingPurchase {
-                Color.gray.opacity(0.5) // Gray out the background
+                Color.gray.opacity(0.3) // Gray out the background
                     .edgesIgnoringSafeArea(.all)
                 ProgressView()
                     .scaleEffect(2)
