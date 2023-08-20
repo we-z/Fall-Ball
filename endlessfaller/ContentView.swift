@@ -130,7 +130,7 @@ struct ContentView: View {
                                     .padding()
                                 Image(systemName: "arrow.up")
                             }
-                            .font(.system(size:UIScreen.main.bounds.width/10))
+                            .font(.system(size:UIScreen.main.bounds.width/9))
                             .blinking()
                             .tag(-1)
                         } else {

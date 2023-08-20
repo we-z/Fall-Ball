@@ -53,7 +53,7 @@ struct CharactersMenuView: View {
                                                     VStack(spacing: 4) {
                                                         AnyView(character.character)
                                                         Spacer()
-                                                        if model.characters[index].isPurchased && index != 0 {
+                                                        if model.characters[index].isPurchased && index > 2 {
                                                             Text("Available")
                                                         } else {
                                                             Text("\(character.cost)")

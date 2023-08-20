@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
             HStack{
                 JapanView()
                 WhiteBallView()
-                SouthKoreaView()
+                YinYangBallView()
             }
             Spacer()
         }
@@ -370,6 +370,18 @@ struct WhiteBallView: View {
             BallView()
                 .background(Circle().foregroundColor(Color.white))
         }
+    }
+}
+
+struct YinYangBallView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("yinyang")
+                    .resizable()
+                    .frame(width: 48, height: 48)
+            )
+            .allowsHitTesting(false)
     }
 }
 
