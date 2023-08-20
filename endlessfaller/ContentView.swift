@@ -259,7 +259,7 @@ struct ContentView: View {
                     score = newValue
                     if newValue >= highestScoreInGame {
                         highestScoreInGame = newValue
-                        if currentIndex < 39 {
+                        if currentIndex < 36 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false
@@ -367,7 +367,7 @@ struct ContentView: View {
         .onAppear {
             let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-            self.audioPlayer.numberOfLoops = 1000
+            self.audioPlayer.numberOfLoops = -1
             self.audioPlayer.play()
         }
     }
