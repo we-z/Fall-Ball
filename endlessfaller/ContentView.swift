@@ -338,8 +338,12 @@ struct ContentView: View {
                 if currentIndex > 215 {
                     VStack{
                         Spacer()
-                        SwiftUIXmasTree2()
-                            .padding(.bottom, 90)
+                        HStack{
+                            SwiftUIXmasTree2()
+                                .scaleEffect(0.5)
+                                .offset(x:-UIScreen.main.bounds.width/10)
+                            Spacer()
+                        }
                     }
                 }
                 
@@ -349,7 +353,8 @@ struct ContentView: View {
                         HStack{
                             Spacer()
                             SVGCharacterView()
-                                .padding([.bottom, .trailing],60)
+                                .scaleEffect(0.5)
+                                .offset(x:UIScreen.main.bounds.width/10)
                         }
                     }
                     .allowsHitTesting(false)
