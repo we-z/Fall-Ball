@@ -156,7 +156,7 @@ struct ContentView: View {
                                                 .font(.title)
                                             let character = model.characters[model.selectedCharacter]
                                             AnyView(character.character)
-                                                .scaleEffect(1.5)
+                                                .scaleEffect(2)
                                                 .padding(.top)
                                         }
                                         .offset(y: -(UIScreen.main.bounds.height * 0.02))
