@@ -131,7 +131,7 @@ struct ContentView: View {
                                 Image(systemName: "arrow.up")
                             }
                             .font(.system(size:UIScreen.main.bounds.width/9))
-                            .blinking()
+                            //.blinking()
                             .tag(-1)
                         } else {
                             VStack{
@@ -215,7 +215,7 @@ struct ContentView: View {
                                                     endPoint: .bottom
                                                 )
                                             }
-                                            .frame(width: 46, height: 60)
+                                            .frame(width: 44, height: 60)
                                             .offset(x: 0, y:-25)
                                         }
                                         AnyView(character.character)

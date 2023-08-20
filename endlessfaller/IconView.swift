@@ -22,12 +22,11 @@ struct IconView: View {
                     endPoint: .bottom
                 )
             }
-            .frame(width: 250, height: 240)
-            .offset(x:0, y:-90)
+            .frame(width: 270, height: 240)
+            .offset(x:0, y:-117)
             
-            KaiView()
-                .offset(x:2)
-                .scaleEffect(5)
+            YinYangBallView()
+                .scaleEffect(6)
             
             HStack{
                 Spacer()
