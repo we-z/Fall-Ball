@@ -11,13 +11,14 @@ struct IconView: View {
     var body: some View {
         ZStack{
             VStack(spacing: 0){
-                Color(red: 0, green: 0.3, blue: 1)
-                Color(red: 1, green: 0, blue: 0)
+                
+                Color(red: 0.6, green: 0, blue: 1)
+                Color(red: 0, green: 0.9, blue: 1)
             }
             
             VStack{
                 LinearGradient(
-                    colors: [.gray.opacity(0.01), .white.opacity(0.75)],
+                    colors: [.gray.opacity(0.01), .white.opacity(1)],
                     startPoint: .top,
                     endPoint: .bottom
                 )
@@ -27,11 +28,6 @@ struct IconView: View {
             
             ShockedBallView()
                 .scaleEffect(6)
-            
-            HStack{
-                Spacer()
-                Text("l")
-            }
         }
     }
 }

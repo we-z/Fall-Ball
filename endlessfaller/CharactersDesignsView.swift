@@ -403,7 +403,7 @@ struct ShockedBallView: View {
         ZStack{
             Circle()
                 .frame(width: 48)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             Text("😲")
                 .font(.system(size: 54))
                 .rotationEffect(.degrees(30))

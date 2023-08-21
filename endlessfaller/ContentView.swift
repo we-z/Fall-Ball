@@ -8,7 +8,9 @@
 import SwiftUI
 import VTabView
 import AudioToolbox
-import AVKit
+//import AVKit
+import AVFoundation
+
 
 let bestScoreKey = "BestScore"
 
@@ -36,6 +38,16 @@ struct ContentView: View {
     
     @State var colors: [Color] = (1...1000).map { _ in
         Color(red: .random(in: 0.3...0.9), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+    }
+    
+    init() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Error setting up audio session: \(error)")
+        }
+
     }
     
     func dropCircle() {
@@ -374,9 +386,13 @@ struct ContentView: View {
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
             let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
-            self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-            self.audioPlayer.numberOfLoops = -1
-            self.audioPlayer.play()
+                do {
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer.numberOfLoops = -1
+                    self.audioPlayer.play()
+                } catch {
+                    print("Error playing audio: \(error)")
+                }
         }
     }
 }

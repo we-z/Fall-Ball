@@ -33,8 +33,18 @@ struct LeaderBoardView: View {
 //                        AnyView(character.character)
 //                            .scaleEffect(1.2)
 //                            .padding()
+//                        if place == 1 {
+//                            Text("🥇")
+//                                .font(.largeTitle)
+//                        } else if place == 2 {
+//                            Text("🥈")
+//                                .font(.largeTitle)
+//                        } else if place == 3 {
+//                            Text("🥉")
+//                                .font(.largeTitle)
+//                        }
 //                        Spacer()
-//                        Text("365")
+//                        Text("1000")
 //                            .bold()
 //                            .italic()
 //                            .font(.system(size:UIScreen.main.bounds.width/12))
@@ -48,7 +58,7 @@ struct LeaderBoardView: View {
 //        }
 //        .padding(.top, 30)
 //    }
-//
+    
     var body: some View {
         VStack{
             Text("Leader Board comming soon")

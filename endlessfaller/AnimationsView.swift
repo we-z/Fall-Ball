@@ -10,10 +10,7 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        VStack{
-            Spacer()
-            BearView()
-        }
+        Instruction()
     }
 }
 
@@ -721,6 +718,23 @@ struct KeepSwiping: View {
     var body: some View {
         VStack{
             Text("Keep \nswiping")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+            Image(systemName: "arrow.up")
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
+        .font(.largeTitle)
+        .flashing()
+    }
+}
+
+struct Instruction: View {
+    var body: some View {
+        VStack{
+            Text("Don't let ball\nhit bottom")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
