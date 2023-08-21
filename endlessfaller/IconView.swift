@@ -18,7 +18,7 @@ struct IconView: View {
             
             VStack{
                 LinearGradient(
-                    colors: [.gray.opacity(0.01), .white.opacity(1)],
+                    colors: [.gray.opacity(0.01), .white],
                     startPoint: .top,
                     endPoint: .bottom
                 )

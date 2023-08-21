@@ -36,7 +36,7 @@ struct ContentView: View {
     @State var audioPlayer: AVAudioPlayer!
     
     @State var colors: [Color] = (1...1000).map { _ in
-        Color(red: .random(in: 0.3...0.9), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+        Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
     }
     
     init() {
@@ -78,7 +78,7 @@ struct ContentView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 //                                currentIndex = -1
             self.colors = (1...1000).map { _ in
-                Color(red: .random(in: 0.3...0.9), green: .random(in: 0.3...0.9), blue: .random(in: 0.3...0.9))
+                Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
             }
             freezeScrolling = false
         }
@@ -221,13 +221,13 @@ struct ContentView: View {
                                         if !gameShouldBeOver{
                                             VStack{
                                                 LinearGradient(
-                                                    colors: [.gray.opacity(0.01), .white.opacity(0.75)],
+                                                    colors: [.gray.opacity(0.01), .white],
                                                     startPoint: .top,
                                                     endPoint: .bottom
                                                 )
                                             }
-                                            .frame(width: 44, height: 60)
-                                            .offset(x: 0, y:-25)
+                                            .frame(width: 46, height: 60)
+                                            .offset(x: 0, y:-27)
                                         }
                                         AnyView(character.character)
                                     }
