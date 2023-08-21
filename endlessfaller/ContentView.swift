@@ -28,7 +28,6 @@ struct ContentView: View {
     @State var freezeScrolling = false
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
-    @State var mute = false
     @State var showGameOver = false
     @State var showNewBestScore = false
     @State var gameShouldBeOver = false
@@ -99,14 +98,14 @@ struct ContentView: View {
                             ZStack{
                                 HStack{
                                     Button {
-                                        mute.toggle()
+                                        model.mute.toggle()
                                     } label: {
-                                        Image(systemName: mute ? "speaker.slash" : "speaker.wave.2")
+                                        Image(systemName: model.mute ? "speaker.slash" : "speaker.wave.2")
                                             .foregroundColor(.primary)
                                             .font(.largeTitle)
                                             .padding(36)
                                     }
-                                    .onChange(of: mute) { setting in
+                                    .onChange(of: model.mute) { setting in
                                         if setting == true {
                                             self.audioPlayer.setVolume(0, fadeDuration: 0)
                                         } else {
@@ -389,6 +388,11 @@ struct ContentView: View {
                 do {
                     self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                     self.audioPlayer.numberOfLoops = -1
+                    if model.mute == true {
+                        self.audioPlayer.setVolume(0, fadeDuration: 0)
+                    } else {
+                        self.audioPlayer.setVolume(1, fadeDuration: 0)
+                    }
                     self.audioPlayer.play()
                 } catch {
                     print("Error playing audio: \(error)")

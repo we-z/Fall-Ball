@@ -10,8 +10,7 @@ import SwiftUI
 
 let selectedCharacterKey = "SelectedCharacter"
 let purchasedCharactersKey = "PurchasedCharacters"
-
-
+let muteKey = "Mute"
 
 class AppModel: ObservableObject {
     
@@ -20,6 +19,28 @@ class AppModel: ObservableObject {
         didSet{
             savePurchasedCharacters()
         }
+    }
+    
+    @Published var mute: Bool = false {
+        didSet{
+            saveAudiotSetting()
+        }
+    }
+    
+    
+    func saveAudiotSetting() {
+        if let muteSetting = try? JSONEncoder().encode(mute){
+            UserDefaults.standard.set(muteSetting, forKey: muteKey)
+        }
+    }
+    
+    func getAudioSetting(){
+        guard
+            let muteData = UserDefaults.standard.data(forKey: muteKey),
+            let savedMuteSetting = try? JSONDecoder().decode(Bool.self, from: muteData)
+        else {return}
+        
+        self.mute = savedMuteSetting
     }
         
     @Published var characters: [Character] = [
@@ -92,6 +113,7 @@ class AppModel: ObservableObject {
     
     init() {
         getPurchasedCharacters()
+        getAudioSetting()
     }
 }
 
