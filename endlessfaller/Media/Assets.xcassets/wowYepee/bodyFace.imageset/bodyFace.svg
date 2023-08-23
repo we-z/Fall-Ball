@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="153px" height="194px" viewBox="0 0 153 194" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>bodyFace</title>
+    <g id="StartCallIllustration" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bodyFace" transform="translate(4.716220, 3.644592)" fill="#FED528" stroke="#F19313">
+            <g id="hat" transform="translate(28.199034, 0.000000)">
+                <polygon id="Path-10" stroke-width="7" stroke-linejoin="round" points="31.5180796 42.015504 76.9826201 0 85.8545764 57.2709082"></polygon>
+                <ellipse id="Oval" stroke-width="6" transform="translate(59.772527, 54.725498) rotate(18.000000) translate(-59.772527, -54.725498) " cx="59.7725273" cy="54.7254978" rx="54" ry="15"></ellipse>
+            </g>
+            <path d="M106.544592,140.992408 C110.161767,144.559299 122.897277,163.937005 117.446382,173.802893 C111.995487,183.668781 27.0132302,197.364441 2.58305548,169.178425 C-3.47307565,154.371948 1.12001986,139.037168 16.362342,123.174084 C3.1911818,75.042397 20.8314107,49.1159565 69.2830289,45.3947624 C141.960456,39.8129712 128.348172,127.519587 117.446382,136.239452 C106.544592,144.959317 102.927417,137.425518 106.544592,140.992408 Z" stroke-width="8"></path>
+        </g>
+    </g>
+</svg>

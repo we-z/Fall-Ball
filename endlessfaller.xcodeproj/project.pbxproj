@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		7A3CEA5F2A896FAF00A79E65 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3CEA5E2A896FAF00A79E65 /* FLAnimatedImage */; };
 		7A3CEA622A89F6A400A79E65 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3CEA612A89F6A400A79E65 /* SDWebImageSwiftUI */; };
+		7A6977CA2A956C4A005967F1 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */; };
 		7A723DDA2A84B842002E9F2C /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */; };
-		7A723DE82A859A35002E9F2C /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A723DE72A859A35002E9F2C /* FallBallOST120.mp3 */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */; };
 		7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */; };
@@ -49,8 +49,9 @@
 /* Begin PBXFileReference section */
 		7A3CEA6A2A8AB1E100A79E65 /* pokeball.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pokeball.gif; sourceTree = "<group>"; };
 		7A3CEA6B2A8AB1EB00A79E65 /* bear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bear.gif; sourceTree = "<group>"; };
+		7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitUtility.swift; sourceTree = "<group>"; };
+		7A6977CC2A956CA4005967F1 /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FallBallOST120.mp3; sourceTree = "<group>"; };
 		7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
-		7A723DE72A859A35002E9F2C /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FallBallOST120.mp3; path = "../../../Fall Ball OST Audio/FallBallOST120.mp3"; sourceTree = "<group>"; };
 		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
 		7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDesignsView.swift; sourceTree = "<group>"; };
 		7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
@@ -110,6 +111,42 @@
 			path = Gifs;
 			sourceTree = "<group>";
 		};
+		7A6977CB2A956C95005967F1 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				7A3CEA692A8AB1D100A79E65 /* Gifs */,
+				7AD2346C2A60A9E100ED626D /* IconView.swift */,
+				7AD234422A5F824900ED626D /* Assets.xcassets */,
+				7A6977CC2A956CA4005967F1 /* FallBallOST120.mp3 */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		7A6977CD2A956D01005967F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7AD234402A5F824800ED626D /* ContentView.swift */,
+				7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */,
+				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
+				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
+				7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */,
+				7AD2346E2A62019700ED626D /* TempView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7A6977CE2A956D63005967F1 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				7AB05CE32A65C65500EE4D7B /* products.storekit */,
+				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
+				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
+				7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */,
+				7AD234742A64533700ED626D /* AppModel.swift */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		7AD234322A5F824800ED626D = {
 			isa = PBXGroup;
 			children = (
@@ -133,21 +170,10 @@
 		7AD2343D2A5F824800ED626D /* endlessfaller */ = {
 			isa = PBXGroup;
 			children = (
-				7AD234742A64533700ED626D /* AppModel.swift */,
-				7A3CEA692A8AB1D100A79E65 /* Gifs */,
-				7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */,
-				7AD234402A5F824800ED626D /* ContentView.swift */,
-				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
-				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
 				7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */,
-				7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */,
-				7A723DE72A859A35002E9F2C /* FallBallOST120.mp3 */,
-				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
-				7AB05CE32A65C65500EE4D7B /* products.storekit */,
-				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
-				7AD2346E2A62019700ED626D /* TempView.swift */,
-				7AD2346C2A60A9E100ED626D /* IconView.swift */,
-				7AD234422A5F824900ED626D /* Assets.xcassets */,
+				7A6977CE2A956D63005967F1 /* Configs */,
+				7A6977CB2A956C95005967F1 /* Media */,
+				7A6977CD2A956D01005967F1 /* Views */,
 				7AD234442A5F824900ED626D /* endlessfaller.entitlements */,
 				7AD234452A5F824900ED626D /* Preview Content */,
 			);
@@ -296,7 +322,6 @@
 				7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */,
 				7AD234472A5F824900ED626D /* Preview Assets.xcassets in Resources */,
 				7AD234432A5F824900ED626D /* Assets.xcassets in Resources */,
-				7A723DE82A859A35002E9F2C /* FallBallOST120.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +350,7 @@
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
 				7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */,
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
+				7A6977CA2A956C4A005967F1 /* CloudKitUtility.swift in Sources */,
 				7A723DDA2A84B842002E9F2C /* LeaderBoardView.swift in Sources */,
 				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,

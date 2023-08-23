@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>shocked</key>
+	<string>io.endlessfall.shocked</string>
+	<key>bomb</key>
+	<string>io.endlessfall.bomb</string>
+	<key>laugh</key>
+	<string>io.endlessfall.laugh</string>
+	<key>southkorea</key>
+	<string>io.endlessfall.southkorea</string>
+	<key>colombia</key>
+	<string>io.endlessfall.colombia</string>
+	<key>paraguay</key>
+	<string>io.endlessfall.paraguay</string>
+	<key>brazil</key>
+	<string>io.endlessfall.brazil</string>
+	<key>canada</key>
+	<string>io.endlessfall.canada</string>
+	<key>france</key>
+	<string>io.endlessfall.france</string>
+	<key>germany</key>
+	<string>io.endlessfall.germany</string>
+	<key>uk</key>
+	<string>io.endlessfall.uk</string>
+	<key>japan</key>
+	<string>io.endlessfall.japan</string>
+	<key>black</key>
+	<string>io.endlessfall.black</string>
+	<key>orange</key>
+	<string>io.endlessfall.orange</string>
+	<key>blue</key>
+	<string>io.endlessfall.blue</string>
+	<key>red</key>
+	<string>io.endlessfall.red</string>
+	<key>green</key>
+	<string>io.endlessfall.green</string>
+	<key>purple</key>
+	<string>io.endlessfall.purple</string>
+	<key>pink</key>
+	<string>io.endlessfall.pink</string>
+	<key>yellow</key>
+	<string>io.endlessfall.yellow</string>
+	<key>china</key>
+	<string>io.endlessfall.china</string>
+	<key>america</key>
+	<string>io.endlessfall.america</string>
+	<key>india</key>
+	<string>io.endlessfall.india</string>
+	<key>albert</key>
+	<string>io.endlessfall.albert</string>
+	<key>monkey</key>
+	<string>io.endlessfall.monkey</string>
+	<key>icespice</key>
+	<string>io.endlessfall.icespice</string>
+	<key>kai</key>
+	<string>io.endlessfall.kai</string>
+	<key>rick</key>
+	<string>io.endlessfall.rick</string>
+	<key>morty</key>
+	<string>io.endlessfall.morty</string>
+</dict>
+</plist>

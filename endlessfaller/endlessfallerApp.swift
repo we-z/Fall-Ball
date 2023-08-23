@@ -11,7 +11,7 @@ import SwiftUI
 struct endlessfallerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CloudKitCrudBootcamp()
                 .preferredColorScheme(.dark)
         }
     }
