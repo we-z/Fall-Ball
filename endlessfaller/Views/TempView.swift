@@ -35,9 +35,10 @@ struct ScoreModel: Hashable, CloudKitableProtocol {
         self.init(record: record)
     }
     
-    func update(newName: String) -> ScoreModel? {
+    func update(newCharacterID: String, newScore: Int) -> ScoreModel? {
         let record = record
-        record["name"] = newName
+        record["name"] = newCharacterID
+        record["count"] = newScore
         return ScoreModel(record: record)
     }
     
@@ -88,7 +89,7 @@ class CloudKitCrudBootcampViewModel: ObservableObject {
     
     
     func updateItem(score: ScoreModel) {
-        guard let newScore = score.update(newName: "NEW NAME!!!!!!!") else { return }
+        guard let newScore = score.update(newCharacterID: "Test Update", newScore: 696) else { return }
         CloudKitUtility.update(item: newScore) { [weak self] result in
             print("UPDATE COMPLETED")
             self?.fetchItems()
