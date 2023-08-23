@@ -61,10 +61,12 @@ class CloudKitCrudBootcampViewModel: ObservableObject {
     private func addItem(name: String) {
         
         do {
-            guard let newScore = ScoreModel(name: name, count: 1000) else { return }
-            CloudKitUtility.add(item: newScore) { result in
+            let randomCount = Int(arc4random_uniform(1000))
+            guard let newScore = ScoreModel(name: name, count: randomCount) else { return }
+            CloudKitUtility.add(item: newScore) { [weak self] result in
                 print("Item added")
                 print(result)
+                self?.fetchItems()
             }
         } catch let error {
             print(error)
@@ -74,7 +76,7 @@ class CloudKitCrudBootcampViewModel: ObservableObject {
     func fetchItems() {
         let predicate = NSPredicate(value: true)
         let recordType = "Scores"
-        CloudKitUtility.fetch(predicate: predicate, recordType: recordType)
+        CloudKitUtility.fetch(predicate: predicate, recordType: recordType, sortDescriptions:  [NSSortDescriptor(key: "count", ascending: false)])
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 
@@ -136,6 +138,9 @@ struct CloudKitCrudBootcamp: View {
                     .onDelete(perform: vm.deleteItem)
                 }
                 .listStyle(PlainListStyle())
+                .refreshable {
+                    vm.fetchItems()
+                }
             }
             .padding()
             .navigationBarHidden(true)
