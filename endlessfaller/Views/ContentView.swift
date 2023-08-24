@@ -33,7 +33,6 @@ struct ContentView: View {
     @State var gameShouldBeOver = false
     @State var levelYPosition: CGFloat = 0
     @State var playedCharacter = 0
-    @State var firstGamePlayed = false
     @State var audioPlayer: AVAudioPlayer!
     
     @State var colors: [Color] = (1...1000).map { _ in
@@ -68,16 +67,8 @@ struct ContentView: View {
         }
         freezeScrolling = true
         highestScoreInGame = 0
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                                currentIndex = -1
-//                            }
-//                            //sleep(1)
-//                            DispatchQueue.main.asyncAfter(deadline: .now()) {
-//                                currentIndex = -1
-//                            }
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                                currentIndex = -1
             self.colors = (1...1000).map { _ in
                 Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
             }
@@ -109,11 +100,11 @@ struct ContentView: View {
                             .font(.system(size:UIScreen.main.bounds.width/9))
                             .blinking()
                             .tag(-1)
-                            .offset(y: UIScreen.main.bounds.height * 0.09)
+                            .offset(y: UIScreen.main.bounds.height * 0.07)
                         } else {
                             ZStack{
 //                                HStack{
-//                                    Text("🏆 #6 place")
+//                                    Text("🏆 #3 place 🌍")
 //                                        .bold()
 //                                        .italic()
 //                                }
@@ -214,14 +205,14 @@ struct ContentView: View {
                                         .padding(36)
                                 }
                             }
-//                            Button {
-//                                showLeaderBoard = true
-//                            } label: {
-//                                Image(systemName: "list.bullet")
-//                                    .foregroundColor(.primary)
-//                                    .font(.largeTitle)
-//                                    .padding(36)
-//                            }
+                            Button {
+                                showLeaderBoard = true
+                            } label: {
+                                Image(systemName: "list.bullet")
+                                    .foregroundColor(.primary)
+                                    .font(.largeTitle)
+                                    .padding(36)
+                            }
                         }
                     }
                     let character = model.characters[model.selectedCharacter]
@@ -257,10 +248,10 @@ struct ContentView: View {
                                         .frame(width: 100, height: 80)
                                         .foregroundColor(.primary)
                                         .colorInvert()
-//                                    Image(systemName: "list.bullet")
-//                                        .foregroundColor(.primary)
-//                                        .font(.largeTitle)
-//                                        .offset(y: -15)
+                                    Image(systemName: "list.bullet")
+                                        .foregroundColor(.primary)
+                                        .font(.largeTitle)
+                                        .offset(y: -15)
                                     
                                 }
                                 .position(x: UIScreen.main.bounds.width/2, y: -40)
@@ -400,18 +391,18 @@ struct ContentView: View {
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
             let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
-                do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-                    self.audioPlayer.numberOfLoops = -1
-                    if model.mute == true {
-                        self.audioPlayer.setVolume(0, fadeDuration: 0)
-                    } else {
-                        self.audioPlayer.setVolume(1, fadeDuration: 0)
-                    }
-                    self.audioPlayer.play()
-                } catch {
-                    print("Error playing audio: \(error)")
+            do {
+                self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                self.audioPlayer.numberOfLoops = -1
+                if model.mute == true {
+                    self.audioPlayer.setVolume(0, fadeDuration: 0)
+                } else {
+                    self.audioPlayer.setVolume(1, fadeDuration: 0)
                 }
+                self.audioPlayer.play()
+            } catch {
+                print("Error playing audio: \(error)")
+            }
         }
     }
 }

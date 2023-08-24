@@ -64,7 +64,7 @@ class CloudKitCrudBootcampViewModel: ObservableObject {
         do {
             let randomCount = Int(arc4random_uniform(1000))
             guard let newScore = ScoreModel(name: name, count: randomCount) else { return }
-            CloudKitUtility.add(item: newScore) { [weak self] result in
+            CloudKitUtility.update(item: newScore) { [weak self] result in
                 print("Item added")
                 print(result)
                 self?.fetchItems()

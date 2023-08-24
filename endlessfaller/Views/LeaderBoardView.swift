@@ -19,7 +19,7 @@ struct LeaderBoardView: View {
                     .font(.system(size:UIScreen.main.bounds.width/10))
             }
             Divider()
-                .overlay(.gray)
+                .overlay(.primary)
                 .padding(.horizontal)
             ForEach((0..<model.characters.count).reversed(), id: \.self) { index in
                 let character = model.characters[index]
@@ -50,10 +50,14 @@ struct LeaderBoardView: View {
                             .font(.system(size:UIScreen.main.bounds.width/12))
                             .padding(.trailing, 30)
                     }
-                    Divider()
-                        .overlay(.gray)
-                        .padding(.horizontal)
+//                    Divider()
+//                        .overlay(.gray)
+//                        .padding(.horizontal)
                 }
+                .frame(height: 100)
+                .background(place == 3 ? Color.gray.opacity(0.2) : .clear)
+                .cornerRadius(20)
+                .padding(.horizontal)
             }
         }
         .padding(.top, 30)
