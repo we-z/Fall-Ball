@@ -33,7 +33,7 @@ struct ContentView: View {
     @State var gameShouldBeOver = false
     @State var levelYPosition: CGFloat = 0
     @State var playedCharacter = 0
-    
+    @State var firstGamePlayed = false
     @State var audioPlayer: AVAudioPlayer!
     
     @State var colors: [Color] = (1...1000).map { _ in
@@ -94,46 +94,9 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    ZStack{
-                        VStack{
-                            Spacer()
-                            ZStack{
-                                HStack{
-                                    Button {
-                                        model.mute.toggle()
-                                    } label: {
-                                        Image(systemName: model.mute ? "speaker.slash" : "speaker.wave.2")
-                                            .foregroundColor(.primary)
-                                            .font(.largeTitle)
-                                            .padding(36)
-                                    }
-                                    .onChange(of: model.mute) { setting in
-                                        if setting == true {
-                                            self.audioPlayer.setVolume(0, fadeDuration: 0)
-                                        } else {
-                                            self.audioPlayer.setVolume(1, fadeDuration: 0)
-                                        }
-                                    }
-                                    Spacer()
-                                    Button {
-                                        showCharactersMenu = true
-                                    } label: {
-                                        Image(systemName: "cart")
-                                            .foregroundColor(.primary)
-                                            .font(.largeTitle)
-                                            .padding(36)
-                                    }
-                                }
-//                                Button {
-//                                    showLeaderBoard = true
-//                                } label: {
-//                                    Image(systemName: "list.bullet")
-//                                        .foregroundColor(.primary)
-//                                        .font(.largeTitle)
-//                                        .padding(36)
-//                                }
-                            }
-                        }
+                    
+                    VStack{
+                        Spacer()
                         if !gameOver {
                             VStack{
                                 Text("Swipe up \nto play")
@@ -146,70 +109,119 @@ struct ContentView: View {
                             .font(.system(size:UIScreen.main.bounds.width/9))
                             .blinking()
                             .tag(-1)
+                            .offset(y: UIScreen.main.bounds.height * 0.09)
                         } else {
-                            VStack{
-                                Text("Game Over!")
-                                    .italic()
-                                    .bold()
-                                    .font(.system(size: UIScreen.main.bounds.width * 0.12))
-                                ZStack{
-                                    Rectangle()
-                                        .foregroundColor(.primary.opacity(0.12))
-                                        .cornerRadius(30)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.primary, lineWidth: 2)
-                                        )
-                                    HStack{
-                                        VStack{
-                                            Text("Ball")
-                                                .font(.largeTitle)
-                                                .bold()
-                                                .italic()
-                                                .font(.title)
-                                            let character = model.characters[playedCharacter]
-                                            AnyView(character.character)
-                                                .scaleEffect(2)
-                                                .padding(.top)
-                                        }
-                                        .offset(y: -(UIScreen.main.bounds.height * 0.02))
-                                        .padding(.leading, UIScreen.main.bounds.width * 0.12)
-                                        Spacer()
-                                        VStack(alignment: .trailing){
+                            ZStack{
+//                                HStack{
+//                                    Text("🏆 #6 place")
+//                                        .bold()
+//                                        .italic()
+//                                }
+//                                .font(.largeTitle)
+//                                .padding(.bottom)
+//                                .offset(y: -UIScreen.main.bounds.height * 0.39)
+                                VStack{
+                                                                    
+                                    Text("Game Over!")
+                                        .italic()
+                                        .bold()
+                                        .font(.system(size: UIScreen.main.bounds.width * 0.12))
+                                    ZStack{
+                                        Rectangle()
+                                            .foregroundColor(.primary.opacity(0.12))
+                                            .cornerRadius(30)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 30)
+                                                    .stroke(Color.primary, lineWidth: 2)
+                                            )
+                                        HStack{
+                                            VStack{
+                                                Text("Ball")
+                                                    .font(.largeTitle)
+                                                    .bold()
+                                                    .italic()
+                                                    .font(.title)
+                                                let character = model.characters[playedCharacter]
+                                                AnyView(character.character)
+                                                    .scaleEffect(2)
+                                                    .padding(.top)
+                                            }
+                                            .offset(y: -(UIScreen.main.bounds.height * 0.02))
+                                            .padding(.leading, UIScreen.main.bounds.width * 0.12)
                                             Spacer()
-                                            Text("Score")
+                                            VStack(alignment: .trailing){
+                                                Spacer()
+                                                Text("Score")
                                                 //.foregroundColor(.blue)
-                                                .bold()
-                                                .italic()
-                                            Text(String(currentScore))
-                                            Spacer()
-                                            Text("Best")
+                                                    .bold()
+                                                    .italic()
+                                                Text(String(currentScore))
+                                                Spacer()
+                                                Text("Best")
                                                 //.foregroundColor(.blue)
-                                                .bold()
-                                                .italic()
-                                            Text(String(bestScore))
-                                            Spacer()
+                                                    .bold()
+                                                    .italic()
+                                                Text(String(bestScore))
+                                                Spacer()
+                                            }
+                                            .padding(.trailing, UIScreen.main.bounds.width * 0.07)
+                                            .padding()
+                                            .font(.largeTitle)
                                         }
-                                        .padding(.trailing, UIScreen.main.bounds.width * 0.07)
-                                        .padding()
+                                    }
+                                    .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.27)
+                                    
+                                    VStack{
+                                        Text("Swipe up to \nplay again")
+                                            .bold()
+                                            .italic()
+                                            .multilineTextAlignment(.center)
+                                            .padding()
+                                        Image(systemName: "arrow.up")
+                                    }
+                                    .foregroundColor(.primary)
+                                    .font(.largeTitle)
+                                    .tag(-1)
+                                }
+                            }
+                            .offset(y: UIScreen.main.bounds.height * 0.1)
+                        }
+                        Spacer()
+                        ZStack{
+                            HStack{
+                                Button {
+                                    model.mute.toggle()
+                                } label: {
+                                    Image(systemName: model.mute ? "speaker.slash" : "speaker.wave.2")
+                                        .foregroundColor(.primary)
                                         .font(.largeTitle)
+                                        .padding(36)
+                                }
+                                .onChange(of: model.mute) { setting in
+                                    if setting == true {
+                                        self.audioPlayer.setVolume(0, fadeDuration: 0)
+                                    } else {
+                                        self.audioPlayer.setVolume(1, fadeDuration: 0)
                                     }
                                 }
-                                .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.27)
-                                
-                                VStack{
-                                    Text("Swipe up to \nplay again")
-                                        .bold()
-                                        .italic()
-                                        .multilineTextAlignment(.center)
-                                        .padding()
-                                    Image(systemName: "arrow.up")
+                                Spacer()
+                                Button {
+                                    showCharactersMenu = true
+                                } label: {
+                                    Image(systemName: "cart")
+                                        .foregroundColor(.primary)
+                                        .font(.largeTitle)
+                                        .padding(36)
                                 }
-                                .foregroundColor(.primary)
-                                .font(.largeTitle)
-                                .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.03)
+//                            Button {
+//                                showLeaderBoard = true
+//                            } label: {
+//                                Image(systemName: "list.bullet")
+//                                    .foregroundColor(.primary)
+//                                    .font(.largeTitle)
+//                                    .padding(36)
+//                            }
                         }
                     }
                     let character = model.characters[model.selectedCharacter]
@@ -242,16 +254,17 @@ struct ContentView: View {
                             if index == 0{
                                 ZStack{
                                     Rectangle()
-                                        .frame(width: 100, height: 110)
+                                        .frame(width: 100, height: 80)
                                         .foregroundColor(.primary)
                                         .colorInvert()
 //                                    Image(systemName: "list.bullet")
 //                                        .foregroundColor(.primary)
 //                                        .font(.largeTitle)
-//                                        .padding(36)
+//                                        .offset(y: -15)
                                     
                                 }
-                                .position(x: UIScreen.main.bounds.width/2, y: -55)
+                                .position(x: UIScreen.main.bounds.width/2, y: -40)
+                                
                             }
                             if currentIndex == 0 {
                                 KeepSwiping()
