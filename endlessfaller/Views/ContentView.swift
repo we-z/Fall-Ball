@@ -46,7 +46,6 @@ struct ContentView: View {
         } catch {
             print("Error setting up audio session: \(error)")
         }
-        self.playedCharacter = model.selectedCharacter
     }
     
     func dropCircle() {
@@ -390,6 +389,7 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
+            playedCharacter = model.selectedCharacter
             let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
             do {
                 self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))

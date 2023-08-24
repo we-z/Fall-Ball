@@ -36,10 +36,15 @@ struct CharactersMenuView: View {
                                             if model.characters[index].isPurchased{
                                                 model.selectedCharacter = index
                                             } else if storeIndex >= 0 {
-                                                //print("chosen product \(currentStoreKit.storeProducts[storeIndex])")
                                                 isProcessingPurchase = true
                                                 Task {
-                                                    try await storeKit.purchase(characterID: character.characterID)
+                                                    do {
+                                                        if (try await storeKit.purchase(characterID: character.characterID)) != nil{
+                                                            model.selectedCharacter = index
+                                                        }
+                                                    } catch {
+                                                        print("Purchase failed: \(error)")
+                                                    }
                                                     isProcessingPurchase = false
                                                 }
                                             }
