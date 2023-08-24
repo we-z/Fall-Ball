@@ -32,6 +32,7 @@ struct ContentView: View {
     @State var showNewBestScore = false
     @State var gameShouldBeOver = false
     @State var levelYPosition: CGFloat = 0
+    @State var playedCharacter = 0
     
     @State var audioPlayer: AVAudioPlayer!
     
@@ -46,7 +47,7 @@ struct ContentView: View {
         } catch {
             print("Error setting up audio session: \(error)")
         }
-
+        self.playedCharacter = model.selectedCharacter
     }
     
     func dropCircle() {
@@ -83,6 +84,7 @@ struct ContentView: View {
             freezeScrolling = false
         }
         gameShouldBeOver = false
+        self.playedCharacter = model.selectedCharacter
         currentIndex = -1
     }
     
@@ -165,7 +167,7 @@ struct ContentView: View {
                                                 .bold()
                                                 .italic()
                                                 .font(.title)
-                                            let character = model.characters[model.selectedCharacter]
+                                            let character = model.characters[playedCharacter]
                                             AnyView(character.character)
                                                 .scaleEffect(2)
                                                 .padding(.top)
