@@ -17,7 +17,8 @@ let bestScoreKey = "BestScore"
 struct ContentView: View {
     
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
-    @StateObject var model = AppModel()
+    @StateObject var appModel = AppModel()
+    @StateObject private var ckvm = CloudKitCrud()
     @State var score: Int = 0
     @State var highestScoreInGame: Int = 0
     @State var currentScore: Int = 0
@@ -74,11 +75,14 @@ struct ContentView: View {
             freezeScrolling = false
         }
         gameShouldBeOver = false
-        self.playedCharacter = model.selectedCharacter
-        currentIndex = -1
+        self.playedCharacter = appModel.selectedCharacter
+        DispatchQueue.main.async{
+            self.currentIndex = -1
+        }
+        //ckvm.addItem(characterID: appModel.characters[appModel.selectedCharacter].characterID, score: bestScore)
     }
     
-    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+    let impactMed = UIImpactFeedbackGenerator(style: .heavy)
     
     var body: some View {
         ScrollView {
@@ -131,7 +135,7 @@ struct ContentView: View {
                                                     .bold()
                                                     .italic()
                                                     .font(.title)
-                                                let character = model.characters[playedCharacter]
+                                                let character = appModel.characters[playedCharacter]
                                                 AnyView(character.character)
                                                     .scaleEffect(2)
                                                     .padding(.top)
@@ -180,14 +184,14 @@ struct ContentView: View {
                         ZStack{
                             HStack{
                                 Button {
-                                    model.mute.toggle()
+                                    appModel.mute.toggle()
                                 } label: {
-                                    Image(systemName: model.mute ? "speaker.slash" : "speaker.wave.2")
+                                    Image(systemName: appModel.mute ? "speaker.slash" : "speaker.wave.2")
                                         .foregroundColor(.primary)
                                         .font(.largeTitle)
                                         .padding(36)
                                 }
-                                .onChange(of: model.mute) { setting in
+                                .onChange(of: appModel.mute) { setting in
                                     if setting == true {
                                         self.audioPlayer.setVolume(0, fadeDuration: 0)
                                     } else {
@@ -214,7 +218,7 @@ struct ContentView: View {
                             }
                         }
                     }
-                    let character = model.characters[model.selectedCharacter]
+                    let character = appModel.characters[appModel.selectedCharacter]
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             Rectangle()
@@ -235,7 +239,7 @@ struct ContentView: View {
                                         }
                                         AnyView(character.character)
                                     }
-                                    .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -23)
+                                    .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -27)
                                     .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
                                         levelYPosition = newYPosition
                                     }
@@ -273,8 +277,8 @@ struct ContentView: View {
                         gameOver = true
                     }
                     score = newValue
-                    if newValue >= highestScoreInGame {
-                        highestScoreInGame = newValue
+                    if score > highestScoreInGame || score == 0 {
+                        highestScoreInGame = score
                         if currentIndex < 36 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
@@ -381,20 +385,20 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: self.$showCharactersMenu){
-               CharactersMenuView()
+            CharactersMenuView()
         }
         .sheet(isPresented: self.$showLeaderBoard){
-               LeaderBoardView()
+            TempView()
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
-            playedCharacter = model.selectedCharacter
+            playedCharacter = appModel.selectedCharacter
             let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
             do {
                 self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                 self.audioPlayer.numberOfLoops = -1
-                if model.mute == true {
+                if appModel.mute == true {
                     self.audioPlayer.setVolume(0, fadeDuration: 0)
                 } else {
                     self.audioPlayer.setVolume(1, fadeDuration: 0)

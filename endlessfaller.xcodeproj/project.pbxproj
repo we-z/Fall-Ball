@@ -28,6 +28,7 @@
 		7AD2346F2A62019800ED626D /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346E2A62019700ED626D /* TempView.swift */; };
 		7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */; };
 		7AD234752A64533700ED626D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234742A64533700ED626D /* AppModel.swift */; };
+		7AE608252A983865009C4479 /* CloudkitCrud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE608242A983865009C4479 /* CloudkitCrud.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +50,6 @@
 
 /* Begin PBXFileReference section */
 		7A320D682A9756990074A322 /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FallBallOST120.mp3; path = ../../../../Desktop/FallBallOST120.mp3; sourceTree = "<group>"; };
-		7A320D6A2A9756D20074A322 /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FallBallOST120.mp3; sourceTree = "<group>"; };
 		7A3CEA6A2A8AB1E100A79E65 /* pokeball.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pokeball.gif; sourceTree = "<group>"; };
 		7A3CEA6B2A8AB1EB00A79E65 /* bear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bear.gif; sourceTree = "<group>"; };
 		7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitUtility.swift; sourceTree = "<group>"; };
@@ -74,6 +74,7 @@
 		7AD2346E2A62019700ED626D /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersMenuView.swift; sourceTree = "<group>"; };
 		7AD234742A64533700ED626D /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		7AE608242A983865009C4479 /* CloudkitCrud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudkitCrud.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +117,6 @@
 		7A6977CB2A956C95005967F1 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				7A320D6A2A9756D20074A322 /* FallBallOST120.mp3 */,
 				7A3CEA692A8AB1D100A79E65 /* Gifs */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
@@ -143,6 +143,7 @@
 				7AB05CE32A65C65500EE4D7B /* products.storekit */,
 				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
+				7AE608242A983865009C4479 /* CloudkitCrud.swift */,
 				7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
 			);
@@ -360,6 +361,7 @@
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
+				7AE608252A983865009C4479 /* CloudkitCrud.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
