@@ -72,7 +72,6 @@ class AppModel: ObservableObject {
     ] 
     
     func updatePurchasedCharacters(){
-        print("updatePurchasedCharacters called")
         characters.forEach{ character in
             if character.isPurchased == true {
                 if !purchasedCharacters.contains(character.characterID){
@@ -80,7 +79,6 @@ class AppModel: ObservableObject {
                 }
             }
         }
-        print("updatePurchasedCharacters: \(purchasedCharacters)")
     }
     
     func savePurchasedCharacters(){
@@ -97,7 +95,7 @@ class AppModel: ObservableObject {
         
         self.purchasedCharacters = savedCharacters
         
-        print("purchasedCharacters retrieved: \(purchasedCharacters)")
+        //print("purchasedCharacters retrieved: \(purchasedCharacters)")
         
         purchasedCharacters.forEach{ purchasedCharacterID in
             for index in characters.indices {
@@ -107,7 +105,7 @@ class AppModel: ObservableObject {
                 }
             }
         }
-        print("purchasedCharacters assigned")
+        //print("purchasedCharacters assigned")
     }
     
     

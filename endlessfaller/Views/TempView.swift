@@ -13,39 +13,15 @@ struct TempView: View {
     @StateObject private var vm = CloudKitCrud()
     
     private var header: some View {
-        Text("CloudKit CRUD ☁️☁️☁️")
-            .font(.headline)
+        Text("CloudKit CRUD")
+            .font(.largeTitle)
             .underline()
-    }
-    
-    private var textField: some View {
-        TextField("Add something here...", text: $vm.text)
-            .frame(height: 55)
-            .padding(.leading)
-            .background(Color.gray.opacity(0.4))
-            .cornerRadius(10)
-    }
-    
-    private var addButton: some View {
-        Button {
-            vm.addButtonPressed()
-        } label: {
-            Text("Add")
-                .font(.headline)
-                .foregroundColor(.white)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .background(Color.pink)
-                .cornerRadius(10)
-        }
     }
     
     var body: some View {
         NavigationView {
             VStack {
                 header
-                textField
-                addButton
                 
                 List {
                     ForEach(vm.scores, id: \.self) { score in
@@ -55,7 +31,7 @@ struct TempView: View {
                             Text(String(score.bestScore))
                         }
                         .onTapGesture {
-                            //vm.updateItem(score: score)
+                            vm.updateRecord(newScore: 333, newCharacterID: "Tester")
                             print("Record:")
                             print(score.record)
                         }

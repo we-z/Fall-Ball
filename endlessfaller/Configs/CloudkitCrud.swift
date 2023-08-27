@@ -14,6 +14,36 @@ struct CloudKitScoreModelNames {
     static let name = "name"
 }
 
+struct LocalRecord {
+    var recordID: CKRecord.ID
+    // Add other properties that match your CKRecord's data fields
+
+    // Custom initializer for CKRecord.ID
+    init(recordID: CKRecord.ID) {
+        self.recordID = recordID
+    }
+}
+
+extension LocalRecord: Codable {
+    enum CodingKeys: String, CodingKey {
+        case recordID
+        // Add coding keys for other properties
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let recordIDString = try container.decode(String.self, forKey: .recordID)
+        recordID = CKRecord.ID(recordName: recordIDString)
+        // Decode other properties here
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(recordID.recordName, forKey: .recordID)
+        // Encode other properties here
+    }
+}
+
 struct ScoreModel: Hashable, CloudKitableProtocol {
     let characterID: String
     let bestScore: Int
@@ -35,39 +65,59 @@ struct ScoreModel: Hashable, CloudKitableProtocol {
         }
         self.init(record: record)
     }
-    
-    func update(newCharacterID: String, newScore: Int) -> ScoreModel? {
-        let record = record
-        record["name"] = newCharacterID
-        record["count"] = newScore
-        return ScoreModel(record: record)
-    }
-    
+
 }
 
 class CloudKitCrud: ObservableObject {
     
-    @Published var text: String = ""
     @Published var scores: [ScoreModel] = []
-    @Published var myScoreModel: ScoreModel = ScoreModel(characterID: "", bestScore: 0)!
+    var record = CKRecord(recordType: "Scores") 
     var cancellables = Set<AnyCancellable>()
     
     init() {
         fetchItems()
     }
     
-    func addButtonPressed() {
-        guard !text.isEmpty else { return }
-        let randomCount = Int(arc4random_uniform(1000))
-        addItem(characterID: text, score: randomCount)
+    func updateRecord(newScore: Int, newCharacterID: String) {
+        guard let localRecord = loadLocalRecord() else {
+            print("Local record not found.")
+            addItem(characterID: newCharacterID, score: newScore)
+            return
+        }
+
+        // Fetch the record from CloudKit using the saved recordID
+        CloudKitUtility.fetchRecord(withRecordID: localRecord.recordID) { [weak self] result in
+            switch result {
+            case .success(let recordToUpdate):
+                // Update the relevant fields of the record
+                recordToUpdate["count"] = newScore
+                recordToUpdate["name"] = newCharacterID
+
+                // Save the updated record to CloudKit
+                if let updatedScoreModel = ScoreModel(record: recordToUpdate) {
+                    CloudKitUtility.update(item: updatedScoreModel) { updateResult in
+                        switch updateResult {
+                        case .success:
+                            print("Record updated successfully.")
+                            self?.fetchItems() // Fetch updated records
+                        case .failure(let error):
+                            print("Record update failed with error: \(error)")
+                        }
+                    }
+                } else {
+                    print("Failed to update record: Invalid ScoreModel.")
+                }
+
+            case .failure(let error):
+                print("Fetching record failed with error: \(error)")
+            }
+        }
     }
     
     func addItem(characterID: String, score: Int) {
         guard let newScore = ScoreModel(characterID: characterID, bestScore: score) else { return }
         CloudKitUtility.update(item: newScore) { [weak self] result in
-            print("Item added")
-            print(result)
-            self?.fetchItems()
+            self?.saveToLocal(record: newScore.record)
         }
 
     }
@@ -83,15 +133,6 @@ class CloudKitCrud: ObservableObject {
                 self?.scores = returnedItems
             }
             .store(in: &cancellables)
-    }
-    
-    
-    func updateItem(score: ScoreModel) {
-        guard let newScore = score.update(newCharacterID: "Test Update", newScore: 696) else { return }
-        CloudKitUtility.update(item: newScore) { [weak self] result in
-            print("UPDATE COMPLETED")
-            self?.fetchItems()
-        }
     }
     
     func deleteItem(indexSet: IndexSet) {
@@ -110,4 +151,34 @@ class CloudKitCrud: ObservableObject {
 
     }
     
+    func saveToLocal(record: CKRecord) {
+        let localRecord = LocalRecord(recordID: record.recordID)
+        // Map other fields from CKRecord to localRecord
+
+        do {
+            print("saveToLocal called")
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(localRecord)
+            
+            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("localRecord.json")
+            try data.write(to: fileURL)
+        } catch {
+            print("Error encoding or saving: \(error)")
+        }
+    }
+    
+}
+
+func loadLocalRecord() -> LocalRecord? {
+    let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("localRecord.json")
+    
+    do {
+        let data = try Data(contentsOf: fileURL)
+        let decoder = JSONDecoder()
+        let localRecord = try decoder.decode(LocalRecord.self, from: data)
+        return localRecord
+    } catch {
+        print("Error loading or decoding: \(error)")
+        return nil
+    }
 }

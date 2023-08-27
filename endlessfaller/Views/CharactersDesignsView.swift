@@ -427,7 +427,7 @@ struct BombBallView: View {
 struct LaughBallView: View {
     var body: some View {
         ZStack{
-            Text("😂")
+            Text("🤣")
                 .font(.system(size: 49))
         }
     }

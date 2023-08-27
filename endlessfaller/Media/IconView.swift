@@ -13,7 +13,7 @@ struct IconView: View {
             VStack(spacing: 0){
                 
                 Color(red: 0.6, green: 0, blue: 1)
-                Color(red: 0, green: 0.9, blue: 1)
+                Color(red: 0, green: 0.8, blue: 1)
             }
             
             VStack{
@@ -23,11 +23,12 @@ struct IconView: View {
                     endPoint: .bottom
                 )
             }
-            .frame(width: 270, height: 240)
+            .frame(width: 260, height: 240)
             .offset(x:0, y:-117)
             
-            ShockedBallView()
+            LaughBallView()
                 .scaleEffect(6)
+                .offset(x:3)
         }
     }
 }

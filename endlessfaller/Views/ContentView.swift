@@ -79,7 +79,7 @@ struct ContentView: View {
         DispatchQueue.main.async{
             self.currentIndex = -1
         }
-        //ckvm.addItem(characterID: appModel.characters[appModel.selectedCharacter].characterID, score: bestScore)
+        ckvm.updateRecord(newScore: bestScore, newCharacterID: appModel.characters[appModel.selectedCharacter].characterID)
     }
     
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
@@ -100,7 +100,8 @@ struct ContentView: View {
                                     .padding()
                                 Image(systemName: "arrow.up")
                             }
-                            .font(.system(size:UIScreen.main.bounds.width/9))
+                            .font(.largeTitle)
+                            .scaleEffect(1.5)
                             .blinking()
                             .tag(-1)
                             .offset(y: UIScreen.main.bounds.height * 0.07)

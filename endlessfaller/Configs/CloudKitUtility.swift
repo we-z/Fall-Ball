@@ -137,6 +137,19 @@ extension CloudKitUtility {
         }
     }
     
+    static func fetchRecord(withRecordID recordID: CKRecord.ID, completion: @escaping (Result<CKRecord, Error>) -> Void) {
+        let database = CKContainer.default().publicCloudDatabase
+        database.fetch(withRecordID: recordID) { (record, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let record = record {
+                completion(.success(record))
+            } else {
+                // Handle other cases
+            }
+        }
+    }
+    
     static private func fetch<T:CloudKitableProtocol>(
         predicate: NSPredicate,
         recordType: CKRecord.RecordType,
