@@ -389,7 +389,7 @@ struct ContentView: View {
             CharactersMenuView()
         }
         .sheet(isPresented: self.$showLeaderBoard){
-            TempView()
+            LeaderBoardView()
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
