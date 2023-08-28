@@ -365,9 +365,9 @@ struct BallView: View {
 struct WhiteBallView: View {
     var body: some View {
         ZStack{
-            Circle()
-                .frame(width: 48)
-                .foregroundColor(.white)
+//            Circle()
+//                .frame(width: 48)
+//                .foregroundColor(.white)
             BallView()
                 .background(Circle().foregroundColor(Color.white))
         }
@@ -404,9 +404,8 @@ struct ShockedBallView: View {
             Circle()
                 .frame(width: 48)
                 .foregroundColor(.black)
-            Text("😲")
+            Text("😮")
                 .font(.system(size: 54))
-                .rotationEffect(.degrees(30))
                 .mask(
                     Circle()
                         .frame(width: 46, height: 46)
