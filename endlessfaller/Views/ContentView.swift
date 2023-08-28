@@ -395,18 +395,19 @@ struct ContentView: View {
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
             playedCharacter = appModel.selectedCharacter
-            let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3")
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-                self.audioPlayer.numberOfLoops = -1
-                if appModel.mute == true {
-                    self.audioPlayer.setVolume(0, fadeDuration: 0)
-                } else {
-                    self.audioPlayer.setVolume(1, fadeDuration: 0)
+            if let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
+                do {
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                    self.audioPlayer.numberOfLoops = -1
+                    if appModel.mute == true {
+                        self.audioPlayer.setVolume(0, fadeDuration: 0)
+                    } else {
+                        self.audioPlayer.setVolume(1, fadeDuration: 0)
+                    }
+                    self.audioPlayer.play()
+                } catch {
+                    print("Error playing audio: \(error)")
                 }
-                self.audioPlayer.play()
-            } catch {
-                print("Error playing audio: \(error)")
             }
         }
     }
