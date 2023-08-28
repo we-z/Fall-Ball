@@ -24,50 +24,57 @@ struct LeaderBoardView: View {
             Divider()
                 .overlay(.primary)
                 .padding(.horizontal)
-            ScrollView(showsIndicators: false){
-                ForEach(Array(CKVM.scores.enumerated()), id: \.1.self) { index, score in
-                    if let character = model.characters.first(where: { $0.characterID == score.characterID }){
-                        let place = index + 1
-                        VStack{
-                            HStack{
-                                Text("#" + String(place))
-                                    .bold()
-                                    .font(.title)
-                                    .padding(.leading)
-                                AnyView(character.character)
-                                    .scaleEffect(1.2)
-                                    .padding(.horizontal)
-                                    .frame(width: 75)
-                                if place == 1 {
-                                    Text("🥇")
-                                        .font(.largeTitle)
-                                } else if place == 2 {
-                                    Text("🥈")
-                                        .font(.largeTitle)
-                                } else if place == 3 {
-                                    Text("🥉")
-                                        .font(.largeTitle)
+            if CKVM.scores.isEmpty{
+                Spacer()
+                ProgressView()
+                    .scaleEffect(2)
+                Spacer()
+            } else {
+                ScrollView(showsIndicators: false){
+                    ForEach(Array(CKVM.scores.enumerated()), id: \.1.self) { index, score in
+                        if let character = model.characters.first(where: { $0.characterID == score.characterID }){
+                            let place = index + 1
+                            VStack{
+                                HStack{
+                                    Text("#" + String(place))
+                                        .bold()
+                                        .font(.title)
+                                        .padding(.leading)
+                                    AnyView(character.character)
+                                        .scaleEffect(1.2)
+                                        .padding(.horizontal)
+                                        .frame(width: 75)
+                                    if place == 1 {
+                                        Text("🥇")
+                                            .font(.largeTitle)
+                                    } else if place == 2 {
+                                        Text("🥈")
+                                            .font(.largeTitle)
+                                    } else if place == 3 {
+                                        Text("🥉")
+                                            .font(.largeTitle)
+                                    }
+                                    Spacer()
+                                    Text(String(score.bestScore))
+                                        .bold()
+                                        .italic()
+                                        .font(.system(size:UIScreen.main.bounds.width/12))
+                                        .padding(.trailing, 30)
                                 }
-                                Spacer()
-                                Text(String(score.bestScore))
-                                    .bold()
-                                    .italic()
-                                    .font(.system(size:UIScreen.main.bounds.width/12))
-                                    .padding(.trailing, 30)
+                                //                    Divider()
+                                //                        .overlay(.gray)
+                                //                        .padding(.horizontal)
                             }
-                            //                    Divider()
-                            //                        .overlay(.gray)
-                            //                        .padding(.horizontal)
+                            .frame(height: 100)
+                            .background(score.record.recordID == recordID ? Color.gray.opacity(0.2) : .clear)
+                            .cornerRadius(20)
+                            .padding(.horizontal)
                         }
-                        .frame(height: 100)
-                        .background(score.record.recordID == recordID ? Color.gray.opacity(0.2) : .clear)
-                        .cornerRadius(20)
-                        .padding(.horizontal)
                     }
                 }
-            }
-            .refreshable {
-                CKVM.fetchItems()
+                .refreshable {
+                    CKVM.fetchItems()
+                }
             }
         }
         .padding(.top, 30)
