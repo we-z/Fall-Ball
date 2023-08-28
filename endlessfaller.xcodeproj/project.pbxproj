@@ -29,6 +29,7 @@
 		7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */; };
 		7AD234752A64533700ED626D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234742A64533700ED626D /* AppModel.swift */; };
 		7AE608252A983865009C4479 /* CloudkitCrud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE608242A983865009C4479 /* CloudkitCrud.swift */; };
+		7AE608632A9CA95D009C4479 /* LeaderBoardDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE608622A9CA95D009C4479 /* LeaderBoardDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersMenuView.swift; sourceTree = "<group>"; };
 		7AD234742A64533700ED626D /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		7AE608242A983865009C4479 /* CloudkitCrud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudkitCrud.swift; sourceTree = "<group>"; };
+		7AE608622A9CA95D009C4479 /* LeaderBoardDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				7AE608242A983865009C4479 /* CloudkitCrud.swift */,
 				7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
+				7AE608622A9CA95D009C4479 /* LeaderBoardDataManager.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				7A723DDA2A84B842002E9F2C /* LeaderBoardView.swift in Sources */,
 				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
+				7AE608632A9CA95D009C4479 /* LeaderBoardDataManager.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
 				7AE608252A983865009C4479 /* CloudkitCrud.swift in Sources */,
@@ -515,7 +519,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.9;
+				CURRENT_PROJECT_VERSION = 1.1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -535,7 +539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -555,7 +559,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.9;
+				CURRENT_PROJECT_VERSION = 1.1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -575,7 +579,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
