@@ -19,7 +19,8 @@ struct LeaderBoardView: View {
                 Text("Score Board")
                     .bold()
                     .italic()
-                    .font(.system(size:UIScreen.main.bounds.width/10))
+                    .font(.largeTitle)
+                    .scaleEffect(1.2)
             }
             Divider()
                 .overlay(.primary)
@@ -58,7 +59,7 @@ struct LeaderBoardView: View {
                                     Text(String(score.bestScore))
                                         .bold()
                                         .italic()
-                                        .font(.system(size:UIScreen.main.bounds.width/12))
+                                        .font(.largeTitle)
                                         .padding(.trailing, 30)
                                 }
                                 //                    Divider()

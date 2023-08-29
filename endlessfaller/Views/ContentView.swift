@@ -121,7 +121,8 @@ struct ContentView: View {
                                     Text("Game Over!")
                                         .italic()
                                         .bold()
-                                        .font(.system(size: UIScreen.main.bounds.width * 0.12))
+                                        .font(.largeTitle)
+                                        .scaleEffect(1.5)
                                     ZStack{
                                         Rectangle()
                                             .foregroundColor(.primary.opacity(0.12))
@@ -264,6 +265,9 @@ struct ContentView: View {
                             }
                             if currentIndex == 0 {
                                 KeepSwiping()
+                            }
+                            if currentIndex == 1 {
+                                Instruction()
                             }
                         }
                     }
