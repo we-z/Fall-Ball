@@ -13,6 +13,7 @@ import AVFoundation
 
 
 let bestScoreKey = "BestScore"
+let levels = 1000
 
 struct ContentView: View {
     
@@ -36,7 +37,7 @@ struct ContentView: View {
     @State var playedCharacter = 0
     @State var audioPlayer: AVAudioPlayer!
     
-    @State var colors: [Color] = (1...1000).map { _ in
+    @State var colors: [Color] = (1...levels).map { _ in
         Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
     }
     
@@ -69,7 +70,7 @@ struct ContentView: View {
         highestScoreInGame = 0
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.colors = (1...1000).map { _ in
+            self.colors = (1...levels).map { _ in
                 Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
             }
             freezeScrolling = false
@@ -203,7 +204,7 @@ struct ContentView: View {
                                 Button {
                                     showCharactersMenu = true
                                 } label: {
-                                    Image(systemName: "cart")
+                                    Image(systemName: "person.crop.circle")
                                         .foregroundColor(.primary)
                                         .font(.largeTitle)
                                         .padding(36)
@@ -280,7 +281,7 @@ struct ContentView: View {
                     score = newValue
                     if score > highestScoreInGame || score == 0 {
                         highestScoreInGame = score
-                        if currentIndex < 36 {
+                        if currentIndex < 39 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false
@@ -289,6 +290,11 @@ struct ContentView: View {
                     impactMed.impactOccurred()
                     if currentIndex > bestScore && currentIndex > 3 {
                         showNewBestScore = true
+                    }
+                    if currentIndex == colors.count - 1{
+                        colors += (1...levels).map { _ in
+                            Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
+                        }
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
