@@ -33,6 +33,7 @@ struct ContentView: View {
     @State var showGameOver = false
     @State var showNewBestScore = false
     @State var gameShouldBeOver = false
+    @State var showShockedFace = false
     @State var levelYPosition: CGFloat = 0
     @State var playedCharacter = 0
     @State var audioPlayer: AVAudioPlayer!
@@ -68,10 +69,10 @@ struct ContentView: View {
         }
         freezeScrolling = true
         highestScoreInGame = 0
-        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
-            self.currentIndex = -1
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+        showShockedFace = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
             self.colors = (1...levels).map { _ in
                 Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
             }
@@ -79,7 +80,13 @@ struct ContentView: View {
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
-        Timer.scheduledTimer(withTimeInterval: 0, repeats: false) { timer in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+            showShockedFace = false
+            showGameOver = true
+        }
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+            showGameOver = false
             self.currentIndex = -1
             timer.invalidate() // Stop the timer after the reset
         }
@@ -234,8 +241,8 @@ struct ContentView: View {
                                                     endPoint: .bottom
                                                 )
                                             }
-                                            .frame(width: 46, height: 50)
-                                            .offset(x: 0, y:-25)
+                                            .frame(width: 44, height: 45)
+                                            .offset(x: 0, y:-23)
                                         }
                                         AnyView(character.character)
                                     }
@@ -261,10 +268,10 @@ struct ContentView: View {
                                 .position(x: UIScreen.main.bounds.width/2, y: -40)
                                 
                             }
-                            if currentIndex == 0 {
+                            if currentIndex == 0 && !gameOver {
                                 KeepSwiping()
                             }
-                            if currentIndex == 1 {
+                            if currentIndex == 1 && !gameOver {
                                 Instruction()
                             }
                         }
@@ -276,10 +283,10 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
-                    gameShouldBeOver = false
-                    if newValue > 0{
-                        gameOver = true
+                    if currentIndex != -1{
+                        gameOver = false
                     }
+                    gameShouldBeOver = false
                     score = newValue
                     if score > highestScoreInGame || score == 0 {
                         highestScoreInGame = score
@@ -330,66 +337,83 @@ struct ContentView: View {
                     .allowsHitTesting(false)
                 }
                 
-                if !showNewBestScore {
-                    
-                    if currentIndex > 21 && currentIndex < 33 {
-                        KeepGoing()
+                if showGameOver || showShockedFace {
+                    if showShockedFace {
+                        Text("😱")
+                            .foregroundColor(.black)
+                            .bold()
+                            .font(.largeTitle)
+                            .scaleEffect(4)
+                            .flashing()
+                    } else{
+                        Text("Ball is gone! 😭")
+                            .foregroundColor(.black)
+                            .bold()
+                            .font(.largeTitle)
+                            .scaleEffect(1.2)
+                            .flashing()
                     }
-                    
-                    if currentIndex > 100 && currentIndex < 115 {
-                        YourGood()
+                } else{
+                    if !showNewBestScore {
+                        
+                        if currentIndex > 21 && currentIndex < 33 {
+                            KeepGoing()
+                        }
+                        
+                        if currentIndex > 100 && currentIndex < 115 {
+                            YourGood()
+                        }
+                        
+                        if currentIndex > 200 && currentIndex < 215 {
+                            YourInsane()
+                        }
+                        
+                        if currentIndex > 300 && currentIndex < 315 {
+                            GoBerzerk()
+                        }
+                        
+                    } else {
+                        CelebrationEffect()
+                        NewBestScore()
                     }
-                    
-                    if currentIndex > 200 && currentIndex < 215 {
-                        YourInsane()
-                    }
-                    
-                    if currentIndex > 300 && currentIndex < 315 {
-                        GoBerzerk()
-                    }
-                    
-                } else {
-                    CelebrationEffect()
-                    NewBestScore()
-                }
-                
-                if currentIndex > 315 {
-                    VStack{
-                        Spacer()
-                        HStack{
+                    if currentIndex > 315 {
+                        VStack{
                             Spacer()
-                            BearView()
+                            HStack{
+                                Spacer()
+                                BearView()
+                            }
                         }
                     }
-                }
-                if currentIndex > 115 {
-                    ReactionsView()
-                        .offset(y: 70)
-                }
-                
-                if currentIndex > 215 {
-                    VStack{
-                        Spacer()
-                        HStack{
-                            SwiftUIXmasTree2()
-                                .scaleEffect(0.5)
-                                .offset(x:-UIScreen.main.bounds.width/10)
+                    if currentIndex > 115 {
+                        ReactionsView()
+                            .offset(y: 70)
+                    }
+                    
+                    if currentIndex > 215 {
+                        VStack{
                             Spacer()
+                            HStack{
+                                SwiftUIXmasTree2()
+                                    .scaleEffect(0.5)
+                                    .offset(x:-UIScreen.main.bounds.width/10)
+                                Spacer()
+                            }
                         }
                     }
-                }
-                
-                if currentIndex > 33 {
-                    VStack{
-                        Spacer()
-                        HStack{
+                    
+                    if currentIndex > 33 {
+                        VStack{
                             Spacer()
-                            SVGCharacterView()
-                                .scaleEffect(0.5)
-                                .offset(x:UIScreen.main.bounds.width/10)
+                            HStack{
+                                Spacer()
+                                SVGCharacterView()
+                                    .scaleEffect(0.5)
+                                    .offset(x:UIScreen.main.bounds.width/10)
+                            }
                         }
+                        .allowsHitTesting(false)
                     }
-                    .allowsHitTesting(false)
                 }
             }
         }

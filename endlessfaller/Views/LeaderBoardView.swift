@@ -16,7 +16,7 @@ struct LeaderBoardView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Leader Board")
+                Text("Leader Board 🏆")
                     .bold()
                     .italic()
                     .font(.largeTitle)
@@ -66,12 +66,12 @@ struct LeaderBoardView: View {
                                 //                        .overlay(.gray)
                                 //                        .padding(.horizontal)
                             }
-                            .frame(height: 100)
+                            .frame(height: 80)
                             .background(score.record.recordID == recordID ? Color.gray.opacity(0.2) : .clear)
                             .cornerRadius(20)
                             .padding(.horizontal)
                             Divider()
-                                .overlay(.primary)
+                                .overlay(.gray)
                                 .padding(.horizontal)
                         }
                     }
