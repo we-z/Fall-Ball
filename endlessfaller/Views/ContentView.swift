@@ -110,23 +110,52 @@ struct ContentView: View {
                             .tag(-1)
                             .offset(y: UIScreen.main.bounds.height * 0.07)
                         } else {
-                            ZStack{
-//                                HStack{
-//                                    Text("🏆 #3 place 🌍")
-//                                        .bold()
-//                                        .italic()
-//                                }
-//                                .font(.largeTitle)
-//                                .padding(.bottom)
-//                                .offset(y: -UIScreen.main.bounds.height * 0.39)
-                                VStack{
-                                                                    
-                                    Text("Game Over!")
-                                        .italic()
-                                        .bold()
+                            VStack{
+                                Text("Game Over!")
+                                    .italic()
+                                    .bold()
+                                    .font(.largeTitle)
+                                    .scaleEffect(1.5)
+                                    .padding(.bottom)
+                                    HStack{
+                                        VStack{
+                                            Text("Ball")
+                                                .font(.largeTitle)
+                                                .bold()
+                                                .italic()
+                                                .font(.title)
+                                            let character = appModel.characters[playedCharacter]
+                                            AnyView(character.character)
+                                                .scaleEffect(2)
+                                                .padding(.top)
+                                        }
+                                        .offset(y: -(UIScreen.main.bounds.height * 0.02))
+                                        .padding(.leading, UIScreen.main.bounds.width * 0.12)
+                                        Spacer()
+                                            .frame(maxWidth: 75)
+                                        VStack(alignment: .trailing){
+                                            Spacer()
+                                                .frame(maxHeight: 10)
+                                            Text("Score")
+                                            //.foregroundColor(.blue)
+                                                .bold()
+                                                .italic()
+                                            Text(String(currentScore))
+                                            Spacer()
+                                                .frame(maxHeight: 10)
+                                            Text("Best")
+                                            //.foregroundColor(.blue)
+                                                .bold()
+                                                .italic()
+                                            Text(String(bestScore))
+                                            Spacer()
+                                                .frame(maxHeight: 10)
+                                        }
+                                        .padding(.trailing, UIScreen.main.bounds.width * 0.07)
+                                        .padding()
                                         .font(.largeTitle)
-                                        .scaleEffect(1.5)
-                                    ZStack{
+                                    }
+                                    .background{
                                         Rectangle()
                                             .foregroundColor(.primary.opacity(0.12))
                                             .cornerRadius(30)
@@ -134,55 +163,19 @@ struct ContentView: View {
                                                 RoundedRectangle(cornerRadius: 30)
                                                     .stroke(Color.primary, lineWidth: 2)
                                             )
-                                        HStack{
-                                            VStack{
-                                                Text("Ball")
-                                                    .font(.largeTitle)
-                                                    .bold()
-                                                    .italic()
-                                                    .font(.title)
-                                                let character = appModel.characters[playedCharacter]
-                                                AnyView(character.character)
-                                                    .scaleEffect(2)
-                                                    .padding(.top)
-                                            }
-                                            .offset(y: -(UIScreen.main.bounds.height * 0.02))
-                                            .padding(.leading, UIScreen.main.bounds.width * 0.12)
-                                            Spacer()
-                                            VStack(alignment: .trailing){
-                                                Spacer()
-                                                Text("Score")
-                                                //.foregroundColor(.blue)
-                                                    .bold()
-                                                    .italic()
-                                                Text(String(currentScore))
-                                                Spacer()
-                                                Text("Best")
-                                                //.foregroundColor(.blue)
-                                                    .bold()
-                                                    .italic()
-                                                Text(String(bestScore))
-                                                Spacer()
-                                            }
-                                            .padding(.trailing, UIScreen.main.bounds.width * 0.07)
-                                            .padding()
-                                            .font(.largeTitle)
-                                        }
                                     }
-                                    .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.27)
-                                    
-                                    VStack{
-                                        Text("Swipe up to \nplay again")
-                                            .bold()
-                                            .italic()
-                                            .multilineTextAlignment(.center)
-                                            .padding()
-                                        Image(systemName: "arrow.up")
-                                    }
-                                    .foregroundColor(.primary)
-                                    .font(.largeTitle)
-                                    .tag(-1)
+                                
+                                VStack{
+                                    Text("Swipe up to \nplay again")
+                                        .bold()
+                                        .italic()
+                                        .multilineTextAlignment(.center)
+                                        .padding()
+                                    Image(systemName: "arrow.up")
                                 }
+                                .foregroundColor(.primary)
+                                .font(.largeTitle)
+                                .tag(-1)
                             }
                             .offset(y: UIScreen.main.bounds.height * 0.1)
                         }
