@@ -68,7 +68,9 @@ struct ContentView: View {
         }
         freezeScrolling = true
         highestScoreInGame = 0
-        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
+            self.currentIndex = -1
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.colors = (1...levels).map { _ in
                 Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
@@ -77,8 +79,9 @@ struct ContentView: View {
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
-        DispatchQueue.main.async{
+        Timer.scheduledTimer(withTimeInterval: 0, repeats: false) { timer in
             self.currentIndex = -1
+            timer.invalidate() // Stop the timer after the reset
         }
         ckvm.updateRecord(newScore: bestScore, newCharacterID: appModel.characters[appModel.selectedCharacter].characterID)
     }
@@ -285,7 +288,7 @@ struct ContentView: View {
                     score = newValue
                     if score > highestScoreInGame || score == 0 {
                         highestScoreInGame = score
-                        if currentIndex < 39 {
+                        if currentIndex < 36 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false

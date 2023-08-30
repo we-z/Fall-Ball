@@ -16,7 +16,7 @@ struct LeaderBoardView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Score Board")
+                Text("Leader Board")
                     .bold()
                     .italic()
                     .font(.largeTitle)

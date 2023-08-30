@@ -108,8 +108,8 @@ class CloudKitCrud: ObservableObject {
                     print("Failed to update record: Invalid ScoreModel.")
                 }
 
-            case .failure(let error):
-                print("Fetching record failed with error: \(error)")
+            case .failure(_):
+                print("")
             }
         }
     }
