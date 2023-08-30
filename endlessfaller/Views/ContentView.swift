@@ -113,7 +113,7 @@ struct ContentView: View {
                             }
                             .font(.largeTitle)
                             .scaleEffect(1.5)
-                            .blinking()
+//                            .flashing()
                             .tag(-1)
                             .offset(y: UIScreen.main.bounds.height * 0.07)
                         } else {
@@ -218,7 +218,6 @@ struct ContentView: View {
                                 showLeaderBoard = true
                             } label: {
                                 PodiumView()
-                                    .scaleEffect(0.75)
                                     .foregroundColor(.primary)
                                     .font(.largeTitle)
                                     .padding(36)
@@ -259,7 +258,6 @@ struct ContentView: View {
                                         .foregroundColor(.primary)
                                         .colorInvert()
                                     PodiumView()
-                                        .scaleEffect(0.75)
                                         .foregroundColor(.primary)
                                         .font(.largeTitle)
                                         .offset(y: -15)
@@ -338,20 +336,25 @@ struct ContentView: View {
                 }
                 
                 if showGameOver || showShockedFace {
-                    if showShockedFace {
-                        Text("😱")
-                            .foregroundColor(.black)
-                            .bold()
-                            .font(.largeTitle)
-                            .scaleEffect(4)
-                            .flashing()
-                    } else{
-                        Text("Ball is gone! 😭")
-                            .foregroundColor(.black)
-                            .bold()
-                            .font(.largeTitle)
-                            .scaleEffect(1.2)
-                            .flashing()
+                    ZStack{
+                        Color.white.opacity(0.3)
+                            .strobing()
+                        if showShockedFace {
+                            Text("😱")
+                                .foregroundColor(.black)
+                                .bold()
+                                .font(.largeTitle)
+                                .scaleEffect(6)
+                                .strobing()
+                        } else{
+                            Text("The Ball \nis gone")
+                                .foregroundColor(.black)
+                                .bold()
+                                .font(.largeTitle)
+                                .scaleEffect(1.5)
+                                .multilineTextAlignment(.center)
+                                .strobing()
+                        }
                     }
                 } else{
                     if !showNewBestScore {
