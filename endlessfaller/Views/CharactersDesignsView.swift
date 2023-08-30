@@ -641,11 +641,12 @@ struct PakistanView: View {
             .background(
                 ZStack{
                     Circle()
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(hex: "#01411c"))
                         .frame(width: 46, height: 46)
                     Image("Pakistan")
                         .resizable()
-                        .frame(width: 50, height: 44)
+                        .frame(width: 50, height: 33)
+                        .offset(x: -1)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -662,11 +663,11 @@ struct BangladeshView: View {
             .background(
                 ZStack{
                     Circle()
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(hex: "#006a4e"))
                         .frame(width: 46, height: 46)
                     Image("Bangladesh")
                         .resizable()
-                        .frame(width: 72, height: 45)
+                        .frame(width: 50, height: 30)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -698,6 +699,20 @@ struct IndonesiaView: View {
     }
 }
 
+struct WastedView: View {
+    var body: some View {
+        Text("WASTED")
+            .italic()
+            .foregroundColor(.red)
+            .bold()
+            .font(.largeTitle)
+            .padding(9)
+            .background(.black)
+            .cornerRadius(15)
+            .scaleEffect(1.8)
+            .strobing()
+    }
+}
 
 struct CharactersDesignsView_Previews: PreviewProvider {
     static var previews: some View {

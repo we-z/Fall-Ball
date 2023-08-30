@@ -438,6 +438,186 @@
       "productID" : "io.endlessfall.laugh",
       "referenceName" : "laugh",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "0432F293",
+      "localizations" : [
+        {
+          "description" : "Mexico",
+          "displayName" : "Mexico",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.mexico",
+      "referenceName" : "mexico",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "BFE0444E",
+      "localizations" : [
+        {
+          "description" : "Portugal",
+          "displayName" : "Portugal",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.portugal",
+      "referenceName" : "portugal",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "1601260E",
+      "localizations" : [
+        {
+          "description" : "Spain",
+          "displayName" : "Spain",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.spain",
+      "referenceName" : "spain",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "5F405979",
+      "localizations" : [
+        {
+          "description" : "Saudi Arabia",
+          "displayName" : "Saudi Arabia",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.saudiarabia",
+      "referenceName" : "saudiarabia",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "779B96B3",
+      "localizations" : [
+        {
+          "description" : "Uae",
+          "displayName" : "Uae",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.uae",
+      "referenceName" : "uae",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "F5A3C7F5",
+      "localizations" : [
+        {
+          "description" : "Qatar",
+          "displayName" : "Qatar",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.qatar",
+      "referenceName" : "qatar",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "2F61FB16",
+      "localizations" : [
+        {
+          "description" : "Ethiopia",
+          "displayName" : "Ethiopia",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.ethiopia",
+      "referenceName" : "ethiopia",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "83B535BA",
+      "localizations" : [
+        {
+          "description" : "Nigeria",
+          "displayName" : "Nigeria",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.nigeria",
+      "referenceName" : "nigeria",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "D2077F0A",
+      "localizations" : [
+        {
+          "description" : "South Africa",
+          "displayName" : "South Africa",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.southafrica",
+      "referenceName" : "southafrica",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "59A772FB",
+      "localizations" : [
+        {
+          "description" : "Pakistan",
+          "displayName" : "Pakistan",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.pakistan",
+      "referenceName" : "pakistan",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "8BC655FC",
+      "localizations" : [
+        {
+          "description" : "Bangladesh",
+          "displayName" : "Bangladesh",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.bangladesh",
+      "referenceName" : "bangladesh",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "FCB501E3",
+      "localizations" : [
+        {
+          "description" : "Indonesia ",
+          "displayName" : "Indonesia ",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.indonesia",
+      "referenceName" : "indonesia",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {

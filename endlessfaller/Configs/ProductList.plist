@@ -2,6 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>mexico</key>
+	<string>io.endlessfall.mexico</string>
+	<key>portugal</key>
+	<string>io.endlessfall.portugal</string>
+	<key>spain</key>
+	<string>io.endlessfall.spain</string>
+	<key>saudiarabia</key>
+	<string>io.endlessfall.saudiarabia</string>
+	<key>uae</key>
+	<string>io.endlessfall.uae</string>
+	<key>qatar</key>
+	<string>io.endlessfall.qatar</string>
+	<key>ethiopia</key>
+	<string>io.endlessfall.ethiopia</string>
+	<key>nigeria</key>
+	<string>io.endlessfall.nigeria</string>
+	<key>southafrica</key>
+	<string>io.endlessfall.southafrica</string>
+	<key>pakistan</key>
+	<string>io.endlessfall.pakistan</string>
+	<key>bangladesh</key>
+	<string>io.endlessfall.bangladesh</string>
+	<key>indonesia</key>
+	<string>io.endlessfall.indonesia</string>
 	<key>shocked</key>
 	<string>io.endlessfall.shocked</string>
 	<key>bomb</key>

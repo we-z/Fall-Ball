@@ -337,7 +337,7 @@ struct ContentView: View {
                 
                 if showGameOver || showShockedFace {
                     ZStack{
-                        Color.white.opacity(0.3)
+                        Color.red.opacity(0.5)
                             .strobing()
                         if showShockedFace {
                             Text("💀")
@@ -346,14 +346,8 @@ struct ContentView: View {
                                 .font(.largeTitle)
                                 .scaleEffect(4)
                                 .strobing()
-                        } else{
-                            Text("THE BALL \nIS GONE")
-                                .foregroundColor(.black)
-                                .bold()
-                                .font(.largeTitle)
-                                .scaleEffect(1.5)
-                                .multilineTextAlignment(.center)
-                                .strobing()
+                        } else {
+                            WastedView()
                         }
                     }
                 } else{
