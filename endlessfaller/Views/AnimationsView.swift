@@ -10,7 +10,12 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        Instruction()
+        VStack{
+            PodiumView()
+            Image(systemName: "list.bullet")
+                .font(.largeTitle)
+                .padding()
+        }
     }
 }
 
@@ -728,6 +733,45 @@ struct KeepSwiping: View {
         .allowsHitTesting(false)
         .font(.largeTitle)
         .flashing()
+    }
+}
+
+struct PodiumView: View {
+    var body: some View {
+        HStack(alignment: .bottom, spacing: 0){
+            ZStack{
+                Rectangle()
+                    .frame(width: 20, height: 20)
+                    .roundedCorner(6, corners: [.topLeft])
+                Text("3")
+                    .bold()
+                    .colorInvert()
+                    .font(.system(size: 15))
+            }
+            ZStack{
+                Rectangle()
+                    .frame(width: 20, height: 40)
+                    .roundedCorner(6, corners: [.topLeft, .topRight])
+                
+                Text("1")
+                    .bold()
+                    .colorInvert()
+                    .font(.system(size: 15))
+                    .offset(y: -9)
+                    
+            }
+            ZStack{
+                Rectangle()
+                    .frame(width: 20, height: 30)
+                    .roundedCorner(6, corners: [.topRight])
+                Text("2")
+                    .bold()
+                    .colorInvert()
+                    .font(.system(size: 15))
+                    .offset(y: -3)
+            }
+        }
+        .font(.largeTitle)
     }
 }
 

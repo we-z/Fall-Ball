@@ -217,7 +217,8 @@ struct ContentView: View {
                             Button {
                                 showLeaderBoard = true
                             } label: {
-                                Image(systemName: "list.bullet")
+                                PodiumView()
+                                    .scaleEffect(0.75)
                                     .foregroundColor(.primary)
                                     .font(.largeTitle)
                                     .padding(36)
@@ -257,7 +258,8 @@ struct ContentView: View {
                                         .frame(width: 100, height: 80)
                                         .foregroundColor(.primary)
                                         .colorInvert()
-                                    Image(systemName: "list.bullet")
+                                    PodiumView()
+                                        .scaleEffect(0.75)
                                         .foregroundColor(.primary)
                                         .font(.largeTitle)
                                         .offset(y: -15)

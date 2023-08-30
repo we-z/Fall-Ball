@@ -37,7 +37,7 @@ struct LeaderBoardView: View {
                             let place = index + 1
                             VStack{
                                 HStack{
-                                    Text("#" + String(place))
+                                    Text("#" + String(place) + ":")
                                         .bold()
                                         .font(.title)
                                         .padding(.leading)
@@ -70,6 +70,9 @@ struct LeaderBoardView: View {
                             .background(score.record.recordID == recordID ? Color.gray.opacity(0.2) : .clear)
                             .cornerRadius(20)
                             .padding(.horizontal)
+                            Divider()
+                                .overlay(.primary)
+                                .padding(.horizontal)
                         }
                     }
                 }
