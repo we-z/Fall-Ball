@@ -9,29 +9,7 @@ import SwiftUI
 
 struct CharactersDesignsView: View {
     var body: some View {
-        VStack{
-            HStack{
-                SpainView()
-                PortugalView()
-                MexicoView()
-            }
-            HStack{
-                SaudiArabiaView()
-                UaeView()
-                QatarView()
-            }
-            HStack{
-                EthiopiaView()
-                NigeriaView()
-                SouthAfricaView()
-            }
-            HStack{
-                PakistanView()
-                BangladeshView()
-                IndonesiaView()
-            }
-            Spacer()
-        }
+        WastedView()
     }
 }
 
@@ -701,16 +679,29 @@ struct IndonesiaView: View {
 
 struct WastedView: View {
     var body: some View {
-        Text("WASTED")
-            .italic()
-            .foregroundColor(.red)
-            .bold()
-            .font(.largeTitle)
-            .padding(9)
-            .background(.black)
-            .cornerRadius(15)
-            .scaleEffect(1.8)
-            .strobing()
+        VStack{
+            Text("💀")
+                .foregroundColor(.black)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(4)
+                .padding(.bottom, 90)
+                .strobing()
+            Text("WASTED")
+                .italic()
+                .foregroundColor(.red)
+                .bold()
+                .font(.largeTitle)
+                .padding(9)
+                .background(.black)
+                .cornerRadius(15)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.red, lineWidth: 3)
+                )
+                .scaleEffect(1.8)
+                .strobing()
+        }
     }
 }
 

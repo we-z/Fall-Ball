@@ -30,10 +30,9 @@ struct ContentView: View {
     @State var freezeScrolling = false
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
-    @State var showGameOver = false
     @State var showNewBestScore = false
     @State var gameShouldBeOver = false
-    @State var showShockedFace = false
+    @State var showWastedScreen = false
     @State var levelYPosition: CGFloat = 0
     @State var playedCharacter = 0
     @State var audioPlayer: AVAudioPlayer!
@@ -70,9 +69,8 @@ struct ContentView: View {
         freezeScrolling = true
         highestScoreInGame = -1
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-        showShockedFace = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+        showWastedScreen = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.colors = (1...levels).map { _ in
                 Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
             }
@@ -80,13 +78,8 @@ struct ContentView: View {
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-            showShockedFace = false
-            showGameOver = true
-        }
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
-            showGameOver = false
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
+            showWastedScreen = false
             self.currentIndex = -1
             timer.invalidate() // Stop the timer after the reset
         }
@@ -99,7 +92,6 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    
                     VStack{
                         Spacer()
                         if !gameOver {
@@ -118,7 +110,7 @@ struct ContentView: View {
                             .offset(y: UIScreen.main.bounds.height * 0.06)
                         } else {
                             VStack{
-                                Text("Game Over!")
+                                Text("GAME OVER!")
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)
@@ -335,20 +327,11 @@ struct ContentView: View {
                     .allowsHitTesting(false)
                 }
                 
-                if showGameOver || showShockedFace {
+                if showWastedScreen {
                     ZStack{
                         Color.red.opacity(0.5)
                             .strobing()
-                        if showShockedFace {
-                            Text("💀")
-                                .foregroundColor(.black)
-                                .bold()
-                                .font(.largeTitle)
-                                .scaleEffect(4)
-                                .strobing()
-                        } else {
-                            WastedView()
-                        }
+                        WastedView()
                     }
                 } else{
                     if !showNewBestScore {
