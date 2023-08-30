@@ -340,11 +340,11 @@ struct ContentView: View {
                         Color.white.opacity(0.3)
                             .strobing()
                         if showShockedFace {
-                            Text("😱")
+                            Text("💀")
                                 .foregroundColor(.black)
                                 .bold()
                                 .font(.largeTitle)
-                                .scaleEffect(6)
+                                .scaleEffect(4)
                                 .strobing()
                         } else{
                             Text("THE BALL \nIS GONE")

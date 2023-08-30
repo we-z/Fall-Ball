@@ -44,7 +44,7 @@ struct LeaderBoardView: View {
                                     AnyView(character.character)
                                         .scaleEffect(1.2)
                                         .padding(.horizontal)
-                                        .frame(width: 75)
+                                        .frame(width: 95)
                                     if place == 1 {
                                         Text("🥇")
                                             .font(.largeTitle)

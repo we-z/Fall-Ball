@@ -11,9 +11,24 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack{
             HStack{
-                GermanyView()
+                SpainView()
+                PortugalView()
                 MexicoView()
-                SouthKoreaView()
+            }
+            HStack{
+                SaudiArabiaView()
+                UaeView()
+                QatarView()
+            }
+            HStack{
+                EthiopiaView()
+                NigeriaView()
+                SouthAfricaView()
+            }
+            HStack{
+                PakistanView()
+                BangladeshView()
+                IndonesiaView()
             }
             Spacer()
         }
@@ -439,9 +454,9 @@ struct MexicoView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Mexico")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 69, height: 36)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -460,9 +475,9 @@ struct PortugalView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Portugal")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 66, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -481,9 +496,9 @@ struct SpainView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Spain")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 66, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -502,9 +517,9 @@ struct SaudiArabiaView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("SaudiArabia")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 66, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -523,9 +538,9 @@ struct UaeView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Uae")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 45, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -544,9 +559,9 @@ struct QatarView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Qatar")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 43, height: 44)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -565,9 +580,9 @@ struct EthiopiaView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Ethiopia")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 90, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -586,9 +601,9 @@ struct NigeriaView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Nigeria")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 56, height: 39)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -607,9 +622,9 @@ struct SouthAfricaView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("SouthAfrica")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 44, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -628,9 +643,9 @@ struct PakistanView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Pakistan")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 50, height: 44)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -649,9 +664,9 @@ struct BangladeshView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Bangladesh")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 72, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
@@ -670,9 +685,9 @@ struct IndonesiaView: View {
                     Circle()
                         .foregroundColor(.white)
                         .frame(width: 46, height: 46)
-                    Image("SouthKorea")
+                    Image("Indonesia")
                         .resizable()
-                        .frame(width: 43, height: 30)
+                        .frame(width: 43, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
