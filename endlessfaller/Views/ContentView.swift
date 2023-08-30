@@ -21,7 +21,7 @@ struct ContentView: View {
     @StateObject var appModel = AppModel()
     @StateObject private var ckvm = CloudKitCrud()
     @State var score: Int = 0
-    @State var highestScoreInGame: Int = 0
+    @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
     @State var speed: Double = 2
@@ -68,7 +68,7 @@ struct ContentView: View {
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
         }
         freezeScrolling = true
-        highestScoreInGame = 0
+        highestScoreInGame = -1
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         showShockedFace = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -115,7 +115,7 @@ struct ContentView: View {
                             .scaleEffect(1.5)
 //                            .flashing()
                             .tag(-1)
-                            .offset(y: UIScreen.main.bounds.height * 0.07)
+                            .offset(y: UIScreen.main.bounds.height * 0.06)
                         } else {
                             VStack{
                                 Text("Game Over!")
@@ -286,7 +286,7 @@ struct ContentView: View {
                     }
                     gameShouldBeOver = false
                     score = newValue
-                    if score > highestScoreInGame || score == 0 {
+                    if score > highestScoreInGame {
                         highestScoreInGame = score
                         if currentIndex < 36 {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
@@ -347,7 +347,7 @@ struct ContentView: View {
                                 .scaleEffect(6)
                                 .strobing()
                         } else{
-                            Text("The Ball \nis gone")
+                            Text("THE BALL \nIS GONE")
                                 .foregroundColor(.black)
                                 .bold()
                                 .font(.largeTitle)

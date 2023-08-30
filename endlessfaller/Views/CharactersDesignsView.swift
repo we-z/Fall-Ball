@@ -11,10 +11,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack{
             HStack{
-                BombBallView()
-                ShockedBallView()
-                YinYangBallView()
-                LaughBallView()
+                GermanyView()
+                MexicoView()
+                SouthKoreaView()
             }
             Spacer()
         }
@@ -429,6 +428,258 @@ struct LaughBallView: View {
             Text("🤣")
                 .font(.system(size: 49))
         }
+    }
+}
+
+struct MexicoView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct PortugalView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct SpainView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct SaudiArabiaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct UaeView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct QatarView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct EthiopiaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct NigeriaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct SouthAfricaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct PakistanView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct BangladeshView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
+    }
+}
+
+struct IndonesiaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 46, height: 46)
+                    Image("SouthKorea")
+                        .resizable()
+                        .frame(width: 43, height: 30)
+                        .mask(
+                            Circle()
+                                .frame(width: 46, height: 46)
+                        )
+                }
+            )
+            .allowsHitTesting(false)
     }
 }
 
