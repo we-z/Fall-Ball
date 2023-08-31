@@ -240,7 +240,7 @@ struct ContentView: View {
                         ZStack{
                             Rectangle()
                                 .fill(colors[index])
-                            if highestScoreInGame == index {
+                            if highestScoreInGame == index && !showWastedScreen {
                                 GeometryReader { geometry in
                                     ZStack{
                                         if !gameShouldBeOver{
