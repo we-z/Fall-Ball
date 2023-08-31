@@ -12,8 +12,10 @@ struct IconView: View {
         ZStack{
             VStack(spacing: 0){
                 
-                Color(red: 0.6, green: 0, blue: 1)
-                Color(red: 0, green: 0.8, blue: 1)
+                Rectangle()
+                    .foregroundColor(.teal)
+                Rectangle()
+                    .foregroundColor(.red)
             }
             
             VStack{

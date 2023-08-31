@@ -11,10 +11,7 @@ import SDWebImageSwiftUI
 struct AnimationsView: View {
     var body: some View {
         VStack{
-            PodiumView()
-            Image(systemName: "list.bullet")
-                .font(.largeTitle)
-                .padding()
+            WastedView()
         }
     }
 }
@@ -742,7 +739,7 @@ struct PodiumView: View {
             ZStack{
                 Rectangle()
                     .frame(width: 20, height: 20)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.yellow)
                     .roundedCorner(6, corners: [.topLeft])
                 Text("3")
                     .bold()
@@ -751,7 +748,7 @@ struct PodiumView: View {
             }
             ZStack{
                 Rectangle()
-                    .foregroundColor(.blue)
+                    .foregroundColor(.red)
                     .frame(width: 20, height: 40)
                     .roundedCorner(6, corners: [.topLeft, .topRight])
                 
@@ -764,7 +761,7 @@ struct PodiumView: View {
             }
             ZStack{
                 Rectangle()
-                    .foregroundColor(.orange)
+                    .foregroundColor(.blue)
                     .frame(width: 20, height: 30)
                     .roundedCorner(6, corners: [.topRight])
                 Text("2")
@@ -876,6 +873,33 @@ struct NewBestScore: View {
     }
 }
 
+struct WastedView: View {
+    var body: some View {
+        VStack{
+            Text("💀")
+                .foregroundColor(.black)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(4)
+                .padding(.bottom, 90)
+                .strobing()
+            Text("WASTED")
+                .italic()
+                .foregroundColor(.red)
+                .bold()
+                .font(.largeTitle)
+                .padding(9)
+                .background(.black)
+                .cornerRadius(15)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.red, lineWidth: 3)
+                )
+                .scaleEffect(1.8)
+                .strobing()
+        }
+    }
+}
 
 struct AnimationsView_Previews: PreviewProvider {
     static var previews: some View {
