@@ -16,14 +16,15 @@ struct LeaderBoardView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Leader Board 🏆")
+                Text("🏆 Leader Board 🏆")
                     .bold()
                     .italic()
                     .font(.largeTitle)
                     .scaleEffect(1.2)
             }
             Divider()
-                .overlay(.primary)
+                .frame(height: 2)
+                .overlay(.red)
                 .padding(.horizontal)
             if CKVM.scores.isEmpty{
                 Spacer()
@@ -71,7 +72,7 @@ struct LeaderBoardView: View {
                             .cornerRadius(20)
                             .padding(.horizontal)
                             Divider()
-                                .overlay(.gray)
+                                .overlay(.primary)
                                 .padding(.horizontal)
                         }
                     }

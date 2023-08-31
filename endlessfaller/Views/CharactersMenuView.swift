@@ -20,7 +20,8 @@ struct CharactersMenuView: View {
                     Spacer()
                     ScrollView(showsIndicators: false){
                         HStack{
-                            Text("Fall Balls")
+                            Text("Fall Balls Menu:")
+                                .underline(color: .green)
                                 .bold()
                                 .italic()
                                 .font(.largeTitle)

@@ -121,7 +121,7 @@ struct ContentView: View {
                                     HStack{
                                         VStack{
                                             Text("Ball:")
-                                                .underline(color: .yellow)
+                                                .underline(color: .blue)
                                                 .font(.largeTitle)
                                                 .bold()
                                                 .italic()
@@ -165,11 +165,11 @@ struct ContentView: View {
                                     }
                                     .background{
                                         Rectangle()
-                                            .foregroundColor(.primary.opacity(0.18))
+                                            .foregroundColor(.primary.opacity(0.15))
                                             .cornerRadius(30)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 30)
-                                                    .stroke(Color.blue, lineWidth: 3)
+                                                    .stroke(Color.yellow, lineWidth: 3)
                                             )
                                     }
                                 VStack{
@@ -215,7 +215,7 @@ struct ContentView: View {
                                         Image(systemName: "bag")
                                             .foregroundColor(.red)
                                         Image(systemName: "person.crop.circle")
-                                            .foregroundColor(.red)
+                                            .foregroundColor(.primary)
                                             .scaleEffect(0.42)
                                             .offset(y:3)
                                     }
