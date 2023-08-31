@@ -22,10 +22,6 @@ struct LeaderBoardView: View {
                     .font(.largeTitle)
                     .scaleEffect(1.2)
             }
-            Divider()
-                .frame(height: 2)
-                .overlay(.red)
-                .padding(.horizontal)
             if CKVM.scores.isEmpty{
                 Spacer()
                 ProgressView()
@@ -38,44 +34,51 @@ struct LeaderBoardView: View {
                             let place = index + 1
                             VStack{
                                 HStack{
-                                    Text("#" + String(place) + ":")
-                                        .bold()
-                                        .font(.title)
-                                        .padding(.leading)
+                                    if place == 1 {
+                                        Text("🥇 ")
+                                            .padding(.leading)
+                                            .font(.largeTitle)
+                                            .scaleEffect(1.5)
+                                    } else if place == 2 {
+                                        Text("🥈 ")
+                                            .font(.largeTitle)
+                                            .padding(.leading)
+                                            .scaleEffect(1.5)
+                                    } else if place == 3 {
+                                        Text("🥉 ")
+                                            .font(.largeTitle)
+                                            .padding(.leading)
+                                            .scaleEffect(1.5)
+                                    } else {
+                                        Text("#" + String(place) + ":")
+                                            .bold()
+                                            .font(.title)
+                                            .padding(.leading)
+                                    }
                                     AnyView(character.character)
                                         .scaleEffect(1.2)
                                         .padding(.horizontal)
                                         .frame(width: 95)
-                                    if place == 1 {
-                                        Text("🥇")
-                                            .font(.largeTitle)
-                                    } else if place == 2 {
-                                        Text("🥈")
-                                            .font(.largeTitle)
-                                    } else if place == 3 {
-                                        Text("🥉")
-                                            .font(.largeTitle)
-                                    }
                                     Spacer()
                                     Text(String(score.bestScore))
                                         .bold()
                                         .italic()
                                         .font(.largeTitle)
+                                        .scaleEffect(1.2)
                                         .padding(.trailing, 30)
                                 }
-                                //                    Divider()
-                                //                        .overlay(.gray)
-                                //                        .padding(.horizontal)
                             }
-                            .frame(height: 80)
-                            .background(score.record.recordID == recordID ? Color.gray.opacity(0.2) : .clear)
+                            .frame(height: 100)
+                            .background(Color.gray.opacity(0.2))
                             .cornerRadius(20)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(score.record.recordID == recordID ? Color.primary : .clear, lineWidth: 3)
+                            )
                             .padding(.horizontal)
-                            Divider()
-                                .overlay(.primary)
-                                .padding(.horizontal)
                         }
                     }
+                    .padding(.top)
                 }
                 .refreshable {
                     CKVM.fetchItems()

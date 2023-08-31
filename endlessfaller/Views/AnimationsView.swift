@@ -739,7 +739,7 @@ struct PodiumView: View {
             ZStack{
                 Rectangle()
                     .frame(width: 20, height: 20)
-                    .foregroundColor(.yellow)
+                    .foregroundColor(.purple)
                     .roundedCorner(6, corners: [.topLeft])
                 Text("3")
                     .bold()

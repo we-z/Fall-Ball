@@ -11,9 +11,8 @@ struct IconView: View {
     var body: some View {
         ZStack{
             VStack(spacing: 0){
-                
                 Rectangle()
-                    .foregroundColor(.teal)
+                    .foregroundColor(.blue)
                 Rectangle()
                     .foregroundColor(.red)
             }

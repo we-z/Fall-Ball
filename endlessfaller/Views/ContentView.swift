@@ -116,8 +116,19 @@ struct ContentView: View {
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)
-                                    .scaleEffect(1.5)
-                                    .padding(.bottom)
+                                    .scaleEffect(1.8)
+                                    .padding(.bottom, 30)
+//                                HStack{
+//                                    Text("❌ No Score board")
+//                                        .italic()
+//                                        .bold()
+//                                        .font(.title)
+//                                        .padding(.bottom, 6)
+//                                    PodiumView()
+//                                        .scaleEffect(0.6)
+//                                        .offset(x: -6, y: -3)
+//                                }
+                                .offset(x: 6)
                                     HStack{
                                         VStack{
                                             Text("Ball:")
@@ -171,6 +182,7 @@ struct ContentView: View {
                                                 RoundedRectangle(cornerRadius: 30)
                                                     .stroke(Color.yellow, lineWidth: 3)
                                             )
+                                            .padding(.horizontal,9)
                                     }
                                 VStack{
                                     Text("Swipe up to \nplay again")
@@ -186,7 +198,7 @@ struct ContentView: View {
                                 .scaleEffect(1.2)
                                 .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.09)
+                            .offset(y: UIScreen.main.bounds.height * 0.075)
                         }
                         Spacer()
                         ZStack{
@@ -194,7 +206,7 @@ struct ContentView: View {
                                 Button {
                                     appModel.mute.toggle()
                                 } label: {
-                                    Image(systemName: appModel.mute ? "speaker.slash" : "speaker.wave.2")
+                                    Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
                                         .foregroundColor(.teal)
                                         .font(.largeTitle)
                                         .scaleEffect(1.2)
@@ -212,16 +224,11 @@ struct ContentView: View {
                                     showCharactersMenu = true
                                 } label: {
                                     ZStack{
-                                        Image(systemName: "bag")
+                                        Image(systemName: "circle.fill")
                                             .foregroundColor(.red)
-                                        Image(systemName: "person.crop.circle")
-                                            .foregroundColor(.red)
-                                            .scaleEffect(0.5)
-                                            .offset(y:3)
                                     }
-                                        
                                         .font(.largeTitle)
-                                        .scaleEffect(1.5)
+                                        .scaleEffect(1.4)
                                         .padding(36)
                                 }
                             }
@@ -231,6 +238,7 @@ struct ContentView: View {
                                 PodiumView()
                                     .foregroundColor(.primary)
                                     .font(.largeTitle)
+                                    .scaleEffect(1.0)
                                     .padding(36)
                             }
                         }

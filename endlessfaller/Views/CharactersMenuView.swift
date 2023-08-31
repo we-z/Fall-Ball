@@ -16,95 +16,95 @@ struct CharactersMenuView: View {
     var body: some View {
         ZStack{
             GeometryReader { geometry in
-                HStack{
-                    Spacer()
-                    ScrollView(showsIndicators: false){
-                        HStack{
-                            Text("Fall Balls Menu:")
-                                .underline(color: .green)
-                                .bold()
-                                .italic()
-                                .font(.largeTitle)
-                                .scaleEffect(1.2)
-                        }
-                        ForEach(0..<model.characters.count/3, id: \.self) { rowIndex in
-                            HStack {
-                                ForEach(0..<3, id: \.self) { columnIndex in
-                                    let index = rowIndex * 3 + columnIndex
-                                    let storeIndex = index - 1
-                                    if index < model.characters.count {
-                                        let character = model.characters[index]
-                                        Button {
-                                            if model.characters[index].isPurchased{
-                                                model.selectedCharacter = index
-                                            } else if storeIndex >= 0 {
-                                                isProcessingPurchase = true
-                                                Task {
-                                                    do {
-                                                        if (try await storeKit.purchase(characterID: character.characterID)) != nil{
-                                                            model.selectedCharacter = index
-                                                        }
-                                                    } catch {
-                                                        print("Purchase failed: \(error)")
-                                                    }
-                                                    isProcessingPurchase = false
-                                                }
-                                            }
-                                        } label: {
-                                            Rectangle()
-                                                .fill(Color.gray.opacity(0.3))
-                                                .cornerRadius(20)
-                                                .frame(width: geometry.size.width/3.3, height: geometry.size.width/3.3)
-                                                .overlay{
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .stroke(index == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)
-                                                }
-                                                .overlay(
-                                                    ZStack{
-                                                        VStack(spacing: 4) {
-                                                            AnyView(character.character)
-                                                            Spacer()
-                                                            if model.characters[index].isPurchased && index > 2 {
-                                                                Text("Available")
-                                                            } else {
-                                                                Text("\(character.cost)")
+                VStack{
+                    HStack{
+                        Text("🔥 Balls Menu 🔥")
+                            .bold()
+                            .italic()
+                            .font(.largeTitle)
+                            .scaleEffect(1.2)
+                            .padding(.top, 30)
+                    }
+                    HStack{
+                        Spacer()
+                        ScrollView(showsIndicators: false){
+                            ForEach(0..<model.characters.count/3, id: \.self) { rowIndex in
+                                HStack {
+                                    ForEach(0..<3, id: \.self) { columnIndex in
+                                        let index = rowIndex * 3 + columnIndex
+                                        let storeIndex = index - 1
+                                        if index < model.characters.count {
+                                            let character = model.characters[index]
+                                            Button {
+                                                if model.characters[index].isPurchased{
+                                                    model.selectedCharacter = index
+                                                } else if storeIndex >= 0 {
+                                                    isProcessingPurchase = true
+                                                    Task {
+                                                        do {
+                                                            if (try await storeKit.purchase(characterID: character.characterID)) != nil{
+                                                                model.selectedCharacter = index
                                                             }
-                                                            
+                                                        } catch {
+                                                            print("Purchase failed: \(error)")
                                                         }
-                                                        .padding()
-                                                    }
-                                                )
-                                                .accentColor(.primary)
-                                                .padding(1)
-                                                .onChange(of: storeKit.purchasedProducts) { course in
-                                                    if storeIndex >= 0 {
-                                                        Task {
-                                                            model.characters[index].isPurchased = (try? await storeKit.isPurchased(characterID: character.characterID)) ?? false
-                                                            model.updatePurchasedCharacters()
-                                                        }
+                                                        isProcessingPurchase = false
                                                     }
                                                 }
+                                            } label: {
+                                                Rectangle()
+                                                    .fill(Color.gray.opacity(0.3))
+                                                    .cornerRadius(20)
+                                                    .frame(width: geometry.size.width/3.3, height: geometry.size.width/3.3)
+                                                    .overlay{
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .stroke(index == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)
+                                                    }
+                                                    .overlay(
+                                                        ZStack{
+                                                            VStack(spacing: 4) {
+                                                                AnyView(character.character)
+                                                                Spacer()
+                                                                if model.characters[index].isPurchased && index > 2 {
+                                                                    Text("Available")
+                                                                } else {
+                                                                    Text("\(character.cost)")
+                                                                }
+                                                                
+                                                            }
+                                                            .padding()
+                                                        }
+                                                    )
+                                                    .accentColor(.primary)
+                                                    .padding(1)
+                                                    .onChange(of: storeKit.purchasedProducts) { course in
+                                                        if storeIndex >= 0 {
+                                                            Task {
+                                                                model.characters[index].isPurchased = (try? await storeKit.isPurchased(characterID: character.characterID)) ?? false
+                                                                model.updatePurchasedCharacters()
+                                                            }
+                                                        }
+                                                    }
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        Button {
-                            Task {
-                                //This call displays a system prompt that asks users to authenticate with their App Store credentials.
-                                //Call this function only in response to an explicit user action, such as tapping a button.
-                                try? await AppStore.sync()
+                            Button {
+                                Task {
+                                    //This call displays a system prompt that asks users to authenticate with their App Store credentials.
+                                    //Call this function only in response to an explicit user action, such as tapping a button.
+                                    try? await AppStore.sync()
+                                }
+                            } label: {
+                                Text("Restore Purchases")
+                                    .foregroundColor(.primary)
+                                    .underline()
+                                    .padding(.top)
                             }
-                        } label: {
-                            Text("Restore Purchases")
-                                .foregroundColor(.primary)
-                                .underline()
-                                .padding(.top)
                         }
+                        Spacer()
                     }
-                    .padding(.top, 30)
-                    //.scrollIndicators(.hidden)
-                    Spacer()
                 }
             }
             if isProcessingPurchase {
