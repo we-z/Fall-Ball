@@ -169,7 +169,7 @@ struct ContentView: View {
                                             .cornerRadius(30)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 30)
-                                                    .stroke(Color.yellow, lineWidth: 3)
+                                                    .stroke(Color.yellow, lineWidth: 6)
                                             )
                                     }
                                 VStack{
@@ -186,7 +186,7 @@ struct ContentView: View {
                                 .scaleEffect(1.2)
                                 .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.1)
+                            .offset(y: UIScreen.main.bounds.height * 0.09)
                         }
                         Spacer()
                         ZStack{
