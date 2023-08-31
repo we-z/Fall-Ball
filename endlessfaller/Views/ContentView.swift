@@ -102,15 +102,17 @@ struct ContentView: View {
                                     .multilineTextAlignment(.center)
                                     .padding()
                                 Image(systemName: "arrow.up")
+                                    .foregroundColor(.green)
                             }
                             .font(.largeTitle)
                             .scaleEffect(1.5)
-//                            .flashing()
+                            .flashing()
                             .tag(-1)
                             .offset(y: UIScreen.main.bounds.height * 0.06)
                         } else {
                             VStack{
-                                Text("GAME OVER!")
+                                Text("Game Over!")
+                                    .underline(color: .red)
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)
@@ -118,7 +120,8 @@ struct ContentView: View {
                                     .padding(.bottom)
                                     HStack{
                                         VStack{
-                                            Text("Ball")
+                                            Text("Ball:")
+                                                .underline(color: .yellow)
                                                 .font(.largeTitle)
                                                 .bold()
                                                 .italic()
@@ -135,18 +138,24 @@ struct ContentView: View {
                                         VStack(alignment: .trailing){
                                             Spacer()
                                                 .frame(maxHeight: 10)
-                                            Text("Score")
+                                            Text("Score:")
+                                                .underline(color: .purple)
                                             //.foregroundColor(.blue)
                                                 .bold()
                                                 .italic()
                                             Text(String(currentScore))
+                                                .bold()
+                                                .offset(y: 6)
                                             Spacer()
-                                                .frame(maxHeight: 10)
-                                            Text("Best")
+                                                .frame(maxHeight: 18)
+                                            Text("Best:")
+                                                .underline(color: .green)
                                             //.foregroundColor(.blue)
                                                 .bold()
                                                 .italic()
                                             Text(String(bestScore))
+                                                .bold()
+                                                .offset(y: 6)
                                             Spacer()
                                                 .frame(maxHeight: 10)
                                         }
@@ -156,14 +165,13 @@ struct ContentView: View {
                                     }
                                     .background{
                                         Rectangle()
-                                            .foregroundColor(.primary.opacity(0.12))
+                                            .foregroundColor(.primary.opacity(0.18))
                                             .cornerRadius(30)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 30)
-                                                    .stroke(Color.primary, lineWidth: 2)
+                                                    .stroke(Color.blue, lineWidth: 3)
                                             )
                                     }
-                                
                                 VStack{
                                     Text("Swipe up to \nplay again")
                                         .bold()
@@ -171,9 +179,11 @@ struct ContentView: View {
                                         .multilineTextAlignment(.center)
                                         .padding()
                                     Image(systemName: "arrow.up")
+                                        .foregroundColor(.green)
                                 }
                                 .foregroundColor(.primary)
                                 .font(.largeTitle)
+                                .scaleEffect(1.2)
                                 .tag(-1)
                             }
                             .offset(y: UIScreen.main.bounds.height * 0.1)
@@ -185,8 +195,9 @@ struct ContentView: View {
                                     appModel.mute.toggle()
                                 } label: {
                                     Image(systemName: appModel.mute ? "speaker.slash" : "speaker.wave.2")
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(.teal)
                                         .font(.largeTitle)
+                                        .scaleEffect(1.2)
                                         .padding(36)
                                 }
                                 .onChange(of: appModel.mute) { setting in
@@ -200,9 +211,17 @@ struct ContentView: View {
                                 Button {
                                     showCharactersMenu = true
                                 } label: {
-                                    Image(systemName: "person.crop.circle")
-                                        .foregroundColor(.primary)
+                                    ZStack{
+                                        Image(systemName: "bag")
+                                            .foregroundColor(.red)
+                                        Image(systemName: "person.crop.circle")
+                                            .foregroundColor(.red)
+                                            .scaleEffect(0.42)
+                                            .offset(y:3)
+                                    }
+                                        
                                         .font(.largeTitle)
+                                        .scaleEffect(1.5)
                                         .padding(36)
                                 }
                             }

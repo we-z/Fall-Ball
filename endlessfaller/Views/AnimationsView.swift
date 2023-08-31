@@ -742,6 +742,7 @@ struct PodiumView: View {
             ZStack{
                 Rectangle()
                     .frame(width: 20, height: 20)
+                    .foregroundColor(.purple)
                     .roundedCorner(6, corners: [.topLeft])
                 Text("3")
                     .bold()
@@ -750,6 +751,7 @@ struct PodiumView: View {
             }
             ZStack{
                 Rectangle()
+                    .foregroundColor(.blue)
                     .frame(width: 20, height: 40)
                     .roundedCorner(6, corners: [.topLeft, .topRight])
                 
@@ -762,6 +764,7 @@ struct PodiumView: View {
             }
             ZStack{
                 Rectangle()
+                    .foregroundColor(.orange)
                     .frame(width: 20, height: 30)
                     .roundedCorner(6, corners: [.topRight])
                 Text("2")
