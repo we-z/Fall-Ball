@@ -69,7 +69,7 @@ struct LeaderBoardView: View {
                                 }
                             }
                             .frame(height: 100)
-                            .background(Color.gray.opacity(0.2))
+                            .background(score.record.recordID == recordID ? Color.gray.opacity(0.3) : Color.gray.opacity(0.2))
                             .cornerRadius(20)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)

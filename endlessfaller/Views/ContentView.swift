@@ -8,7 +8,7 @@
 import SwiftUI
 import VTabView
 import AudioToolbox
-//import AVKit
+import CloudKit
 import AVFoundation
 
 
@@ -19,7 +19,7 @@ struct ContentView: View {
     
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
-    @StateObject private var ckvm = CloudKitCrud()
+    @StateObject private var CKVM = CloudKitCrud()
     @State var score: Int = 0
     @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
@@ -36,7 +36,8 @@ struct ContentView: View {
     @State var levelYPosition: CGFloat = 0
     @State var playedCharacter = 0
     @State var audioPlayer: AVAudioPlayer!
-    
+    @State var placeOnLeaderBoard = 0
+    @State var recordID: CKRecord.ID? = nil
     @State var colors: [Color] = (1...levels).map { _ in
         Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
     }
@@ -67,7 +68,6 @@ struct ContentView: View {
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
         }
         freezeScrolling = true
-        highestScoreInGame = -1
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         showWastedScreen = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -81,9 +81,27 @@ struct ContentView: View {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             showWastedScreen = false
             self.currentIndex = -1
+            highestScoreInGame = -1
             timer.invalidate() // Stop the timer after the reset
         }
-        ckvm.updateRecord(newScore: bestScore, newCharacterID: appModel.characters[appModel.selectedCharacter].characterID)
+        CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.characters[appModel.selectedCharacter].characterID)
+//        CKVM.fetchItems()
+//        if let localRecord = loadLocalRecord() {
+//            recordID = localRecord.recordID
+//        }
+//        if !CKVM.scores.isEmpty {
+//            print("scores is populated")
+//            print("local recordID:")
+//            print(recordID)
+//            for (index, score) in CKVM.scores.enumerated() {
+//                print("recordID:")
+//                print(score.record.recordID)
+//                if score.record.recordID == recordID {
+//                    self.placeOnLeaderBoard = index + 1
+//                    print("placeOnLeaderBoard assigned")
+//                }
+//            }
+//        }
     }
     
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
@@ -92,6 +110,7 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
+                    let character = appModel.characters[appModel.selectedCharacter]
                     VStack{
                         Spacer()
                         if !gameOver {
@@ -116,74 +135,76 @@ struct ContentView: View {
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)
-                                    .scaleEffect(1.8)
-                                    .padding(.bottom, 30)
-//                                HStack{
-//                                    Text("❌ No Score board")
-//                                        .italic()
-//                                        .bold()
-//                                        .font(.title)
-//                                        .padding(.bottom, 6)
-//                                    PodiumView()
-//                                        .scaleEffect(0.6)
-//                                        .offset(x: -6, y: -3)
+                                    .scaleEffect(1.6)
+                                    .padding(.bottom, 20)
+//                                if self.placeOnLeaderBoard != 0 {
+//                                    HStack{
+//                                        Text("🌍 #\(self.placeOnLeaderBoard) on Board")
+//                                            .italic()
+//                                            .bold()
+//                                            .font(.title)
+//                                            .padding(.bottom, 6)
+//                                        PodiumView()
+//                                            .scaleEffect(0.6)
+//                                            .offset(x: -6, y: -3)
+//                                    }
+//                                    .offset(x: 6)
 //                                }
-                                .offset(x: 6)
-                                    HStack{
-                                        VStack{
-                                            Text("Ball:")
-                                                .underline()
-                                                .font(.largeTitle)
-                                                .bold()
-                                                .italic()
-                                                .font(.title)
-                                            let character = appModel.characters[playedCharacter]
-                                            AnyView(character.character)
-                                                .scaleEffect(2)
-                                                .padding(.top)
-                                        }
-                                        .offset(y: -(UIScreen.main.bounds.height * 0.02))
-                                        .padding(.leading, UIScreen.main.bounds.width * 0.12)
+                                HStack{
+                                    VStack{
+                                        Text("Ball:")
+                                            .underline()
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .italic()
+                                            .font(.title)
+                                        let character = appModel.characters[playedCharacter]
+                                        AnyView(character.character)
+                                            .scaleEffect(2)
+                                            .padding(.top)
+                                    }
+                                    .offset(y: -(UIScreen.main.bounds.height * 0.02))
+                                    .padding(.leading, UIScreen.main.bounds.width * 0.12)
+                                    Spacer()
+                                        .frame(maxWidth: 75)
+                                    VStack(alignment: .trailing){
                                         Spacer()
-                                            .frame(maxWidth: 75)
-                                        VStack(alignment: .trailing){
-                                            Spacer()
-                                                .frame(maxHeight: 10)
-                                            Text("Score:")
-                                                .underline()
-                                            //.foregroundColor(.blue)
-                                                .bold()
-                                                .italic()
-                                            Text(String(currentScore))
-                                                .bold()
-                                                .offset(y: 6)
-                                            Spacer()
-                                                .frame(maxHeight: 18)
-                                            Text("Best:")
-                                                .underline()
-                                            //.foregroundColor(.blue)
-                                                .bold()
-                                                .italic()
-                                            Text(String(bestScore))
-                                                .bold()
-                                                .offset(y: 6)
-                                            Spacer()
-                                                .frame(maxHeight: 10)
-                                        }
-                                        .padding(.trailing, UIScreen.main.bounds.width * 0.07)
-                                        .padding()
-                                        .font(.largeTitle)
+                                            .frame(maxHeight: 10)
+                                        Text("Score:")
+                                            .underline()
+                                        //.foregroundColor(.blue)
+                                            .bold()
+                                            .italic()
+                                        Text(String(currentScore))
+                                            .bold()
+                                            .offset(y: 6)
+                                        Spacer()
+                                            .frame(maxHeight: 18)
+                                        Text("Best:")
+                                            .underline()
+                                        //.foregroundColor(.blue)
+                                            .bold()
+                                            .italic()
+                                        Text(String(bestScore))
+                                            .bold()
+                                            .offset(y: 6)
+                                        Spacer()
+                                            .frame(maxHeight: 10)
                                     }
-                                    .background{
-                                        Rectangle()
-                                            .foregroundColor(.primary.opacity(0.15))
-                                            .cornerRadius(30)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 30)
-                                                    .stroke(Color.yellow, lineWidth: 3)
-                                            )
-                                            .padding(.horizontal,9)
-                                    }
+                                    .padding(.trailing, UIScreen.main.bounds.width * 0.07)
+                                    .padding()
+                                    .font(.largeTitle)
+                                }
+                                .background{
+                                    Rectangle()
+                                        .foregroundColor(.primary.opacity(0.15))
+                                        .cornerRadius(30)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .stroke(Color.yellow, lineWidth: 3)
+                                        )
+                                        .padding(.horizontal,9)
+                                }
                                 VStack{
                                     Text("Swipe up to \nplay again")
                                         .bold()
@@ -195,10 +216,10 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(.primary)
                                 .font(.largeTitle)
-                                .scaleEffect(1.2)
+                                .scaleEffect(1.0)
                                 .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.075)
+                            .offset(y: UIScreen.main.bounds.height * 0.08)
                         }
                         Spacer()
                         ZStack{
@@ -224,12 +245,9 @@ struct ContentView: View {
                                     showCharactersMenu = true
                                 } label: {
                                     ZStack{
-                                        Image(systemName: "circle.fill")
-                                            .foregroundColor(.red)
+                                        AnyView(character.character)
                                     }
-                                        .font(.largeTitle)
-                                        .scaleEffect(1.4)
-                                        .padding(36)
+                                    .padding(36)
                                 }
                             }
                             Button {
@@ -243,7 +261,6 @@ struct ContentView: View {
                             }
                         }
                     }
-                    let character = appModel.characters[appModel.selectedCharacter]
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             Rectangle()
@@ -433,6 +450,9 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
+            if let localRecord = loadLocalRecord() {
+                recordID = localRecord.recordID
+            }
             playedCharacter = appModel.selectedCharacter
             if let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
                 do {

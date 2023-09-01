@@ -14,7 +14,7 @@ struct IconView: View {
                 Rectangle()
                     .foregroundColor(.blue)
                 Rectangle()
-                    .foregroundColor(.red)
+                    .foregroundColor(.green)
             }
             
             VStack{

@@ -18,11 +18,11 @@ struct CharactersMenuView: View {
             GeometryReader { geometry in
                 VStack{
                     HStack{
-                        Text("🔥 Balls Menu 🔥")
+                        Text("🌍 Fall Balls Menu 🌍")
                             .bold()
                             .italic()
                             .font(.largeTitle)
-                            .scaleEffect(1.2)
+                            .scaleEffect(1.1)
                             .padding(.top, 30)
                     }
                     HStack{

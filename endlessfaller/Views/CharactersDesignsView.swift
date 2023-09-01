@@ -10,7 +10,7 @@ import SwiftUI
 struct CharactersDesignsView: View {
     var body: some View {
         VStack{
-            LaughBallView()
+            YinYangBallView()
             Spacer()
         }
     }
@@ -377,6 +377,11 @@ struct YinYangBallView: View {
                     .resizable()
                     .frame(width: 48, height: 48)
             )
+            .overlay{
+                Circle()
+                    .stroke()
+                    .foregroundColor(.primary)
+            }
             .allowsHitTesting(false)
     }
 }
