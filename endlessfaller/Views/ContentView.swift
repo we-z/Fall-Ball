@@ -444,7 +444,7 @@ struct ContentView: View {
                     print("Error playing audio: \(error)")
                 }
             }
-            if let punch = Bundle.main.path(forResource: "punch", ofType: "mp3"){
+            if let punch = Bundle.main.path(forResource: "punchSFX", ofType: "mp3"){
                 do {
                     self.punchSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: punch))
                     if appModel.mute == true {
