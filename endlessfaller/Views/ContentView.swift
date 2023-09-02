@@ -14,9 +14,12 @@ import AVFoundation
 
 let bestScoreKey = "BestScore"
 let levels = 1000
+let difficulty = 100
 
 struct ContentView: View {
     
+    let deviceHeight = UIScreen.main.bounds.height
+    let deviceWidth = UIScreen.main.bounds.width
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
     @StateObject private var CKVM = CloudKitCrud()
@@ -85,23 +88,6 @@ struct ContentView: View {
             timer.invalidate() // Stop the timer after the reset
         }
         CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
-//        CKVM.fetchItems()
-//        if let localRecord = loadLocalRecord() {
-//            recordID = localRecord.recordID
-//        }
-//        if !CKVM.scores.isEmpty {
-//            print("scores is populated")
-//            print("local recordID:")
-//            print(recordID)
-//            for (index, score) in CKVM.scores.enumerated() {
-//                print("recordID:")
-//                print(score.record.recordID)
-//                if score.record.recordID == recordID {
-//                    self.placeOnLeaderBoard = index + 1
-//                    print("placeOnLeaderBoard assigned")
-//                }
-//            }
-//        }
     }
     
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
@@ -127,7 +113,7 @@ struct ContentView: View {
                             .scaleEffect(1.5)
                             .flashing()
                             .tag(-1)
-                            .offset(y: UIScreen.main.bounds.height * 0.06)
+                            .offset(y: deviceHeight * 0.06)
                         } else {
                             VStack{
                                 Text("Game Over!")
@@ -163,8 +149,8 @@ struct ContentView: View {
                                             .scaleEffect(2)
                                             .padding(.top)
                                     }
-                                    .offset(y: -(UIScreen.main.bounds.height * 0.02))
-                                    .padding(.leading, UIScreen.main.bounds.width * 0.12)
+                                    .offset(y: -(deviceHeight * 0.02))
+                                    .padding(.leading, deviceWidth * 0.12)
                                     Spacer()
                                         .frame(maxWidth: 75)
                                     VStack(alignment: .trailing){
@@ -189,7 +175,7 @@ struct ContentView: View {
                                         Spacer()
                                             .frame(maxHeight: 10)
                                     }
-                                    .padding(.trailing, UIScreen.main.bounds.width * 0.07)
+                                    .padding(.trailing, deviceWidth * 0.07)
                                     .padding()
                                     .font(.largeTitle)
                                 }
@@ -217,7 +203,7 @@ struct ContentView: View {
                                 .scaleEffect(1.0)
                                 .tag(-1)
                             }
-                            .offset(y: UIScreen.main.bounds.height * 0.08)
+                            .offset(y: deviceHeight * 0.1)
                         }
                         Spacer()
                         ZStack{
@@ -226,7 +212,7 @@ struct ContentView: View {
                                     appModel.mute.toggle()
                                 } label: {
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(.teal)
                                         .font(.largeTitle)
                                         .scaleEffect(1.2)
                                         .padding(36)
@@ -260,8 +246,7 @@ struct ContentView: View {
                     }
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
-                            Rectangle()
-                                .fill(colors[index])
+                            colors[index]
                             if highestScoreInGame == index && !showWastedScreen {
                                 GeometryReader { geometry in
                                     ZStack{
@@ -278,7 +263,7 @@ struct ContentView: View {
                                         }
                                         AnyView(character!.character)
                                     }
-                                    .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -27)
+                                    .position(x: deviceWidth/2, y: isAnimating ? deviceHeight - 23 : -27)
                                     .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
                                         levelYPosition = newYPosition
                                     }
@@ -296,7 +281,7 @@ struct ContentView: View {
                                         .offset(y: -20)
                                     
                                 }
-                                .position(x: UIScreen.main.bounds.width/2, y: -40)
+                                .position(x: deviceWidth/2, y: -40)
                                 
                             }
                             if currentIndex == 0 && !gameOver {
@@ -309,8 +294,8 @@ struct ContentView: View {
                     }
                 }
                 .frame(
-                    width: UIScreen.main.bounds.width,
-                    height: UIScreen.main.bounds.height
+                    width: deviceWidth,
+                    height: deviceHeight
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
@@ -321,7 +306,7 @@ struct ContentView: View {
                     score = newValue
                     if score > highestScoreInGame {
                         highestScoreInGame = score
-                        if currentIndex < 36 {
+                        if currentIndex < difficulty {
                             speed = 2.0 / ((Double(newValue) / 3) + 1)
                         }
                         isAnimating = false
@@ -330,11 +315,6 @@ struct ContentView: View {
                     impactMed.impactOccurred()
                     if currentIndex > bestScore && currentIndex > 3 {
                         showNewBestScore = true
-                    }
-                    if currentIndex == colors.count - 1{
-                        colors += (1...levels).map { _ in
-                            Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
-                        }
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
@@ -359,7 +339,7 @@ struct ContentView: View {
                                 .padding(.top, 30)
                                 .foregroundColor(.black)
                             Spacer()
-//                            Text("\(self.levelYPosition)")
+//                            Text("\(self.speed)")
 //                                .foregroundColor(.black)
 //                                .padding()
                         }
@@ -417,7 +397,7 @@ struct ContentView: View {
                             HStack{
                                 SwiftUIXmasTree2()
                                     .scaleEffect(0.5)
-                                    .offset(x:-UIScreen.main.bounds.width/10)
+                                    .offset(x:-deviceWidth/10)
                                 Spacer()
                             }
                         }
@@ -430,7 +410,7 @@ struct ContentView: View {
                                 Spacer()
                                 SVGCharacterView()
                                     .scaleEffect(0.5)
-                                    .offset(x:UIScreen.main.bounds.width/10)
+                                    .offset(x:deviceWidth/10)
                             }
                         }
                         .allowsHitTesting(false)
@@ -447,9 +427,6 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
-            if let localRecord = loadLocalRecord() {
-                recordID = localRecord.recordID
-            }
             playedCharacter = appModel.selectedCharacter
             if let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
                 do {
