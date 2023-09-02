@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
+import Combine
 
 let selectedCharacterKey = "SelectedCharacterID"
 let purchasedCharactersKey = "PurchasedCharacters"

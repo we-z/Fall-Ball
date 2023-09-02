@@ -44,7 +44,7 @@ struct ContentView: View {
     
     init() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+            try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print("Error setting up audio session: \(error)")
@@ -158,7 +158,6 @@ struct ContentView: View {
                                             .font(.largeTitle)
                                             .bold()
                                             .italic()
-                                            .foregroundColor(.yellow)
                                         let character = appModel.characters.first(where: { $0.characterID == playedCharacter})
                                         AnyView(character!.character)
                                             .scaleEffect(2)
@@ -173,7 +172,6 @@ struct ContentView: View {
                                             .frame(maxHeight: 10)
                                         Text("Score:")
                                         //.foregroundColor(.blue)
-                                            .foregroundColor(.yellow)
                                             .bold()
                                             .italic()
                                         Text(String(currentScore))
@@ -183,7 +181,6 @@ struct ContentView: View {
                                             .frame(maxHeight: 18)
                                         Text("Best:")
                                         //.foregroundColor(.blue)
-                                            .foregroundColor(.yellow)
                                             .bold()
                                             .italic()
                                         Text(String(bestScore))
