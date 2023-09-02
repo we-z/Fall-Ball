@@ -34,7 +34,7 @@ struct ContentView: View {
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
     @State var levelYPosition: CGFloat = 0
-    @State var playedCharacter = 0
+    @State var playedCharacter = ""
     @State var audioPlayer: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
     @State var recordID: CKRecord.ID? = nil
@@ -44,7 +44,7 @@ struct ContentView: View {
     
     init() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print("Error setting up audio session: \(error)")
@@ -84,7 +84,7 @@ struct ContentView: View {
             highestScoreInGame = -1
             timer.invalidate() // Stop the timer after the reset
         }
-        CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.characters[appModel.selectedCharacter].characterID)
+        CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
 //        CKVM.fetchItems()
 //        if let localRecord = loadLocalRecord() {
 //            recordID = localRecord.recordID
@@ -110,7 +110,7 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    let character = appModel.characters[appModel.selectedCharacter]
+                    let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter})
                     VStack{
                         Spacer()
                         if !gameOver {
@@ -137,7 +137,9 @@ struct ContentView: View {
                                     .font(.largeTitle)
                                     .scaleEffect(1.6)
                                     .padding(.bottom, 20)
-//                                if self.placeOnLeaderBoard != 0 {
+//                                if CKVM.scores.isEmpty{
+//                                    ProgressView()
+//                                } else {
 //                                    HStack{
 //                                        Text("🌍 #\(self.placeOnLeaderBoard) on Board")
 //                                            .italic()
@@ -153,13 +155,12 @@ struct ContentView: View {
                                 HStack{
                                     VStack{
                                         Text("Ball:")
-                                            .underline()
                                             .font(.largeTitle)
                                             .bold()
                                             .italic()
-                                            .font(.title)
-                                        let character = appModel.characters[playedCharacter]
-                                        AnyView(character.character)
+                                            .foregroundColor(.yellow)
+                                        let character = appModel.characters.first(where: { $0.characterID == playedCharacter})
+                                        AnyView(character!.character)
                                             .scaleEffect(2)
                                             .padding(.top)
                                     }
@@ -171,8 +172,8 @@ struct ContentView: View {
                                         Spacer()
                                             .frame(maxHeight: 10)
                                         Text("Score:")
-                                            .underline()
                                         //.foregroundColor(.blue)
+                                            .foregroundColor(.yellow)
                                             .bold()
                                             .italic()
                                         Text(String(currentScore))
@@ -181,8 +182,8 @@ struct ContentView: View {
                                         Spacer()
                                             .frame(maxHeight: 18)
                                         Text("Best:")
-                                            .underline()
                                         //.foregroundColor(.blue)
+                                            .foregroundColor(.yellow)
                                             .bold()
                                             .italic()
                                         Text(String(bestScore))
@@ -228,7 +229,7 @@ struct ContentView: View {
                                     appModel.mute.toggle()
                                 } label: {
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                                        .foregroundColor(.teal)
+                                        .foregroundColor(.primary)
                                         .font(.largeTitle)
                                         .scaleEffect(1.2)
                                         .padding(36)
@@ -245,7 +246,7 @@ struct ContentView: View {
                                     showCharactersMenu = true
                                 } label: {
                                     ZStack{
-                                        AnyView(character.character)
+                                        AnyView(character!.character)
                                     }
                                     .padding(36)
                                 }
@@ -256,7 +257,6 @@ struct ContentView: View {
                                 PodiumView()
                                     .foregroundColor(.primary)
                                     .font(.largeTitle)
-                                    .scaleEffect(1.0)
                                     .padding(36)
                             }
                         }
@@ -279,7 +279,7 @@ struct ContentView: View {
                                             .frame(width: 44, height: 45)
                                             .offset(x: 0, y:-23)
                                         }
-                                        AnyView(character.character)
+                                        AnyView(character!.character)
                                     }
                                     .position(x: UIScreen.main.bounds.width/2, y: isAnimating ? UIScreen.main.bounds.height - 23 : -27)
                                     .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
@@ -296,7 +296,7 @@ struct ContentView: View {
                                     PodiumView()
                                         .foregroundColor(.primary)
                                         .font(.largeTitle)
-                                        .offset(y: -15)
+                                        .offset(y: -20)
                                     
                                 }
                                 .position(x: UIScreen.main.bounds.width/2, y: -40)

@@ -37,13 +37,13 @@ struct CharactersMenuView: View {
                                             let character = model.characters[index]
                                             Button {
                                                 if model.characters[index].isPurchased{
-                                                    model.selectedCharacter = index
+                                                    model.selectedCharacter = model.characters[index].characterID
                                                 } else if storeIndex >= 0 {
                                                     isProcessingPurchase = true
                                                     Task {
                                                         do {
                                                             if (try await storeKit.purchase(characterID: character.characterID)) != nil{
-                                                                model.selectedCharacter = index
+                                                                model.selectedCharacter = model.characters[index].characterID
                                                             }
                                                         } catch {
                                                             print("Purchase failed: \(error)")
@@ -58,7 +58,7 @@ struct CharactersMenuView: View {
                                                     .frame(width: geometry.size.width/3.3, height: geometry.size.width/3.3)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(index == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)
+                                                            .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)
                                                     }
                                                     .overlay(
                                                         ZStack{

@@ -71,7 +71,7 @@ struct ScoreModel: Hashable, CloudKitableProtocol {
 class CloudKitCrud: ObservableObject {
     
     @Published var scores: [ScoreModel] = []
-    var record = CKRecord(recordType: "Scores") 
+    var record = CKRecord(recordType: "Scores")
     var cancellables = Set<AnyCancellable>()
     
     init() {

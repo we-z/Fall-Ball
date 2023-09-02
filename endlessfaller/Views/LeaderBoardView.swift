@@ -89,6 +89,8 @@ struct LeaderBoardView: View {
         .onAppear{
             if let localRecord = loadLocalRecord() {
                 recordID = localRecord.recordID
+//                print("local recordID:")
+//                print(recordID)
             }
         }
     }

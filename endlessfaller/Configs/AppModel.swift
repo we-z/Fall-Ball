@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-let selectedCharacterKey = "SelectedCharacter"
+let selectedCharacterKey = "SelectedCharacterID"
 let purchasedCharactersKey = "PurchasedCharacters"
 let muteKey = "Mute"
 
 class AppModel: ObservableObject {
     
-    @AppStorage(selectedCharacterKey) var selectedCharacter: Int = UserDefaults.standard.integer(forKey: selectedCharacterKey)
+    @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? "io.endlessfall.white"
     @Published var purchasedCharacters: [String] = [] {
         didSet{
             savePurchasedCharacters()
@@ -127,11 +127,21 @@ class AppModel: ObservableObject {
     }
 }
 
-struct Character {
-    let character: any View
+struct Character: Hashable {
+    let character: AnyView // Note: I corrected the type name to 'AnyView' (with a capital 'A')
     let cost: String
     let characterID: String
     var isPurchased: Bool
+
+    func hash(into hasher: inout Hasher) {
+        // Implement a custom hash function that combines the hash values of properties that uniquely identify a character
+        hasher.combine(characterID)
+    }
+
+    static func ==(lhs: Character, rhs: Character) -> Bool {
+        // Implement the equality operator to compare characters based on their unique identifier
+        return lhs.characterID == rhs.characterID
+    }
 }
 
 struct BlinkViewModifier: ViewModifier {
