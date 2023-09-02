@@ -38,7 +38,8 @@ struct ContentView: View {
     @State var showWastedScreen = false
     @State var levelYPosition: CGFloat = 0
     @State var playedCharacter = ""
-    @State var audioPlayer: AVAudioPlayer!
+    @State var musicPlayer: AVAudioPlayer!
+    @State var punchSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
     @State var recordID: CKRecord.ID? = nil
     @State var colors: [Color] = (1...levels).map { _ in
@@ -63,6 +64,7 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
+        self.punchSoundEffect.play()
         showNewBestScore = false
         gameOver = true
         currentScore = highestScoreInGame
@@ -219,9 +221,9 @@ struct ContentView: View {
                                 }
                                 .onChange(of: appModel.mute) { setting in
                                     if setting == true {
-                                        self.audioPlayer.setVolume(0, fadeDuration: 0)
+                                        self.musicPlayer.setVolume(0, fadeDuration: 0)
                                     } else {
-                                        self.audioPlayer.setVolume(1, fadeDuration: 0)
+                                        self.musicPlayer.setVolume(1, fadeDuration: 0)
                                     }
                                 }
                                 Spacer()
@@ -428,16 +430,28 @@ struct ContentView: View {
         .allowsHitTesting(!freezeScrolling)
         .onAppear {
             playedCharacter = appModel.selectedCharacter
-            if let sound = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
+            if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
                 do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-                    self.audioPlayer.numberOfLoops = -1
+                    self.musicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: music))
+                    self.musicPlayer.numberOfLoops = -1
                     if appModel.mute == true {
-                        self.audioPlayer.setVolume(0, fadeDuration: 0)
+                        self.musicPlayer.setVolume(0, fadeDuration: 0)
                     } else {
-                        self.audioPlayer.setVolume(1, fadeDuration: 0)
+                        self.musicPlayer.setVolume(1, fadeDuration: 0)
                     }
-                    self.audioPlayer.play()
+                    self.musicPlayer.play()
+                } catch {
+                    print("Error playing audio: \(error)")
+                }
+            }
+            if let punch = Bundle.main.path(forResource: "punch", ofType: "mp3"){
+                do {
+                    self.punchSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: punch))
+                    if appModel.mute == true {
+                        self.punchSoundEffect.setVolume(0, fadeDuration: 0)
+                    } else {
+                        self.punchSoundEffect.setVolume(1, fadeDuration: 0)
+                    }
                 } catch {
                     print("Error playing audio: \(error)")
                 }
