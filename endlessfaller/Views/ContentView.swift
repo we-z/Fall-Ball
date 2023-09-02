@@ -115,7 +115,7 @@ struct ContentView: View {
                             .scaleEffect(1.5)
                             .flashing()
                             .tag(-1)
-                            .offset(y: deviceHeight * 0.06)
+                            .offset(y: deviceHeight * 0.08)
                         } else {
                             VStack{
                                 Text("Game Over!")
@@ -124,7 +124,7 @@ struct ContentView: View {
                                     .bold()
                                     .font(.largeTitle)
                                     .scaleEffect(1.6)
-                                    .padding(.bottom, 20)
+                                    .padding(.bottom, 45)
 //                                if CKVM.scores.isEmpty{
 //                                    ProgressView()
 //                                } else {
@@ -146,6 +146,7 @@ struct ContentView: View {
                                             .font(.largeTitle)
                                             .bold()
                                             .italic()
+                                            .foregroundColor(.black)
                                         let character = appModel.characters.first(where: { $0.characterID == playedCharacter})
                                         AnyView(character!.character)
                                             .scaleEffect(2)
@@ -159,21 +160,23 @@ struct ContentView: View {
                                         Spacer()
                                             .frame(maxHeight: 10)
                                         Text("Score:")
-                                        //.foregroundColor(.blue)
+                                        .foregroundColor(.black)
                                             .bold()
                                             .italic()
                                         Text(String(currentScore))
                                             .bold()
                                             .offset(y: 6)
+                                            .foregroundColor(.black)
                                         Spacer()
                                             .frame(maxHeight: 18)
                                         Text("Best:")
-                                        //.foregroundColor(.blue)
+                                        .foregroundColor(.black)
                                             .bold()
                                             .italic()
                                         Text(String(bestScore))
                                             .bold()
                                             .offset(y: 6)
+                                            .foregroundColor(.black)
                                         Spacer()
                                             .frame(maxHeight: 10)
                                     }
@@ -183,11 +186,11 @@ struct ContentView: View {
                                 }
                                 .background{
                                     Rectangle()
-                                        .foregroundColor(.primary.opacity(0.15))
+                                        .foregroundColor(.yellow.opacity(0.9))
                                         .cornerRadius(30)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.yellow, lineWidth: 3)
+                                                .stroke(Color.yellow.opacity(0.6), lineWidth: 18)
                                         )
                                         .padding(.horizontal,9)
                                 }
@@ -205,7 +208,7 @@ struct ContentView: View {
                                 .scaleEffect(1.0)
                                 .tag(-1)
                             }
-                            .offset(y: deviceHeight * 0.1)
+                            .offset(y: deviceHeight * 0.08)
                         }
                         Spacer()
                         ZStack{
