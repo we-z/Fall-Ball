@@ -14,7 +14,7 @@ import AVFoundation
 
 let bestScoreKey = "BestScore"
 let levels = 1000
-let difficulty = 100
+let difficulty = 6
 
 struct ContentView: View {
     
@@ -27,7 +27,7 @@ struct ContentView: View {
     @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
-    @State var speed: Double = 2
+    @State var speed: Double = 4
     @State var isAnimating = false
     @State var gameOver = false
     @State var freezeScrolling = false
@@ -80,6 +80,7 @@ struct ContentView: View {
                 Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
             }
             freezeScrolling = false
+            self.speed = 4
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
@@ -311,8 +312,8 @@ struct ContentView: View {
                     score = newValue
                     if score > highestScoreInGame {
                         highestScoreInGame = score
-                        if currentIndex < difficulty {
-                            speed = 2.0 / ((Double(newValue) / 3) + 1)
+                        if newValue < difficulty {
+                            speed = speed / 2
                         }
                         isAnimating = false
                         dropCircle()
