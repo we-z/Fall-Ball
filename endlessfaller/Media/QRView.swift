@@ -78,9 +78,10 @@ struct CharacteresFallingView: View {
                 
             }
             Rectangle()
-                        .fill(Color.black)
-                        .frame(width: rect.width, height: rect.height)
-                        .mask(HoleShapeMask(in: rect).fill(style: FillStyle(eoFill: true)))
+                .fill(Color.black)
+                .frame(width: rect.width, height: rect.height)
+                .mask(HoleShapeMask(in: rect).fill(style: FillStyle(eoFill: true)))
+            
         }
     }
 }

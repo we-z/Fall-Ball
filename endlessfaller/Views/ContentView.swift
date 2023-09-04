@@ -126,64 +126,55 @@ struct ContentView: View {
                                     .font(.largeTitle)
                                     .scaleEffect(1.6)
                                     .padding(.bottom, 45)
-//                                if CKVM.scores.isEmpty{
-//                                    ProgressView()
-//                                } else {
-//                                    HStack{
-//                                        Text("🌍 #\(self.placeOnLeaderBoard) on Board")
-//                                            .italic()
-//                                            .bold()
-//                                            .font(.title)
-//                                            .padding(.bottom, 6)
-//                                        PodiumView()
-//                                            .scaleEffect(0.6)
-//                                            .offset(x: -6, y: -3)
-//                                    }
-//                                    .offset(x: 6)
-//                                }
-                                HStack{
-                                    VStack{
-                                        Text("Ball:")
-                                            .font(.largeTitle)
-                                            .bold()
-                                            .italic()
-                                            .foregroundColor(.black)
-                                        let character = appModel.characters.first(where: { $0.characterID == playedCharacter})
-                                        AnyView(character!.character)
-                                            .scaleEffect(2)
-                                            .padding(.top)
+                                ZStack{
+                                    HStack{
+                                        VStack(alignment: .trailing){
+                                            Spacer()
+                                                .frame(maxHeight: 10)
+                                            HStack{
+                                                ZStack{
+                                                    Text("Ball:")
+                                                        .font(.largeTitle)
+                                                        .bold()
+                                                        .italic()
+                                                        .foregroundColor(.black)
+                                                        .padding(.leading, 20)
+                                                        .offset(x: 30)
+                                                }
+                                                Spacer()
+                                                    .frame(maxWidth: 110)
+                                                Text("Score:")
+                                                    .foregroundColor(.black)
+                                                    .bold()
+                                                    .italic()
+                                            }
+                                            Text(String(currentScore))
+                                                .italic()
+                                                .bold()
+                                                .offset(y: 6)
+                                                .foregroundColor(.black)
+                                            Spacer()
+                                                .frame(maxHeight: 15)
+                                            Text("Best:")
+                                                .foregroundColor(.black)
+                                                .bold()
+                                                .italic()
+                                            Text(String(bestScore))
+                                                .italic()
+                                                .bold()
+                                                .offset(y: 6)
+                                                .foregroundColor(.black)
+                                            Spacer()
+                                                .frame(maxHeight: 10)
+                                        }
+                                        .padding(.trailing, 30)
+                                        .padding()
+                                        .font(.largeTitle)
                                     }
-                                    .offset(y: -(deviceHeight * 0.02))
-                                    .padding(.leading, deviceWidth * 0.12)
-                                    Spacer()
-                                        .frame(maxWidth: 75)
-                                    VStack(alignment: .trailing){
-                                        Spacer()
-                                            .frame(maxHeight: 10)
-                                        Text("Score:")
-                                        .foregroundColor(.black)
-                                            .bold()
-                                            .italic()
-                                        Text(String(currentScore))
-                                            .bold()
-                                            .offset(y: 6)
-                                            .foregroundColor(.black)
-                                        Spacer()
-                                            .frame(maxHeight: 18)
-                                        Text("Best:")
-                                        .foregroundColor(.black)
-                                            .bold()
-                                            .italic()
-                                        Text(String(bestScore))
-                                            .bold()
-                                            .offset(y: 6)
-                                            .foregroundColor(.black)
-                                        Spacer()
-                                            .frame(maxHeight: 10)
-                                    }
-                                    .padding(.trailing, deviceWidth * 0.07)
-                                    .padding()
-                                    .font(.largeTitle)
+                                    let character = appModel.characters.first(where: { $0.characterID == playedCharacter})
+                                    AnyView(character!.character)
+                                        .scaleEffect(2)
+                                        .offset(x: -80, y: 15)
                                 }
                                 .background{
                                     Rectangle()
@@ -201,15 +192,16 @@ struct ContentView: View {
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .padding()
+                                        .padding(.top, 30)
                                     Image(systemName: "arrow.up")
                                         .foregroundColor(.green)
                                 }
                                 .foregroundColor(.primary)
                                 .font(.largeTitle)
-                                .scaleEffect(1.0)
+                                .scaleEffect(1.2)
                                 .tag(-1)
                             }
-                            .offset(y: deviceHeight * 0.08)
+                            .offset(y: deviceHeight * 0.09)
                         }
                         Spacer()
                         ZStack{
