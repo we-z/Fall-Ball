@@ -12,6 +12,7 @@
 		7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */; };
 		7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */; };
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
+		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
 		7A6977CA2A956C4A005967F1 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */; };
 		7A723DDA2A84B842002E9F2C /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
@@ -57,6 +58,7 @@
 		7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = punchSFX.mp3; sourceTree = "<group>"; };
 		7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FallBallOST120.mp3; sourceTree = "<group>"; };
 		7A43B2312AA3E0440099AFB6 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
+		7A43B2332AA566A50099AFB6 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		7A6977C92A956C4A005967F1 /* CloudKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitUtility.swift; sourceTree = "<group>"; };
 		7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				7A3CEA692A8AB1D100A79E65 /* Gifs */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7A43B2312AA3E0440099AFB6 /* QRView.swift */,
+				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
 				7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */,
 				7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */,
@@ -375,6 +378,7 @@
 				7AE608252A983865009C4479 /* CloudkitCrud.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
+				7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +531,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -547,7 +551,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -567,7 +571,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -587,7 +591,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

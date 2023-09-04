@@ -27,7 +27,7 @@ struct IconView: View {
             .frame(width: 260, height: 240)
             .offset(x:0, y:-117)
             
-            LaughBallView()
+            ShockedBallView()
                 .scaleEffect(6)
                 .offset(x:3)
         }

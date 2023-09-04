@@ -88,9 +88,9 @@ struct ContentView: View {
             showWastedScreen = false
             self.currentIndex = -1
             highestScoreInGame = -1
+            CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             timer.invalidate() // Stop the timer after the reset
         }
-        CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
     }
     
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
@@ -245,7 +245,6 @@ struct ContentView: View {
                             } label: {
                                 PodiumView()
                                     .foregroundColor(.primary)
-                                    .font(.largeTitle)
                                     .padding(36)
                             }
                         }
@@ -278,16 +277,15 @@ struct ContentView: View {
                             if index == 0{
                                 ZStack{
                                     Rectangle()
-                                        .frame(width: 100, height: 80)
+                                        .frame(width: 100, height: 100)
                                         .foregroundColor(.primary)
                                         .colorInvert()
                                     PodiumView()
                                         .foregroundColor(.primary)
-                                        .font(.largeTitle)
-                                        .offset(y: -20)
+                                        .offset(y: -15)
                                     
                                 }
-                                .position(x: deviceWidth/2, y: -40)
+                                .position(x: deviceWidth/2, y: -50)
                                 
                             }
                             if currentIndex == 0 && !gameOver {
