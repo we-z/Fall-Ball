@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct AnimationsView: View {
     var body: some View {
         VStack{
-            WastedView()
+            PodiumView()
         }
     }
 }
@@ -719,7 +719,7 @@ struct TearsOfJoyView: View {
 struct KeepSwiping: View {
     var body: some View {
         VStack{
-            Text("Keep \nswiping")
+            Text("Keep \nSwiping")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
@@ -741,6 +741,7 @@ struct PodiumView: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(.purple)
                     .roundedCorner(6, corners: [.topLeft])
+                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                 Text("3")
                     .bold()
                     .colorInvert()
@@ -751,6 +752,7 @@ struct PodiumView: View {
                     .foregroundColor(.red)
                     .frame(width: 20, height: 40)
                     .roundedCorner(6, corners: [.topLeft, .topRight])
+                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                 
                 Text("1")
                     .bold()
@@ -764,6 +766,8 @@ struct PodiumView: View {
                     .foregroundColor(.blue)
                     .frame(width: 20, height: 30)
                     .roundedCorner(6, corners: [.topRight])
+                    .clipped()
+                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                 Text("2")
                     .bold()
                     .colorInvert()

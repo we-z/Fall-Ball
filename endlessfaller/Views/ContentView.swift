@@ -37,6 +37,7 @@ struct ContentView: View {
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
     @State var levelYPosition: CGFloat = 0
+    @State var gameOverBackgroundColor: Color = .black
     @State var playedCharacter = ""
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
@@ -65,6 +66,7 @@ struct ContentView: View {
     
     func gameOverOperations() {
         self.punchSoundEffect.play()
+        gameOverBackgroundColor = colors[currentIndex]
         showNewBestScore = false
         gameOver = true
         currentScore = highestScoreInGame
@@ -124,6 +126,8 @@ struct ContentView: View {
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)
+                                    .foregroundColor(.white)
+                                    .shadow(color: .black, radius: 0.1, x: -3, y: 3)
                                     .scaleEffect(1.6)
                                     .padding(.bottom, 45)
                                 ZStack{
@@ -178,12 +182,9 @@ struct ContentView: View {
                                 }
                                 .background{
                                     Rectangle()
-                                        .foregroundColor(.yellow.opacity(0.9))
+                                        .foregroundColor(.yellow)
                                         .cornerRadius(30)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.yellow.opacity(0.6), lineWidth: 18)
-                                        )
+                                        .shadow(color: .black, radius: 0.5, x: -9, y: 9)
                                         .padding(.horizontal,9)
                                 }
                                 VStack{
@@ -198,6 +199,8 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(.primary)
                                 .font(.largeTitle)
+                                .foregroundColor(.white)
+                                .shadow(color: .black, radius: 0.5, x: -4, y: 4)
                                 .scaleEffect(1.2)
                                 .tag(-1)
                             }
@@ -212,6 +215,7 @@ struct ContentView: View {
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
                                         .foregroundColor(.teal)
                                         .font(.largeTitle)
+                                        .shadow(color: .black, radius: 0.5, x: -3, y: 3)
                                         .scaleEffect(1.2)
                                         .padding(36)
                                 }
@@ -227,6 +231,15 @@ struct ContentView: View {
                                     showCharactersMenu = true
                                 } label: {
                                     ZStack{
+                                        BallView()
+                                            .background(
+                                                Color.black
+                                                    .mask(
+                                                        Circle()
+                                                            .frame(width: 46, height: 46)
+                                                    )
+                                            )
+                                            .offset(x: -3, y: 3)
                                         AnyView(character!.character)
                                     }
                                     .padding(36)
@@ -241,6 +254,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .background(gameOverBackgroundColor)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             colors[index]
@@ -270,8 +284,7 @@ struct ContentView: View {
                                 ZStack{
                                     Rectangle()
                                         .frame(width: 100, height: 100)
-                                        .foregroundColor(.primary)
-                                        .colorInvert()
+                                        .foregroundColor(gameOverBackgroundColor)
                                     PodiumView()
                                         .foregroundColor(.primary)
                                         .offset(y: -15)
@@ -346,8 +359,6 @@ struct ContentView: View {
                 
                 if showWastedScreen {
                     ZStack{
-                        Color.red.opacity(0.5)
-                            .strobing()
                         WastedView()
                     }
                 } else{
