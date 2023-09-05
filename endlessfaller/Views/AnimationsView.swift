@@ -734,14 +734,15 @@ struct KeepSwiping: View {
 }
 
 struct PodiumView: View {
+    @State var podiumIsPressed = false
     var body: some View {
         HStack(alignment: .bottom, spacing: 0){
             ZStack{
                 Rectangle()
                     .frame(width: 20, height: 20)
                     .foregroundColor(.purple)
-                    .roundedCorner(6, corners: [.topLeft])
-                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                    .roundedCorner(6, corners: [.topLeft, .topRight])
+                    .shadow(color: .black, radius: 1, x: podiumIsPressed ? 0 : -3, y: podiumIsPressed ? 0 : 3)
                 Text("3")
                     .bold()
                     .colorInvert()
@@ -752,7 +753,7 @@ struct PodiumView: View {
                     .foregroundColor(.red)
                     .frame(width: 20, height: 40)
                     .roundedCorner(6, corners: [.topLeft, .topRight])
-                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                    .shadow(color: .black, radius: 1, x: podiumIsPressed ? 0 : -3, y: podiumIsPressed ? 0 : 3)
                 
                 Text("1")
                     .bold()
@@ -765,9 +766,9 @@ struct PodiumView: View {
                 Rectangle()
                     .foregroundColor(.blue)
                     .frame(width: 20, height: 30)
-                    .roundedCorner(6, corners: [.topRight])
+                    .roundedCorner(6, corners: [.topLeft, .topRight])
                     .clipped()
-                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                    .shadow(color: .black, radius: 1, x: podiumIsPressed ? 0 : -3, y: podiumIsPressed ? 0 : 3)
                 Text("2")
                     .bold()
                     .colorInvert()
@@ -775,7 +776,18 @@ struct PodiumView: View {
                     .offset(y: -3)
             }
         }
+        .offset(x: podiumIsPressed ? -3 : 0, y: podiumIsPressed ? 3 : 0)
         .font(.largeTitle)
+        .pressEvents {
+            // On press
+            withAnimation(.easeInOut(duration: 0.1)) {
+                podiumIsPressed = true
+            }
+        } onRelease: {
+            withAnimation {
+                podiumIsPressed = false
+            }
+        }
     }
 }
 

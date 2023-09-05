@@ -36,6 +36,8 @@ struct ContentView: View {
     @State var showNewBestScore = false
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
+    @State var muteIsPressed = false
+    @State var ballButtonIsPressed = false
     @State var levelYPosition: CGFloat = 0
     @State var gameOverBackgroundColor: Color = .black
     @State var playedCharacter = ""
@@ -184,7 +186,7 @@ struct ContentView: View {
                                     Rectangle()
                                         .foregroundColor(.yellow)
                                         .cornerRadius(30)
-                                        .shadow(color: .black, radius: 0.5, x: -9, y: 9)
+                                        .shadow(color: .black, radius: 1, x: -9, y: 9)
                                         .padding(.horizontal,9)
                                 }
                                 VStack{
@@ -209,15 +211,24 @@ struct ContentView: View {
                         Spacer()
                         ZStack{
                             HStack{
-                                Button {
-                                    appModel.mute.toggle()
-                                } label: {
-                                    Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                                        .foregroundColor(.teal)
-                                        .font(.largeTitle)
-                                        .shadow(color: .black, radius: 0.5, x: -3, y: 3)
-                                        .scaleEffect(1.2)
-                                        .padding(36)
+
+                            Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                                .foregroundColor(.teal)
+                                .font(.largeTitle)
+                                .shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
+                                .scaleEffect(1.2)
+                                .padding(36)
+                                .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
+                                .pressEvents {
+                                    // On press
+                                    withAnimation(.easeInOut(duration: 0.1)) {
+                                        muteIsPressed = true
+                                    }
+                                } onRelease: {
+                                    withAnimation {
+                                        muteIsPressed = false
+                                        appModel.mute.toggle()
+                                    }
                                 }
                                 .onChange(of: appModel.mute) { setting in
                                     if setting == true {
@@ -227,31 +238,41 @@ struct ContentView: View {
                                     }
                                 }
                                 Spacer()
-                                Button {
-                                    showCharactersMenu = true
-                                } label: {
-                                    ZStack{
-                                        BallView()
-                                            .background(
-                                                Color.black
-                                                    .mask(
-                                                        Circle()
-                                                            .frame(width: 46, height: 46)
-                                                    )
-                                            )
-                                            .offset(x: -3, y: 3)
-                                        AnyView(character!.character)
-                                    }
-                                    .padding(36)
+                                ZStack{
+                                    BallView()
+                                        .background(
+                                            Color.black
+                                                .mask(
+                                                    Circle()
+                                                        .frame(width: 46, height: 46)
+                                                )
+                                        )
+                                        .offset(x: -3, y: 3)
+                                    AnyView(character!.character)
+                                        .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
                                 }
+                                .pressEvents {
+                                    // On press
+                                    withAnimation(.easeInOut(duration: 0.1)) {
+                                        ballButtonIsPressed = true
+                                    }
+                                } onRelease: {
+                                    withAnimation {
+                                        ballButtonIsPressed = false
+                                        showCharactersMenu = true
+                                    }
+                                }
+                                .padding(36)
                             }
-                            Button {
-                                showLeaderBoard = true
-                            } label: {
-                                PodiumView()
-                                    .foregroundColor(.primary)
-                                    .padding(36)
-                            }
+                            PodiumView()
+                                .foregroundColor(.primary)
+                                .padding(36)
+                                .pressEvents {
+                                } onRelease: {
+                                    withAnimation {
+                                        showLeaderBoard = true
+                                    }
+                                }
                         }
                     }
                     .background(gameOverBackgroundColor)
