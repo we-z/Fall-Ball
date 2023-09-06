@@ -316,7 +316,7 @@ struct ContentView: View {
                                         .foregroundColor(gameOverBackgroundColor)
                                     PodiumView()
                                         .foregroundColor(.primary)
-                                        .offset(y: -15)
+                                        .offset(y: -12)
                                     
                                 }
                                 .position(x: deviceWidth/2, y: -50)
@@ -327,6 +327,9 @@ struct ContentView: View {
                             }
                             if currentIndex == 1 && !gameOver {
                                 Instruction()
+                            }
+                            if currentIndex == 2 && !gameOver {
+                                SwipeFaster()
                             }
                         }
                     }

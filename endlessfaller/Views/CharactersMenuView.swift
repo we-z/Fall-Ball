@@ -12,7 +12,7 @@ struct CharactersMenuView: View {
     @StateObject var storeKit = StoreKitManager()
     @StateObject var model = AppModel()
     @State var isProcessingPurchase = false
-    
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -64,11 +64,15 @@ struct CharactersMenuView: View {
                                                         ZStack{
                                                             VStack(spacing: 4) {
                                                                 AnyView(character.character)
+                                                                    .scaleEffect(idiom == .pad ? 1.8 : 1)
+                                                                    .offset(y: idiom == .pad ? 40 : 0)
                                                                 Spacer()
                                                                 if model.characters[index].isPurchased && index > 2 {
                                                                     Text("Available")
                                                                 } else {
                                                                     Text("\(character.cost)")
+                                                                        .scaleEffect(idiom == .pad ? 1.8 : 1)
+                                                                        .offset(y: idiom == .pad ? -20 : 0)
                                                                 }
                                                                 
                                                             }

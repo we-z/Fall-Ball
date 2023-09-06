@@ -808,6 +808,23 @@ struct Instruction: View {
     }
 }
 
+struct SwipeFaster: View {
+    var body: some View {
+        VStack{
+            Text("Swipe\nFaster!")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+            Image(systemName: "arrow.up")
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
+        .font(.largeTitle)
+        .flashing()
+    }
+}
+
 struct KeepGoing: View {
     var body: some View {
         Text("Keep Going!")
