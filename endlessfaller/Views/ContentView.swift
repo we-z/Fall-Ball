@@ -227,7 +227,7 @@ struct ContentView: View {
                                         muteIsPressed = true
                                     }
                                 } onRelease: {
-                                    AudioServicesPlaySystemSound(1305)
+                                    //AudioServicesPlaySystemSound(1305)
                                     withAnimation {
                                         muteIsPressed = false
                                         appModel.mute.toggle()
@@ -263,7 +263,7 @@ struct ContentView: View {
                                         ballButtonIsPressed = true
                                     }
                                 } onRelease: {
-                                    AudioServicesPlaySystemSound(1305)
+                                    //AudioServicesPlaySystemSound(1305)
                                     withAnimation {
                                         ballButtonIsPressed = false
                                         showCharactersMenu = true
@@ -277,7 +277,7 @@ struct ContentView: View {
                                 .pressEvents {
                                     
                                 } onRelease: {
-                                    AudioServicesPlaySystemSound(1305)
+                                    //AudioServicesPlaySystemSound(1305)
                                     withAnimation {
                                         showLeaderBoard = true
                                     }

@@ -10,8 +10,14 @@ import SwiftUI
 struct CharactersDesignsView: View {
     var body: some View {
         VStack{
-            BlackBallView()
-                .shadow(color: .black, radius: 0.1, x: -3, y: 3)
+            HStack{
+                SouthKoreaView()
+                AlbertView()
+                //                .shadow(color: .black, radius: 0.1, x: -3, y: 3)
+                IceSpiceView()
+                KaiView()
+                LaughBallView()
+            }
             Spacer()
         }
     }
@@ -20,35 +26,10 @@ struct CharactersDesignsView: View {
 
 struct IceSpiceView: View {
     var body: some View {
-        ZStack {
-            Image("afro")
-                .resizable()
-                .frame(width: 70, height: 60)
-                .offset(y: -12)
-            ZStack{
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 39)
-                Circle()
-                    .foregroundColor(.orange.opacity(0.3))
-                    .frame(width: 39)
-                Image("winklash")
-                    .resizable()
-                    .frame(width: 36, height: 18)
-                    .offset(y: -5)
-                Text("🫦")
-                    .font(.system(size: 12))
-                    .offset(y: 10)
-            }
-            .offset(x: 1)
-            Image("afro2")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .offset(y: -12)
-            
-        }
-        .offset(y: 6)
-        .allowsHitTesting(false)
+        Image("icespiceball")
+            .resizable()
+            .frame(width: 56, height: 52)
+            .allowsHitTesting(false)
     }
 }
 
@@ -57,7 +38,7 @@ struct RickView: View {
         Image("rick")
             .resizable()
             .frame(width: 60, height: 60)
-            .allowsHitTesting(false)
+            //.allowsHitTesting(false)
     }
 }
 
@@ -72,29 +53,10 @@ struct MortyView: View {
 
 struct AlbertView: View {
     var body: some View {
-        ZStack {
-            ZStack{
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 46)
-                Circle()
-                    .foregroundColor(.orange.opacity(0.3))
-                    .frame(width: 46)
-                Text("👀")
-                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 0, z: 1))
-                    .offset(x: -3, y: -3)
-                Image("alberttongue")
-                    .resizable()
-                    .frame(width: 18, height: 15)
-                    .offset(x: -2, y: 15)
-            }
-            Image("alberthair")
-                .resizable()
-                .frame(width: 70, height: 50)
-                .offset(x: 0, y: -5)
-            
-        }
-        .allowsHitTesting(false)
+        Image("albertball")
+            .resizable()
+            .frame(width: 56, height: 48)
+            .allowsHitTesting(false)
     }
 }
 
@@ -114,30 +76,10 @@ struct MonkeyView: View {
 
 struct KaiView: View {
     var body: some View {
-        ZStack {
-            ZStack{
-                Circle()
-                    .foregroundColor(Color(hex: "#B06C49"))
-                    .frame(width: 46)
-                Text("👀")
-                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 0, z: 1))
-                    .offset(x: 6.5, y: -3)
-                Image("kaigoatee")
-                    .resizable()
-                    .frame(width: 12, height: 7)
-                    .offset(x: 7, y: 22)
-                Image("kaimouth")
-                    .resizable()
-                    .frame(width: 10, height: 15)
-                    .offset(x: 7, y: 12)
-            }
-            Image("kaihat")
-                .resizable()
-                .frame(width: 70, height: 56)
-                .offset(x: -2, y: -2)
-            
-        }
-        .allowsHitTesting(false)
+        Image("kaiball")
+            .resizable()
+            .frame(width: 56, height: 48)
+            .allowsHitTesting(false)
     }
 }
 
