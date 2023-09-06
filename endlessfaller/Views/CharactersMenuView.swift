@@ -15,6 +15,7 @@ struct CharactersMenuView: View {
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     var body: some View {
         ZStack{
+            Color.primary.opacity(0.05)
             GeometryReader { geometry in
                 VStack{
                     HStack{
@@ -53,9 +54,10 @@ struct CharactersMenuView: View {
                                                 }
                                             } label: {
                                                 Rectangle()
-                                                    .fill(Color.gray.opacity(0.3))
+                                                    .fill(Color.white)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/3.3, height: geometry.size.width/3.3)
+                                                    .shadow(radius: 3, y: 2)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
                                                             .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)

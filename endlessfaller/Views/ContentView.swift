@@ -39,7 +39,7 @@ struct ContentView: View {
     @State var muteIsPressed = false
     @State var ballButtonIsPressed = false
     @State var levelYPosition: CGFloat = 0
-    @State var gameOverBackgroundColor: Color = .black
+    @State var gameOverBackgroundColor: Color = .white
     @State var playedCharacter = ""
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
@@ -111,6 +111,7 @@ struct ContentView: View {
                                     .bold()
                                     .italic()
                                     .multilineTextAlignment(.center)
+                                    .foregroundColor(.black)
                                     .padding()
                                 Image(systemName: "arrow.up")
                                     .foregroundColor(.green)
@@ -194,6 +195,7 @@ struct ContentView: View {
                                         .bold()
                                         .italic()
                                         .multilineTextAlignment(.center)
+                                        .foregroundColor(.white)
                                         .padding()
                                         .padding(.top, 30)
                                     Image(systemName: "arrow.up")
