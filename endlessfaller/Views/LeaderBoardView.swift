@@ -15,6 +15,10 @@ struct LeaderBoardView: View {
     @State var recordID: CKRecord.ID? = nil
     var body: some View {
         VStack{
+            Capsule()
+                .frame(maxWidth: 45, maxHeight: 9)
+                .padding(.top, 9)
+                .opacity(0.5)
             HStack{
                 Text("🏆 Leader Board 🏆")
                     .bold()
@@ -85,7 +89,6 @@ struct LeaderBoardView: View {
                 }
             }
         }
-        .padding(.top, 30)
         .onAppear{
             if let localRecord = loadLocalRecord() {
                 recordID = localRecord.recordID
