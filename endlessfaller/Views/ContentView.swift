@@ -103,7 +103,6 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter})
                     VStack{
                         Spacer()
                         if !gameOver {
@@ -177,10 +176,11 @@ struct ContentView: View {
                                         .padding()
                                         .font(.largeTitle)
                                     }
-                                    let character = appModel.characters.first(where: { $0.characterID == playedCharacter})
-                                    AnyView(character!.character)
+                                    if let character = appModel.characters.first(where: { $0.characterID == playedCharacter}) {
+                                        AnyView(character.character)
                                         .scaleEffect(2)
                                         .offset(x: -80, y: 15)
+                                }
                                 }
                                 .background{
                                     Rectangle()
@@ -249,8 +249,10 @@ struct ContentView: View {
                                                 )
                                         )
                                         .offset(x: -3, y: 3)
-                                    AnyView(character!.character)
-                                        .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
+                                    if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                                        AnyView(character.character)
+                                            .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
+                                    }
                                 }
                                 .pressEvents {
                                     // On press
@@ -297,7 +299,9 @@ struct ContentView: View {
                                             .frame(width: 44, height: 45)
                                             .offset(x: 0, y:-23)
                                         }
-                                        AnyView(character!.character)
+                                        if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                                            AnyView(character.character)
+                                        }
                                     }
                                     .position(x: deviceWidth/2, y: isAnimating ? deviceHeight - 23 : -27)
                                     .onChange(of: geometry.frame(in: .global).minY) { newYPosition in

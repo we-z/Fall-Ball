@@ -18,7 +18,7 @@ struct CharactersMenuView: View {
             GeometryReader { geometry in
                 VStack{
                     HStack{
-                        Text("🌍 Fall Balls Menu 🌍")
+                        Text("🌍 Ball Shop 🌍")
                             .bold()
                             .italic()
                             .font(.largeTitle)
@@ -38,7 +38,7 @@ struct CharactersMenuView: View {
                                             Button {
                                                 if model.characters[index].isPurchased{
                                                     model.selectedCharacter = model.characters[index].characterID
-                                                } else if storeIndex >= 0 {
+                                                } else {
                                                     isProcessingPurchase = true
                                                     Task {
                                                         do {
