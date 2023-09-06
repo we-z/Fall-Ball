@@ -109,6 +109,7 @@ class CloudKitCrud: ObservableObject {
                 }
 
             case .failure(_):
+                self?.addItem(characterID: newCharacterID, score: newScore)
                 print("")
             }
         }
