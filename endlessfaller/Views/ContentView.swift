@@ -253,6 +253,7 @@ struct ContentView: View {
                                         .offset(x: -3, y: 3)
                                     if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                         AnyView(character.character)
+//                                            .shadow(color: .black, radius: 0.1, x: ballButtonIsPressed ? 0 : -3, y: ballButtonIsPressed ? 0 : 3)
                                             .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
                                     }
                                 }

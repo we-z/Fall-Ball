@@ -16,6 +16,7 @@ struct CharactersMenuView: View {
     var body: some View {
         ZStack{
             Color.primary.opacity(0.05)
+                .ignoresSafeArea()
             GeometryReader { geometry in
                 VStack{
                     HStack{

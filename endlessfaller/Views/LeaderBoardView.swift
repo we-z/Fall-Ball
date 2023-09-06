@@ -16,6 +16,7 @@ struct LeaderBoardView: View {
     var body: some View {
         ZStack{
             Color.primary.opacity(0.03)
+                .ignoresSafeArea()
             VStack{
                 Capsule()
                     .frame(maxWidth: 45, maxHeight: 9)
@@ -79,7 +80,7 @@ struct LeaderBoardView: View {
                                     }
                                 }
                                 .frame(height: 100)
-                                .background(score.record.recordID == recordID ? Color.gray.opacity(0.3) : Color.white)
+                                .background(score.record.recordID == recordID ? Color.gray.opacity(0.15) : Color.white)
                                 .cornerRadius(20)
                                 .shadow(radius: 3, y: 2)
                                 .overlay(

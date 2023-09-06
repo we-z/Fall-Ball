@@ -10,7 +10,8 @@ import SwiftUI
 struct CharactersDesignsView: View {
     var body: some View {
         VStack{
-            YinYangBallView()
+            BlackBallView()
+                .shadow(color: .black, radius: 0.1, x: -3, y: 3)
             Spacer()
         }
     }
@@ -360,29 +361,30 @@ struct BallView: View {
 struct WhiteBallView: View {
     var body: some View {
         ZStack{
-//            Circle()
-//                .frame(width: 48)
-//                .foregroundColor(.white)
-            BallView()
-                .background(Circle().foregroundColor(Color.white))
+            Circle()
+                .frame(width: 48)
+                .foregroundColor(.black)
+            Circle()
+                .frame(width: 46)
+                .foregroundColor(.white)
         }
     }
 }
 
 struct YinYangBallView: View {
     var body: some View {
-        BallView()
-            .background(
-                Image("yinyang")
-                    .resizable()
-                    .frame(width: 48, height: 48)
-            )
-            .overlay{
-                Circle()
-                    .stroke()
-                    .foregroundColor(.primary)
-            }
-            .allowsHitTesting(false)
+        ZStack{
+            BallView()
+                .overlay{
+                    Circle()
+                        .stroke()
+                        .foregroundColor(.primary)
+                }
+                .allowsHitTesting(false)
+            Image("yinyang")
+                .resizable()
+                .frame(width: 48, height: 48)
+        }
     }
 }
 
@@ -391,9 +393,10 @@ struct BlackBallView: View {
         ZStack{
             Circle()
                 .frame(width: 48)
-                .foregroundColor(.white)
-            BallView()
-                .background(Circle().foregroundColor(Color.black))
+                .foregroundColor(.black)
+            Circle()
+                .strokeBorder(Color.white,lineWidth: 1.5)
+                .frame(width: 46, height: 46)
         }
     }
 }
