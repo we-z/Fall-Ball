@@ -114,7 +114,7 @@ struct ContentView: View {
                                     .foregroundColor(.black)
                                     .padding()
                                 Image(systemName: "arrow.up")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.black)
                             }
                             .font(.largeTitle)
                             .scaleEffect(1.5)
@@ -124,14 +124,12 @@ struct ContentView: View {
                         } else {
                             VStack{
                                 Text("Game Over!")
-                                    .underline(color: .red)
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)
-                                    .foregroundColor(.white)
-                                    .shadow(color: .black, radius: 0.1, x: -3, y: 3)
+                                    .foregroundColor(.black)
                                     .scaleEffect(1.6)
-                                    .padding(.bottom, 45)
+                                    .padding(.bottom, 80)
                                 ZStack{
                                     HStack{
                                         VStack(alignment: .trailing){
@@ -195,16 +193,17 @@ struct ContentView: View {
                                         .bold()
                                         .italic()
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.black)
+                                        .padding(.top, 60)
                                         .padding()
-                                        .padding(.top, 30)
                                     Image(systemName: "arrow.up")
-                                        .foregroundColor(.green)
+                                        .foregroundColor(.black)
+                                        //.shadow(color: .black, radius: 3)
                                 }
                                 .foregroundColor(.primary)
                                 .font(.largeTitle)
                                 .foregroundColor(.white)
-                                .shadow(color: .black, radius: 0.5, x: -4, y: 4)
+                                //.shadow(color: .black, radius: 3)
                                 .scaleEffect(1.2)
                                 .tag(-1)
                             }
@@ -214,10 +213,10 @@ struct ContentView: View {
                         ZStack{
                             HStack{
 
-                            Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                                .foregroundColor(.teal)
+                            Image(systemName: appModel.mute ? "speaker.slash" : "speaker.wave.2")
+                                .foregroundColor(.black)
                                 .font(.largeTitle)
-                                .shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
+                                //.shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
                                 .scaleEffect(1.2)
                                 .padding(36)
                                 .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
@@ -242,23 +241,12 @@ struct ContentView: View {
                                 }
                                 Spacer()
                                 ZStack{
-                                    BallView()
-                                        .background(
-                                            Color.black
-                                                .mask(
-                                                    Circle()
-                                                        .frame(width: 46, height: 46)
-                                                )
-                                        )
-                                        .offset(x: -3, y: 3)
                                     if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                         AnyView(character.character)
-//                                            .shadow(color: .black, radius: 0.1, x: ballButtonIsPressed ? 0 : -3, y: ballButtonIsPressed ? 0 : 3)
                                             .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
                                     }
                                 }
                                 .pressEvents {
-                                    // On press
                                     withAnimation(.easeInOut(duration: 0.1)) {
                                         ballButtonIsPressed = true
                                     }
@@ -271,19 +259,22 @@ struct ContentView: View {
                                 }
                                 .padding(36)
                             }
-                            PodiumView()
-                                .foregroundColor(.primary)
-                                .padding(36)
-                                .pressEvents {
-                                    
-                                } onRelease: {
-                                    //AudioServicesPlaySystemSound(1305)
-                                    withAnimation {
-                                        showLeaderBoard = true
+                            ZStack{
+                                
+                                PodiumView()
+                                    .foregroundColor(.primary)
+                                    .padding(36)
+                                    .pressEvents {
+                                        
+                                    } onRelease: {
+                                        withAnimation {
+                                            showLeaderBoard = true
+                                        }
                                     }
-                                }
+                            }
                         }
                     }
+                    
                     .background(gameOverBackgroundColor)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{

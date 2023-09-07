@@ -42,41 +42,44 @@ struct LeaderBoardView: View {
                             if let character = model.characters.first(where: { $0.characterID == score.characterID }){
                                 let place = index + 1
                                 VStack{
-                                    HStack{
-                                        if place == 1 {
-                                            Text("🥇 ")
-                                                .padding(.leading)
-                                                .font(.largeTitle)
-                                                .scaleEffect(1.5)
-                                        } else if place == 2 {
-                                            Text("🥈 ")
-                                                .font(.largeTitle)
-                                                .padding(.leading)
-                                                .scaleEffect(1.5)
-                                        } else if place == 3 {
-                                            Text("🥉 ")
-                                                .font(.largeTitle)
-                                                .padding(.leading)
-                                                .scaleEffect(1.5)
-                                        } else {
-                                            Text("#" + String(place) + ":")
+                                    ZStack{
+                                        HStack{
+                                            if place == 1 {
+                                                Text("🥇 ")
+                                                    .padding(.leading)
+                                                    .font(.largeTitle)
+                                                    .scaleEffect(1.5)
+                                            } else if place == 2 {
+                                                Text("🥈 ")
+                                                    .font(.largeTitle)
+                                                    .padding(.leading)
+                                                    .scaleEffect(1.5)
+                                            } else if place == 3 {
+                                                Text("🥉 ")
+                                                    .font(.largeTitle)
+                                                    .padding(.leading)
+                                                    .scaleEffect(1.5)
+                                            } else {
+                                                Text("#" + String(place) + ":")
+                                                    .bold()
+                                                    .font(.title)
+                                                    .foregroundColor(.black)
+                                                    .padding(.leading)
+                                            }
+                                            Spacer()
+                                            Text(String(score.bestScore))
                                                 .bold()
-                                                .font(.title)
+                                                .italic()
+                                                .font(.largeTitle)
                                                 .foregroundColor(.black)
-                                                .padding(.leading)
+                                                .scaleEffect(1.2)
+                                                .padding(.trailing, 30)
                                         }
                                         AnyView(character.character)
                                             .scaleEffect(1.2)
                                             .padding(.horizontal)
                                             .frame(width: 95)
-                                        Spacer()
-                                        Text(String(score.bestScore))
-                                            .bold()
-                                            .italic()
-                                            .font(.largeTitle)
-                                            .foregroundColor(.black)
-                                            .scaleEffect(1.2)
-                                            .padding(.trailing, 30)
+                                            .position(x: 120, y: 50)
                                     }
                                 }
                                 .frame(height: 100)

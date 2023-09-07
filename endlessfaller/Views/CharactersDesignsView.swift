@@ -9,15 +9,15 @@ import SwiftUI
 
 struct CharactersDesignsView: View {
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             HStack{
                 SouthKoreaView()
-                AlbertView()
-                //                .shadow(color: .black, radius: 0.1, x: -3, y: 3)
-                IceSpiceView()
-                KaiView()
-                LaughBallView()
+                WhiteBallView()
+                BlackBallView()
             }
+            Divider()
+                .overlay(.black)
+                .offset(y: -1)
             Spacer()
         }
     }
@@ -304,10 +304,10 @@ struct WhiteBallView: View {
     var body: some View {
         ZStack{
             Circle()
-                .frame(width: 48)
+                .frame(width: 46)
                 .foregroundColor(.black)
             Circle()
-                .frame(width: 46)
+                .frame(width: 40)
                 .foregroundColor(.white)
         }
     }
@@ -334,11 +334,11 @@ struct BlackBallView: View {
     var body: some View {
         ZStack{
             Circle()
-                .frame(width: 48)
+                .frame(width: 46)
                 .foregroundColor(.black)
             Circle()
-                .strokeBorder(Color.white,lineWidth: 1.5)
-                .frame(width: 46, height: 46)
+                .strokeBorder(Color.white,lineWidth: 3)
+                .frame(width: 42, height: 42)
         }
     }
 }
@@ -372,11 +372,11 @@ struct LaughBallView: View {
     var body: some View {
         ZStack{
             Circle()
-                .frame(width: 47)
+                .frame(width: 46)
                 .foregroundColor(.black)
             Text("🤣")
-                .font(.system(size: 49))
-                .offset(x:0.4)
+                .font(.system(size: 48))
+                .offset(x:0.4, y: -0.2)
         }
     }
 }
