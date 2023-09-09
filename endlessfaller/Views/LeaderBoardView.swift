@@ -23,12 +23,12 @@ struct LeaderBoardView: View {
                     .foregroundColor(.black)
                     .opacity(0.3)
                 HStack{
-                    Text("🏆 Leader Board 🏆")
+                    Text("🏆 LEADERBOARD 🏆")
                         .bold()
-                        .italic()
                         .font(.largeTitle)
                         .foregroundColor(.black)
-                        .scaleEffect(1.2)
+                        .scaleEffect(1.1)
+                        .offset(y: 6)
                 }
                 if CKVM.scores.isEmpty{
                     Spacer()
@@ -78,16 +78,22 @@ struct LeaderBoardView: View {
                                             .scaleEffect(1.2)
                                             .padding(.horizontal)
                                             .frame(width: 95)
-                                            .position(x: 120, y: 50)
+                                            .position(x: 110, y: 50)
+                                        if score.record.recordID == recordID{
+                                            Text("You")
+                                                .font(.largeTitle)
+                                                .bold()
+                                                .position(x: 190, y: 50)
+                                        }
                                     }
                                 }
                                 .frame(height: 100)
-                                .background(score.record.recordID == recordID ? Color.gray.opacity(0.15) : Color.white)
+                                .background(score.record.recordID == recordID ? Color.white : Color.white.opacity(0.8))
                                 .cornerRadius(20)
                                 .shadow(radius: 3, y: 2)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
-                                        .stroke(score.record.recordID == recordID ? Color.black : .clear, lineWidth: 3)
+                                        .stroke(score.record.recordID == recordID ? Color.black : .clear, lineWidth: 2)
                                 )
                                 .padding(.top, 6)
                                 .padding(.horizontal)
@@ -99,7 +105,7 @@ struct LeaderBoardView: View {
                         CKVM.fetchItems()
                     }
                     .background{
-                        Color.primary.opacity(0.03)
+                        Color.primary.opacity(0.02)
                             .ignoresSafeArea()
                     }
                 }
