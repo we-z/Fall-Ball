@@ -78,7 +78,7 @@ struct LeaderBoardView: View {
                                             .scaleEffect(1.2)
                                             .padding(.horizontal)
                                             .frame(width: 95)
-                                            .position(x: 110, y: 50)
+                                            .position(x: 115, y: 50)
                                         if score.record.recordID == recordID{
                                             Text("You")
                                                 .font(.largeTitle)

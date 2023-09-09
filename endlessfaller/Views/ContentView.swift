@@ -12,7 +12,7 @@ import CloudKit
 import AVFoundation
 
 
-let bestScoreKey = "BestScore"
+let bestScoreKey = "bestscorekey"
 let levels = 1000
 let difficulty = 6
 

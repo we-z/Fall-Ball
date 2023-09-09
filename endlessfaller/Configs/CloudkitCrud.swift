@@ -14,6 +14,8 @@ struct CloudKitScoreModelNames {
     static let name = "name"
 }
 
+let recordTypeName = "Leaderboard"
+
 struct LocalRecord {
     var recordID: CKRecord.ID
     // Add other properties that match your CKRecord's data fields
@@ -58,7 +60,7 @@ struct ScoreModel: Hashable, CloudKitableProtocol {
     }
     
     init?(characterID: String, bestScore: Int?) {
-        let record = CKRecord(recordType: "Scores")
+        let record = CKRecord(recordType: recordTypeName)
         record["name"] = characterID
         if let bestScore = bestScore {
             record["count"] = bestScore
@@ -71,7 +73,7 @@ struct ScoreModel: Hashable, CloudKitableProtocol {
 class CloudKitCrud: ObservableObject {
     
     @Published var scores: [ScoreModel] = []
-    var record = CKRecord(recordType: "Scores")
+    var record = CKRecord(recordType: recordTypeName)
     var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -125,7 +127,7 @@ class CloudKitCrud: ObservableObject {
     
     func fetchItems() {
         let predicate = NSPredicate(value: true)
-        let recordType = "Scores"
+        let recordType = recordTypeName
         CloudKitUtility.fetch(predicate: predicate, recordType: recordType, sortDescriptions:  [NSSortDescriptor(key: "count", ascending: false)])
             .receive(on: DispatchQueue.main)
             .sink { _ in
