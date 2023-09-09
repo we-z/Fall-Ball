@@ -163,7 +163,7 @@ class CloudKitCrud: ObservableObject {
             let encoder = JSONEncoder()
             let data = try encoder.encode(localRecord)
             
-            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("localRecord.json")
+            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("myCKRecord.json")
             try data.write(to: fileURL)
         } catch {
             print("Error encoding or saving: \(error)")
@@ -173,7 +173,7 @@ class CloudKitCrud: ObservableObject {
 }
 
 func loadLocalRecord() -> LocalRecord? {
-    let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("localRecord.json")
+    let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("myCKRecord.json")
     
     do {
         let data = try Data(contentsOf: fileURL)
