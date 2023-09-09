@@ -337,8 +337,8 @@ struct BlackBallView: View {
                 .frame(width: 46)
                 .foregroundColor(.black)
             Circle()
-                .strokeBorder(Color.white,lineWidth: 3)
-                .frame(width: 42, height: 42)
+                .strokeBorder(Color.white,lineWidth: 2)
+                .frame(width: 44, height: 44)
         }
     }
 }

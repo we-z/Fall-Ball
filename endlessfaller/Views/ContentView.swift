@@ -75,6 +75,7 @@ struct ContentView: View {
         if currentScore > bestScore {
             bestScore = currentScore
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
+            CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
         }
         freezeScrolling = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
@@ -92,7 +93,6 @@ struct ContentView: View {
             showWastedScreen = false
             self.currentIndex = -1
             highestScoreInGame = -1
-            CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             timer.invalidate() // Stop the timer after the reset
         }
     }
@@ -129,7 +129,7 @@ struct ContentView: View {
                                     .font(.largeTitle)
                                     .foregroundColor(.black)
                                     .scaleEffect(1.6)
-                                    .padding(.bottom, 80)
+                                    .padding(.bottom, deviceHeight * 0.06)
                                 ZStack{
                                     HStack{
                                         VStack(alignment: .trailing){
@@ -194,7 +194,7 @@ struct ContentView: View {
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
-                                        .padding(.top, 60)
+                                        .padding(.top, deviceHeight * 0.05)
                                         .padding()
                                     Image(systemName: "arrow.up")
                                         .foregroundColor(.black)
@@ -240,24 +240,17 @@ struct ContentView: View {
                                     }
                                 }
                                 Spacer()
-                                ZStack{
-                                    if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                        AnyView(character.character)
-                                            .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
+                                Button {
+                                    showCharactersMenu = true
+                                } label: {
+                                    ZStack{
+                                        if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                                            AnyView(character.character)
+                                                .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
+                                        }
                                     }
+                                    .padding(36)
                                 }
-                                .pressEvents {
-                                    withAnimation(.easeInOut(duration: 0.1)) {
-                                        ballButtonIsPressed = true
-                                    }
-                                } onRelease: {
-                                    //AudioServicesPlaySystemSound(1305)
-                                    withAnimation {
-                                        ballButtonIsPressed = false
-                                        showCharactersMenu = true
-                                    }
-                                }
-                                .padding(36)
                             }
                             ZStack{
                                 
@@ -318,12 +311,15 @@ struct ContentView: View {
                             }
                             if currentIndex == 0 && !gameOver {
                                 KeepSwiping()
+                                    .scaleEffect(1.5)
                             }
                             if currentIndex == 1 && !gameOver {
                                 Instruction()
+                                    .scaleEffect(1.5)
                             }
                             if currentIndex == 2 && !gameOver {
                                 SwipeFaster()
+                                    .scaleEffect(1.5)
                             }
                         }
                     }

@@ -15,8 +15,7 @@ struct LeaderBoardView: View {
     @State var recordID: CKRecord.ID? = nil
     var body: some View {
         ZStack{
-            Color.primary.opacity(0.03)
-                .ignoresSafeArea()
+            
             VStack{
                 Capsule()
                     .frame(maxWidth: 45, maxHeight: 9)
@@ -98,6 +97,10 @@ struct LeaderBoardView: View {
                     }
                     .refreshable {
                         CKVM.fetchItems()
+                    }
+                    .background{
+                        Color.primary.opacity(0.03)
+                            .ignoresSafeArea()
                     }
                 }
             }

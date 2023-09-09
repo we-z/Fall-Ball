@@ -25,10 +25,10 @@ struct IconView: View {
                 )
             }
             .frame(width: 260, height: 240)
-            .offset(x:0, y:-117)
+            .offset(x:0, y:-120)
             
-            WhiteBallView()
-                .scaleEffect(6)
+//            WhiteBallView()
+//                .scaleEffect(6)
         }
     }
 }

@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct AnimationsView: View {
     var body: some View {
         VStack{
-            PodiumView()
+            WastedView()
         }
     }
 }
@@ -908,28 +908,33 @@ struct NewBestScore: View {
 
 struct WastedView: View {
     var body: some View {
-        VStack{
-            Text("💀")
-                .foregroundColor(.black)
-                .bold()
-                .font(.largeTitle)
-                .scaleEffect(3)
-                .padding(.bottom, 60)
+        ZStack{
+            Color.white
+                .ignoresSafeArea()
                 .strobing()
-            Text("WASTED")
-                .italic()
-                .foregroundColor(.black)
-                .bold()
-                .font(.largeTitle)
-                .padding(9)
-                .background(.red)
-                .cornerRadius(15)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color.black, lineWidth: 3)
-                )
-                .scaleEffect(1.5)
-                .strobing()
+            VStack{
+                Text("💀")
+                    .foregroundColor(.black)
+                    .bold()
+                    .font(.largeTitle)
+                    .scaleEffect(3)
+                    .padding(.bottom, 60)
+                    .strobing()
+                Text("WASTED")
+                    .italic()
+                    .foregroundColor(.black)
+                    .bold()
+                    .font(.largeTitle)
+                    .padding(9)
+                    .background(.red)
+                    .cornerRadius(15)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                    .scaleEffect(1.5)
+                    .strobing()
+            }
         }
     }
 }
