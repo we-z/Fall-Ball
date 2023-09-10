@@ -123,12 +123,12 @@ struct ContentView: View {
                             .offset(y: deviceHeight * 0.08)
                         } else {
                             VStack{
-                                Text("Game Over!")
-                                    .italic()
+                                Text("Game Over")
+                                    //.italic()
                                     .bold()
                                     .font(.largeTitle)
                                     .foregroundColor(.black)
-                                    .scaleEffect(1.6)
+                                    .scaleEffect(1.8)
                                     .padding(.bottom, deviceHeight * 0.06)
                                 ZStack{
                                     HStack{
@@ -140,9 +140,8 @@ struct ContentView: View {
                                                     Text("Ball:")
                                                         .font(.largeTitle)
                                                         .bold()
-                                                        .italic()
                                                         .foregroundColor(.black)
-                                                        .padding(.leading, 20)
+                                                        .padding(.leading, 15)
                                                         .offset(x: 30)
                                                 }
                                                 Spacer()
@@ -150,10 +149,8 @@ struct ContentView: View {
                                                 Text("Score:")
                                                     .foregroundColor(.black)
                                                     .bold()
-                                                    .italic()
                                             }
                                             Text(String(currentScore))
-                                                .italic()
                                                 .bold()
                                                 .offset(y: 6)
                                                 .foregroundColor(.black)
@@ -162,9 +159,7 @@ struct ContentView: View {
                                             Text("Best:")
                                                 .foregroundColor(.black)
                                                 .bold()
-                                                .italic()
                                             Text(String(bestScore))
-                                                .italic()
                                                 .bold()
                                                 .offset(y: 6)
                                                 .foregroundColor(.black)
@@ -185,7 +180,7 @@ struct ContentView: View {
                                     Rectangle()
                                         .foregroundColor(.yellow)
                                         .cornerRadius(30)
-                                        .shadow(color: .black, radius: 1, x: -9, y: 9)
+                                        .shadow(color: .black, radius: 1, x: 9, y: 9)
                                         .padding(.horizontal,9)
                                 }
                                 VStack{
@@ -204,7 +199,7 @@ struct ContentView: View {
                                 .font(.largeTitle)
                                 .foregroundColor(.white)
                                 //.shadow(color: .black, radius: 3)
-                                .scaleEffect(1.2)
+                                .scaleEffect(1.3)
                                 .tag(-1)
                             }
                             .offset(y: deviceHeight * 0.09)
@@ -272,6 +267,18 @@ struct ContentView: View {
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             colors[index]
+                            if currentIndex == 0 && !gameOver {
+                                Instruction()
+                                    .scaleEffect(1.5)
+                            }
+                            if currentIndex == 1 && !gameOver {
+                                KeepSwiping()
+                                    .scaleEffect(1.5)
+                            }
+                            if currentIndex == 2 && !gameOver {
+                                SwipeFaster()
+                                    .scaleEffect(1.5)
+                            }
                             if highestScoreInGame == index && !showWastedScreen {
                                 GeometryReader { geometry in
                                     ZStack{
@@ -303,23 +310,11 @@ struct ContentView: View {
                                         .foregroundColor(gameOverBackgroundColor)
                                     PodiumView()
                                         .foregroundColor(.primary)
-                                        .offset(y: -12)
+                                        .offset(y: -9)
                                     
                                 }
                                 .position(x: deviceWidth/2, y: -50)
                                 
-                            }
-                            if currentIndex == 0 && !gameOver {
-                                KeepSwiping()
-                                    .scaleEffect(1.5)
-                            }
-                            if currentIndex == 1 && !gameOver {
-                                Instruction()
-                                    .scaleEffect(1.5)
-                            }
-                            if currentIndex == 2 && !gameOver {
-                                SwipeFaster()
-                                    .scaleEffect(1.5)
                             }
                         }
                     }

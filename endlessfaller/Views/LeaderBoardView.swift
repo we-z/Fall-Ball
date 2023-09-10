@@ -15,7 +15,8 @@ struct LeaderBoardView: View {
     @State var recordID: CKRecord.ID? = nil
     var body: some View {
         ZStack{
-            
+            Color.primary.opacity(0.02)
+                .ignoresSafeArea()
             VStack{
                 Capsule()
                     .frame(maxWidth: 45, maxHeight: 9)
@@ -79,16 +80,10 @@ struct LeaderBoardView: View {
                                             .padding(.horizontal)
                                             .frame(width: 95)
                                             .position(x: 115, y: 50)
-                                        if score.record.recordID == recordID{
-                                            Text("You")
-                                                .font(.largeTitle)
-                                                .bold()
-                                                .position(x: 190, y: 50)
-                                        }
                                     }
                                 }
                                 .frame(height: 100)
-                                .background(score.record.recordID == recordID ? Color.white : Color.white.opacity(0.8))
+                                .background(.white)
                                 .cornerRadius(20)
                                 .shadow(radius: 3, y: 2)
                                 .overlay(
@@ -103,10 +98,6 @@ struct LeaderBoardView: View {
                     }
                     .refreshable {
                         CKVM.fetchItems()
-                    }
-                    .background{
-                        Color.primary.opacity(0.02)
-                            .ignoresSafeArea()
                     }
                 }
             }

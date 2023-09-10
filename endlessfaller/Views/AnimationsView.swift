@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct AnimationsView: View {
     var body: some View {
         VStack{
-            WastedView()
+            Instruction()
         }
     }
 }
@@ -742,10 +742,14 @@ struct PodiumView: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(.purple)
                     .roundedCorner(6, corners: [.topLeft])
-//                    .shadow(color: .black, radius: 0.1, x: podiumIsPressed ? 0 : -3, y: podiumIsPressed ? 0 : 3)
+                    .background{
+                        Rectangle()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.black)
+                            .roundedCorner(8, corners: [.topLeft])
+                    }
                 Text("3")
                     .bold()
-                    .colorInvert()
                     .font(.system(size: 15))
             }
             ZStack{
@@ -753,11 +757,14 @@ struct PodiumView: View {
                     .foregroundColor(.red)
                     .frame(width: 20, height: 40)
                     .roundedCorner(6, corners: [.topLeft, .topRight])
-//                    .shadow(color: .black, radius: 0.1, x: podiumIsPressed ? 0 : -3, y: podiumIsPressed ? 0 : 3)
-                
+                    .background{
+                        Rectangle()
+                            .foregroundColor(.black)
+                            .frame(width: 24, height: 44)
+                            .roundedCorner(7.8, corners: [.topLeft, .topRight])
+                    }
                 Text("1")
                     .bold()
-                    .colorInvert()
                     .font(.system(size: 15))
                     .offset(y: -9)
                     
@@ -768,13 +775,18 @@ struct PodiumView: View {
                     .frame(width: 20, height: 30)
                     .roundedCorner(6, corners: [ .topRight])
                     .clipped()
-//                    .shadow(color: .black, radius: 0.1, x: podiumIsPressed ? 0 : -3, y: podiumIsPressed ? 0 : 3)
+                    .background{
+                        Rectangle()
+                            .foregroundColor(.black)
+                            .frame(width: 24, height: 34)
+                            .roundedCorner(8, corners: [ .topRight])
+                    }
                 Text("2")
                     .bold()
-                    .colorInvert()
                     .font(.system(size: 15))
                     .offset(y: -3)
             }
+            .offset(x: 2)
         }
         .offset(x: podiumIsPressed ? -3 : 0, y: podiumIsPressed ? 3 : 0)
         .font(.largeTitle)
@@ -918,20 +930,13 @@ struct WastedView: View {
                     .bold()
                     .font(.largeTitle)
                     .scaleEffect(3)
-                    .padding(.bottom, 60)
+                    .padding(.bottom, 50)
                     .strobing()
                 Text("WASTED")
-                    .italic()
                     .foregroundColor(.black)
                     .bold()
                     .font(.largeTitle)
                     .padding(9)
-                    .background(.red)
-                    .cornerRadius(15)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.black, lineWidth: 3)
-                    )
                     .scaleEffect(1.5)
                     .strobing()
             }

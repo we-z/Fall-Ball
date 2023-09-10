@@ -22,7 +22,6 @@ struct CharactersMenuView: View {
                     HStack{
                         Text("🌍 Ball Shop 🌍")
                             .bold()
-                            .italic()
                             .font(.largeTitle)
                             .scaleEffect(1.1)
                             .padding(.top, 30)
