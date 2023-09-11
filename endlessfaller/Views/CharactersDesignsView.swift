@@ -11,13 +11,13 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                SouthKoreaView()
+                ChinaView()
                 WhiteBallView()
-                BlackBallView()
+                ShockedBallView()
             }
             Divider()
                 .overlay(.black)
-                .offset(y: -1)
+                .offset(y: -4)
             Spacer()
         }
     }
@@ -105,8 +105,8 @@ struct ChinaView: View {
             .background(
                 Image("china")
                     .resizable()
-                    .frame(width: 80, height: 50)
-                    .offset(x:18, y: 3)
+                    .frame(width: 65, height: 41)
+                    .offset(x:12, y: 0)
                     .mask(
                         Circle()
                             .frame(width: 46)
@@ -294,7 +294,7 @@ struct UkView: View {
 struct BallView: View {
     var body: some View {
         Circle()
-            .strokeBorder(Color.black,lineWidth: 1.5)
+            .strokeBorder(Color.black,lineWidth: 3)
             .allowsHitTesting(false)
             .frame(width: 46, height: 46)
     }
@@ -347,14 +347,12 @@ struct ShockedBallView: View {
     var body: some View {
         ZStack{
             Circle()
-                .frame(width: 48)
+                .frame(width: 46)
                 .foregroundColor(.black)
             Text("😮")
-                .font(.system(size: 54))
-                .mask(
-                    Circle()
-                        .frame(width: 46, height: 46)
-                )
+                .font(.system(size: 45))
+                .offset(x:0.8)
+
         }
     }
 }
@@ -375,8 +373,8 @@ struct LaughBallView: View {
                 .frame(width: 46)
                 .foregroundColor(.black)
             Text("🤣")
-                .font(.system(size: 48))
-                .offset(x:0.4, y: -0.2)
+                .font(.system(size: 45))
+                .offset(x:1, y: -0.2)
         }
     }
 }

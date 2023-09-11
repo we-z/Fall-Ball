@@ -88,7 +88,7 @@ struct LeaderBoardView: View {
                                 .shadow(radius: 3, y: 2)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
-                                        .stroke(score.record.recordID == recordID ? Color.black : .clear, lineWidth: 2)
+                                        .stroke(score.record.recordID == recordID ? Color.black : .clear, lineWidth: 3)
                                 )
                                 .padding(.top, 6)
                                 .padding(.horizontal)
