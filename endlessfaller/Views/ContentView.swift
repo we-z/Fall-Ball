@@ -268,8 +268,8 @@ struct ContentView: View {
                                             .italic()
                                         Image(systemName: "arrow.down.left")
                                     }
-                                    .font(idiom == .pad ? .title : .title3)
-                                    .offset(y: -50)
+                                    .font(idiom == .pad ? .title : .title2)
+                                    .offset(y: -55)
                                 }
                             }
                         }
@@ -339,9 +339,6 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
-                    if currentIndex != -1{
-                        gameOver = false
-                    }
                     gameShouldBeOver = false
                     score = newValue
                     if score > highestScoreInGame {
