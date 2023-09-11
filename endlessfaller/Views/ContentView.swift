@@ -21,6 +21,7 @@ struct ContentView: View {
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    let modelName = UIDevice.modelName
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
     @StateObject private var CKVM = CloudKitCrud()
@@ -185,7 +186,6 @@ struct ContentView: View {
                                         .shadow(color: .black, radius: 1, x: 9, y: 9)
                                         .padding(.horizontal,9)
                                 }
-                                .scaleEffect(0.9)
                                 VStack{
                                     Text("Swipe up to \nplay again")
                                         .bold()
@@ -259,11 +259,13 @@ struct ContentView: View {
                                             showLeaderBoard = true
                                         }
                                     }
-                                if gameOver {
+                                if gameOver && !modelName.contains("iPhone SE") && !CKVM.scores.isEmpty {
                                     HStack{
                                         Image(systemName: "arrow.down.right")
-                                        Text("Top Score: 93")
+                                        Text("Top Score: " + String(CKVM.scores[0].bestScore))
                                             .bold()
+                                            .underline()
+                                            .italic()
                                         Image(systemName: "arrow.down.left")
                                     }
                                     .font(idiom == .pad ? .title : .title3)
@@ -318,7 +320,7 @@ struct ContentView: View {
                             if index == 0{
                                 ZStack{
                                     Rectangle()
-                                        .frame(width: 100, height: 100)
+                                        .frame(width: 100, height: 90)
                                         .foregroundColor(gameOverBackgroundColor)
                                     PodiumView()
                                         .foregroundColor(.primary)
@@ -490,6 +492,7 @@ struct ContentView: View {
                     print("Error playing audio: \(error)")
                 }
             }
+            CKVM.fetchItems()
         }
     }
 }
