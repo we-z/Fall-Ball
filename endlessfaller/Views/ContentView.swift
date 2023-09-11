@@ -20,6 +20,7 @@ struct ContentView: View {
     
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
     @StateObject private var CKVM = CloudKitCrud()
@@ -75,7 +76,9 @@ struct ContentView: View {
         if currentScore > bestScore {
             bestScore = currentScore
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
-            CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
+                CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
+            }
         }
         freezeScrolling = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
@@ -124,12 +127,11 @@ struct ContentView: View {
                         } else {
                             VStack{
                                 Text("Game Over")
-                                    //.italic()
                                     .bold()
-                                    .font(.largeTitle)
+                                    .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
                                     .foregroundColor(.black)
                                     .scaleEffect(1.8)
-                                    .padding(.bottom, deviceHeight * 0.06)
+                                    .padding(.bottom, deviceHeight * 0.03)
                                 ZStack{
                                     HStack{
                                         VStack(alignment: .trailing){
@@ -174,7 +176,7 @@ struct ContentView: View {
                                         AnyView(character.character)
                                         .scaleEffect(2)
                                         .offset(x: -80, y: 15)
-                                }
+                                    }
                                 }
                                 .background{
                                     Rectangle()
@@ -183,23 +185,22 @@ struct ContentView: View {
                                         .shadow(color: .black, radius: 1, x: 9, y: 9)
                                         .padding(.horizontal,9)
                                 }
+                                .scaleEffect(0.9)
                                 VStack{
                                     Text("Swipe up to \nplay again")
                                         .bold()
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
-                                        .padding(.top, deviceHeight * 0.05)
+                                        .padding(.top, deviceHeight * 0.02)
                                         .padding()
                                     Image(systemName: "arrow.up")
                                         .foregroundColor(.black)
                                         //.shadow(color: .black, radius: 3)
                                 }
                                 .foregroundColor(.primary)
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                //.shadow(color: .black, radius: 3)
-                                .scaleEffect(1.3)
+                                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.09))
+                                .scaleEffect(1.2)
                                 .tag(-1)
                             }
                             .offset(y: deviceHeight * 0.09)
@@ -248,7 +249,6 @@ struct ContentView: View {
                                 }
                             }
                             ZStack{
-                                
                                 PodiumView()
                                     .foregroundColor(.primary)
                                     .padding(36)
@@ -259,6 +259,16 @@ struct ContentView: View {
                                             showLeaderBoard = true
                                         }
                                     }
+                                if gameOver {
+                                    HStack{
+                                        Image(systemName: "arrow.down.right")
+                                        Text("Top Score: 93")
+                                            .bold()
+                                        Image(systemName: "arrow.down.left")
+                                    }
+                                    .font(idiom == .pad ? .title : .title3)
+                                    .offset(y: -50)
+                                }
                             }
                         }
                     }
@@ -283,15 +293,17 @@ struct ContentView: View {
                                 GeometryReader { geometry in
                                     ZStack{
                                         if !gameShouldBeOver{
-                                            VStack{
-                                                LinearGradient(
-                                                    colors: [.gray.opacity(0.01), .white],
-                                                    startPoint: .top,
-                                                    endPoint: .bottom
-                                                )
+                                            withAnimation(.easeInOut(duration: 0.1)) {
+                                                VStack{
+                                                    LinearGradient(
+                                                        colors: [.gray.opacity(0.01), .white],
+                                                        startPoint: .top,
+                                                        endPoint: .bottom
+                                                    )
+                                                }
+                                                .frame(width: 44, height: 60)
+                                                .offset(x: 0, y:-27)
                                             }
-                                            .frame(width: 44, height: 45)
-                                            .offset(x: 0, y:-23)
                                         }
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)
