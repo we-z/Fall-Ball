@@ -27,8 +27,9 @@ struct IconView: View {
             .frame(width: 260, height: 240)
             .offset(x:0, y:-120)
             
-//            WhiteBallView()
-//                .scaleEffect(6)
+            KaiView()
+                .scaleEffect(6)
+                .offset(x:12)
         }
     }
 }

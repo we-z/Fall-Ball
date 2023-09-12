@@ -13,11 +13,11 @@ struct CharactersDesignsView: View {
             HStack{
                 ChinaView()
                 WhiteBallView()
-                ShockedBallView()
+                AlbertView()
             }
             Divider()
                 .overlay(.black)
-                .offset(y: -4)
+                .offset(y: -0.1)
             Spacer()
         }
     }
@@ -28,7 +28,7 @@ struct IceSpiceView: View {
     var body: some View {
         Image("icespiceball")
             .resizable()
-            .frame(width: 56, height: 52)
+            .frame(width: 51, height: 46)
             .allowsHitTesting(false)
     }
 }
@@ -37,7 +37,7 @@ struct RickView: View {
     var body: some View {
         Image("rick")
             .resizable()
-            .frame(width: 60, height: 60)
+            .frame(width: 46, height: 46)
             //.allowsHitTesting(false)
     }
 }
@@ -46,7 +46,7 @@ struct MortyView: View {
     var body: some View {
         Image("morty")
             .resizable()
-            .frame(width: 56, height: 56)
+            .frame(width: 46, height: 46)
             .allowsHitTesting(false)
     }
 }
@@ -55,21 +55,26 @@ struct AlbertView: View {
     var body: some View {
         Image("albertball")
             .resizable()
-            .frame(width: 56, height: 48)
+            .frame(width: 56, height: 46)
             .allowsHitTesting(false)
     }
 }
 
 struct MonkeyView: View {
     var body: some View {
-        Image("monkey")
-            .resizable()
-            .frame(width: 65, height: 75)
-            .mask(
-                Rectangle()
-                    .frame(width: 61, height: 56)
-            )
-            .allowsHitTesting(false)
+        BallView()
+            .overlay{
+                Image("monkey")
+                    .resizable()
+                    .frame(width: 71, height: 79)
+                    .mask(
+                        Rectangle()
+                            .frame(width: 69, height: 59)
+                    )
+                    .offset(x: -0.1, y: -0.4)
+                    .allowsHitTesting(false)
+            }
+        
     }
 }
 
@@ -105,7 +110,7 @@ struct ChinaView: View {
             .background(
                 Image("china")
                     .resizable()
-                    .frame(width: 65, height: 41)
+                    .frame(width: 69, height: 44)
                     .offset(x:12, y: 0)
                     .mask(
                         Circle()
@@ -294,7 +299,7 @@ struct UkView: View {
 struct BallView: View {
     var body: some View {
         Circle()
-            .strokeBorder(Color.black,lineWidth: 3)
+            .strokeBorder(Color.black,lineWidth: 1)
             .allowsHitTesting(false)
             .frame(width: 46, height: 46)
     }
@@ -316,6 +321,9 @@ struct WhiteBallView: View {
 struct YinYangBallView: View {
     var body: some View {
         ZStack{
+            Image("yinyang")
+                .resizable()
+                .frame(width: 50, height: 50)
             BallView()
                 .overlay{
                     Circle()
@@ -323,9 +331,6 @@ struct YinYangBallView: View {
                         .foregroundColor(.primary)
                 }
                 .allowsHitTesting(false)
-            Image("yinyang")
-                .resizable()
-                .frame(width: 48, height: 48)
         }
     }
 }
@@ -350,10 +355,10 @@ struct ShockedBallView: View {
                 .frame(width: 46)
                 .foregroundColor(.black)
             Text("😮")
-                .font(.system(size: 45))
-                .offset(x:0.8)
-
+                .font(.system(size: 48))
+                .offset(x:0.3, y:-0.2)
         }
+        .frame(height: 46)
     }
 }
 
@@ -363,6 +368,7 @@ struct BombBallView: View {
             Text("💣")
                 .font(.system(size: 51))
         }
+        .frame(height: 46)
     }
 }
 
@@ -373,9 +379,10 @@ struct LaughBallView: View {
                 .frame(width: 46)
                 .foregroundColor(.black)
             Text("🤣")
-                .font(.system(size: 45))
-                .offset(x:1, y: -0.2)
+                .font(.system(size: 46))
+                .offset(x:0.3, y: -0.1)
         }
+        .frame(height: 46)
     }
 }
 
@@ -621,7 +628,7 @@ struct IndonesiaView: View {
                         .frame(width: 46, height: 46)
                     Image("Indonesia")
                         .resizable()
-                        .frame(width: 43, height: 45)
+                        .frame(width: 44, height: 45)
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)

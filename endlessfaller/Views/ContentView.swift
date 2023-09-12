@@ -127,7 +127,8 @@ struct ContentView: View {
                             .offset(y: deviceHeight * 0.08)
                         } else {
                             VStack{
-                                Text("Game Over")
+                                Text("Game Over!")
+                                    .italic()
                                     .bold()
                                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
                                     .foregroundColor(.black)
@@ -264,7 +265,6 @@ struct ContentView: View {
                                         Image(systemName: "arrow.down.right")
                                         Text("Top Score: " + String(CKVM.scores[0].bestScore))
                                             .bold()
-                                            .underline()
                                             .italic()
                                         Image(systemName: "arrow.down.left")
                                     }
