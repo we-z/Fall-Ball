@@ -12,6 +12,9 @@ struct AnimationsView: View {
     var body: some View {
         VStack{
             TearsOfJoyBall()
+                .scaleEffect(3.5)
+                .padding(90)
+            Spacer()
         }
     }
 }
@@ -730,11 +733,12 @@ struct TearsOfJoyView: View {
 struct TearsOfJoyBall: View {
     var body: some View {
         ZStack {
-            Image("tearHead")
-                .resizable()
-                .rotationEffect(.degrees(125))
+            Circle()
+                .foregroundColor(.black)
                 .frame(width: 46, height: 46)
-                .scaleEffect(1.2)
+            Circle()
+                .foregroundColor(.yellow)
+                .frame(width: 44, height: 44)
                 .mask(
                     Circle()
                         .frame(width: 46)

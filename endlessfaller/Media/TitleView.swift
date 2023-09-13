@@ -16,14 +16,14 @@ struct TitleView: View {
                 Rectangle()
                     .foregroundColor(.red)
             }
-            VStack{
+            VStack(spacing: 6){
                 Text("FALL")
                     .bold()
                     .font(.largeTitle)
                     .italic()
                     .foregroundColor(.white)
                     .shadow(color: .black, radius: 0.5, x: -3, y: 3)
-                    .offset(x:3)
+                    
                 Text("BALL")
                     .bold()
                     .font(.largeTitle)
@@ -33,6 +33,7 @@ struct TitleView: View {
                     
             }
             .scaleEffect(4)
+            .offset(x:9)
         }
         .ignoresSafeArea()
         
