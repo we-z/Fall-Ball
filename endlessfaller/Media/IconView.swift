@@ -24,10 +24,10 @@ struct IconView: View {
                     endPoint: .bottom
                 )
             }
-            .frame(width: 280, height: 240)
+            .frame(width: 270, height: 240)
             .offset(x:0, y:-120)
             
-            YinYangBallView()
+            TearsOfJoyBall()
                 .scaleEffect(6)
         }
     }

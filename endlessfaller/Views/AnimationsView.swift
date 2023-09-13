@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct AnimationsView: View {
     var body: some View {
         VStack{
-            WastedView()
+            TearsOfJoyBall()
         }
     }
 }
@@ -470,9 +470,9 @@ struct ReactionsView: View {
                 ZStack {
                     TearsOfJoyView()
                         .offset(y: showReactions ? -deviceHeight - 100 : -30)
-                        .scaleEffect(showReactions ? 1 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
+                        .scaleEffect(showReactions ? 3 : 0, anchor: showReactions ? .bottomLeading: .bottomTrailing)
                         .rotationEffect(.degrees(showReactions ? -5 : 5))
-                        .animation(Animation.easeInOut(duration: 4).delay(1).repeatCount(2, autoreverses: false), value: showReactions)
+                        .animation(Animation.easeInOut(duration: 9).delay(1).repeatCount(2, autoreverses: false), value: showReactions)
                     
                     //Image("handDefault")
                     ClappingHandsEmojiView()
@@ -684,35 +684,72 @@ struct TearsOfJoyView: View {
     var body: some View {
         ZStack {
             Image("tearHead")
-            
-            VStack(spacing: -30) {
+                .resizable()
+                .frame(width: 46, height: 46)
+                .scaleEffect(1.2)
+                .mask(
+                    Circle()
+                        .frame(width: 46)
+                )
+                .overlay{
+                    VStack(spacing: -45) {
+                        Image("joyEyes")
+                            .resizable()
+                            .frame(width: 46, height: 46)
+                        
+                        Image("tearMouth")
+                            .resizable()
+                            .scaleEffect(isJoyful ? 0.8 : 1)
+                            .rotationEffect(.degrees(isJoyful ? 8 : -8))
+                            .animation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: isJoyful)
+                    }
+                    .offset(y:3)
+                    
+                    HStack(spacing: 23){
+                        Image("tearRight")
+                            .rotationEffect(.degrees(isJoyful ? 5 : -30), anchor: .topTrailing)
+                            .animation(.easeOut(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
+                        
+                        Image("tearLeft")
+                            .rotationEffect(.degrees(isJoyful ? -30 : 5), anchor: .topLeading)
+                            .animation(.easeIn(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
+                    }
+                }
+        }
+        .frame(width: 46, height: 46)
+        .onAppear{
+            withAnimation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
+                isJoyful.toggle()
+            }
+        }
+    }
+}
+
+
+
+struct TearsOfJoyBall: View {
+    var body: some View {
+        ZStack {
+            Image("tearHead")
+                .resizable()
+                .rotationEffect(.degrees(125))
+                .frame(width: 46, height: 46)
+                .scaleEffect(1.2)
+                .mask(
+                    Circle()
+                        .frame(width: 46)
+                )
+            VStack(spacing: -45) {
                 Image("joyEyes")
-                    .rotationEffect(.degrees(isJoyful ? -16 : 8))
-                
+                    .resizable()
+                    .frame(width: 46, height: 46)
                 Image("tearMouth")
                     .resizable()
-                    .frame(width: 33, height: isJoyful ? 32 : 28)
-                    .scaleEffect(isJoyful ? 0.8 : 1)
-                    .rotationEffect(.degrees(isJoyful ? 8 : -8))
-                    .animation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: isJoyful)
+                    .frame(width: 47, height: 47)
             }
-            
-            
-            HStack(spacing: 12){
-                Image("tearRight")
-                    .rotationEffect(.degrees(isJoyful ? 5 : -30), anchor: .topTrailing)
-                    .animation(.easeOut(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
-                
-                Image("tearLeft")
-                    .rotationEffect(.degrees(isJoyful ? -30 : 5), anchor: .topLeading)
-                    .animation(.easeIn(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
-            }
-        }.scaleEffect(3)
-            .onAppear{
-                withAnimation(.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
-                    isJoyful.toggle()
-                }
-            }
+            .offset(y:2)
+        }
+        .frame(width: 46, height: 46)
     }
 }
 
