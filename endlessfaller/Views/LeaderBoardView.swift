@@ -103,11 +103,16 @@ struct LeaderBoardView: View {
             }
         }
         .onAppear{
+            print("LeaderBoardView Appeared")
+            CKVM.fetchItems()
             if let localRecord = loadLocalRecord() {
                 recordID = localRecord.recordID
 //                print("local recordID:")
 //                print(recordID)
             }
+        }
+        .onChange(of: CKVM.scores) { scores in
+            CKVM.fetchItems()
         }
     }
 }

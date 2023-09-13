@@ -13,11 +13,10 @@ struct CharactersDesignsView: View {
             HStack{
                 ChinaView()
                 WhiteBallView()
-                AlbertView()
+                LaughBallView()
             }
             Divider()
                 .overlay(.black)
-                .offset(y: -0.1)
             Spacer()
         }
     }
@@ -379,8 +378,8 @@ struct LaughBallView: View {
                 .frame(width: 46)
                 .foregroundColor(.black)
             Text("🤣")
-                .font(.system(size: 46))
-                .offset(x:0.3, y: -0.1)
+                .font(.system(size: 48))
+                .offset(x:0.4, y: -0.2)
         }
         .frame(height: 46)
     }

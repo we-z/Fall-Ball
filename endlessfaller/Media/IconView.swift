@@ -24,12 +24,11 @@ struct IconView: View {
                     endPoint: .bottom
                 )
             }
-            .frame(width: 260, height: 240)
+            .frame(width: 280, height: 240)
             .offset(x:0, y:-120)
             
-            KaiView()
+            YinYangBallView()
                 .scaleEffect(6)
-                .offset(x:12)
         }
     }
 }

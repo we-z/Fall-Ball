@@ -48,7 +48,7 @@ struct ContentView: View {
     @State var placeOnLeaderBoard = 0
     @State var recordID: CKRecord.ID? = nil
     @State var colors: [Color] = (1...levels).map { _ in
-        Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
+        Color(red: .random(in: 0.4...1), green: .random(in: 0.4...1), blue: .random(in: 0.4...1))
     }
     
     init() {
@@ -258,6 +258,7 @@ struct ContentView: View {
                                     } onRelease: {
                                         withAnimation {
                                             showLeaderBoard = true
+                                            CKVM.fetchItems()
                                         }
                                     }
                                 if gameOver && !modelName.contains("iPhone SE") && !CKVM.scores.isEmpty {

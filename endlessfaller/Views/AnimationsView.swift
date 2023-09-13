@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct AnimationsView: View {
     var body: some View {
         VStack{
-            Instruction()
+            WastedView()
         }
     }
 }
@@ -930,7 +930,7 @@ struct WastedView: View {
                     .bold()
                     .font(.largeTitle)
                     .scaleEffect(3)
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 40)
                     .strobing()
                 Text("WASTED")
                     .foregroundColor(.black)
