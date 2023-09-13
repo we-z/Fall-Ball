@@ -111,9 +111,9 @@ struct LeaderBoardView: View {
 //                print(recordID)
             }
         }
-        .onChange(of: CKVM.scores) { scores in
-            CKVM.fetchItems()
-        }
+//        .onChange(of: CKVM.scores) { scores in
+//            CKVM.fetchItems()
+//        }
     }
 }
 

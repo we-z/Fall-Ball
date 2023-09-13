@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct AnimationsView: View {
     var body: some View {
         VStack{
-            TearsOfJoyBall()
+            TearsOfJoyView()
                 .scaleEffect(3.5)
                 .padding(90)
             Spacer()
@@ -686,36 +686,57 @@ struct TearsOfJoyView: View {
     
     var body: some View {
         ZStack {
-            Image("tearHead")
-                .resizable()
+            Circle()
+                .foregroundColor(.yellow)
                 .frame(width: 46, height: 46)
-                .scaleEffect(1.2)
                 .mask(
                     Circle()
                         .frame(width: 46)
                 )
                 .overlay{
-                    VStack(spacing: -45) {
-                        Image("joyEyes")
-                            .resizable()
-                            .frame(width: 46, height: 46)
+                    VStack(spacing: -20) {
+                        HStack {
+                            Circle()
+                                .foregroundColor(.black)
+                                .frame(width: 10)
+                                .overlay{
+                                    Circle()
+                                        .foregroundColor(.yellow)
+                                        .frame(width: 15, height: 15)
+                                        .offset(y:6.5)
+                                }
+                            Circle()
+                                .foregroundColor(.black)
+                                .frame(width: 10)
+                                .overlay{
+                                    Circle()
+                                        .foregroundColor(.yellow)
+                                        .frame(width: 15, height: 15)
+                                        .offset(y:6.5)
+                                }
+                        }
+                        .rotationEffect(.degrees(isJoyful ? 8 : -8))
                         
                         Image("tearMouth")
                             .resizable()
                             .scaleEffect(isJoyful ? 0.8 : 1)
                             .rotationEffect(.degrees(isJoyful ? 8 : -8))
                             .animation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: isJoyful)
+                            .frame(width: 46, height: 46)
                     }
-                    .offset(y:3)
+                    .offset(y:9)
                     
                     HStack(spacing: 23){
-                        Image("tearRight")
-                            .rotationEffect(.degrees(isJoyful ? 5 : -30), anchor: .topTrailing)
-                            .animation(.easeOut(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
-                        
-                        Image("tearLeft")
-                            .rotationEffect(.degrees(isJoyful ? -30 : 5), anchor: .topLeading)
-                            .animation(.easeIn(duration: 0.25).repeatForever(autoreverses: true), value: isJoyful)
+                        Text("💧")
+                            .rotationEffect(.degrees(isJoyful ? 35 : 5), anchor: .topTrailing)
+                            .animation(.easeOut(duration: 0.5).repeatForever(autoreverses: true), value: isJoyful)
+                            .font(.system(size: 12))
+                            .offset( y:6)
+                        Text("💧")
+                            .rotationEffect(.degrees(isJoyful ? -30 : -15), anchor: .topLeading)
+                            .animation(.easeIn(duration: 0.5).repeatForever(autoreverses: true), value: isJoyful)
+                            .font(.system(size: 12))
+                            .offset(x: -3, y:9)
                     }
                 }
         }
