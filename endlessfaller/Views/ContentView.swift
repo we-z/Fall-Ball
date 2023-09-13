@@ -184,11 +184,21 @@ struct ContentView: View {
                                     }
                                 }
                                 .background{
-                                    Rectangle()
-                                        .foregroundColor(.white)
+                                    ZStack{
+                                        Rectangle()
+                                            .foregroundColor(.white)
+                                            .cornerRadius(30)
+                                            .shadow(color: .black, radius: 9, x: 0, y: 6)
+                                            .padding(.horizontal,9)
+                                        LinearGradient(
+                                            colors: [.white, .white, .gray.opacity(0.1)],
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        )
                                         .cornerRadius(30)
-                                        .shadow(color: .black, radius: 9, x: 0, y: 9)
                                         .padding(.horizontal,9)
+                                    }
+
                                 }
                                 VStack{
                                     Text("Swipe up to \nplay again")
@@ -240,16 +250,23 @@ struct ContentView: View {
                                     }
                                 }
                                 Spacer()
-                                Button {
-                                    showCharactersMenu = true
-                                } label: {
-                                    ZStack{
-                                        if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                            AnyView(character.character)
-                                                .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
-                                        }
+                                ZStack{
+                                    if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                                        AnyView(character.character)
+                                            .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
                                     }
-                                    .padding(36)
+                                }
+                                .padding(36)
+                                .pressEvents {
+                                    // On press
+                                    withAnimation(.easeInOut(duration: 0.1)) {
+                                        ballButtonIsPressed = true
+                                    }
+                                } onRelease: {
+                                    withAnimation {
+                                        ballButtonIsPressed = false
+                                        showCharactersMenu = true
+                                    }
                                 }
                             }
                             ZStack{

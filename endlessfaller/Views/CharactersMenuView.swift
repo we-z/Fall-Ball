@@ -92,6 +92,7 @@ struct CharactersMenuView: View {
                                                         }
                                                     }
                                             }
+                                            .buttonStyle(.roundedAndShadow)
                                         }
                                     }
                                 }

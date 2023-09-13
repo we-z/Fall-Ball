@@ -23,9 +23,6 @@ struct CharactersDesignsView: View {
 struct FallBallLaughBall: View {
     var body: some View {
         ZStack {
-//            Circle()
-//                .foregroundColor(.black)
-//                .frame(width: 46, height: 46)
             Circle()
                 .foregroundColor(.yellow)
                 .frame(width: 46, height: 46)
@@ -84,7 +81,7 @@ struct IceSpiceView: View {
         Image("icespiceball")
             .resizable()
             .frame(width: 51, height: 46)
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -93,7 +90,7 @@ struct RickView: View {
         Image("rick")
             .resizable()
             .frame(width: 46, height: 46)
-            //.allowsHitTesting(false)
+            
     }
 }
 
@@ -102,7 +99,7 @@ struct MortyView: View {
         Image("morty")
             .resizable()
             .frame(width: 46, height: 46)
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -111,7 +108,7 @@ struct AlbertView: View {
         Image("albertball")
             .resizable()
             .frame(width: 56, height: 46)
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -127,7 +124,7 @@ struct MonkeyView: View {
                             .frame(width: 69, height: 59)
                     )
                     .offset(x: -0.1, y: -0.4)
-                    .allowsHitTesting(false)
+                    
             }
         
     }
@@ -139,7 +136,7 @@ struct KaiView: View {
         Image("kaiball")
             .resizable()
             .frame(width: 56, height: 48)
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -156,7 +153,6 @@ struct AmericaView: View {
                             .frame(width: 46)
                     )
             )
-            .allowsHitTesting(false)
     }
 }
 struct ChinaView: View {
@@ -172,7 +168,6 @@ struct ChinaView: View {
                             .frame(width: 46)
                     )
             )
-            .allowsHitTesting(false)
     }
 }
 
@@ -188,7 +183,7 @@ struct IndiaView: View {
                             .frame(width: 46)
                     )
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -204,7 +199,7 @@ struct BrazilView: View {
                             .frame(width: 46)
                     )
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -225,7 +220,7 @@ struct CanadaView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -241,7 +236,7 @@ struct ColombiaView: View {
                             .frame(width: 46, height: 46)
                     )
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -257,7 +252,7 @@ struct FranceView: View {
                             .frame(width: 46, height: 46)
                     )
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -273,7 +268,7 @@ struct GermanyView: View {
                             .frame(width: 46, height: 46)
                     )
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -294,7 +289,7 @@ struct JapanView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -310,7 +305,7 @@ struct ParaguayView: View {
                             .frame(width: 46, height: 46)
                     )
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -331,7 +326,7 @@ struct SouthKoreaView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -347,7 +342,7 @@ struct UkView: View {
                             .frame(width: 46, height: 46)
                     )
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -385,7 +380,7 @@ struct YinYangBallView: View {
                         .stroke()
                         .foregroundColor(.primary)
                 }
-                .allowsHitTesting(false)
+                
         }
     }
 }
@@ -458,7 +453,7 @@ struct MexicoView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -479,7 +474,7 @@ struct PortugalView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -500,7 +495,7 @@ struct SpainView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -521,7 +516,7 @@ struct SaudiArabiaView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -542,7 +537,7 @@ struct UaeView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -563,7 +558,7 @@ struct QatarView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -584,7 +579,7 @@ struct EthiopiaView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -605,7 +600,7 @@ struct NigeriaView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -626,7 +621,7 @@ struct SouthAfricaView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -648,7 +643,7 @@ struct PakistanView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -669,7 +664,7 @@ struct BangladeshView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
@@ -690,7 +685,7 @@ struct IndonesiaView: View {
                         )
                 }
             )
-            .allowsHitTesting(false)
+            
     }
 }
 
