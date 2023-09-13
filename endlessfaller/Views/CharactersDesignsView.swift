@@ -11,17 +11,73 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                ChinaView()
-                WhiteBallView()
-                LaughBallView()
+                FallBallLaughBall()
+                    .padding(90)
+                    .scaleEffect(3)
             }
-            Divider()
-                .overlay(.black)
             Spacer()
         }
     }
 }
 
+struct FallBallLaughBall: View {
+    var body: some View {
+        ZStack {
+//            Circle()
+//                .foregroundColor(.black)
+//                .frame(width: 46, height: 46)
+            Circle()
+                .foregroundColor(.yellow)
+                .frame(width: 46, height: 46)
+                .mask(
+                    Circle()
+                        .frame(width: 46)
+                )
+            HStack {
+                Circle()
+                    .foregroundColor(.black)
+                    .frame(width: 10)
+                    .overlay{
+                        Circle()
+                            .foregroundColor(.yellow)
+                            .frame(width: 15, height: 15)
+                            .offset(y:6.5)
+                    }
+                Circle()
+                    .foregroundColor(.black)
+                    .frame(width: 10)
+                    .overlay{
+                        Circle()
+                            .foregroundColor(.yellow)
+                            .frame(width: 15, height: 15)
+                            .offset(y:6.5)
+                    }
+            }
+            .offset(y:-2)
+            Circle()
+                .foregroundColor(.orange)
+                .mask{
+                    Rectangle()
+                        .frame(height: 14)
+                        .offset(y:7)
+                }
+                .frame(width: 28)
+                .overlay{
+                    Rectangle()
+                        .foregroundColor(.white)
+                        .frame(width: 23, height: 3)
+                        .roundedCorner(9, corners: [.bottomLeft, .bottomRight])
+                        .offset(y:1.5)
+                }
+                .mask{
+                    Circle()
+                        .frame(width: 27)
+                }
+                .offset(y:4)
+        }
+        .frame(width: 46, height: 46)
+    }
+}
 
 struct IceSpiceView: View {
     var body: some View {

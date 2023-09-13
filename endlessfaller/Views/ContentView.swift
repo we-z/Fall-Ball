@@ -144,6 +144,7 @@ struct ContentView: View {
                                                     Text("Ball:")
                                                         .font(.largeTitle)
                                                         .bold()
+                                                        .italic()
                                                         .foregroundColor(.black)
                                                         .padding(.leading, 15)
                                                         .offset(x: 30)
@@ -153,6 +154,7 @@ struct ContentView: View {
                                                 Text("Score:")
                                                     .foregroundColor(.black)
                                                     .bold()
+                                                    .italic()
                                             }
                                             Text(String(currentScore))
                                                 .bold()
@@ -163,6 +165,7 @@ struct ContentView: View {
                                             Text("Best:")
                                                 .foregroundColor(.black)
                                                 .bold()
+                                                .italic()
                                             Text(String(bestScore))
                                                 .bold()
                                                 .offset(y: 6)
@@ -182,9 +185,9 @@ struct ContentView: View {
                                 }
                                 .background{
                                     Rectangle()
-                                        .foregroundColor(.yellow)
+                                        .foregroundColor(.white)
                                         .cornerRadius(30)
-                                        .shadow(color: .black, radius: 1, x: 9, y: 9)
+                                        .shadow(color: .black, radius: 9, x: 0, y: 9)
                                         .padding(.horizontal,9)
                                 }
                                 VStack{

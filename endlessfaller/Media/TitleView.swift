@@ -32,7 +32,7 @@ struct TitleView: View {
                     .shadow(color: .black, radius: 0.5, x: -3, y: 3)
                     
             }
-            .scaleEffect(4)
+            .scaleEffect(3)
             .offset(x:9)
         }
         .ignoresSafeArea()

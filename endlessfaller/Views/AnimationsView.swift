@@ -738,20 +738,45 @@ struct TearsOfJoyBall: View {
                 .frame(width: 46, height: 46)
             Circle()
                 .foregroundColor(.yellow)
-                .frame(width: 44, height: 44)
+                .frame(width: 46, height: 46)
                 .mask(
                     Circle()
                         .frame(width: 46)
                 )
-            VStack(spacing: -45) {
-                Image("joyEyes")
-                    .resizable()
-                    .frame(width: 46, height: 46)
-                Image("tearMouth")
-                    .resizable()
-                    .frame(width: 47, height: 47)
+            HStack {
+                Circle()
+                    .frame(width: 9)
+                    .overlay{
+                        Circle()
+                            .foregroundColor(.yellow)
+                            .frame(width: 15, height: 15)
+                            .offset(y:6.5)
+                    }
+                Circle()
+                    .frame(width: 9)
+                    .overlay{
+                        Circle()
+                            .foregroundColor(.yellow)
+                            .frame(width: 15, height: 15)
+                            .offset(y:6.5)
+                    }
             }
-            .offset(y:2)
+            .offset(y:-3)
+            Circle()
+                .foregroundColor(.orange)
+                .mask{
+                    Rectangle()
+                        .frame(height: 14)
+                        .offset(y:7)
+                }
+                .frame(width: 28)
+                .offset(y:2)
+                .overlay{
+                    Rectangle()
+                        .foregroundColor(.white)
+                        .frame(width: 24, height: 2)
+                        .offset(y:3.1)
+                }
         }
         .frame(width: 46, height: 46)
     }
