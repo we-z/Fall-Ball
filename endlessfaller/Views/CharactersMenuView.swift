@@ -37,7 +37,7 @@ struct CharactersMenuView: View {
                                         if index < model.characters.count {
                                             let character = model.characters[index]
                                             Button {
-                                                if model.characters[index].isPurchased{
+                                                if index < 3 {
                                                     model.selectedCharacter = model.characters[index].characterID
                                                 } else {
                                                     isProcessingPurchase = true
