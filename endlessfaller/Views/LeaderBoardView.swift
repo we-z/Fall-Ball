@@ -72,7 +72,7 @@ struct LeaderBoardView: View {
                                                 .italic()
                                                 .font(.largeTitle)
                                                 .foregroundColor(.black)
-                                                .scaleEffect(1.2)
+                                                .scaleEffect(1)
                                                 .padding(.trailing, 30)
                                         }
                                         AnyView(character.character)

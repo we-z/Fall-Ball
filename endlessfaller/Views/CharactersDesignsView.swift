@@ -12,7 +12,7 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 FallBallLaughBall()
-                    .padding(90)
+                    .padding(40)
                     .scaleEffect(3)
             }
             Spacer()
@@ -33,44 +33,45 @@ struct FallBallLaughBall: View {
             HStack {
                 Circle()
                     .foregroundColor(.black)
-                    .frame(width: 10)
+                    .frame(width: 12)
                     .overlay{
                         Circle()
                             .foregroundColor(.yellow)
-                            .frame(width: 15, height: 15)
+                            .frame(width: 21, height: 18)
                             .offset(y:6.5)
                     }
                 Circle()
                     .foregroundColor(.black)
-                    .frame(width: 10)
+                    .frame(width: 12)
                     .overlay{
                         Circle()
                             .foregroundColor(.yellow)
-                            .frame(width: 15, height: 15)
+                            .frame(width: 18, height: 18)
                             .offset(y:6.5)
                     }
             }
-            .offset(y:-2)
+            .offset(y:0)
             Circle()
-                .foregroundColor(.orange)
+                .background(.white)
+                .foregroundColor(.pink.opacity(0.75))
                 .mask{
                     Rectangle()
                         .frame(height: 14)
-                        .offset(y:7)
+                        .offset(y:10)
                 }
-                .frame(width: 28)
+                .frame(width: 33)
                 .overlay{
                     Rectangle()
                         .foregroundColor(.white)
-                        .frame(width: 23, height: 3)
+                        .frame(width: 15, height: 5)
                         .roundedCorner(9, corners: [.bottomLeft, .bottomRight])
-                        .offset(y:1.5)
+                        .offset(y:5.5)
                 }
                 .mask{
                     Circle()
-                        .frame(width: 27)
+                        .frame(width: 33)
                 }
-                .offset(y:4)
+                .offset(y:3)
         }
         .frame(width: 46, height: 46)
     }
