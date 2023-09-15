@@ -9,13 +9,14 @@ import SwiftUI
 import CloudKit
 
 struct LeaderBoardView: View {
+    let deviceWidth = UIScreen.main.bounds.width
     @StateObject var model = AppModel()
     @StateObject private var CKVM = CloudKitCrud()
     @State var place = 1
     @State var recordID: CKRecord.ID? = nil
     var body: some View {
         ZStack{
-            Color.primary.opacity(0.02)
+            Color.primary.opacity(0.03)
                 .ignoresSafeArea()
             VStack{
                 Capsule()
@@ -28,7 +29,6 @@ struct LeaderBoardView: View {
                         .bold()
                         .font(.largeTitle)
                         .foregroundColor(.black)
-                        .scaleEffect(1.1)
                         .offset(y: 6)
                 }
                 if CKVM.scores.isEmpty{
@@ -49,43 +49,56 @@ struct LeaderBoardView: View {
                                                     .padding(.leading)
                                                     .font(.largeTitle)
                                                     .scaleEffect(1.5)
+                                                    .offset(y: -9)
                                             } else if place == 2 {
                                                 Text("🥈 ")
                                                     .font(.largeTitle)
                                                     .padding(.leading)
                                                     .scaleEffect(1.5)
+                                                    .offset(y: -9)
                                             } else if place == 3 {
                                                 Text("🥉 ")
                                                     .font(.largeTitle)
                                                     .padding(.leading)
                                                     .scaleEffect(1.5)
+                                                    .offset(y: -9)
                                             } else {
-                                                Text("#" + String(place) + ":")
+                                                Text(String(place) + ":")
+                                                    .italic()
                                                     .bold()
                                                     .font(.title)
                                                     .foregroundColor(.black)
-                                                    .padding(.leading)
+                                                    .frame(maxWidth: .infinity, alignment: .center)
+                                                    .position(x: 33, y: 45)
                                             }
                                             Spacer()
-                                            Text(String(score.bestScore))
-                                                .bold()
-                                                .italic()
-                                                .font(.largeTitle)
-                                                .foregroundColor(.black)
-                                                .scaleEffect(1)
-                                                .padding(.trailing, 30)
                                         }
+                                        .offset(x: deviceWidth * 0.19, y: -15)
                                         AnyView(character.character)
-                                            .scaleEffect(1.2)
                                             .padding(.horizontal)
                                             .frame(width: 95)
-                                            .position(x: 115, y: 50)
+                                            .position(x: deviceWidth * 0.18, y: 50)
+                                            .scaleEffect(1.2)
+                                        Text("UsernamesComing")
+                                            .bold()
+                                            .italic()
+                                            .font(.title3)
+                                            .foregroundColor(.black)
+                                            .offset(x: deviceWidth * 0.24, y: 21)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                        Text(String(score.bestScore))
+                                            .bold()
+                                            .italic()
+                                            .font(.title)
+                                            .foregroundColor(.black)
+                                            .position(x: deviceWidth - 75, y: 30)
+                                            .frame(maxWidth: .infinity, alignment: .center)
                                     }
                                 }
                                 .frame(height: 100)
                                 .background(.white)
                                 .cornerRadius(20)
-                                .shadow(radius: 3, y: 2)
+                                .shadow(radius: 2, y:2)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
                                         .stroke(score.record.recordID == recordID ? Color.black : .clear, lineWidth: 3)

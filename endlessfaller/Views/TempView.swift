@@ -9,43 +9,54 @@ import SwiftUI
 import CloudKit
 import Combine
 
-struct TempView: View {
-    @StateObject private var vm = CloudKitCrud()
+struct FrameAdjustingContainer<Content: View>: View {
+    @Binding var frameWidth: CGFloat
+    @Binding var frameHeight: CGFloat
+    let content: () -> Content
     
-    private var header: some View {
-        Text("CloudKit CRUD")
-            .font(.largeTitle)
-            .underline()
-    }
-    
-    var body: some View {
-        NavigationView {
+    var body: some View  {
+        ZStack {
+            content()
+                .frame(width: frameWidth, height: frameHeight)
+                .border(Color.red, width: 1)
+            
             VStack {
-                header
-                
-                List {
-                    ForEach(vm.scores, id: \.self) { score in
-                        HStack {
-                            Text(score.characterID)
-                            Spacer()
-                            Text(String(score.bestScore))
-                        }
-                        .onTapGesture {
-                            vm.updateRecord(newScore: 333, newCharacterID: "Tester")
-                            print("Record:")
-                            print(score.record)
-                        }
-                    }
-                    .onDelete(perform: vm.deleteItem)
-                }
-                .listStyle(PlainListStyle())
-                .refreshable {
-                    vm.fetchItems()
-                }
+                Spacer()
+                Slider(value: $frameWidth, in: 50...300)
+                Slider(value: $frameHeight, in: 50...600)
             }
             .padding()
-            .navigationBarHidden(true)
         }
+    }
+}
+
+struct Example3: View {
+    @State private var frameWidth: CGFloat = 175
+    @State private var frameHeight: CGFloat = 175
+    @State private var textSize = CGSize(width: 200, height: 100)
+    
+    var body: some View {
+        FrameAdjustingContainer(frameWidth: $frameWidth, frameHeight: $frameHeight) {
+            Text("text")
+                .font(.system(size: 300))  // Bigger font size then final rendering
+                .fixedSize() // Prevents text truncating
+                .background(
+                    GeometryReader { (geo) -> Color in
+                        DispatchQueue.main.async {  // hack for modifying state during view rendering.
+                            textSize = geo.size
+                        }
+                        return Color.clear
+                    }
+                )
+                .border(Color.blue, width: 1)
+                .scaleEffect(min(frameWidth / textSize.width, frameHeight / textSize.height))  // making view smaller to fit the frame.
+        }
+    }
+}
+
+struct TempView: View {
+    var body: some View {
+        Example3()
     }
 }
 

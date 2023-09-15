@@ -402,8 +402,8 @@ struct RoundedAndShadowButtonStyle:ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .compositingGroup()
-            .scaleEffect(configuration.isPressed ? 0.9 : 1)
-            .animation(.linear(duration: 0.1), value: configuration.isPressed)
+            .scaleEffect(configuration.isPressed ? 0.85 : 1)
+            .animation(.linear(duration: 0.06), value: configuration.isPressed)
     }
 }
 

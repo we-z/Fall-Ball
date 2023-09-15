@@ -75,9 +75,9 @@ struct ContentView: View {
         gameOver = true
         currentScore = highestScoreInGame
         if currentScore > bestScore {
-            bestScore = currentScore
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
+                bestScore = currentScore
                 CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             }
         }
