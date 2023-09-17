@@ -11,6 +11,7 @@ import CloudKit
 struct LeaderBoardView: View {
     let deviceWidth = UIScreen.main.bounds.width
     @StateObject var model = AppModel()
+    @StateObject var gameCenter = GameCenter.shared
     @StateObject private var CKVM = CloudKitCrud()
     @State var place = 1
     @State var recordID: CKRecord.ID? = nil
@@ -89,9 +90,9 @@ struct LeaderBoardView: View {
                                         Text(String(score.bestScore))
                                             .bold()
                                             .italic()
-                                            .font(.title)
+                                            .font(.largeTitle)
                                             .foregroundColor(.black)
-                                            .position(x: deviceWidth - 75, y: 30)
+                                            .position(x: deviceWidth - 80, y: 30)
                                             .frame(maxWidth: .infinity, alignment: .center)
                                     }
                                 }
