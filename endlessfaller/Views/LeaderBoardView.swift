@@ -117,6 +117,7 @@ struct LeaderBoardView: View {
             }
         }
         .onAppear{
+            gameCenter.authenticateLocalPlayer(presentingVC: (UIApplication.shared.windows.first?.rootViewController)!)
             print("LeaderBoardView Appeared")
             CKVM.fetchItems()
             if let localRecord = loadLocalRecord() {

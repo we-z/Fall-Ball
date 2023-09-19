@@ -25,6 +25,7 @@ struct ContentView: View {
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
     @StateObject private var CKVM = CloudKitCrud()
+    @StateObject private var timerManager = TimerManager()
     @State var score: Int = 0
     @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
@@ -59,13 +60,8 @@ struct ContentView: View {
             print("Error setting up audio session: \(error)")
         }
     }
-    
-    func dropCircle() {
-        withAnimation(
-            Animation.linear(duration: speed)
-        ) {
-            isAnimating = true
-        }
+    func dropBall() {
+        timerManager.startTimer(speed: speed)
     }
     
     func gameOverOperations() {
@@ -332,7 +328,7 @@ struct ContentView: View {
                                             AnyView(character.character)
                                         }
                                     }
-                                    .position(x: deviceWidth/2, y: isAnimating ? deviceHeight - 23 : -27)
+                                    .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
                                     .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
                                         levelYPosition = newYPosition
                                     }
@@ -367,8 +363,8 @@ struct ContentView: View {
                         if newValue < difficulty {
                             speed = speed / 2
                         }
-                        isAnimating = false
-                        dropCircle()
+
+                        dropBall()
                     }
                     impactMed.impactOccurred()
                     if currentIndex > bestScore && currentIndex > 3 {

@@ -45,7 +45,7 @@ class GameCenter: ObservableObject {
     
     // method for loading scores from leaderboard
     
-    func loadScores(finished: @escaping ([(playerName: String, score: Int)]?)->()) {
+    func loadScores(finished: @escaping ([(playerName: String, score: Int, ballID: String)]?)->()) {
         // fetch leaderboard from Game Center
         fetchLeaderboard { [weak self] in
             if let localLeaderboard = self?.leaderboard {
@@ -58,12 +58,13 @@ class GameCenter: ObservableObject {
                         print(error!)
                     } else if scores != nil {
                         // assemble leaderboard info
-                        var leaderBoardInfo: [(playerName: String, score: Int)] = []
+                        var leaderBoardInfo: [(playerName: String, score: Int, ballID: String)] = []
                         for score in scores! {
                             let name = score.player.alias
                             let userScore = Int(score.value)
-                            //let ballID = score.player.guestIdentifier
-                            leaderBoardInfo.append((playerName: name, score: userScore))
+                            if let userballID = score.player.accessibilityLabel{
+                                leaderBoardInfo.append((playerName: name, score: userScore, ballID: userballID))
+                            }
                         }
                         self?.scores = leaderBoardInfo
                         // call finished method
@@ -76,11 +77,12 @@ class GameCenter: ObservableObject {
     
     // update local player score
     
-    func updateScore(with value: Int) {
+    func updateScore(with value: Int, ballID: String) {
         // take score
         let score = GKScore(leaderboardIdentifier: leaderboardID)
         // set value for score
         score.value = Int64(value)
+        score.player.accessibilityLabel = ballID
         // push score to Game Center
         GKScore.report([score]) { (error) in
             // check for errors
@@ -96,9 +98,9 @@ class GameCenter: ObservableObject {
     
     // leaderboard ID from iTunes Connect
     
-    private let leaderboardID = "com.example.top"
+    private let leaderboardID = "fallball.leaderboard"
     
-    private var scores: [(playerName: String, score: Int)]?
+    private var scores: [(playerName: String, score: Int, ballID: String)]?
  
     private var leaderboard: GKLeaderboard?
     

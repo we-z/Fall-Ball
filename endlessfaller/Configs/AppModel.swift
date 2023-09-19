@@ -412,3 +412,40 @@ extension ButtonStyle where Self == RoundedAndShadowButtonStyle {
         RoundedAndShadowButtonStyle()
     }
 }
+
+class TimerManager: ObservableObject {
+    @Published var ballYPosition: CGFloat = -23
+    private var startTime: CFTimeInterval = 0.0
+    private var displayLink: CADisplayLink?
+    var ballSpeed: Double = 0.0
+    
+    func startTimer(speed: Double) {
+        // Invalidate the existing display link
+        displayLink?.invalidate()
+        
+        ballSpeed = speed
+        
+        // Create a new display link
+        displayLink = CADisplayLink(target: self, selector: #selector(update(_:)))
+        displayLink?.add(to: .current, forMode: .common)
+        
+        // Set the start time
+        startTime = CACurrentMediaTime()
+    }
+    
+    @objc func update(_ displayLink: CADisplayLink) {
+        let currentTime = CACurrentMediaTime()
+        let elapsedTime = currentTime - startTime
+        
+        // Calculate the target duration (2 seconds)
+        let targetDuration: CFTimeInterval = ballSpeed
+        
+        // Calculate the ball position based on elapsed time and speed
+        if elapsedTime < targetDuration {
+            ballYPosition = CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height - 23)
+        } else {
+            ballYPosition = UIScreen.main.bounds.height - 23
+            displayLink.invalidate()
+        }
+    }
+}

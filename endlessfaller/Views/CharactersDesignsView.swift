@@ -53,7 +53,7 @@ struct FallBallLaughBall: View {
             .offset(y:0)
             Circle()
                 .background(.white)
-                .foregroundColor(.pink.opacity(0.75))
+                .foregroundColor(.pink.opacity(0.6))
                 .mask{
                     Rectangle()
                         .frame(height: 14)
@@ -63,9 +63,9 @@ struct FallBallLaughBall: View {
                 .overlay{
                     Rectangle()
                         .foregroundColor(.white)
-                        .frame(width: 15, height: 5)
+                        .frame(width: 18, height: 6)
                         .roundedCorner(9, corners: [.bottomLeft, .bottomRight])
-                        .offset(y:5.5)
+                        .offset(y:6)
                 }
                 .mask{
                     Circle()

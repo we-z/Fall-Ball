@@ -6,57 +6,60 @@
 //
 
 import SwiftUI
-import CloudKit
-import Combine
+import VTabView
+import QuartzCore
 
-struct FrameAdjustingContainer<Content: View>: View {
-    @Binding var frameWidth: CGFloat
-    @Binding var frameHeight: CGFloat
-    let content: () -> Content
-    
-    var body: some View  {
-        ZStack {
-            content()
-                .frame(width: frameWidth, height: frameHeight)
-                .border(Color.red, width: 1)
-            
-            VStack {
-                Spacer()
-                Slider(value: $frameWidth, in: 50...300)
-                Slider(value: $frameHeight, in: 50...600)
-            }
-            .padding()
-        }
-    }
-}
-
-struct Example3: View {
-    @State private var frameWidth: CGFloat = 175
-    @State private var frameHeight: CGFloat = 175
-    @State private var textSize = CGSize(width: 200, height: 100)
-    
-    var body: some View {
-        FrameAdjustingContainer(frameWidth: $frameWidth, frameHeight: $frameHeight) {
-            Text("text")
-                .font(.system(size: 300))  // Bigger font size then final rendering
-                .fixedSize() // Prevents text truncating
-                .background(
-                    GeometryReader { (geo) -> Color in
-                        DispatchQueue.main.async {  // hack for modifying state during view rendering.
-                            textSize = geo.size
-                        }
-                        return Color.clear
-                    }
-                )
-                .border(Color.blue, width: 1)
-                .scaleEffect(min(frameWidth / textSize.width, frameHeight / textSize.height))  // making view smaller to fit the frame.
-        }
-    }
-}
 
 struct TempView: View {
+    @StateObject private var timerManager = TimerManager()
+    @State var currentIndex: Int = 0
+    @State var highestScoreInGame: Int = 0
+    @State var colors: [Color] = (1...levels).map { _ in
+        Color(red: .random(in: 0.4...1), green: .random(in: 0.4...1), blue: .random(in: 0.4...1))
+    }
+    
+    let deviceWidth = UIScreen.main.bounds.width
+    
+    func dropBall() {
+        timerManager.startTimer(speed: 1)
+    }
+    
     var body: some View {
-        Example3()
+        ZStack{
+            ScrollView {
+                ZStack{
+                    VTabView(selection: $currentIndex){
+                        ForEach(colors.indices, id: \.self) { index in
+                            ZStack{
+                                colors[index]
+                                if index == highestScoreInGame{
+                                    WhiteBallView()
+                                        .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
+                                        .allowsHitTesting(false)
+                                }
+                            }
+                        }
+                    }
+                    .frame(
+                        width: deviceWidth,
+                        height: UIScreen.main.bounds.height
+                    )
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .onChange(of: currentIndex) { newValue in
+                        if newValue > highestScoreInGame {
+                            highestScoreInGame = newValue
+                        }
+                        dropBall()
+                    }
+                    Text("\(currentIndex)")
+                        .font(.largeTitle)
+                        .allowsHitTesting(false)
+                        .position(x:50, y: 100)
+                }
+            }
+            .edgesIgnoringSafeArea(.all)
+        }
+        .environmentObject(timerManager)
     }
 }
 
