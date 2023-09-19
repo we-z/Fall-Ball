@@ -11,7 +11,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                FallBallLaughBall()
+                BlackBallView()
                     .padding(40)
                     .scaleEffect(3)
             }

@@ -296,15 +296,15 @@ struct ContentView: View {
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             colors[index]
-                            if currentIndex == 0 && !gameOver {
+                            if currentIndex == 0 && !showWastedScreen {
                                 Instruction()
                                     .scaleEffect(1.5)
                             }
-                            if currentIndex == 1 && !gameOver {
+                            if currentIndex == 1 && !showWastedScreen {
                                 KeepSwiping()
                                     .scaleEffect(1.5)
                             }
-                            if currentIndex == 2 && !gameOver {
+                            if currentIndex == 2 && !showWastedScreen {
                                 SwipeFaster()
                                     .scaleEffect(1.5)
                             }
@@ -334,19 +334,19 @@ struct ContentView: View {
                                     }
                                 }
                             }
-                            if index == 0{
-                                ZStack{
-                                    Rectangle()
-                                        .frame(width: 100, height: 90)
-                                        .foregroundColor(gameOverBackgroundColor)
-                                    PodiumView()
-                                        .foregroundColor(.primary)
-                                        .offset(y: -9)
-                                    
-                                }
-                                .position(x: deviceWidth/2, y: -50)
-                                
-                            }
+//                            if index == 0{
+//                                ZStack{
+//                                    Rectangle()
+//                                        .frame(width: 100, height: 90)
+//                                        .foregroundColor(gameOverBackgroundColor)
+//                                    PodiumView()
+//                                        .foregroundColor(.primary)
+//                                        .offset(y: -9)
+//                                    
+//                                }
+//                                .position(x: deviceWidth/2, y: -50)
+//                                
+//                            }
                         }
                     }
                 }
@@ -363,7 +363,7 @@ struct ContentView: View {
                         if newValue < difficulty {
                             speed = speed / 2
                         }
-
+                        self.timerManager.ballYPosition = -23
                         dropBall()
                     }
                     impactMed.impactOccurred()
