@@ -73,7 +73,6 @@ struct ContentView: View {
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
                 bestScore = currentScore
-                CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             }
         }
         freezeScrolling = true
@@ -92,6 +91,7 @@ struct ContentView: View {
             showWastedScreen = false
             self.currentIndex = -1
             highestScoreInGame = -1
+            CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             timer.invalidate() // Stop the timer after the reset
         }
     }
