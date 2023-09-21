@@ -38,7 +38,7 @@ struct LeaderBoardDataManager: View {
                             Text(String(score.bestScore))
                         }
                         .onTapGesture {
-                            vm.updateRecord(newScore: 333, newCharacterID: "Tester")
+                            //vm.updateRecord(newScore: 333, newCharacterID: "Tester")
                             print("Record:")
                             print(score.record)
                         }

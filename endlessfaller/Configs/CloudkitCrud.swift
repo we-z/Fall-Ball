@@ -12,6 +12,7 @@ import Combine
 
 struct CloudKitScoreModelNames {
     static let name = "name"
+    static let userName = "username"
 }
 
 let recordTypeName = "Leaderboard"
@@ -48,6 +49,7 @@ extension LocalRecord: Codable {
 
 struct ScoreModel: Hashable, CloudKitableProtocol {
     let characterID: String
+    let playerUserName: String
     let bestScore: Int
     let record: CKRecord
     
@@ -55,16 +57,19 @@ struct ScoreModel: Hashable, CloudKitableProtocol {
         guard let name = record[CloudKitScoreModelNames.name] as? String else { return nil }
         self.characterID = name
         let count = record["count"] as? Int
+        let playerusername = record["username"] as? String
         self.bestScore = count ?? 0
         self.record = record
+        self.playerUserName = playerusername ?? "Player" + String(Int.random(in: 100_000_000...999_999_999))
     }
     
-    init?(characterID: String, bestScore: Int?) {
+    init?(characterID: String, bestScore: Int?, userName: String) {
         let record = CKRecord(recordType: recordTypeName)
         record["name"] = characterID
         if let bestScore = bestScore {
             record["count"] = bestScore
         }
+        record["username"] = userName
         self.init(record: record)
     }
 
@@ -83,13 +88,13 @@ class CloudKitCrud: ObservableObject {
     func updateRecord(newScore: Int, newCharacterID: String) {
         guard let localRecord = loadLocalRecord() else {
             print("Local record not found.")
-            addItem(characterID: newCharacterID, score: newScore)
+            //addItem(characterID: newCharacterID, score: newScore)
             return
         }
 
         // Fetch the record from CloudKit using the saved recordID
         CloudKitUtility.fetchRecord(withRecordID: localRecord.recordID) { [weak self] result in
-            switch result {
+            switch result { 
             case .success(let recordToUpdate):
                 // Update the relevant fields of the record
                 recordToUpdate["count"] = newScore
@@ -111,14 +116,14 @@ class CloudKitCrud: ObservableObject {
                 }
 
             case .failure(_):
-                self?.addItem(characterID: newCharacterID, score: newScore)
+                //self?.addItem(characterID: newCharacterID, score: newScore)
                 print("")
             }
         }
     }
     
-    func addItem(characterID: String, score: Int) {
-        guard let newScore = ScoreModel(characterID: characterID, bestScore: score) else { return }
+    func addItem(characterID: String, score: Int, userName: String) {
+        guard let newScore = ScoreModel(characterID: characterID, bestScore: score, userName: userName) else { return }
         CloudKitUtility.update(item: newScore) { [weak self] result in
             self?.saveToLocal(record: newScore.record)
         }

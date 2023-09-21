@@ -31,7 +31,6 @@ struct ContentView: View {
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
     @State var speed: Double = 4
-    @State var isAnimating = false
     @State var gameOver = false
     @State var freezeScrolling = false
     @State var showCharactersMenu = false
