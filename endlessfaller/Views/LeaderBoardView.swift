@@ -94,7 +94,6 @@ struct LeaderBoardView: View {
                     } else {
                         ScrollView(showsIndicators: false){
                             ForEach(Array(CKVM.scores.enumerated()), id: \.1.self) { index, score in
-                                if let character = model.characters.first(where: { $0.characterID == score.characterID }){
                                     let place = index + 1
                                     VStack{
                                         ZStack{
@@ -129,11 +128,17 @@ struct LeaderBoardView: View {
                                                 Spacer()
                                             }
                                             .offset(x: deviceWidth * 0.19, y: -15)
-                                            AnyView(character.character)
-                                                .padding(.horizontal)
-                                                .frame(width: 95)
-                                                .position(x: deviceWidth * 0.18, y: 50)
-                                                .scaleEffect(1.2)
+                                            if let character = model.characters.first(where: { $0.characterID == score.characterID }){
+                                                AnyView(character.character)
+                                                    .padding(.horizontal)
+                                                    .frame(width: 95)
+                                                    .position(x: deviceWidth * 0.18, y: 50)
+                                                    .scaleEffect(1.2)
+                                            } else {
+                                                Image(systemName: "questionmark.circle")
+                                                    .font(.system(size: 55))
+                                                    .position(x: deviceWidth * 0.12, y: 50)
+                                            }
                                             Text(score.playerUserName)
                                                 .bold()
                                                 .italic()
@@ -160,7 +165,6 @@ struct LeaderBoardView: View {
                                     )
                                     .padding(.top, 6)
                                     .padding(.horizontal)
-                                }
                             }
                             .padding(.top)
                         }
