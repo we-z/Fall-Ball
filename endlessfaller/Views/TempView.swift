@@ -11,55 +11,44 @@ import QuartzCore
 
 
 struct TempView: View {
-    @StateObject private var timerManager = TimerManager()
-    @State var currentIndex: Int = 0
-    @State var highestScoreInGame: Int = 0
-    @State var colors: [Color] = (1...levels).map { _ in
-        Color(red: .random(in: 0.4...1), green: .random(in: 0.4...1), blue: .random(in: 0.4...1))
-    }
-    
-    let deviceWidth = UIScreen.main.bounds.width
-    
-    func dropBall() {
-        timerManager.startTimer(speed: 1)
-    }
-    
+    let colors: [Color] = [.red, .green, .blue, .orange, .indigo, .purple]
+    @State private var selectedIndex: Int?
+
     var body: some View {
-        ZStack{
-            ScrollView {
-                ZStack{
-                    VTabView(selection: $currentIndex){
-                        ForEach(colors.indices, id: \.self) { index in
-                            ZStack{
-                                colors[index]
-                                if index == highestScoreInGame{
-                                    WhiteBallView()
-                                        .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
-                                        .allowsHitTesting(false)
-                                }
-                            }
-                        }
+        VStack(alignment: .center) {
+            ScrollViewReader { value in
+                Button ("Move to #8") {
+                    withAnimation {
+                        value.scrollTo(8)
+                        selectedIndex = 8
                     }
-                    .frame(
-                        width: deviceWidth,
-                        height: UIScreen.main.bounds.height
-                    )
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .onChange(of: currentIndex) { newValue in
-                        if newValue > highestScoreInGame {
-                            highestScoreInGame = newValue
-                        }
-                        dropBall()
-                    }
-                    Text("\(currentIndex)")
-                        .font(.largeTitle)
-                        .allowsHitTesting(false)
-                        .position(x:50, y: 100)
                 }
+                ScrollView(.horizontal) {
+                    LazyHStack(spacing: 10) {
+                        ForEach(0...50, id: \.self) { index in
+                            Text("Item \(index)")
+                                .font(.title)
+                                .foregroundStyle(.white)
+                                .frame(width: height(index: index), height: height(index: index)) // frame for selected
+                                .background(colors[index % colors.count])
+                                .cornerRadius(8)
+                                .id(index)
+                                .onTapGesture {
+                                    withAnimation {
+                                        selectedIndex = index
+                                        value.scrollTo(index)
+                                    }
+                                }
+                        }
+                    }
+                }.frame(height: 150)
+                .padding()
             }
-            .edgesIgnoringSafeArea(.all)
         }
-        .environmentObject(timerManager)
+    }
+    
+    func height(index: Int) -> CGFloat {
+        return selectedIndex == index ? 120 : 100
     }
 }
 

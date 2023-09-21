@@ -56,10 +56,10 @@ struct LeaderBoardView: View {
                                     .bold()
                                     .limitInputLength(value: $unserNameTextField, length: 15)
                                     .onAppear {
-                                            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                                                isTextFieldFocused = true
-                                            }
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            isTextFieldFocused = true
                                         }
+                                    }
                                 Button{
                                     myUserName = unserNameTextField
                                     writeUsernameToLeaderboard(userNameToWrite: myUserName)
@@ -92,8 +92,9 @@ struct LeaderBoardView: View {
                             .scaleEffect(2)
                         Spacer()
                     } else {
-                        ScrollView(showsIndicators: false){
-                            ForEach(Array(CKVM.scores.enumerated()), id: \.1.self) { index, score in
+                        ScrollViewReader { value in
+                            ScrollView(showsIndicators: false){
+                                ForEach(Array(CKVM.scores.enumerated()), id: \.1.self) { index, score in
                                     let place = index + 1
                                     VStack{
                                         ZStack{
@@ -153,6 +154,12 @@ struct LeaderBoardView: View {
                                                 .foregroundColor(.black)
                                                 .position(x: deviceWidth - 80, y: 30)
                                                 .frame(maxWidth: .infinity, alignment: .center)
+                                            if score.record.recordID == recordID {
+                                                Text("(You)")
+                                                    .bold()
+                                                    .font(.title2)
+                                                    .offset(y: -21)
+                                            }
                                         }
                                     }
                                     .frame(height: 100)
@@ -162,14 +169,26 @@ struct LeaderBoardView: View {
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
                                             .stroke(score.record.recordID == recordID ? Color.black : .clear, lineWidth: 3)
+                                            .flashing()
                                     )
                                     .padding(.top, 6)
                                     .padding(.horizontal)
+                                    .id(index)
+                                    .onAppear{
+                                        if score.record.recordID == recordID {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                                withAnimation {
+                                                    value.scrollTo(index)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.top)
                             }
-                            .padding(.top)
-                        }
-                        .refreshable {
-                            CKVM.fetchItems()
+                            .refreshable {
+                                CKVM.fetchItems()
+                            }
                         }
                     }
                 }
