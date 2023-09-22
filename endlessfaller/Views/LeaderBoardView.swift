@@ -20,6 +20,7 @@ struct LeaderBoardView: View {
     @AppStorage(userNameKey) var myUserName: String = (UserDefaults.standard.string(forKey: userNameKey) ?? "")
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @FocusState var isTextFieldFocused: Bool
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     func writeUsernameToLeaderboard(userNameToWrite: String) {
         CKVM.addItem(characterID: model.selectedCharacter, score: bestScore, userName: userNameToWrite)
@@ -128,31 +129,31 @@ struct LeaderBoardView: View {
                                                 }
                                                 Spacer()
                                             }
-                                            .offset(x: deviceWidth * 0.19, y: -15)
+                                            .offset(x: idiom == .pad ? deviceWidth * 0.1 : deviceWidth * 0.19, y: -15)
                                             if let character = model.characters.first(where: { $0.characterID == score.characterID }){
                                                 AnyView(character.character)
                                                     .padding(.horizontal)
                                                     .frame(width: 95)
-                                                    .position(x: deviceWidth * 0.18, y: 50)
+                                                    .position(x: idiom == .pad ? deviceWidth * 0.1 : deviceWidth * 0.18, y: 50)
                                                     .scaleEffect(1.2)
                                             } else {
                                                 Image(systemName: "questionmark.circle")
                                                     .font(.system(size: 55))
-                                                    .position(x: deviceWidth * 0.12, y: 50)
+                                                    .position(x: idiom == .pad ? deviceWidth * 0.05 : deviceWidth * 0.12, y: 50)
                                             }
                                             Text(score.playerUserName)
                                                 .bold()
                                                 .italic()
                                                 .font(.title3)
                                                 .foregroundColor(.black)
-                                                .offset(x: deviceWidth * 0.24, y: 21)
+                                                .offset(x: idiom == .pad ? deviceWidth * 0.12 : deviceWidth * 0.24, y: 21)
                                                 .frame(maxWidth: .infinity, alignment: .leading)
                                             Text(String(score.bestScore))
                                                 .bold()
                                                 .italic()
                                                 .font(.largeTitle)
                                                 .foregroundColor(.black)
-                                                .position(x: deviceWidth - 80, y: 30)
+                                                .position(x: idiom == .pad ? deviceWidth * 0.6 : deviceWidth - 80, y: 30)
                                                 .frame(maxWidth: .infinity, alignment: .center)
                                             if score.record.recordID == recordID {
                                                 Text("(You)")
