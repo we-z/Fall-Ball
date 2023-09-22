@@ -83,6 +83,27 @@ struct LeaderBoardView: View {
                                     .foregroundColor(.gray)
                                 Spacer()
                             }
+                            Button{
+                                unserNameTextField = "Player" + String(Int.random(in: 100_000_000...999_999_999))
+                            } label: {
+                                HStack{
+                                    Spacer()
+                                    Text("Random Username")
+                                        .foregroundColor(.primary)
+                                        .bold()
+                                        .italic()
+                                    Spacer()
+                                }
+                                .padding()
+                                .background(.white)
+                                .cornerRadius(15)
+                                .shadow(radius: 3, x: 0,y: 3)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(Color.black , lineWidth: 2)
+                                )
+                                .padding(.horizontal)
+                            }
                         }
                         .padding()
                     }
