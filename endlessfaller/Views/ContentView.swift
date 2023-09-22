@@ -89,7 +89,6 @@ struct ContentView: View {
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
-            currentScore = highestScoreInGame
             showWastedScreen = false
             self.currentIndex = -1
             highestScoreInGame = -1
