@@ -25,7 +25,7 @@ struct ContentView: View {
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
     @StateObject private var CKVM = CloudKitCrud()
-    @StateObject private var timerManager = TimerManager()
+    @ObservedObject private var timerManager = TimerManager()
     @State var score: Int = 0
     @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
@@ -107,7 +107,7 @@ struct ContentView: View {
                         Spacer()
                         if !gameOver {
                             VStack{
-                                Text("Swipe up \nto play")
+                                Text("Swipe up \nto play!")
                                     .bold()
                                     .italic()
                                     .multilineTextAlignment(.center)
@@ -118,7 +118,7 @@ struct ContentView: View {
                             }
                             .font(.largeTitle)
                             .scaleEffect(1.5)
-                            .flashing()
+//                            .flashing()
                             .tag(-1)
                             .offset(y: deviceHeight * 0.08)
                         } else {
@@ -334,19 +334,19 @@ struct ContentView: View {
                                     }
                                 }
                             }
-//                            if index == 0{
-//                                ZStack{
-//                                    Rectangle()
-//                                        .frame(width: 100, height: 90)
-//                                        .foregroundColor(gameOverBackgroundColor)
-//                                    PodiumView()
-//                                        .foregroundColor(.primary)
-//                                        .offset(y: -9)
-//                                    
-//                                }
-//                                .position(x: deviceWidth/2, y: -50)
-//                                
-//                            }
+                            if index == 0{
+                                ZStack{
+                                    Rectangle()
+                                        .frame(width: 100, height: 90)
+                                        .foregroundColor(gameOverBackgroundColor)
+                                    PodiumView()
+                                        .foregroundColor(.primary)
+                                        .offset(y: -9)
+                                    
+                                }
+                                .position(x: deviceWidth/2, y: -50)
+                                
+                            }
                         }
                     }
                 }
@@ -374,14 +374,14 @@ struct ContentView: View {
                         if currentIndex <= newValue && currentIndex != -1 {
                             gameShouldBeOver = true
                             if levelYPosition >= 0 {
-                                //gameOverOperations()
+                                gameOverOperations()
                             }
                         }
                     }
                 }
                 .onChange(of: levelYPosition) { yPosition in
                     if yPosition >= 0 && gameShouldBeOver {
-                        //gameOverOperations()
+                        gameOverOperations()
                     }
                 }
                 if currentIndex >= 0 {

@@ -154,7 +154,7 @@ struct LeaderBoardView: View {
                             if myUserName.isEmpty {
                                 VStack{
                                     HStack{
-                                        TextField("Username", text: $unserNameTextField, axis: .vertical)
+                                        TextField("Username", text: $unserNameTextField, axis: .horizontal)
                                             .textFieldStyle(.plain)
                                             .focused($isTextFieldFocused)
                                             .italic()

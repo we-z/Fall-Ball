@@ -811,7 +811,7 @@ struct KeepSwiping: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
-        .flashing()
+        //.flashing()
     }
 }
 
@@ -898,7 +898,7 @@ struct Instruction: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
-        .flashing()
+        //.flashing()
     }
 }
 
@@ -915,7 +915,7 @@ struct SwipeFaster: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
-        .flashing()
+        //.flashing()
     }
 }
 
