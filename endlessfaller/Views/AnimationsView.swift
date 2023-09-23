@@ -10,12 +10,7 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        VStack{
-            TearsOfJoyView()
-                .scaleEffect(3.5)
-                .padding(90)
-            Spacer()
-        }
+        CelebrationEffect()
     }
 }
 
@@ -279,7 +274,7 @@ struct  CelebrationEffect: View {
 
     @State private var acceleration1 = false
     @State private var emitterSize = 0
-    @State private var birth = 1
+    @State private var birth = 2
 
     var body: some View {
         ZStack {
@@ -294,21 +289,21 @@ struct  CelebrationEffect: View {
                             .scaleEffect(CGFloat(emitterSize))
                             .offset(y: CGFloat(acceleration1 ? 300 : 5))
                             .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeInOut(duration: 2).repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeInOut(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
                             .opacity(Double(birth))
-                            .animation(Animation.easeOut.delay(1.5).repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeOut.delay(1.5).repeatCount(3, autoreverses: false), value: acceleration1)
 
                         Capsule()
-                            .frame(width: 4, height: 8)
+                            .frame(width: 6, height: 12)
                             .foregroundColor(.orange)
                             .hueRotation(.degrees(Double(item) *  30))
                             .blendMode(.exclusion)
                             .scaleEffect(CGFloat(emitterSize))
                             .offset(y: CGFloat(acceleration1 ? 300 : 5))
                             .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeOut(duration: 2).repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeOut(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
                             .opacity(Double(birth))
-                            .animation(Animation.easeIn.delay(1.5).repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeIn.delay(1.5).repeatCount(3, autoreverses: false), value: acceleration1)
 
                         Capsule()
                             .frame(width: 6, height: 12)
@@ -318,21 +313,21 @@ struct  CelebrationEffect: View {
                             .scaleEffect(CGFloat(emitterSize))
                             .offset(y: CGFloat(acceleration1 ? 300 : 5))
                             .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeIn(duration: 2).repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeIn(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
                             .opacity(Double(birth))
-                            .animation(Animation.easeInOut.delay(1.5).repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeInOut.delay(1.5).repeatCount(3, autoreverses: false), value: acceleration1)
 
                         Capsule()
-                            .frame(width: 4, height: 8)
+                            .frame(width: 6, height: 12)
                             .foregroundColor(.red)
                             .hueRotation(.degrees(Double(item) *  30))
                             .blendMode(.exclusion)
                             .scaleEffect(CGFloat(emitterSize))
                             .offset(y: CGFloat(acceleration1 ? 300 : 5))
                             .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeOut(duration: 2).repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeOut(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
                             .opacity(Double(birth))
-                            .animation(Animation.easeIn.repeatCount(2, autoreverses: false), value: acceleration1)
+                            .animation(Animation.easeIn.repeatCount(3, autoreverses: false), value: acceleration1)
                     }
 
             }

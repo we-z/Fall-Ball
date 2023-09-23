@@ -374,14 +374,14 @@ struct ContentView: View {
                         if currentIndex <= newValue && currentIndex != -1 {
                             gameShouldBeOver = true
                             if levelYPosition >= 0 {
-                                gameOverOperations()
+                                //gameOverOperations()
                             }
                         }
                     }
                 }
                 .onChange(of: levelYPosition) { yPosition in
                     if yPosition >= 0 && gameShouldBeOver {
-                        gameOverOperations()
+                        //gameOverOperations()
                     }
                 }
                 if currentIndex >= 0 {
@@ -409,10 +409,6 @@ struct ContentView: View {
                 } else{
                     if !showNewBestScore {
                         
-                        if currentIndex > 21 && currentIndex < 33 {
-                            KeepGoing()
-                        }
-                        
                         if currentIndex > 100 && currentIndex < 115 {
                             YourGood()
                         }
@@ -426,10 +422,12 @@ struct ContentView: View {
                         }
                         
                     } else {
-                        CelebrationEffect()
                         NewBestScore()
                     }
-                    if currentIndex > 315 {
+                    if currentIndex > 10 {
+                        CelebrationEffect()
+                    }
+                    if currentIndex > 40 {
                         VStack{
                             Spacer()
                             HStack{
@@ -438,12 +436,12 @@ struct ContentView: View {
                             }
                         }
                     }
-                    if currentIndex > 115 {
+                    if currentIndex > 20 {
                         ReactionsView()
                             .offset(y: 70)
                     }
                     
-                    if currentIndex > 215 {
+                    if currentIndex > 60 {
                         VStack{
                             Spacer()
                             HStack{
