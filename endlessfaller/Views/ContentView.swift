@@ -197,7 +197,7 @@ struct ContentView: View {
 
                                 }
                                 VStack{
-                                    Text("Swipe up to \nplay again")
+                                    Text("Swipe up to \nplay again!")
                                         .bold()
                                         .italic()
                                         .multilineTextAlignment(.center)

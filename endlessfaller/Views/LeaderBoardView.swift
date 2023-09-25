@@ -8,7 +8,7 @@
 import SwiftUI
 import CloudKit
 
-let userNameKey = "myUserName"
+let userNameKey = "myUserNameTest5"
 
 struct LeaderBoardView: View {
     let deviceWidth = UIScreen.main.bounds.width
@@ -165,16 +165,8 @@ struct LeaderBoardView: View {
                                                     isTextFieldFocused = true
                                                 }
                                             }
-                                        Button{
-                                            myUserName = unserNameTextField
-                                            writeUsernameToLeaderboard(userNameToWrite: myUserName)
-                                        } label: {
-                                            Image(systemName: "checkmark.circle")
-                                                .foregroundColor(unserNameTextField.count < 4 ? .gray : .black)
-                                        }
-                                        .disabled(unserNameTextField.count < 3)
                                     }
-                                    .font(.title2)
+                                    .font(.title)
                                     .padding(.vertical, 18)
                                     .padding(.horizontal)
                                     .background{
@@ -184,30 +176,52 @@ struct LeaderBoardView: View {
                                     }
                                     HStack{
                                         Text("Your username must be between 3 and 15 characters in length.")
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(.black)
                                         Spacer()
                                     }
-                                    Button{
-                                        unserNameTextField = "Player" + String(Int.random(in: 100_000_000...999_999_999))
-                                    } label: {
-                                        HStack{
-                                            Spacer()
-                                            Text("Random Username")
-                                                .foregroundColor(.primary)
-                                                .bold()
-                                                .italic()
-                                            Spacer()
+                                        Button{
+                                            if unserNameTextField.count > 3 {
+                                                myUserName = unserNameTextField
+                                                writeUsernameToLeaderboard(userNameToWrite: myUserName)
+                                            }
+                                        } label: {
+                                            HStack{
+                                                Spacer()
+                                                Text("Confirm!")
+                                                    .foregroundColor(.white)
+                                                    .bold()
+                                                    .italic()
+                                                Spacer()
+                                            }
+                                            .padding()
+                                            .background(.black)
+                                            .cornerRadius(15)
+                                            .shadow(radius: 3, x: 0,y: 3)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(Color.black , lineWidth: 2)
+                                            )
                                         }
-                                        .padding()
-                                        .background(.white)
-                                        .cornerRadius(15)
-                                        .shadow(radius: 3, x: 0,y: 3)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .stroke(Color.black , lineWidth: 2)
-                                        )
-                                        .padding(.horizontal)
-                                    }
+                                        Button{
+                                            unserNameTextField = "Player" + String(Int.random(in: 100_000_000...999_999_999))
+                                        } label: {
+                                            HStack{
+                                                Spacer()
+                                                Text("Random Username")
+                                                    .foregroundColor(.primary)
+                                                    .bold()
+                                                    .italic()
+                                                Spacer()
+                                            }
+                                            .padding()
+                                            .background(.white)
+                                            .cornerRadius(15)
+                                            .shadow(radius: 3, x: 0,y: 3)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(Color.black , lineWidth: 2)
+                                            )
+                                        }
                                 }
                                 .padding()
                             }
