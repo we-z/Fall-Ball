@@ -13,38 +13,206 @@ import QuartzCore
 struct TempView: View {
     let colors: [Color] = [.red, .green, .blue, .orange, .indigo, .purple]
     @State private var selectedIndex: Int?
+    @State var backgroundColor = Color.purple
+    @State var selectedLeaderboard = 0
 
     var body: some View {
-        VStack(alignment: .center) {
-            ScrollViewReader { value in
-                Button ("Move to #8") {
-                    withAnimation {
-                        value.scrollTo(8)
-                        selectedIndex = 8
+        ZStack{
+            backgroundColor
+                .overlay(.black.opacity(0.1))
+            GeometryReader { g in
+                ZStack{
+                    backgroundColor
+                        .overlay(.black.opacity(0.5))
+                    VStack{
+                        HStack{
+                            Button {
+                                withAnimation{
+                                    self.selectedLeaderboard = 0
+                                }
+                            } label: {
+                                Text("TODAY")
+                                    .opacity(selectedLeaderboard == 0 ? 1 : 0.3)
+                                    .padding(.leading)
+                            }
+                            Button {
+                                withAnimation{
+                                    self.selectedLeaderboard = 1
+                                }
+                            } label: {
+                                
+                                Text("ALL TIME")
+                                    .opacity(selectedLeaderboard == 1 ? 1 : 0.3)
+                                    .padding(.leading)
+                            }
+                        }
+                        .foregroundColor(.white)
+                        .font(.title3)
+                        .bold()
+                        .italic()
+                        .padding(.top, 90)
+                        TabView(selection: $selectedLeaderboard){
+                            ScrollView(showsIndicators: false) {
+                                HStack{
+                                    VStack{
+                                        Circle()
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal)
+                                            .overlay{
+                                                Text("🥈")
+                                                    .font(.largeTitle)
+                                                    .offset(y:50)
+                                            }
+                                        
+                                        Text("-")
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .italic()
+                                    }
+                                    .offset(y: 40)
+                                    VStack{
+                                        Circle()
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal)
+                                            .overlay{
+                                                Text("🥇")
+                                                    .font(.largeTitle)
+                                                    .offset(y:50)
+                                                Text("👑")
+                                                    .font(.largeTitle)
+                                                    .offset(y:-50)
+                                            }
+                                        
+                                        Text("-")
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .italic()
+                                    }
+                                    VStack{
+                                        Circle()
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal)
+                                            .overlay{
+                                                Text("🥉")
+                                                    .font(.largeTitle)
+                                                    .offset(y:50)
+                                            }
+                                        
+                                        Text("-")
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .italic()
+                                    }
+                                    .offset(y: 40)
+                                }.offset(y: 20).padding(.bottom, 30)
+                                List {
+                                    ForEach(4...12, id: \.self) { num in
+                                        ZStack{
+                                            HStack{
+                                                Text("\(num)")
+                                                    .bold()
+                                                    .italic()
+                                                Spacer()
+                                                Text("-")
+                                                    .bold()
+                                                    .italic()
+                                            }
+                                            WhiteBallView()
+                                                .position(x: 60, y: 30)
+                                        }
+                                        .listRowBackground(backgroundColor.overlay(.black.opacity(0.15)))
+                                    }
+                                    
+                                }
+                                .allowsHitTesting(false)
+                                .frame(width: g.size.width, height: 700, alignment: .center)
+                                .scrollContentBackground(.hidden)
+                            }
+                            .tag(0)
+                            ScrollView(showsIndicators: false) {
+                                HStack{
+                                    VStack{
+                                        Circle()
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal)
+                                            .overlay{
+                                                Text("🥈")
+                                                    .font(.largeTitle)
+                                                    .offset(y:50)
+                                            }
+                                        
+                                        Text("-")
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .italic()
+                                    }
+                                    .offset(y: 40)
+                                    VStack{
+                                        Circle()
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal)
+                                            .overlay{
+                                                Text("🥇")
+                                                    .font(.largeTitle)
+                                                    .offset(y:50)
+                                                Text("👑")
+                                                    .font(.largeTitle)
+                                                    .offset(y:-50)
+                                            }
+                                        
+                                        Text("-")
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .italic()
+                                    }
+                                    VStack{
+                                        Circle()
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal)
+                                            .overlay{
+                                                Text("🥉")
+                                                    .font(.largeTitle)
+                                                    .offset(y:50)
+                                            }
+                                        
+                                        Text("-")
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .italic()
+                                    }
+                                    .offset(y: 40)
+                                }.offset(y: 20).padding(.bottom, 30)
+                                List {
+                                    ForEach(4...50, id: \.self) { num in
+                                        ZStack{
+                                            HStack{
+                                                Text("\(num)")
+                                                    .bold()
+                                                    .italic()
+                                                Spacer()
+                                                Text("-")
+                                                    .bold()
+                                                    .italic()
+                                            }
+                                            WhiteBallView()
+                                                .position(x: 60, y: 30)
+                                        }
+                                        .listRowBackground(backgroundColor.overlay(.black.opacity(0.15)))
+                                    }
+                                    
+                                }
+                                .allowsHitTesting(false)
+                                .frame(width: g.size.width, height: 3300, alignment: .center)
+                                .scrollContentBackground(.hidden)
+                            }
+                            .tag(1)
+                        }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     }
                 }
-                ScrollView(.horizontal) {
-                    LazyHStack(spacing: 10) {
-                        ForEach(0...50, id: \.self) { index in
-                            Text("Item \(index)")
-                                .font(.title)
-                                .foregroundStyle(.white)
-                                .frame(width: height(index: index), height: height(index: index)) // frame for selected
-                                .background(colors[index % colors.count])
-                                .cornerRadius(8)
-                                .id(index)
-                                .onTapGesture {
-                                    withAnimation {
-                                        selectedIndex = index
-                                        value.scrollTo(index)
-                                    }
-                                }
-                        }
-                    }
-                }.frame(height: 150)
-                .padding()
             }
         }
+        .ignoresSafeArea()
     }
     
     func height(index: Int) -> CGFloat {

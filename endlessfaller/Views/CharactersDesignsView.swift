@@ -6,17 +6,40 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
                 BlackBallView()
-                    .padding(40)
-                    .scaleEffect(3)
+                ObamaView()
+                    .padding(30)
+                WhiteBallView()
             }
             Spacer()
         }
+    }
+}
+
+struct ObamaSpiningView: View {
+    var body: some View {
+        AnimatedImage(name: "obama-ball-spining.gif")
+            .frame(width: 20, height: 20)
+            .scaleEffect(0.3)
+            .mask{
+                Circle()
+                    .frame(width: 46, height: 46)
+            }
+            .allowsHitTesting(false)
+    }
+}
+
+struct ObamaView: View {
+    var body: some View {
+        Image("obama-ball")
+            .resizable()
+            .frame(width: 90, height: 90)
     }
 }
 

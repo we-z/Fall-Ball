@@ -7,8 +7,7 @@
 
 import SwiftUI
 import CloudKit
-
-let userNameKey = "myUserNameTest5"
+let userNameKey = "myUserName"
 
 struct LeaderBoardView: View {
     let deviceWidth = UIScreen.main.bounds.width

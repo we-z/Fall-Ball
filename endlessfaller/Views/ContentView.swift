@@ -26,6 +26,7 @@ struct ContentView: View {
     @StateObject var appModel = AppModel()
     @StateObject private var CKVM = CloudKitCrud()
     @ObservedObject private var timerManager = TimerManager()
+    @ObservedObject var gameCenter = GameCenter()
     @State var score: Int = 0
     @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
@@ -92,7 +93,11 @@ struct ContentView: View {
             showWastedScreen = false
             self.currentIndex = -1
             highestScoreInGame = -1
-            CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
+            //CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
+            if let ballIndex = appModel.characters.firstIndex(where: { $0.characterID == appModel.selectedCharacter}) {
+                print("ballIndex to be updated \(ballIndex)")
+                gameCenter.updateScore(newScore: bestScore, ballID: ballIndex)
+            }
             timer.invalidate() // Stop the timer after the reset
         }
     }
@@ -118,7 +123,6 @@ struct ContentView: View {
                             }
                             .font(.largeTitle)
                             .scaleEffect(1.5)
-//                            .flashing()
                             .tag(-1)
                             .offset(y: deviceHeight * 0.08)
                         } else {
@@ -291,6 +295,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    
                     
                     .background(gameOverBackgroundColor)
                     ForEach(colors.indices, id: \.self) { index in
@@ -469,10 +474,10 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: self.$showCharactersMenu){
-            CharactersMenuView()
+            CharactersMenuView(backgroundColor: $gameOverBackgroundColor)
         }
         .sheet(isPresented: self.$showLeaderBoard){
-            LeaderBoardView()
+            GameCenterLeaderboardView(backgroundColor: $gameOverBackgroundColor)
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)

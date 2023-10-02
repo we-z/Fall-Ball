@@ -9,13 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Color.white
+            VStack{
+                Text("Swipe up\nto play!")
+                    .bold()
+                    .italic()
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.black)
+                    .padding()
+                Image(systemName: "arrow.up")
+                    .foregroundColor(.black)
+            }
+            .font(.title)
+                
         }
         .padding()
+        .ignoresSafeArea()
     }
 }
 

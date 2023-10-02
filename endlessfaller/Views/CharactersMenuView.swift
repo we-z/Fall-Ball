@@ -13,14 +13,24 @@ struct CharactersMenuView: View {
     @StateObject var model = AppModel()
     @State var isProcessingPurchase = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    @Binding  var backgroundColor: Color
     var body: some View {
         ZStack{
             Color.primary.opacity(0.05)
                 .ignoresSafeArea()
+//            
+//            backgroundColor
+//                
+//                .overlay{
+//                    Color.black.opacity(0.1)
+//                }
+//                .ignoresSafeArea()
+            
             GeometryReader { geometry in
                 VStack{
                     HStack{
                         Text("🌍 Ball Shop 🌍")
+                            .italic()
                             .bold()
                             .font(.largeTitle)
                             .scaleEffect(1.1)
@@ -128,6 +138,6 @@ struct CharactersMenuView: View {
 
 struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {
-        CharactersMenuView()
+        CharactersMenuView(backgroundColor: .constant(Color.pink))
     }
 }
