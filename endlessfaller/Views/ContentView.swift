@@ -188,7 +188,7 @@ struct ContentView: View {
                                         Rectangle()
                                             .foregroundColor(.yellow)
                                             .cornerRadius(30)
-                                            .shadow(color: .black, radius: 3, x: -6, y: 6)
+                                            .shadow(color: .black, radius: 0.1, x: -9, y: 9)
                                             .padding(.horizontal,9)
 //                                        LinearGradient(
 //                                            colors: [.white, .white, .gray.opacity(0.1)],
@@ -223,10 +223,10 @@ struct ContentView: View {
                             ZStack{
                                 HStack{
                                     
-                                    Image(systemName: appModel.mute ? "speaker.slash" : "speaker.wave.2")
-                                        .foregroundColor(.black)
+                                    Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                                        .foregroundColor(.teal)
                                         .font(.largeTitle)
-                                    //.shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
+                                    .shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
                                         .scaleEffect(1.2)
                                         .padding(36)
                                         .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
@@ -253,7 +253,7 @@ struct ContentView: View {
                                     ZStack{
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)
-                                                .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
+                                                .scaleEffect(ballButtonIsPressed ? 0.9 : 1)
                                         }
                                     }
                                     .padding(36)
