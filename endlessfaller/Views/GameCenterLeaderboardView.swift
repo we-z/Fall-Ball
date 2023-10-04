@@ -61,7 +61,7 @@ struct GameCenterLeaderboardView: View {
         let allTimePlayersList = gameCenter.allTimePlayersList
         ZStack{
             backgroundColor
-                .overlay(.black.opacity(0))
+                .overlay(.black.opacity(0.2))
                 .ignoresSafeArea()
             VStack{
                 Capsule()
@@ -74,8 +74,8 @@ struct GameCenterLeaderboardView: View {
                         .bold()
                         .italic()
                         .font(.title)
-                        .foregroundColor(.black)
-//                            .shadow(color: .black, radius: 1, x: -3, y: 3)
+                        .foregroundColor(.white)
+                            .shadow(color: .black, radius: 1, x: -3, y: 3)
                         .offset(y: 6)
                 }
                 VStack{
@@ -86,7 +86,7 @@ struct GameCenterLeaderboardView: View {
                             GeometryReader { g in
                                 ZStack{
                                     backgroundColor
-                                        .overlay(.black.opacity(0))
+                                        .overlay(.black.opacity(0.2))
                                     VStack{
                                         HStack{
                                             Button {
@@ -109,11 +109,11 @@ struct GameCenterLeaderboardView: View {
                                                     .padding(.leading)
                                             }
                                         }
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
                                         .font(.title3)
                                         .bold()
                                         .italic()
-//                                            .shadow(color: .black, radius: 1, x: -3, y: 3)
+                                            .shadow(color: .black, radius: 1, x: -3, y: 3)
                                         TabView(selection: $selectedLeaderboard){
                                             ZStack{
                                                 ScrollView(showsIndicators: false) {
@@ -296,7 +296,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(backgroundColor.overlay(.black.opacity(0.15)))
+                                                            .listRowBackground(backgroundColor)
                                                         }
                                                         
                                                     }
@@ -496,7 +496,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(backgroundColor.overlay(.black.opacity(0.15)))
+                                                            .listRowBackground(backgroundColor)
                                                         }
                                                         
                                                     }
@@ -553,5 +553,5 @@ struct Player: Hashable, Comparable {
 }
 
 #Preview {
-    GameCenterLeaderboardView(backgroundColor: .constant(Color.white))
+    GameCenterLeaderboardView(backgroundColor: .constant(Color.brown))
 }

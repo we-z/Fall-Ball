@@ -124,7 +124,7 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .scaleEffect(1.5)
                             .tag(-1)
-                            .offset(y: deviceHeight * 0.08)
+                            .offset(y: deviceHeight * 0.01)
                         } else {
                             VStack{
                                 Text("Game Over!")
@@ -142,7 +142,7 @@ struct ContentView: View {
                                             HStack{
                                                 ZStack{
                                                     Text("Ball:")
-                                                        .font(.largeTitle)
+                                                        .font(.title)
                                                         .bold()
                                                         .italic()
                                                         .foregroundColor(.black)
@@ -175,7 +175,7 @@ struct ContentView: View {
                                         }
                                         .padding(.trailing, 30)
                                         .padding()
-                                        .font(.largeTitle)
+                                        .font(.title)
                                     }
                                     if let character = appModel.characters.first(where: { $0.characterID == playedCharacter}) {
                                         AnyView(character.character)
@@ -186,17 +186,17 @@ struct ContentView: View {
                                 .background{
                                     ZStack{
                                         Rectangle()
-                                            .foregroundColor(.white)
+                                            .foregroundColor(.yellow)
                                             .cornerRadius(30)
-                                            .shadow(color: .black, radius: 9, x: 0, y: 6)
+                                            .shadow(color: .black, radius: 3, x: -6, y: 6)
                                             .padding(.horizontal,9)
-                                        LinearGradient(
-                                            colors: [.white, .white, .gray.opacity(0.1)],
-                                            startPoint: .top,
-                                            endPoint: .bottom
-                                        )
-                                        .cornerRadius(30)
-                                        .padding(.horizontal,9)
+//                                        LinearGradient(
+//                                            colors: [.white, .white, .gray.opacity(0.1)],
+//                                            startPoint: .top,
+//                                            endPoint: .bottom
+//                                        )
+//                                        .cornerRadius(30)
+//                                        .padding(.horizontal,9)
                                     }
 
                                 }
@@ -214,83 +214,84 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(.primary)
                                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.09))
-                                .scaleEffect(1.2)
                                 .tag(-1)
                             }
                             .offset(y: deviceHeight * 0.09)
                         }
                         Spacer()
-                        ZStack{
-                            HStack{
-
-                            Image(systemName: appModel.mute ? "speaker.slash" : "speaker.wave.2")
-                                .foregroundColor(.black)
-                                .font(.largeTitle)
-                                //.shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
-                                .scaleEffect(1.2)
-                                .padding(36)
-                                .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
-                                .pressEvents {
-                                    // On press
-                                    withAnimation(.easeInOut(duration: 0.1)) {
-                                        muteIsPressed = true
-                                    }
-                                } onRelease: {
-                                    //AudioServicesPlaySystemSound(1305)
-                                    withAnimation {
-                                        muteIsPressed = false
-                                        appModel.mute.toggle()
-                                    }
-                                }
-                                .onChange(of: appModel.mute) { setting in
-                                    if setting == true {
-                                        self.musicPlayer.setVolume(0, fadeDuration: 0)
-                                    } else {
-                                        self.musicPlayer.setVolume(1, fadeDuration: 0)
-                                    }
-                                }
-                                Spacer()
-                                ZStack{
-                                    if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                        AnyView(character.character)
-                                            .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
-                                    }
-                                }
-                                .padding(36)
-                                .pressEvents {
-                                    // On press
-                                    withAnimation(.easeInOut(duration: 0.1)) {
-                                        ballButtonIsPressed = true
-                                    }
-                                } onRelease: {
-                                    withAnimation {
-                                        ballButtonIsPressed = false
-                                        showCharactersMenu = true
-                                    }
-                                }
-                            }
+                        if gameOver {
                             ZStack{
-                                PodiumView()
-                                    .foregroundColor(.primary)
-                                    .padding(36)
-                                    .pressEvents {
-                                        
-                                    } onRelease: {
-                                        withAnimation {
-                                            showLeaderBoard = true
-                                            CKVM.fetchItems()
+                                HStack{
+                                    
+                                    Image(systemName: appModel.mute ? "speaker.slash" : "speaker.wave.2")
+                                        .foregroundColor(.black)
+                                        .font(.largeTitle)
+                                    //.shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
+                                        .scaleEffect(1.2)
+                                        .padding(36)
+                                        .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
+                                        .pressEvents {
+                                            // On press
+                                            withAnimation(.easeInOut(duration: 0.1)) {
+                                                muteIsPressed = true
+                                            }
+                                        } onRelease: {
+                                            //AudioServicesPlaySystemSound(1305)
+                                            withAnimation {
+                                                muteIsPressed = false
+                                                appModel.mute.toggle()
+                                            }
+                                        }
+                                        .onChange(of: appModel.mute) { setting in
+                                            if setting == true {
+                                                self.musicPlayer.setVolume(0, fadeDuration: 0)
+                                            } else {
+                                                self.musicPlayer.setVolume(1, fadeDuration: 0)
+                                            }
+                                        }
+                                    Spacer()
+                                    ZStack{
+                                        if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                                            AnyView(character.character)
+                                                .offset(x: ballButtonIsPressed ? -3 : 0, y: ballButtonIsPressed ? 3 : 0)
                                         }
                                     }
-                                if gameOver && !modelName.contains("iPhone SE") && !gameCenter.todaysPlayersList.isEmpty {
-                                    HStack{
-                                        Image(systemName: "arrow.down.right")
-                                        Text("Top Score: " + String(gameCenter.todaysPlayersList[0].score))
-                                            .bold()
-                                            .italic()
-                                        Image(systemName: "arrow.down.left")
+                                    .padding(36)
+                                    .pressEvents {
+                                        // On press
+                                        withAnimation(.easeInOut(duration: 0.1)) {
+                                            ballButtonIsPressed = true
+                                        }
+                                    } onRelease: {
+                                        withAnimation {
+                                            ballButtonIsPressed = false
+                                            showCharactersMenu = true
+                                        }
                                     }
-                                    .font(idiom == .pad ? .title : .title2)
-                                    .offset(y: -55)
+                                }
+                                ZStack{
+                                    PodiumView()
+                                        .foregroundColor(.primary)
+                                        .padding(36)
+                                        .pressEvents {
+                                            
+                                        } onRelease: {
+                                            withAnimation {
+                                                showLeaderBoard = true
+                                                CKVM.fetchItems()
+                                            }
+                                        }
+                                    if gameOver && !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
+                                        HStack{
+                                            Image(systemName: "arrow.down.right")
+                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
+                                                .bold()
+                                                .italic()
+                                            Image(systemName: "arrow.down.left")
+                                        }
+                                        .font(idiom == .pad ? .title : .title2)
+                                        .offset(y: -55)
+                                    }
                                 }
                             }
                         }
@@ -344,9 +345,11 @@ struct ContentView: View {
                                     Rectangle()
                                         .frame(width: 100, height: 90)
                                         .foregroundColor(gameOverBackgroundColor)
-                                    PodiumView()
-                                        .foregroundColor(.primary)
-                                        .offset(y: -9)
+                                    if gameOver {
+                                        PodiumView()
+                                            .foregroundColor(.primary)
+                                            .offset(y: -9)
+                                    }
                                     
                                 }
                                 .position(x: deviceWidth/2, y: -50)
@@ -509,7 +512,13 @@ struct ContentView: View {
                     print("Error playing audio: \(error)")
                 }
             }
-            CKVM.fetchItems()
+            if !GKLocalPlayer.local.isAuthenticated {
+                gameCenter.authenticateUser()
+            } else if gameCenter.todaysPlayersList.count == 0 {
+                Task{
+                    await gameCenter.loadLeaderboard(source: 1)
+                }
+            }
         }
     }
 }
