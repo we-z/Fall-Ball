@@ -10,7 +10,7 @@ import VTabView
 import AudioToolbox
 import CloudKit
 import AVFoundation
-
+import GameKit
 
 let bestScoreKey = "bestscorekey"
 let levels = 1000
@@ -49,7 +49,7 @@ struct ContentView: View {
     @State var placeOnLeaderBoard = 0
     @State var recordID: CKRecord.ID? = nil
     @State var colors: [Color] = (1...levels).map { _ in
-        Color(red: .random(in: 0.4...1), green: .random(in: 0.4...1), blue: .random(in: 0.4...1))
+        Color(red: .random(in: 0.5...1), green: .random(in: 0.5...1), blue: .random(in: 0.5...1))
     }
     
     init() {
@@ -74,7 +74,7 @@ struct ContentView: View {
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
             DispatchQueue.main.async{
                 bestScore = currentScore
-                CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
+                //CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             }
         }
         freezeScrolling = true
@@ -82,7 +82,7 @@ struct ContentView: View {
         showWastedScreen = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.colors = (1...levels).map { _ in
-                Color(red: .random(in: 0.3...1), green: .random(in: 0.3...1), blue: .random(in: 0.3...1))
+                Color(red: .random(in: 0.5...1), green: .random(in: 0.5...1), blue: .random(in: 0.5...1))
             }
             freezeScrolling = false
             self.speed = 4
@@ -96,7 +96,7 @@ struct ContentView: View {
             //CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             if let ballIndex = appModel.characters.firstIndex(where: { $0.characterID == appModel.selectedCharacter}) {
                 print("ballIndex to be updated \(ballIndex)")
-                gameCenter.updateScore(newScore: bestScore, ballID: ballIndex)
+                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: ballIndex)
             }
             timer.invalidate() // Stop the timer after the reset
         }
@@ -281,10 +281,10 @@ struct ContentView: View {
                                             CKVM.fetchItems()
                                         }
                                     }
-                                if gameOver && !modelName.contains("iPhone SE") && !CKVM.scores.isEmpty {
+                                if gameOver && !modelName.contains("iPhone SE") && !gameCenter.todaysPlayersList.isEmpty {
                                     HStack{
                                         Image(systemName: "arrow.down.right")
-                                        Text("Top Score: " + String(CKVM.scores[0].bestScore))
+                                        Text("Top Score: " + String(gameCenter.todaysPlayersList[0].score))
                                             .bold()
                                             .italic()
                                         Image(systemName: "arrow.down.left")
