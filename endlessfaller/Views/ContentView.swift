@@ -37,10 +37,12 @@ struct ContentView: View {
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
     @State var showNewBestScore = false
+    @State var showPlaqueShare = false
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
     @State var muteIsPressed = false
     @State var ballButtonIsPressed = false
+    @State var plaqueIsPressed = false
     @State var levelYPosition: CGFloat = 0
     @State var gameOverBackgroundColor: Color = .white
     @State var playedCharacter = ""
@@ -74,7 +76,6 @@ struct ContentView: View {
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
             DispatchQueue.main.async{
                 bestScore = currentScore
-                //CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             }
         }
         freezeScrolling = true
@@ -94,9 +95,10 @@ struct ContentView: View {
             self.currentIndex = -1
             highestScoreInGame = -1
             //CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
-            if let ballIndex = appModel.characters.firstIndex(where: { $0.characterID == appModel.selectedCharacter}) {
-                print("ballIndex to be updated \(ballIndex)")
-                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: ballIndex)
+            DispatchQueue.main.async{
+                if let ballIndex = appModel.characters.firstIndex(where: { $0.characterID == appModel.selectedCharacter}) {
+                    gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: ballIndex)
+                }
             }
             timer.invalidate() // Stop the timer after the reset
         }
@@ -133,7 +135,7 @@ struct ContentView: View {
                                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
                                     .foregroundColor(.black)
                                     .scaleEffect(1.8)
-                                    .padding(.bottom, deviceHeight * 0.03)
+                                    .padding(.bottom, deviceHeight * 0.06)
                                 ZStack{
                                     HStack{
                                         VStack(alignment: .trailing){
@@ -188,7 +190,7 @@ struct ContentView: View {
                                         Rectangle()
                                             .foregroundColor(.yellow)
                                             .cornerRadius(30)
-                                            .shadow(color: .black, radius: 0.1, x: -9, y: 9)
+                                            .shadow(color: .black, radius: 0.1, x: plaqueIsPressed ? 0 : -9, y: plaqueIsPressed ? 0 : 9)
                                             .padding(.horizontal,9)
 //                                        LinearGradient(
 //                                            colors: [.white, .white, .gray.opacity(0.1)],
@@ -200,23 +202,36 @@ struct ContentView: View {
                                     }
 
                                 }
+                                .offset(x: plaqueIsPressed ? -9 : 0, y: plaqueIsPressed ? 9 : 0)
+                                .pressEvents {
+                                    // On press
+                                    withAnimation(.easeInOut(duration: 0.1)) {
+                                        plaqueIsPressed = true
+                                    }
+                                } onRelease: {
+                                    withAnimation {
+                                        plaqueIsPressed = false
+                                        showPlaqueShare = true
+                                    }
+                                }
+                                
                                 VStack{
                                     Text("Swipe up to \nplay again!")
                                         .bold()
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
-                                        .padding(.top, deviceHeight * 0.02)
+                                        .padding(.top, deviceHeight * 0.06)
                                         .padding()
                                     Image(systemName: "arrow.up")
                                         .foregroundColor(.black)
                                         //.shadow(color: .black, radius: 3)
                                 }
                                 .foregroundColor(.primary)
-                                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.09))
+                                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
                                 .tag(-1)
                             }
-                            .offset(y: deviceHeight * 0.09)
+                            .offset(y: deviceHeight * 0.07)
                         }
                         Spacer()
                         if gameOver {
@@ -251,9 +266,13 @@ struct ContentView: View {
                                         }
                                     Spacer()
                                     ZStack{
+//                                        Circle()
+//                                            .frame(width: 46)
+//                                            .offset(x:  -2, y: 2)
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)
                                                 .scaleEffect(ballButtonIsPressed ? 0.9 : 1)
+//                                                .offset(x: ballButtonIsPressed ? -2 : 0, y: ballButtonIsPressed ? 2 : 0)
                                         }
                                     }
                                     .padding(36)
@@ -310,7 +329,7 @@ struct ContentView: View {
                                 KeepSwiping()
                                     .scaleEffect(1.5)
                             }
-                            if currentIndex == 2 && !showWastedScreen {
+                            if currentIndex >= 2 && currentIndex <= 5 && !showWastedScreen {
                                 SwipeFaster()
                                     .scaleEffect(1.5)
                             }
@@ -481,6 +500,10 @@ struct ContentView: View {
         }
         .sheet(isPresented: self.$showLeaderBoard){
             GameCenterLeaderboardView(backgroundColor: $gameOverBackgroundColor)
+        }
+        .sheet(isPresented: self.$showPlaqueShare){
+            PlayersPlaqueView(backgroundColor: $gameOverBackgroundColor)
+                .presentationDetents([.height(450)])
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)

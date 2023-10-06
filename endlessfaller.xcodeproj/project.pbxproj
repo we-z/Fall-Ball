@@ -36,6 +36,8 @@
 		7AD234752A64533700ED626D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234742A64533700ED626D /* AppModel.swift */; };
 		7AE608252A983865009C4479 /* CloudkitCrud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE608242A983865009C4479 /* CloudkitCrud.swift */; };
 		7AE608632A9CA95D009C4479 /* LeaderBoardDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE608622A9CA95D009C4479 /* LeaderBoardDataManager.swift */; };
+		7AE879AB2ACF28FE002CDD4F /* PlayersPlaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */; };
+		7AE879AD2ACF3F21002CDD4F /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE879AC2ACF3F21002CDD4F /* ShareView.swift */; };
 		7AFDA55F2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7AFDA55E2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7AFDA5642AC1592800D3A1F0 /* FallBallWatchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5632AC1592800D3A1F0 /* FallBallWatchOSApp.swift */; };
 		7AFDA5662AC1592800D3A1F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5652AC1592800D3A1F0 /* ContentView.swift */; };
@@ -132,6 +134,8 @@
 		7AD234742A64533700ED626D /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		7AE608242A983865009C4479 /* CloudkitCrud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudkitCrud.swift; sourceTree = "<group>"; };
 		7AE608622A9CA95D009C4479 /* LeaderBoardDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardDataManager.swift; sourceTree = "<group>"; };
+		7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersPlaqueView.swift; sourceTree = "<group>"; };
+		7AE879AC2ACF3F21002CDD4F /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		7AFDA5592AC1592800D3A1F0 /* FallBallWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallBallWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFDA55E2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FallBallWatchOS Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFDA5632AC1592800D3A1F0 /* FallBallWatchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOSApp.swift; sourceTree = "<group>"; };
@@ -223,11 +227,13 @@
 			children = (
 				7AD234402A5F824800ED626D /* ContentView.swift */,
 				7A723DD92A84B842002E9F2C /* LeaderBoardView.swift */,
+				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
 				7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */,
 				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
 				7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */,
 				7AD2346E2A62019700ED626D /* TempView.swift */,
+				7AE879AC2ACF3F21002CDD4F /* ShareView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -627,6 +633,8 @@
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
 				7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */,
 				7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */,
+				7AE879AD2ACF3F21002CDD4F /* ShareView.swift in Sources */,
+				7AE879AB2ACF28FE002CDD4F /* PlayersPlaqueView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +836,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This App would like to save photo to photo library";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -869,6 +878,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This App would like to save photo to photo library";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

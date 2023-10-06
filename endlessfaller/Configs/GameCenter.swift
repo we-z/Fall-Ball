@@ -45,7 +45,7 @@ class GameCenter: ObservableObject {
     func updateScore(currentScore: Int, bestScore: Int, ballID: Int) {
         // push score to Game Center
         Task{
-            try await GKLeaderboard.submitScore(currentScore, context: ballID, player: GKLocalPlayer.local, leaderboardIDs: [self.leaderboardID]) { error in
+            try await GKLeaderboard.submitScore(currentScore, context: ballID, player: GKLocalPlayer.local, leaderboardIDs: [self.leaderboardID, self.allTimeLeaderboardID]) { error in
                 
                 if let error = error {
                     print("Error submitting score: \(error)")
@@ -54,16 +54,16 @@ class GameCenter: ObservableObject {
                 }
             }
         }
-        Task{
-            try await GKLeaderboard.submitScore(bestScore, context: ballID, player: GKLocalPlayer.local, leaderboardIDs: [self.allTimeLeaderboardID]) { error in
-                
-                if let error = error {
-                    print("Error submitting score: \(error)")
-                } else {
-                    print("Score submitted to all time successfully")
-                }
-            }
-        }
+//        Task{
+//            try await GKLeaderboard.submitScore(bestScore, context: ballID, player: GKLocalPlayer.local, leaderboardIDs: [self.allTimeLeaderboardID]) { error in
+//                
+//                if let error = error {
+//                    print("Error submitting score: \(error)")
+//                } else {
+//                    print("Score submitted to all time successfully")
+//                }
+//            }
+//        }
     }
     
     // local player
