@@ -96,9 +96,7 @@ struct ContentView: View {
             highestScoreInGame = -1
             //CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             DispatchQueue.main.async{
-                if let ballIndex = appModel.characters.firstIndex(where: { $0.characterID == appModel.selectedCharacter}) {
-                    gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: ballIndex)
-                }
+                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
             }
             timer.invalidate() // Stop the timer after the reset
         }

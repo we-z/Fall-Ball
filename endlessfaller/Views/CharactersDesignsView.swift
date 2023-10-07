@@ -12,34 +12,47 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                BlackBallView()
-                ObamaView()
-                    .padding(30)
-                WhiteBallView()
+                FallBallEvilBall()
+                FallBallShockedBall()
+                BasketBall()
             }
             Spacer()
         }
     }
 }
 
-struct ObamaSpiningView: View {
-    var body: some View {
-        AnimatedImage(name: "obama-ball-spining.gif")
-            .frame(width: 20, height: 20)
-            .scaleEffect(0.3)
-            .mask{
-                Circle()
-                    .frame(width: 46, height: 46)
-            }
-            .allowsHitTesting(false)
-    }
-}
 
 struct ObamaView: View {
     var body: some View {
         Image("obama-ball")
             .resizable()
             .frame(width: 90, height: 90)
+    }
+}
+struct SoccerBall: View {
+    var body: some View {
+        Text("⚽️")
+            .font(.system(size: 48))
+            .offset(x:-1)
+            .frame(width: 50, height: 50)
+    }
+}
+
+struct BasketBall: View {
+    var body: some View {
+        Text("🏀")
+            .font(.system(size: 48))
+            .offset(x:-1)
+            .frame(width: 50, height: 50)
+    }
+}
+
+struct PoolBall: View {
+    var body: some View {
+        Text("🎱")
+            .font(.system(size: 48))
+            .offset(x:-1)
+            .frame(width: 50, height: 50)
     }
 }
 
@@ -95,6 +108,157 @@ struct FallBallLaughBall: View {
                         .frame(width: 33)
                 }
                 .offset(y:3)
+        }
+        .frame(width: 46, height: 46)
+    }
+}
+
+struct FallBallEvilBall: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .foregroundColor(.purple)
+                .frame(width: 46, height: 46)
+                .mask(
+                    Circle()
+                        .frame(width: 46)
+                )
+            Circle()
+                .frame(width: 30)
+                .overlay{
+                    Circle()
+                        .foregroundColor(.purple)
+                        .frame(width: 60, height: 60)
+                        .offset(y:-21)
+                }
+                .offset(y:2)
+            HStack {
+                Circle()
+                    .foregroundColor(.black)
+                    .frame(width: 12)
+                    .overlay{
+                        Rectangle()
+                            .foregroundColor(.purple)
+                            .frame(width: 13, height: 7)
+                            .offset(y:-4)
+                    }
+                    .rotationEffect(.degrees(15))
+                Circle()
+                    .foregroundColor(.black)
+                    .frame(width: 12)
+                    .overlay{
+                        Rectangle()
+                            .foregroundColor(.purple)
+                            .frame(width: 13, height: 7)
+                            .offset(y:-4)
+                    }
+                    .rotationEffect(.degrees(-15))
+            }
+            .offset(y:-2)
+            
+        }
+        .mask(
+            Circle()
+                .frame(width: 46)
+        )
+        .background{
+            ZStack{
+                Circle()
+                    .foregroundColor(.black)
+                    .frame(width: 50, height: 50)
+                Circle()
+                    .foregroundColor(.purple.opacity(0.5))
+                    .frame(width: 50, height: 50)
+                Circle()    // source
+                    .frame(width: 90, height: 90)
+                    .blendMode(.destinationOut)
+                    .offset(y: -40)
+            }
+            .compositingGroup()
+            .offset(y:-21)
+//            .overlay(
+//                Circle()
+//                    .foregroundColor(.teal)
+//                    .frame(width: 180)
+//                    .offset(y:-9)
+//            )
+        }
+        
+        .frame(width: 46, height: 46)
+    }
+}
+
+struct FallBallShockedBall: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .foregroundColor(.yellow)
+                .frame(width: 46, height: 46)
+                .mask(
+                    Circle()
+                        .frame(width: 46)
+                )
+            HStack {
+                Circle()
+                    .foregroundColor(.black)
+                    .frame(width: 12)
+                    .overlay{
+                        Circle()
+                            .foregroundColor(.white)
+                            .frame(width: 9)
+                            .offset(x: -3, y:-3)
+                        Circle()
+                            .foregroundColor(.white)
+                            .frame(width: 3)
+                            .offset(x: 2, y:2)
+                        Circle()
+                            .stroke(.black, lineWidth: 2)
+                    }
+                    .mask{
+                        Circle()
+                            .frame(width: 12)
+                    }
+                    
+                Spacer()
+                    .frame(maxWidth: 9)
+                Circle()
+                    .foregroundColor(.black)
+                    .frame(width: 12)
+                    .overlay{
+                        Circle()
+                            .foregroundColor(.white)
+                            .frame(width: 9)
+                            .offset(x: -3, y:-3)
+                        Circle()
+                            .foregroundColor(.white)
+                            .frame(width: 3)
+                            .offset(x: 2, y:2)
+                        Circle()
+                            .stroke(.black, lineWidth: 2)
+                    }
+                    .mask{
+                        Circle()
+                            .frame(width: 12)
+                    }
+
+            }
+            .offset(y:-1)
+            Circle()
+                .background(.white)
+                .foregroundColor(.pink.opacity(0.6))
+                .frame(width: 12)
+                .overlay{
+                    Rectangle()
+                        .foregroundColor(.white)
+                        .frame(width: 18, height: 6)
+                        .roundedCorner(9, corners: [.bottomLeft, .bottomRight])
+                        .offset(y:-5)
+                }
+                .mask{
+                    Circle()
+                        .frame(width: 33)
+                }
+                .offset(y:12)
         }
         .frame(width: 46, height: 46)
     }

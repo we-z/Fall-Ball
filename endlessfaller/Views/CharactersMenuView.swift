@@ -79,7 +79,7 @@ struct CharactersMenuView: View {
                                                                     .scaleEffect(idiom == .pad ? 1.8 : 1)
                                                                     .offset(y: idiom == .pad ? 40 : 0)
                                                                 Spacer()
-                                                                if model.characters[index].isPurchased && index > 2 {
+                                                                if model.characters[index].isPurchased && index > 8 {
                                                                     Text("Available")
                                                                 } else {
                                                                     Text("\(character.cost)")

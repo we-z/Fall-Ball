@@ -131,9 +131,13 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                    YinYangBallView()
                                                                     //                                                                        .scaleEffect(2)
                                                                     if todaysPlayersList.count > 2 {
-                                                                        let character = model.characters[todaysPlayersList[2].ballID]
-                                                                        AnyView(character.character)
-                                                                            .scaleEffect(2)
+                                                                        if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[2].ballID}) {
+                                                                            AnyView(character.character)
+                                                                                .scaleEffect(2)
+                                                                        } else {
+                                                                            Image(systemName: "questionmark.circle")
+                                                                                .font(.system(size: 90))
+                                                                        }
                                                                     }
                                                                 }
                                                             Text("🥉")
@@ -177,11 +181,14 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                    RickView()
                                                                     //                                                                        .scaleEffect(2.7)
                                                                     if todaysPlayersList.count > 0 {
-                                                                        let character = model.characters[todaysPlayersList[0].ballID]
-                                                                        AnyView(character.character)
-                                                                            .scaleEffect(2.7)
+                                                                        if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[0].ballID}) {
+                                                                            AnyView(character.character)
+                                                                                .scaleEffect(2)
+                                                                        } else {
+                                                                            Image(systemName: "questionmark.circle")
+                                                                                .font(.system(size: 100))
+                                                                        }
                                                                     }
-                                                                    
                                                                 }
                                                             Text("🥇")
                                                                 .font(.largeTitle)
@@ -219,9 +226,13 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                    IceSpiceView()
                                                                     //                                                                        .scaleEffect(2)
                                                                     if todaysPlayersList.count > 1 {
-                                                                        let character = model.characters[todaysPlayersList[1].ballID]
-                                                                        AnyView(character.character)
-                                                                            .scaleEffect(2)
+                                                                        if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[1].ballID}) {
+                                                                            AnyView(character.character)
+                                                                                .scaleEffect(2)
+                                                                        } else {
+                                                                            Image(systemName: "questionmark.circle")
+                                                                                .font(.system(size: 90))
+                                                                        }
                                                                     }
                                                                 }
                                                             Text("🥈")
@@ -286,9 +297,14 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                 }
                                                                 if todaysPlayersList.count > num - 1 {
-                                                                    let character = model.characters[todaysPlayersList[num - 1].ballID]
-                                                                    AnyView(character.character)
-                                                                        .position(x: 55, y: 30)
+                                                                    if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[num - 1].ballID}) {
+                                                                        AnyView(character.character)
+                                                                            .position(x: 55, y: 30)
+                                                                    } else {
+                                                                        Image(systemName: "questionmark.circle")
+                                                                            .font(.system(size: 40))
+                                                                            .position(x: 55, y: 30)
+                                                                    }
                                                                 } else {
                                                                     WhiteBallView()
                                                                         .opacity(0.5)
@@ -331,9 +347,13 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                    YinYangBallView()
                                                                     //                                                                        .scaleEffect(2)
                                                                     if allTimePlayersList.count > 2 {
-                                                                        let character = model.characters[allTimePlayersList[2].ballID]
-                                                                        AnyView(character.character)
-                                                                            .scaleEffect(2)
+                                                                        if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[2].ballID}) {
+                                                                            AnyView(character.character)
+                                                                                .scaleEffect(2)
+                                                                        } else {
+                                                                            Image(systemName: "questionmark.circle")
+                                                                                .font(.system(size: 90))
+                                                                        }
                                                                     }
                                                                 }
                                                             Text("🥉")
@@ -377,9 +397,13 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                    RickView()
                                                                     //                                                                        .scaleEffect(2.7)
                                                                     if allTimePlayersList.count > 0 {
-                                                                        let character = model.characters[allTimePlayersList[0].ballID]
-                                                                        AnyView(character.character)
-                                                                            .scaleEffect(2.7)
+                                                                        if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[0].ballID}) {
+                                                                            AnyView(character.character)
+                                                                                .scaleEffect(2)
+                                                                        } else {
+                                                                            Image(systemName: "questionmark.circle")
+                                                                                .font(.system(size: 90))
+                                                                        }
                                                                     }
                                                                     
                                                                 }
@@ -419,9 +443,13 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                    IceSpiceView()
                                                                     //                                                                        .scaleEffect(2)
                                                                     if allTimePlayersList.count > 1 {
-                                                                        let character = model.characters[allTimePlayersList[1].ballID]
-                                                                        AnyView(character.character)
-                                                                            .scaleEffect(2)
+                                                                        if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[1].ballID}) {
+                                                                            AnyView(character.character)
+                                                                                .scaleEffect(2)
+                                                                        } else {
+                                                                            Image(systemName: "questionmark.circle")
+                                                                                .font(.system(size: 90))
+                                                                        }
                                                                     }
                                                                 }
                                                             Text("🥈")
@@ -486,9 +514,14 @@ struct GameCenterLeaderboardView: View {
                                                                     //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                 }
                                                                 if allTimePlayersList.count > num - 1 {
-                                                                    let character = model.characters[allTimePlayersList[num - 1].ballID]
-                                                                    AnyView(character.character)
-                                                                        .position(x: 55, y: 30)
+                                                                    if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[num - 1].ballID}) {
+                                                                        AnyView(character.character)
+                                                                            .position(x: 55, y: 30)
+                                                                    } else {
+                                                                        Image(systemName: "questionmark.circle")
+                                                                            .font(.system(size: 40))
+                                                                            .position(x: 55, y: 30)
+                                                                    }
                                                                 } else {
                                                                     WhiteBallView()
                                                                         .opacity(0.5)
