@@ -11,21 +11,29 @@ import QuartzCore
 
 
 struct TempView: View {
-    @State private var isAssistiveTouchEnabled = false
-
+    @State private var offset = CGFloat.zero
         var body: some View {
-            ScrollView {
-                VStack {
-                    ForEach(1...20, id: \.self) { index in
-                        Text("Item \(index)")
-                            .padding()
-                    }
+            ZStack{
+                ScrollView {
+                    VStack {
+                        ForEach(0..<200) { i in
+                            HStack{
+                                Text("Item \(i)").padding()
+                                Spacer()
+                                Text("Item \(i)").padding()
+                                
+                            }
+                        }
+                        Text("Bottom").padding()
+                    }.background(GeometryReader { proxy -> Color in
+                        DispatchQueue.main.async {
+                            offset = -proxy.frame(in: .global).maxY
+                        }
+                        return Color.clear
+                    })
                 }
-            }
-            .disabled(isAssistiveTouchEnabled)
-            .onAppear {
-                // Check the status of AssistiveTouch
-                isAssistiveTouchEnabled = UIAccessibility.isAssistiveTouchRunning
+                Text("\(offset)")
+                
             }
         }
 }

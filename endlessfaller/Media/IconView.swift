@@ -24,11 +24,11 @@ struct IconView: View {
                     endPoint: .bottom
                 )
             }
-            .frame(width: 270, height: 240)
+            .frame(width: 230, height: 240)
             .offset(x:0, y:-120)
             
             FallBallShockedBall()
-                .scaleEffect(6)
+                .scaleEffect(5)
         }
         .ignoresSafeArea()
     }

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
+		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
 		7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */; };
-		7A35C17C2AC39A8B00A3D754 /* obama-ball-spining.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A35C17B2AC39A8B00A3D754 /* obama-ball-spining.gif */; };
 		7A3CEA5F2A896FAF00A79E65 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3CEA5E2A896FAF00A79E65 /* FLAnimatedImage */; };
 		7A3CEA622A89F6A400A79E65 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3CEA612A89F6A400A79E65 /* SDWebImageSwiftUI */; };
 		7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */; };
@@ -102,8 +102,8 @@
 
 /* Begin PBXFileReference section */
 		7A2201332AB6739000DF04D7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
+		7A327D532AD3E700002700DD /* SecretShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretShopView.swift; sourceTree = "<group>"; };
 		7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterLeaderboardView.swift; sourceTree = "<group>"; };
-		7A35C17B2AC39A8B00A3D754 /* obama-ball-spining.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "obama-ball-spining.gif"; path = "../../../../../../Desktop/obama-ball-spining.gif"; sourceTree = "<group>"; };
 		7A3CEA6A2A8AB1E100A79E65 /* pokeball.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pokeball.gif; sourceTree = "<group>"; };
 		7A3CEA6B2A8AB1EB00A79E65 /* bear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bear.gif; sourceTree = "<group>"; };
 		7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = punchSFX.mp3; sourceTree = "<group>"; };
@@ -201,7 +201,6 @@
 		7A3CEA692A8AB1D100A79E65 /* Gifs */ = {
 			isa = PBXGroup;
 			children = (
-				7A35C17B2AC39A8B00A3D754 /* obama-ball-spining.gif */,
 				7A3CEA6B2A8AB1EB00A79E65 /* bear.gif */,
 				7A3CEA6A2A8AB1E100A79E65 /* pokeball.gif */,
 			);
@@ -231,6 +230,7 @@
 				7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */,
 				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
+				7A327D532AD3E700002700DD /* SecretShopView.swift */,
 				7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */,
 				7AD2346E2A62019700ED626D /* TempView.swift */,
 				7AE879AC2ACF3F21002CDD4F /* ShareView.swift */,
@@ -557,7 +557,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */,
-				7A35C17C2AC39A8B00A3D754 /* obama-ball-spining.gif in Resources */,
 				7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */,
 				7AD234472A5F824900ED626D /* Preview Assets.xcassets in Resources */,
 				7AD234432A5F824900ED626D /* Assets.xcassets in Resources */,
@@ -622,6 +621,7 @@
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7A6977CA2A956C4A005967F1 /* CloudKitUtility.swift in Sources */,
 				7A723DDA2A84B842002E9F2C /* LeaderBoardView.swift in Sources */,
+				7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */,
 				7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */,
 				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
@@ -830,7 +830,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.7;
+				CURRENT_PROJECT_VERSION = 1.2.8;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -852,7 +852,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -872,7 +872,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.7;
+				CURRENT_PROJECT_VERSION = 1.2.8;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -894,7 +894,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

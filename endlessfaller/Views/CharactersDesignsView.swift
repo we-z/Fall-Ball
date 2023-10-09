@@ -12,9 +12,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                FallBallEvilBall()
+                FallBallLaughBall()
                 FallBallShockedBall()
-                BasketBall()
+                MoroccoView()
             }
             Spacer()
         }
@@ -32,6 +32,33 @@ struct ObamaView: View {
 struct SoccerBall: View {
     var body: some View {
         Text("⚽️")
+            .font(.system(size: 48))
+            .offset(x:-1)
+            .frame(width: 50, height: 50)
+    }
+}
+
+struct DiscoBall: View {
+    var body: some View {
+        Text("🪩")
+            .font(.system(size: 48))
+            .offset(x:-1)
+            .frame(width: 50, height: 50)
+    }
+}
+
+struct VolleyBall: View {
+    var body: some View {
+        Text("🏐")
+            .font(.system(size: 48))
+            .offset(x:-1)
+            .frame(width: 50, height: 50)
+    }
+}
+
+struct TennisBall: View {
+    var body: some View {
+        Text("🎾")
             .font(.system(size: 48))
             .offset(x:-1)
             .frame(width: 50, height: 50)
@@ -66,6 +93,10 @@ struct FallBallLaughBall: View {
                     Circle()
                         .frame(width: 46)
                 )
+                .overlay{
+                    Circle()
+                        .stroke(.black, lineWidth: 2)
+                }
             HStack {
                 Circle()
                     .foregroundColor(.black)
@@ -198,6 +229,10 @@ struct FallBallShockedBall: View {
                     Circle()
                         .frame(width: 46)
                 )
+                .overlay{
+                    Circle()
+                        .stroke(.black, lineWidth: 2)
+                }
             HStack {
                 Circle()
                     .foregroundColor(.black)
@@ -343,6 +378,53 @@ struct AmericaView: View {
             )
     }
 }
+
+struct EgyptView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Egypt")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct PalestineView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Palestine")
+                    .resizable()
+                    .frame(width: 90, height: 50)
+                    .offset(x:18)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct MoroccoView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("Morocco")
+                    .resizable()
+                    .frame(width: 130, height: 90)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
 struct ChinaView: View {
     var body: some View {
         BallView()

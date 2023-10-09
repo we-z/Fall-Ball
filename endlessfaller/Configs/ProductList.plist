@@ -4,6 +4,18 @@
 <dict>
 	<key>mexico</key>
 	<string>io.endlessfall.mexico</string>
+	<key>disco</key>
+	<string>io.endlessfall.disco</string>
+	<key>poolball</key>
+	<string>io.endlessfall.poolball</string>
+	<key>tennis</key>
+	<string>io.endlessfall.tennis</string>
+	<key>morocco</key>
+	<string>io.endlessfall.morocco</string>
+	<key>palestine</key>
+	<string>io.endlessfall.palestine</string>
+	<key>egypt</key>
+	<string>io.endlessfall.egypt</string>
 	<key>portugal</key>
 	<string>io.endlessfall.portugal</string>
 	<key>spain</key>

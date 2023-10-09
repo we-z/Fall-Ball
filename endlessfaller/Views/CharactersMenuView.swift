@@ -9,9 +9,13 @@ import SwiftUI
 import StoreKit
 
 struct CharactersMenuView: View {
+    let deviceHeight = UIScreen.main.bounds.height
+    let deviceWidth = UIScreen.main.bounds.width
     @StateObject var storeKit = StoreKitManager()
     @StateObject var model = AppModel()
     @State var isProcessingPurchase = false
+    @State var showSecretShop = false
+    @State var yPosition: CGFloat = 0.0
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @Binding  var backgroundColor: Color
     var body: some View {
@@ -119,6 +123,24 @@ struct CharactersMenuView: View {
                                     .underline()
                                     .padding(.top)
                             }
+                            .overlay{
+                                let size = 0
+                                Text("Secret Shop 🤫")
+                                    .font(.system(size: 18))
+                                    .bold()
+                                    .italic()
+                                    .offset(y:75)
+                                    .scaleEffect(yPosition > -(deviceHeight) ? 1 + ((deviceHeight - abs(yPosition)) / 390) : 1)
+                            }
+                            .background(GeometryReader { proxy -> Color in
+                                DispatchQueue.main.async {
+                                    yPosition = -proxy.frame(in: .global).maxY
+                                    if -proxy.frame(in: .global).maxY > -300 {
+                                        self.showSecretShop = true
+                                    }
+                                }
+                                return Color.clear
+                            })
                         }
                         Spacer()
                     }
@@ -132,6 +154,14 @@ struct CharactersMenuView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
             
             }
+//            VStack{
+//                Text("\(yPosition)")
+//                Text("\((deviceHeight - abs(yPosition)) / 100)")
+//                Text("\(deviceHeight)")
+//            }
+        }
+        .sheet(isPresented: self.$showSecretShop){
+            SecretShopView()
         }
     }
 }

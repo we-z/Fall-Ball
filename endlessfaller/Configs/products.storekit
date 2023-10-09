@@ -618,16 +618,183 @@
       "productID" : "io.endlessfall.indonesia",
       "referenceName" : "indonesia",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "C7993826",
+      "localizations" : [
+        {
+          "description" : "Egypt",
+          "displayName" : "Egypt",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.egypt",
+      "referenceName" : "egypt",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "02576B12",
+      "localizations" : [
+        {
+          "description" : "Palestine",
+          "displayName" : "Palestine",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.palestine",
+      "referenceName" : "palestine",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "F5FCFDF1",
+      "localizations" : [
+        {
+          "description" : "Morocco",
+          "displayName" : "Morocco",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.morocco",
+      "referenceName" : "morocco",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.29",
+      "familyShareable" : false,
+      "internalID" : "6C601ABD",
+      "localizations" : [
+        {
+          "description" : "Disco",
+          "displayName" : "Disco",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.disco",
+      "referenceName" : "disco",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.29",
+      "familyShareable" : false,
+      "internalID" : "3D5E22F8",
+      "localizations" : [
+        {
+          "description" : "Pool Ball",
+          "displayName" : "Pool Ball",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.poolball",
+      "referenceName" : "poolball",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.29",
+      "familyShareable" : false,
+      "internalID" : "91BE7AA6",
+      "localizations" : [
+        {
+          "description" : "Tennis",
+          "displayName" : "Tennis",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.tennis",
+      "referenceName" : "tennis",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.29",
+      "familyShareable" : false,
+      "internalID" : "F56F0B2F",
+      "localizations" : [
+        {
+          "description" : "Volley Ball",
+          "displayName" : "Volley Ball",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.volleyball",
+      "referenceName" : "volleyball",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0",
+      "familyShareable" : false,
+      "internalID" : "C57E1814",
+      "localizations" : [
+        {
+          "description" : "Evil Ball",
+          "displayName" : "Evil Ball",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.evil",
+      "referenceName" : "evil",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {
-
+    "_failTransactionsEnabled" : false,
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
   },
   "subscriptionGroups" : [
 
   ],
   "version" : {
-    "major" : 2,
+    "major" : 3,
     "minor" : 0
   }
 }

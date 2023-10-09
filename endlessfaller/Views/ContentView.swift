@@ -465,8 +465,7 @@ struct ContentView: View {
                         ReactionsView()
                             .offset(y: 70)
                     }
-                    
-                    if currentIndex > 60 {
+                                         if currentIndex > 60 {
                         VStack{
                             Spacer()
                             HStack{
