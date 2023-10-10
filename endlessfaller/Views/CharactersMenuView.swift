@@ -124,7 +124,6 @@ struct CharactersMenuView: View {
                                     .padding(.top)
                             }
                             .overlay{
-                                let size = 0
                                 Text("Secret Shop 🤫")
                                     .font(.system(size: 18))
                                     .bold()
@@ -154,11 +153,6 @@ struct CharactersMenuView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
             
             }
-//            VStack{
-//                Text("\(yPosition)")
-//                Text("\((deviceHeight - abs(yPosition)) / 100)")
-//                Text("\(deviceHeight)")
-//            }
         }
         .sheet(isPresented: self.$showSecretShop){
             SecretShopView()

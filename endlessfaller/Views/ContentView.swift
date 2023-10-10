@@ -133,7 +133,7 @@ struct ContentView: View {
                                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
                                     .foregroundColor(.black)
                                     .scaleEffect(1.8)
-                                    .padding(.bottom, deviceHeight * 0.06)
+                                    .padding(.bottom, deviceHeight * 0.04)
                                 ZStack{
                                     HStack{
                                         VStack(alignment: .trailing){
@@ -219,17 +219,17 @@ struct ContentView: View {
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
-                                        .padding(.top, deviceHeight * 0.06)
+                                        .padding(.top, deviceHeight * 0.1)
                                         .padding()
                                     Image(systemName: "arrow.up")
                                         .foregroundColor(.black)
                                         //.shadow(color: .black, radius: 3)
                                 }
                                 .foregroundColor(.primary)
-                                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
+                                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.12))
                                 .tag(-1)
                             }
-                            .offset(y: deviceHeight * 0.07)
+                            .offset(y: deviceHeight * 0.03)
                         }
                         Spacer()
                         if gameOver {
