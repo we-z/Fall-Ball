@@ -53,18 +53,22 @@ class AppModel: ObservableObject {
         Character(character: AnyView(FallBallLaughBall()), cost: "Free", characterID: "io.endlessfall.laugh", isPurchased: true),
         Character(character: AnyView(FallBallEvilBall()), cost: "Free", characterID: "io.endlessfall.evil", isPurchased: true),
         Character(character: AnyView(FallBallShockedBall()), cost: "Free", characterID: "io.endlessfall.shocked", isPurchased: true),
-        Character(character: AnyView(SoccerBall()), cost: "Free", characterID: "io.endlessfall.soccer", isPurchased: true),
+        
         Character(character: AnyView(BasketBall()), cost: "Free", characterID: "io.endlessfall.basketball", isPurchased: true),
+        Character(character: AnyView(SoccerBall()), cost: "Free", characterID: "io.endlessfall.soccer", isPurchased: true),
         Character(character: AnyView(VolleyBall()), cost: "Free", characterID: "io.endlessfall.volleyball", isPurchased: true),
-        Character(character: AnyView(DiscoBall()), cost: "$0.29", characterID: "io.endlessfall.disco", isPurchased: false),
-        Character(character: AnyView(PoolBall()), cost: "$0.29", characterID: "io.endlessfall.poolball", isPurchased: false),
-        Character(character: AnyView(TennisBall()), cost: "$0.29", characterID: "io.endlessfall.tennis", isPurchased: false),
-        Character(character: AnyView(AlbertView()), cost: "$9.99", characterID: "io.endlessfall.albert", isPurchased: false),
-        Character(character: AnyView(MonkeyView()), cost: "$9.99", characterID: "io.endlessfall.monkey", isPurchased: false),
-        Character(character: AnyView(IceSpiceView()), cost: "$9.99", characterID: "io.endlessfall.icespice", isPurchased: false),
-        Character(character: AnyView(KaiView()), cost: "$9.99", characterID: "io.endlessfall.kai", isPurchased: false),
-        Character(character: AnyView(RickView()), cost: "$9.99", characterID: "io.endlessfall.rick", isPurchased: false),
-        Character(character: AnyView(MortyView()), cost: "$9.99", characterID: "io.endlessfall.morty", isPurchased: false),
+        Character(character: AnyView(DiscoBall()), cost: "$0.99", characterID: "io.endlessfall.disco", isPurchased: false),
+        Character(character: AnyView(PoolBall()), cost: "$0.99", characterID: "io.endlessfall.poolball", isPurchased: false),
+        Character(character: AnyView(TennisBall()), cost: "$0.99", characterID: "io.endlessfall.tennis", isPurchased: false),
+//        Character(character: AnyView(JoeRoganView()), cost: "$9.99", characterID: "io.endlessfall.joerogan", isPurchased: false),
+//        Character(character: AnyView(DjkhaledView()), cost: "$9.99", characterID: "io.endlessfall.djkhaled", isPurchased: false),
+//        Character(character: AnyView(ObamaView()), cost: "$9.99", characterID: "io.endlessfall.obama", isPurchased: false),
+//        Character(character: AnyView(AlbertView()), cost: "$9.99", characterID: "io.endlessfall.albert", isPurchased: false),
+//        Character(character: AnyView(MonkeyView()), cost: "$9.99", characterID: "io.endlessfall.monkey", isPurchased: false),
+//        Character(character: AnyView(IceSpiceView()), cost: "$9.99", characterID: "io.endlessfall.icespice", isPurchased: false),
+//        Character(character: AnyView(KaiView()), cost: "$9.99", characterID: "io.endlessfall.kai", isPurchased: false),
+//        Character(character: AnyView(RickView()), cost: "$9.99", characterID: "io.endlessfall.rick", isPurchased: false),
+//        Character(character: AnyView(MortyView()), cost: "$9.99", characterID: "io.endlessfall.morty", isPurchased: false),
         Character(character: AnyView(ChinaView()), cost: "$4.99", characterID: "io.endlessfall.china", isPurchased: false),
         Character(character: AnyView(AmericaView()), cost: "$4.99", characterID: "io.endlessfall.america", isPurchased: false),
         Character(character: AnyView(IndiaView()), cost: "$4.99", characterID: "io.endlessfall.india", isPurchased: false),
@@ -91,8 +95,11 @@ class AppModel: ObservableObject {
         Character(character: AnyView(IndonesiaView()), cost: "$4.99", characterID: "io.endlessfall.indonesia", isPurchased: false),
         Character(character: AnyView(EgyptView()), cost: "$4.99", characterID: "io.endlessfall.egypt", isPurchased: false),
         Character(character: AnyView(PalestineView()), cost: "$4.99", characterID: "io.endlessfall.palestine", isPurchased: false),
-        Character(character: AnyView(MoroccoView()), cost: "$4.99", characterID: "io.endlessfall.morocco", isPurchased: false)
-    ] 
+        Character(character: AnyView(MoroccoView()), cost: "$4.99", characterID: "io.endlessfall.morocco", isPurchased: false),
+        Character(character: AnyView(OrbBallView()), cost: "$99.99", characterID: "io.endlessfall.egypt", isPurchased: false),
+        Character(character: AnyView(GoldBallView()), cost: "$99.99", characterID: "io.endlessfall.palestine", isPurchased: false),
+        Character(character: AnyView(DiamondBallView()), cost: "$999.99", characterID: "io.endlessfall.morocco", isPurchased: false)
+    ]
     
     func updatePurchasedCharacters(){
         characters.forEach{ character in

@@ -20,16 +20,6 @@ struct CharactersMenuView: View {
     @Binding  var backgroundColor: Color
     var body: some View {
         ZStack{
-            Color.primary.opacity(0.05)
-                .ignoresSafeArea()
-//            
-//            backgroundColor
-//                
-//                .overlay{
-//                    Color.black.opacity(0.1)
-//                }
-//                .ignoresSafeArea()
-            
             GeometryReader { geometry in
                 VStack{
                     HStack{
@@ -51,8 +41,10 @@ struct CharactersMenuView: View {
                                         if index < model.characters.count {
                                             let character = model.characters[index]
                                             Button {
-                                                if model.characters[index].isPurchased || index < 3 {
+                                                if model.characters[index].isPurchased || index < 9 {
                                                     model.selectedCharacter = model.characters[index].characterID
+                                                    print("Selected:")
+                                                    print(model.selectedCharacter)
                                                 } else {
                                                     isProcessingPurchase = true
                                                     Task {
@@ -68,25 +60,30 @@ struct CharactersMenuView: View {
                                                 }
                                             } label: {
                                                 Rectangle()
-                                                    .fill(Color.white)
+                                                    .fill(.clear)
                                                     .cornerRadius(20)
-                                                    .frame(width: geometry.size.width/3.3, height: geometry.size.width/3.3)
-                                                    .shadow(radius: 3, y: 2)
+                                                    .frame(width: geometry.size.width/3.3, height: 150)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 2)
+                                                            .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 3)
+                                                            .padding(1)
                                                     }
                                                     .overlay(
                                                         ZStack{
-                                                            VStack(spacing: 4) {
+                                                            VStack(spacing: 1) {
                                                                 AnyView(character.character)
-                                                                    .scaleEffect(idiom == .pad ? 1.8 : 1)
+                                                                    .scaleEffect(idiom == .pad ? 1.8 : 1.8)
                                                                     .offset(y: idiom == .pad ? 40 : 0)
                                                                 Spacer()
+                                                                    .frame(maxHeight: 36)
                                                                 if model.characters[index].isPurchased && index > 8 {
                                                                     Text("Available")
+                                                                        .bold()
+                                                                        .italic()
                                                                 } else {
                                                                     Text("\(character.cost)")
+                                                                        .bold()
+                                                                        .italic()
                                                                         .scaleEffect(idiom == .pad ? 1.8 : 1)
                                                                         .offset(y: idiom == .pad ? -20 : 0)
                                                                 }
@@ -94,6 +91,7 @@ struct CharactersMenuView: View {
                                                             }
                                                             .padding()
                                                         }
+                                                            .offset(y:12)
                                                     )
                                                     .accentColor(.primary)
                                                     .padding(1)

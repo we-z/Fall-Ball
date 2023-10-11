@@ -12,9 +12,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                FallBallLaughBall()
-                FallBallShockedBall()
-                MoroccoView()
+                DiamondBallView()
+                OrbBallView()
+                FallBallEvilBall()
             }
             Spacer()
         }
@@ -26,9 +26,43 @@ struct ObamaView: View {
     var body: some View {
         Image("obama-ball")
             .resizable()
-            .frame(width: 90, height: 90)
+            .frame(width: 46, height: 46)
+            .scaleEffect(2)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+        
     }
 }
+
+struct DjkhaledView: View {
+    var body: some View {
+        Image("djkhaled")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .scaleEffect(1.2)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+        
+    }
+}
+
+struct JoeRoganView: View {
+    var body: some View {
+        Image("joerogan")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+        
+    }
+}
+
 struct SoccerBall: View {
     var body: some View {
         Text("⚽️")
@@ -204,6 +238,7 @@ struct FallBallEvilBall: View {
                     .frame(width: 90, height: 90)
                     .blendMode(.destinationOut)
                     .offset(y: -40)
+                    .allowsHitTesting(false)
             }
             .compositingGroup()
             .offset(y:-21)
@@ -304,6 +339,7 @@ struct IceSpiceView: View {
         Image("icespiceball")
             .resizable()
             .frame(width: 51, height: 46)
+            .scaleEffect(1.2)
             
     }
 }
@@ -619,7 +655,7 @@ struct UkView: View {
 struct BallView: View {
     var body: some View {
         Circle()
-            .strokeBorder(Color.black,lineWidth: 1)
+            .strokeBorder(Color.black,lineWidth: 2)
             .allowsHitTesting(false)
             .frame(width: 46, height: 46)
     }
@@ -634,6 +670,58 @@ struct WhiteBallView: View {
             Circle()
                 .frame(width: 40)
                 .foregroundColor(.white)
+        }
+    }
+}
+
+struct GoldBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 46)
+                .foregroundColor(.black)
+            Circle()
+                .frame(width: 42)
+                .foregroundColor(.yellow)
+                .overlay{
+                    Text("🏆")
+                        .scaleEffect(1.2)
+                }
+        }
+    }
+}
+
+struct DiamondBallView: View {
+    var body: some View {
+        Image("diamond")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+            .overlay{
+                Text("✨")
+                    .scaleEffect(1.5)
+                    .offset(x:15, y:-15)
+                    .flashing()
+            }
+    }
+}
+
+struct OrbBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 46)
+                .foregroundColor(.black)
+            Circle()
+                .frame(width: 42)
+                .foregroundColor(.yellow)
+                .overlay{
+                    Text("🔮")
+                        .scaleEffect(1.2)
+                }
         }
     }
 }

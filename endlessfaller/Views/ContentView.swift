@@ -24,7 +24,6 @@ struct ContentView: View {
     let modelName = UIDevice.modelName
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
-    @StateObject private var CKVM = CloudKitCrud()
     @ObservedObject private var timerManager = TimerManager()
     @ObservedObject var gameCenter = GameCenter()
     @State var score: Int = 0
@@ -219,17 +218,17 @@ struct ContentView: View {
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
-                                        .padding(.top, deviceHeight * 0.1)
+                                        .padding(.top, deviceHeight * 0.06)
                                         .padding()
                                     Image(systemName: "arrow.up")
                                         .foregroundColor(.black)
                                         //.shadow(color: .black, radius: 3)
                                 }
                                 .foregroundColor(.primary)
-                                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.12))
+                                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
                                 .tag(-1)
                             }
-                            .offset(y: deviceHeight * 0.03)
+                            .offset(y: deviceHeight * 0.06)
                         }
                         Spacer()
                         if gameOver {
@@ -295,7 +294,6 @@ struct ContentView: View {
                                         } onRelease: {
                                             withAnimation {
                                                 showLeaderBoard = true
-                                                CKVM.fetchItems()
                                             }
                                         }
                                     if gameOver && !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
@@ -343,12 +341,14 @@ struct ContentView: View {
                                                         endPoint: .bottom
                                                     )
                                                 }
-                                                .frame(width: 44, height: 60)
-                                                .offset(x: 0, y:-27)
+                                                .frame(width: 66, height: 90)
+                                                .offset(x: 0, y:-54)
                                             }
                                         }
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)
+                                                .scaleEffect(1.5)
+                                                .offset(y: -13)
                                         }
                                     }
                                     .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)

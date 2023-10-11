@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>obama</key>
+	<string>io.endlessfall.obama</string>
+	<key>djkhaled</key>
+	<string>io.endlessfall.djkhaled</string>
+	<key>New item</key>
+	<string>io.endlessfall.joerogan</string>
 	<key>mexico</key>
 	<string>io.endlessfall.mexico</string>
 	<key>disco</key>

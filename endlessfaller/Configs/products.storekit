@@ -738,6 +738,51 @@
       "productID" : "io.endlessfall.evil",
       "referenceName" : "evil",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "B1B9E280",
+      "localizations" : [
+        {
+          "description" : "Obama",
+          "displayName" : "Obama",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.obama",
+      "referenceName" : "obama",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "61FE66A6",
+      "localizations" : [
+        {
+          "description" : "Dj Khaled",
+          "displayName" : "Dj Khaled",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.djkhaled",
+      "referenceName" : "djkhaled",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "584499E6",
+      "localizations" : [
+        {
+          "description" : "Joe Bogan",
+          "displayName" : "Joe Bogan",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.joerogan",
+      "referenceName" : "joerogan",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {
