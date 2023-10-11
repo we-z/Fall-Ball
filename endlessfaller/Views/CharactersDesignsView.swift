@@ -13,8 +13,8 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 DiamondBallView()
-                OrbBallView()
-                FallBallEvilBall()
+                GoldBallView()
+                DjkhaledView()
             }
             Spacer()
         }
@@ -38,15 +38,14 @@ struct ObamaView: View {
 
 struct DjkhaledView: View {
     var body: some View {
-        Image("djkhaled")
+        Image("djkhaledface")
             .resizable()
-            .frame(width: 46, height: 46)
-            .scaleEffect(1.2)
+            .frame(width: 54, height: 48)
+            .offset(x:0.9, y:-0.1)
             .mask(
                 Circle()
                     .frame(width: 46)
             )
-        
     }
 }
 
@@ -674,26 +673,45 @@ struct WhiteBallView: View {
     }
 }
 
-struct GoldBallView: View {
-    var body: some View {
-        ZStack{
-            Circle()
-                .frame(width: 46)
-                .foregroundColor(.black)
-            Circle()
-                .frame(width: 42)
-                .foregroundColor(.yellow)
-                .overlay{
-                    Text("🏆")
-                        .scaleEffect(1.2)
-                }
-        }
-    }
-}
-
 struct DiamondBallView: View {
     var body: some View {
         Image("diamond")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+            .overlay{
+                Text("✨")
+                    .scaleEffect(1.5)
+                    .offset(x:15, y:-15)
+                    .flashing()
+            }
+    }
+}
+
+struct GoldBallView: View {
+    var body: some View {
+        Image("goldenball")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+            .overlay{
+                Text("✨")
+                    .scaleEffect(1.5)
+                    .offset(x:15, y:-15)
+                    .flashing()
+            }
+    }
+}
+
+struct PearlBallView: View {
+    var body: some View {
+        Image("pearl")
             .resizable()
             .frame(width: 46, height: 46)
             .mask(

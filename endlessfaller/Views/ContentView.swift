@@ -238,7 +238,7 @@ struct ContentView: View {
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
                                         .foregroundColor(.teal)
                                         .font(.largeTitle)
-                                    .shadow(color: .black, radius: 0.5, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
+                                    .shadow(color: .black, radius: 0.1, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
                                         .scaleEffect(1.2)
                                         .padding(36)
                                         .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
@@ -268,7 +268,7 @@ struct ContentView: View {
 //                                            .offset(x:  -2, y: 2)
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)
-                                                .scaleEffect(ballButtonIsPressed ? 0.9 : 1)
+                                                .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
 //                                                .offset(x: ballButtonIsPressed ? -2 : 0, y: ballButtonIsPressed ? 2 : 0)
                                         }
                                     }
@@ -348,7 +348,7 @@ struct ContentView: View {
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)
                                                 .scaleEffect(1.5)
-                                                .offset(y: -13)
+                                                .offset(y: -12)
                                         }
                                     }
                                     .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)

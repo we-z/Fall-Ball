@@ -783,6 +783,51 @@
       "productID" : "io.endlessfall.joerogan",
       "referenceName" : "joerogan",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "999.99",
+      "familyShareable" : false,
+      "internalID" : "547FB2D4",
+      "localizations" : [
+        {
+          "description" : "The Diamond Ball",
+          "displayName" : "The Diamond Ball",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.diamond",
+      "referenceName" : "diamond",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "499.99",
+      "familyShareable" : false,
+      "internalID" : "25E7A882",
+      "localizations" : [
+        {
+          "description" : "The Gold Ball",
+          "displayName" : "The Gold Ball",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.gold",
+      "referenceName" : "gold",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "99.99",
+      "familyShareable" : false,
+      "internalID" : "C926A867",
+      "localizations" : [
+        {
+          "description" : "The Pearl",
+          "displayName" : "The Pearl",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "io.endlessfall.pearl",
+      "referenceName" : "pearl",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {
