@@ -340,7 +340,7 @@ struct IceSpiceView: View {
             .resizable()
             .frame(width: 46, height: 46)
             .scaleEffect(1.1)
-            .offset(x:-1)
+            .offset(x: -1)
             .mask(
                 Circle()
                     .frame(width: 46)

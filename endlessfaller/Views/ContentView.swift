@@ -387,6 +387,8 @@ struct ContentView: View {
                         highestScoreInGame = score
                         if newValue < difficulty {
                             speed = speed / 2
+                        } else {
+                            speed -= 0.0001
                         }
                         self.timerManager.ballYPosition = -23
                         dropBall()
