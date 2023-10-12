@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 DiamondBallView()
-                GoldBallView()
+                IceSpiceView()
                 DjkhaledView()
             }
             Spacer()
@@ -40,8 +40,9 @@ struct DjkhaledView: View {
     var body: some View {
         Image("djkhaledface")
             .resizable()
-            .frame(width: 54, height: 48)
-            .offset(x:0.9, y:-0.1)
+            .frame(width: 46, height: 46)
+            .scaleEffect(1.1)
+            .offset(x:0.4, y:-0.1)
             .mask(
                 Circle()
                     .frame(width: 46)
@@ -335,10 +336,15 @@ struct FallBallShockedBall: View {
 
 struct IceSpiceView: View {
     var body: some View {
-        Image("icespiceball")
+        Image("icespice")
             .resizable()
-            .frame(width: 51, height: 46)
-            .scaleEffect(1.2)
+            .frame(width: 46, height: 46)
+            .scaleEffect(1.1)
+            .offset(x:-1)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
             
     }
 }
