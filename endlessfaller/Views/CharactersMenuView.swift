@@ -62,7 +62,7 @@ struct CharactersMenuView: View {
                                                 Rectangle()
                                                     .fill(.clear)
                                                     .cornerRadius(20)
-                                                    .frame(width: geometry.size.width/3.3, height: 150)
+                                                    .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
                                                             .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 3)
@@ -72,8 +72,8 @@ struct CharactersMenuView: View {
                                                         ZStack{
                                                             VStack(spacing: 1) {
                                                                 AnyView(character.character)
-                                                                    .scaleEffect(idiom == .pad ? 1.8 : 1.8)
-                                                                    .offset(y: idiom == .pad ? 40 : 0)
+                                                                    .scaleEffect(idiom == .pad ? 2.7 : 1.8)
+                                                                    .offset(y: idiom == .pad ? -12 : 0)
                                                                 Spacer()
                                                                     .frame(maxHeight: 36)
                                                                 if model.characters[index].isPurchased && index > 8 {
@@ -85,7 +85,7 @@ struct CharactersMenuView: View {
                                                                         .bold()
                                                                         .italic()
                                                                         .scaleEffect(idiom == .pad ? 1.8 : 1)
-                                                                        .offset(y: idiom == .pad ? -20 : 0)
+                                                                        .offset(y: idiom == .pad ? 30 : 0)
                                                                 }
                                                                 
                                                             }

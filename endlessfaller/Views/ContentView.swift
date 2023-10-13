@@ -8,7 +8,6 @@
 import SwiftUI
 import VTabView
 import AudioToolbox
-import CloudKit
 import AVFoundation
 import GameKit
 
@@ -48,9 +47,8 @@ struct ContentView: View {
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
-    @State var recordID: CKRecord.ID? = nil
     @State var colors: [Color] = (1...levels).map { _ in
-        Color(red: .random(in: 0.5...1), green: .random(in: 0.5...1), blue: .random(in: 0.5...1))
+        Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
     }
     
     init() {
@@ -82,7 +80,7 @@ struct ContentView: View {
         showWastedScreen = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.colors = (1...levels).map { _ in
-                Color(red: .random(in: 0.5...1), green: .random(in: 0.5...1), blue: .random(in: 0.5...1))
+                Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
             }
             freezeScrolling = false
             self.speed = 4
@@ -157,6 +155,7 @@ struct ContentView: View {
                                             }
                                             Text(String(currentScore))
                                                 .bold()
+                                                .italic()
                                                 .offset(y: 6)
                                                 .foregroundColor(.black)
                                             Spacer()
@@ -167,6 +166,7 @@ struct ContentView: View {
                                                 .italic()
                                             Text(String(bestScore))
                                                 .bold()
+                                                .italic()
                                                 .offset(y: 6)
                                                 .foregroundColor(.black)
                                             Spacer()
@@ -415,7 +415,9 @@ struct ContentView: View {
                     VStack{
                         HStack{
                             Text(String(score))
-                                .font(.system(size: 90))
+                                .bold()
+                                .italic()
+                                .font(.system(size: 100))
                                 .padding(36)
                                 .padding(.top, 30)
                                 .foregroundColor(.black)

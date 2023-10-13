@@ -12,10 +12,40 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                DiamondBallView()
-                IceSpiceView()
-                DjkhaledView()
+                FinlandView()
+                OnepieceView()
+                AllmightView()
             }
+//            HStack{
+//                NorwayView()
+//                DenmarkView()
+//                EstoniaView()
+//            }
+//            HStack{
+//                ItalyView()
+//                GreeceView()
+//                TurkeyView()
+//            }
+//            HStack{
+//                UkraineView()
+//                BelarusView()
+//                PolandView()
+//            }
+//            HStack{
+//                SomaliaView()
+//                KenyaView()
+//                RwandaView()
+//            }
+//            HStack{
+//                ThailandView()
+//                VietnamView()
+//                MalaysiaView()
+//            }
+//            HStack{
+//                ChileView()
+//                ArgentinaView()
+//                PeruView()
+//            }
             Spacer()
         }
     }
@@ -47,6 +77,39 @@ struct DjkhaledView: View {
                 Circle()
                     .frame(width: 46)
             )
+    }
+}
+
+struct YeatView: View {
+    var body: some View {
+        Image("yeatface")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+    }
+}
+
+struct AllmightView: View {
+    var body: some View {
+        Image("allmight")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .mask(
+                Circle()
+                    .frame(width: 46)
+            )
+    }
+}
+
+struct OnepieceView: View {
+    var body: some View {
+        Image("onepiece")
+            .resizable()
+            .frame(width: 46, height: 46)
+            .scaleEffect(1.1)
     }
 }
 
@@ -412,6 +475,337 @@ struct AmericaView: View {
                     .resizable()
                     .frame(width: 80, height: 50)
                     .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct RussiaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("russia")
+                    .resizable()
+                    .frame(width: 80, height: 46)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct SwedenView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("sweden")
+                    .resizable()
+                    .frame(width: 80, height: 45)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct FinlandView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("finland")
+                    .resizable()
+                    .frame(width: 80, height: 42)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct NorwayView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("norway")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct DenmarkView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("denmark")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct EstoniaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("estonia")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct ItalyView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("italy")
+                    .resizable()
+                    .frame(width: 42, height: 42)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct GreeceView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("greece")
+                    .resizable()
+                    .frame(width: 60, height: 42)
+                    .offset(x:9)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct TurkeyView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("turkey")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct UkraineView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("ukraine")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct PolandView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("poland")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+//                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct BelarusView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("belarus")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .offset(x:18)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct SomaliaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("somalia")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+//                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct KenyaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("kenya")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+//                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct RwandaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("rwanda")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .offset(x:-18)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct ThailandView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("thailand")
+                    .resizable()
+                    .frame(width: 80, height: 42)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct VietnamView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("vietnam")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct MalaysiaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("malaysia")
+                    .resizable()
+                    .frame(width: 60, height: 42)
+                    .offset(x:1)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct ChileView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("chile")
+                    .resizable()
+                    .frame(width: 60, height: 42)
+                    .offset(x:8)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct ArgentinaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("argentina")
+                    .resizable()
+                    .frame(width: 42, height: 42)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct PeruView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("peru")
+                    .resizable()
+                    .frame(width: 60, height: 42)
                     .mask(
                         Circle()
                             .frame(width: 46)
