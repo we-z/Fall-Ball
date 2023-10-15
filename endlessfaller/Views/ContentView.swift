@@ -330,29 +330,21 @@ struct ContentView: View {
                                         if !gameShouldBeOver{
                                             HStack{
                                                 Divider()
-                                                    .frame(width: 1)
+                                                    .frame(width: 3)
                                                     .overlay(.black)
-                                                    .offset(x: -12, y: -21)
+                                                    .offset(x: -21, y: -21)
                                                 Divider()
-                                                    .frame(width: 1)
+                                                    .frame(width: 3)
                                                     .overlay(.black)
-                                                    .offset(x: -6, y: -36)
+                                                    .offset(y: -39)
                                                 Divider()
-                                                    .frame(width: 1)
+                                                    .frame(width: 3)
                                                     .overlay(.black)
-                                                    .offset(y: -45)
-                                                Divider()
-                                                    .frame(width: 1)
-                                                    .overlay(.black)
-                                                    .offset(x: 6, y: -36)
-                                                Divider()
-                                                    .frame(width: 1)
-                                                    .overlay(.black)
-                                                    .offset(x: 12, y: -21)
+                                                    .offset(x: 21, y: -21)
                                                 
                                             }
-                                            .frame(width: 66, height: (self.timerManager.ballYPosition * 0.12) + 1)
-                                            .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.08))
+                                            .frame(width: 66, height: abs(self.timerManager.ballYPosition * 0.1))
+                                            .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
                                         }
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)

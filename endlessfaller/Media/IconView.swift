@@ -17,18 +17,27 @@ struct IconView: View {
                     .foregroundColor(.red)
             }
             
-            VStack{
-                LinearGradient(
-                    colors: [.gray.opacity(0.01), .white],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            }
-            .frame(width: 230, height: 240)
-            .offset(x:0, y:-120)
-            
+//            HStack{
+//                Divider()
+//                    .frame(width: 3)
+//                    .overlay(.black)
+//                    .offset(x: -34)
+//                Divider()
+//                    .frame(width: 3)
+//                    .overlay(.black)
+//                    .offset(y: -24)
+//                Divider()
+//                    .frame(width: 3)
+//                    .overlay(.black)
+//                    .offset(x: 34)
+//                
+//            }
+//            .frame(width: 69, height: 12)
+//            .offset(x: 0, y: -32)
+//            .scaleEffect(3)
+//            
             FallBallShockedBall()
-                .scaleEffect(5)
+                .scaleEffect(6)
         }
         .ignoresSafeArea()
     }
