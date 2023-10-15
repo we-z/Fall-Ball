@@ -10,7 +10,51 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        PodiumView()
+        RotatingSunView()
+    }
+}
+
+struct RotatingSunView: View {
+    @State private var rotationAngle: Double = 0
+
+        var body: some View {
+            VStack {
+                ZStack {
+                    Circle()
+                        .fill(Color.clear)
+                        .frame(width: 600, height: 600)
+                    
+                    
+                    ForEach(0..<12) { index in
+                        ForEach(0..<15) { index2 in
+                            SunRayView(index: index)
+                                .rotationEffect(.degrees(Double(index2)))
+                        }
+                    }
+                }
+                .rotationEffect(.degrees(rotationAngle))
+                .onAppear {
+                    withAnimation(Animation.linear(duration: 30).repeatForever(autoreverses: false)) {
+                        self.rotationAngle = 360
+                    }
+                }
+            }
+        }
+}
+
+struct SunRayView: View {
+    let index: Int
+
+    var body: some View {
+        Rectangle()
+            .fill(LinearGradient(
+                colors: [.clear, .white.opacity(0.06)],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
+            .frame(width: 6, height: 300)
+            .offset(y: -150)
+            .rotationEffect(.degrees(Double(index) * 30))
     }
 }
 

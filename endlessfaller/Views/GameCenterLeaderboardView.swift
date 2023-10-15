@@ -267,6 +267,10 @@ struct GameCenterLeaderboardView: View {
                                                         .padding(.bottom, 30)
                                                     }
                                                     .padding(.bottom)
+                                                    .background{
+                                                        RotatingSunView()
+                                                            .offset(y:240)
+                                                    }
                                                     //                                                    .frame(height: 270)
                                                     List {
                                                         ForEach(4...50, id: \.self) { num in
@@ -484,6 +488,10 @@ struct GameCenterLeaderboardView: View {
                                                         .padding(.bottom, 30)
                                                     }
                                                     .padding(.bottom)
+                                                    .background{
+                                                        RotatingSunView()
+                                                            .offset(y:240)
+                                                    }
                                                     //                                                    .frame(height: 270)
                                                     List {
                                                         ForEach(4...50, id: \.self) { num in

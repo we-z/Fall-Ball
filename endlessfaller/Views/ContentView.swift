@@ -158,6 +158,7 @@ struct ContentView: View {
                                                 .italic()
                                                 .offset(y: 6)
                                                 .foregroundColor(.black)
+                                                .font(.largeTitle)
                                             Spacer()
                                                 .frame(maxHeight: 15)
                                             Text("Best:")
@@ -169,6 +170,7 @@ struct ContentView: View {
                                                 .italic()
                                                 .offset(y: 6)
                                                 .foregroundColor(.black)
+                                                .font(.largeTitle)
                                             Spacer()
                                                 .frame(maxHeight: 10)
                                         }
@@ -189,13 +191,6 @@ struct ContentView: View {
                                             .cornerRadius(30)
                                             .shadow(color: .black, radius: 0.1, x: plaqueIsPressed ? 0 : -9, y: plaqueIsPressed ? 0 : 9)
                                             .padding(.horizontal,9)
-//                                        LinearGradient(
-//                                            colors: [.white, .white, .gray.opacity(0.1)],
-//                                            startPoint: .top,
-//                                            endPoint: .bottom
-//                                        )
-//                                        .cornerRadius(30)
-//                                        .padding(.horizontal,9)
                                     }
 
                                 }
@@ -333,17 +328,31 @@ struct ContentView: View {
                                 GeometryReader { geometry in
                                     ZStack{
                                         if !gameShouldBeOver{
-                                            withAnimation(.easeInOut(duration: 0.1)) {
-                                                VStack{
-                                                    LinearGradient(
-                                                        colors: [.gray.opacity(0.01), .white],
-                                                        startPoint: .top,
-                                                        endPoint: .bottom
-                                                    )
-                                                }
-                                                .frame(width: 66, height: 90)
-                                                .offset(x: 0, y:-54)
+                                            HStack{
+                                                Divider()
+                                                    .frame(width: 1)
+                                                    .overlay(.black)
+                                                    .offset(x: -12, y: -21)
+                                                Divider()
+                                                    .frame(width: 1)
+                                                    .overlay(.black)
+                                                    .offset(x: -6, y: -36)
+                                                Divider()
+                                                    .frame(width: 1)
+                                                    .overlay(.black)
+                                                    .offset(y: -45)
+                                                Divider()
+                                                    .frame(width: 1)
+                                                    .overlay(.black)
+                                                    .offset(x: 6, y: -36)
+                                                Divider()
+                                                    .frame(width: 1)
+                                                    .overlay(.black)
+                                                    .offset(x: 12, y: -21)
+                                                
                                             }
+                                            .frame(width: 66, height: (self.timerManager.ballYPosition * 0.12) + 1)
+                                            .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
                                         }
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)
@@ -399,7 +408,9 @@ struct ContentView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
-                            gameShouldBeOver = true
+                            //withAnimation(.linear(duration: 0.1)) {
+                                gameShouldBeOver = true
+                            //}
                             if levelYPosition >= 0 {
                                 gameOverOperations()
                             }

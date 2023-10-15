@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 FinlandView()
-                OnepieceView()
+                BoinsView()
                 AllmightView()
             }
 //            HStack{
@@ -51,6 +51,26 @@ struct CharactersDesignsView: View {
     }
 }
 
+struct BoinsView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 30, height: 30)
+                .foregroundColor(.orange)
+            Circle()
+                .stroke(lineWidth: 3)
+                .frame(width: 30, height: 30)
+                .foregroundColor(.yellow)
+                .shadow(radius: 1)
+            Text("B")
+                .bold()
+                .italic()
+                .foregroundColor(.yellow)
+                .shadow(radius: 1)
+                .font(.title2)
+        }
+    }
+}
 
 struct ObamaView: View {
     var body: some View {
@@ -705,14 +725,13 @@ struct KenyaView: View {
     }
 }
 
-struct RwandaView: View {
+struct TanzaniaView: View {
     var body: some View {
         BallView()
             .background(
-                Image("rwanda")
+                Image("tanzania")
                     .resizable()
                     .frame(width: 80, height: 50)
-                    .offset(x:-18)
                     .mask(
                         Circle()
                             .frame(width: 46)

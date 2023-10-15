@@ -2,6 +2,54 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>russia</key>
+	<string>io.endlessfall.russia</string>
+	<key>belarus</key>
+	<string>io.endlessfall.belarus</string>
+	<key>poland</key>
+	<string>io.endlessfall.poland</string>
+	<key>ukraine</key>
+	<string>io.endlessfall.ukraine</string>
+	<key>finland</key>
+	<string>io.endlessfall.finland</string>
+	<key>sweden</key>
+	<string>io.endlessfall.sweden</string>
+	<key>norway</key>
+	<string>io.endlessfall.norway</string>
+	<key>denmark</key>
+	<string>io.endlessfall.denmark</string>
+	<key>estonia</key>
+	<string>io.endlessfall.estonia</string>
+	<key>italy</key>
+	<string>io.endlessfall.italy</string>
+	<key>greece</key>
+	<string>io.endlessfall.greece</string>
+	<key>turkey</key>
+	<string>io.endlessfall.turkey</string>
+	<key>somalia</key>
+	<string>io.endlessfall.somalia</string>
+	<key>kenya</key>
+	<string>io.endlessfall.kenya</string>
+	<key>tanzania</key>
+	<string>io.endlessfall.tanzania</string>
+	<key>thailand</key>
+	<string>io.endlessfall.thailand</string>
+	<key>vietnam</key>
+	<string>io.endlessfall.vietnam</string>
+	<key>malaysia</key>
+	<string>io.endlessfall.malaysia</string>
+	<key>chile</key>
+	<string>io.endlessfall.chile</string>
+	<key>argentina</key>
+	<string>io.endlessfall.argentina</string>
+	<key>peru</key>
+	<string>io.endlessfall.peru</string>
+	<key>yeat</key>
+	<string>io.endlessfall.yeat</string>
+	<key>onepiece</key>
+	<string>io.endlessfall.onepiece</string>
+	<key>allmight</key>
+	<string>io.endlessfall.allmight</string>
 	<key>diamond</key>
 	<string>io.endlessfall.diamond</string>
 	<key>gold</key>

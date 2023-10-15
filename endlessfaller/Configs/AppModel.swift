@@ -94,7 +94,7 @@ class AppModel: ObservableObject {
         Character(character: AnyView(TurkeyView()), cost: "$4.99", characterID: "io.endlessfall.turkey", isPurchased: false),
         Character(character: AnyView(SomaliaView()), cost: "$4.99", characterID: "io.endlessfall.somalia", isPurchased: false),
         Character(character: AnyView(KenyaView()), cost: "$4.99", characterID: "io.endlessfall.kenya", isPurchased: false),
-        Character(character: AnyView(RwandaView()), cost: "$4.99", characterID: "io.endlessfall.rwanda", isPurchased: false),
+        Character(character: AnyView(TanzaniaView()), cost: "$4.99", characterID: "io.endlessfall.tanzania", isPurchased: false),
         Character(character: AnyView(ThailandView()), cost: "$4.99", characterID: "io.endlessfall.thailand", isPurchased: false),
         Character(character: AnyView(VietnamView()), cost: "$4.99", characterID: "io.endlessfall.vietnam", isPurchased: false),
         Character(character: AnyView(MalaysiaView()), cost: "$4.99", characterID: "io.endlessfall.malaysia", isPurchased: false),

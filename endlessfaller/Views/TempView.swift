@@ -11,15 +11,30 @@ import QuartzCore
 
 
 struct TempView: View {
-    @State private var offset = CGFloat.zero
-    @State private var showingAlert = false
+    @State private var rotationAngle: Double = 0
+
         var body: some View {
-            Button("Show Alert") {
-                        showingAlert = true
+            VStack {
+                ZStack {
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 600, height: 600)
+                    
+                    
+                    ForEach(0..<12) { index in
+                        ForEach(0..<15) { index2 in
+                            SunRayView(index: index)
+                                .rotationEffect(.degrees(Double(index2)))
+                        }
                     }
-                    .alert("Fall Ball uploads your scores to Game Center", isPresented: $showingAlert) {
-                        Button("OK", role: .cancel) { }
+                }
+                .rotationEffect(.degrees(rotationAngle))
+                .onAppear {
+                    withAnimation(Animation.linear(duration: 30).repeatForever(autoreverses: false)) {
+                        self.rotationAngle = 360
                     }
+                }
+            }
         }
 }
 

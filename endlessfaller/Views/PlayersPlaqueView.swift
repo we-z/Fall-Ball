@@ -32,7 +32,8 @@ struct PlayersPlaqueView: View {
             Rectangle()
                 .foregroundColor(backgroundColor)
                 .frame(width: 330, height: 330)
-                
+            RotatingSunView()
+                .offset(y: -40)
             VStack{
                 Text("I play Fall Ball as:")
                     .bold()
@@ -59,6 +60,7 @@ struct PlayersPlaqueView: View {
                     .cornerRadius(6)
             }
         }
+        .frame(width: 330, height: 330)
     }
     
     var body: some View {
