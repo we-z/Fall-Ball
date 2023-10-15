@@ -180,8 +180,8 @@ struct ContentView: View {
                                     }
                                     if let character = appModel.characters.first(where: { $0.characterID == playedCharacter}) {
                                         AnyView(character.character)
-                                        .scaleEffect(2)
-                                        .offset(x: -80, y: 15)
+                                            .scaleEffect(2.4)
+                                        .offset(x: -70, y: 18)
                                     }
                                 }
                                 .background{
@@ -352,7 +352,7 @@ struct ContentView: View {
                                                 
                                             }
                                             .frame(width: 66, height: (self.timerManager.ballYPosition * 0.12) + 1)
-                                            .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
+                                            .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.08))
                                         }
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             AnyView(character.character)

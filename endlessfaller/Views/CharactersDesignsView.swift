@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 FinlandView()
-                BoinsView()
+                DjkhaledView()
                 AllmightView()
             }
 //            HStack{
@@ -90,7 +90,7 @@ struct DjkhaledView: View {
     var body: some View {
         Image("djkhaledface")
             .resizable()
-            .frame(width: 46, height: 46)
+            .frame(width: 48, height: 46)
             .scaleEffect(1.1)
             .offset(x:0.4, y:-0.1)
             .mask(

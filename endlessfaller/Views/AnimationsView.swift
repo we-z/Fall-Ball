@@ -10,7 +10,10 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        RotatingSunView()
+        ZStack{
+            Color.blue
+            RotatingSunView()
+        }
     }
 }
 

@@ -12,12 +12,10 @@ struct GameCenterLeaderboardView: View {
     let deviceWidth = UIScreen.main.bounds.width
     let deviceHeight = UIScreen.main.bounds.height
     @StateObject var model = AppModel()
-    @StateObject private var CKVM = CloudKitCrud()
     @ObservedObject var gameCenter = GameCenter()
     @State var place = 1
     @State var unserNameTextField = ""
     @State var recordID: CKRecord.ID? = nil
-    @AppStorage(userNameKey) var myUserName: String = (UserDefaults.standard.string(forKey: userNameKey) ?? "")
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @FocusState var isTextFieldFocused: Bool
     @State private var isGameCenterSheetPresented = false

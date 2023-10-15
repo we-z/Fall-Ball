@@ -15,13 +15,21 @@ struct CharactersMenuView: View {
     @StateObject var model = AppModel()
     @State var isProcessingPurchase = false
     @State var showSecretShop = false
+    @State var showBallDetails = false
     @State var yPosition: CGFloat = 0.0
+    @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "", isPurchased: false)
+    @State var currentBallIndex = 0
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @Binding  var backgroundColor: Color
     var body: some View {
         ZStack{
             GeometryReader { geometry in
                 VStack{
+                    Capsule()
+                        .frame(maxWidth: 45, maxHeight: 9)
+                        .padding(.top, 9)
+                        .foregroundColor(.black)
+                        .opacity(0.3)
                     HStack{
                         Text("🌍 Ball Shop 🌍")
                             .italic()
@@ -41,23 +49,26 @@ struct CharactersMenuView: View {
                                         if index < model.characters.count {
                                             let character = model.characters[index]
                                             Button {
-                                                if model.characters[index].isPurchased || index < 9 {
-                                                    model.selectedCharacter = model.characters[index].characterID
-                                                    print("Selected:")
-                                                    print(model.selectedCharacter)
-                                                } else {
-                                                    isProcessingPurchase = true
-                                                    Task {
-                                                        do {
-                                                            if (try await storeKit.purchase(characterID: character.characterID)) != nil{
-                                                                model.selectedCharacter = model.characters[index].characterID
-                                                            }
-                                                        } catch {
-                                                            print("Purchase failed: \(error)")
-                                                        }
-                                                        isProcessingPurchase = false
-                                                    }
-                                                }
+//                                                if model.characters[index].isPurchased || index < 9 {
+//                                                    model.selectedCharacter = model.characters[index].characterID
+//                                                    print("Selected:")
+//                                                    print(model.selectedCharacter)
+//                                                } else {
+//                                                    isProcessingPurchase = true
+//                                                    Task {
+//                                                        do {
+//                                                            if (try await storeKit.purchase(characterID: character.characterID)) != nil{
+//                                                                model.selectedCharacter = model.characters[index].characterID
+//                                                            }
+//                                                        } catch {
+//                                                            print("Purchase failed: \(error)")
+//                                                        }
+//                                                        isProcessingPurchase = false
+//                                                    }
+//                                                }
+                                                currentCharacter = model.characters[index]
+                                                currentBallIndex = index
+                                                showBallDetails = true
                                             } label: {
                                                 Rectangle()
                                                     .fill(.clear)
@@ -105,6 +116,9 @@ struct CharactersMenuView: View {
                                                     }
                                             }
                                             .buttonStyle(.roundedAndShadow)
+//                                            .sheet(isPresented: self.$showBallDetails){
+//                                                BallsDetailsView(ball: model.characters[index])
+//                                            }
                                         }
                                     }
                                 }
@@ -154,6 +168,10 @@ struct CharactersMenuView: View {
         }
         .sheet(isPresented: self.$showSecretShop){
             SecretShopView()
+        }
+        .sheet(isPresented: self.$showBallDetails){
+            BallsDetailsView(ball: $currentCharacter, ballIndex: $currentBallIndex)
+                .presentationDetents([.height(390)])
         }
     }
 }
