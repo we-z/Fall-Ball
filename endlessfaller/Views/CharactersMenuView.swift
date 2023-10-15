@@ -11,10 +11,12 @@ import StoreKit
 struct CharactersMenuView: View {
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
+    let impactMed = UIImpactFeedbackGenerator(style: .heavy)
     @StateObject var storeKit = StoreKitManager()
     @StateObject var model = AppModel()
     @State var isProcessingPurchase = false
     @State var showSecretShop = false
+    @State var hapticFeedbackCounter = 0
     @State var showBallDetails = false
     @State var yPosition: CGFloat = 0.0
     @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "", isPurchased: false)
@@ -146,8 +148,15 @@ struct CharactersMenuView: View {
                             .background(GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     yPosition = -proxy.frame(in: .global).maxY
-                                    if -proxy.frame(in: .global).maxY > -300 {
+                                    if yPosition > -300 {
                                         self.showSecretShop = true
+                                    }
+                                    if yPosition > -(deviceHeight - 60) {
+                                        hapticFeedbackCounter += 1
+                                        if hapticFeedbackCounter > 9 {
+                                            impactMed.impactOccurred()
+                                            hapticFeedbackCounter = 0
+                                        }
                                     }
                                 }
                                 return Color.clear
