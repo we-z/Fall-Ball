@@ -12,7 +12,7 @@ struct HatDesignsView: View {
         ZStack{
             ShockedBall()
                 .scaleEffect(1.5)
-            SantaHat()
+            WizardHat()
         }
     }
 }
@@ -37,7 +37,7 @@ struct WizardHat: View {
     var body: some View {
         Image("wizardhat")
             .resizable()
-            .frame(width: 120, height: 90)
+            .frame(width: 150, height: 120)
             .offset(y: -40)
     }
 }

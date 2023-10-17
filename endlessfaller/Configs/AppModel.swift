@@ -12,12 +12,14 @@ import Combine
 import UIKit
 
 let selectedCharacterKey = "SelectedCharacterID"
+let selectedHatKey = "SelectedHatID"
 let purchasedCharactersKey = "PurchasedCharacters"
 let muteKey = "Mute"
 
 class AppModel: ObservableObject {
     
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? "io.endlessfall.white"
+    @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
     @Published var purchasedCharacters: [String] = [] {
         didSet{
             savePurchasedCharacters()
@@ -45,6 +47,18 @@ class AppModel: ObservableObject {
         
         self.mute = savedMuteSetting
     }
+    
+    @Published var hats: [Hat] = [
+        Hat(hat: AnyView(EmptyView()), hatID: "nohat"),
+        Hat(hat: AnyView(PropellerHat()), hatID: "propellerhat"),
+        Hat(hat: AnyView(ChefsHat()), hatID: "chefshat"),
+        Hat(hat: AnyView(CowboyHat()), hatID: "cowboyhat"),
+        Hat(hat: AnyView(SantaHat()), hatID: "santahat"),
+        Hat(hat: AnyView(WizardHat()), hatID: "wizardhat"),
+        Hat(hat: AnyView(CaptainHat()), hatID: "captionhat"),
+        Hat(hat: AnyView(TopHat()), hatID: "tophat"),
+        Hat(hat: AnyView(Crown()), hatID: "crown")
+    ]
         
     @Published var characters: [Character] = [
         Character(character: AnyView(WhiteBallView()), cost: "Free", characterID: "io.endlessfall.white", isPurchased: true),
@@ -182,6 +196,21 @@ struct Character: Hashable {
     static func ==(lhs: Character, rhs: Character) -> Bool {
         // Implement the equality operator to compare characters based on their unique identifier
         return lhs.characterID == rhs.characterID
+    }
+}
+
+struct Hat: Hashable {
+    let hat: AnyView // Note: I corrected the type name to 'AnyView' (with a capital 'A')
+    let hatID: String
+
+    func hash(into hasher: inout Hasher) {
+        // Implement a custom hash function that combines the hash values of properties that uniquely identify a character
+        hasher.combine(hatID)
+    }
+
+    static func ==(lhs: Hat, rhs: Hat) -> Bool {
+        // Implement the equality operator to compare characters based on their unique identifier
+        return lhs.hatID == rhs.hatID
     }
 }
 

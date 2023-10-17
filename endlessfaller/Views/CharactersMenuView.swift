@@ -51,23 +51,6 @@ struct CharactersMenuView: View {
                                         if index < model.characters.count {
                                             let character = model.characters[index]
                                             Button {
-//                                                if model.characters[index].isPurchased || index < 9 {
-//                                                    model.selectedCharacter = model.characters[index].characterID
-//                                                    print("Selected:")
-//                                                    print(model.selectedCharacter)
-//                                                } else {
-//                                                    isProcessingPurchase = true
-//                                                    Task {
-//                                                        do {
-//                                                            if (try await storeKit.purchase(characterID: character.characterID)) != nil{
-//                                                                model.selectedCharacter = model.characters[index].characterID
-//                                                            }
-//                                                        } catch {
-//                                                            print("Purchase failed: \(error)")
-//                                                        }
-//                                                        isProcessingPurchase = false
-//                                                    }
-//                                                }
                                                 currentCharacter = model.characters[index]
                                                 currentBallIndex = index
                                                 showBallDetails = true
