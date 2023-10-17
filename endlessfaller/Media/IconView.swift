@@ -36,7 +36,7 @@ struct IconView: View {
 //            .offset(x: 0, y: -32)
 //            .scaleEffect(3)
 //            
-            FallBallShockedBall()
+            ShockedBall()
                 .scaleEffect(6)
         }
         .ignoresSafeArea()

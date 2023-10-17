@@ -47,6 +47,7 @@ struct ContentView: View {
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
+    @State var isMovingUp = false
     @State var colors: [Color] = (1...levels).map { _ in
         Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
     }
@@ -110,7 +111,6 @@ struct ContentView: View {
                         if !gameOver {
                             VStack{
                                 Text("Swipe up \nto play!")
-                                    .bold()
                                     .italic()
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.black)
@@ -118,6 +118,7 @@ struct ContentView: View {
                                 Image(systemName: "arrow.up")
                                     .foregroundColor(.black)
                             }
+                            .bold()
                             .font(.largeTitle)
                             .scaleEffect(1.5)
                             .tag(-1)
@@ -209,7 +210,7 @@ struct ContentView: View {
                                 
                                 VStack{
                                     Text("Swipe up to \nplay again!")
-                                        .bold()
+                                        
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
@@ -219,11 +220,17 @@ struct ContentView: View {
                                         .foregroundColor(.black)
                                         //.shadow(color: .black, radius: 3)
                                 }
+                                .bold()
                                 .foregroundColor(.primary)
                                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
                                 .tag(-1)
                             }
                             .offset(y: deviceHeight * 0.06)
+                            .onAppear() {
+                                withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: true)) {
+                                    isMovingUp.toggle()
+                                }
+                            }
                         }
                         Spacer()
                         if gameOver {
@@ -262,9 +269,17 @@ struct ContentView: View {
 //                                            .frame(width: 46)
 //                                            .offset(x:  -2, y: 2)
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                            AnyView(character.character)
-                                                .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
-//                                                .offset(x: ballButtonIsPressed ? -2 : 0, y: ballButtonIsPressed ? 2 : 0)
+                                            VStack{
+                                                AnyView(character.character)
+                                                    .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
+                                                    .offset(y: isMovingUp ? -12 : 0)
+                                                    
+                                                
+                                                //                                                .offset(x: ballButtonIsPressed ? -2 : 0, y: ballButtonIsPressed ? 2 : 0)
+                                                Ellipse()
+                                                    .frame(width: 24, height: 6)
+                                                    .blur(radius: 3)
+                                            }
                                         }
                                     }
                                     .padding(36)
@@ -295,10 +310,10 @@ struct ContentView: View {
                                         HStack{
                                             Image(systemName: "arrow.down.right")
                                             Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
-                                                .bold()
                                                 .italic()
                                             Image(systemName: "arrow.down.left")
                                         }
+                                        .bold()
                                         .font(idiom == .pad ? .title : .title2)
                                         .offset(y: -55)
                                     }

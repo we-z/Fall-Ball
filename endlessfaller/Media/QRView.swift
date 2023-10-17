@@ -217,7 +217,7 @@ struct ShockedBallViewFalling: View {
             }
             .frame(width: 45, height: 45)
             .offset(x:0, y:-27)
-            FallBallShockedBall()
+            ShockedBall()
         }
     }
 }

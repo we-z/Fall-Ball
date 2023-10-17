@@ -52,7 +52,7 @@ class AppModel: ObservableObject {
         Character(character: AnyView(YinYangBallView()), cost: "Free", characterID: "io.endlessfall.orange", isPurchased: true),
         Character(character: AnyView(FallBallLaughBall()), cost: "Free", characterID: "io.endlessfall.laugh", isPurchased: true),
         Character(character: AnyView(FallBallEvilBall()), cost: "Free", characterID: "io.endlessfall.evil", isPurchased: true),
-        Character(character: AnyView(FallBallShockedBall()), cost: "Free", characterID: "io.endlessfall.shocked", isPurchased: true),
+        Character(character: AnyView(ShockedBall()), cost: "Free", characterID: "io.endlessfall.shocked", isPurchased: true),
         Character(character: AnyView(BasketBall()), cost: "Free", characterID: "io.endlessfall.basketball", isPurchased: true),
         Character(character: AnyView(SoccerBall()), cost: "Free", characterID: "io.endlessfall.soccer", isPurchased: true),
         Character(character: AnyView(VolleyBall()), cost: "Free", characterID: "io.endlessfall.volleyball", isPurchased: true),

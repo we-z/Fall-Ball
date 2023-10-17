@@ -18,6 +18,7 @@
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
+		7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */; };
 		7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */; };
 		7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */; };
 		7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB05CE42A65C67A00EE4D7B /* ProductList.plist */; };
@@ -109,6 +110,7 @@
 		7A43B2332AA566A50099AFB6 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
 		7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallsDetailsView.swift; sourceTree = "<group>"; };
+		7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatDesignsView.swift; sourceTree = "<group>"; };
 		7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDesignsView.swift; sourceTree = "<group>"; };
 		7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		7AB05CE32A65C65500EE4D7B /* products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = products.storekit; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */,
 				7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */,
 				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
+				7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */,
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
 				7A327D532AD3E700002700DD /* SecretShopView.swift */,
 				7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */,
@@ -612,6 +615,7 @@
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */,
 				7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */,
+				7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */,
 				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,

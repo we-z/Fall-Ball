@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 FinlandView()
-                DjkhaledView()
+                FallBallEvilBall()
                 AllmightView()
             }
 //            HStack{
@@ -265,7 +265,7 @@ struct FallBallEvilBall: View {
     var body: some View {
         ZStack {
             Circle()
-                .foregroundColor(.purple)
+                .foregroundColor(.red)
                 .frame(width: 46, height: 46)
                 .mask(
                     Circle()
@@ -275,7 +275,7 @@ struct FallBallEvilBall: View {
                 .frame(width: 30)
                 .overlay{
                     Circle()
-                        .foregroundColor(.purple)
+                        .foregroundColor(.red)
                         .frame(width: 60, height: 60)
                         .offset(y:-21)
                 }
@@ -286,7 +286,7 @@ struct FallBallEvilBall: View {
                     .frame(width: 12)
                     .overlay{
                         Rectangle()
-                            .foregroundColor(.purple)
+                            .foregroundColor(.red)
                             .frame(width: 13, height: 7)
                             .offset(y:-4)
                     }
@@ -296,7 +296,7 @@ struct FallBallEvilBall: View {
                     .frame(width: 12)
                     .overlay{
                         Rectangle()
-                            .foregroundColor(.purple)
+                            .foregroundColor(.red)
                             .frame(width: 13, height: 7)
                             .offset(y:-4)
                     }
@@ -315,7 +315,7 @@ struct FallBallEvilBall: View {
                     .foregroundColor(.black)
                     .frame(width: 50, height: 50)
                 Circle()
-                    .foregroundColor(.purple.opacity(0.5))
+                    .foregroundColor(.red.opacity(0.5))
                     .frame(width: 50, height: 50)
                 Circle()    // source
                     .frame(width: 90, height: 90)
@@ -337,7 +337,7 @@ struct FallBallEvilBall: View {
     }
 }
 
-struct FallBallShockedBall: View {
+struct ShockedBall: View {
     var body: some View {
         ZStack {
             Circle()
@@ -1190,20 +1190,6 @@ struct BlackBallView: View {
                 .strokeBorder(Color.white,lineWidth: 2)
                 .frame(width: 44, height: 44)
         }
-    }
-}
-
-struct ShockedBallView: View {
-    var body: some View {
-        ZStack{
-            Circle()
-                .frame(width: 46)
-                .foregroundColor(.black)
-            Text("😮")
-                .font(.system(size: 48))
-                .offset(x:0.3, y:-0.2)
-        }
-        .frame(height: 46)
     }
 }
 
