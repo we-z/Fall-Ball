@@ -134,9 +134,9 @@ struct CharactersMenuView: View {
                                     if yPosition > -300 {
                                         self.showSecretShop = true
                                     }
-                                    if yPosition > -(deviceHeight - 60) {
+                                    if yPosition > -(deviceHeight - 90) {
                                         hapticFeedbackCounter += 1
-                                        if hapticFeedbackCounter > 9 {
+                                        if hapticFeedbackCounter > 9 && !showSecretShop {
                                             impactMed.impactOccurred()
                                             hapticFeedbackCounter = 0
                                         }

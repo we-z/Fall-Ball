@@ -55,6 +55,12 @@ class AppModel: ObservableObject {
         Hat(hat: AnyView(CowboyHat()), hatID: "cowboyhat"),
         Hat(hat: AnyView(SantaHat()), hatID: "santahat"),
         Hat(hat: AnyView(WizardHat()), hatID: "wizardhat"),
+        Hat(hat: AnyView(GraduationCap()), hatID: "graduationcap"),
+        Hat(hat: AnyView(ClownHat()), hatID: "clownhat"),
+        Hat(hat: AnyView(PirateHat()), hatID: "piratehat"),
+        Hat(hat: AnyView(VikingHat()), hatID: "vikinghat"),
+        Hat(hat: AnyView(Fedora()), hatID: "fedora"),
+        Hat(hat: AnyView(Sombrero()), hatID: "sombrero"),
         Hat(hat: AnyView(CaptainHat()), hatID: "captionhat"),
         Hat(hat: AnyView(TopHat()), hatID: "tophat"),
         Hat(hat: AnyView(Crown()), hatID: "crown")

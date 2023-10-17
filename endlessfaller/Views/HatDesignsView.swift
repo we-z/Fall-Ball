@@ -12,7 +12,7 @@ struct HatDesignsView: View {
         ZStack{
             ShockedBall()
                 .scaleEffect(1.5)
-            WizardHat()
+            GraduationCap()
         }
     }
 }
@@ -73,8 +73,8 @@ struct CowboyHat: View {
     var body: some View {
         Image("cowboyhat")
             .resizable()
-            .frame(width: 90, height: 90)
-            .offset(x: 1, y: -41)
+            .frame(width: 120, height: 120)
+            .offset(x: 1, y: -39)
     }
 }
 
@@ -86,6 +86,61 @@ struct SantaHat: View {
             .offset(x: 8, y: -30)
     }
 }
+
+struct VikingHat: View {
+    var body: some View {
+        Image("vikinghat")
+            .resizable()
+            .frame(width: 132, height: 120)
+            .offset(y: -36)
+    }
+}
+
+struct Fedora: View {
+    var body: some View {
+        Image("fedora")
+            .resizable()
+            .frame(width: 90, height: 75)
+            .offset(x: 1, y: -33)
+    }
+}
+
+struct Sombrero: View {
+    var body: some View {
+        Image("sombrero")
+            .resizable()
+            .frame(width: 90, height: 75)
+            .offset( y: -39)
+    }
+}
+
+struct ClownHat: View {
+    var body: some View {
+        Image("clownhat")
+            .resizable()
+            .frame(width: 90, height: 60)
+            .offset(y: -47)
+    }
+}
+
+struct PirateHat: View {
+    var body: some View {
+        Image("piratehat")
+            .resizable()
+            .frame(width: 90, height: 90)
+            .offset(x: 0.6, y: -45)
+    }
+}
+
+struct GraduationCap: View {
+    var body: some View {
+        Image("graduationcap")
+            .resizable()
+            .frame(width: 120, height: 90)
+            .offset(y: -30)
+    }
+}
+
 
 #Preview {
     HatDesignsView()
