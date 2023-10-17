@@ -15,6 +15,7 @@ struct BallsDetailsView: View {
     @Binding var ballIndex: Int
     @State var isProcessingPurchase = false
     @Environment(\.dismiss) private var dismiss
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     var body: some View {
         ZStack{
             VStack{
@@ -33,7 +34,9 @@ struct BallsDetailsView: View {
                     .frame(width: 120, height: 30)
                     .blur(radius: 21)
                     .padding(.bottom, 45)
-                
+                if idiom == .pad {
+                    Spacer()
+                }
                 Button {
                     if ball.isPurchased || ballIndex < 9 {
                         model.selectedCharacter = ball.characterID
@@ -68,6 +71,7 @@ struct BallsDetailsView: View {
                     .background(.black)
                     .cornerRadius(30)
                     .padding(.horizontal)
+                    .padding(.bottom, idiom == .pad ? 30 : 0)
                 }
             }
             if isProcessingPurchase {
