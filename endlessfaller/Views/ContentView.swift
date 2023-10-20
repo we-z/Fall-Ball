@@ -167,12 +167,15 @@ struct ContentView: View {
                                                 .foregroundColor(.black)
                                                 .bold()
                                                 .italic()
-                                            Text(String(bestScore))
-                                                .bold()
-                                                .italic()
-                                                .offset(y: 6)
-                                                .foregroundColor(.black)
-                                                .font(.largeTitle)
+                                            HStack{
+                                                Image(systemName: "square.and.arrow.up")
+                                                Text(String(bestScore))
+                                                    .bold()
+                                                    .italic()
+                                                    .offset(y: 6)
+                                                    .foregroundColor(.black)
+                                                    .font(.largeTitle)
+                                            }
                                             Spacer()
                                                 .frame(maxHeight: 10)
                                         }
@@ -519,6 +522,7 @@ struct ContentView: View {
                 }
             }
         }
+        .persistentSystemOverlays(.hidden)
         .sheet(isPresented: self.$showCharactersMenu){
             CharactersMenuView(backgroundColor: $gameOverBackgroundColor)
         }
