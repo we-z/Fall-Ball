@@ -13,7 +13,7 @@ import GameKit
 
 let bestScoreKey = "bestscorekey"
 let levels = 1000
-let difficulty = 6
+let difficulty = 8
 
 struct ContentView: View {
     
@@ -30,6 +30,7 @@ struct ContentView: View {
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
     @State var speed: Double = 4
+    @State var fraction: Double = 0.5
     @State var gameOver = false
     @State var freezeScrolling = false
     @State var showCharactersMenu = false
@@ -85,6 +86,7 @@ struct ContentView: View {
             }
             freezeScrolling = false
             self.speed = 4
+            self.fraction = 0.5
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
@@ -92,7 +94,6 @@ struct ContentView: View {
             showWastedScreen = false
             self.currentIndex = -1
             highestScoreInGame = -1
-            //CKVM.updateRecord(newScore: bestScore, newCharacterID: appModel.selectedCharacter)
             DispatchQueue.main.async{
                 gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
             }
@@ -401,10 +402,13 @@ struct ContentView: View {
                     score = newValue
                     if score > highestScoreInGame {
                         highestScoreInGame = score
-                        if newValue < difficulty {
-                            speed = speed / 2
+                        if newValue < 8 {
+                            speed = speed * fraction
+                            fraction += 0.06
+                        } else if newValue < 99 {
+                            speed = speed * 0.981
                         } else {
-                            speed -= 0.0001
+                            speed = speed * 0.999
                         }
                         self.timerManager.ballYPosition = -23
                         dropBall()
@@ -415,9 +419,7 @@ struct ContentView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
                         if currentIndex <= newValue && currentIndex != -1 {
-                            //withAnimation(.linear(duration: 0.1)) {
-                                gameShouldBeOver = true
-                            //}
+                            gameShouldBeOver = true
                             if levelYPosition >= 0 {
                                 gameOverOperations()
                             }
@@ -440,9 +442,12 @@ struct ContentView: View {
                                 .padding(.top, 30)
                                 .foregroundColor(.black)
                             Spacer()
-//                            Text("\(self.speed)")
-//                                .foregroundColor(.black)
-//                                .padding()
+//                            VStack{
+//                                Text("\(self.speed)")
+//                                    .padding()
+//                                Text("\(self.fraction)")
+//                                    .padding()
+//                            }
                         }
                         Spacer()
                     }

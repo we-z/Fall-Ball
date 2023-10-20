@@ -131,7 +131,7 @@ struct CharactersMenuView: View {
                             .background(GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     yPosition = -proxy.frame(in: .global).maxY
-                                    if yPosition > -300 {
+                                    if yPosition > -240 {
                                         self.showSecretShop = true
                                     }
                                     if yPosition > -(deviceHeight - 90) {

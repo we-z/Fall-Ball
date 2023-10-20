@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 FinlandView()
-                FallBallEvilBall()
+                BoinsView()
                 AllmightView()
             }
 //            HStack{
