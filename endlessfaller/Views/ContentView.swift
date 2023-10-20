@@ -48,7 +48,8 @@ struct ContentView: View {
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
-    @State var isMovingUp = false
+    @State var isBallButtonMovingUp = false
+    @State var isSwipeBannerMovingUp = false
     @State var colors: [Color] = (1...levels).map { _ in
         Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
     }
@@ -119,11 +120,11 @@ struct ContentView: View {
                                 Image(systemName: "arrow.up")
                                     .foregroundColor(.black)
                             }
+                            .animatedOffset(speed: 1)
                             .bold()
                             .font(.largeTitle)
                             .scaleEffect(1.5)
                             .tag(-1)
-                            .offset(y: deviceHeight * 0.01)
                         } else {
                             VStack{
                                 Text("Game Over!")
@@ -228,11 +229,12 @@ struct ContentView: View {
                                 .foregroundColor(.primary)
                                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
                                 .tag(-1)
+                                .animatedOffset(speed: 1)
                             }
                             .offset(y: deviceHeight * 0.06)
                             .onAppear() {
                                 withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: true)) {
-                                    isMovingUp.toggle()
+                                    isBallButtonMovingUp.toggle()
                                 }
                             }
                         }
@@ -275,15 +277,12 @@ struct ContentView: View {
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             VStack{
                                                 AnyView(character.character)
-                                                    .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
-                                                    .offset(y: isMovingUp ? -12 : 0)
                                                     
-                                                
-                                                //                                                .offset(x: ballButtonIsPressed ? -2 : 0, y: ballButtonIsPressed ? 2 : 0)
                                                 Ellipse()
                                                     .frame(width: 24, height: 6)
                                                     .blur(radius: 3)
                                             }
+                                            .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
                                         }
                                     }
                                     .padding(36)

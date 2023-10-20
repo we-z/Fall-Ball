@@ -17,6 +17,28 @@ struct AnimationsView: View {
     }
 }
 
+struct AnimatedOffsetModifier: ViewModifier {
+    let speed: CGFloat
+    @State private var offsetAmount: CGFloat = 0
+
+    func body(content: Content) -> some View {
+        content
+            .offset(y: offsetAmount)
+            .onAppear {
+                withAnimation(Animation.easeInOut(duration: speed).repeatForever(autoreverses: true)) {
+                    offsetAmount = -30
+                }
+            }
+    }
+}
+
+extension View {
+    func animatedOffset(speed amount: CGFloat) -> some View {
+        self.modifier(AnimatedOffsetModifier(speed: amount))
+    }
+}
+
+
 struct RotatingSunView: View {
     @State private var rotationAngle: Double = 0
 
