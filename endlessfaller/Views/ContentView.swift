@@ -39,10 +39,12 @@ struct ContentView: View {
     @State var showLeaderBoard = false
     @State var showNewBestScore = false
     @State var showPlaqueShare = false
+    @State var showCurrencyPage = false
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
     @State var muteIsPressed = false
     @State var ballButtonIsPressed = false
+    @State var currencyButtonIsPressed = false
     @State var plaqueIsPressed = false
     @State var levelYPosition: CGFloat = 0
     @State var gameOverBackgroundColor: Color = .white
@@ -129,6 +131,38 @@ struct ContentView: View {
                             .tag(-1)
                         } else {
                             VStack{
+                                HStack{
+                                    Spacer()
+                                    HStack{
+                                        BoinsView()
+                                        Text("0")
+                                            .bold()
+                                            .italic()
+                                            .font(.largeTitle)
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 6)
+                                    .background{
+                                        Color.white
+                                    }
+                                    .cornerRadius(15)
+                                    .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
+                                    .offset(x: currencyButtonIsPressed ? -6 : 0, y: currencyButtonIsPressed ? 6 : 0)
+                                    .padding()
+                                    .pressEvents {
+                                        // On press
+                                        withAnimation(.easeInOut(duration: 0.1)) {
+                                            currencyButtonIsPressed = true
+                                        }
+                                    } onRelease: {
+                                        withAnimation {
+                                            currencyButtonIsPressed = false
+                                            showCurrencyPage = true
+                                        }
+                                    }
+                                }
+                                .padding(.top, 30)
+                                Spacer()
                                 Text("Game Over!")
                                     .italic()
                                     .bold()
@@ -241,8 +275,8 @@ struct ContentView: View {
                                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
                                 .tag(-1)
                                 .animatedOffset(speed: 1)
+                                Spacer()
                             }
-                            .offset(y: deviceHeight * 0.06)
                             .onAppear() {
                                 withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: true)) {
                                     isBallButtonMovingUp.toggle()
@@ -537,6 +571,9 @@ struct ContentView: View {
         .sheet(isPresented: self.$showPlaqueShare){
             PlayersPlaqueView(backgroundColor: $gameOverBackgroundColor)
                 .presentationDetents([.height(450)])
+        }
+        .sheet(isPresented: self.$showCurrencyPage){
+            CurrencyPageView()
         }
         .edgesIgnoringSafeArea(.all)
         .allowsHitTesting(!freezeScrolling)

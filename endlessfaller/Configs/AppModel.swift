@@ -15,8 +15,11 @@ let selectedCharacterKey = "SelectedCharacterID"
 let selectedHatKey = "SelectedHatID"
 let purchasedCharactersKey = "PurchasedCharacters"
 let muteKey = "Mute"
+let balanceKey = "Balance"
 
 class AppModel: ObservableObject {
+    
+    @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
     
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? "io.endlessfall.white"
     @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
