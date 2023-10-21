@@ -458,12 +458,6 @@ struct ContentView: View {
                                 .padding(.top, 30)
                                 .foregroundColor(.black)
                             Spacer()
-//                            VStack{
-//                                Text("\(self.speed)")
-//                                    .padding()
-//                                Text("\(self.fraction)")
-//                                    .padding()
-//                            }
                         }
                         Spacer()
                     }

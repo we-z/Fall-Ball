@@ -55,13 +55,15 @@ struct BoinsView: View {
     var body: some View {
         ZStack{
             Circle()
+                .frame(width: 36, height: 36)
+                .foregroundColor(.black)
+            Circle()
                 .frame(width: 30, height: 30)
                 .foregroundColor(.orange)
             Circle()
                 .stroke(lineWidth: 3)
                 .frame(width: 30, height: 30)
                 .foregroundColor(.yellow)
-                .shadow(radius: 1)
             Text("B")
                 .bold()
                 .italic()
@@ -71,6 +73,7 @@ struct BoinsView: View {
         }
     }
 }
+
 
 struct ObamaView: View {
     var body: some View {

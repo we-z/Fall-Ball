@@ -1194,13 +1194,11 @@ struct WastedView: View {
                     .scaleEffect(1.5)
             }
             // 2. Apply the offset modifier based on the shake state variable
-            .offset(y: shake ? -10 : 10)
-            .animation(
-                Animation.linear(duration: 0.05)
-                    .repeatForever(autoreverses: true)
-            )
+            .offset(y: shake ? -21 : 21)
             .onAppear() {
-                self.shake.toggle()
+                withAnimation(.linear(duration: 0.06).repeatForever(autoreverses: true)){
+                    self.shake.toggle()
+                }
             }
         }
     }

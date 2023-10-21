@@ -17,7 +17,7 @@ struct TempView: View {
         var body: some View {
             Text("Hello, World!")
                 .animatedOffset(speed: 2)
-                        .padding()
+                .padding()
         }
 }
 
