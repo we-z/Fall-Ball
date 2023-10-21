@@ -51,7 +51,7 @@ struct PlayersPlaqueView: View {
                     .bold()
                     .italic()
                     .font(.title)
-                Text("Beat my Top Score: \(bestScore)")
+                Text("Beat My Top Score: \(bestScore)")
                     .font(.caption)
                     .bold()
                     .italic()

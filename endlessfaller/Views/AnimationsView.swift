@@ -10,10 +10,29 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        ZStack{
-            Color.blue
-            RotatingSunView()
-        }
+        WastedView()
+    }
+}
+
+struct RandomColorModifier: ViewModifier {
+    @State private var color: Color = .red
+    private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @State private var colorIndex: Int = 0
+    private let colors: [Color] = [.red, .green, .blue]
+
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(color)
+            .onReceive(timer) { _ in
+                    self.colorIndex = (self.colorIndex + 1) % self.colors.count
+                    self.color = colors[self.colorIndex]
+            }
+    }
+}
+
+extension View {
+    func randomColor() -> some View {
+        self.modifier(RandomColorModifier())
     }
 }
 
@@ -1113,20 +1132,59 @@ struct NewBestScore: View {
     }
 }
 
+//struct WastedView: View {
+//    @State private var shake = false
+//    @State private var rotationAmount: Double = 0
+//    @State private var scaleEffect: CGFloat = 1.2
+//
+//    var body: some View {
+//        ZStack {
+//            VStack {
+//                Text("💀")
+//                    .foregroundColor(.black)
+//                    .bold()
+//                    .font(.largeTitle)
+//                    .scaleEffect(3)
+//                    .padding(.bottom, 40)
+//                Text("WASTED!")
+//                    .foregroundColor(.black)
+//                    .italic()
+//                    .bold()
+//                    .font(.largeTitle)
+//                    .padding(9)
+//                    .scaleEffect(1.5)
+//            }
+//            .scaleEffect(scaleEffect)
+//            .offset(y: shake ? -10 : 10)
+//            .rotationEffect(.degrees(rotationAmount))
+//            .onAppear() {
+//                withAnimation(.easeInOut(duration: 0.1).repeatForever(autoreverses: true)){
+//                    rotationAmount = 5
+//                    scaleEffect = 1
+//                    shake.toggle()
+//                }
+//            }
+//            .onDisappear() {
+//                rotationAmount = 0
+//                scaleEffect = 1
+//            }
+//        }
+//    }
+//}
+
 struct WastedView: View {
+    // 1. Define a state variable to control the vertical offset
+    @State private var shake = false
+    
     var body: some View {
-        ZStack{
-            Color.white
-                .ignoresSafeArea()
-                .strobing()
-            VStack{
+        ZStack {
+            VStack {
                 Text("💀")
                     .foregroundColor(.black)
                     .bold()
                     .font(.largeTitle)
                     .scaleEffect(3)
                     .padding(.bottom, 40)
-                    .strobing()
                 Text("WASTED!")
                     .foregroundColor(.black)
                     .italic()
@@ -1134,11 +1192,20 @@ struct WastedView: View {
                     .font(.largeTitle)
                     .padding(9)
                     .scaleEffect(1.5)
-                    .strobing()
+            }
+            // 2. Apply the offset modifier based on the shake state variable
+            .offset(y: shake ? -10 : 10)
+            .animation(
+                Animation.linear(duration: 0.05)
+                    .repeatForever(autoreverses: true)
+            )
+            .onAppear() {
+                self.shake.toggle()
             }
         }
     }
 }
+
 
 struct AnimationsView_Previews: PreviewProvider {
     static var previews: some View {

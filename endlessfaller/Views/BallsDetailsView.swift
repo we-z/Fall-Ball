@@ -84,7 +84,7 @@ struct BallsDetailsView: View {
             }
         }
         .onAppear() {
-            withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: true)) {
+            withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
                 isMovingUp.toggle()
             }
         }

@@ -10,6 +10,8 @@ import VTabView
 import AudioToolbox
 import AVFoundation
 import GameKit
+import AudioToolbox
+
 
 let bestScoreKey = "bestscorekey"
 let levels = 1000
@@ -131,8 +133,9 @@ struct ContentView: View {
                                     .italic()
                                     .bold()
                                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
-                                    .foregroundColor(.black)
+//                                    .randomColor()
                                     .scaleEffect(1.8)
+//                                    .shadow(color: .black, radius: 0.1, x: -3, y: 3)
                                     .padding(.bottom, deviceHeight * 0.04)
                                 ZStack{
                                     HStack{
@@ -168,15 +171,12 @@ struct ContentView: View {
                                                 .foregroundColor(.black)
                                                 .bold()
                                                 .italic()
-                                            HStack{
-                                                Image(systemName: "square.and.arrow.up")
                                                 Text(String(bestScore))
                                                     .bold()
                                                     .italic()
                                                     .offset(y: 6)
                                                     .foregroundColor(.black)
                                                     .font(.largeTitle)
-                                            }
                                             Spacer()
                                                 .frame(maxHeight: 10)
                                         }
@@ -197,6 +197,17 @@ struct ContentView: View {
                                             .cornerRadius(30)
                                             .shadow(color: .black, radius: 0.1, x: plaqueIsPressed ? 0 : -9, y: plaqueIsPressed ? 0 : 9)
                                             .padding(.horizontal,9)
+                                        VStack{
+                                            Spacer()
+                                            HStack{
+                                                Image(systemName: "square.and.arrow.up")
+                                                    .bold()
+                                                    .font(.title2)
+                                                    .padding(15)
+                                                    .padding(.horizontal, 12)
+                                                Spacer()
+                                            }
+                                        }
                                     }
 
                                 }
@@ -244,7 +255,7 @@ struct ContentView: View {
                                 HStack{
                                     
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                                        .foregroundColor(.teal)
+                                        .foregroundColor(.blue)
                                         .font(.largeTitle)
                                     .shadow(color: .black, radius: 0.1, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
                                         .scaleEffect(1.2)
@@ -400,9 +411,12 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
+                    
                     gameShouldBeOver = false
                     score = newValue
                     if score > highestScoreInGame {
+                        // 1052 or 1054
+//                        AudioServicesPlaySystemSound(1052)
                         highestScoreInGame = score
                         if newValue < 8 {
                             speed = speed * fraction
@@ -457,9 +471,7 @@ struct ContentView: View {
                 }
                 
                 if showWastedScreen {
-                    ZStack{
-                        WastedView()
-                    }
+                    WastedView()
                 } else{
                     if !showNewBestScore {
                         
@@ -553,11 +565,6 @@ struct ContentView: View {
             if let punch = Bundle.main.path(forResource: "punchSFX", ofType: "mp3"){
                 do {
                     self.punchSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: punch))
-                    if appModel.mute == true {
-                        self.punchSoundEffect.setVolume(0, fadeDuration: 0)
-                    } else {
-                        self.punchSoundEffect.setVolume(1, fadeDuration: 0)
-                    }
                 } catch {
                     print("Error playing audio: \(error)")
                 }
