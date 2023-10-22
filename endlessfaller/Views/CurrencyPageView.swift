@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CurrencyPageView: View {
     @State var isProcessingPurchase = false
+    @State var showAlert = false
     @StateObject var storeKit = StoreKitManager()
     @StateObject var model = AppModel()
     @State var bundles: [CurrencyBundle] = [
@@ -49,21 +50,21 @@ struct CurrencyPageView: View {
                                         if index < bundles.count {
                                             let bundle = bundles[index]
                                             Button {
-                                                isProcessingPurchase = true
-                                                Task {
-                                                    do {
-                                                        if (try await storeKit.purchase(characterID: bundle.bundleID)) != nil{
-                                                            
-                                                            // increment players balance with coins
-                                                            //
-                                                            //
-                                                            
-                                                            model.balance += bundle.coins
+                                                if index != 8 {
+                                                    isProcessingPurchase = true
+                                                    Task {
+                                                        do {
+                                                            if (try await storeKit.purchase(characterID: bundle.bundleID)) != nil{
+                                                                
+                                                                model.balance += bundle.coins
+                                                            }
+                                                        } catch {
+                                                            print("Purchase failed: \(error)")
                                                         }
-                                                    } catch {
-                                                        print("Purchase failed: \(error)")
+                                                        isProcessingPurchase = false
                                                     }
-                                                    isProcessingPurchase = false
+                                                } else {
+                                                    showAlert = true
                                                 }
                                             } label: {
                                                 Rectangle()
@@ -79,7 +80,7 @@ struct CurrencyPageView: View {
                                                                 .scaleEffect(1.5)
                                                                 .padding(.top)
                                                             if index != 8 {
-                                                                Text(String(bundles[index].coins) + "\ncoins")
+                                                                Text(String(bundles[index].coins) + "\nBoins")
                                                                     .multilineTextAlignment(.center)
                                                                     .bold()
                                                                     .italic()
@@ -90,7 +91,7 @@ struct CurrencyPageView: View {
                                                                     .italic()
                                                                     .font(.largeTitle)
                                                                     .scaleEffect(1.8)
-                                                                Text("coins")
+                                                                Text("Boins")
                                                                     .bold()
                                                                     .italic()
                                                                     .font(.title2)
@@ -124,6 +125,9 @@ struct CurrencyPageView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
                 
                 }
+            }
+            .alert("Coming Soon", isPresented: $showAlert) {
+                Button("OK", role: .cancel) { }
             }
         }
     }

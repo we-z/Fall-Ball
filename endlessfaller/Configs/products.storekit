@@ -828,10 +828,147 @@
       "productID" : "io.endlessfall.pearl",
       "referenceName" : "pearl",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "34FDC230",
+      "localizations" : [
+        {
+          "description" : "Infinite Coins",
+          "displayName" : "Infinite Coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "infinitecoins",
+      "referenceName" : "infinitecoins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "301A4154",
+      "localizations" : [
+        {
+          "description" : "25 coins",
+          "displayName" : "25 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "25coins",
+      "referenceName" : "25coins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "4A40A99A",
+      "localizations" : [
+        {
+          "description" : "55 coins",
+          "displayName" : "55 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "55coins",
+      "referenceName" : "55coins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "19.99",
+      "familyShareable" : false,
+      "internalID" : "E2800271",
+      "localizations" : [
+        {
+          "description" : "125 coins",
+          "displayName" : "125 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "125coins",
+      "referenceName" : "125coins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "49.99",
+      "familyShareable" : false,
+      "internalID" : "44F5BA0F",
+      "localizations" : [
+        {
+          "description" : "350 coins",
+          "displayName" : "350 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "350coins",
+      "referenceName" : "350coins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "99.99",
+      "familyShareable" : false,
+      "internalID" : "900AB546",
+      "localizations" : [
+        {
+          "description" : "800 coins",
+          "displayName" : "800 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "800coins",
+      "referenceName" : "800coins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "199.99",
+      "familyShareable" : false,
+      "internalID" : "04B58DC2",
+      "localizations" : [
+        {
+          "description" : "1700 coins",
+          "displayName" : "1700 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "1700coins",
+      "referenceName" : "1700coins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "499.99",
+      "familyShareable" : false,
+      "internalID" : "119C7CDD",
+      "localizations" : [
+        {
+          "description" : "3900 coins",
+          "displayName" : "3900 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "3900coins",
+      "referenceName" : "3900coins",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "999.99",
+      "familyShareable" : false,
+      "internalID" : "B6C54D4A",
+      "localizations" : [
+        {
+          "description" : "9999 coins",
+          "displayName" : "9999 coins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "9999coins",
+      "referenceName" : "9999coins",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {
     "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
     "_storeKitErrors" : [
       {
         "current" : null,
