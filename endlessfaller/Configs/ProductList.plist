@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>infinitecoins</key>
+	<string>infinitecoins</string>
+	<key>25coins</key>
+	<string>25coins</string>
+	<key>55coins</key>
+	<string>55coins</string>
+	<key>125coins</key>
+	<string>125coins</string>
+	<key>350coins</key>
+	<string>350coins</string>
+	<key>800coins</key>
+	<string>800coins</string>
+	<key>1700coins</key>
+	<string>1700coins</string>
+	<key>3900coins</key>
+	<string>3900coins</string>
+	<key>9999coins</key>
+	<string>9999coins</string>
 	<key>russia</key>
 	<string>io.endlessfall.russia</string>
 	<key>belarus</key>

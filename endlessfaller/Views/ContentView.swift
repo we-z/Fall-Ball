@@ -135,7 +135,7 @@ struct ContentView: View {
                                     Spacer()
                                     HStack{
                                         BoinsView()
-                                        Text("0")
+                                        Text(String(appModel.balance))
                                             .bold()
                                             .italic()
                                             .font(.largeTitle)
@@ -289,7 +289,7 @@ struct ContentView: View {
                                 HStack{
                                     
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(.teal)
                                         .font(.largeTitle)
                                     .shadow(color: .black, radius: 0.1, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
                                         .scaleEffect(1.2)
