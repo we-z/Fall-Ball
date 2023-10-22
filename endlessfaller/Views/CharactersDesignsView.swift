@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack(spacing: 0){
             HStack{
                 FinlandView()
-                BoinsView()
+                EvilBall()
                 AllmightView()
             }
 //            HStack{
@@ -264,11 +264,11 @@ struct FallBallLaughBall: View {
     }
 }
 
-struct FallBallEvilBall: View {
+struct EvilBall: View {
     var body: some View {
         ZStack {
             Circle()
-                .foregroundColor(.red)
+                .foregroundColor(.purple)
                 .frame(width: 46, height: 46)
                 .mask(
                     Circle()
@@ -278,7 +278,7 @@ struct FallBallEvilBall: View {
                 .frame(width: 30)
                 .overlay{
                     Circle()
-                        .foregroundColor(.red)
+                        .foregroundColor(.purple)
                         .frame(width: 60, height: 60)
                         .offset(y:-21)
                 }
@@ -289,7 +289,7 @@ struct FallBallEvilBall: View {
                     .frame(width: 12)
                     .overlay{
                         Rectangle()
-                            .foregroundColor(.red)
+                            .foregroundColor(.purple)
                             .frame(width: 13, height: 7)
                             .offset(y:-4)
                     }
@@ -299,7 +299,7 @@ struct FallBallEvilBall: View {
                     .frame(width: 12)
                     .overlay{
                         Rectangle()
-                            .foregroundColor(.red)
+                            .foregroundColor(.purple)
                             .frame(width: 13, height: 7)
                             .offset(y:-4)
                     }
@@ -318,7 +318,7 @@ struct FallBallEvilBall: View {
                     .foregroundColor(.black)
                     .frame(width: 50, height: 50)
                 Circle()
-                    .foregroundColor(.red.opacity(0.5))
+                    .foregroundColor(.purple.opacity(0.5))
                     .frame(width: 50, height: 50)
                 Circle()    // source
                     .frame(width: 90, height: 90)

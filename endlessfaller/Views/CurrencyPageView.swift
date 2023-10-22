@@ -102,6 +102,21 @@ struct CurrencyPageView: View {
                                                                 .italic()
                                                                 .bold()
                                                         }
+                                                        if index == 1 {
+                                                            Text("Best Seller")
+                                                                .bold()
+                                                                .italic()
+                                                                .padding(.horizontal)
+                                                                .background{
+                                                                    Color.red
+                                                                }
+                                                                .rotationEffect(.degrees(45))
+                                                                .offset(x:24, y: -69)
+                                                                .mask{
+                                                                    Rectangle()
+                                                                        .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
+                                                                }
+                                                        }
                                                     }
                                                     .accentColor(.primary)
                                                     .padding(1)

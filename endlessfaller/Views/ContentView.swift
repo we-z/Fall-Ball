@@ -31,6 +31,7 @@ struct ContentView: View {
     @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
+    @State var costToContinue: Int = 1
     @State var speed: Double = 4
     @State var fraction: Double = 0.5
     @State var gameOver = false
@@ -40,6 +41,7 @@ struct ContentView: View {
     @State var showNewBestScore = false
     @State var showPlaqueShare = false
     @State var showCurrencyPage = false
+    @State var showContinueToPlayBanner = false
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
     @State var muteIsPressed = false

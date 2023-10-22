@@ -24,7 +24,6 @@ struct SecretShopView: View {
                         .bold()
                         .font(.largeTitle)
                         .scaleEffect(1.1)
-                        .padding(.top, 30)
                 }
                 HStack{
                     Spacer()
