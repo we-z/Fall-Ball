@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContinuePlayingView: View {
     @StateObject var appModel = AppModel()
+    @State var showCurrencyPage = false
     @State private var circleProgress: CGFloat = 0.0
     @Binding var cost: Int
     @State var buttonIsPressed = false
@@ -44,8 +45,7 @@ struct ContinuePlayingView: View {
                     .bold()
                     .italic()
                     .font(.largeTitle)
-                    .padding(.bottom)
-                    .padding(.bottom, 9)
+                    .padding(.bottom, 27)
                 HStack{
                     Spacer()
                     Text("\(cost)")
@@ -70,6 +70,11 @@ struct ContinuePlayingView: View {
                 } onRelease: {
                     withAnimation {
                         buttonIsPressed = false
+                    }
+                    if appModel.balance >= cost{
+                        
+                    } else {
+                        showCurrencyPage = true
                     }
                 }
             }
@@ -103,6 +108,9 @@ struct ContinuePlayingView: View {
             .padding(30)
             
         }
+        .sheet(isPresented: self.$showCurrencyPage){
+            CurrencyPageView()
+        }
         .onAppear{
             withAnimation(.linear(duration: 9).repeatForever(autoreverses: false)) {
                 circleProgress = 1.0
@@ -112,5 +120,5 @@ struct ContinuePlayingView: View {
 }
 
 #Preview {
-    ContinuePlayingView(cost: .constant(4))
+    ContinuePlayingView(cost: .constant(1))
 }

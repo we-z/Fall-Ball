@@ -74,6 +74,7 @@ struct CurrencyPageView: View {
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
                                                             .stroke(Color.primary, lineWidth: 3)
+                                                            .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
                                                             .padding(1)
                                                         VStack{
                                                             BoinsView()
@@ -103,19 +104,29 @@ struct CurrencyPageView: View {
                                                                 .bold()
                                                         }
                                                         if index == 1 {
-                                                            Text("Best Seller")
-                                                                .bold()
-                                                                .italic()
-                                                                .padding(.horizontal)
-                                                                .background{
-                                                                    Color.red
-                                                                }
-                                                                .rotationEffect(.degrees(45))
-                                                                .offset(x:24, y: -69)
-                                                                .mask{
-                                                                    Rectangle()
-                                                                        .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
-                                                                }
+                                                            HStack{
+                                                                Spacer()
+                                                                Text("Best Seller")
+                                                                    .bold()
+                                                                    .italic()
+                                                                Spacer()
+                                                                    
+                                                            }
+                                                            .background{
+                                                                Color.red
+                                                            }
+                                                            .frame(width: 210)
+                                                            .overlay{
+                                                                Rectangle()
+                                                                    .stroke(Color.primary, lineWidth: 3)
+                                                            }
+                                                            .rotationEffect(.degrees(45))
+                                                            .offset(x:idiom == .pad ? 60 : 21, y: idiom == .pad ? -90 : -69)
+                                                            .mask{
+                                                                Rectangle()
+                                                                    .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
+                                                            }
+                                                            
                                                         }
                                                     }
                                                     .accentColor(.primary)
