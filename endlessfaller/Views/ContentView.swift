@@ -44,6 +44,7 @@ struct ContentView: View {
     @State var showContinueToPlayBanner = false
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
+    @State var showInstructionsAndBall = true
     @State var muteIsPressed = false
     @State var ballButtonIsPressed = false
     @State var currencyButtonIsPressed = false
@@ -73,6 +74,7 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
+        showInstructionsAndBall = false
         self.punchSoundEffect.play()
         gameOverBackgroundColor = colors[currentIndex]
         showNewBestScore = false
@@ -88,10 +90,10 @@ struct ContentView: View {
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         showWastedScreen = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.colors = (1...levels).map { _ in
-                Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
-            }
-            freezeScrolling = false
+//            self.colors = (1...levels).map { _ in
+//                Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
+//            }
+            //freezeScrolling = false
             self.speed = 4
             self.fraction = 0.5
         }
@@ -99,11 +101,12 @@ struct ContentView: View {
         self.playedCharacter = appModel.selectedCharacter
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             showWastedScreen = false
-            self.currentIndex = -1
-            highestScoreInGame = -1
-            DispatchQueue.main.async{
-                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
-            }
+//            self.currentIndex = -1
+//            highestScoreInGame = -1
+//            DispatchQueue.main.async{
+//                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
+//            }
+            showContinueToPlayBanner = true
             timer.invalidate() // Stop the timer after the reset
         }
     }
@@ -377,6 +380,7 @@ struct ContentView: View {
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             colors[index]
+                            if showInstructionsAndBall {
                             if currentIndex == 0 && !showWastedScreen {
                                 Instruction()
                                     .scaleEffect(1.5)
@@ -423,6 +427,7 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                        }
                             if index == 0{
                                 ZStack{
                                     Rectangle()
@@ -483,6 +488,7 @@ struct ContentView: View {
                         gameOverOperations()
                     }
                 }
+                .allowsHitTesting(!freezeScrolling)
                 if currentIndex >= 0 {
                     VStack{
                         HStack{
@@ -503,63 +509,68 @@ struct ContentView: View {
                 if showWastedScreen {
                     WastedView()
                 } else{
-                    if !showNewBestScore {
-                        
-                        if currentIndex > 100 && currentIndex < 115 {
-                            YourGood()
+                    if showInstructionsAndBall {
+                        if !showNewBestScore {
+                            
+                            if currentIndex > 100 && currentIndex < 115 {
+                                YourGood()
+                            }
+                            
+                            if currentIndex > 200 && currentIndex < 215 {
+                                YourInsane()
+                            }
+                            
+                            if currentIndex > 300 && currentIndex < 315 {
+                                GoBerzerk()
+                            }
+                            
+                        } else {
+                            NewBestScore()
                         }
-                        
-                        if currentIndex > 200 && currentIndex < 215 {
-                            YourInsane()
+                        if currentIndex > 10 {
+                            CelebrationEffect()
                         }
-                        
-                        if currentIndex > 300 && currentIndex < 315 {
-                            GoBerzerk()
-                        }
-                        
-                    } else {
-                        NewBestScore()
-                    }
-                    if currentIndex > 10 {
-                        CelebrationEffect()
-                    }
-                    if currentIndex > 40 {
-                        VStack{
-                            Spacer()
-                            HStack{
+                        if currentIndex > 40 {
+                            VStack{
                                 Spacer()
-                                BearView()
+                                HStack{
+                                    Spacer()
+                                    BearView()
+                                }
                             }
                         }
-                    }
-                    if currentIndex > 20 {
-                        ReactionsView()
-                            .offset(y: 70)
-                    }
-                                         if currentIndex > 60 {
-                        VStack{
-                            Spacer()
-                            HStack{
-                                SwiftUIXmasTree2()
-                                    .scaleEffect(0.5)
-                                    .offset(x:-deviceWidth/10)
+                        if currentIndex > 20 {
+                            ReactionsView()
+                                .offset(y: 70)
+                        }
+                        if currentIndex > 60 {
+                            VStack{
                                 Spacer()
+                                HStack{
+                                    SwiftUIXmasTree2()
+                                        .scaleEffect(0.5)
+                                        .offset(x:-deviceWidth/10)
+                                    Spacer()
+                                }
                             }
                         }
-                    }
-                    
-                    if currentIndex > 33 {
-                        VStack{
-                            Spacer()
-                            HStack{
+                        
+                        if currentIndex > 33 {
+                            VStack{
                                 Spacer()
-                                SVGCharacterView()
-                                    .scaleEffect(0.5)
-                                    .offset(x:deviceWidth/10)
+                                HStack{
+                                    Spacer()
+                                    SVGCharacterView()
+                                        .scaleEffect(0.5)
+                                        .offset(x:deviceWidth/10)
+                                }
                             }
+                            .allowsHitTesting(false)
                         }
-                        .allowsHitTesting(false)
                     }
+                }
+                if showContinueToPlayBanner {
+                    ContinuePlayingView(cost: $costToContinue)
                 }
             }
         }
@@ -578,7 +589,7 @@ struct ContentView: View {
             CurrencyPageView()
         }
         .edgesIgnoringSafeArea(.all)
-        .allowsHitTesting(!freezeScrolling)
+        .scrollDisabled(freezeScrolling)
         .onAppear {
             playedCharacter = appModel.selectedCharacter
             if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){

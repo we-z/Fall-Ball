@@ -8,21 +8,43 @@
 import SwiftUI
 
 struct ContinuePlayingView: View {
+    @StateObject var appModel = AppModel()
     @State private var circleProgress: CGFloat = 0.0
     @Binding var cost: Int
     @State var buttonIsPressed = false
     var body: some View {
         ZStack{
-            Color.black
-                .opacity(0.2)
-                .ignoresSafeArea()
+//            Color.black
+//                .opacity(0.2)
+//                .ignoresSafeArea()
+            
             VStack{
+                HStack{
+                    Spacer()
+                    HStack(spacing: 0){
+                        BoinsView()
+                            .scaleEffect(0.6)
+                        Text(String(appModel.balance))
+                            .bold()
+                            .italic()
+                            .font(.title3)
+                    }
+                    .padding(.horizontal, 9)
+                    .padding(.top, 12)
+                    .padding(.trailing, 21)
+                    .background(.yellow)
+                    .cornerRadius(15)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.primary, lineWidth: 3)
+                    }
+                    .offset(x: 9, y: -9)
+                }
                 Text("Continue?")
                     .bold()
                     .italic()
                     .font(.largeTitle)
-                    .padding()
-                    .padding(.top, 18)
+                    .padding(.bottom)
                     .padding(.bottom, 9)
                 HStack{
                     Spacer()
@@ -64,13 +86,13 @@ struct ContinuePlayingView: View {
                     Circle()
                         .frame(width: 59)
                         .foregroundColor(.red)
-                        .offset(y:3.9)
+                        .offset(y:3.6)
                     Circle()
                         .trim(from: 0, to: circleProgress)
                         .stroke(Color.blue, lineWidth: 30)
                         .rotationEffect(Angle(degrees: -90))
                         .frame(width: 29, height: 29)
-                        .offset(y:3.9)
+                        .offset(y:3.6)
                     
                     
                 }
@@ -82,7 +104,7 @@ struct ContinuePlayingView: View {
             
         }
         .onAppear{
-            withAnimation(.linear(duration: 9)) {
+            withAnimation(.linear(duration: 9).repeatForever(autoreverses: false)) {
                 circleProgress = 1.0
             }
         }
@@ -90,5 +112,5 @@ struct ContinuePlayingView: View {
 }
 
 #Preview {
-    ContinuePlayingView(cost: .constant(1))
+    ContinuePlayingView(cost: .constant(4))
 }
