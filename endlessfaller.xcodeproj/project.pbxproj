@@ -224,11 +224,11 @@
 		7A6977CD2A956D01005967F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */,
 				7AD234402A5F824800ED626D /* ContentView.swift */,
 				7AEA1AB32AE5C9CA00FE6DB5 /* ContinuePlayingView.swift */,
 				7AEA1AB12AE46BDE00FE6DB5 /* CurrencyPageView.swift */,
 				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
-				7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */,
 				7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */,
 				7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */,
 				7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */,

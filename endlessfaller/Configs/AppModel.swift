@@ -18,7 +18,8 @@ let muteKey = "Mute"
 let balanceKey = "Balance"
 
 class AppModel: ObservableObject {
-    
+    @Published var shouldContinue = false
+    @Published var cancelContinuation = false
     @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
     
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? "io.endlessfall.white"

@@ -74,10 +74,8 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
-        showInstructionsAndBall = false
-        self.punchSoundEffect.play()
-        gameOverBackgroundColor = colors[currentIndex]
-        showNewBestScore = false
+        showInstructionsAndBall = true
+        freezeScrolling = false
         gameOver = true
         currentScore = highestScoreInGame
         if currentScore > bestScore {
@@ -86,6 +84,21 @@ struct ContentView: View {
                 bestScore = currentScore
             }
         }
+        highestScoreInGame = -1
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.speed = 4
+            self.fraction = 0.5
+        //}
+    }
+    
+    
+    
+    func wastedOperations() {
+        showInstructionsAndBall = false
+        self.punchSoundEffect.play()
+        gameOverBackgroundColor = colors[currentIndex]
+        showNewBestScore = false
+        gameOver = true
         freezeScrolling = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         showWastedScreen = true
@@ -93,20 +106,32 @@ struct ContentView: View {
 //            self.colors = (1...levels).map { _ in
 //                Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
 //            }
-            //freezeScrolling = false
+            freezeScrolling = false
             self.speed = 4
             self.fraction = 0.5
+            
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
-            showWastedScreen = false
-//            self.currentIndex = -1
+            
+            self.showWastedScreen = false
+            showContinueToPlayBanner = true
+            self.currentIndex = -2
+            timer.invalidate() // Stop the timer after the reset
+        }
+        Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
+            
 //            highestScoreInGame = -1
 //            DispatchQueue.main.async{
 //                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
 //            }
-            showContinueToPlayBanner = true
+            if !appModel.shouldContinue {
+                showContinueToPlayBanner = false
+                //self.currentIndex = -1
+                gameOverOperations()
+            }
+            
             timer.invalidate() // Stop the timer after the reset
         }
     }
@@ -117,8 +142,39 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
+                    if showContinueToPlayBanner{
+                        ZStack{
+                            VStack{
+                                Spacer()
+                                HStack{
+                                    Spacer()
+                                    ContinuePlayingView(cost: $costToContinue)
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                            VStack{
+                                HStack{
+                                    Text(String(score))
+                                        .bold()
+                                        .italic()
+                                        .font(.system(size: 100))
+                                        .padding(36)
+                                        .padding(.top, 30)
+                                        .foregroundColor(.black)
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                            .allowsHitTesting(false)
+                        }
+                        .background(gameOverBackgroundColor)
+                        .ignoresSafeArea()
+                        .tag(-2)
+                    }
                     VStack{
                         Spacer()
+                        
                         if !gameOver {
                             VStack{
                                 Text("Swipe up \nto play!")
@@ -374,8 +430,6 @@ struct ContentView: View {
                             }
                         }
                     }
-                    
-                    
                     .background(gameOverBackgroundColor)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
@@ -454,7 +508,9 @@ struct ContentView: View {
                 .onChange(of: currentIndex) { newValue in
                     
                     gameShouldBeOver = false
-                    score = newValue
+                    if newValue >= 0 {
+                        score = newValue
+                    }
                     if score > highestScoreInGame {
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
@@ -475,17 +531,17 @@ struct ContentView: View {
                         showNewBestScore = true
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
-                        if currentIndex <= newValue && currentIndex != -1 {
+                        if currentIndex <= newValue && currentIndex >= 0 {
                             gameShouldBeOver = true
                             if levelYPosition >= 0 {
-                                gameOverOperations()
+                                wastedOperations()
                             }
                         }
                     }
                 }
                 .onChange(of: levelYPosition) { yPosition in
                     if yPosition >= 0 && gameShouldBeOver {
-                        gameOverOperations()
+                        //wastedOperations()
                     }
                 }
                 .allowsHitTesting(!freezeScrolling)
@@ -569,9 +625,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                if showContinueToPlayBanner {
-                    ContinuePlayingView(cost: $costToContinue)
-                }
             }
         }
         .persistentSystemOverlays(.hidden)
@@ -589,7 +642,7 @@ struct ContentView: View {
             CurrencyPageView()
         }
         .edgesIgnoringSafeArea(.all)
-        .scrollDisabled(freezeScrolling)
+        //.scrollDisabled(freezeScrolling)
         .onAppear {
             playedCharacter = appModel.selectedCharacter
             if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
