@@ -27,7 +27,7 @@ struct ContentView: View {
     @StateObject var appModel = AppModel()
     @ObservedObject private var timerManager = TimerManager()
     @ObservedObject var gameCenter = GameCenter()
-    @State var score: Int = 0
+    @State var score: Int = -1
     @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
@@ -36,12 +36,13 @@ struct ContentView: View {
     @State var fraction: Double = 0.5
     @State var gameOver = false
     @State var freezeScrolling = false
+    @State var continueButtonIsPressed = false
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
     @State var showNewBestScore = false
     @State var showPlaqueShare = false
     @State var showCurrencyPage = false
-    @State var showContinueToPlayBanner = false
+    @State var showContinueToPlayScreen = false
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
     @State var showInstructionsAndBall = true
@@ -52,11 +53,14 @@ struct ContentView: View {
     @State var levelYPosition: CGFloat = 0
     @State var gameOverBackgroundColor: Color = .white
     @State var playedCharacter = ""
+    @State private var wastedTimer1: Timer? = nil
+    @State private var wastedTimer2: Timer? = nil
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
     @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
+    @State private var circleProgress: CGFloat = 0.0
     @State var colors: [Color] = (1...levels).map { _ in
         Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
     }
@@ -74,6 +78,14 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
+        wastedTimer1?.invalidate()
+        wastedTimer1 = nil
+        
+        wastedTimer2?.invalidate()
+        wastedTimer2 = nil
+        print("gameOverOperations called")
+        score = -1
+        showContinueToPlayScreen = false
         showInstructionsAndBall = true
         freezeScrolling = false
         gameOver = true
@@ -84,16 +96,17 @@ struct ContentView: View {
                 bestScore = currentScore
             }
         }
-        highestScoreInGame = -1
+        //highestScoreInGame = -1
         //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.speed = 4
-            self.fraction = 0.5
+        self.speed = 4
+        self.fraction = 0.5
+        circleProgress = 0.0
         //}
     }
     
-    
-    
     func wastedOperations() {
+        print("wastedOperations called")
+        circleProgress = 0.0
         showInstructionsAndBall = false
         self.punchSoundEffect.play()
         gameOverBackgroundColor = colors[currentIndex]
@@ -103,9 +116,9 @@ struct ContentView: View {
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         showWastedScreen = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.colors = (1...levels).map { _ in
-//                Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
-//            }
+            self.colors = (1...levels).map { _ in
+                Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
+            }
             freezeScrolling = false
             self.speed = 4
             self.fraction = 0.5
@@ -113,27 +126,41 @@ struct ContentView: View {
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
+        wastedTimer1 = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             
             self.showWastedScreen = false
-            showContinueToPlayBanner = true
+            showContinueToPlayScreen = true
             self.currentIndex = -2
-            timer.invalidate() // Stop the timer after the reset
+            self.wastedTimer1?.invalidate()
+            self.wastedTimer1 = nil
         }
-        Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
-            
-//            highestScoreInGame = -1
-//            DispatchQueue.main.async{
-//                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
-//            }
-            if !appModel.shouldContinue {
-                showContinueToPlayBanner = false
+        wastedTimer2 = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
+                
+                //            highestScoreInGame = -1
+                //            DispatchQueue.main.async{
+                //                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
+                //            }
+                
                 //self.currentIndex = -1
-                gameOverOperations()
-            }
+                
+                    print("calling from wasted operations")
+                    gameOverOperations()
             
-            timer.invalidate() // Stop the timer after the reset
+            self.wastedTimer2?.invalidate()
+            self.wastedTimer2 = nil
+                
         }
+    }
+    
+    func continuePlaying() {
+        print("continuePlaying called")
+        showContinueToPlayScreen = false
+        showInstructionsAndBall = true
+        freezeScrolling = false
+        gameOver = true
+        self.speed = 4
+        self.fraction = 0.5
+        currentIndex = 0
     }
     
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
@@ -142,13 +169,146 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    if showContinueToPlayBanner{
+                    if showContinueToPlayScreen{
                         ZStack{
                             VStack{
                                 Spacer()
                                 HStack{
                                     Spacer()
-                                    ContinuePlayingView(cost: $costToContinue)
+                                    ZStack{
+                                        VStack{
+                                            VStack{
+                                                HStack{
+                                                    Spacer()
+                                                    HStack(spacing: 0){
+                                                        BoinsView()
+                                                            .scaleEffect(0.6)
+                                                        Text(String(appModel.balance))
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.title3)
+                                                    }
+                                                    .padding(.horizontal, 9)
+                                                    .padding(.top, 12)
+                                                    .padding(.trailing, 21)
+                                                    .background(.yellow)
+                                                    .cornerRadius(15)
+                                                    .overlay{
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color.primary, lineWidth: 3)
+                                                    }
+                                                    .offset(x: 9, y: -9)
+                                                }
+                                                Text("Continue?")
+                                                    .bold()
+                                                    .italic()
+                                                    .font(.largeTitle)
+                                                    .padding(.bottom, 27)
+                                                HStack{
+                                                    Spacer()
+                                                    Text("\(costToContinue)")
+                                                        .bold()
+                                                        .italic()
+                                                        .font(.largeTitle)
+                                                    BoinsView()
+                                                    Spacer()
+                                                }
+                                                .padding(9)
+                                                .background(.yellow)
+                                                .cornerRadius(15)
+                                                .shadow(color: .black, radius: 0.1, x: continueButtonIsPressed ? 0 : -6, y: continueButtonIsPressed ? 0 : 6)
+                                                .offset(x: continueButtonIsPressed ? -6 : -0, y: continueButtonIsPressed ? 6 : 0)
+                                                .padding(.horizontal, 30)
+                                                .padding(.bottom, 30)
+                                                .pressEvents {
+                                                    // On press
+                                                    withAnimation(.easeInOut(duration: 0.1)) {
+                                                        continueButtonIsPressed = true
+                                                    }
+                                                } onRelease: {
+                                                    withAnimation {
+                                                        continueButtonIsPressed = false
+                                                    }
+                                                    if appModel.balance >= costToContinue{
+                                                        appModel.balance -= costToContinue
+                                                        costToContinue *= 2
+                                                        continuePlaying()
+                                                    } else {
+                                                        showCurrencyPage = true
+                                                    }
+                                                }
+                                            }
+                                            .background(.orange)
+                                            .cornerRadius(21)
+                                            .overlay{
+                                                RoundedRectangle(cornerRadius: 21)
+                                                    .stroke(Color.primary, lineWidth: 6)
+                                                    .padding(1)
+                                                ZStack{
+                                                    Image(systemName: "stopwatch")
+                                                        .bold()
+                                                        .font(.largeTitle)
+                                                        .scaleEffect(2.1)
+                                                    Circle()
+                                                        .frame(width: 59)
+                                                        .foregroundColor(.white)
+                                                        .offset(y:3.6)
+                                                    Circle()
+                                                        .frame(width: 50)
+                                                        .foregroundColor(.blue)
+                                                        .offset(y:3.6)
+                                                    Circle()
+                                                        .trim(from: 0, to: circleProgress)
+                                                        .stroke(Color.white, lineWidth: 29)
+                                                        .rotationEffect(Angle(degrees: -90))
+                                                        .frame(width: 29)
+                                                        .offset(y:3.6)
+                                                    
+                                                }
+                                                .offset(x:-136, y: -99)
+                                            }
+                                            .frame(width: 300)
+                                            .padding(30)
+                                            
+                                            VStack{
+                                                Text("Swipe up\nto cancel")
+                                                    .italic()
+                                                    .multilineTextAlignment(.center)
+                                                    .foregroundColor(.black)
+                                                    .padding()
+                                                Image(systemName: "arrow.up")
+                                                    .foregroundColor(.black)
+                                            }
+                                            .padding(60)
+                                            .bold()
+                                            .font(.largeTitle)
+                                            .animatedOffset(speed: 1)
+                                            .scaleEffect(1.2)
+                                        }
+                                            .offset(y: 90)
+                                            .onAppear{
+                                                withAnimation(.linear(duration: 6)) {
+                                                    circleProgress = 1.0
+                                                }
+                                            }
+                                            
+                            //                Circle()
+                            //                    .foregroundColor(.clear)
+                            //            }
+                            //            .frame(
+                            //                width: deviceWidth,
+                            //                height: deviceHeight
+                            //            )
+                            //            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                            //            .edgesIgnoringSafeArea(.all)
+                            //            .onChange(of: currentIndex) { index in
+                            //                appModel.cancelContinuation = true
+                            //            }
+                                        
+                                    }
+                                    .sheet(isPresented: self.$showCurrencyPage){
+                                        CurrencyPageView()
+                                    }
                                     Spacer()
                                 }
                                 Spacer()
@@ -170,6 +330,10 @@ struct ContentView: View {
                         }
                         .background(gameOverBackgroundColor)
                         .ignoresSafeArea()
+                        .onDisappear{
+                                print("calling from screen disappearing")
+                                gameOverOperations()
+                        }
                         .tag(-2)
                     }
                     VStack{
@@ -352,8 +516,8 @@ struct ContentView: View {
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
                                         .foregroundColor(.teal)
                                         .font(.largeTitle)
-                                    .shadow(color: .black, radius: 0.1, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
-                                        .scaleEffect(1.2)
+                                        .scaleEffect(1.5)
+                                        .shadow(color: .black, radius: 0.1, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
                                         .padding(36)
                                         .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
                                         .pressEvents {
@@ -506,10 +670,13 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
-                    
+                    print("newValue: \(newValue)")
                     gameShouldBeOver = false
                     if newValue >= 0 {
-                        score = newValue
+                        score += 1
+                    }
+                    if newValue == 0 {
+                        highestScoreInGame = -1
                     }
                     if score > highestScoreInGame {
                         // 1052 or 1054
@@ -675,6 +842,28 @@ struct ContentView: View {
             }
         }
     }
+    
+    let backgroundColors: [String] = [
+        "#FFD700", "#FFC0CB", "#FF6347", "#ADFF2F", "#FAEBD7",
+        "#FFA07A", "#98FB98", "#F0E68C", "#FFB6C1", "#F5DEB3",
+        "#ADD8E6", "#DDA0DD", "#E0FFFF", "#AFEEEE", "#FFDEAD",
+        "#D3D3D3", "#FFDAB9", "#B0E0E6", "#FFE4B5", "#FFEFDB",
+        "#C1FFC1", "#FFBFFF", "#B5E4FF", "#FFCC99", "#B4EEB4",
+        "#FFEBCC", "#EED2EE", "#FFD8AA", "#D6E0F0", "#F0E6C0",
+        "#FFD3E0", "#E3E3E3", "#FFF0D9", "#D0F0C0", "#FCE5CD",
+        "#D9EAD3", "#EAD1DC", "#F9CB9C", "#FFE599", "#B6D7A8",
+        "#D5AEDD", "#A2C4C9", "#FAF0E6", "#ECE0D1", "#F4C2C2",
+        "#FDE5BD", "#F6BCA9", "#FFF2CC", "#D9E3F0", "#E6D9EC",
+        "#FFE6CC", "#F6E0B5", "#D0E3E4", "#C9DAF8", "#C3D7A5",
+        "#EA9999", "#F5D5A0", "#B4A7D6", "#D5E2A2", "#B7DDE8",
+        "#FFDBDB", "#FFEBE6", "#E6B8B7", "#F9E0D3", "#FCE4D6",
+        "#FFF1D4", "#EADFC6", "#E5E0EC", "#C6D9F0", "#A4C2F4",
+        "#C27BA0", "#FFD966", "#93CDDD", "#76A5AF", "#A5A5A5",
+        "#FFC000", "#DA9694", "#B7B7B7", "#FFB2B2", "#D99795",
+        "#E5B8B7", "#D5A6BD", "#FABF8F", "#C4D79B", "#9BBB59",
+        "#FFE6E6", "#FCD5B4", "#E5A4A4", "#D8A8A8", "#C0504D"
+    ]
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
