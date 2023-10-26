@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>25boins</key>
+	<string>25boins</string>
+	<key>55boins</key>
+	<string>55boins</string>
+	<key>125boins</key>
+	<string>125boins</string>
+	<key>350boins</key>
+	<string>350boins</string>
+	<key>800boins</key>
+	<string>800boins</string>
+	<key>1700boins</key>
+	<string>1700boins</string>
+	<key>3900boins</key>
+	<string>3900boins</string>
+	<key>9999boins</key>
+	<string>9999boins</string>
 	<key>infinitecoins</key>
 	<string>infinitecoins</string>
 	<key>25coins</key>

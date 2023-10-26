@@ -1201,6 +1201,7 @@ struct WastedView: View {
                 }
             }
         }
+        .allowsHitTesting(false)
     }
 }
 

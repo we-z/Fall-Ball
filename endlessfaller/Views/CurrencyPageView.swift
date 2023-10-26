@@ -13,14 +13,14 @@ struct CurrencyPageView: View {
     @StateObject var storeKit = StoreKitManager()
     @StateObject var model = AppModel()
     @State var bundles: [CurrencyBundle] = [
-        CurrencyBundle(coins: 25, cost: "$4.99", bundleID: "25coins"),
-        CurrencyBundle(coins: 55, cost: "$9.99", bundleID: "55coins"),
-        CurrencyBundle(coins: 125, cost: "$19.99", bundleID: "125coins"),
-        CurrencyBundle(coins: 350, cost: "$49.99", bundleID: "350coins"),
-        CurrencyBundle(coins: 800, cost: "$99.99", bundleID: "800coins"),
-        CurrencyBundle(coins: 1700, cost: "$199.99", bundleID: "1700coins"),
-        CurrencyBundle(coins: 3900, cost: "$499.99", bundleID: "3900coins"),
-        CurrencyBundle(coins: 9999, cost: "$999.99", bundleID: "9999coins"),
+        CurrencyBundle(coins: 25, cost: "$4.99", bundleID: "25boins"),
+        CurrencyBundle(coins: 55, cost: "$9.99", bundleID: "55boins"),
+        CurrencyBundle(coins: 125, cost: "$19.99", bundleID: "125boins"),
+        CurrencyBundle(coins: 350, cost: "$49.99", bundleID: "350boins"),
+        CurrencyBundle(coins: 800, cost: "$99.99", bundleID: "800boins"),
+        CurrencyBundle(coins: 1700, cost: "$199.99", bundleID: "1700boins"),
+        CurrencyBundle(coins: 3900, cost: "$499.99", bundleID: "3900boins"),
+        CurrencyBundle(coins: 9999, cost: "$999.99", bundleID: "9999boins"),
         CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infinitecoins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }

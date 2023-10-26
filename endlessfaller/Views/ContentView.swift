@@ -28,7 +28,6 @@ struct ContentView: View {
     @ObservedObject private var timerManager = TimerManager()
     @ObservedObject var gameCenter = GameCenter()
     @State var score: Int = -1
-    @State var highestScoreInGame: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
     @State var costToContinue: Int = 1
@@ -45,16 +44,17 @@ struct ContentView: View {
     @State var showContinueToPlayScreen = false
     @State var gameShouldBeOver = false
     @State var showWastedScreen = false
+    @State var shouldContinue = false
     @State var showInstructionsAndBall = true
     @State var muteIsPressed = false
     @State var ballButtonIsPressed = false
     @State var currencyButtonIsPressed = false
     @State var plaqueIsPressed = false
     @State var levelYPosition: CGFloat = 0
+    @State var highestLevelInRound = -1
     @State var gameOverBackgroundColor: Color = .white
     @State var playedCharacter = ""
-    @State private var wastedTimer1: Timer? = nil
-    @State private var wastedTimer2: Timer? = nil
+    @State private var gameOverTimer: Timer? = nil
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
@@ -62,7 +62,7 @@ struct ContentView: View {
     @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
     @State var colors: [Color] = (1...levels).map { _ in
-        Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
+        Color(hex: backgroundColors.randomElement()!)!
     }
     
     init() {
@@ -78,25 +78,24 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
-        wastedTimer1?.invalidate()
-        wastedTimer1 = nil
-        
-        wastedTimer2?.invalidate()
-        wastedTimer2 = nil
+        gameOverTimer?.invalidate()
+        gameOverTimer = nil
+        shouldContinue = true
+        costToContinue = 1
         print("gameOverOperations called")
+        currentScore = score
         score = -1
         showContinueToPlayScreen = false
         showInstructionsAndBall = true
         freezeScrolling = false
         gameOver = true
-        currentScore = highestScoreInGame
+        
         if currentScore > bestScore {
             UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
             DispatchQueue.main.async{
                 bestScore = currentScore
             }
         }
-        //highestScoreInGame = -1
         //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         self.speed = 4
         self.fraction = 0.5
@@ -104,8 +103,26 @@ struct ContentView: View {
         //}
     }
     
+    func continuePlaying() {
+        print("continuePlaying called")
+        gameOverTimer?.invalidate()
+        gameOverTimer = nil
+        appModel.balance -= costToContinue
+        costToContinue *= 2
+        shouldContinue = true
+        showContinueToPlayScreen = false
+        showInstructionsAndBall = true
+        freezeScrolling = false
+        gameOver = true
+        self.speed = 4
+        self.fraction = 0.5
+        currentIndex = 0
+    }
+    
     func wastedOperations() {
         print("wastedOperations called")
+        shouldContinue = false
+        highestLevelInRound = -1
         circleProgress = 0.0
         showInstructionsAndBall = false
         self.punchSoundEffect.play()
@@ -117,7 +134,7 @@ struct ContentView: View {
         showWastedScreen = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.colors = (1...levels).map { _ in
-                Color(red: .random(in: 0.1...1), green: .random(in: 0.1...1), blue: .random(in: 0.1...1))
+                Color(hex: backgroundColors.randomElement()!)!
             }
             freezeScrolling = false
             self.speed = 4
@@ -126,17 +143,15 @@ struct ContentView: View {
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
-        wastedTimer1 = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             
             self.showWastedScreen = false
             showContinueToPlayScreen = true
             self.currentIndex = -2
-            self.wastedTimer1?.invalidate()
-            self.wastedTimer1 = nil
+            timer.invalidate()
         }
-        wastedTimer2 = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
+        gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 
-                //            highestScoreInGame = -1
                 //            DispatchQueue.main.async{
                 //                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
                 //            }
@@ -146,21 +161,10 @@ struct ContentView: View {
                     print("calling from wasted operations")
                     gameOverOperations()
             
-            self.wastedTimer2?.invalidate()
-            self.wastedTimer2 = nil
+            self.gameOverTimer?.invalidate()
+            self.gameOverTimer = nil
                 
         }
-    }
-    
-    func continuePlaying() {
-        print("continuePlaying called")
-        showContinueToPlayScreen = false
-        showInstructionsAndBall = true
-        freezeScrolling = false
-        gameOver = true
-        self.speed = 4
-        self.fraction = 0.5
-        currentIndex = 0
     }
     
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
@@ -230,8 +234,6 @@ struct ContentView: View {
                                                         continueButtonIsPressed = false
                                                     }
                                                     if appModel.balance >= costToContinue{
-                                                        appModel.balance -= costToContinue
-                                                        costToContinue *= 2
                                                         continuePlaying()
                                                     } else {
                                                         showCurrencyPage = true
@@ -331,8 +333,10 @@ struct ContentView: View {
                         .background(gameOverBackgroundColor)
                         .ignoresSafeArea()
                         .onDisappear{
+                            if !shouldContinue{
                                 print("calling from screen disappearing")
                                 gameOverOperations()
+                            }
                         }
                         .tag(-2)
                     }
@@ -611,7 +615,7 @@ struct ContentView: View {
                                 SwipeFaster()
                                     .scaleEffect(1.5)
                             }
-                            if highestScoreInGame == index && !showWastedScreen {
+                            if highestLevelInRound == index && !showWastedScreen {
                                 GeometryReader { geometry in
                                     ZStack{
                                         if !gameShouldBeOver{
@@ -672,16 +676,16 @@ struct ContentView: View {
                 .onChange(of: currentIndex) { newValue in
                     print("newValue: \(newValue)")
                     gameShouldBeOver = false
-                    if newValue >= 0 {
+                    if newValue >= highestLevelInRound {
                         score += 1
+                        
                     }
-                    if newValue == 0 {
-                        highestScoreInGame = -1
-                    }
-                    if score > highestScoreInGame {
+//                    if newValue == 0 {
+//                    }
+                    if newValue > highestLevelInRound {
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
-                        highestScoreInGame = score
+                        highestLevelInRound += 1
                         if newValue < 8 {
                             speed = speed * fraction
                             fraction += 0.06
@@ -723,6 +727,8 @@ struct ContentView: View {
                                 .padding(.top, 30)
                                 .foregroundColor(.black)
                             Spacer()
+                            Text(String(highestLevelInRound))
+                                .padding()
                         }
                         Spacer()
                     }
@@ -843,28 +849,30 @@ struct ContentView: View {
         }
     }
     
-    let backgroundColors: [String] = [
-        "#FFD700", "#FFC0CB", "#FF6347", "#ADFF2F", "#FAEBD7",
-        "#FFA07A", "#98FB98", "#F0E68C", "#FFB6C1", "#F5DEB3",
-        "#ADD8E6", "#DDA0DD", "#E0FFFF", "#AFEEEE", "#FFDEAD",
-        "#D3D3D3", "#FFDAB9", "#B0E0E6", "#FFE4B5", "#FFEFDB",
-        "#C1FFC1", "#FFBFFF", "#B5E4FF", "#FFCC99", "#B4EEB4",
-        "#FFEBCC", "#EED2EE", "#FFD8AA", "#D6E0F0", "#F0E6C0",
-        "#FFD3E0", "#E3E3E3", "#FFF0D9", "#D0F0C0", "#FCE5CD",
-        "#D9EAD3", "#EAD1DC", "#F9CB9C", "#FFE599", "#B6D7A8",
-        "#D5AEDD", "#A2C4C9", "#FAF0E6", "#ECE0D1", "#F4C2C2",
-        "#FDE5BD", "#F6BCA9", "#FFF2CC", "#D9E3F0", "#E6D9EC",
-        "#FFE6CC", "#F6E0B5", "#D0E3E4", "#C9DAF8", "#C3D7A5",
-        "#EA9999", "#F5D5A0", "#B4A7D6", "#D5E2A2", "#B7DDE8",
-        "#FFDBDB", "#FFEBE6", "#E6B8B7", "#F9E0D3", "#FCE4D6",
-        "#FFF1D4", "#EADFC6", "#E5E0EC", "#C6D9F0", "#A4C2F4",
-        "#C27BA0", "#FFD966", "#93CDDD", "#76A5AF", "#A5A5A5",
-        "#FFC000", "#DA9694", "#B7B7B7", "#FFB2B2", "#D99795",
-        "#E5B8B7", "#D5A6BD", "#FABF8F", "#C4D79B", "#9BBB59",
-        "#FFE6E6", "#FCD5B4", "#E5A4A4", "#D8A8A8", "#C0504D"
-    ]
+    
     
 }
+
+let backgroundColors: [String] = [
+    "#FFD700", "#FFC0CB", "#FF6347", "#ADFF2F", "#FAEBD7",
+    "#FFA07A", "#98FB98", "#F0E68C", "#FFB6C1", "#F5DEB3",
+    "#ADD8E6", "#DDA0DD", "#E0FFFF", "#AFEEEE", "#FFDEAD",
+    "#D3D3D3", "#FFDAB9", "#B0E0E6", "#FFE4B5", "#FFEFDB",
+    "#C1FFC1", "#FFBFFF", "#B5E4FF", "#FFCC99", "#B4EEB4",
+    "#FFEBCC", "#EED2EE", "#FFD8AA", "#D6E0F0", "#F0E6C0",
+    "#FFD3E0", "#E3E3E3", "#FFF0D9", "#D0F0C0", "#FCE5CD",
+    "#D9EAD3", "#EAD1DC", "#F9CB9C", "#FFE599", "#B6D7A8",
+    "#D5AEDD", "#A2C4C9", "#FAF0E6", "#ECE0D1", "#F4C2C2",
+    "#FDE5BD", "#F6BCA9", "#FFF2CC", "#D9E3F0", "#E6D9EC",
+    "#FFE6CC", "#F6E0B5", "#D0E3E4", "#C9DAF8", "#C3D7A5",
+    "#EA9999", "#F5D5A0", "#B4A7D6", "#D5E2A2", "#B7DDE8",
+    "#FFDBDB", "#FFEBE6", "#E6B8B7", "#F9E0D3", "#FCE4D6",
+    "#FFF1D4", "#EADFC6", "#E5E0EC", "#C6D9F0", "#A4C2F4",
+    "#C27BA0", "#FFD966", "#93CDDD", "#76A5AF", "#A5A5A5",
+    "#FFC000", "#DA9694", "#B7B7B7", "#FFB2B2", "#D99795",
+    "#E5B8B7", "#D5A6BD", "#FABF8F", "#C4D79B", "#9BBB59",
+    "#FFE6E6", "#FCD5B4", "#E5A4A4", "#D8A8A8", "#C0504D"
+]
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
