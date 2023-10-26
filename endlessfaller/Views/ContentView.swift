@@ -87,7 +87,6 @@ struct ContentView: View {
         score = -1
         showContinueToPlayScreen = false
         showInstructionsAndBall = true
-        freezeScrolling = false
         gameOver = true
         
         if currentScore > bestScore {
@@ -112,7 +111,6 @@ struct ContentView: View {
         shouldContinue = true
         showContinueToPlayScreen = false
         showInstructionsAndBall = true
-        freezeScrolling = false
         gameOver = true
         self.speed = 4
         self.fraction = 0.5
@@ -293,20 +291,6 @@ struct ContentView: View {
                                                     circleProgress = 1.0
                                                 }
                                             }
-                                            
-                            //                Circle()
-                            //                    .foregroundColor(.clear)
-                            //            }
-                            //            .frame(
-                            //                width: deviceWidth,
-                            //                height: deviceHeight
-                            //            )
-                            //            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                            //            .edgesIgnoringSafeArea(.all)
-                            //            .onChange(of: currentIndex) { index in
-                            //                appModel.cancelContinuation = true
-                            //            }
-                                        
                                     }
                                     .sheet(isPresented: self.$showCurrencyPage){
                                         CurrencyPageView()
@@ -727,8 +711,8 @@ struct ContentView: View {
                                 .padding(.top, 30)
                                 .foregroundColor(.black)
                             Spacer()
-                            Text(String(highestLevelInRound))
-                                .padding()
+//                            Text(String(highestLevelInRound))
+//                                .padding()
                         }
                         Spacer()
                     }
@@ -815,7 +799,7 @@ struct ContentView: View {
             CurrencyPageView()
         }
         .edgesIgnoringSafeArea(.all)
-        //.scrollDisabled(freezeScrolling)
+        .scrollDisabled(freezeScrolling)
         .onAppear {
             playedCharacter = appModel.selectedCharacter
             if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
@@ -854,24 +838,25 @@ struct ContentView: View {
 }
 
 let backgroundColors: [String] = [
-    "#FFD700", "#FFC0CB", "#FF6347", "#ADFF2F", "#FAEBD7",
-    "#FFA07A", "#98FB98", "#F0E68C", "#FFB6C1", "#F5DEB3",
-    "#ADD8E6", "#DDA0DD", "#E0FFFF", "#AFEEEE", "#FFDEAD",
-    "#D3D3D3", "#FFDAB9", "#B0E0E6", "#FFE4B5", "#FFEFDB",
-    "#C1FFC1", "#FFBFFF", "#B5E4FF", "#FFCC99", "#B4EEB4",
-    "#FFEBCC", "#EED2EE", "#FFD8AA", "#D6E0F0", "#F0E6C0",
-    "#FFD3E0", "#E3E3E3", "#FFF0D9", "#D0F0C0", "#FCE5CD",
-    "#D9EAD3", "#EAD1DC", "#F9CB9C", "#FFE599", "#B6D7A8",
-    "#D5AEDD", "#A2C4C9", "#FAF0E6", "#ECE0D1", "#F4C2C2",
-    "#FDE5BD", "#F6BCA9", "#FFF2CC", "#D9E3F0", "#E6D9EC",
-    "#FFE6CC", "#F6E0B5", "#D0E3E4", "#C9DAF8", "#C3D7A5",
-    "#EA9999", "#F5D5A0", "#B4A7D6", "#D5E2A2", "#B7DDE8",
-    "#FFDBDB", "#FFEBE6", "#E6B8B7", "#F9E0D3", "#FCE4D6",
-    "#FFF1D4", "#EADFC6", "#E5E0EC", "#C6D9F0", "#A4C2F4",
-    "#C27BA0", "#FFD966", "#93CDDD", "#76A5AF", "#A5A5A5",
-    "#FFC000", "#DA9694", "#B7B7B7", "#FFB2B2", "#D99795",
-    "#E5B8B7", "#D5A6BD", "#FABF8F", "#C4D79B", "#9BBB59",
-    "#FFE6E6", "#FCD5B4", "#E5A4A4", "#D8A8A8", "#C0504D"
+    "#FF69B4", "#00FFFF", "#FFD700", "#ADFF2F", "#FFB6C1",
+       "#FF4500", "#7FFF00", "#FFDAB9", "#EE82EE", "#FF6347",
+       "#40E0D0", "#FFC0CB", "#DA70D6", "#FFA07A", "#D8BFD8",
+       "#20B2AA", "#B0E0E6", "#FFFFE0", "#FFB6C1", "#FFA500",
+       "#FA8072", "#E0FFFF", "#F0E68C", "#DDA0DD", "#FFDAB9",
+       "#FFDEAD", "#FFF0F5", "#FFFACD", "#98FB98", "#FFE4B5",
+       "#DC143C", "#00FA9A", "#FFF8DC", "#FF69B4", "#FFE4E1",
+       "#AFEEEE", "#F5DEB3", "#FF7F50", "#FF4500", "#FFD700",
+       "#32CD32", "#DA70D6", "#FAFAD2", "#90EE90", "#FF6347",
+       "#8A2BE2", "#7FFF00", "#D2691E", "#B0E0E6", "#A52A2A",
+       "#7B68EE", "#FFFAFA", "#FFA07A", "#20B2AA", "#8B4513",
+       "#FFFAF0", "#D2B48C", "#D3D3D3", "#FFB6C1", "#FFA500",
+       "#BDB76B", "#FF4500", "#ADFF2F", "#00FFFF", "#FFDAB9",
+       "#808080", "#FF6347", "#EE82EE", "#F5F5F5", "#8A2BE2",
+       "#F0E68C", "#B22222", "#B0E0E6", "#FFD700", "#A0522D",
+       "#87CEFA", "#E6E6FA", "#FFB6C1", "#FFA500", "#D8BFD8",
+       "#FA8072", "#FFFFE0", "#98FB98", "#FFE4B5", "#D2B48C",
+       "#40E0D0", "#FFC0CB", "#E0FFFF", "#FFF5EE", "#FF69B4",
+       "#32CD32", "#DA70D6", "#FFA07A", "#20B2AA", "#D3D3D3"
 ]
 
 struct ContentView_Previews: PreviewProvider {
