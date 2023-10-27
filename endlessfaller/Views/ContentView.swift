@@ -101,6 +101,9 @@ struct ContentView: View {
             self.speed = 4
             self.fraction = 0.5
             //}
+            DispatchQueue.main.async{
+                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
+            }
         }
     }
     
@@ -154,13 +157,8 @@ struct ContentView: View {
         }
         gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 
-                //            DispatchQueue.main.async{
-                //                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
-                //            }
-                
-                //self.currentIndex = -1
-                print("calling from wasted operations")
-                gameOverOperations()
+            print("calling from wasted operations")
+            gameOverOperations()
             self.gameOverTimer?.invalidate()
             self.gameOverTimer = nil
                 
