@@ -33,7 +33,8 @@ struct ContentView: View {
     @State var costToContinue: Int = 1
     @State var speed: Double = 4
     @State var fraction: Double = 0.5
-    @State var gameOver = false
+    @State var gameIsOver = false
+    @State var firstGamePlayed = false
     @State var freezeScrolling = false
     @State var continueButtonIsPressed = false
     @State var showCharactersMenu = false
@@ -78,28 +79,29 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
-        gameOverTimer?.invalidate()
-        gameOverTimer = nil
-        shouldContinue = true
-        costToContinue = 1
-        print("gameOverOperations called")
-        currentScore = score
-        score = -1
-        showContinueToPlayScreen = false
-        showInstructionsAndBall = true
-        gameOver = true
-        
-        if currentScore > bestScore {
-            UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
-            DispatchQueue.main.async{
-                bestScore = currentScore
+        if currentIndex == -2 {
+            gameOverTimer?.invalidate()
+            gameOverTimer = nil
+            shouldContinue = true
+            costToContinue = 1
+            print("gameOverOperations called")
+            //currentScore = score
+            score = -1
+            showContinueToPlayScreen = false
+            showInstructionsAndBall = true
+            gameIsOver = true
+            
+            if currentScore > bestScore {
+                UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
+                DispatchQueue.main.async{
+                    bestScore = currentScore
+                }
             }
+            //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.speed = 4
+            self.fraction = 0.5
+            //}
         }
-        //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-        self.speed = 4
-        self.fraction = 0.5
-        circleProgress = 0.0
-        //}
     }
     
     func continuePlaying() {
@@ -111,22 +113,25 @@ struct ContentView: View {
         shouldContinue = true
         showContinueToPlayScreen = false
         showInstructionsAndBall = true
-        gameOver = true
         self.speed = 4
         self.fraction = 0.5
         currentIndex = 0
     }
     
     func wastedOperations() {
+        gameOverBackgroundColor = colors[currentIndex]
+        showContinueToPlayScreen = true
+        self.currentIndex = -2
+        firstGamePlayed = true
         print("wastedOperations called")
         shouldContinue = false
         highestLevelInRound = -1
         circleProgress = 0.0
         showInstructionsAndBall = false
         self.punchSoundEffect.play()
-        gameOverBackgroundColor = colors[currentIndex]
+        currentScore = score
         showNewBestScore = false
-        gameOver = true
+        gameIsOver = true
         freezeScrolling = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         showWastedScreen = true
@@ -144,8 +149,7 @@ struct ContentView: View {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             
             self.showWastedScreen = false
-            showContinueToPlayScreen = true
-            self.currentIndex = -2
+            
             timer.invalidate()
         }
         gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
@@ -155,10 +159,8 @@ struct ContentView: View {
                 //            }
                 
                 //self.currentIndex = -1
-                
-                    print("calling from wasted operations")
-                    gameOverOperations()
-            
+                print("calling from wasted operations")
+                gameOverOperations()
             self.gameOverTimer?.invalidate()
             self.gameOverTimer = nil
                 
@@ -175,128 +177,131 @@ struct ContentView: View {
                         ZStack{
                             VStack{
                                 Spacer()
-                                HStack{
-                                    Spacer()
-                                    ZStack{
-                                        VStack{
+                                if showWastedScreen{
+                                    WastedView()
+                                } else {
+                                    HStack{
+                                        Spacer()
+                                        ZStack{
                                             VStack{
-                                                HStack{
-                                                    Spacer()
-                                                    HStack(spacing: 0){
-                                                        BoinsView()
-                                                            .scaleEffect(0.6)
-                                                        Text(String(appModel.balance))
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.title3)
+                                                VStack{
+                                                    HStack{
+                                                        Spacer()
+                                                        HStack(spacing: 0){
+                                                            BoinsView()
+                                                                .scaleEffect(0.6)
+                                                            Text(String(appModel.balance))
+                                                                .bold()
+                                                                .italic()
+                                                                .font(.title3)
+                                                        }
+                                                        .padding(.horizontal, 9)
+                                                        .padding(.top, 12)
+                                                        .padding(.trailing, 21)
+                                                        .background(.yellow)
+                                                        .cornerRadius(15)
+                                                        .overlay{
+                                                            RoundedRectangle(cornerRadius: 15)
+                                                                .stroke(Color.primary, lineWidth: 3)
+                                                        }
+                                                        .offset(x: 9, y: -9)
                                                     }
-                                                    .padding(.horizontal, 9)
-                                                    .padding(.top, 12)
-                                                    .padding(.trailing, 21)
-                                                    .background(.yellow)
-                                                    .cornerRadius(15)
-                                                    .overlay{
-                                                        RoundedRectangle(cornerRadius: 15)
-                                                            .stroke(Color.primary, lineWidth: 3)
-                                                    }
-                                                    .offset(x: 9, y: -9)
-                                                }
-                                                Text("Continue?")
-                                                    .bold()
-                                                    .italic()
-                                                    .font(.largeTitle)
-                                                    .padding(.bottom, 27)
-                                                HStack{
-                                                    Spacer()
-                                                    Text("\(costToContinue)")
+                                                    Text("Continue?")
                                                         .bold()
                                                         .italic()
                                                         .font(.largeTitle)
-                                                    BoinsView()
-                                                    Spacer()
-                                                }
-                                                .padding(9)
-                                                .background(.yellow)
-                                                .cornerRadius(15)
-                                                .shadow(color: .black, radius: 0.1, x: continueButtonIsPressed ? 0 : -6, y: continueButtonIsPressed ? 0 : 6)
-                                                .offset(x: continueButtonIsPressed ? -6 : -0, y: continueButtonIsPressed ? 6 : 0)
-                                                .padding(.horizontal, 30)
-                                                .padding(.bottom, 30)
-                                                .pressEvents {
-                                                    // On press
-                                                    withAnimation(.easeInOut(duration: 0.1)) {
-                                                        continueButtonIsPressed = true
+                                                        .padding(.bottom, 27)
+                                                    HStack{
+                                                        Spacer()
+                                                        Text("\(costToContinue)")
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.largeTitle)
+                                                        BoinsView()
+                                                        Spacer()
                                                     }
-                                                } onRelease: {
-                                                    withAnimation {
-                                                        continueButtonIsPressed = false
-                                                    }
-                                                    if appModel.balance >= costToContinue{
-                                                        continuePlaying()
-                                                    } else {
-                                                        showCurrencyPage = true
+                                                    .padding(9)
+                                                    .background(.yellow)
+                                                    .cornerRadius(15)
+                                                    .shadow(color: .black, radius: 0.1, x: continueButtonIsPressed ? 0 : -6, y: continueButtonIsPressed ? 0 : 6)
+                                                    .offset(x: continueButtonIsPressed ? -6 : -0, y: continueButtonIsPressed ? 6 : 0)
+                                                    .padding(.horizontal, 30)
+                                                    .padding(.bottom, 30)
+                                                    .pressEvents {
+                                                        // On press
+                                                        withAnimation(.easeInOut(duration: 0.1)) {
+                                                            continueButtonIsPressed = true
+                                                        }
+                                                    } onRelease: {
+                                                        withAnimation {
+                                                            continueButtonIsPressed = false
+                                                        }
+                                                        if appModel.balance >= costToContinue{
+                                                            continuePlaying()
+                                                        } else {
+                                                            showCurrencyPage = true
+                                                        }
                                                     }
                                                 }
-                                            }
-                                            .background(.orange)
-                                            .cornerRadius(21)
-                                            .overlay{
-                                                RoundedRectangle(cornerRadius: 21)
-                                                    .stroke(Color.primary, lineWidth: 6)
-                                                    .padding(1)
-                                                ZStack{
-                                                    Image(systemName: "stopwatch")
-                                                        .bold()
-                                                        .font(.largeTitle)
-                                                        .scaleEffect(2.1)
-                                                    Circle()
-                                                        .frame(width: 59)
-                                                        .foregroundColor(.white)
-                                                        .offset(y:3.6)
-                                                    Circle()
-                                                        .frame(width: 50)
-                                                        .foregroundColor(.blue)
-                                                        .offset(y:3.6)
-                                                    Circle()
-                                                        .trim(from: 0, to: circleProgress)
-                                                        .stroke(Color.white, lineWidth: 29)
-                                                        .rotationEffect(Angle(degrees: -90))
-                                                        .frame(width: 29)
-                                                        .offset(y:3.6)
-                                                    
+                                                .background(.orange)
+                                                .cornerRadius(21)
+                                                .overlay{
+                                                    RoundedRectangle(cornerRadius: 21)
+                                                        .stroke(Color.primary, lineWidth: 6)
+                                                        .padding(1)
+                                                    ZStack{
+                                                        Image(systemName: "stopwatch")
+                                                            .bold()
+                                                            .font(.largeTitle)
+                                                            .scaleEffect(2.1)
+                                                        Circle()
+                                                            .frame(width: 59)
+                                                            .foregroundColor(.white)
+                                                            .offset(y:3.6)
+                                                        Circle()
+                                                            .frame(width: 50)
+                                                            .foregroundColor(.blue)
+                                                            .offset(y:3.6)
+                                                        Circle()
+                                                            .trim(from: 0, to: circleProgress)
+                                                            .stroke(Color.white, lineWidth: 29)
+                                                            .rotationEffect(Angle(degrees: -90))
+                                                            .frame(width: 29)
+                                                            .offset(y:3.6)
+                                                        
+                                                    }
+                                                    .offset(x:-136, y: -99)
                                                 }
-                                                .offset(x:-136, y: -99)
+                                                .frame(width: 300)
+                                                .padding(30)
+                                                
+                                                VStack{
+                                                    Text("Swipe up\nto cancel")
+                                                        .italic()
+                                                        .multilineTextAlignment(.center)
+                                                        .foregroundColor(.black)
+                                                        .padding()
+                                                    Image(systemName: "arrow.up")
+                                                        .foregroundColor(.black)
+                                                }
+                                                .padding(60)
+                                                .bold()
+                                                .font(.largeTitle)
+                                                .animatedOffset(speed: 1)
+                                                .scaleEffect(1.2)
                                             }
-                                            .frame(width: 300)
-                                            .padding(30)
-                                            
-                                            VStack{
-                                                Text("Swipe up\nto cancel")
-                                                    .italic()
-                                                    .multilineTextAlignment(.center)
-                                                    .foregroundColor(.black)
-                                                    .padding()
-                                                Image(systemName: "arrow.up")
-                                                    .foregroundColor(.black)
-                                            }
-                                            .padding(60)
-                                            .bold()
-                                            .font(.largeTitle)
-                                            .animatedOffset(speed: 1)
-                                            .scaleEffect(1.2)
-                                        }
                                             .offset(y: 90)
                                             .onAppear{
                                                 withAnimation(.linear(duration: 6)) {
                                                     circleProgress = 1.0
                                                 }
                                             }
-                                    }
-                                    .sheet(isPresented: self.$showCurrencyPage){
-                                        CurrencyPageView()
-                                    }
-                                    Spacer()
-                                }
+                                        }
+                                        .sheet(isPresented: self.$showCurrencyPage){
+                                            CurrencyPageView()
+                                        }
+                                        Spacer()
+                                    }}
                                 Spacer()
                             }
                             VStack{
@@ -327,7 +332,7 @@ struct ContentView: View {
                     VStack{
                         Spacer()
                         
-                        if !gameOver {
+                        if !firstGamePlayed {
                             VStack{
                                 Text("Swipe up \nto play!")
                                     .italic()
@@ -497,7 +502,7 @@ struct ContentView: View {
                             }
                         }
                         Spacer()
-                        if gameOver {
+                        if firstGamePlayed {
                             ZStack{
                                 HStack{
                                     
@@ -567,17 +572,17 @@ struct ContentView: View {
                                                 showLeaderBoard = true
                                             }
                                         }
-                                    if gameOver && !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
-                                        HStack{
-                                            Image(systemName: "arrow.down.right")
-                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
-                                                .italic()
-                                            Image(systemName: "arrow.down.left")
-                                        }
-                                        .bold()
-                                        .font(idiom == .pad ? .title : .title2)
-                                        .offset(y: -55)
-                                    }
+//                                    if firstGamePlayed && !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
+//                                        HStack{
+//                                            Image(systemName: "arrow.down.right")
+//                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
+//                                                .italic()
+//                                            Image(systemName: "arrow.down.left")
+//                                        }
+//                                        .bold()
+//                                        .font(idiom == .pad ? .title : .title2)
+//                                        .offset(y: -55)
+//                                    }
                                 }
                             }
                         }
@@ -639,7 +644,7 @@ struct ContentView: View {
                                     Rectangle()
                                         .frame(width: 100, height: 90)
                                         .foregroundColor(gameOverBackgroundColor)
-                                    if gameOver {
+                                    if firstGamePlayed {
                                         PodiumView()
                                             .foregroundColor(.primary)
                                             .offset(y: -9)
@@ -658,7 +663,6 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
-                    print("newValue: \(newValue)")
                     gameShouldBeOver = false
                     if newValue >= highestLevelInRound {
                         score += 1
@@ -719,9 +723,6 @@ struct ContentView: View {
                     .allowsHitTesting(false)
                 }
                 
-                if showWastedScreen {
-                    WastedView()
-                } else{
                     if showInstructionsAndBall {
                         if !showNewBestScore {
                             
@@ -781,7 +782,6 @@ struct ContentView: View {
                             .allowsHitTesting(false)
                         }
                     }
-                }
             }
         }
         .persistentSystemOverlays(.hidden)
@@ -838,25 +838,101 @@ struct ContentView: View {
 }
 
 let backgroundColors: [String] = [
-    "#FF69B4", "#00FFFF", "#FFD700", "#ADFF2F", "#FFB6C1",
-       "#FF4500", "#7FFF00", "#FFDAB9", "#EE82EE", "#FF6347",
-       "#40E0D0", "#FFC0CB", "#DA70D6", "#FFA07A", "#D8BFD8",
-       "#20B2AA", "#B0E0E6", "#FFFFE0", "#FFB6C1", "#FFA500",
-       "#FA8072", "#E0FFFF", "#F0E68C", "#DDA0DD", "#FFDAB9",
-       "#FFDEAD", "#FFF0F5", "#FFFACD", "#98FB98", "#FFE4B5",
-       "#DC143C", "#00FA9A", "#FFF8DC", "#FF69B4", "#FFE4E1",
-       "#AFEEEE", "#F5DEB3", "#FF7F50", "#FF4500", "#FFD700",
-       "#32CD32", "#DA70D6", "#FAFAD2", "#90EE90", "#FF6347",
-       "#8A2BE2", "#7FFF00", "#D2691E", "#B0E0E6", "#A52A2A",
-       "#7B68EE", "#FFFAFA", "#FFA07A", "#20B2AA", "#8B4513",
-       "#FFFAF0", "#D2B48C", "#D3D3D3", "#FFB6C1", "#FFA500",
-       "#BDB76B", "#FF4500", "#ADFF2F", "#00FFFF", "#FFDAB9",
-       "#808080", "#FF6347", "#EE82EE", "#F5F5F5", "#8A2BE2",
-       "#F0E68C", "#B22222", "#B0E0E6", "#FFD700", "#A0522D",
-       "#87CEFA", "#E6E6FA", "#FFB6C1", "#FFA500", "#D8BFD8",
-       "#FA8072", "#FFFFE0", "#98FB98", "#FFE4B5", "#D2B48C",
-       "#40E0D0", "#FFC0CB", "#E0FFFF", "#FFF5EE", "#FF69B4",
-       "#32CD32", "#DA70D6", "#FFA07A", "#20B2AA", "#D3D3D3"
+    "#FF00FF", // Neon Pink
+        "#01FF70", // Bright Green
+        "#00FFFF", // Cyan
+        "#FF6EFF", // Hot Pink
+        "#00FF00", // Lime Green
+        "#FF6600", // Neon Orange
+        "#33FF00", // Neon Green
+        "#FF3300", // Bright Red
+        "#FF0099", // Magenta
+        "#66FF00", // Bright Yellow-Green
+        "#FF0066", // Deep Pink
+        "#99FF00", // Chartreuse
+        "#FF0000", // Red
+        "#00FFCC", // Aqua
+        "#FF99CC", // Pinkish
+        "#00CCFF", // Sky Blue
+        "#FFCC00", // Gold
+        "#CC00FF", // Purple
+        "#FFFF00", // Yellow
+        "#FF99FF", // Pale Pink
+        "#0099FF", // Azure
+        "#FF6600", // Orange
+        "#00FF99", // Mint
+        "#FF6699", // Rosy
+        "#00FF66", // Spring Green
+        "#CCFF00", // Lemon
+        "#FF3366", // Rose
+        "#00FF33", // Greenish
+        "#FF33CC", // Neon Purple
+        "#0099CC", // Cerulean
+        "#FF0033", // Bright Red
+        "#33FFCC", // Turquoise
+        "#00CC99", // Peacock Blue
+        "#99CC00", // Olive Green
+        "#CC66FF", // Lavender
+        "#FF6633", // Tangerine
+        "#33CCFF", // Light Blue
+        "#99FF99", // Light Mint
+        "#FF3399", // Deep Rose
+        "#0066FF", // Electric Blue
+        "#FF9900", // Dark Orange
+        "#66FF99", // Aqua Green
+        "#FF33FF", // Bright Purple
+        "#009966", // Teal
+        "#99FF66", // Light Lime
+        "#FF0099", // Deep Magenta
+        "#66CC00", // Dark Lime
+        "#FF66CC", // Light Magenta
+        "#00FFCC", // Bright Cyan
+        "#66FF33", // Lime
+        "#99CCFF", // Pale Blue
+        "#FF0066", // Neon Red
+        "#33FF99", // Sea Green
+        "#CC99FF", // Light Lavender
+        "#00FF66", // Light Green
+        "#33FF33", // Neon Light Green
+        "#FF6633", // Dark Peach
+        "#0099FF", // Light Electric Blue
+        "#FFCC66", // Peach
+        "#66FFCC", // Light Cyan
+        "#FF0000", // Neon Red
+        "#33CC99", // Dark Cyan
+        "#99FF33", // Yellow Green
+        "#FF33FF", // Neon Magenta
+        "#009966", // Dark Turquoise
+        "#99FF66", // Light Yellow Green
+        "#FF0099", // Neon Deep Pink
+        "#66CC00", // Darker Lime
+        "#FF66CC", // Light Neon Pink
+        "#00FFCC", // Neon Cyan
+        "#66FF33", // Brighter Lime
+        "#99CCFF", // Pale Sky Blue
+        "#FF0066", // Bright Neon Pink
+        "#33FF99", // Light Sea Green
+        "#CC99FF", // Pale Lavender
+        "#00FF66", // Neon Spring Green
+        "#33FF33", // Bright Neon Light Green
+        "#FF6633", // Neon Peach
+        "#0099FF", // Deep Sky Blue
+        "#FFCC66", // Neon Pale Peach
+        "#66FFCC", // Neon Light Cyan
+        "#FF0000", // Pure Red
+        "#33CC99", // Dark Sea Green
+        "#99FF33", // Light Neon Lime
+        "#FF33FF", // Neon Violet
+        "#009966", // Forest Green
+        "#99FF66", // Pale Neon Lime
+        "#FF0099", // Neon Rose
+        "#66CC00", // Grass Green
+        "#FF66CC", // Neon Pale Pink
+        "#00FFCC", // Bright Turquoise
+        "#66FF33", // Spring Lime
+        "#99CCFF", // Daylight Blue
+        "#FF0066", // Neon Fuchsia
+        "#33FF99"  // Fresh Green
 ]
 
 struct ContentView_Previews: PreviewProvider {
