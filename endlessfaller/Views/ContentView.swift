@@ -31,7 +31,7 @@ struct ContentView: View {
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
     @State var costToContinue: Int = 1
-    @State var speed: Double = 4
+    @State var secondsToFall: Double = 4
     @State var fraction: Double = 0.5
     @State var gameIsOver = false
     @State var firstGamePlayed = false
@@ -75,7 +75,7 @@ struct ContentView: View {
         }
     }
     func dropBall() {
-        timerManager.startTimer(speed: speed)
+        timerManager.startTimer(speed: secondsToFall)
     }
     
     func gameOverOperations() {
@@ -98,7 +98,7 @@ struct ContentView: View {
                 }
             }
             //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.speed = 4
+            self.secondsToFall = 4
             self.fraction = 0.5
             //}
             DispatchQueue.main.async{
@@ -116,7 +116,7 @@ struct ContentView: View {
         shouldContinue = true
         showContinueToPlayScreen = false
         showInstructionsAndBall = true
-        self.speed = 4
+        self.secondsToFall = 4
         self.fraction = 0.5
         currentIndex = 0
     }
@@ -143,7 +143,7 @@ struct ContentView: View {
                 Color(hex: backgroundColors.randomElement()!)!
             }
             freezeScrolling = false
-            self.speed = 4
+            self.secondsToFall = 4
             self.fraction = 0.5
             
         }
@@ -677,12 +677,12 @@ struct ContentView: View {
 //                        AudioServicesPlaySystemSound(1052)
                         highestLevelInRound += 1
                         if newValue < 8 {
-                            speed = speed * fraction
+                            secondsToFall = secondsToFall * fraction
                             fraction += 0.06
                         } else if newValue < 99 {
-                            speed = speed * 0.981
+                            secondsToFall = secondsToFall * 0.981
                         } else {
-                            speed = speed * 0.999
+                            secondsToFall = secondsToFall * 0.999
                         }
                         self.timerManager.ballYPosition = -23
                         dropBall()
@@ -691,7 +691,7 @@ struct ContentView: View {
                     if currentIndex > bestScore && currentIndex > 3 {
                         showNewBestScore = true
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + speed) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
                         if currentIndex <= newValue && currentIndex >= 0 {
                             gameShouldBeOver = true
                             if levelYPosition >= 0 {
@@ -702,7 +702,7 @@ struct ContentView: View {
                 }
                 .onChange(of: levelYPosition) { yPosition in
                     if yPosition >= 0 && gameShouldBeOver {
-                        //wastedOperations()
+                        wastedOperations()
                     }
                 }
                 .allowsHitTesting(!freezeScrolling)
