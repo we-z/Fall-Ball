@@ -625,9 +625,13 @@ struct ContentView: View {
                                             .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
                                         }
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                            AnyView(character.character)
-                                                .scaleEffect(1.5)
-                                                .offset(y: -12)
+                                            let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+                                            ZStack{
+                                                AnyView(character.character)
+                                                    .scaleEffect(1.5)
+                                                AnyView(hat!.hat)
+                                            }
+                                            .offset(y: -12)
                                         }
                                     }
                                     .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
