@@ -41,8 +41,6 @@ struct BallsDetailsView: View {
                     if ball.isPurchased || ballIndex < 9 {
                         model.selectedCharacter = ball.characterID
                         dismiss()
-                        //                    print("Selected:")
-                        //                    print(model.selectedCharacter)
                     } else {
                         isProcessingPurchase = true
                         Task {

@@ -138,19 +138,6 @@ struct ContinuePlayingView: View {
                     }
                 }
                 
-//                Circle()
-//                    .foregroundColor(.clear)
-//            }
-//            .frame(
-//                width: deviceWidth,
-//                height: deviceHeight
-//            )
-//            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-//            .edgesIgnoringSafeArea(.all)
-//            .onChange(of: currentIndex) { index in
-//                appModel.cancelContinuation = true
-//            }
-            
         }
         .sheet(isPresented: self.$showCurrencyPage){
             CurrencyPageView()

@@ -17,11 +17,23 @@ let purchasedCharactersKey = "PurchasedCharacters"
 let muteKey = "Mute"
 let balanceKey = "Balance"
 
+var freeBallIDs: [String] = [
+    "io.endlessfall.black",
+    "io.endlessfall.orange",
+    "io.endlessfall.laugh",
+    "io.endlessfall.evil",
+    "io.endlessfall.shocked",
+    "io.endlessfall.basketball",
+    "io.endlessfall.soccer",
+    "io.endlessfall.volleyball"
+]
+
 class AppModel: ObservableObject {
+    @AppStorage("firstBallPicked") var firstBallPicked:Bool = false
     @Published var cancelContinuation = false
     @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
     
-    @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? "io.endlessfall.white"
+    @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!
     @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
     @Published var purchasedCharacters: [String] = [] {
         didSet{
@@ -35,6 +47,23 @@ class AppModel: ObservableObject {
         }
     }
     
+//    func pickRandomFreeBall() {
+//        if !firstBallPicked {
+//            if let randomBallID = freeBallIDs.randomElement() {
+//                selectedCharacter = randomBallID
+//            }
+//        }
+//        firstBallPicked = true
+//    }
+    
+//    func assignRandomBall() {
+//        if !firstBallPicked {
+//            if let randomBall = try? JSONEncoder().encode(freeBallIDs.randomElement()!){
+//                UserDefaults.standard.set(randomBall, forKey: selectedCharacterKey)
+//            }
+//        }
+//        firstBallPicked = true
+//    }
     
     func saveAudiotSetting() {
         if let muteSetting = try? JSONEncoder().encode(mute){
@@ -188,6 +217,7 @@ class AppModel: ObservableObject {
     init() {
         getPurchasedCharacters()
         getAudioSetting()
+        //assignRandomBall()
     }
 }
 

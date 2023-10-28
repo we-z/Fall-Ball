@@ -799,6 +799,7 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .scrollDisabled(freezeScrolling)
         .onAppear {
+            //appModel.pickRandomFreeBall()
             playedCharacter = appModel.selectedCharacter
             if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
                 do {
