@@ -92,8 +92,8 @@ struct ContentView: View {
             gameOverTimer = nil
             shouldContinue = true
             costToContinue = 1
-            print("gameOverOperations called")
-            //currentScore = score
+            //print("gameOverOperations called")
+            currentScore = score
             score = -1
             showContinueToPlayScreen = false
             showInstructionsAndBall = true
@@ -114,7 +114,7 @@ struct ContentView: View {
     }
     
     func continuePlaying() {
-        print("continuePlaying called")
+        //print("continuePlaying called")
         gameOverTimer?.invalidate()
         gameOverTimer = nil
         appModel.balance -= costToContinue
@@ -132,15 +132,15 @@ struct ContentView: View {
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
             self.currentIndex = -2
+            highestLevelInRound = -1
         }
         firstGamePlayed = true
-        print("wastedOperations called")
+        //print("wastedOperations called")
         shouldContinue = false
-        highestLevelInRound = -1
-        circleProgress = 0.0
+         circleProgress = 0.0
         showInstructionsAndBall = false
         self.punchSoundEffect.play()
-        currentScore = score
+        //currentScore = score
         
         showBoinFoundAnimation = false
         gameIsOver = true
@@ -679,16 +679,11 @@ struct ContentView: View {
                     if boinIntervalCounter > 1000 {
                         boinFound()
                     }
-                    if newValue >= highestLevelInRound {
-                        score += 1
-                        
-                    }
-//                    if newValue == 0 {
-//                    }
                     if newValue > highestLevelInRound {
+                        score += 1
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
-                        highestLevelInRound += 1
+                        highestLevelInRound = newValue
                         if newValue < 8 {
                             secondsToFall = secondsToFall * fraction
                             fraction += 0.06
