@@ -51,7 +51,9 @@ struct ContentView: View {
     @State var ballButtonIsPressed = false
     @State var currencyButtonIsPressed = false
     @State var plaqueIsPressed = false
+    @State var showBoinFoundAnimation = false
     @State var levelYPosition: CGFloat = 0
+    @State var boinIntervalCounter: CGFloat = 900
     @State var highestLevelInRound = -1
     @State var gameOverBackgroundColor: Color = .white
     @State var playedCharacter = ""
@@ -78,6 +80,12 @@ struct ContentView: View {
         timerManager.startTimer(speed: secondsToFall)
     }
     
+    func boinFound() {
+        showBoinFoundAnimation = true
+        appModel.balance += 1
+        boinIntervalCounter = 0
+    }
+    
     func gameOverOperations() {
         if currentIndex == -2 {
             gameOverTimer?.invalidate()
@@ -97,10 +105,8 @@ struct ContentView: View {
                     bestScore = currentScore
                 }
             }
-            //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.secondsToFall = 4
             self.fraction = 0.5
-            //}
             DispatchQueue.main.async{
                 gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
             }
@@ -123,8 +129,10 @@ struct ContentView: View {
     
     func wastedOperations() {
         gameOverBackgroundColor = colors[currentIndex]
-        showContinueToPlayScreen = true
-        self.currentIndex = -2
+        DispatchQueue.main.async{
+            showContinueToPlayScreen = true
+            self.currentIndex = -2
+        }
         firstGamePlayed = true
         print("wastedOperations called")
         shouldContinue = false
@@ -134,6 +142,7 @@ struct ContentView: View {
         self.punchSoundEffect.play()
         currentScore = score
         showNewBestScore = false
+        showBoinFoundAnimation = false
         gameIsOver = true
         freezeScrolling = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
@@ -269,6 +278,11 @@ struct ContentView: View {
                                                         
                                                     }
                                                     .offset(x:-136, y: -99)
+                                                    .onAppear{
+                                                        withAnimation(.linear(duration: 6)) {
+                                                            circleProgress = 1.0
+                                                        }
+                                                    }
                                                 }
                                                 .frame(width: 300)
                                                 .padding(30)
@@ -289,11 +303,6 @@ struct ContentView: View {
                                                 .scaleEffect(1.2)
                                             }
                                             .offset(y: 90)
-                                            .onAppear{
-                                                withAnimation(.linear(duration: 6)) {
-                                                    circleProgress = 1.0
-                                                }
-                                            }
                                         }
                                         .sheet(isPresented: self.$showCurrencyPage){
                                             CurrencyPageView()
@@ -666,6 +675,10 @@ struct ContentView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
                     gameShouldBeOver = false
+                    boinIntervalCounter += 1
+                    if boinIntervalCounter > 1000 {
+                        boinFound()
+                    }
                     if newValue >= highestLevelInRound {
                         score += 1
                         
@@ -725,65 +738,69 @@ struct ContentView: View {
                     .allowsHitTesting(false)
                 }
                 
-                    if showInstructionsAndBall {
-                        if !showNewBestScore {
-                            
-                            if currentIndex > 100 && currentIndex < 115 {
-                                YourGood()
-                            }
-                            
-                            if currentIndex > 200 && currentIndex < 215 {
-                                YourInsane()
-                            }
-                            
-                            if currentIndex > 300 && currentIndex < 315 {
-                                GoBerzerk()
-                            }
-                            
-                        } else {
-                            NewBestScore()
-                        }
-                        if currentIndex > 10 {
-                            CelebrationEffect()
-                        }
-                        if currentIndex > 40 {
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    Spacer()
-                                    BearView()
-                                }
-                            }
-                        }
-                        if currentIndex > 20 {
-                            ReactionsView()
-                                .offset(y: 70)
-                        }
-                        if currentIndex > 60 {
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    SwiftUIXmasTree2()
-                                        .scaleEffect(0.5)
-                                        .offset(x:-deviceWidth/10)
-                                    Spacer()
-                                }
-                            }
+                if showInstructionsAndBall {
+                    if !showNewBestScore {
+                        
+                        if currentIndex > 100 && currentIndex < 115 {
+                            YourGood()
                         }
                         
-                        if currentIndex > 33 {
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    Spacer()
-                                    SVGCharacterView()
-                                        .scaleEffect(0.5)
-                                        .offset(x:deviceWidth/10)
-                                }
+                        if currentIndex > 200 && currentIndex < 215 {
+                            YourInsane()
+                        }
+                        
+                        if currentIndex > 300 && currentIndex < 315 {
+                            GoBerzerk()
+                        }
+                        
+                    } else {
+                        NewBestScore()
+                        CelebrationEffect()
+                            .onAppear{
+                                AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
                             }
-                            .allowsHitTesting(false)
+                    }
+                    if currentIndex > 70 {
+                        VStack{
+                            Spacer()
+                            HStack{
+                                Spacer()
+                                BearView()
+                            }
                         }
                     }
+                    if currentIndex > 20 {
+                        ReactionsView()
+                            .offset(y: 70)
+                    }
+                    if currentIndex > 90 {
+                        VStack{
+                            Spacer()
+                            HStack{
+                                SwiftUIXmasTree2()
+                                    .scaleEffect(0.5)
+                                    .offset(x:-deviceWidth/10)
+                                Spacer()
+                            }
+                        }
+                    }
+                    
+                    if currentIndex > 9 {
+                        VStack{
+                            Spacer()
+                            HStack{
+                                Spacer()
+                                SVGCharacterView()
+                                    .scaleEffect(0.5)
+                                    .offset(x:deviceWidth/10)
+                            }
+                        }
+                        .allowsHitTesting(false)
+                    }
+                }
+                if showBoinFoundAnimation{
+                    BoinCollectedView()
+                }
             }
         }
         .persistentSystemOverlays(.hidden)

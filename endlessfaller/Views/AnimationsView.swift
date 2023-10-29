@@ -10,9 +10,10 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        WastedView()
+        BoinCollectedView()
     }
 }
+
 
 struct RandomColorModifier: ViewModifier {
     @State private var color: Color = .red
@@ -1198,6 +1199,65 @@ struct WastedView: View {
             .onAppear() {
                 withAnimation(.linear(duration: 0.06).repeatForever(autoreverses: true)){
                     self.shake.toggle()
+                }
+            }
+        }
+        .allowsHitTesting(false)
+    }
+}
+
+
+struct BoinCollectedView: View {
+    // 1. Define a state variable to control the vertical offset
+    @State private var scale = false
+    @State private var textColor = Color.clear
+    @State private var appearFromBottom = false
+    @State private var animationEnding = false
+    
+    let deviceHeight = UIScreen.main.bounds.height
+    let deviceWidth = UIScreen.main.bounds.width
+    
+    
+    var body: some View {
+        ZStack {
+            VStack {
+                BoinsView()
+                    .scaleEffect(3)
+                    .padding(.bottom, 60)
+                    .scaleEffect(scale ? 1 : 1.2)
+                    .scaleEffect(animationEnding ? 0.2 : 1)
+                    .offset(x: animationEnding ? deviceWidth : 0, y: animationEnding ? -deviceHeight : 0)
+                    
+                Text("Boin\nFound!")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(textColor)
+                    .italic()
+                    .bold()
+                    .font(.largeTitle)
+                    .padding(9)
+                    .scaleEffect(1.5)
+                    .offset(y: animationEnding ? deviceHeight : 0)
+            }
+            .scaleEffect(appearFromBottom ? 1 : 0)
+            .offset(y: appearFromBottom ? 0 : (deviceHeight/2) + 210)
+            .onAppear() {
+                
+                withAnimation(.linear(duration: 1)){
+                    self.appearFromBottom = true
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    
+                    self.textColor = Color.black
+                    withAnimation(.linear(duration: 0.3).repeatForever(autoreverses: true)){
+                        self.scale.toggle()
+                    }
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    
+                    withAnimation(.linear(duration: 0.5)){
+                        self.animationEnding = true
+                    }
                 }
             }
         }
