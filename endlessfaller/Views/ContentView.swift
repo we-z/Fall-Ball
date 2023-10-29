@@ -98,7 +98,7 @@ struct ContentView: View {
             showContinueToPlayScreen = false
             showInstructionsAndBall = true
             gameIsOver = true
-            
+            showNewBestScore = false
             if currentScore > bestScore {
                 UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
                 DispatchQueue.main.async{
@@ -141,7 +141,7 @@ struct ContentView: View {
         showInstructionsAndBall = false
         self.punchSoundEffect.play()
         currentScore = score
-        showNewBestScore = false
+        
         showBoinFoundAnimation = false
         gameIsOver = true
         freezeScrolling = true
@@ -368,7 +368,7 @@ struct ContentView: View {
                                     .padding(.horizontal)
                                     .padding(.vertical, 6)
                                     .background{
-                                        Color.white
+                                        Color.yellow
                                     }
                                     .cornerRadius(15)
                                     .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
@@ -756,9 +756,6 @@ struct ContentView: View {
                     } else {
                         NewBestScore()
                         CelebrationEffect()
-                            .onAppear{
-                                AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-                            }
                     }
                     if currentIndex > 70 {
                         VStack{
