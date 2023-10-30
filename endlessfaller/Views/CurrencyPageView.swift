@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CurrencyPageView: View {
+    @Environment(\.dismiss) private var dismiss
     @State var isProcessingPurchase = false
     @State var showAlert = false
     @StateObject var storeKit = StoreKitManager()
@@ -57,6 +58,7 @@ struct CurrencyPageView: View {
                                                             if (try await storeKit.purchase(characterID: bundle.bundleID)) != nil{
                                                                 
                                                                 model.balance += bundle.coins
+                                                                dismiss()
                                                             }
                                                         } catch {
                                                             print("Purchase failed: \(error)")

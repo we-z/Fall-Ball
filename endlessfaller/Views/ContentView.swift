@@ -140,7 +140,7 @@ struct ContentView: View {
          circleProgress = 0.0
         showInstructionsAndBall = false
         self.punchSoundEffect.play()
-        //currentScore = score
+        currentScore = score
         
         showBoinFoundAnimation = false
         gameIsOver = true
@@ -485,7 +485,6 @@ struct ContentView: View {
                                 
                                 VStack{
                                     Text("Swipe up to \nplay again!")
-                                        
                                         .italic()
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
@@ -650,21 +649,22 @@ struct ContentView: View {
                                 }
                             }
                         }
-                            if index == 0{
-                                ZStack{
-                                    Rectangle()
-                                        .frame(width: 100, height: 90)
-                                        .foregroundColor(gameOverBackgroundColor)
-                                    if firstGamePlayed {
-                                        PodiumView()
-                                            .foregroundColor(.primary)
-                                            .offset(y: -9)
-                                    }
-                                    
-                                }
-                                .position(x: deviceWidth/2, y: -50)
-                                
-                            }
+                            
+//                            if index == 0{
+//                                ZStack{
+//                                    Rectangle()
+//                                        .frame(width: 100, height: 90)
+//                                        .foregroundColor(gameOverBackgroundColor)
+//                                    if firstGamePlayed {
+//                                        PodiumView()
+//                                            .foregroundColor(.primary)
+//                                            .offset(y: -9)
+//                                    }
+//                                    
+//                                }
+//                                .position(x: deviceWidth/2, y: -50)
+//                                
+//                            }
                         }
                     }
                 }
@@ -688,13 +688,14 @@ struct ContentView: View {
                             secondsToFall = secondsToFall * fraction
                             fraction += 0.06
                         } else if newValue < 99 {
-                            secondsToFall = secondsToFall * 0.981
+                            secondsToFall = secondsToFall * 0.986
                         } else {
                             secondsToFall = secondsToFall * 0.999
                         }
                         self.timerManager.ballYPosition = -23
                         dropBall()
                     }
+                    
                     impactMed.impactOccurred()
                     if currentIndex > bestScore && currentIndex > 3 {
                         showNewBestScore = true
@@ -736,11 +737,11 @@ struct ContentView: View {
                 if showInstructionsAndBall {
                     if !showNewBestScore {
                         
-                        if currentIndex > 100 && currentIndex < 115 {
+                        if currentIndex > 50 && currentIndex < 65 {
                             YourGood()
                         }
                         
-                        if currentIndex > 200 && currentIndex < 215 {
+                        if currentIndex > 100 && currentIndex < 115 {
                             YourInsane()
                         }
                         
@@ -761,11 +762,11 @@ struct ContentView: View {
                             }
                         }
                     }
-                    if currentIndex > 20 {
+                    if currentIndex > 45 {
                         ReactionsView()
                             .offset(y: 70)
                     }
-                    if currentIndex > 90 {
+                    if currentIndex > 100 {
                         VStack{
                             Spacer()
                             HStack{
