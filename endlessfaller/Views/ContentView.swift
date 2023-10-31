@@ -698,6 +698,7 @@ struct ContentView: View {
                                         }
                                     }
                                     .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
+                                    .offset(x: ballRoll * (deviceWidth / 3))
                                     .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
                                         levelYPosition = newYPosition
                                     }

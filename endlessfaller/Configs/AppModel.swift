@@ -20,7 +20,10 @@ let balanceKey = "Balance"
 var freeBallIDs: [String] = [
     "io.endlessfall.black",
     "io.endlessfall.orange",
-    "io.endlessfall.white"
+    "io.endlessfall.white",
+    "io.endlessfall.evil",
+    "io.endlessfall.shocked",
+    "io.endlessfall.laugh"
 ]
 
 class AppModel: ObservableObject {
