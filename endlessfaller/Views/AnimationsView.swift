@@ -43,7 +43,7 @@ extension View {
 
 struct AnimatedOffsetModifier: ViewModifier {
     let speed: CGFloat
-    @State private var offsetAmount: CGFloat = 0
+    @State private var offsetAmount: CGFloat = 30
 
     func body(content: Content) -> some View {
         content

@@ -345,18 +345,53 @@ struct ContentView: View {
                         
                         if !firstGamePlayed {
                             VStack{
-                                Text("Swipe up \nto play!")
-                                    .italic()
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.black)
+                                HStack{
+                                    Spacer()
+                                    HStack{
+                                        BoinsView()
+                                        Text(String(appModel.balance))
+                                            .bold()
+                                            .italic()
+                                            .font(.largeTitle)
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 6)
+                                    .background{
+                                        Color.yellow
+                                    }
+                                    .cornerRadius(15)
+                                    .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
+                                    .offset(x: currencyButtonIsPressed ? -6 : 0, y: currencyButtonIsPressed ? 6 : 0)
                                     .padding()
-                                Image(systemName: "arrow.up")
-                                    .foregroundColor(.black)
+                                    .pressEvents {
+                                        // On press
+                                        withAnimation(.easeInOut(duration: 0.1)) {
+                                            currencyButtonIsPressed = true
+                                        }
+                                    } onRelease: {
+                                        withAnimation {
+                                            currencyButtonIsPressed = false
+                                            showCurrencyPage = true
+                                        }
+                                    }
+                                }
+                                .padding(.top, 30)
+                                Spacer()
+                                VStack{
+                                    Text("Swipe up \nto play!")
+                                        .italic()
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(.black)
+                                        .padding()
+                                    Image(systemName: "arrow.up")
+                                        .foregroundColor(.black)
+                                }
+                                .animatedOffset(speed: 1)
+                                .bold()
+                                .font(.largeTitle)
+                                .scaleEffect(1.5)
+                                Spacer()
                             }
-                            .animatedOffset(speed: 1)
-                            .bold()
-                            .font(.largeTitle)
-                            .scaleEffect(1.5)
                             .tag(-1)
                         } else {
                             VStack{
@@ -512,7 +547,7 @@ struct ContentView: View {
                             }
                         }
                         Spacer()
-                        if firstGamePlayed {
+                        //if firstGamePlayed {
                             ZStack{
                                 HStack{
                                     
@@ -595,7 +630,7 @@ struct ContentView: View {
 //                                    }
                                 }
                             }
-                        }
+                        //}
                     }
                     .background(gameOverBackgroundColor)
                     ForEach(colors.indices, id: \.self) { index in

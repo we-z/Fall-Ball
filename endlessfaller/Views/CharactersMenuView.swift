@@ -50,9 +50,13 @@ struct CharactersMenuView: View {
                                         if index < model.characters.count {
                                             let character = model.characters[index]
                                             Button {
-                                                currentCharacter = model.characters[index]
-                                                currentBallIndex = index
-                                                showBallDetails = true
+                                                if index < 8 || model.characters[index].isPurchased {
+                                                    model.selectedCharacter = model.characters[index].characterID
+                                                } else {
+                                                    currentCharacter = model.characters[index]
+                                                    currentBallIndex = index
+                                                    showBallDetails = true
+                                                }
                                             } label: {
                                                 Rectangle()
                                                     .fill(.clear)
