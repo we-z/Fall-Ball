@@ -652,7 +652,7 @@ struct ContentView: View {
                                                             return
                                                         }
                                                         let attitude: CMAttitude = data.attitude
-                                                        if showInstructionsAndBall {
+                                                        if showInstructionsAndBall && currentIndex > -1 {
                                                             ballRoll = attitude.roll
                                                         }
                                                     }
