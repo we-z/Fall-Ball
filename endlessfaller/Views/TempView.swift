@@ -6,31 +6,47 @@
 //
 
 import SwiftUI
-import VTabView
-import QuartzCore
+import CoreMotion
 
 
 struct TempView: View {
-    
-    @State private var circleProgress: CGFloat = 0.0
+//    var body: some View {
+//
+        
+//        
+//
+//    }
+    let motionManager = CMMotionManager()
+    let queue = OperationQueue()
+    @State private var ballRoll = Double.zero
 
-        var body: some View {
-            VStack {
-                ZStack {
-                    Circle()
-                        .trim(from: 0, to: circleProgress)
-                        .stroke(Color.blue, lineWidth: 30)
-                        .rotationEffect(Angle(degrees: -90)) // Start from top
-                }
-                .frame(width: 30, height: 30)
+    var body: some View {
 
-            }
-            .onAppear{
-                withAnimation(.linear(duration: 9)) {
-                    circleProgress = 1.0
+        Circle()
+            .overlay{
+                VStack(spacing: 0){
+                    Color.blue
+                    Color.red
                 }
             }
-        }
+            .mask{
+                Circle()
+            }
+            .frame(width: 100)
+            .rotationEffect(.degrees(ballRoll * 69))
+            .onAppear {
+                print("ON APPEAR")
+                self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
+                    guard let data = data else {
+                        print("Error: \(error!)")
+                        return
+                    }
+                    let attitude: CMAttitude = data.attitude
+
+                    self.ballRoll = attitude.roll
+                }
+            }//.onappear
+    }//view
 }
 
 struct TempView_Previews: PreviewProvider {

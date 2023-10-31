@@ -10,9 +10,13 @@ import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
-        BoinCollectedView()
+        ZStack{
+//            CelebrationEffect()
+            BoinCollectedView()
+        }
     }
 }
+
 
 
 struct RandomColorModifier: ViewModifier {
@@ -1220,6 +1224,7 @@ struct BoinCollectedView: View {
     
     var body: some View {
         ZStack {
+            CelebrationEffect()
             VStack {
                 BoinsView()
                     .scaleEffect(3)

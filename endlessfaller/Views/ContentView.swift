@@ -11,6 +11,7 @@ import AudioToolbox
 import AVFoundation
 import GameKit
 import AudioToolbox
+import CoreMotion
 
 
 let bestScoreKey = "bestscorekey"
@@ -64,6 +65,9 @@ struct ContentView: View {
     @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
+    let motionManager = CMMotionManager()
+    let queue = OperationQueue()
+    @State private var ballRoll = Double.zero
     @State var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
@@ -639,6 +643,22 @@ struct ContentView: View {
                                                     .scaleEffect(1.5)
                                                 AnyView(hat!.hat)
                                             }
+                                            .rotationEffect(.degrees(self.ballRoll * 69))
+                                            .onAppear {
+                                                if currentIndex > -1 {
+                                                    self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
+                                                        guard let data = data else {
+                                                            print("Error: \(error!)")
+                                                            return
+                                                        }
+                                                        let attitude: CMAttitude = data.attitude
+                                                        if showInstructionsAndBall {
+                                                            ballRoll = attitude.roll
+                                                        }
+                                                    }
+                                                }
+
+                                            }//.onappear
                                             .offset(y: -12)
                                         }
                                     }
