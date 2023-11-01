@@ -796,15 +796,15 @@ struct ContentView: View {
                 if showInstructionsAndBall {
                     if !showNewBestScore {
                         
-                        if currentIndex > 50 && currentIndex < 65 {
+                        if score > 50 && score < 65 {
                             YourGood()
                         }
                         
-                        if currentIndex > 100 && currentIndex < 115 {
+                        if score > 100 && score < 115 {
                             YourInsane()
                         }
                         
-                        if currentIndex > 300 && currentIndex < 315 {
+                        if score > 300 && score < 315 {
                             GoBerzerk()
                         }
                         
@@ -821,11 +821,11 @@ struct ContentView: View {
 //                            }
 //                        }
 //                    }
-                    if currentIndex > 45 {
+                    if score > 45 {
                         ReactionsView()
                             .offset(y: 70)
                     }
-                    if currentIndex > 100 {
+                    if score > 100 {
                         VStack{
                             Spacer()
                             HStack{
@@ -837,7 +837,7 @@ struct ContentView: View {
                         }
                     }
                     
-                    if currentIndex > 9 {
+                    if score > 9 {
                         VStack{
                             Spacer()
                             HStack{
