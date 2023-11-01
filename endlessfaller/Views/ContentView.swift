@@ -162,15 +162,10 @@ struct ContentView: View {
             self.secondsToFall = 4
             self.fraction = 0.5
             self.currentIndex = -2
+            self.showWastedScreen = false
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
-            
-            self.showWastedScreen = false
-            
-            timer.invalidate()
-        }
         gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 
             print("calling from wasted operations")
