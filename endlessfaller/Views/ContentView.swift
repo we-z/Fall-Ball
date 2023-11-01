@@ -617,17 +617,17 @@ struct ContentView: View {
                                                 showLeaderBoard = true
                                             }
                                         }
-//                                    if firstGamePlayed && !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
-//                                        HStack{
-//                                            Image(systemName: "arrow.down.right")
-//                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
-//                                                .italic()
-//                                            Image(systemName: "arrow.down.left")
-//                                        }
-//                                        .bold()
-//                                        .font(idiom == .pad ? .title : .title2)
-//                                        .offset(y: -55)
-//                                    }
+                                    if !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
+                                        HStack{
+                                            Image(systemName: "arrow.down.right")
+                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
+                                                .italic()
+                                            Image(systemName: "arrow.down.left")
+                                        }
+                                        .bold()
+                                        .font(idiom == .pad ? .title : .title2)
+                                        .offset(y: -55)
+                                    }
                                 }
                             }
                         //}
@@ -739,7 +739,9 @@ struct ContentView: View {
                         boinFound()
                     }
                     if newValue > highestLevelInRound {
-                        score += 1
+                        DispatchQueue.main.async {
+                            score += 1
+                        }
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
                         highestLevelInRound = newValue
@@ -774,7 +776,7 @@ struct ContentView: View {
                     }
                 }
                 .allowsHitTesting(!freezeScrolling)
-                if currentIndex >= 0 {
+                if score >= 0 {
                     VStack{
                         HStack{
                             Text(String(score))
