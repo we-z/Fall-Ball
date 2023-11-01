@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import VTabView
 
 struct ContinuePlayingView: View {
     @StateObject var appModel = AppModel()
@@ -34,7 +33,7 @@ struct ContinuePlayingView: View {
                             Text(String(appModel.balance))
                                 .bold()
                                 .italic()
-                                .font(.title3)
+                                .font(.title)
                         }
                         .padding(.horizontal, 9)
                         .padding(.top, 12)
@@ -58,6 +57,8 @@ struct ContinuePlayingView: View {
                             .bold()
                             .italic()
                             .font(.largeTitle)
+                            .scaleEffect(1.2)
+                            .padding(.trailing, 3)
                         BoinsView()
                         Spacer()
                     }

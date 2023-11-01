@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import VTabView
+//import VTabView
 import AudioToolbox
 import AVFoundation
 import GameKit
@@ -67,12 +67,14 @@ struct ContentView: View {
     @State private var circleProgress: CGFloat = 0.0
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
+    let rotationQueDispatch = DispatchQueue.init(label: "io.endlessfaller.rotationque", qos: .userInitiated)
     @State private var ballRoll = Double.zero
     @State var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
     
     init() {
+        self.queue.underlyingQueue = rotationQueDispatch
         do {
             try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
             try AVAudioSession.sharedInstance().setActive(true)
@@ -204,7 +206,7 @@ struct ContentView: View {
                                                             Text(String(appModel.balance))
                                                                 .bold()
                                                                 .italic()
-                                                                .font(.title3)
+                                                                .font(.title)
                                                         }
                                                         .padding(.horizontal, 9)
                                                         .padding(.top, 12)
@@ -228,6 +230,8 @@ struct ContentView: View {
                                                             .bold()
                                                             .italic()
                                                             .font(.largeTitle)
+                                                            .scaleEffect(1.2)
+                                                            .padding(.trailing, 3)
                                                         BoinsView()
                                                         Spacer()
                                                     }
@@ -635,7 +639,12 @@ struct ContentView: View {
                     .background(gameOverBackgroundColor)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
-                            colors[index]
+                            GeometryReader { geometry in
+                                colors[index]
+                                    .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
+                                        levelYPosition = newYPosition
+                                    }
+                            }
                             if showInstructionsAndBall {
                             if currentIndex == 0 && !showWastedScreen {
                                 Instruction()
@@ -650,7 +659,6 @@ struct ContentView: View {
                                     .scaleEffect(1.5)
                             }
                             if highestLevelInRound == index && !showWastedScreen {
-                                GeometryReader { geometry in
                                     ZStack{
                                         if !gameShouldBeOver{
                                             HStack{
@@ -678,31 +686,30 @@ struct ContentView: View {
                                                     .scaleEffect(1.5)
                                                 AnyView(hat!.hat)
                                             }
-                                            .rotationEffect(.degrees(self.ballRoll * 69))
-                                            .onAppear {
-                                                if currentIndex > -1 {
-                                                    self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
-                                                        guard let data = data else {
-                                                            print("Error: \(error!)")
-                                                            return
-                                                        }
-                                                        let attitude: CMAttitude = data.attitude
-                                                        if showInstructionsAndBall && currentIndex > -1 {
-                                                            ballRoll = attitude.roll
-                                                        }
-                                                    }
-                                                }
-
-                                            }//.onappear
+                                            .rotationEffect(.degrees(self.ballRoll * 60))
+                                            
                                             .offset(y: -12)
                                         }
                                     }
                                     .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
                                     .offset(x: ballRoll * (deviceWidth / 3))
-                                    .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
-                                        levelYPosition = newYPosition
-                                    }
-                                }
+                                    .onAppear {
+                                        if currentIndex > -1 {
+                                            self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
+                                                guard let data = data else {
+                                                    print("Error: \(error!)")
+                                                    return
+                                                }
+                                                let attitude: CMAttitude = data.attitude
+                                                if showInstructionsAndBall && currentIndex > -1 {
+                                                    if attitude.roll > -1 && attitude.roll < 1 {
+                                                        ballRoll = attitude.roll
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }//.onappear
                             }
                         }
                             
@@ -757,7 +764,7 @@ struct ContentView: View {
                         showNewBestScore = true
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
-                        if currentIndex <= newValue && currentIndex >= 0 {
+                        if 0 <= currentIndex && currentIndex <= newValue {
                             gameShouldBeOver = true
                             if levelYPosition >= 0 {
                                 wastedOperations()
@@ -809,15 +816,15 @@ struct ContentView: View {
                         NewBestScore()
                         CelebrationEffect()
                     }
-                    if currentIndex > 70 {
-                        VStack{
-                            Spacer()
-                            HStack{
-                                Spacer()
-                                BearView()
-                            }
-                        }
-                    }
+//                    if currentIndex > 70 {
+//                        VStack{
+//                            Spacer()
+//                            HStack{
+//                                Spacer()
+//                                BearView()
+//                            }
+//                        }
+//                    }
                     if currentIndex > 45 {
                         ReactionsView()
                             .offset(y: 70)

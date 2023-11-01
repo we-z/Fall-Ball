@@ -10,8 +10,6 @@
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
 		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
 		7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */; };
-		7A3CEA5F2A896FAF00A79E65 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3CEA5E2A896FAF00A79E65 /* FLAnimatedImage */; };
-		7A3CEA622A89F6A400A79E65 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3CEA612A89F6A400A79E65 /* SDWebImageSwiftUI */; };
 		7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */; };
 		7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */; };
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
@@ -29,7 +27,6 @@
 		7AD234512A5F824900ED626D /* endlessfallerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234502A5F824900ED626D /* endlessfallerTests.swift */; };
 		7AD2345B2A5F824900ED626D /* endlessfallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2345A2A5F824900ED626D /* endlessfallerUITests.swift */; };
 		7AD2345D2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2345C2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift */; };
-		7AD2346B2A5F848700ED626D /* VTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD2346A2A5F848700ED626D /* VTabView */; };
 		7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346C2A60A9E100ED626D /* IconView.swift */; };
 		7AD2346F2A62019800ED626D /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346E2A62019700ED626D /* TempView.swift */; };
 		7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */; };
@@ -154,9 +151,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A3CEA622A89F6A400A79E65 /* SDWebImageSwiftUI in Frameworks */,
-				7AD2346B2A5F848700ED626D /* VTabView in Frameworks */,
-				7A3CEA5F2A896FAF00A79E65 /* FLAnimatedImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,9 +365,6 @@
 			);
 			name = "Fall Ball";
 			packageProductDependencies = (
-				7AD2346A2A5F848700ED626D /* VTabView */,
-				7A3CEA5E2A896FAF00A79E65 /* FLAnimatedImage */,
-				7A3CEA612A89F6A400A79E65 /* SDWebImageSwiftUI */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -830,7 +821,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.3;
+				CURRENT_PROJECT_VERSION = 1.3.4;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -852,7 +843,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -872,7 +863,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.3;
+				CURRENT_PROJECT_VERSION = 1.3.4;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -894,7 +885,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1314,24 +1305,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7A3CEA5E2A896FAF00A79E65 /* FLAnimatedImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7A3CEA5D2A896FAF00A79E65 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
-			productName = FLAnimatedImage;
-		};
-		7A3CEA612A89F6A400A79E65 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7A3CEA602A89F6A400A79E65 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
-		7AD2346A2A5F848700ED626D /* VTabView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7AD234692A5F848700ED626D /* XCRemoteSwiftPackageReference "swiftui-vertical-tab-view" */;
-			productName = VTabView;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7AD234332A5F824800ED626D /* Project object */;
 }

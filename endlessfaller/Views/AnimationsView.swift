@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct AnimationsView: View {
     var body: some View {
@@ -107,25 +106,25 @@ struct SunRayView: View {
     }
 }
 
-struct BearView: View {
-    @State var isVisible: Bool = false
-    var body: some View {
-        AnimatedImage(name: "bear.gif")
-            .frame(width: 200, height: 300)
-            .allowsHitTesting(false)
-            .scaleEffect(isVisible ? 0.75 : 0)
-            .onAppear {
-                withAnimation(.easeInOut(duration: 2)) {
-                    isVisible = true // Trigger animation when the view appears
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
-                    withAnimation(.easeInOut(duration: 2)) {
-                        isVisible = false // Trigger animation when the view appears
-                    }
-                }
-            }
-    }
-}
+//struct BearView: View {
+//    @State var isVisible: Bool = false
+//    var body: some View {
+//        AnimatedImage(name: "bear.gif")
+//            .frame(width: 200, height: 300)
+//            .allowsHitTesting(false)
+//            .scaleEffect(isVisible ? 0.75 : 0)
+//            .onAppear {
+//                withAnimation(.easeInOut(duration: 2)) {
+//                    isVisible = true // Trigger animation when the view appears
+//                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
+//                    withAnimation(.easeInOut(duration: 2)) {
+//                        isVisible = false // Trigger animation when the view appears
+//                    }
+//                }
+//            }
+//    }
+//}
 
 struct SwiftUIXmasTree2: View {
     
