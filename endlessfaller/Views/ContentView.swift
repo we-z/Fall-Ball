@@ -138,6 +138,7 @@ struct ContentView: View {
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
             self.currentIndex = -2
+            self.currentIndex = -2
             highestLevelInRound = -1
         }
         firstGamePlayed = true
@@ -160,7 +161,7 @@ struct ContentView: View {
             freezeScrolling = false
             self.secondsToFall = 4
             self.fraction = 0.5
-            
+            self.currentIndex = -2
         }
         gameShouldBeOver = false
         self.playedCharacter = appModel.selectedCharacter
@@ -590,9 +591,9 @@ struct ContentView: View {
                                             VStack{
                                                 AnyView(character.character)
                                                     
-                                                Ellipse()
-                                                    .frame(width: 24, height: 6)
-                                                    .blur(radius: 3)
+//                                                Ellipse()
+//                                                    .frame(width: 24, height: 6)
+//                                                    .blur(radius: 3)
                                             }
                                             .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
                                         }

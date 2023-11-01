@@ -58,7 +58,7 @@ struct BallsDetailsView: View {
                 } label: {
                     HStack{
                         Spacer()
-                        Text((ball.isPurchased || ballIndex < 9) ? "EQUIP!" : "BUY: \(ball.cost)")
+                        Text((ball.isPurchased || ballIndex < 9) ? "EQUIP!" : "OBTAIN! \(ball.cost)")
                             .bold()
                             .italic()
                             .font(.title)
