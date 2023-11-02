@@ -1055,6 +1055,23 @@ struct SwipeFaster: View {
     }
 }
 
+struct JustFaster: View {
+    var body: some View {
+        VStack{
+            Text("Faster!")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+            Image(systemName: "arrow.up")
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
+        .font(.largeTitle)
+        //.flashing()
+    }
+}
+
 struct KeepGoing: View {
     var body: some View {
         Text("Keep Going!")
@@ -1233,10 +1250,10 @@ struct BoinCollectedView: View {
                     .offset(x: animationEnding ? deviceWidth : 0, y: animationEnding ? -deviceHeight : 0)
                     
                 Text("Boin\nFound!")
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(textColor)
                     .italic()
                     .bold()
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(textColor)
                     .font(.largeTitle)
                     .padding(9)
                     .scaleEffect(1.5)

@@ -166,7 +166,7 @@ struct CharactersMenuView: View {
         }
         .sheet(isPresented: self.$showBallDetails){
             BallsDetailsView(ball: $currentCharacter, ballIndex: $currentBallIndex)
-                .presentationDetents([.height(390)])
+                //.presentationDetents([.height(390)])
         }
     }
 }

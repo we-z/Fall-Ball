@@ -262,7 +262,7 @@ struct ContentView: View {
                                                         .padding(1)
                                                     ZStack{
                                                         Image(systemName: "stopwatch")
-                                                            .bold()
+                                                            //.bold()
                                                             .font(.largeTitle)
                                                             .scaleEffect(2.1)
                                                         Circle()
@@ -294,6 +294,7 @@ struct ContentView: View {
                                                 VStack{
                                                     Text("Swipe up\nto cancel")
                                                         .italic()
+                                                        .bold()
                                                         .multilineTextAlignment(.center)
                                                         .foregroundColor(.black)
                                                         .padding()
@@ -301,7 +302,6 @@ struct ContentView: View {
                                                         .foregroundColor(.black)
                                                 }
                                                 .padding(60)
-                                                .bold()
                                                 .font(.largeTitle)
                                                 .animatedOffset(speed: 1)
                                                 .scaleEffect(1.2)
@@ -642,16 +642,16 @@ struct ContentView: View {
                                     }
                             }
                             if showInstructionsAndBall {
-                            if currentIndex == 0 && !showWastedScreen {
-                                Instruction()
-                                    .scaleEffect(1.5)
-                            }
-                            if currentIndex == 1 && !showWastedScreen {
+                            if currentIndex >= 0 && currentIndex <= 1 && !showWastedScreen {
                                 KeepSwiping()
                                     .scaleEffect(1.5)
                             }
                             if currentIndex >= 2 && currentIndex <= 5 && !showWastedScreen {
                                 SwipeFaster()
+                                    .scaleEffect(1.5)
+                            }
+                            if currentIndex >= 6 && currentIndex <= 9 && !showWastedScreen {
+                                JustFaster()
                                     .scaleEffect(1.5)
                             }
                             if highestLevelInRound == index && !showWastedScreen {
@@ -776,7 +776,7 @@ struct ContentView: View {
                     }
                 }
                 .allowsHitTesting(!freezeScrolling)
-                if score >= 0 {
+                if score >= 0 && currentIndex >= 0{
                     VStack{
                         HStack{
                             Text(String(score))
@@ -787,7 +787,7 @@ struct ContentView: View {
                                 .padding(.top, 30)
                                 .foregroundColor(.black)
                             Spacer()
-//                            Text(String(highestLevelInRound))
+//                            Text(String(secondsToFall))
 //                                .padding()
                         }
                         Spacer()
