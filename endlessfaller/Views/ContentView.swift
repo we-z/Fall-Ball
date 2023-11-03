@@ -688,7 +688,7 @@ struct ContentView: View {
                                         }
                                     }
                                     .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
-                                    .offset(x: ballRoll * (deviceWidth / 3))
+                                    .offset(x: ballRoll * (deviceWidth / 2.7))
                                     .onAppear {
                                         if currentIndex > -1 {
                                             self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
