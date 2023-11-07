@@ -113,7 +113,7 @@ struct ContentView: View {
             }
             self.secondsToFall = 4
             self.fraction = 0.5
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
                 gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
             }
         }
@@ -741,7 +741,7 @@ struct ContentView: View {
                     if newValue > highestLevelInRound {
                         DispatchQueue.main.async {
                             score += 1
-                        }
+                        
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
                         highestLevelInRound = newValue
@@ -755,6 +755,7 @@ struct ContentView: View {
                         }
                         self.timerManager.ballYPosition = -23
                         dropBall()
+                        }
                     }
                     
                     impactMed.impactOccurred()
