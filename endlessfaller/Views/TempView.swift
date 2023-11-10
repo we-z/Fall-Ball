@@ -16,36 +16,54 @@ struct TempView: View {
 //        
 //
 //    }
-    let motionManager = CMMotionManager()
-    let queue = OperationQueue()
-    @State private var ballRoll = Double.zero
+    let deviceHeight = UIScreen.main.bounds.height
+    let deviceWidth = UIScreen.main.bounds.width
+    @State var currentIndex: Int = 0
+    @State var showContinueToPlayScreen = false
 
     var body: some View {
-
-        Circle()
-            .overlay{
-                VStack(spacing: 0){
-                    Color.blue
-                    Color.red
+        ScrollView {
+            TabView(selection: $currentIndex) {
+                if showContinueToPlayScreen {
+                    Text("Dissapeear")
+                        .tag(-1)
                 }
-            }
-            .mask{
-                Circle()
-            }
-            .frame(width: 100)
-            .rotationEffect(.degrees(ballRoll * 69))
-            .onAppear {
-                print("ON APPEAR")
-                self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
-                    guard let data = data else {
-                        print("Error: \(error!)")
-                        return
+                ForEach(backgroundColors.indices, id: \.self) { index in
+                    ZStack{
+                        Color(hex: backgroundColors[index])
+                        VStack{
+                            Spacer()
+                            HStack{
+                                Spacer()
+                                Text("\(index)")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .italic()
+                                    .scaleEffect(3)
+                                Spacer()
+                            }
+                            Spacer()
+                        }
                     }
-                    let attitude: CMAttitude = data.attitude
-
-                    self.ballRoll = attitude.roll
+                    
                 }
-            }//.onappear
+            }
+            .frame(
+                width: deviceWidth,
+                height: deviceHeight
+            )
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .onChange(of: currentIndex) { newValue in
+                if newValue < 6 {
+                    showContinueToPlayScreen = true
+                }
+                if newValue == 6 {
+                    showContinueToPlayScreen = false
+                    currentIndex = 0
+                }
+            }
+        }
+        .edgesIgnoringSafeArea(.all)
     }//view
 }
 

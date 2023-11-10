@@ -93,7 +93,8 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
-        if currentIndex == -2 {
+        //if currentIndex == -2 {
+            self.currentIndex = -1
             gameOverTimer?.invalidate()
             gameOverTimer = nil
             shouldContinue = true
@@ -101,7 +102,7 @@ struct ContentView: View {
             //print("gameOverOperations called")
             currentScore = score
             score = -1
-            showContinueToPlayScreen = false
+            self.showContinueToPlayScreen = false
             showInstructionsAndBall = true
             gameIsOver = true
             showNewBestScore = false
@@ -116,7 +117,8 @@ struct ContentView: View {
             DispatchQueue.main.async {
                 gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
             }
-        }
+        //}
+        
     }
     
     func continuePlaying() {
@@ -137,7 +139,6 @@ struct ContentView: View {
         gameOverBackgroundColor = colors[currentIndex]
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
-            self.currentIndex = -2
             self.currentIndex = -2
             highestLevelInRound = -1
         }
@@ -182,8 +183,9 @@ struct ContentView: View {
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
-                    if showContinueToPlayScreen{
-                        ZStack{
+                    ZStack{
+                        gameOverBackgroundColor
+                        if showContinueToPlayScreen{
                             VStack{
                                 Spacer()
                                 if showWastedScreen{
@@ -262,7 +264,7 @@ struct ContentView: View {
                                                         .padding(1)
                                                     ZStack{
                                                         Image(systemName: "stopwatch")
-                                                            //.bold()
+                                                        //.bold()
                                                             .font(.largeTitle)
                                                             .scaleEffect(2.1)
                                                         Circle()
@@ -330,16 +332,9 @@ struct ContentView: View {
                             }
                             .allowsHitTesting(false)
                         }
-                        .background(gameOverBackgroundColor)
-                        .ignoresSafeArea()
-                        .onDisappear{
-                            if !shouldContinue{
-                                print("calling from screen disappearing")
-                                gameOverOperations()
-                            }
-                        }
-                        .tag(-2)
                     }
+                    .ignoresSafeArea()
+                    .tag(-2)
                     VStack{
                         Spacer()
                         
@@ -392,7 +387,7 @@ struct ContentView: View {
                                 .scaleEffect(1.5)
                                 Spacer()
                             }
-                            .tag(-1)
+                            
                         } else {
                             VStack{
                                 HStack{
@@ -536,7 +531,6 @@ struct ContentView: View {
                                 .bold()
                                 .foregroundColor(.primary)
                                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
-                                .tag(-1)
                                 .animatedOffset(speed: 1)
                                 Spacer()
                             }
@@ -633,6 +627,7 @@ struct ContentView: View {
                         //}
                     }
                     .background(gameOverBackgroundColor)
+                    .tag(-1)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
                             GeometryReader { geometry in
@@ -733,15 +728,22 @@ struct ContentView: View {
                 )
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .onChange(of: currentIndex) { newValue in
+                    if newValue == -1 {
+                        if !shouldContinue{
+                            print("calling from screen disappearing")
+                            gameOverOperations()
+                        }
+                    }
+                    
                     gameShouldBeOver = false
                     boinIntervalCounter += 1
                     if boinIntervalCounter > 1000 {
                         boinFound()
                     }
                     if newValue > highestLevelInRound {
-                        DispatchQueue.main.async {
+                        //DispatchQueue.main.async {
                             score += 1
-                        
+                        //}
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
                         highestLevelInRound = newValue
@@ -755,7 +757,6 @@ struct ContentView: View {
                         }
                         self.timerManager.ballYPosition = -23
                         dropBall()
-                        }
                     }
                     
                     impactMed.impactOccurred()
