@@ -766,10 +766,17 @@ struct ContentView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
                         if 0 <= currentIndex && currentIndex <= newValue {
                             gameShouldBeOver = true
-                            wastedOperations()
+                            //if levelYPosition >= 0 {
+                                wastedOperations()
+                            //}
                         }
                     }
                 }
+//                .onChange(of: levelYPosition) { yPosition in
+//                    if yPosition >= 0 && gameShouldBeOver {
+//                        wastedOperations()
+//                    }
+//                }
                 .allowsHitTesting(!freezeScrolling)
                 if score >= 0 && currentIndex >= 0{
                     VStack{
