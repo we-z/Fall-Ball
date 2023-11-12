@@ -15,6 +15,7 @@ import CoreMotion
 
 
 let bestScoreKey = "bestscorekey"
+let boinIntervalCounterKey = "boinIntervalCounterKey"
 let levels = 1000
 let difficulty = 8
 
@@ -54,7 +55,7 @@ struct ContentView: View {
     @State var plaqueIsPressed = false
     @State var showBoinFoundAnimation = false
     @State var levelYPosition: CGFloat = 0
-    @State var boinIntervalCounter: CGFloat = 900
+    @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
     @State var highestLevelInRound = -1
     @State var gameOverBackgroundColor: Color = .white
     @State var playedCharacter = ""
