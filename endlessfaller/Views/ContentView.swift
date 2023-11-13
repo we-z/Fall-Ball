@@ -55,6 +55,8 @@ struct ContentView: View {
     @State var plaqueIsPressed = false
     @State var showBoinFoundAnimation = false
     //@State var levelYPosition: CGFloat = 0
+    @State private var triangleScale: CGFloat = 1.0
+    @State var triangleColor = Color.black
     @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
     @State var highestLevelInRound = -1
     @State var gameOverBackgroundColor: Color = .white
@@ -641,8 +643,8 @@ struct ContentView: View {
                                 
                                 Divider()
                                     .frame(height: 6)
-                                    .overlay(.black)
-                                    .offset(y: -3)
+                                    .overlay(index > score ? .black : .white)
+                                    .offset(y: -6)
                                 Spacer()
                                 
                                     
@@ -770,7 +772,7 @@ struct ContentView: View {
                         self.timerManager.ballYPosition = -23
                         dropBall()
                     }
-                    
+                    enableScaleAndFlashForDuration()
                     impactMed.impactOccurred()
                     if currentIndex > bestScore && currentIndex > 3 {
                         showNewBestScore = true
@@ -811,8 +813,12 @@ struct ContentView: View {
                             Spacer()
                             HStack{
                                 Image(systemName: "arrowtriangle.right.fill")
+                                    .scaleEffect(triangleScale)
+                                    .foregroundColor(triangleColor)
                                 Spacer()
                                 Image(systemName: "arrowtriangle.left.fill")
+                                    .scaleEffect(triangleScale)
+                                    .foregroundColor(triangleColor)
                             }
                             Spacer()
                         }
@@ -933,6 +939,15 @@ struct ContentView: View {
     }
     
     
+    func enableScaleAndFlashForDuration() {
+        triangleScale = 1.5 // Increase the scale factor
+        triangleColor = Color.white
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            triangleScale = 1
+            triangleColor = Color.black
+        }
+    }
+
     
 }
 
