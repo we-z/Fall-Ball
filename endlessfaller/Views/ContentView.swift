@@ -1046,7 +1046,23 @@ let backgroundColors: [String] = [
         "#66FF33", // Spring Lime
         "#99CCFF", // Daylight Blue
         "#FF0066", // Neon Fuchsia
-        "#33FF99"  // Fresh Green
+        "#33FF99",  // Fresh Green
+    "#AEC6CF", "#FFB347", "#77DD77", "#CFCFC4", "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC",
+        "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2", "#779ECB", "#966FD6",
+        "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700", "#03C03C", "#FFDAB9", "#89CFF0",
+        "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC", "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2",
+        "#779ECB", "#966FD6", "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700",
+        "#03C03C", "#FFDAB9", "#89CFF0", "#AEC6CF", "#FFB347", "#77DD77", "#CFCFC4",
+        "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC", "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2",
+        "#779ECB", "#966FD6", "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700",
+        "#03C03C", "#FFDAB9", "#89CFF0", "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC",
+        "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2", "#779ECB", "#966FD6",
+        "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700", "#03C03C", "#FFDAB9", "#89CFF0",
+        "#AEC6CF", "#FFB347", "#77DD77", "#CFCFC4", "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC",
+        "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2", "#779ECB", "#966FD6",
+        "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700", "#03C03C", "#FFDAB9", "#89CFF0",
+        "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC", "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2",
+        "#779ECB", "#966FD6", "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700"
 ]
 
 struct ContentView_Previews: PreviewProvider {

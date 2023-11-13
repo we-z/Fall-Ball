@@ -13,29 +13,12 @@ struct IconView: View {
             VStack(spacing: 0){
                 Rectangle()
                     .foregroundColor(.blue)
+//                Divider()
+//                    .frame(height: 15)
+//                    .overlay(.black)
                 Rectangle()
                     .foregroundColor(.red)
             }
-            
-//            HStack{
-//                Divider()
-//                    .frame(width: 3)
-//                    .overlay(.black)
-//                    .offset(x: -34)
-//                Divider()
-//                    .frame(width: 3)
-//                    .overlay(.black)
-//                    .offset(y: -24)
-//                Divider()
-//                    .frame(width: 3)
-//                    .overlay(.black)
-//                    .offset(x: 34)
-//                
-//            }
-//            .frame(width: 69, height: 12)
-//            .offset(x: 0, y: -32)
-//            .scaleEffect(3)
-//            
             ShockedBall()
                 .scaleEffect(6)
         }

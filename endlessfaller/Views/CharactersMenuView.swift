@@ -134,8 +134,14 @@ struct CharactersMenuView: View {
                             .background(GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     yPosition = -proxy.frame(in: .global).maxY
-                                    if yPosition > -240 {
-                                        self.showSecretShop = true
+                                    if idiom == .pad {
+                                        if yPosition > -600 {
+                                            self.showSecretShop = true
+                                        }
+                                    } else {
+                                        if yPosition > -240 {
+                                            self.showSecretShop = true
+                                        }
                                     }
                                     if yPosition > -(deviceHeight - 90) {
                                         hapticFeedbackCounter += 1
@@ -152,6 +158,8 @@ struct CharactersMenuView: View {
                     }
                 }
             }
+//            Text("\(yPosition)")
+//                .offset(y:100)
             if isProcessingPurchase {
                 Color.gray.opacity(0.3) // Gray out the background
                     .edgesIgnoringSafeArea(.all)
@@ -166,7 +174,7 @@ struct CharactersMenuView: View {
         }
         .sheet(isPresented: self.$showBallDetails){
             BallsDetailsView(ball: $currentCharacter, ballIndex: $currentBallIndex)
-                //.presentationDetents([.height(390)])
+                .presentationDetents([.height(390)])
         }
     }
 }
@@ -176,3 +184,9 @@ struct CharactersView_Previews: PreviewProvider {
         CharactersMenuView(backgroundColor: .constant(Color.pink))
     }
 }
+
+/*
+ iphone 13 mini: -746
+ iphone 15 pro max: -898
+ ipad 12.9 inch: -1,346
+ */
