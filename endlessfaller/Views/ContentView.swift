@@ -54,7 +54,7 @@ struct ContentView: View {
     @State var currencyButtonIsPressed = false
     @State var plaqueIsPressed = false
     @State var showBoinFoundAnimation = false
-    @State var levelYPosition: CGFloat = 0
+    //@State var levelYPosition: CGFloat = 0
     @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
     @State var highestLevelInRound = -1
     @State var gameOverBackgroundColor: Color = .white
@@ -631,11 +631,22 @@ struct ContentView: View {
                     .tag(-1)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
-                            GeometryReader { geometry in
+                            //GeometryReader { geometry in
                                 colors[index]
-                                    .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
-                                        levelYPosition = newYPosition
-                                    }
+//                                    .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
+//                                        levelYPosition = newYPosition
+//                                    }
+                            //}
+                            VStack{
+                                
+                                Divider()
+                                    .frame(height: 6)
+                                    .overlay(.black)
+                                    .offset(y: -3)
+                                Spacer()
+                                
+                                    
+                                
                             }
                             if showInstructionsAndBall {
                             if currentIndex >= 0 && currentIndex <= 1 && !showWastedScreen {
@@ -748,11 +759,11 @@ struct ContentView: View {
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
                         highestLevelInRound = newValue
-                        if newValue < 8 {
+                        if newValue < 6 {
                             secondsToFall = secondsToFall * fraction
                             fraction += 0.06
                         } else if newValue < 99 {
-                            secondsToFall = secondsToFall * 0.986
+                            secondsToFall = secondsToFall * 0.99
                         } else {
                             secondsToFall = secondsToFall * 0.999
                         }
@@ -780,20 +791,31 @@ struct ContentView: View {
 //                }
                 .allowsHitTesting(!freezeScrolling)
                 if score >= 0 && currentIndex >= 0{
-                    VStack{
-                        HStack{
-                            Text(String(score))
-                                .bold()
-                                .italic()
-                                .font(.system(size: 100))
-                                .padding(36)
-                                .padding(.top, 30)
-                                .foregroundColor(.black)
+                    ZStack{
+                        VStack{
+                            HStack{
+                                Text(String(score))
+                                    .bold()
+                                    .italic()
+                                    .font(.system(size: 100))
+                                    .padding(36)
+                                    .padding(.top, 30)
+                                    .foregroundColor(.black)
+                                Spacer()
+                                //                            Text(String(secondsToFall))
+                                //                                .padding()
+                            }
                             Spacer()
-//                            Text(String(secondsToFall))
-//                                .padding()
                         }
-                        Spacer()
+                        VStack{
+                            Spacer()
+                            HStack{
+                                Image(systemName: "arrowtriangle.right.fill")
+                                Spacer()
+                                Image(systemName: "arrowtriangle.left.fill")
+                            }
+                            Spacer()
+                        }
                     }
                     .allowsHitTesting(false)
                 }
