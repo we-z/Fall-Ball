@@ -763,7 +763,7 @@ struct ContentView: View {
                         highestLevelInRound = newValue
                         if newValue < 6 {
                             secondsToFall = secondsToFall * fraction
-                            fraction += 0.06
+                            fraction += 0.075
                         } else if newValue < 99 {
                             secondsToFall = secondsToFall * 0.99
                         } else {
