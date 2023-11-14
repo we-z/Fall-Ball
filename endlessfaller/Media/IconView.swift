@@ -13,9 +13,9 @@ struct IconView: View {
             VStack(spacing: 0){
                 Rectangle()
                     .foregroundColor(.blue)
-//                Divider()
-//                    .frame(height: 15)
-//                    .overlay(.black)
+                Divider()
+                    .frame(height: 15)
+                    .overlay(.black)
                 Rectangle()
                     .foregroundColor(.red)
             }
