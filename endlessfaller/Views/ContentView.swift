@@ -28,6 +28,7 @@ struct ContentView: View {
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
     @ObservedObject private var timerManager = TimerManager()
+    @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
     @State var score: Int = -1
     @State var currentScore: Int = 0
@@ -948,6 +949,8 @@ struct ContentView: View {
         .scrollDisabled(freezeScrolling)
         .onAppear {
             //appModel.pickRandomFreeBall()
+            notificationManager.registerLocal()
+            notificationManager.scheduleLocal()
             checkIfAppOpenToday()
             playedCharacter = appModel.selectedCharacter
             setUpAudioFiles()
@@ -1012,119 +1015,6 @@ struct ContentView: View {
     
 }
 
-let backgroundColors: [String] = [
-    "#FF00FF", // Neon Pink
-        "#01FF70", // Bright Green
-        "#00FFFF", // Cyan
-        "#FF6EFF", // Hot Pink
-        "#00FF00", // Lime Green
-        "#FF6600", // Neon Orange
-        "#33FF00", // Neon Green
-        "#FF3300", // Bright Red
-        "#FF0099", // Magenta
-        "#66FF00", // Bright Yellow-Green
-        "#FF0066", // Deep Pink
-        "#99FF00", // Chartreuse
-        "#FF0000", // Red
-        "#00FFCC", // Aqua
-        "#FF99CC", // Pinkish
-        "#00CCFF", // Sky Blue
-        "#FFCC00", // Gold
-        "#CC00FF", // Purple
-        "#FFFF00", // Yellow
-        "#FF99FF", // Pale Pink
-        "#0099FF", // Azure
-        "#FF6600", // Orange
-        "#00FF99", // Mint
-        "#FF6699", // Rosy
-        "#00FF66", // Spring Green
-        "#CCFF00", // Lemon
-        "#FF3366", // Rose
-        "#00FF33", // Greenish
-        "#FF33CC", // Neon Purple
-        "#0099CC", // Cerulean
-        "#FF0033", // Bright Red
-        "#33FFCC", // Turquoise
-        "#00CC99", // Peacock Blue
-        "#99CC00", // Olive Green
-        "#CC66FF", // Lavender
-        "#FF6633", // Tangerine
-        "#33CCFF", // Light Blue
-        "#99FF99", // Light Mint
-        "#FF3399", // Deep Rose
-        "#0066FF", // Electric Blue
-        "#FF9900", // Dark Orange
-        "#66FF99", // Aqua Green
-        "#FF33FF", // Bright Purple
-        "#009966", // Teal
-        "#99FF66", // Light Lime
-        "#FF0099", // Deep Magenta
-        "#66CC00", // Dark Lime
-        "#FF66CC", // Light Magenta
-        "#00FFCC", // Bright Cyan
-        "#66FF33", // Lime
-        "#99CCFF", // Pale Blue
-        "#FF0066", // Neon Red
-        "#33FF99", // Sea Green
-        "#CC99FF", // Light Lavender
-        "#00FF66", // Light Green
-        "#33FF33", // Neon Light Green
-        "#FF6633", // Dark Peach
-        "#0099FF", // Light Electric Blue
-        "#FFCC66", // Peach
-        "#66FFCC", // Light Cyan
-        "#FF0000", // Neon Red
-        "#33CC99", // Dark Cyan
-        "#99FF33", // Yellow Green
-        "#FF33FF", // Neon Magenta
-        "#009966", // Dark Turquoise
-        "#99FF66", // Light Yellow Green
-        "#FF0099", // Neon Deep Pink
-        "#66CC00", // Darker Lime
-        "#FF66CC", // Light Neon Pink
-        "#00FFCC", // Neon Cyan
-        "#66FF33", // Brighter Lime
-        "#99CCFF", // Pale Sky Blue
-        "#FF0066", // Bright Neon Pink
-        "#33FF99", // Light Sea Green
-        "#CC99FF", // Pale Lavender
-        "#00FF66", // Neon Spring Green
-        "#33FF33", // Bright Neon Light Green
-        "#FF6633", // Neon Peach
-        "#0099FF", // Deep Sky Blue
-        "#FFCC66", // Neon Pale Peach
-        "#66FFCC", // Neon Light Cyan
-        "#FF0000", // Pure Red
-        "#33CC99", // Dark Sea Green
-        "#99FF33", // Light Neon Lime
-        "#FF33FF", // Neon Violet
-        "#009966", // Forest Green
-        "#99FF66", // Pale Neon Lime
-        "#FF0099", // Neon Rose
-        "#66CC00", // Grass Green
-        "#FF66CC", // Neon Pale Pink
-        "#00FFCC", // Bright Turquoise
-        "#66FF33", // Spring Lime
-        "#99CCFF", // Daylight Blue
-        "#FF0066", // Neon Fuchsia
-        "#33FF99",  // Fresh Green
-    "#AEC6CF", "#FFB347", "#77DD77", "#CFCFC4", "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC",
-        "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2", "#779ECB", "#966FD6",
-        "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700", "#03C03C", "#FFDAB9", "#89CFF0",
-        "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC", "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2",
-        "#779ECB", "#966FD6", "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700",
-        "#03C03C", "#FFDAB9", "#89CFF0", "#AEC6CF", "#FFB347", "#77DD77", "#CFCFC4",
-        "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC", "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2",
-        "#779ECB", "#966FD6", "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700",
-        "#03C03C", "#FFDAB9", "#89CFF0", "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC",
-        "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2", "#779ECB", "#966FD6",
-        "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700", "#03C03C", "#FFDAB9", "#89CFF0",
-        "#AEC6CF", "#FFB347", "#77DD77", "#CFCFC4", "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC",
-        "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2", "#779ECB", "#966FD6",
-        "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700", "#03C03C", "#FFDAB9", "#89CFF0",
-        "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC", "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2",
-        "#779ECB", "#966FD6", "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700"
-]
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
