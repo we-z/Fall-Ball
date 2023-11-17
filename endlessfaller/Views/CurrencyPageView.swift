@@ -28,7 +28,7 @@ struct CurrencyPageView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack{
-                Color.purple
+                Color.yellow
                     .ignoresSafeArea()
                 VStack{
                     Capsule()

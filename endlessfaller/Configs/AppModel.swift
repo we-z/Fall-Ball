@@ -665,7 +665,7 @@ class NotificationManager: ObservableObject {
         content.sound = UNNotificationSound.default
 
         var dateComponents = DateComponents()
-        dateComponents.hour = 11
+        dateComponents.hour = 10
         dateComponents.minute = 30
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
