@@ -44,7 +44,7 @@ struct SecretShopView: View {
                                                 .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
                                                 .overlay{
                                                     RoundedRectangle(cornerRadius: 20)
-                                                        .stroke(model.hats[index].hatID == model.selectedHat ? Color.primary : Color.clear, lineWidth: 3)
+                                                        .stroke(model.hats[index].hatID == model.selectedHat ? Color.black : Color.clear, lineWidth: 3)
                                                         .padding(1)
                                                 }
                                                 .overlay(
@@ -57,7 +57,7 @@ struct SecretShopView: View {
                                                     .padding()
                                                     .offset(y:12)
                                                 )
-                                                .accentColor(.primary)
+                                                .accentColor(.black)
                                                 .padding(1)
                                         }
                                         .buttonStyle(.roundedAndShadow)

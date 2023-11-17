@@ -241,7 +241,7 @@ struct ContentView: View {
                                                         .cornerRadius(15)
                                                         .overlay{
                                                             RoundedRectangle(cornerRadius: 15)
-                                                                .stroke(Color.primary, lineWidth: 3)
+                                                                .stroke(Color.black, lineWidth: 3)
                                                         }
                                                         .offset(x: 9, y: -9)
                                                     }
@@ -288,7 +288,7 @@ struct ContentView: View {
                                                 .cornerRadius(21)
                                                 .overlay{
                                                     RoundedRectangle(cornerRadius: 21)
-                                                        .stroke(Color.primary, lineWidth: 6)
+                                                        .stroke(Color.black, lineWidth: 6)
                                                         .padding(1)
                                                     ZStack{
                                                         Image(systemName: "stopwatch")
@@ -561,7 +561,7 @@ struct ContentView: View {
                                         //.shadow(color: .black, radius: 3)
                                 }
                                 .bold()
-                                .foregroundColor(.primary)
+                                .foregroundColor(.black)
                                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
                                 .animatedOffset(speed: 1)
                                 Spacer()
@@ -634,7 +634,7 @@ struct ContentView: View {
                                 }
                                 ZStack{
                                     PodiumView()
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(.black)
                                         .padding(36)
                                         .pressEvents {
                                             
@@ -762,7 +762,7 @@ struct ContentView: View {
 //                                        .foregroundColor(gameOverBackgroundColor)
 //                                    if firstGamePlayed {
 //                                        PodiumView()
-//                                            .foregroundColor(.primary)
+//                                            .foregroundColor(.black)
 //                                            .offset(y: -9)
 //                                    }
 //                                    

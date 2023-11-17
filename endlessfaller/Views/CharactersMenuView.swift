@@ -64,7 +64,7 @@ struct CharactersMenuView: View {
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.primary : Color.clear, lineWidth: 3)
+                                                            .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.black : Color.clear, lineWidth: 3)
                                                             .padding(1)
                                                     }
                                                     .overlay(
@@ -92,7 +92,7 @@ struct CharactersMenuView: View {
                                                         }
                                                             .offset(y:12)
                                                     )
-                                                    .accentColor(.primary)
+                                                    .accentColor(.black)
                                                     .padding(1)
                                                     .onChange(of: storeKit.purchasedProducts) { course in
                                                         if storeIndex >= 0 {
@@ -119,7 +119,7 @@ struct CharactersMenuView: View {
                                 }
                             } label: {
                                 Text("Restore Purchases")
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(.black)
                                     .underline()
                                     .padding(.top)
                             }

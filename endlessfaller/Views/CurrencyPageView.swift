@@ -77,7 +77,7 @@ struct CurrencyPageView: View {
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(Color.primary, lineWidth: 3)
+                                                            .stroke(Color.black, lineWidth: 3)
                                                             .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
                                                             .padding(1)
                                                         VStack{
@@ -122,7 +122,7 @@ struct CurrencyPageView: View {
                                                             .frame(width: 210)
                                                             .overlay{
                                                                 Rectangle()
-                                                                    .stroke(Color.primary, lineWidth: 3)
+                                                                    .stroke(Color.black, lineWidth: 3)
                                                             }
                                                             .rotationEffect(.degrees(45))
                                                             .offset(x:idiom == .pad ? 60 : 21, y: idiom == .pad ? -90 : -69)
@@ -133,7 +133,7 @@ struct CurrencyPageView: View {
                                                             
                                                         }
                                                     }
-                                                    .accentColor(.primary)
+                                                    .accentColor(.black)
                                                     .padding(1)
                                             }
                                             .buttonStyle(.roundedAndShadow)

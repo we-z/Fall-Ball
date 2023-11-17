@@ -42,7 +42,7 @@ struct ContinuePlayingView: View {
                         .cornerRadius(15)
                         .overlay{
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.primary, lineWidth: 3)
+                                .stroke(Color.black, lineWidth: 3)
                         }
                         .offset(x: 9, y: -9)
                     }
@@ -89,7 +89,7 @@ struct ContinuePlayingView: View {
                 .cornerRadius(21)
                 .overlay{
                     RoundedRectangle(cornerRadius: 21)
-                        .stroke(Color.primary, lineWidth: 6)
+                        .stroke(Color.black, lineWidth: 6)
                         .padding(1)
                     ZStack{
                         Image(systemName: "stopwatch")

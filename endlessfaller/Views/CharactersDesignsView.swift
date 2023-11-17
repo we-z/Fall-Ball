@@ -1175,7 +1175,7 @@ struct YinYangBallView: View {
                 .overlay{
                     Circle()
                         .stroke()
-                        .foregroundColor(.primary)
+                        .foregroundColor(.black)
                 }
                 
         }
