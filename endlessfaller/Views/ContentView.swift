@@ -65,6 +65,8 @@ struct ContentView: View {
     @State private var gameOverTimer: Timer? = nil
     @State var musicPlayer: AVAudioPlayer!
     @State var punchSoundEffect: AVAudioPlayer!
+    @State var boingSoundEffect: AVAudioPlayer!
+    @State var dingsSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
     @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
@@ -877,6 +879,9 @@ struct ContentView: View {
                         
                     } else {
                         NewBestScore()
+                            .onAppear{
+                                self.dingsSoundEffect.play()
+                            }
                         CelebrationEffect()
                     }
 //                    if currentIndex > 70 {
@@ -919,6 +924,9 @@ struct ContentView: View {
                 }
                 if showBoinFoundAnimation{
                     BoinCollectedView()
+                        .onAppear{
+                            self.boingSoundEffect.play()
+                        }
                 }
             }
         }
@@ -942,28 +950,7 @@ struct ContentView: View {
             //appModel.pickRandomFreeBall()
             checkIfAppOpenToday()
             playedCharacter = appModel.selectedCharacter
-            if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
-                do {
-                    self.musicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: music))
-                    self.musicPlayer.numberOfLoops = -1
-                    self.musicPlayer.enableRate = true
-                    if appModel.mute == true {
-                        self.musicPlayer.setVolume(0, fadeDuration: 0)
-                    } else {
-                        self.musicPlayer.setVolume(1, fadeDuration: 0)
-                    }
-                    self.musicPlayer.play()
-                } catch {
-                    print("Error playing audio: \(error)")
-                }
-            }
-            if let punch = Bundle.main.path(forResource: "punchSFX", ofType: "mp3"){
-                do {
-                    self.punchSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: punch))
-                } catch {
-                    print("Error playing audio: \(error)")
-                }
-            }
+            setUpAudioFiles()
             if !GKLocalPlayer.local.isAuthenticated {
                 gameCenter.authenticateUser()
             } else if gameCenter.todaysPlayersList.count == 0 {
@@ -974,6 +961,44 @@ struct ContentView: View {
         }
     }
     
+    func setUpAudioFiles() {
+        if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
+            do {
+                self.musicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: music))
+                self.musicPlayer.numberOfLoops = -1
+                self.musicPlayer.enableRate = true
+                if appModel.mute == true {
+                    self.musicPlayer.setVolume(0, fadeDuration: 0)
+                } else {
+                    self.musicPlayer.setVolume(1, fadeDuration: 0)
+                }
+                self.musicPlayer.play()
+            } catch {
+                print("Error playing audio: \(error)")
+            }
+        }
+        if let punch = Bundle.main.path(forResource: "punchSFX", ofType: "mp3"){
+            do {
+                self.punchSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: punch))
+            } catch {
+                print("Error playing audio: \(error)")
+            }
+        }
+        if let boing = Bundle.main.path(forResource: "Boing", ofType: "mp3"){
+            do {
+                self.boingSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: boing))
+            } catch {
+                print("Error playing audio: \(error)")
+            }
+        }
+        if let dings = Bundle.main.path(forResource: "DingDingDing", ofType: "mp3"){
+            do {
+                self.dingsSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: dings))
+            } catch {
+                print("Error playing audio: \(error)")
+            }
+        }
+    }
     
     func enableScaleAndFlashForDuration() {
         triangleScale = 1.5 // Increase the scale factor
