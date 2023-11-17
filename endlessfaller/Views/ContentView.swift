@@ -105,6 +105,7 @@ struct ContentView: View {
             //print("gameOverOperations called")
             currentScore = score
             score = -1
+            musicPlayer.rate = 1
             self.showContinueToPlayScreen = false
             showInstructionsAndBall = true
             gameIsOver = true
@@ -765,6 +766,7 @@ struct ContentView: View {
                     if newValue > highestLevelInRound {
                         //DispatchQueue.main.async {
                             score += 1
+                        self.musicPlayer.rate += 0.01
                         //}
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
@@ -918,6 +920,7 @@ struct ContentView: View {
                 do {
                     self.musicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: music))
                     self.musicPlayer.numberOfLoops = -1
+                    self.musicPlayer.enableRate = true
                     if appModel.mute == true {
                         self.musicPlayer.setVolume(0, fadeDuration: 0)
                     } else {
