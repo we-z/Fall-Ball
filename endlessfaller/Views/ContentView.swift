@@ -54,6 +54,7 @@ struct ContentView: View {
     @State var currencyButtonIsPressed = false
     @State var plaqueIsPressed = false
     @State var showBoinFoundAnimation = false
+    @State var showDailyBoinCollectedAnimation = false
     //@State var levelYPosition: CGFloat = 0
     @State private var triangleScale: CGFloat = 1.0
     @State var triangleColor = Color.black
@@ -93,6 +94,26 @@ struct ContentView: View {
         showBoinFoundAnimation = true
         appModel.balance += 1
         boinIntervalCounter = 0
+    }
+    
+    func dailyBoinCollected() {
+        showDailyBoinCollectedAnimation = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            showDailyBoinCollectedAnimation = false
+        }
+    }
+    
+    let openToday = NSDate().formatted
+    func checkIfAppOpenToday() {
+        if (UserDefaults.standard.string(forKey: "lastLaunch") == openToday) {
+            //Already Launched today
+            print("already opened today")
+        } else {
+            //Today's First Launch
+            print("first open of the day")
+            dailyBoinCollected()
+            UserDefaults.standard.setValue(openToday, forKey:"lastLaunch")
+        }
     }
     
     func gameOverOperations() {
@@ -343,55 +364,59 @@ struct ContentView: View {
                         Spacer()
                         
                         if !firstGamePlayed {
-                            VStack{
-                                HStack{
-                                    Spacer()
-                                    HStack{
-                                        BoinsView()
-                                        Text(String(appModel.balance))
-                                            .bold()
-                                            .italic()
-                                            .font(.largeTitle)
-                                    }
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 6)
-                                    .background{
-                                        Color.yellow
-                                    }
-                                    .cornerRadius(15)
-                                    .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
-                                    .offset(x: currencyButtonIsPressed ? -6 : 0, y: currencyButtonIsPressed ? 6 : 0)
-                                    .padding()
-                                    .pressEvents {
-                                        // On press
-                                        withAnimation(.easeInOut(duration: 0.1)) {
-                                            currencyButtonIsPressed = true
-                                        }
-                                    } onRelease: {
-                                        withAnimation {
-                                            currencyButtonIsPressed = false
-                                            showCurrencyPage = true
-                                        }
-                                    }
-                                }
-                                .padding(.top, 30)
-                                Spacer()
+                            ZStack{
                                 VStack{
-                                    Text("Swipe up \nto play!")
-                                        .italic()
-                                        .multilineTextAlignment(.center)
-                                        .foregroundColor(.black)
+                                    HStack{
+                                        Spacer()
+                                        HStack{
+                                            BoinsView()
+                                            Text(String(appModel.balance))
+                                                .bold()
+                                                .italic()
+                                                .font(.largeTitle)
+                                        }
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 6)
+                                        .background{
+                                            Color.yellow
+                                        }
+                                        .cornerRadius(15)
+                                        .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
+                                        .offset(x: currencyButtonIsPressed ? -6 : 0, y: currencyButtonIsPressed ? 6 : 0)
                                         .padding()
-                                    Image(systemName: "arrow.up")
-                                        .foregroundColor(.black)
+                                        .pressEvents {
+                                            // On press
+                                            withAnimation(.easeInOut(duration: 0.1)) {
+                                                currencyButtonIsPressed = true
+                                            }
+                                        } onRelease: {
+                                            withAnimation {
+                                                currencyButtonIsPressed = false
+                                                showCurrencyPage = true
+                                            }
+                                        }
+                                    }
+                                    .padding(.top, 30)
+                                    Spacer()
+                                    VStack{
+                                        Text("Swipe up \nto play!")
+                                            .italic()
+                                            .multilineTextAlignment(.center)
+                                            .foregroundColor(.black)
+                                            .padding()
+                                        Image(systemName: "arrow.up")
+                                            .foregroundColor(.black)
+                                    }
+                                    .animatedOffset(speed: 1)
+                                    .bold()
+                                    .font(.largeTitle)
+                                    .scaleEffect(1.5)
+                                    Spacer()
                                 }
-                                .animatedOffset(speed: 1)
-                                .bold()
-                                .font(.largeTitle)
-                                .scaleEffect(1.5)
-                                Spacer()
+                                if showDailyBoinCollectedAnimation {
+                                    DailyBoinCollectedView()
+                                }
                             }
-                            
                         } else {
                             VStack{
                                 HStack{
@@ -915,6 +940,7 @@ struct ContentView: View {
         .scrollDisabled(freezeScrolling)
         .onAppear {
             //appModel.pickRandomFreeBall()
+            checkIfAppOpenToday()
             playedCharacter = appModel.selectedCharacter
             if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
                 do {

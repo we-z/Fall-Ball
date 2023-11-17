@@ -11,7 +11,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
 //            CelebrationEffect()
-            Instruction3()
+            DailyBoinCollectedView()
         }
     }
 }
@@ -1313,6 +1313,62 @@ struct BoinCollectedView: View {
                     withAnimation(.linear(duration: 0.5)){
                         self.animationEnding = true
                     }
+                }
+            }
+        }
+        .allowsHitTesting(false)
+    }
+}
+
+struct DailyBoinCollectedView: View {
+    // 1. Define a state variable to control the vertical offset
+    @State private var scale = false
+    @State private var appearFromTop = false
+    @State private var animationEnding = false
+    @StateObject var appModel = AppModel()
+    
+    let deviceHeight = UIScreen.main.bounds.height
+    let deviceWidth = UIScreen.main.bounds.width
+    
+    
+    var body: some View {
+        ZStack {
+            VStack {
+                BoinsView()
+                    .scaleEffect(scale ? 1 : 1.2)
+                    
+//                    .scaleEffect(animationEnding ? 0.2 : 1)
+//                    .offset(x: animationEnding ? deviceWidth : 0, y: (-(deviceHeight / 2)) + 90 )
+                    
+                Text("Daily Boin Collected!")
+                    .italic()
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .font(.title)
+                    .padding(9)
+//                    .offset(y: animationEnding ? deviceHeight : 0)
+            }
+            .scaleEffect(appearFromTop ? 1 : 0)
+            .offset(y: appearFromTop ? -(deviceHeight / 4): -(deviceHeight/2) - 90)
+            .offset(x: animationEnding ? deviceWidth : 0)
+            .onAppear() {
+                
+                withAnimation(.linear(duration: 1)){
+                    self.appearFromTop = true
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    
+                    withAnimation(.linear(duration: 0.3).repeatForever(autoreverses: true)){
+                        self.scale.toggle()
+                    }
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    
+                    withAnimation(.linear(duration: 0.5)){
+                        self.animationEnding = true
+                    }
+                    appModel.balance += 1
                 }
             }
         }

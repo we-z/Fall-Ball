@@ -631,3 +631,11 @@ extension VTabView where SelectionValue == Int {
         self.content = content
     }
 }
+
+extension NSDate {
+    var formatted: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return  formatter.string(from: self as Date)
+    }
+}
