@@ -794,7 +794,9 @@ struct ContentView: View {
                     if newValue > highestLevelInRound {
                         //DispatchQueue.main.async {
                             score += 1
-                        self.musicPlayer.rate += 0.01
+                        if self.musicPlayer.rate < 2 {
+                            self.musicPlayer.rate += 0.006
+                        }
                         //}
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
