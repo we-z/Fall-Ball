@@ -11,7 +11,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
 //            CelebrationEffect()
-            BoinCollectedView()
+            Instruction3()
         }
     }
 }
@@ -1024,7 +1024,41 @@ struct PodiumView: View {
 struct Instruction: View {
     var body: some View {
         VStack{
-            Text("Don't let ball\nhit bottom")
+            Text("Don't let \nBall Fall")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+            Image(systemName: "arrow.up")
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
+        .font(.largeTitle)
+        //.flashing()
+    }
+}
+
+struct Instruction2: View {
+    var body: some View {
+        VStack{
+            Text("Swipe as fast\nas you can")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+            Image(systemName: "arrow.up")
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
+        .font(.largeTitle)
+        //.flashing()
+    }
+}
+
+struct Instruction3: View {
+    var body: some View {
+        VStack{
+            Text("Keep ball\nabove middle")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)

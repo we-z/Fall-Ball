@@ -651,16 +651,24 @@ struct ContentView: View {
                                 
                             }
                             if showInstructionsAndBall {
-                            if currentIndex >= 0 && currentIndex <= 1 && !showWastedScreen {
+                            if currentIndex == 0 && !showWastedScreen {
                                 KeepSwiping()
                                     .scaleEffect(1.5)
                             }
-                            if currentIndex >= 2 && currentIndex <= 5 && !showWastedScreen {
+                            if currentIndex == 1 && !showWastedScreen {
+                                Instruction2()
+                                    .scaleEffect(1.5)
+                            }
+                            if currentIndex == 2 && !showWastedScreen {
                                 SwipeFaster()
                                     .scaleEffect(1.5)
                             }
-                            if currentIndex >= 6 && currentIndex <= 9 && !showWastedScreen {
-                                JustFaster()
+                            if currentIndex == 3 && !showWastedScreen {
+                                Instruction()
+                                    .scaleEffect(1.5)
+                            }
+                            if currentIndex == 4 && !showWastedScreen {
+                                Instruction3()
                                     .scaleEffect(1.5)
                             }
                             if highestLevelInRound == index && !showWastedScreen {
@@ -761,9 +769,8 @@ struct ContentView: View {
                         // 1052 or 1054
 //                        AudioServicesPlaySystemSound(1052)
                         highestLevelInRound = newValue
-                        if newValue < 6 {
-                            secondsToFall = secondsToFall * fraction
-                            fraction += 0.075
+                        if newValue < 9 {
+                            secondsToFall *= 0.75
                         } else if newValue < 99 {
                             secondsToFall = secondsToFall * 0.99
                         } else {
@@ -804,8 +811,8 @@ struct ContentView: View {
                                     .padding(.top, 30)
                                     .foregroundColor(.black)
                                 Spacer()
-                                //                            Text(String(secondsToFall))
-                                //                                .padding()
+//                            Text(String(secondsToFall))
+//                                .padding()
                             }
                             Spacer()
                         }
