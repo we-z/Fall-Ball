@@ -33,16 +33,23 @@ struct PlayersPlaqueView: View {
                 .foregroundColor(backgroundColor)
                 .frame(width: 330, height: 330)
             RotatingSunView()
-                .offset(y: -40)
+                .offset(y: -30)
             VStack{
                 Text("I play Fall Ball as:")
                     .bold()
                     .italic()
                 if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                    AnyView(character.character)
-                        .padding(.top, 30)
-                        .padding(.bottom, 18)
-                        .scaleEffect(2)
+                    let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+                    ZStack{
+                        AnyView(character.character)
+                            .scaleEffect(1.5)
+                        AnyView(hat!.hat)
+                            .frame(maxWidth: 60, maxHeight: 60)
+                    }
+                    .padding(.top, appModel.selectedHat == "nohat" ? 30 : 45)
+                    .padding(.bottom, 39)
+                    .scaleEffect(1.2)
+                    .offset(y:20)
                 }
                 
                 Text(GKLocalPlayer.local.isAuthenticated ? GKLocalPlayer.local.displayName : "Unknown Player")

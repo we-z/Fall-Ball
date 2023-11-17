@@ -473,7 +473,7 @@ struct ContentView: View {
                                                         .font(.title)
                                                         .bold()
                                                         .italic()
-                                                        .foregroundColor(.black)
+                                                        .foregroundColor(appModel.selectedHat == "nohat" ? .black : .clear)
                                                         .padding(.leading, 15)
                                                         .offset(x: 30)
                                                 }
@@ -510,9 +510,14 @@ struct ContentView: View {
                                         .font(.title)
                                     }
                                     if let character = appModel.characters.first(where: { $0.characterID == playedCharacter}) {
-                                        AnyView(character.character)
-                                            .scaleEffect(2.4)
-                                        .offset(x: -70, y: 18)
+                                        let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+                                        ZStack{
+                                            AnyView(character.character)
+                                                .scaleEffect(1.5)
+                                            AnyView(hat!.hat)
+                                        }
+                                        .scaleEffect(1.5)
+                                        .offset(x: -70, y: appModel.selectedHat == "nohat" ? 18 : 30)
                                     }
                                 }
                                 .background{
@@ -609,13 +614,14 @@ struct ContentView: View {
 //                                            .frame(width: 46)
 //                                            .offset(x:  -2, y: 2)
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                            VStack{
+                                            let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+                                            ZStack{
                                                 AnyView(character.character)
-                                                    
-//                                                Ellipse()
-//                                                    .frame(width: 24, height: 6)
-//                                                    .blur(radius: 3)
+                                                AnyView(hat!.hat)
+                                                    .scaleEffect(0.69)
+                                                    .frame(maxHeight: 30)
                                             }
+                                            .frame(maxWidth:45)
                                             .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
                                         }
                                     }
