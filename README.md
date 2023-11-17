@@ -8,7 +8,7 @@ The entire game is a custom vertical tabview wrapped in a scrollview. a ball ani
 
 ### Important Code References 📖
 * [GitHub Pages](https://pages.github.com/).
-* [ContentView (Main View)](https://github.com/we-z/endlessfall/blob/main/endlessfaller/Views/ContentView.swift)
+* [ContentView](https://github.com/we-z/endlessfall/blob/main/endlessfaller/Views/ContentView.swift) (Main File)
 * Leaderboard
 * Ball Shop
 * Secret Shop
