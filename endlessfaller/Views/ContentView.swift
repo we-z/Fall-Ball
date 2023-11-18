@@ -208,6 +208,7 @@ struct ContentView: View {
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
     
     var body: some View {
+        let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
         ScrollView {
             ZStack{
                 VTabView(selection: $currentIndex) {
@@ -510,7 +511,6 @@ struct ContentView: View {
                                         .font(.title)
                                     }
                                     if let character = appModel.characters.first(where: { $0.characterID == playedCharacter}) {
-                                        let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
                                         ZStack{
                                             AnyView(character.character)
                                                 .scaleEffect(1.5)
@@ -614,7 +614,6 @@ struct ContentView: View {
 //                                            .frame(width: 46)
 //                                            .offset(x:  -2, y: 2)
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                            let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
                                             ZStack{
                                                 AnyView(character.character)
                                                 AnyView(hat!.hat)
@@ -728,7 +727,6 @@ struct ContentView: View {
                                             .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
                                         }
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                            let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
                                             ZStack{
                                                 AnyView(character.character)
                                                     .scaleEffect(1.5)
@@ -798,12 +796,12 @@ struct ContentView: View {
                         boinFound()
                     }
                     if newValue > highestLevelInRound {
-                        //DispatchQueue.main.async {
+                        DispatchQueue.main.async {
                             score += 1
                         if self.musicPlayer.rate < 2 {
                             self.musicPlayer.rate += 0.006
                         }
-                        //}
+                        }
                         // 1052 or 1054
                         AudioServicesPlaySystemSound(1057)
                         highestLevelInRound = newValue

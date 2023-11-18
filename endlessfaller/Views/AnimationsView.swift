@@ -11,7 +11,9 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
 //            CelebrationEffect()
-            DailyBoinCollectedView()
+            Color.blue
+                .ignoresSafeArea()
+            RotatingSunView()
         }
     }
 }
