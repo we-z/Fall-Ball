@@ -805,7 +805,7 @@ struct ContentView: View {
                         }
                         //}
                         // 1052 or 1054
-//                        AudioServicesPlaySystemSound(1052)
+                        AudioServicesPlaySystemSound(1057)
                         highestLevelInRound = newValue
                         if newValue < 9 {
                             secondsToFall *= 0.75
