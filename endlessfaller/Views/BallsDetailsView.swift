@@ -16,6 +16,7 @@ struct BallsDetailsView: View {
     @State var isProcessingPurchase = false
     @Environment(\.dismiss) private var dismiss
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    @State var showCurrencyPage = false
     var body: some View {
         ZStack{
             VStack{
@@ -42,32 +43,50 @@ struct BallsDetailsView: View {
                         model.selectedCharacter = ball.characterID
                         dismiss()
                     } else {
-                        isProcessingPurchase = true
-                        Task {
-                            do {
-                                if (try await storeKit.purchase(characterID: ball.characterID)) != nil{
-                                    model.selectedCharacter = ball.characterID
-                                    dismiss()
-                                }
-                            } catch {
-                                print("Purchase failed: \(error)")
+//                        isProcessingPurchase = true
+//                        Task {
+//                            do {
+//                                if (try await storeKit.purchase(characterID: ball.characterID)) != nil{
+//                                    model.selectedCharacter = ball.characterID
+//                                    dismiss()
+//                                }
+//                            } catch {
+//                                print("Purchase failed: \(error)")
+//                            }
+//                            isProcessingPurchase = false
+//                        }
+                        if let ballCost = Int(ball.cost) {
+                            if model.balance >= ballCost {
+                                model.balance -= ballCost
+                                model.selectedCharacter = ball.characterID
+                                ball.isPurchased = true
+                                model.updatePurchasedCharacters()
+                            } else {
+                                showCurrencyPage = true
                             }
-                            isProcessingPurchase = false
                         }
                     }
                 } label: {
                     HStack{
                         Spacer()
-                        Text((ball.isPurchased || ballIndex < 9) ? "EQUIP!" : "OBTAIN! \(ball.cost)")
+                        Text((ball.isPurchased || ballIndex < 9) ? "EQUIP!" : "OBTAIN:")
                             .bold()
                             .italic()
                             .font(.title)
-                            .foregroundColor(.white)
-                            .padding()
+                            .foregroundColor(.black)
+                            .padding(.vertical)
+                        if ballIndex > 9 && !ball.isPurchased {
+                            BoinsView()
+                        }
+                        Text((ball.isPurchased || ballIndex < 9) ? "" : "\(ball.cost)")
+                            .bold()
+                            .italic()
+                            .font(.title)
+                            .foregroundColor(.black)
                         Spacer()
                     }
-                    .background(.black)
-                    .cornerRadius(30)
+                    .background(.orange)
+                    .cornerRadius(21)
                     .padding(.horizontal)
                     .padding(.bottom, idiom == .pad ? 30 : 0)
                 }
@@ -85,6 +104,9 @@ struct BallsDetailsView: View {
             withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
                 isMovingUp.toggle()
             }
+        }
+        .sheet(isPresented: self.$showCurrencyPage){
+            CurrencyPageView()
         }
     }
 }

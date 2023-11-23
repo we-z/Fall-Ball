@@ -166,12 +166,12 @@ class AppModel: ObservableObject {
         Character(character: AnyView(KaiView()), cost: "69", characterID: "io.endlessfall.kai", isPurchased: false),
         Character(character: AnyView(RickView()), cost: "69", characterID: "io.endlessfall.rick", isPurchased: false),
         Character(character: AnyView(MortyView()), cost: "69", characterID: "io.endlessfall.morty", isPurchased: false),
-        Character(character: AnyView(YeatView()), cost: "99", characterID: "io.endlessfall.yeat", isPurchased: false),
-        Character(character: AnyView(OnepieceView()), cost: "99", characterID: "io.endlessfall.onepiece", isPurchased: false),
-        Character(character: AnyView(AllmightView()), cost: "99", characterID: "io.endlessfall.allmight", isPurchased: false),
-        Character(character: AnyView(PearlBallView()), cost: "999", characterID: "io.endlessfall.pearl", isPurchased: false),
+        Character(character: AnyView(YeatView()), cost: "100", characterID: "io.endlessfall.yeat", isPurchased: false),
+        Character(character: AnyView(OnepieceView()), cost: "100", characterID: "io.endlessfall.onepiece", isPurchased: false),
+        Character(character: AnyView(AllmightView()), cost: "100", characterID: "io.endlessfall.allmight", isPurchased: false),
+        Character(character: AnyView(PearlBallView()), cost: "1000", characterID: "io.endlessfall.pearl", isPurchased: false),
         Character(character: AnyView(GoldBallView()), cost: "4000", characterID: "io.endlessfall.gold", isPurchased: false),
-        Character(character: AnyView(DiamondBallView()), cost: "9999", characterID: "io.endlessfall.diamond", isPurchased: false)
+        Character(character: AnyView(DiamondBallView()), cost: "10000", characterID: "io.endlessfall.diamond", isPurchased: false)
     ]
     
     func updatePurchasedCharacters(){

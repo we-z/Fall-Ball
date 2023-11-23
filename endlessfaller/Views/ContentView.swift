@@ -648,17 +648,17 @@ struct ContentView: View {
                                                 showLeaderBoard = true
                                             }
                                         }
-                                    if !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
-                                        HStack{
-                                            Image(systemName: "arrow.down.right")
-                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
-                                                .italic()
-                                            Image(systemName: "arrow.down.left")
-                                        }
-                                        .bold()
-                                        .font(idiom == .pad ? .title : .title2)
-                                        .offset(y: -55)
-                                    }
+//                                    if !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
+//                                        HStack{
+//                                            Image(systemName: "arrow.down.right")
+//                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
+//                                                .italic()
+//                                            Image(systemName: "arrow.down.left")
+//                                        }
+//                                        .bold()
+//                                        .font(idiom == .pad ? .title : .title2)
+//                                        .offset(y: -55)
+//                                    }
                                 }
                             }
                         //}
@@ -698,11 +698,11 @@ struct ContentView: View {
                                     .scaleEffect(1.5)
                             }
                             if currentIndex == 3 && !showWastedScreen {
-                                Instruction()
+                                Instruction3()
                                     .scaleEffect(1.5)
                             }
                             if currentIndex == 4 && !showWastedScreen {
-                                Instruction3()
+                                Instruction()
                                     .scaleEffect(1.5)
                             }
                             if highestLevelInRound == index && !showWastedScreen {

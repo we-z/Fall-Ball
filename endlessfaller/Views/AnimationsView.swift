@@ -11,9 +11,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
 //            CelebrationEffect()
-            Color.blue
-                .ignoresSafeArea()
-            RotatingSunView()
+            DailyBoinCollectedView()
         }
     }
 }
@@ -1351,7 +1349,7 @@ struct DailyBoinCollectedView: View {
 //                    .offset(y: animationEnding ? deviceHeight : 0)
             }
             .scaleEffect(appearFromTop ? 1 : 0)
-            .offset(y: appearFromTop ? -(deviceHeight / 4): -(deviceHeight/2) - 90)
+            .offset(y: appearFromTop ? -(deviceHeight / 5): -(deviceHeight/2) - 90)
             .offset(x: animationEnding ? deviceWidth : 0)
             .onAppear() {
                 
