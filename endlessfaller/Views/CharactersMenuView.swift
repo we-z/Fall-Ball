@@ -13,7 +13,7 @@ struct CharactersMenuView: View {
     let deviceWidth = UIScreen.main.bounds.width
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
     @StateObject var storeKit = StoreKitManager()
-    @StateObject var model = AppModel()
+    @ObservedObject var model = AppModel()
     @State var isProcessingPurchase = false
     @State var showSecretShop = false
     @State var hapticFeedbackCounter = 0
@@ -106,13 +106,14 @@ struct CharactersMenuView: View {
                                                     )
                                                     .accentColor(.black)
                                                     .padding(1)
-                                                    .onChange(of: storeKit.purchasedProducts) { course in
-                                                        if storeIndex >= 0 {
-                                                            Task {
-                                                                model.characters[index].isPurchased = (try? await storeKit.isPurchased(characterID: character.characterID)) ?? false
-                                                                model.updatePurchasedCharacters()
-                                                            }
-                                                        }
+                                                    .onChange(of: model.characters) { newList in
+                                                        model.updatePurchasedCharacters()
+//                                                        if storeIndex >= 0 {
+//                                                            Task {
+//                                                                model.characters[index].isPurchased = (try? await storeKit.isPurchased(characterID: character.characterID)) ?? false
+//                                                                model.updatePurchasedCharacters()
+//                                                            }
+//                                                        }
                                                     }
                                             }
                                             .buttonStyle(.roundedAndShadow)

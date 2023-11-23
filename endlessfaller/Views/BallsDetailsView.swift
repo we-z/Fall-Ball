@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BallsDetailsView: View {
     @StateObject var storeKit = StoreKitManager()
-    @StateObject var model = AppModel()
+    @ObservedObject var model = AppModel()
     @State private var isMovingUp = false
     @Binding var ball: Character
     @Binding var ballIndex: Int
@@ -57,10 +57,11 @@ struct BallsDetailsView: View {
 //                        }
                         if let ballCost = Int(ball.cost) {
                             if model.balance >= ballCost {
+                                model.characters[ballIndex].isPurchased = true
                                 model.balance -= ballCost
                                 model.selectedCharacter = ball.characterID
-                                ball.isPurchased = true
                                 model.updatePurchasedCharacters()
+                                dismiss()
                             } else {
                                 showCurrencyPage = true
                             }
@@ -75,7 +76,7 @@ struct BallsDetailsView: View {
                             .font(.title)
                             .foregroundColor(.black)
                             .padding(.vertical)
-                        if ballIndex > 9 && !ball.isPurchased {
+                        if ballIndex > 8 && !ball.isPurchased {
                             BoinsView()
                         }
                         Text((ball.isPurchased || ballIndex < 9) ? "" : "\(ball.cost)")
@@ -85,7 +86,7 @@ struct BallsDetailsView: View {
                             .foregroundColor(.black)
                         Spacer()
                     }
-                    .background(.orange)
+                    .background(.yellow)
                     .cornerRadius(21)
                     .padding(.horizontal)
                     .padding(.bottom, idiom == .pad ? 30 : 0)
