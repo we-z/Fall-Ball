@@ -80,11 +80,23 @@ struct CharactersMenuView: View {
                                                                         .bold()
                                                                         .italic()
                                                                 } else {
-                                                                    Text("\(character.cost)")
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .scaleEffect(idiom == .pad ? 1.8 : 1)
-                                                                        .offset(y: idiom == .pad ? 30 : 0)
+                                                                    HStack(spacing: idiom == .pad ? 21 : 0){
+                                                                        if index > 8 {
+                                                                            BoinsView()
+                                                                                .scaleEffect(idiom == .pad ? 1 : 0.6)
+                                                                                .padding(0)
+                                                                        }
+                                                                        Text("\(character.cost)")
+                                                                            .bold()
+                                                                            .italic()
+                                                                            .font(.title3)
+                                                                            .minimumScaleFactor(0.2)
+                                                                            .scaleEffect(idiom == .pad ? 1.8 : 1)
+                                                                            
+                                                                            .padding(0)
+                                                                            
+                                                                    }
+                                                                    .offset(y: idiom == .pad ? 30 : 0)
                                                                 }
                                                                 
                                                             }
