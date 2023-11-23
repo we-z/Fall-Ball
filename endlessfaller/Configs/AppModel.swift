@@ -174,6 +174,14 @@ class AppModel: ObservableObject {
         Character(character: AnyView(DiamondBallView()), cost: "10000", characterID: "io.endlessfall.diamond", isPurchased: false)
     ]
     
+    @objc func openGameCenterSettings() {
+        if let url = URL(string: "gamecenter:") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     func updatePurchasedCharacters(){
         characters.forEach{ character in
             if character.isPurchased == true {

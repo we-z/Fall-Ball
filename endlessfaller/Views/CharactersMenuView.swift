@@ -46,7 +46,6 @@ struct CharactersMenuView: View {
                                 HStack {
                                     ForEach(0..<3, id: \.self) { columnIndex in
                                         let index = rowIndex * 3 + columnIndex
-                                        let storeIndex = index - 1
                                         if index < model.characters.count {
                                             let character = model.characters[index]
                                             Button {

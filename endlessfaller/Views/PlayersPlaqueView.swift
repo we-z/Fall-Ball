@@ -46,7 +46,7 @@ struct PlayersPlaqueView: View {
                         AnyView(hat!.hat)
                             .frame(maxWidth: 60, maxHeight: 60)
                     }
-                    .padding(.top, appModel.selectedHat == "nohat" ? 30 : 45)
+                    .padding(.top, 30)
                     .padding(.bottom, 39)
                     .scaleEffect(1.2)
                     .offset(y:20)

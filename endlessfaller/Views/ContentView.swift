@@ -581,7 +581,12 @@ struct ContentView: View {
                         //if firstGamePlayed {
                             ZStack{
                                 HStack{
-                                    
+//                                    ZStack{
+//                                        Circle()
+//                                            .frame(width: 15, height: 15)
+//                                        Image(systemName: "gearshape.fill")
+//                                            .foregroundColor(.gray)
+//                                    }
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
                                         .foregroundColor(.teal)
                                         .font(.largeTitle)
@@ -962,11 +967,11 @@ struct ContentView: View {
             setUpAudioFiles()
             if !GKLocalPlayer.local.isAuthenticated {
                 gameCenter.authenticateUser()
-            } else if gameCenter.todaysPlayersList.count == 0 {
-                Task{
-                    await gameCenter.loadLeaderboard(source: 1)
-                }
-            }
+            } // else if gameCenter.todaysPlayersList.count == 0 {
+//                Task{
+//                    await gameCenter.loadLeaderboard(source: 1)
+//                }
+//            }
         }
     }
     

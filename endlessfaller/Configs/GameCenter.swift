@@ -45,7 +45,7 @@ class GameCenter: ObservableObject {
     func updateScore(currentScore: Int, bestScore: Int, ballID: String) {
         // push score to Game Center
         Task{
-            try await GKLeaderboard.submitScore(currentScore, context: ballID.hash, player: GKLocalPlayer.local, leaderboardIDs: [self.leaderboardID, self.allTimeLeaderboardID]) { error in
+            GKLeaderboard.submitScore(currentScore, context: ballID.hash, player: GKLocalPlayer.local, leaderboardIDs: [self.leaderboardID, self.allTimeLeaderboardID]) { error in
                 
                 if let error = error {
                     print("Error submitting score: \(error)")
@@ -74,41 +74,45 @@ class GameCenter: ObservableObject {
     // fetching leaderboard method
     
     func loadLeaderboard(source: Int = 0) async {
+        DispatchQueue.main.async {
         print("source:")
         print(source)
-        todaysPlayersList.removeAll()
-        allTimePlayersList.removeAll()
-        Task{
-            var todaysPlayersListTemp : [Player] = []
-            let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
-            if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
-                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
-                if allPlayers.1.count > 0 {
-                    allPlayers.1.forEach { leaderboardEntry in
-                        todaysPlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
-                        todaysPlayersListTemp.sort{
-                            $0.score > $1.score
+            self.todaysPlayersList.removeAll()
+            self.allTimePlayersList.removeAll()
+        
+            
+            Task{
+                var todaysPlayersListTemp : [Player] = []
+                let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
+                if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
+                    let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
+                    if allPlayers.1.count > 0 {
+                        allPlayers.1.forEach { leaderboardEntry in
+                            todaysPlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
+                            todaysPlayersListTemp.sort{
+                                $0.score > $1.score
+                            }
                         }
                     }
                 }
+                self.todaysPlayersList = todaysPlayersListTemp
             }
-            todaysPlayersList = todaysPlayersListTemp
-        }
-        Task{
-            var allTimePlayersListTemp : [Player] = []
-            let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.allTimeLeaderboardIdentifier])
-            if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.allTimeLeaderboardIdentifier }).first {
-                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
-                if allPlayers.1.count > 0 {
-                    allPlayers.1.forEach { leaderboardEntry in
-                        allTimePlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
-                        allTimePlayersListTemp.sort{
-                            $0.score > $1.score
+            Task{
+                var allTimePlayersListTemp : [Player] = []
+                let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.allTimeLeaderboardIdentifier])
+                if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.allTimeLeaderboardIdentifier }).first {
+                    let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
+                    if allPlayers.1.count > 0 {
+                        allPlayers.1.forEach { leaderboardEntry in
+                            allTimePlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
+                            allTimePlayersListTemp.sort{
+                                $0.score > $1.score
+                            }
                         }
                     }
                 }
+                self.allTimePlayersList = allTimePlayersListTemp
             }
-            allTimePlayersList = allTimePlayersListTemp
         }
     }
 }
