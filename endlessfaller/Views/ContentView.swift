@@ -695,11 +695,11 @@ struct ContentView: View {
                                     .scaleEffect(1.5)
                             }
                             if currentIndex == 1 && !showWastedScreen {
-                                Instruction2()
+                                SwipeFaster()
                                     .scaleEffect(1.5)
                             }
                             if currentIndex == 2 && !showWastedScreen {
-                                SwipeFaster()
+                                Instruction()
                                     .scaleEffect(1.5)
                             }
                             if currentIndex == 3 && !showWastedScreen {
@@ -707,7 +707,7 @@ struct ContentView: View {
                                     .scaleEffect(1.5)
                             }
                             if currentIndex == 4 && !showWastedScreen {
-                                Instruction()
+                                Instruction2()
                                     .scaleEffect(1.5)
                             }
                             if highestLevelInRound == index && !showWastedScreen {
@@ -811,7 +811,7 @@ struct ContentView: View {
                         AudioServicesPlaySystemSound(1057)
                         highestLevelInRound = newValue
                         if newValue < 9 {
-                            secondsToFall *= 0.75
+                            secondsToFall *= 0.78
                         } else if newValue < 99 {
                             secondsToFall = secondsToFall * 0.99
                         } else {

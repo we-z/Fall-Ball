@@ -139,7 +139,7 @@ class StoreKitManager: ObservableObject {
             let transaction = try checkVerified(verificationResult)
             
             //the transaction is verified, deliver the content to the user
-            await updateCustomerProductStatus()
+//            await updateCustomerProductStatus()
             
             //always finish a transaction - performance
             await transaction.finish()
