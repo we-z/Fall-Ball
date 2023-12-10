@@ -812,7 +812,7 @@ struct ContentView: View {
                         highestLevelInRound = newValue
                         if newValue < 9 {
                             secondsToFall *= 0.78
-                        } else if newValue < 99 {
+                        } else if newValue < 69 {
                             secondsToFall = secondsToFall * 0.99
                         } else {
                             secondsToFall = secondsToFall * 0.999
@@ -829,16 +829,13 @@ struct ContentView: View {
                         if 0 <= currentIndex && currentIndex <= newValue {
                             gameShouldBeOver = true
                             //if levelYPosition >= 0 {
+                            //if let value = ProcessInfo.processInfo.environment["SCREENSHOT_MODE"] {
                                 wastedOperations()
+                            //}
                             //}
                         }
                     }
                 }
-//                .onChange(of: levelYPosition) { yPosition in
-//                    if yPosition >= 0 && gameShouldBeOver {
-//                        wastedOperations()
-//                    }
-//                }
                 .allowsHitTesting(!freezeScrolling)
                 if score >= 0 && currentIndex >= 0{
                     ZStack{

@@ -798,3 +798,4 @@ let backgroundColors: [String] = [
         "#FDFD96", "#FF6961", "#CB99C9", "#FFD1DC", "#B39EB5", "#FFB7B2", "#FAE7B5", "#F49AC2",
         "#779ECB", "#966FD6", "#ECCAFF", "#DEA5A4", "#B0E0E6", "#FFD700"
 ]
+

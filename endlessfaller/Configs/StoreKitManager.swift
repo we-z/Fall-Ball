@@ -16,7 +16,6 @@ public enum StoreError: Error {
 class StoreKitManager: ObservableObject {
     // if there are multiple product types - create multiple variable for each .consumable, .nonconsumable, .autoRenewable, .nonRenewable.
     @Published var storeProducts: [Product] = []
-    @Published var purchasedProducts : [Product] = []
     
     var updateListenerTask: Task<Void, Error>? = nil
     
@@ -39,8 +38,6 @@ class StoreKitManager: ObservableObject {
         Task {
             await requestProducts()
             
-            //deliver the products that the customer purchased
-            await updateCustomerProductStatus()
         }
     }
     
@@ -58,7 +55,6 @@ class StoreKitManager: ObservableObject {
                     let transaction = try self.checkVerified(result)
                     
                     //the transaction is verified, deliver the content to the user
-                    await self.updateCustomerProductStatus()
                     
                     //Always finish a transaction
                     await transaction.finish()
@@ -97,38 +93,14 @@ class StoreKitManager: ObservableObject {
         }
     }
     
-    // update the customers products
-    @MainActor
-    func updateCustomerProductStatus() async {
-        var purchasedProducts: [Product] = []
-        
-        //iterate through all the user's purchased products
-        for await result in Transaction.currentEntitlements {
-            do {
-                //again check if transaction is verified
-                let transaction = try checkVerified(result)
-                // since we only have one type of producttype - .nonconsumables -- check if any storeProducts matches the transaction.productID then add to the purchasedCourses
-                if let course = storeProducts.first(where: { $0.id == transaction.productID}) {
-                    purchasedProducts.append(course)
-                }
-                
-            } catch {
-                //storekit has a transaction that fails verification, don't delvier content to the user
-                print("Transaction failed verification")
-            }
-            
-            //finally assign the purchased products
-            self.purchasedProducts = purchasedProducts
-        }
-    }
     
     // call the product purchase and returns an optional transaction
-    func purchase(characterID: String) async throws -> Transaction? {
-            // Find the product that matches the characterID
-            guard let product = storeProducts.first(where: { $0.matchesCharacterID(characterID) }) else {
-                print("Product not found for characterID: \(characterID)")
-                return nil
-            }
+    func purchase(bundleID: String) async throws -> Transaction? {
+        // Find the product that matches the characterID
+        guard let product = storeProducts.first(where: { $0.matchesBundleID(bundleID) }) else {
+            print("Product not found for bundleID: \(bundleID)")
+            return nil
+        }
         //make a purchase request - optional parameters available
         let result = try await product.purchase()
         
@@ -139,12 +111,12 @@ class StoreKitManager: ObservableObject {
             let transaction = try checkVerified(verificationResult)
             
             //the transaction is verified, deliver the content to the user
-//            await updateCustomerProductStatus()
             
             //always finish a transaction - performance
             await transaction.finish()
             
             return transaction
+            
         case .userCancelled, .pending:
             return nil
         default:
@@ -153,24 +125,13 @@ class StoreKitManager: ObservableObject {
         
     }
     
-    //check if product has already been purchased
-    func isPurchased(characterID: String) async throws -> Bool {
-        //as we only have one product type grouping .nonconsumable - we check if it belongs to the purchasedCourses which ran init()
-        guard let product = storeProducts.first(where: { $0.matchesCharacterID(characterID) }) else {
-            print("Product not found for characterID: \(characterID)")
-            return false
-        }
-        return purchasedProducts.contains(product)
-    }
-    
-    
 }
 
 // StoreKitManager.swift
 
 extension Product {
-    func matchesCharacterID(_ characterID: String) -> Bool {
-        return id == characterID
+    func matchesBundleID(_ bundleID: String) -> Bool {
+        return id == bundleID
     }
 }
 

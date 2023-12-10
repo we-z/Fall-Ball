@@ -57,7 +57,7 @@ struct CurrencyPageView: View {
                                                     isProcessingPurchase = true
                                                     Task {
                                                         do {
-                                                            if (try await storeKit.purchase(characterID: bundle.bundleID)) != nil{
+                                                            if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
                                                                 DispatchQueue.main.async {
                                                                     model.balance += bundle.coins
                                                                 }

@@ -7,21 +7,6 @@
     {
       "displayPrice" : "2.99",
       "familyShareable" : false,
-      "internalID" : "DB94F1A2",
-      "localizations" : [
-        {
-          "description" : "black",
-          "displayName" : "black",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "io.endlessfall.black",
-      "referenceName" : "black",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "2.99",
-      "familyShareable" : false,
       "internalID" : "9349608F",
       "localizations" : [
         {
@@ -620,51 +605,6 @@
       "type" : "NonConsumable"
     },
     {
-      "displayPrice" : "4.99",
-      "familyShareable" : false,
-      "internalID" : "C7993826",
-      "localizations" : [
-        {
-          "description" : "Egypt",
-          "displayName" : "Egypt",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "io.endlessfall.egypt",
-      "referenceName" : "egypt",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "4.99",
-      "familyShareable" : false,
-      "internalID" : "02576B12",
-      "localizations" : [
-        {
-          "description" : "Palestine",
-          "displayName" : "Palestine",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "io.endlessfall.palestine",
-      "referenceName" : "palestine",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "0.99",
-      "familyShareable" : false,
-      "internalID" : "F5FCFDF1",
-      "localizations" : [
-        {
-          "description" : "Morocco",
-          "displayName" : "Morocco",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "io.endlessfall.morocco",
-      "referenceName" : "morocco",
-      "type" : "NonConsumable"
-    },
-    {
       "displayPrice" : "0.29",
       "familyShareable" : false,
       "internalID" : "6C601ABD",
@@ -947,21 +887,6 @@
       ],
       "productID" : "3900coins",
       "referenceName" : "3900coins",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "999.99",
-      "familyShareable" : false,
-      "internalID" : "B6C54D4A",
-      "localizations" : [
-        {
-          "description" : "9999 coins",
-          "displayName" : "9999 coins",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "9999coins",
-      "referenceName" : "9999coins",
       "type" : "NonConsumable"
     }
   ],
