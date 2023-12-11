@@ -888,6 +888,126 @@
       "productID" : "3900coins",
       "referenceName" : "3900coins",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "98EF4BC8",
+      "localizations" : [
+        {
+          "description" : "25 Boins",
+          "displayName" : "25 Boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "25boins",
+      "referenceName" : "25boins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "5C3E6CE5",
+      "localizations" : [
+        {
+          "description" : "55 Boins",
+          "displayName" : "55 Boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "55boins",
+      "referenceName" : "55boins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "19.99",
+      "familyShareable" : false,
+      "internalID" : "2855A3C1",
+      "localizations" : [
+        {
+          "description" : "125 Boins",
+          "displayName" : "125 Boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "125boins",
+      "referenceName" : "125boins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "49.99",
+      "familyShareable" : false,
+      "internalID" : "382520D4",
+      "localizations" : [
+        {
+          "description" : "350 Boins",
+          "displayName" : "350 Boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "350boins",
+      "referenceName" : "350boins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "99.99",
+      "familyShareable" : false,
+      "internalID" : "86051F9D",
+      "localizations" : [
+        {
+          "description" : "800 Baoins",
+          "displayName" : "800 Baoins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "800boins",
+      "referenceName" : "800boins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "199.99",
+      "familyShareable" : false,
+      "internalID" : "E2E69A0E",
+      "localizations" : [
+        {
+          "description" : "1700 Boins",
+          "displayName" : "1700 Boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "1700boins",
+      "referenceName" : "1700boins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "499.99",
+      "familyShareable" : false,
+      "internalID" : "F73F84DE",
+      "localizations" : [
+        {
+          "description" : "3900 Boins",
+          "displayName" : "3900 Boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "3900boins",
+      "referenceName" : "3900boins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "999.99",
+      "familyShareable" : false,
+      "internalID" : "A946024B",
+      "localizations" : [
+        {
+          "description" : "9999 Boins",
+          "displayName" : "9999 Boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "9999boins",
+      "referenceName" : "9999boins",
+      "type" : "Consumable"
     }
   ],
   "settings" : {

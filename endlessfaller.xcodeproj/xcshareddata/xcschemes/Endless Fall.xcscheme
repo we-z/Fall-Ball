@@ -74,7 +74,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
-         identifier = "../../endlessfaller/products.storekit">
+         identifier = "../../endlessfaller/Configs/products.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
