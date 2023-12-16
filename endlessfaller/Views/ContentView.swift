@@ -164,6 +164,7 @@ struct ContentView: View {
     }
     
     func wastedOperations() {
+        gameShouldBeOver = true
         gameOverBackgroundColor = colors[currentIndex]
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
@@ -804,7 +805,7 @@ struct ContentView: View {
                         DispatchQueue.main.async {
                             score += 1
                             if self.musicPlayer.rate < 2 {
-                                self.musicPlayer.rate += 0.006
+                                self.musicPlayer.rate += 0.003
                             }
                         }
                         // 1052 or 1054
@@ -827,12 +828,7 @@ struct ContentView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
                         if 0 <= currentIndex && currentIndex <= newValue {
-                            gameShouldBeOver = true
-                            //if levelYPosition >= 0 {
-                            //if let value = ProcessInfo.processInfo.environment["SCREENSHOT_MODE"] {
-                                wastedOperations()
-                            //}
-                            //}
+                            wastedOperations()
                         }
                     }
                 }
