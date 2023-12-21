@@ -17,7 +17,7 @@ struct IconView: View {
                     .frame(height: 15)
                     .overlay(.black)
                 Rectangle()
-                    .foregroundColor(.red)
+                    .overlay(Color(hex: "e31937ff"))
             }
             ZStack{
                 ShockedBall()

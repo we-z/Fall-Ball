@@ -14,7 +14,7 @@ struct QRView: View {
                 Rectangle()
                     .foregroundColor(.blue)
                 Rectangle()
-                    .foregroundColor(.red)
+                    .overlay(Color(hex: "e31937ff"))
             }
             
             CharacteresFallingView()
