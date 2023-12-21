@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//import VTabView
 import AudioToolbox
 import AVFoundation
 import GameKit
@@ -56,7 +55,6 @@ struct ContentView: View {
     @State var plaqueIsPressed = false
     @State var showBoinFoundAnimation = false
     @State var showDailyBoinCollectedAnimation = false
-    //@State var levelYPosition: CGFloat = 0
     @State private var triangleScale: CGFloat = 1.0
     @State var triangleColor = Color.black
     @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
@@ -78,6 +76,10 @@ struct ContentView: View {
     @State private var ballRoll = Double.zero
     @State var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
+    }
+    
+    let workItem = DispatchWorkItem {
+        // Your code here
     }
     
     init() {
@@ -582,12 +584,6 @@ struct ContentView: View {
                         //if firstGamePlayed {
                             ZStack{
                                 HStack{
-//                                    ZStack{
-//                                        Circle()
-//                                            .frame(width: 15, height: 15)
-//                                        Image(systemName: "gearshape.fill")
-//                                            .foregroundColor(.gray)
-//                                    }
                                     Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
                                         .foregroundColor(.teal)
                                         .font(.largeTitle)
@@ -654,17 +650,6 @@ struct ContentView: View {
                                                 showLeaderBoard = true
                                             }
                                         }
-//                                    if !modelName.contains("iPhone SE") && !gameCenter.allTimePlayersList.isEmpty {
-//                                        HStack{
-//                                            Image(systemName: "arrow.down.right")
-//                                            Text("Top Score: " + String(gameCenter.allTimePlayersList[0].score))
-//                                                .italic()
-//                                            Image(systemName: "arrow.down.left")
-//                                        }
-//                                        .bold()
-//                                        .font(idiom == .pad ? .title : .title2)
-//                                        .offset(y: -55)
-//                                    }
                                 }
                             }
                         //}
@@ -673,12 +658,7 @@ struct ContentView: View {
                     .tag(-1)
                     ForEach(colors.indices, id: \.self) { index in
                         ZStack{
-                            //GeometryReader { geometry in
                                 colors[index]
-//                                    .onChange(of: geometry.frame(in: .global).minY) { newYPosition in
-//                                        levelYPosition = newYPosition
-//                                    }
-                            //}
                             VStack{
                                 
                                 Divider()
@@ -765,21 +745,6 @@ struct ContentView: View {
                             }
                         }
                             
-//                            if index == 0{
-//                                ZStack{
-//                                    Rectangle()
-//                                        .frame(width: 100, height: 90)
-//                                        .foregroundColor(gameOverBackgroundColor)
-//                                    if firstGamePlayed {
-//                                        PodiumView()
-//                                            .foregroundColor(.black)
-//                                            .offset(y: -9)
-//                                    }
-//                                    
-//                                }
-//                                .position(x: deviceWidth/2, y: -50)
-//                                
-//                            }
                         }
                     }
                 }
@@ -889,15 +854,6 @@ struct ContentView: View {
                             }
                         CelebrationEffect()
                     }
-//                    if currentIndex > 70 {
-//                        VStack{
-//                            Spacer()
-//                            HStack{
-//                                Spacer()
-//                                BearView()
-//                            }
-//                        }
-//                    }
                     if score > 45 {
                         ReactionsView()
                             .offset(y: 70)
@@ -952,7 +908,6 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .scrollDisabled(freezeScrolling)
         .onAppear {
-            //appModel.pickRandomFreeBall()
             notificationManager.registerLocal()
             notificationManager.scheduleLocal()
             checkIfAppOpenToday()
@@ -960,11 +915,7 @@ struct ContentView: View {
             setUpAudioFiles()
             if !GKLocalPlayer.local.isAuthenticated {
                 gameCenter.authenticateUser()
-            } // else if gameCenter.todaysPlayersList.count == 0 {
-//                Task{
-//                    await gameCenter.loadLeaderboard(source: 1)
-//                }
-//            }
+            }
         }
     }
     

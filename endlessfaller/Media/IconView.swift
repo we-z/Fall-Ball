@@ -20,7 +20,10 @@ struct IconView: View {
                     .foregroundColor(.red)
             }
             ShockedBall()
-                .scaleEffect(6)
+                .scaleEffect(5)
+            SantaHat()
+                .scaleEffect(3.3)
+                .offset(y: -1)
         }
         .ignoresSafeArea()
     }
