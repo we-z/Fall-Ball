@@ -22,7 +22,7 @@ struct IconView: View {
             ZStack{
                 ShockedBall()
                     .scaleEffect(5)
-                SantaHat()
+                PropellerHat()
                     .scaleEffect(3.3)
                     .offset(y: -1)
             }

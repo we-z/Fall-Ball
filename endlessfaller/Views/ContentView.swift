@@ -78,10 +78,6 @@ struct ContentView: View {
         Color(hex: backgroundColors.randomElement()!)!
     }
     
-    let workItem = DispatchWorkItem {
-        // Your code here
-    }
-    
     init() {
         self.queue.underlyingQueue = rotationQueDispatch
         do {
@@ -792,9 +788,17 @@ struct ContentView: View {
                         if currentIndex > bestScore && currentIndex > 3 {
                             showNewBestScore = true
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
+                        let workItem = DispatchWorkItem {
+                            // Your code here
                             if 0 <= currentIndex && currentIndex <= newValue {
                                 wastedOperations()
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall, execute: workItem)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
+                            if 0 <= currentIndex && currentIndex <= newValue {
+                            } else {
+                                workItem.cancel()
                             }
                         }
                     }
