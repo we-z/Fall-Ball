@@ -10,9 +10,9 @@ import SwiftUI
 struct HatDesignsView: View {
     var body: some View {
         ZStack{
+            JetPack()
             ShockedBall()
                 .scaleEffect(1.5)
-            GraduationCap()
         }
     }
 }
@@ -57,6 +57,19 @@ struct PropellerHat: View {
             .resizable()
             .frame(width: 90, height: 45)
             .offset(x: 1, y: -33)
+    }
+}
+
+struct JetPack: View {
+    var body: some View {
+        HStack{
+            Image("jetengine")
+                .resizable()
+            Image("jetengine")
+                .resizable()
+        }
+        .frame(width: 120, height: 90)
+        .offset(x:-1, y:9)
     }
 }
 

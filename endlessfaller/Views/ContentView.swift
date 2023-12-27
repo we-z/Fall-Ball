@@ -609,9 +609,6 @@ struct ContentView: View {
                                         }
                                     Spacer()
                                     ZStack{
-                                        //                                        Circle()
-                                        //                                            .frame(width: 46)
-                                        //                                            .offset(x:  -2, y: 2)
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             ZStack{
                                                 AnyView(character.character)
@@ -687,58 +684,6 @@ struct ContentView: View {
                                     if currentIndex == 4 && !showWastedScreen {
                                         Instruction2()
                                             .scaleEffect(1.5)
-                                    }
-                                    if highestLevelInRound == index && !showWastedScreen {
-                                        ZStack{
-                                            if !gameShouldBeOver{
-                                                HStack{
-                                                    Divider()
-                                                        .frame(width: 3)
-                                                        .overlay(.black)
-                                                        .offset(x: -21, y: -21)
-                                                    Divider()
-                                                        .frame(width: 3)
-                                                        .overlay(.black)
-                                                        .offset(y: -39)
-                                                    Divider()
-                                                        .frame(width: 3)
-                                                        .overlay(.black)
-                                                        .offset(x: 21, y: -21)
-                                                    
-                                                }
-                                                .frame(width: 66, height: abs(self.timerManager.ballYPosition * 0.1))
-                                                .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
-                                            }
-                                            if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                                ZStack{
-                                                    AnyView(character.character)
-                                                        .scaleEffect(1.5)
-                                                    AnyView(hat!.hat)
-                                                }
-                                                .rotationEffect(.degrees(self.ballRoll * 60))
-                                                
-                                                .offset(y: -12)
-                                            }
-                                        }
-                                        .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
-                                        .offset(x: ballRoll * (deviceWidth / 2.7))
-                                        .onAppear {
-                                            if currentIndex > -1 {
-                                                self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
-                                                    guard let data = data else {
-                                                        print("Error: \(error!)")
-                                                        return
-                                                    }
-                                                    let attitude: CMAttitude = data.attitude
-                                                    if showInstructionsAndBall && currentIndex > -1 {
-                                                        if attitude.roll > -1 && attitude.roll < 1 {
-                                                            ballRoll = attitude.roll
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            
-                                        }//.onappear
                                     }
                                 }
                                 
@@ -835,6 +780,56 @@ struct ContentView: View {
                             }
                         }
                         .allowsHitTesting(false)
+                        ZStack{
+                            if !gameShouldBeOver{
+                                HStack{
+                                    Divider()
+                                        .frame(width: 3)
+                                        .overlay(.black)
+                                        .offset(x: -21, y: -21)
+                                    Divider()
+                                        .frame(width: 3)
+                                        .overlay(.black)
+                                        .offset(y: -39)
+                                    Divider()
+                                        .frame(width: 3)
+                                        .overlay(.black)
+                                        .offset(x: 21, y: -21)
+
+                                }
+                                .frame(width: 66, height: abs(self.timerManager.ballYPosition * 0.1))
+                                .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
+                            }
+                            if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                                ZStack{
+                                    AnyView(character.character)
+                                        .scaleEffect(1.5)
+                                    AnyView(hat!.hat)
+                                }
+                                .rotationEffect(.degrees(self.ballRoll * 60))
+
+                                .offset(y: -12)
+                            }
+                        }
+                        .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
+                        .offset(x: ballRoll * (deviceWidth / 2.7))
+                        .onAppear {
+                            if currentIndex > -1 {
+                                self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
+                                    guard let data = data else {
+                                        print("Error: \(error!)")
+                                        return
+                                    }
+                                    let attitude: CMAttitude = data.attitude
+                                    if showInstructionsAndBall && currentIndex > -1 {
+                                        if attitude.roll > -1 && attitude.roll < 1 {
+                                            ballRoll = attitude.roll
+                                        }
+                                    }
+                                }
+                            }
+
+                        }//.onappear
                     }
                     
                     if showInstructionsAndBall {
