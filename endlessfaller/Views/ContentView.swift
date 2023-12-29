@@ -70,6 +70,7 @@ struct ContentView: View {
     @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
+    @State var levelYPosition: CGFloat = 0
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
     let rotationQueDispatch = DispatchQueue.init(label: "io.endlessfaller.rotationque", qos: .userInitiated)
@@ -170,7 +171,6 @@ struct ContentView: View {
             highestLevelInRound = -1
         }
         firstGamePlayed = true
-        //print("wastedOperations called")
         shouldContinue = false
          circleProgress = 0.0
         showInstructionsAndBall = false
@@ -652,41 +652,24 @@ struct ContentView: View {
                         .tag(-1)
                         ForEach(colors.indices, id: \.self) { index in
                             ZStack{
-                                colors[index]
+                                GeometryReader { geometry in
+                                    colors[index]
+                                        .onChange(of: geometry.frame(in: .global).minY) { newlevelYPosition in
+                                            levelYPosition = newlevelYPosition
+                                            if newlevelYPosition < 0 {
+//                                                withAnimation() {
+                                                   // self.timerManager.ballYPosition -= 30
+//                                                }
+                                            }
+                                        }
+                                }
                                 VStack{
-                                    
                                     Divider()
                                         .frame(height: 6)
                                         .overlay(index > score ? .black : .white)
                                         .offset(y: -6)
                                     Spacer()
-                                    
-                                    
-                                    
                                 }
-                                if showInstructionsAndBall {
-                                    if currentIndex == 0 && !showWastedScreen {
-                                        KeepSwiping()
-                                            .scaleEffect(1.5)
-                                    }
-                                    if currentIndex == 1 && !showWastedScreen {
-                                        SwipeFaster()
-                                            .scaleEffect(1.5)
-                                    }
-                                    if currentIndex == 2 && !showWastedScreen {
-                                        Instruction()
-                                            .scaleEffect(1.5)
-                                    }
-                                    if currentIndex == 3 && !showWastedScreen {
-                                        Instruction3()
-                                            .scaleEffect(1.5)
-                                    }
-                                    if currentIndex == 4 && !showWastedScreen {
-                                        Instruction2()
-                                            .scaleEffect(1.5)
-                                    }
-                                }
-                                
                             }
                         }
                     }
@@ -718,34 +701,39 @@ struct ContentView: View {
                             // 1052 or 1054
                             AudioServicesPlaySystemSound(1057)
                             highestLevelInRound = newValue
-                            if newValue < 9 {
-                                secondsToFall *= 0.78
-                            } else if newValue < 69 {
-                                secondsToFall = secondsToFall * 0.99
-                            } else {
-                                secondsToFall = secondsToFall * 0.999
+//                            if newValue < 9 {
+//                                secondsToFall *= 0.78
+//                            } else if newValue < 69 {
+//                                secondsToFall = secondsToFall * 0.99
+//                            } else {
+//                                secondsToFall = secondsToFall * 0.999
+//                            }
+                            if newValue == 0 {
+                                dropBall()
                             }
-                            self.timerManager.ballYPosition = -23
-                            dropBall()
                         }
                         enableScaleAndFlashForDuration()
                         impactMed.impactOccurred()
                         if currentIndex > bestScore && currentIndex > 3 {
                             showNewBestScore = true
                         }
-                        let workItem = DispatchWorkItem {
-                            // Your code here
-                            if 0 <= currentIndex && currentIndex <= newValue {
-                                wastedOperations()
-                            }
+                        withAnimation(.linear(duration: 0.1)) {
+                            self.timerManager.ballYPosition -= 300
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall, execute: workItem)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
-                            if 0 <= currentIndex && currentIndex <= newValue {
-                            } else {
-                                workItem.cancel()
-                            }
-                        }
+                        
+//                        let workItem = DispatchWorkItem {
+//                            // Your code here
+//                            if 0 <= currentIndex && currentIndex <= newValue {
+//                                wastedOperations()
+//                            }
+//                        }
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall, execute: workItem)
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
+//                            if 0 <= currentIndex && currentIndex <= newValue {
+//                            } else {
+//                                workItem.cancel()
+//                            }
+//                        }
                     }
                     .allowsHitTesting(!freezeScrolling)
                     if score >= 0 && currentIndex >= 0{
@@ -760,8 +748,8 @@ struct ContentView: View {
                                         .padding(.top, 30)
                                         .foregroundColor(.black)
                                     Spacer()
-                                    //                            Text(String(secondsToFall))
-                                    //                                .padding()
+                                    Text("\(levelYPosition)")
+                                        .padding()
                                 }
                                 Spacer()
                             }
@@ -812,7 +800,12 @@ struct ContentView: View {
                             }
                         }
                         .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
-                        .offset(x: ballRoll * (deviceWidth / 2.7))
+                        .onChange(of: self.timerManager.ballYPosition) { newYPosition in
+                            if newYPosition < 0 || deviceHeight - 24 < newYPosition {
+                                wastedOperations()
+                            }
+                        }
+                        .offset(x: ballRoll * (deviceWidth / 3))
                         .onAppear {
                             if currentIndex > -1 {
                                 self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
@@ -829,7 +822,8 @@ struct ContentView: View {
                                 }
                             }
 
-                        }//.onappear
+                        }
+                        .allowsHitTesting(false)
                     }
                     
                     if showInstructionsAndBall {
