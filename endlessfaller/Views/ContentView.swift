@@ -11,6 +11,7 @@ import AVFoundation
 import GameKit
 import AudioToolbox
 import CoreMotion
+import Combine
 
 
 let bestScoreKey = "bestscorekey"
@@ -26,7 +27,6 @@ struct ContentView: View {
     let modelName = UIDevice.modelName
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @StateObject var appModel = AppModel()
-    @ObservedObject private var timerManager = TimerManager()
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
     @State var score: Int = -1
@@ -70,11 +70,14 @@ struct ContentView: View {
     @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
-    @State var levelYPosition: CGFloat = 0
+//    @State var levelYPosition: CGFloat = 0
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
     let rotationQueDispatch = DispatchQueue.init(label: "io.endlessfaller.rotationque", qos: .userInitiated)
     @State private var ballRoll = Double.zero
+    @State private var ballPosition: CGPoint = CGPoint(x: UIScreen.main.bounds.width / 2, y: -23)
+    @State private var timerSubscription: AnyCancellable?
+    @State var speedFactor: Double = 0.003  // Speed factor for the circle's movement
     @State var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
@@ -89,7 +92,13 @@ struct ContentView: View {
         }
     }
     func dropBall() {
-        timerManager.startTimer(speed: secondsToFall)
+        ballPosition.y = 0
+        timerSubscription?.cancel()
+        timerSubscription = Timer.publish(every: 0.003, on: .main, in: .common)
+           .autoconnect()
+           .sink { _ in
+               ballPosition.y += 1
+           }
     }
     
     func boinFound() {
@@ -652,17 +661,7 @@ struct ContentView: View {
                         .tag(-1)
                         ForEach(colors.indices, id: \.self) { index in
                             ZStack{
-                                GeometryReader { geometry in
                                     colors[index]
-                                        .onChange(of: geometry.frame(in: .global).minY) { newlevelYPosition in
-                                            levelYPosition = newlevelYPosition
-                                            if newlevelYPosition < 0 {
-//                                                withAnimation() {
-                                                   // self.timerManager.ballYPosition -= 30
-//                                                }
-                                            }
-                                        }
-                                }
                                 VStack{
                                     Divider()
                                         .frame(height: 6)
@@ -692,6 +691,23 @@ struct ContentView: View {
                             boinFound()
                         }
                         if newValue > highestLevelInRound {
+                            if newValue == 0 {
+                                dropBall()
+                            } else {
+                                withAnimation {
+                                    ballPosition.y -= deviceHeight / 2
+                                }
+                                
+                                //timerSubscription?.cancel()
+                                
+                                // Restart timer with new interval
+                                timerSubscription = Timer.publish(every: Double.random(in: 0.001...0.003), on: .main, in: .common)
+                                     .autoconnect()
+                                     .sink { _ in
+                                         ballPosition.y += 1
+                                     }
+                            }
+                            
                             DispatchQueue.main.async {
                                 score += 1
                                 if self.musicPlayer.rate < 2 {
@@ -701,39 +717,12 @@ struct ContentView: View {
                             // 1052 or 1054
                             AudioServicesPlaySystemSound(1057)
                             highestLevelInRound = newValue
-//                            if newValue < 9 {
-//                                secondsToFall *= 0.78
-//                            } else if newValue < 69 {
-//                                secondsToFall = secondsToFall * 0.99
-//                            } else {
-//                                secondsToFall = secondsToFall * 0.999
-//                            }
-                            if newValue == 0 {
-                                dropBall()
-                            }
                         }
                         enableScaleAndFlashForDuration()
                         impactMed.impactOccurred()
                         if currentIndex > bestScore && currentIndex > 3 {
                             showNewBestScore = true
                         }
-                        withAnimation(.linear(duration: 0.1)) {
-                            self.timerManager.ballYPosition -= 300
-                        }
-                        
-//                        let workItem = DispatchWorkItem {
-//                            // Your code here
-//                            if 0 <= currentIndex && currentIndex <= newValue {
-//                                wastedOperations()
-//                            }
-//                        }
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall, execute: workItem)
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToFall) {
-//                            if 0 <= currentIndex && currentIndex <= newValue {
-//                            } else {
-//                                workItem.cancel()
-//                            }
-//                        }
                     }
                     .allowsHitTesting(!freezeScrolling)
                     if score >= 0 && currentIndex >= 0{
@@ -748,8 +737,8 @@ struct ContentView: View {
                                         .padding(.top, 30)
                                         .foregroundColor(.black)
                                     Spacer()
-                                    Text("\(levelYPosition)")
-                                        .padding()
+//                                    Text("\(levelYPosition)")
+//                                        .padding()
                                 }
                                 Spacer()
                             }
@@ -785,8 +774,8 @@ struct ContentView: View {
                                         .offset(x: 21, y: -21)
 
                                 }
-                                .frame(width: 66, height: abs(self.timerManager.ballYPosition * 0.1))
-                                .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
+                                .frame(width: 66, height: abs(ballPosition.y * 0.1))
+                                .offset(x: 0, y:-(ballPosition.y * 0.1))
                             }
                             if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                 ZStack{
@@ -799,8 +788,8 @@ struct ContentView: View {
                                 .offset(y: -12)
                             }
                         }
-                        .position(x: deviceWidth/2, y: self.timerManager.ballYPosition)
-                        .onChange(of: self.timerManager.ballYPosition) { newYPosition in
+                        .position(ballPosition)
+                        .onChange(of: ballPosition.y) { newYPosition in
                             if newYPosition < 0 || deviceHeight - 24 < newYPosition {
                                 wastedOperations()
                             }
