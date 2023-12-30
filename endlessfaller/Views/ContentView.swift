@@ -98,7 +98,7 @@ struct ContentView: View {
         timerSubscription = Timer.publish(every: 0.003, on: .main, in: .common)
            .autoconnect()
            .sink { _ in
-               ballPosition.y += 1.5
+               ballPosition.y += 1
            }
     }
     
@@ -182,7 +182,7 @@ struct ContentView: View {
         }
         firstGamePlayed = true
         shouldContinue = false
-         circleProgress = 0.0
+        self.circleProgress = 0.0
         showInstructionsAndBall = false
         self.punchSoundEffect.play()
         currentScore = score
@@ -311,14 +311,10 @@ struct ContentView: View {
                                                                 .foregroundColor(.white)
                                                                 .offset(y:3.6)
                                                             Circle()
-                                                                .frame(width: 50)
-                                                                .foregroundColor(.blue)
-                                                                .offset(y:3.6)
-                                                            Circle()
                                                                 .trim(from: 0, to: circleProgress)
-                                                                .stroke(Color.white, lineWidth: 29)
+                                                                .stroke(Color.blue, lineWidth: 24)
                                                                 .rotationEffect(Angle(degrees: -90))
-                                                                .frame(width: 29)
+                                                                .frame(width: 24)
                                                                 .offset(y:3.6)
                                                             
                                                         }
