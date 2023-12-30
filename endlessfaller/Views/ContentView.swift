@@ -29,6 +29,7 @@ struct ContentView: View {
     @StateObject var appModel = AppModel()
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
+    @ObservedObject private var timerManager = TimerManager()
     @State var score: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
@@ -97,7 +98,7 @@ struct ContentView: View {
         timerSubscription = Timer.publish(every: 0.003, on: .main, in: .common)
            .autoconnect()
            .sink { _ in
-               ballPosition.y += 1
+               ballPosition.y += 1.5
            }
     }
     
@@ -694,17 +695,24 @@ struct ContentView: View {
                             if newValue == 0 {
                                 dropBall()
                             } else {
-                                withAnimation {
+                                withAnimation(.easeInOut(duration: 0.3)) {
                                     ballPosition.y -= deviceHeight / 2
                                 }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                    if ballPosition.y < 0 {
+                                        wastedOperations()
+                                    }
+                                }
                                 
-                                //timerSubscription?.cancel()
+                                speedFactor = Double.random(in: 2.0...6.0)
+                                
+                                timerSubscription?.cancel()
                                 
                                 // Restart timer with new interval
-                                timerSubscription = Timer.publish(every: Double.random(in: 0.001...0.003), on: .main, in: .common)
+                                timerSubscription = Timer.publish(every: 0.003, on: .current, in: .common)
                                      .autoconnect()
                                      .sink { _ in
-                                         ballPosition.y += 1
+                                         ballPosition.y += speedFactor
                                      }
                             }
                             
@@ -737,7 +745,7 @@ struct ContentView: View {
                                         .padding(.top, 30)
                                         .foregroundColor(.black)
                                     Spacer()
-//                                    Text("\(levelYPosition)")
+//                                    Text("\(speedFactor)")
 //                                        .padding()
                                 }
                                 Spacer()
@@ -790,7 +798,7 @@ struct ContentView: View {
                         }
                         .position(ballPosition)
                         .onChange(of: ballPosition.y) { newYPosition in
-                            if newYPosition < 0 || deviceHeight - 24 < newYPosition {
+                            if deviceHeight - 24 < newYPosition {
                                 wastedOperations()
                             }
                         }
