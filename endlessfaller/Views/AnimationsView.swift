@@ -1060,16 +1060,16 @@ struct Instruction: View {
 struct Instruction2: View {
     var body: some View {
         VStack{
-            Text("Swipe as fast\nas you can")
+            Text("Keep Ball \nOn Screen")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
                 .padding()
-            Image(systemName: "arrow.up")
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
+        .scaleEffect(1.5)
         //.flashing()
     }
 }

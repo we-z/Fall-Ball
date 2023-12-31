@@ -34,8 +34,6 @@ struct ContentView: View {
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
     @State var costToContinue: Int = 1
-    @State var secondsToFall: Double = 4
-    @State var fraction: Double = 0.5
     @State var gameIsOver = false
     @State var firstGamePlayed = false
     @State var freezeScrolling = false
@@ -149,8 +147,6 @@ struct ContentView: View {
                     bestScore = currentScore
                 }
             }
-            self.secondsToFall = 4
-            self.fraction = 0.5
             DispatchQueue.main.async {
                 gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
             }
@@ -167,14 +163,14 @@ struct ContentView: View {
         shouldContinue = true
         showContinueToPlayScreen = false
         showInstructionsAndBall = true
-        self.secondsToFall = 4
-        self.fraction = 0.5
         currentIndex = 0
     }
     
     func wastedOperations() {
         gameShouldBeOver = true
-        gameOverBackgroundColor = colors[currentIndex]
+        if currentIndex > -1 {
+            gameOverBackgroundColor = colors[currentIndex]
+        }
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
             self.currentIndex = -2
@@ -197,8 +193,6 @@ struct ContentView: View {
                 Color(hex: backgroundColors.randomElement()!)!
             }
             freezeScrolling = false
-            self.secondsToFall = 4
-            self.fraction = 0.5
             self.currentIndex = -2
             self.showWastedScreen = false
         }
@@ -316,14 +310,14 @@ struct ContentView: View {
                                                                 .rotationEffect(Angle(degrees: -90))
                                                                 .frame(width: 24)
                                                                 .offset(y:3.6)
+                                                                .onAppear{
+                                                                    withAnimation(.linear(duration: 6).repeatCount(0)) {
+                                                                        circleProgress = 1.0
+                                                                    }
+                                                                }
                                                             
                                                         }
                                                         .offset(x:-136, y: -99)
-                                                        .onAppear{
-                                                            withAnimation(.linear(duration: 6)) {
-                                                                circleProgress = 1.0
-                                                            }
-                                                        }
                                                     }
                                                     .frame(width: 300)
                                                     .padding(30)
@@ -658,7 +652,10 @@ struct ContentView: View {
                         .tag(-1)
                         ForEach(colors.indices, id: \.self) { index in
                             ZStack{
-                                    colors[index]
+                                colors[index]
+                                if index == 0 {
+                                    Instruction2()
+                                }
                                 VStack{
                                     Divider()
                                         .frame(height: 6)
@@ -694,12 +691,6 @@ struct ContentView: View {
                                 withAnimation(.easeInOut(duration: 0.3)) {
                                     ballPosition.y -= deviceHeight / 2
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                    if ballPosition.y < 0 {
-                                        wastedOperations()
-                                    }
-                                }
-                                
                                 speedFactor = Double.random(in: 2.0...6.0)
                                 
                                 timerSubscription?.cancel()
@@ -762,7 +753,6 @@ struct ContentView: View {
                         }
                         .allowsHitTesting(false)
                         ZStack{
-                            if !gameShouldBeOver{
                                 HStack{
                                     Divider()
                                         .frame(width: 3)
@@ -780,7 +770,6 @@ struct ContentView: View {
                                 }
                                 .frame(width: 66, height: abs(ballPosition.y * 0.1))
                                 .offset(x: 0, y:-(ballPosition.y * 0.1))
-                            }
                             if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                 ZStack{
                                     AnyView(character.character)
@@ -795,6 +784,11 @@ struct ContentView: View {
                         .position(ballPosition)
                         .onChange(of: ballPosition.y) { newYPosition in
                             if deviceHeight - 24 < newYPosition {
+                                wastedOperations()
+                            }
+                        }
+                        .onAnimationCompleted(for: ballPosition.y) {
+                            if ballPosition.y < 0 {
                                 wastedOperations()
                             }
                         }
