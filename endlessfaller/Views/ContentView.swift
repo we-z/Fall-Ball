@@ -91,13 +91,7 @@ struct ContentView: View {
         }
     }
     func dropBall() {
-        ballPosition.y = 0
-        timerSubscription?.cancel()
-        timerSubscription = Timer.publish(every: 0.003, on: .main, in: .common)
-           .autoconnect()
-           .sink { _ in
-               ballPosition.y += 1
-           }
+        timerManager.startTimer(speed: 3)
     }
     
     func boinFound() {
@@ -173,6 +167,7 @@ struct ContentView: View {
         }
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
+            self.timerManager.endingYPosition = 0
             self.currentIndex = -2
             highestLevelInRound = -1
         }
@@ -311,6 +306,7 @@ struct ContentView: View {
                                                                 .frame(width: 24)
                                                                 .offset(y:3.6)
                                                                 .onAppear{
+                                                                    circleProgress = 0.0
                                                                     withAnimation(.linear(duration: 6).repeatCount(0)) {
                                                                         circleProgress = 1.0
                                                                     }
@@ -688,19 +684,7 @@ struct ContentView: View {
                             if newValue == 0 {
                                 dropBall()
                             } else {
-                                withAnimation(.easeInOut(duration: 0.3)) {
-                                    ballPosition.y -= deviceHeight / 2
-                                }
-                                speedFactor = Double.random(in: 2.0...6.0)
-                                
-                                timerSubscription?.cancel()
-                                
-                                // Restart timer with new interval
-                                timerSubscription = Timer.publish(every: 0.003, on: .current, in: .common)
-                                     .autoconnect()
-                                     .sink { _ in
-                                         ballPosition.y += speedFactor
-                                     }
+                                timerManager.pushBallUp()
                             }
                             
                             DispatchQueue.main.async {
@@ -753,23 +737,23 @@ struct ContentView: View {
                         }
                         .allowsHitTesting(false)
                         ZStack{
-                                HStack{
-                                    Divider()
-                                        .frame(width: 3)
-                                        .overlay(.black)
-                                        .offset(x: -21, y: -21)
-                                    Divider()
-                                        .frame(width: 3)
-                                        .overlay(.black)
-                                        .offset(y: -39)
-                                    Divider()
-                                        .frame(width: 3)
-                                        .overlay(.black)
-                                        .offset(x: 21, y: -21)
+                            HStack{
+                                Divider()
+                                    .frame(width: 3)
+                                    .overlay(.black)
+                                    .offset(x: -21, y: -21)
+                                Divider()
+                                    .frame(width: 3)
+                                    .overlay(.black)
+                                    .offset(y: -39)
+                                Divider()
+                                    .frame(width: 3)
+                                    .overlay(.black)
+                                    .offset(x: 21, y: -21)
 
-                                }
-                                .frame(width: 66, height: abs(ballPosition.y * 0.1))
-                                .offset(x: 0, y:-(ballPosition.y * 0.1))
+                            }
+                            .frame(width: 66, height: abs(self.timerManager.ballYPosition * 0.1))
+                            .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
                             if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                 ZStack{
                                     AnyView(character.character)
@@ -777,20 +761,19 @@ struct ContentView: View {
                                     AnyView(hat!.hat)
                                 }
                                 .rotationEffect(.degrees(self.ballRoll * 60))
-
                                 .offset(y: -12)
                             }
                         }
-                        .position(ballPosition)
-                        .onChange(of: ballPosition.y) { newYPosition in
-                            if deviceHeight - 24 < newYPosition {
+                        .position(x: deviceWidth / 2, y: self.timerManager.ballYPosition)
+                        .onChange(of: self.timerManager.ballYPosition) { newYPosition in
+                            if deviceHeight - 24 < newYPosition || newYPosition < 0 {
                                 wastedOperations()
                             }
-                        }
-                        .onAnimationCompleted(for: ballPosition.y) {
-                            if ballPosition.y < 0 {
-                                wastedOperations()
-                            }
+//                            if ballPosition.y < 0 {
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+//                                    wastedOperations()
+//                                }
+//                            }
                         }
                         .offset(x: ballRoll * (deviceWidth / 3))
                         .onAppear {
@@ -898,9 +881,9 @@ struct ContentView: View {
                     gameCenter.authenticateUser()
                 }
             }
-            SnowView()
-                .allowsHitTesting(false)
-                .ignoresSafeArea()
+//            SnowView()
+//                .allowsHitTesting(false)
+//                .ignoresSafeArea()
         }
     }
     

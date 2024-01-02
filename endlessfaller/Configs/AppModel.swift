@@ -32,7 +32,7 @@ class AppModel: ObservableObject {
     @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
     
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!
-    @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "santahat"
+    @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
     @Published var purchasedCharacters: [String] = [] {
         didSet{
             savePurchasedCharacters()
@@ -527,9 +527,13 @@ extension ButtonStyle where Self == RoundedAndShadowButtonStyle {
 
 class TimerManager: ObservableObject {
     @Published var ballYPosition: CGFloat = -23
+    @Published var startingYPosition: CGFloat = 0
+    @Published var endingYPosition: CGFloat = 0
     private var startTime: CFTimeInterval = 0.0
     private var displayLink: CADisplayLink?
+    var pushUp: Bool = false
     var ballSpeed: Double = 0.0
+    //var targetDuration: CFTimeInterval = 0
     
     func startTimer(speed: Double) {
         // Invalidate the existing display link
@@ -546,6 +550,14 @@ class TimerManager: ObservableObject {
         startTime = CACurrentMediaTime()
     }
     
+    func pushBallUp() {
+        ballSpeed = 0.3
+        startingYPosition = ballYPosition
+        endingYPosition = startingYPosition - UIScreen.main.bounds.height / 2
+        startTime = CACurrentMediaTime()
+        pushUp = true
+    }
+    
     @objc func update(_ displayLink: CADisplayLink) {
         let currentTime = CACurrentMediaTime()
         let elapsedTime = currentTime - startTime
@@ -555,10 +567,23 @@ class TimerManager: ObservableObject {
         
         // Calculate the ball position based on elapsed time and speed
         if elapsedTime < targetDuration {
-            ballYPosition = CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height - 23)
+            if pushUp {
+                //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
+                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 2) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
+                if ballYPosition <= endingYPosition + 90 {
+                    print("ball pushed back all the way up")
+                    startTime = CACurrentMediaTime()
+                    let randomSpeed = Double.random(in: 0.3...1.5)
+                    startTimer(speed: randomSpeed)
+                    pushUp = false
+                }
+            } else {
+                ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height - endingYPosition))
+            }
         } else {
-            ballYPosition = UIScreen.main.bounds.height - 23
-            displayLink.invalidate()
+            
+//            ballYPosition = UIScreen.main.bounds.height - 23
+//            displayLink.invalidate()
         }
     }
 }
