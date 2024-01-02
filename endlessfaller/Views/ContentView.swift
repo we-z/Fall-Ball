@@ -168,6 +168,7 @@ struct ContentView: View {
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
             self.timerManager.endingYPosition = 0
+            self.timerManager.pushUp = false
             self.currentIndex = -2
             highestLevelInRound = -1
         }

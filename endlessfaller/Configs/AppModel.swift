@@ -45,24 +45,6 @@ class AppModel: ObservableObject {
         }
     }
     
-//    func pickRandomFreeBall() {
-//        if !firstBallPicked {
-//            if let randomBallID = freeBallIDs.randomElement() {
-//                selectedCharacter = randomBallID
-//            }
-//        }
-//        firstBallPicked = true
-//    }
-    
-//    func assignRandomBall() {
-//        if !firstBallPicked {
-//            if let randomBall = try? JSONEncoder().encode(freeBallIDs.randomElement()!){
-//                UserDefaults.standard.set(randomBall, forKey: selectedCharacterKey)
-//            }
-//        }
-//        firstBallPicked = true
-//    }
-    
     func saveAudiotSetting() {
         if let muteSetting = try? JSONEncoder().encode(mute){
             UserDefaults.standard.set(muteSetting, forKey: muteKey)
@@ -573,7 +555,7 @@ class TimerManager: ObservableObject {
                 if ballYPosition <= endingYPosition + 90 {
                     print("ball pushed back all the way up")
                     startTime = CACurrentMediaTime()
-                    let randomSpeed = Double.random(in: 0.3...1.5)
+                    let randomSpeed = Double.random(in: 0.3...1)
                     startTimer(speed: randomSpeed)
                     pushUp = false
                 }
