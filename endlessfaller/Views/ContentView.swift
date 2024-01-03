@@ -167,7 +167,7 @@ struct ContentView: View {
         }
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
-            self.timerManager.endingYPosition = 0
+            self.timerManager.endingYPosition = 23
             self.timerManager.pushUp = false
             self.currentIndex = -2
             highestLevelInRound = -1
@@ -767,14 +767,9 @@ struct ContentView: View {
                         }
                         .position(x: deviceWidth / 2, y: self.timerManager.ballYPosition)
                         .onChange(of: self.timerManager.ballYPosition) { newYPosition in
-                            if deviceHeight - 24 < newYPosition || newYPosition < 0 {
+                            if deviceHeight - 24 < newYPosition || newYPosition < 23 {
                                 wastedOperations()
                             }
-//                            if ballPosition.y < 0 {
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                                    wastedOperations()
-//                                }
-//                            }
                         }
                         .offset(x: ballRoll * (deviceWidth / 3))
                         .onAppear {

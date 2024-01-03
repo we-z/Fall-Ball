@@ -510,7 +510,7 @@ extension ButtonStyle where Self == RoundedAndShadowButtonStyle {
 class TimerManager: ObservableObject {
     @Published var ballYPosition: CGFloat = -23
     @Published var startingYPosition: CGFloat = 0
-    @Published var endingYPosition: CGFloat = 0
+    @Published var endingYPosition: CGFloat = 23
     private var startTime: CFTimeInterval = 0.0
     private var displayLink: CADisplayLink?
     var pushUp: Bool = false
@@ -555,7 +555,7 @@ class TimerManager: ObservableObject {
                 if ballYPosition <= endingYPosition + 90 {
                     print("ball pushed back all the way up")
                     startTime = CACurrentMediaTime()
-                    let randomSpeed = Double.random(in: 0.3...1)
+                    let randomSpeed = Double.random(in: 0.6...1.5)
                     startTimer(speed: randomSpeed)
                     pushUp = false
                 }

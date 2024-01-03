@@ -11,7 +11,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
 //            CelebrationEffect()
-            DailyBoinCollectedView()
+            Instruction2()
         }
     }
 }
@@ -1043,7 +1043,7 @@ struct PodiumView: View {
 struct Instruction: View {
     var body: some View {
         VStack{
-            Text("Don't let \nBall Fall")
+            Text("Don't let Ball\nhit the edge")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
@@ -1053,6 +1053,7 @@ struct Instruction: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
+        .scaleEffect(1.5)
         //.flashing()
     }
 }
@@ -1060,11 +1061,12 @@ struct Instruction: View {
 struct Instruction2: View {
     var body: some View {
         VStack{
-            Text("Keep Ball \nOn Screen")
+            Text("Keep swiping \nto stay on\nscreen")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
                 .padding()
+            Image(systemName: "arrow.up")
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1077,7 +1079,7 @@ struct Instruction2: View {
 struct Instruction3: View {
     var body: some View {
         VStack{
-            Text("Keep ball\nabove middle")
+            Text("Don't hit\nthe edges")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
@@ -1087,6 +1089,7 @@ struct Instruction3: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
+        .scaleEffect(1.5)
         //.flashing()
     }
 }
