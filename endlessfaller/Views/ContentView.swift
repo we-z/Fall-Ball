@@ -649,7 +649,7 @@ struct ContentView: View {
                         ForEach(colors.indices, id: \.self) { index in
                             ZStack{
                                 colors[index]
-                                if index == 0 {
+                                if index == 0 && score == 0 {
                                     Instruction2()
                                 }
                                 VStack{
@@ -789,7 +789,7 @@ struct ContentView: View {
                             VStack{
                                 HStack{
                                     Spacer()
-                                    if self.timerManager.ballYPosition < deviceHeight * 0.15 {
+                                    if self.timerManager.ballYPosition < deviceHeight * 0.15 && currentIndex != 0 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
@@ -808,7 +808,7 @@ struct ContentView: View {
                                 Spacer()
                                 HStack{
                                     Spacer()
-                                    if self.timerManager.ballYPosition > deviceHeight * 0.85 {
+                                    if self.timerManager.ballYPosition > deviceHeight * 0.85 && currentIndex != 0 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
