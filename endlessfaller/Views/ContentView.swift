@@ -656,7 +656,7 @@ struct ContentView: View {
                                 VStack{
                                     Divider()
                                         .frame(height: 6)
-                                        .overlay(index > score ? .black : .white)
+                                        .overlay(index > currentIndex ? .black : .white)
                                         .offset(y: -6)
                                     Spacer()
                                 }
