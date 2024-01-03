@@ -21,12 +21,12 @@ struct IconView: View {
             }
             ZStack{
                 ShockedBall()
-                    .scaleEffect(5)
-                VikingHat()
-                    .scaleEffect(3.3)
-                    .offset(y: -1)
+                    .scaleEffect(6)
+//                VikingHat()
+//                    .scaleEffect(3.3)
+//                    .offset(y: -1)
             }
-            .offset(y:30)
+//            .offset(y:30)
         }
         .ignoresSafeArea()
     }
