@@ -555,7 +555,7 @@ class TimerManager: ObservableObject {
                 if ballYPosition <= endingYPosition + 90 {
                     print("ball pushed back all the way up")
                     startTime = CACurrentMediaTime()
-                    let randomSpeed = Double.random(in: 0.6...1.5)
+                    let randomSpeed = Double.random(in: 0.5...1.5)
                     startTimer(speed: randomSpeed)
                     pushUp = false
                 }

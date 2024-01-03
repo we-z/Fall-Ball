@@ -691,7 +691,7 @@ struct ContentView: View {
                             DispatchQueue.main.async {
                                 score += 1
                                 if self.musicPlayer.rate < 2 {
-                                    self.musicPlayer.rate += 0.003
+                                    self.musicPlayer.rate += 0.001
                                 }
                             }
                             // 1052 or 1054
@@ -705,6 +705,58 @@ struct ContentView: View {
                         }
                     }
                     .allowsHitTesting(!freezeScrolling)
+                    
+                    if showInstructionsAndBall {
+                        if !showNewBestScore {
+                            
+                            if score > 50 && score < 65 {
+                                YourGood()
+                            }
+                            
+                            if score > 100 && score < 115 {
+                                YourInsane()
+                            }
+                            
+                            if score > 300 && score < 315 {
+                                GoBerzerk()
+                            }
+                            
+                        } else {
+                            NewBestScore()
+                                .onAppear{
+                                    self.dingsSoundEffect.play()
+                                }
+                            CelebrationEffect()
+                        }
+                        if score > 45 {
+                            ReactionsView()
+                                .offset(y: 70)
+                        }
+                        if score > 100 {
+                            VStack{
+                                Spacer()
+                                HStack{
+                                    SwiftUIXmasTree2()
+                                        .scaleEffect(0.5)
+                                        .offset(x:-deviceWidth/10)
+                                    Spacer()
+                                }
+                            }
+                        }
+                        
+                        if score > 9 {
+                            VStack{
+                                Spacer()
+                                HStack{
+                                    Spacer()
+                                    SVGCharacterView()
+                                        .scaleEffect(0.5)
+                                        .offset(x:deviceWidth/10)
+                                }
+                            }
+                            .allowsHitTesting(false)
+                        }
+                    }
                     if score >= 0 && currentIndex >= 0{
                         ZStack{
                             VStack{
@@ -734,6 +786,44 @@ struct ContentView: View {
                                         .foregroundColor(triangleColor)
                                 }
                                 Spacer()
+                            }
+                            VStack{
+                                HStack{
+                                    Spacer()
+                                    if self.timerManager.ballYPosition < deviceHeight * 0.2 {
+                                        ZStack{
+                                            Image(systemName: "triangle.fill")
+                                                .foregroundColor(.black)
+                                                .scaleEffect(1.2)
+                                                .offset(x: -0.1, y: -0.7)
+                                            Image(systemName: "exclamationmark.triangle.fill")
+                                                .foregroundColor(.red)
+                                        }
+                                        .font(.largeTitle)
+                                        .scaleEffect(1.5)
+                                        .padding(.top, 75)
+                                        .padding(.horizontal, 30)
+                                        .flashing()
+                                    }
+                                }
+                                Spacer()
+                                HStack{
+                                    Spacer()
+                                    if self.timerManager.ballYPosition > deviceHeight * 0.8 {
+                                        ZStack{
+                                            Image(systemName: "triangle.fill")
+                                                .foregroundColor(.black)
+                                                .scaleEffect(1.2)
+                                                .offset(x: -0.1, y: -0.7)
+                                            Image(systemName: "exclamationmark.triangle.fill")
+                                                .foregroundColor(.red)
+                                        }
+                                        .font(.largeTitle)
+                                        .scaleEffect(1.5)
+                                        .padding(40)
+                                        .flashing()
+                                    }
+                                }
                             }
                         }
                         .allowsHitTesting(false)
@@ -790,58 +880,6 @@ struct ContentView: View {
 
                         }
                         .allowsHitTesting(false)
-                    }
-                    
-                    if showInstructionsAndBall {
-                        if !showNewBestScore {
-                            
-                            if score > 50 && score < 65 {
-                                YourGood()
-                            }
-                            
-                            if score > 100 && score < 115 {
-                                YourInsane()
-                            }
-                            
-                            if score > 300 && score < 315 {
-                                GoBerzerk()
-                            }
-                            
-                        } else {
-                            NewBestScore()
-                                .onAppear{
-                                    self.dingsSoundEffect.play()
-                                }
-                            CelebrationEffect()
-                        }
-                        if score > 45 {
-                            ReactionsView()
-                                .offset(y: 70)
-                        }
-                        if score > 100 {
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    SwiftUIXmasTree2()
-                                        .scaleEffect(0.5)
-                                        .offset(x:-deviceWidth/10)
-                                    Spacer()
-                                }
-                            }
-                        }
-                        
-                        if score > 9 {
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    Spacer()
-                                    SVGCharacterView()
-                                        .scaleEffect(0.5)
-                                        .offset(x:deviceWidth/10)
-                                }
-                            }
-                            .allowsHitTesting(false)
-                        }
                     }
                     if showBoinFoundAnimation{
                         BoinCollectedView()
