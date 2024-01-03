@@ -74,9 +74,6 @@ struct ContentView: View {
     let queue = OperationQueue()
     let rotationQueDispatch = DispatchQueue.init(label: "io.endlessfaller.rotationque", qos: .userInitiated)
     @State private var ballRoll = Double.zero
-    @State private var ballPosition: CGPoint = CGPoint(x: UIScreen.main.bounds.width / 2, y: -23)
-    @State private var timerSubscription: AnyCancellable?
-    @State var speedFactor: Double = 0.003  // Speed factor for the circle's movement
     @State var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
