@@ -730,11 +730,11 @@ struct ContentView: View {
                                 }
                             CelebrationEffect()
                         }
-                        if score > 45 {
+                        if score > 45 && score < 100 {
                             ReactionsView()
                                 .offset(y: 70)
                         }
-                        if score > 100 {
+                        if score > 100 && score < 150 {
                             VStack{
                                 Spacer()
                                 HStack{
@@ -746,7 +746,7 @@ struct ContentView: View {
                             }
                         }
                         
-                        if score > 9 {
+                        if score > 9 && score < 27 {
                             VStack{
                                 Spacer()
                                 HStack{
