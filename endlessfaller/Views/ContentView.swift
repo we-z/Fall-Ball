@@ -609,15 +609,17 @@ struct ContentView: View {
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                             ZStack{
                                                 AnyView(character.character)
+                                            }
+                                            .padding(30)
+                                            .overlay{
                                                 AnyView(hat!.hat)
                                                     .scaleEffect(0.69)
                                                     .frame(maxHeight: 30)
                                             }
-                                            .frame(maxWidth:45)
                                             .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
                                         }
                                     }
-                                    .padding(36)
+                                    
                                     .pressEvents {
                                         // On press
                                         withAnimation(.easeInOut(duration: 0.1)) {
@@ -790,7 +792,7 @@ struct ContentView: View {
                             VStack{
                                 HStack{
                                     Spacer()
-                                    if self.timerManager.ballYPosition < deviceHeight * 0.2 {
+                                    if self.timerManager.ballYPosition < deviceHeight * 0.15 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
@@ -809,7 +811,7 @@ struct ContentView: View {
                                 Spacer()
                                 HStack{
                                     Spacer()
-                                    if self.timerManager.ballYPosition > deviceHeight * 0.8 {
+                                    if self.timerManager.ballYPosition > deviceHeight * 0.85 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
