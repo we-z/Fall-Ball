@@ -551,7 +551,7 @@ class BallAnimationManager: ObservableObject {
         if elapsedTime < targetDuration {
             if pushUp {
                 //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
-                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 2) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
+                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
                 if ballYPosition <= endingYPosition + 90 {
                     print("ball pushed back all the way up")
                     startTime = CACurrentMediaTime()

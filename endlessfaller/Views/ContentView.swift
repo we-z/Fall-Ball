@@ -118,31 +118,29 @@ struct ContentView: View {
     }
     
     func gameOverOperations() {
-        //if currentIndex == -2 {
-            self.currentIndex = -1
-            gameOverTimer?.invalidate()
-            gameOverTimer = nil
-            shouldContinue = true
-            costToContinue = 1
-            //print("gameOverOperations called")
+        self.currentIndex = -1
+        gameOverTimer?.invalidate()
+        gameOverTimer = nil
+        shouldContinue = true
+        costToContinue = 1
+        if score > -1 {
             currentScore = score
-            score = -1
-            musicPlayer.rate = 1
-            self.showContinueToPlayScreen = false
-            showInstructionsAndBall = true
-            gameIsOver = true
-            showNewBestScore = false
-            if currentScore > bestScore {
-                UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
-                DispatchQueue.main.async{
-                    bestScore = currentScore
-                }
+        }
+        score = -1
+        musicPlayer.rate = 1
+        self.showContinueToPlayScreen = false
+        showInstructionsAndBall = true
+        gameIsOver = true
+        showNewBestScore = false
+        if currentScore > bestScore {
+            UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
+            DispatchQueue.main.async{
+                bestScore = currentScore
             }
-            DispatchQueue.main.async {
-                gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
-            }
-        //}
-        
+        }
+        DispatchQueue.main.async {
+            gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
+        }
     }
     
     func continuePlaying() {
