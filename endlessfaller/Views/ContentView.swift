@@ -29,7 +29,7 @@ struct ContentView: View {
     @StateObject var appModel = AppModel()
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
-    @ObservedObject private var timerManager = TimerManager()
+    @ObservedObject private var BallAnimator = BallAnimationManager()
     @State var score: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
@@ -88,7 +88,7 @@ struct ContentView: View {
         }
     }
     func dropBall() {
-        timerManager.startTimer(speed: 3)
+        BallAnimator.startTimer(speed: 3)
     }
     
     func boinFound() {
@@ -164,10 +164,10 @@ struct ContentView: View {
         }
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
-            self.timerManager.endingYPosition = 23
-            self.timerManager.pushUp = false
+            self.BallAnimator.endingYPosition = 23
+            self.BallAnimator.pushUp = false
             self.currentIndex = -2
-            highestLevelInRound = -1
+            self.highestLevelInRound = -1
         }
         firstGamePlayed = true
         shouldContinue = false
@@ -684,7 +684,7 @@ struct ContentView: View {
                             if newValue == 0 {
                                 dropBall()
                             } else {
-                                timerManager.pushBallUp()
+                                BallAnimator.pushBallUp()
                             }
                             
                             DispatchQueue.main.async {
@@ -789,7 +789,7 @@ struct ContentView: View {
                             VStack{
                                 HStack{
                                     Spacer()
-                                    if self.timerManager.ballYPosition < deviceHeight * 0.15 && currentIndex != 0 {
+                                    if self.BallAnimator.ballYPosition < deviceHeight * 0.15 && currentIndex != 0 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
@@ -808,7 +808,7 @@ struct ContentView: View {
                                 Spacer()
                                 HStack{
                                     Spacer()
-                                    if self.timerManager.ballYPosition > deviceHeight * 0.85 && currentIndex != 0 {
+                                    if self.BallAnimator.ballYPosition > deviceHeight * 0.85 && currentIndex != 0 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
@@ -842,8 +842,8 @@ struct ContentView: View {
                                     .offset(x: 21, y: -21)
 
                             }
-                            .frame(width: 66, height: abs(self.timerManager.ballYPosition * 0.1))
-                            .offset(x: 0, y:-(self.timerManager.ballYPosition * 0.1))
+                            .frame(width: 66, height: abs(self.BallAnimator.ballYPosition * 0.1))
+                            .offset(x: 0, y:-(self.BallAnimator.ballYPosition * 0.1))
                             if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                 ZStack{
                                     AnyView(character.character)
@@ -854,8 +854,8 @@ struct ContentView: View {
                                 .offset(y: -12)
                             }
                         }
-                        .position(x: deviceWidth / 2, y: self.timerManager.ballYPosition)
-                        .onChange(of: self.timerManager.ballYPosition) { newYPosition in
+                        .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
+                        .onChange(of: self.BallAnimator.ballYPosition) { newYPosition in
                             if deviceHeight - 24 < newYPosition || newYPosition < 23 {
                                 wastedOperations()
                             }

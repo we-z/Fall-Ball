@@ -507,7 +507,7 @@ extension ButtonStyle where Self == RoundedAndShadowButtonStyle {
     }
 }
 
-class TimerManager: ObservableObject {
+class BallAnimationManager: ObservableObject {
     @Published var ballYPosition: CGFloat = -23
     @Published var startingYPosition: CGFloat = 0
     @Published var endingYPosition: CGFloat = 23
