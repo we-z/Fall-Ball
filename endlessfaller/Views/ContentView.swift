@@ -185,6 +185,7 @@ struct ContentView: View {
             }
             freezeScrolling = false
             self.currentIndex = -2
+            self.highestLevelInRound = -1
             self.showWastedScreen = false
         }
         gameShouldBeOver = false
@@ -648,7 +649,11 @@ struct ContentView: View {
                             ZStack{
                                 colors[index]
                                 if index == 0 && score == 0 {
-                                    Instruction2()
+                                    if self.BallAnimator.ballYPosition > deviceHeight / 3 {
+                                        Instruction2()
+                                    } else {
+                                        Instruction()
+                                    }
                                 }
                                 VStack{
                                     Divider()
@@ -682,7 +687,8 @@ struct ContentView: View {
                             if newValue == 0 {
                                 dropBall()
                             } else {
-                                BallAnimator.pushBallUp()
+                                let randomSpeed = Double.random(in: 0.2...1)
+                                BallAnimator.pushBallUp(newBallSpeed: randomSpeed)
                             }
                             
                             DispatchQueue.main.async {
@@ -692,7 +698,7 @@ struct ContentView: View {
                                 }
                             }
                             // 1052 or 1054
-                            AudioServicesPlaySystemSound(1057)
+                            AudioServicesPlaySystemSound(1104)
                             highestLevelInRound = newValue
                         }
                         enableScaleAndFlashForDuration()

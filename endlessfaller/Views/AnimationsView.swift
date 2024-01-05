@@ -10,7 +10,6 @@ import SwiftUI
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-//            CelebrationEffect()
             Instruction2()
         }
     }
@@ -1043,7 +1042,7 @@ struct PodiumView: View {
 struct Instruction: View {
     var body: some View {
         VStack{
-            Text("Don't let Ball\nhit the edge")
+            Text("Keep Ball\non screen")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
@@ -1061,12 +1060,14 @@ struct Instruction: View {
 struct Instruction2: View {
     var body: some View {
         VStack{
-            Text("Keep swiping \nto stay on\nscreen")
+            Text("Swipe up\nnow!")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
                 .padding()
             Image(systemName: "arrow.up")
+                .padding(.top)
+                .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1079,7 +1080,7 @@ struct Instruction2: View {
 struct Instruction3: View {
     var body: some View {
         VStack{
-            Text("Don't hit\nthe edges")
+            Text("Time swipe\nkeep ball\non screen")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
@@ -1089,7 +1090,7 @@ struct Instruction3: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
-        .scaleEffect(1.5)
+        .scaleEffect(1.4)
         //.flashing()
     }
 }

@@ -511,6 +511,7 @@ class BallAnimationManager: ObservableObject {
     @Published var ballYPosition: CGFloat = -23
     @Published var startingYPosition: CGFloat = 0
     @Published var endingYPosition: CGFloat = 23
+    @Published var newBallSpeed: CGFloat = 0
     private var startTime: CFTimeInterval = 0.0
     private var displayLink: CADisplayLink?
     var pushUp: Bool = false
@@ -532,10 +533,11 @@ class BallAnimationManager: ObservableObject {
         startTime = CACurrentMediaTime()
     }
     
-    func pushBallUp() {
+    func pushBallUp(newBallSpeed: CGFloat) {
         ballSpeed = 0.3
+        self.newBallSpeed = newBallSpeed
         startingYPosition = ballYPosition
-        endingYPosition = startingYPosition - UIScreen.main.bounds.height / 2
+        endingYPosition = startingYPosition - UIScreen.main.bounds.height / 3
         startTime = CACurrentMediaTime()
         pushUp = true
     }
@@ -553,10 +555,9 @@ class BallAnimationManager: ObservableObject {
                 //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
                 ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
                 if ballYPosition <= endingYPosition + 90 {
-                    print("ball pushed back all the way up")
+                    //print("ball pushed back all the way up")
                     startTime = CACurrentMediaTime()
-                    let randomSpeed = Double.random(in: 0.5...1.5)
-                    startTimer(speed: randomSpeed)
+                    startTimer(speed: newBallSpeed)
                     pushUp = false
                 }
             } else {
