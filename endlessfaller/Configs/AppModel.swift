@@ -561,7 +561,7 @@ class BallAnimationManager: ObservableObject {
                     pushUp = false
                 }
             } else {
-                ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height - endingYPosition))
+                ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height))
             }
         } else {
             
