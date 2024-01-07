@@ -90,6 +90,24 @@ struct ContentView: View {
     func dropBall() {
         BallAnimator.startTimer(speed: 3)
     }
+    func liftBall(difficultyInput: Int) {
+        /*
+         level 1 is anywhere between 0.5 and 1.5 seconds
+         level 1000 is anywhere between 0.05 and 0.15 seconds
+         use newValue instead of score variable
+         1 ->       1, 3
+         1000 ->    0.1, 0.3
+         */
+        let m1 = (0.1 - 0.5) / (1000 - 1)
+        let c1 = 0.5 - m1 * 1
+        let bottom = m1 * Double(difficultyInput) + c1
+
+        let m2 = (0.3 - 1.5) / (1000 - 1)
+        let c2 = 1.5 - m2 * 1
+        let top = m2 * Double(difficultyInput) + c2
+        let randomSpeed = Double.random(in: bottom...top)
+        BallAnimator.pushBallUp(newBallSpeed: randomSpeed)
+    }
     
     func boinFound() {
         showBoinFoundAnimation = true
@@ -687,23 +705,7 @@ struct ContentView: View {
                             if newValue == 0 {
                                 dropBall()
                             } else {
-                                /*
-                                 level 1 is anywhere between 0.5 and 1.5 seconds
-                                 level 1000 is anywhere between 0.05 and 0.15 seconds
-                                 use newValue instead of score variable
-                                 1 ->       1, 3
-                                 1000 ->    0.1, 0.3
-                                 */
-                                let m1 = (0.1 - 0.5) / (1000 - 1)
-                                let c1 = 0.5 - m1 * 1
-                                let bottom = m1 * Double(newValue) + c1
-
-                                let m2 = (0.3 - 1.5) / (1000 - 1)
-                                let c2 = 1.5 - m2 * 1
-                                let top = m2 * Double(newValue) + c2
-                                let randomSpeed = Double.random(in: bottom...top)
-                                BallAnimator.pushBallUp(newBallSpeed: randomSpeed)
-
+                                liftBall(difficultyInput: newValue)
                             }
                             
                             DispatchQueue.main.async {
