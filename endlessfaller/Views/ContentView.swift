@@ -687,7 +687,14 @@ struct ContentView: View {
                             if newValue == 0 {
                                 dropBall()
                             } else {
-                                let randomSpeed = Double.random(in: 0.2...1)
+                                /*
+                                 level 1 is anywhere between 1 and 3 seconds
+                                 level 1000 is anywhere between 0.1 and 0.3 seconds
+                                 use newValue instead of score variable
+                                 1 ->       1, 3
+                                 1000 ->    0.1, 0.3
+                                 */
+                                let randomSpeed = Double.random(in: 0.5...1.5)
                                 BallAnimator.pushBallUp(newBallSpeed: randomSpeed)
                             }
                             
