@@ -688,14 +688,22 @@ struct ContentView: View {
                                 dropBall()
                             } else {
                                 /*
-                                 level 1 is anywhere between 1 and 3 seconds
-                                 level 1000 is anywhere between 0.1 and 0.3 seconds
+                                 level 1 is anywhere between 0.5 and 1.5 seconds
+                                 level 1000 is anywhere between 0.05 and 0.15 seconds
                                  use newValue instead of score variable
                                  1 ->       1, 3
                                  1000 ->    0.1, 0.3
                                  */
-                                let randomSpeed = Double.random(in: 0.5...1.5)
+                                let m1 = (0.1 - 0.5) / (1000 - 1)
+                                let c1 = 0.5 - m1 * 1
+                                let bottom = m1 * Double(newValue) + c1
+
+                                let m2 = (0.3 - 1.5) / (1000 - 1)
+                                let c2 = 1.5 - m2 * 1
+                                let top = m2 * Double(newValue) + c2
+                                let randomSpeed = Double.random(in: bottom...top)
                                 BallAnimator.pushBallUp(newBallSpeed: randomSpeed)
+
                             }
                             
                             DispatchQueue.main.async {
