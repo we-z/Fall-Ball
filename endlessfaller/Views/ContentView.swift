@@ -88,12 +88,12 @@ struct ContentView: View {
         }
     }
     func dropBall() {
-        BallAnimator.startTimer(speed: 3)
+        BallAnimator.startTimer(speed: 2)
     }
     func liftBall(difficultyInput: Int) {
         /*
          level 1 is anywhere between 0.5 and 1.5 seconds
-         level 1000 is anywhere between 0.05 and 0.15 seconds
+         level 1000 is anywhere between 0.1 and 0.3 seconds
          use newValue instead of score variable
          1 ->       1, 3
          1000 ->    0.1, 0.3
@@ -667,7 +667,7 @@ struct ContentView: View {
                             ZStack{
                                 colors[index]
                                 if index == 0 && score == 0 {
-                                    if self.BallAnimator.ballYPosition > deviceHeight / 3 {
+                                    if self.BallAnimator.ballYPosition > deviceHeight / 2 {
                                         Instruction2()
                                     } else {
                                         Instruction()
