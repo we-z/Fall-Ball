@@ -137,7 +137,7 @@ struct CharactersMenuView: View {
                             }
                             .overlay{
                                 Text("Secret Shop 🤫")
-                                    .font(.system(size: 18))
+                                    .font(.system(size: 12))
                                     .bold()
                                     .italic()
                                     .offset(y:75)
