@@ -43,8 +43,10 @@ struct PlayersPlaqueView: View {
                     ZStack{
                         AnyView(character.character)
                             .scaleEffect(1.5)
-                        AnyView(hat!.hat)
-                            .frame(maxWidth: 60, maxHeight: 60)
+                        if appModel.selectedHat != "nohat" {
+                            AnyView(hat!.hat)
+                                .frame(maxWidth: 60, maxHeight: 60)
+                        }
                     }
                     .padding(.top, 30)
                     .padding(.bottom, 39)

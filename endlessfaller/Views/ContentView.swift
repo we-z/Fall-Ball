@@ -73,6 +73,7 @@ struct ContentView: View {
     @State private var isGearExpanded = false
     @State private var gearRotationDegrees = 0.0
     @State var isActivitySharingSheetPresented = false
+    @State var showGameModesAlert = false
     
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
@@ -618,7 +619,9 @@ struct ContentView: View {
                                             .offset(y: isGearExpanded ? -180 : 0)
 
                                             // Button 2
-                                            Button(action: {}) {
+                                            Button(action: {
+                                                showGameModesAlert = true
+                                            }) {
                                                 Image(systemName: "gamecontroller.fill") // Replace with your image
                                                     .resizable()
                                                     .scaledToFit()
@@ -626,6 +629,9 @@ struct ContentView: View {
                                                     .foregroundColor(.purple)
                                             }
                                             .offset(y: isGearExpanded ? -120 : 0)
+                                            .alert("Different game modes coming soon", isPresented: $showGameModesAlert) {
+                                                Button("OK", role: .cancel) { }
+                                            }
 
                                             // Button 3
                                             Button(action: {
