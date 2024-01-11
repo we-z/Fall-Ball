@@ -12,7 +12,7 @@ import GameKit
 import AudioToolbox
 import CoreMotion
 import Combine
-
+import GroupActivities
 
 let bestScoreKey = "bestscorekey"
 let boinIntervalCounterKey = "boinIntervalCounterKey"
@@ -30,6 +30,7 @@ struct ContentView: View {
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
     @ObservedObject private var BallAnimator = BallAnimationManager()
+    @StateObject var groupStateObserver = GroupStateObserver()
     @State var score: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
@@ -71,7 +72,8 @@ struct ContentView: View {
     @State private var circleProgress: CGFloat = 0.0
     @State private var isGearExpanded = false
     @State private var gearRotationDegrees = 0.0
-//    @State var levelYPosition: CGFloat = 0
+    @State var isActivitySharingSheetPresented = false
+    
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
     let rotationQueDispatch = DispatchQueue.init(label: "io.endlessfaller.rotationque", qos: .userInitiated)
@@ -600,7 +602,13 @@ struct ContentView: View {
                                     ZStack {
                                         ZStack {
                                             // Button 1
-                                            Button(action: {}) {
+                                            Button(action: {
+                                                if groupStateObserver.isEligibleForGroupSession {
+                                                    appModel.startSharing()
+                                                } else {
+                                                    isActivitySharingSheetPresented = true
+                                                }
+                                            }) {
                                                 Image(systemName: "shareplay") // Replace with your image
                                                     .resizable()
                                                     .scaledToFit()
@@ -976,6 +984,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: self.$showCurrencyPage){
                 CurrencyPageView()
+            }
+            .sheet(isPresented: $isActivitySharingSheetPresented) {
+                ActivitySharingViewController(activity: SharePlayActivity())
             }
             .edgesIgnoringSafeArea(.all)
             .scrollDisabled(freezeScrolling)

@@ -165,6 +165,16 @@ class AppModel: ObservableObject {
         Character(character: AnyView(DiamondBallView()), cost: "10000", characterID: "io.endlessfall.diamond", isPurchased: false)
     ]
     
+    func startSharing() {
+        Task {
+            do {
+                _ = try await SharePlayActivity().activate()
+            } catch {
+                print("Failed to activate SharePlay activity: \(error)")
+            }
+        }
+    }
+    
     @objc func openGameCenterSettings() {
         if let url = URL(string: "gamecenter:") {
             if UIApplication.shared.canOpenURL(url) {
