@@ -62,6 +62,7 @@ struct SecretShopView: View {
                                                                 .scaleEffect(1.5)
                                                         }
                                                         AnyView(hat.hat)
+                                                            .offset(y: model.hats[index].hatID == model.selectedHat ? 0 : 30)
                                                                 
                                                     }
                                                     .padding()

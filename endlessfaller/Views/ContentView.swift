@@ -528,7 +528,9 @@ struct ContentView: View {
                                             ZStack{
                                                 AnyView(character.character)
                                                     .scaleEffect(1.5)
-                                                AnyView(hat!.hat)
+                                                if appModel.selectedHat != "nohat" {
+                                                    AnyView(hat!.hat)
+                                                }
                                             }
                                             .scaleEffect(1.5)
                                             .offset(x: -70, y: appModel.selectedHat == "nohat" ? 18 : 30)
@@ -664,9 +666,11 @@ struct ContentView: View {
                                             }
                                             .padding(30)
                                             .overlay{
-                                                AnyView(hat!.hat)
-                                                    .scaleEffect(0.69)
-                                                    .frame(maxHeight: 30)
+                                                if appModel.selectedHat != "nohat" {
+                                                    AnyView(hat!.hat)
+                                                        .scaleEffect(0.69)
+                                                        .frame(maxHeight: 30)
+                                                }
                                             }
                                             .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
                                         }
@@ -907,7 +911,9 @@ struct ContentView: View {
                                 ZStack{
                                     AnyView(character.character)
                                         .scaleEffect(1.5)
-                                    AnyView(hat!.hat)
+                                    if appModel.selectedHat != "nohat" {
+                                        AnyView(hat!.hat)
+                                    }
                                 }
                                 .rotationEffect(.degrees(self.ballRoll * 60))
                                 .offset(y: -12)
