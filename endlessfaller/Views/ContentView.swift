@@ -652,12 +652,20 @@ struct ContentView: View {
                                             Image(systemName: "gearshape.fill")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 50, height: 50)
+                                                .frame(width: 45, height: 45)
                                                 .padding(36)
                                                 .foregroundColor(.gray)
                                                 .rotationEffect(.degrees(gearRotationDegrees))
                                         }
                                         
+                                    }
+                                    .background {
+                                        Capsule()
+                                            .strokeBorder(Color.black,lineWidth: 3)
+                                            .frame(width: 66, height: isGearExpanded ? 254 : 66)
+                                            .background(.black)
+                                            .clipShape(Capsule())
+                                            .offset(y: isGearExpanded ? -95 : 0)
                                     }
                                     Spacer()
                                     ZStack{
