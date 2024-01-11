@@ -695,7 +695,7 @@ struct ContentView: View {
                                                         .frame(maxHeight: 30)
                                                 }
                                             }
-                                            .scaleEffect(ballButtonIsPressed ? 0.9 : 1.2)
+                                            .scaleEffect(ballButtonIsPressed ? 1.2 : 1.4)
                                         }
                                     }
                                     
@@ -715,6 +715,8 @@ struct ContentView: View {
                                     PodiumView()
                                         .foregroundColor(.black)
                                         .padding(36)
+                                        .scaleEffect(1.2)
+                                        .offset(x:3)
                                         .pressEvents {
                                             
                                         } onRelease: {
