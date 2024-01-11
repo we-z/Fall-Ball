@@ -13,6 +13,7 @@ import UIKit
 
 let selectedCharacterKey = "SelectedCharacterID"
 let selectedHatKey = "SelectedHatID"
+let selectedBagKey = "SelectedBagID"
 let purchasedCharactersKey = "PurchasedCharacters"
 let muteKey = "Mute"
 let balanceKey = "Balance"
@@ -33,6 +34,7 @@ class AppModel: ObservableObject {
     
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!
     @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
+    @AppStorage(selectedBagKey) var selectedBag: String = UserDefaults.standard.string(forKey: selectedBagKey) ?? "nobag"
     @Published var purchasedCharacters: [String] = [] {
         didSet{
             savePurchasedCharacters()
@@ -61,7 +63,7 @@ class AppModel: ObservableObject {
     }
     
     @Published var hats: [Hat] = [
-        Hat(hat: AnyView(EmptyView()), hatID: "nohat"),
+        Hat(hat: AnyView(NoneView()), hatID: "nohat"),
         Hat(hat: AnyView(PropellerHat()), hatID: "propellerhat"),
         Hat(hat: AnyView(ChefsHat()), hatID: "chefshat"),
         Hat(hat: AnyView(CowboyHat()), hatID: "cowboyhat"),
@@ -76,6 +78,13 @@ class AppModel: ObservableObject {
         Hat(hat: AnyView(CaptainHat()), hatID: "captionhat"),
         Hat(hat: AnyView(TopHat()), hatID: "tophat"),
         Hat(hat: AnyView(Crown()), hatID: "crown")
+    ]
+    
+    @Published var bags: [Bag] = [
+        Bag(bag: AnyView(NoneView()), bagID: "nobag"),
+        Bag(bag: AnyView(JetPack()), bagID: "jetpack"),
+        Bag(bag: AnyView(Wings()), bagID: "wings"),
+        Bag(bag: AnyView(RobotArms()), bagID: "robotarms")
     ]
         
     @Published var characters: [Character] = [
@@ -238,6 +247,21 @@ struct Hat: Hashable {
     static func ==(lhs: Hat, rhs: Hat) -> Bool {
         // Implement the equality operator to compare characters based on their unique identifier
         return lhs.hatID == rhs.hatID
+    }
+}
+
+struct Bag: Hashable {
+    let bag: AnyView // Note: I corrected the type name to 'AnyView' (with a capital 'A')
+    let bagID: String
+
+    func hash(into hasher: inout Hasher) {
+        // Implement a custom hash function that combines the hash values of properties that uniquely identify a character
+        hasher.combine(bagID)
+    }
+
+    static func ==(lhs: Bag, rhs: Bag) -> Bool {
+        // Implement the equality operator to compare characters based on their unique identifier
+        return lhs.bagID == rhs.bagID
     }
 }
 
@@ -874,3 +898,13 @@ let backgroundColors: [String] = [
     "#FFD700" // Ferrari Yellow
 ]
 
+extension View {
+    func flipped(_ axis: Axis = .horizontal, anchor: UnitPoint = .center) -> some View {
+        switch axis {
+        case .horizontal:
+            return scaleEffect(CGSize(width: -1, height: 1), anchor: anchor)
+        case .vertical:
+            return scaleEffect(CGSize(width: 1, height: -1), anchor: anchor)
+        }
+    }
+}

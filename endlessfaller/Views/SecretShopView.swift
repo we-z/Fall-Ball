@@ -19,15 +19,23 @@ struct SecretShopView: View {
                     .foregroundColor(.black)
                     .opacity(0.3)
                 HStack{
-                    Text("🎩 Hat Shop 🎩")
+                    Text("🤫 Secret Shop 🤫")
                         .italic()
                         .bold()
                         .font(.largeTitle)
-                        .scaleEffect(1.1)
                 }
+                Divider()
+                    .overlay(.black)
+                    .padding([.horizontal])
                 HStack{
                     Spacer()
                     ScrollView(showsIndicators: false){
+                        HStack{
+                            Text("🎩 Hats 🎩")
+                                .italic()
+                                .bold()
+                                .font(.largeTitle)
+                        }
                         ForEach(0..<model.hats.count/3, id: \.self) { rowIndex in
                             HStack {
                                 ForEach(0..<3, id: \.self) { columnIndex in
@@ -49,13 +57,15 @@ struct SecretShopView: View {
                                                 }
                                                 .overlay(
                                                     ZStack{
-                                                        AnyView(character?.character)
-                                                            .scaleEffect(1.5)
+                                                        if model.hats[index].hatID == model.selectedHat && index != 0 {
+                                                            AnyView(character?.character)
+                                                                .scaleEffect(1.5)
+                                                        }
                                                         AnyView(hat.hat)
                                                                 
                                                     }
                                                     .padding()
-                                                    .offset(y:12)
+                                                    .offset(y: index == 0 ? 0 : 12)
                                                 )
                                                 .accentColor(.black)
                                                 .padding(1)
@@ -66,7 +76,49 @@ struct SecretShopView: View {
                                 }
                             }
                         }
-                        
+                        HStack{
+                            Text("🎒 Bags 🎒")
+                                .italic()
+                                .bold()
+                                .font(.largeTitle)
+                        }
+                        ForEach(0..<model.bags.count/2, id: \.self) { rowIndex in
+                            HStack {
+                                ForEach(0..<2, id: \.self) { columnIndex in
+                                    let index = rowIndex * 2 + columnIndex
+                                    if index < model.bags.count {
+                                        let character = model.characters.first(where: { $0.characterID == model.selectedCharacter})
+                                        let bag = model.bags[index]
+                                        Button {
+                                            model.selectedBag = model.bags[index].bagID
+                                        } label: {
+                                            Rectangle()
+                                                .fill(.clear)
+                                                .cornerRadius(20)
+                                                .frame(width: geometry.size.width/2.2, height: idiom == .pad ? 270 : 150)
+                                                .overlay{
+                                                    RoundedRectangle(cornerRadius: 20)
+                                                        .stroke(model.bags[index].bagID == model.selectedBag ? Color.black : Color.clear, lineWidth: 3)
+                                                        .padding(1)
+                                                }
+                                                .overlay(
+                                                    ZStack{
+                                                        AnyView(bag.bag)
+                                                        if model.bags[index].bagID == model.selectedBag && index != 0 {
+                                                            AnyView(character?.character)
+                                                                .scaleEffect(1.5)
+                                                        }
+                                                    }
+                                                )
+                                                .accentColor(.black)
+                                                .padding(1)
+                                        }
+                                        .buttonStyle(.roundedAndShadow)
+                                        
+                                    }
+                                }
+                            }
+                        }
                     }
                     Spacer()
                 }
