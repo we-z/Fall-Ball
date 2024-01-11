@@ -225,6 +225,7 @@ struct ContentView: View {
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+        let bag = appModel.bags.first(where: { $0.bagID == appModel.selectedBag})
         ZStack{
             ScrollView {
                 ZStack{
@@ -909,6 +910,7 @@ struct ContentView: View {
                             .offset(x: 0, y:-(self.BallAnimator.ballYPosition * 0.1))
                             if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                 ZStack{
+                                    AnyView(bag!.bag)
                                     AnyView(character.character)
                                         .scaleEffect(1.5)
                                     if appModel.selectedHat != "nohat" {
