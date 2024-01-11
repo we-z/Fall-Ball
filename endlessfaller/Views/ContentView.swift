@@ -681,6 +681,9 @@ struct ContentView: View {
                                             .clipShape(Capsule())
                                             .offset(y: isGearExpanded ? -95 : 0)
                                     }
+                                    .onDisappear{
+                                        isGearExpanded = false
+                                    }
                                     Spacer()
                                     ZStack{
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
