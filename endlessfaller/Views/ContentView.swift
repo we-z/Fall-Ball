@@ -220,7 +220,8 @@ struct ContentView: View {
         }
     }
     
-    let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+    let heavyHaptic = UINotificationFeedbackGenerator()
+    let gearHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
@@ -643,6 +644,7 @@ struct ContentView: View {
                                                 self.gearRotationDegrees += 45
                                                 self.isGearExpanded.toggle()
                                             }
+                                            gearHaptic.notificationOccurred(.error)
                                         }) {
                                             Image(systemName: "gearshape.fill")
                                                 .resizable()
@@ -652,6 +654,7 @@ struct ContentView: View {
                                                 .foregroundColor(.gray)
                                                 .rotationEffect(.degrees(gearRotationDegrees))
                                         }
+                                        
                                     }
                                     Spacer()
                                     ZStack{
@@ -754,7 +757,7 @@ struct ContentView: View {
                             highestLevelInRound = newValue
                         }
                         enableScaleAndFlashForDuration()
-                        impactMed.impactOccurred()
+                        heavyHaptic.notificationOccurred(.success)
                         if currentIndex > bestScore && currentIndex > 3 {
                             showNewBestScore = true
                         }
