@@ -69,6 +69,8 @@ struct ContentView: View {
     @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
+    @State private var isGearExpanded = false
+    @State private var gearRotationDegrees = 0.0
 //    @State var levelYPosition: CGFloat = 0
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
@@ -589,35 +591,68 @@ struct ContentView: View {
                                 }
                             }
                             Spacer()
-                            //if firstGamePlayed {
                             ZStack{
                                 HStack{
-                                    Image(systemName: "gearshape.fill")
-                                        .foregroundColor(.gray)
-                                        .font(.largeTitle)
-                                        .scaleEffect(1.5)
-                                        .shadow(color: .black, radius: 0.1, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)
-                                        .padding(36)
-                                        .offset(x: muteIsPressed ? -3 : 0, y: muteIsPressed ? 3 : 0)
-                                        .pressEvents {
-                                            // On press
-                                            withAnimation(.easeInOut(duration: 0.1)) {
-                                                muteIsPressed = true
+                                    ZStack {
+                                        ZStack {
+                                            // Button 1
+                                            Button(action: {}) {
+                                                Image(systemName: "shareplay") // Replace with your image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 45, height: 45)
+                                                    .foregroundColor(.green)
                                             }
-                                        } onRelease: {
-                                            //AudioServicesPlaySystemSound(1305)
-                                            withAnimation {
-                                                muteIsPressed = false
+                                            .offset(y: isGearExpanded ? -180 : 0)
+
+                                            // Button 2
+                                            Button(action: {}) {
+                                                Image(systemName: "gamecontroller.fill") // Replace with your image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 45, height: 45)
+                                                    .foregroundColor(.purple)
+                                            }
+                                            .offset(y: isGearExpanded ? -120 : 0)
+
+                                            // Button 3
+                                            Button(action: {
                                                 appModel.mute.toggle()
+                                            }) {
+                                                Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill") // Replace with your image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 45, height: 45)
+                                                    .foregroundColor(.teal)
+                                            }
+                                            .offset(y: isGearExpanded ? -60 : 0)
+                                            .onChange(of: appModel.mute) { setting in
+                                                if setting == true {
+                                                    self.musicPlayer.setVolume(0, fadeDuration: 0)
+                                                } else {
+                                                    self.musicPlayer.setVolume(1, fadeDuration: 0)
+                                                }
                                             }
                                         }
-                                        .onChange(of: appModel.mute) { setting in
-                                            if setting == true {
-                                                self.musicPlayer.setVolume(0, fadeDuration: 0)
-                                            } else {
-                                                self.musicPlayer.setVolume(1, fadeDuration: 0)
+                                        .offset(y: -15)
+                                        .opacity(isGearExpanded ? 1 : 0)
+
+                                        // Gear Button
+                                        Button(action: {
+                                            withAnimation {
+                                                self.gearRotationDegrees += 45
+                                                self.isGearExpanded.toggle()
                                             }
+                                        }) {
+                                            Image(systemName: "gearshape.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 50, height: 50)
+                                                .padding(36)
+                                                .foregroundColor(.gray)
+                                                .rotationEffect(.degrees(gearRotationDegrees))
                                         }
+                                    }
                                     Spacer()
                                     ZStack{
                                         if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {

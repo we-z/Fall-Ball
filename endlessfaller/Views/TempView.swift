@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 struct TempView: View {
-    @State private var isExpanded = false
-        @State private var rotationDegrees = 0.0
+    @State private var isGearExpanded = false
+    @State private var gearRotationDegrees = 0.0
 
         var body: some View {
             ZStack {
@@ -23,7 +23,7 @@ struct TempView: View {
                             .frame(width: 45, height: 45)
                             .foregroundColor(.green)
                     }
-                    .offset(y: isExpanded ? -180 : 0)
+                    .offset(y: isGearExpanded ? -180 : 0)
 
                     // Button 2
                     Button(action: {}) {
@@ -33,7 +33,7 @@ struct TempView: View {
                             .frame(width: 45, height: 45)
                             .foregroundColor(.purple)
                     }
-                    .offset(y: isExpanded ? -120 : 0)
+                    .offset(y: isGearExpanded ? -120 : 0)
 
                     // Button 3
                     Button(action: {}) {
@@ -43,17 +43,16 @@ struct TempView: View {
                             .frame(width: 45, height: 45)
                             .foregroundColor(.teal)
                     }
-                    .offset(y: isExpanded ? -60 : 0)
+                    .offset(y: isGearExpanded ? -60 : 0)
                 }
-                .frame(height: isExpanded ? 150 : 0)
                 .offset(y: -15)
-                .opacity(isExpanded ? 1 : 0)
+                .opacity(isGearExpanded ? 1 : 0)
 
                 // Gear Button
                 Button(action: {
                     withAnimation {
-                        self.rotationDegrees += 45
-                        self.isExpanded.toggle()
+                        self.gearRotationDegrees += 45
+                        self.isGearExpanded.toggle()
                     }
                 }) {
                     Image(systemName: "gearshape.fill")
@@ -61,7 +60,7 @@ struct TempView: View {
                         .scaledToFit()
                         .frame(width: 50, height: 50)
                         .foregroundColor(.gray)
-                        .rotationEffect(.degrees(rotationDegrees))
+                        .rotationEffect(.degrees(gearRotationDegrees))
                 }
             }
         }
