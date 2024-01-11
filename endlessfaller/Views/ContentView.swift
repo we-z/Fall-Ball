@@ -592,8 +592,8 @@ struct ContentView: View {
                             //if firstGamePlayed {
                             ZStack{
                                 HStack{
-                                    Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                                        .foregroundColor(.teal)
+                                    Image(systemName: "gearshape.fill")
+                                        .foregroundColor(.gray)
                                         .font(.largeTitle)
                                         .scaleEffect(1.5)
                                         .shadow(color: .black, radius: 0.1, x: muteIsPressed ? 0 : -3, y: muteIsPressed ? 0 : 3)

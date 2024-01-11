@@ -9,59 +9,62 @@ import SwiftUI
 import Combine
 
 struct TempView: View {
+    @State private var isExpanded = false
+        @State private var rotationDegrees = 0.0
 
-    @State private var circlePosition: CGPoint = CGPoint(x: UIScreen.main.bounds.width / 2, y: -120)
-    @State private var timerSubscription: AnyCancellable?
-    @State private var speed: Double = 1.0  // Speed factor for the circle's movement
-    
-    let deviceWidth = UIScreen.main.bounds.width
-    let deviceHeight = UIScreen.main.bounds.height
-    
-    var body: some View {
-        VStack {
-            Circle()
-                .frame(height: 75)
-                .position(circlePosition)
-                // The timer now updates the position inside the sink closure
-//                .onAppear() {
-//                    timerSubscription = Timer.publish(every: 0.003, on: .main, in: .common)
-//                        .autoconnect()
-//                        .sink { _ in
-//                            circlePosition.y += 1
-//                        }
-//                }
-            
-            Button("Start Animation") {
-                // Start or restart the timer
-                circlePosition.y = -120
-                timerSubscription?.cancel()
-                timerSubscription = Timer.publish(every: 0.003, on: .main, in: .common)
-                   .autoconnect()
-                   .sink { _ in
-                       circlePosition.y += 1
-                   }
-            }
-            
+        var body: some View {
+            ZStack {
+                ZStack {
+                    // Button 1
+                    Button(action: {}) {
+                        Image(systemName: "shareplay") // Replace with your image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45, height: 45)
+                            .foregroundColor(.green)
+                    }
+                    .offset(y: isExpanded ? -180 : 0)
 
+                    // Button 2
+                    Button(action: {}) {
+                        Image(systemName: "gamecontroller.fill") // Replace with your image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45, height: 45)
+                            .foregroundColor(.purple)
+                    }
+                    .offset(y: isExpanded ? -120 : 0)
 
-            Button("Push Up") {
-                withAnimation {
-                    circlePosition.y -= deviceHeight / 2
+                    // Button 3
+                    Button(action: {}) {
+                        Image(systemName: "speaker.wave.2.fill") // Replace with your image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45, height: 45)
+                            .foregroundColor(.teal)
+                    }
+                    .offset(y: isExpanded ? -60 : 0)
                 }
-                // Randomize speed between 0.5 and 2.0, for example
-                speed = Double.random(in: 0.001...0.003)
-                
-                timerSubscription?.cancel()
-                
-                // Restart timer with new interval
-                timerSubscription = Timer.publish(every: speed, on: .main, in: .common)
-                     .autoconnect()
-                     .sink { _ in
-                         circlePosition.y += 1
-                     }
+                .frame(height: isExpanded ? 150 : 0)
+                .offset(y: -15)
+                .opacity(isExpanded ? 1 : 0)
+
+                // Gear Button
+                Button(action: {
+                    withAnimation {
+                        self.rotationDegrees += 45
+                        self.isExpanded.toggle()
+                    }
+                }) {
+                    Image(systemName: "gearshape.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.gray)
+                        .rotationEffect(.degrees(rotationDegrees))
+                }
             }
         }
-    }
 }
 
 

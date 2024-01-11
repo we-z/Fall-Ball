@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
+		7A0BB1C62B4F5EB70048B247 /* SharePlayActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */; };
+		7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */; };
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
 		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
 		7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */; };
@@ -102,6 +104,8 @@
 /* Begin PBXFileReference section */
 		7A0598072B08976E0053646D /* Boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boing.mp3; sourceTree = "<group>"; };
 		7A0598082B08976E0053646D /* DingDingDing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDingDing.mp3; sourceTree = "<group>"; };
+		7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePlayActivity.swift; sourceTree = "<group>"; };
+		7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySharingViewController.swift; sourceTree = "<group>"; };
 		7A2201332AB6739000DF04D7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 		7A327D532AD3E700002700DD /* SecretShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretShopView.swift; sourceTree = "<group>"; };
 		7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterLeaderboardView.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
 				7A2201332AB6739000DF04D7 /* GameCenter.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
+				7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */,
+				7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -622,6 +628,7 @@
 				7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */,
 				7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */,
 				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
+				7A0BB1C62B4F5EB70048B247 /* SharePlayActivity.swift in Sources */,
 				7AEA1AB42AE5C9CA00FE6DB5 /* ContinuePlayingView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
@@ -629,6 +636,7 @@
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
+				7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */,
 				7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */,
 				7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */,
 				7AEA1AB22AE46BDE00FE6DB5 /* CurrencyPageView.swift in Sources */,
