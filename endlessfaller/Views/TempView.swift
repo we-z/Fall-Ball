@@ -8,60 +8,46 @@
 import SwiftUI
 import Combine
 
+class SharedData: ObservableObject {
+    @Published var data: String
+
+    // Singleton instance
+    static let shared = SharedData()
+
+    private init(data: String = "Initial Data") {
+        self.data = data
+    }
+}
+
+struct View1: View {
+    @ObservedObject var sharedData = SharedData.shared
+    var body: some View {
+        VStack {
+            Text("View 1: \(sharedData.data)")
+            Button("Update from View 1") {
+                sharedData.data = "Updated by View 1"
+            }
+        }
+    }
+}
+
+struct View2: View {
+    @ObservedObject private var sharedData = SharedData.shared
+    var body: some View {
+        VStack {
+            Text("View 2: \(sharedData.data)")
+            Button("Update from View 2") {
+                sharedData.data = "Updated by View 2"
+            }
+        }
+    }
+}
+
 struct TempView: View {
-    @State private var isGearExpanded = false
-    @State private var gearRotationDegrees = 0.0
-
         var body: some View {
-            ZStack {
-                ZStack {
-                    // Button 1
-                    Button(action: {}) {
-                        Image(systemName: "shareplay") // Replace with your image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 45, height: 45)
-                            .foregroundColor(.green)
-                    }
-                    .offset(y: isGearExpanded ? -180 : 0)
-
-                    // Button 2
-                    Button(action: {}) {
-                        Image(systemName: "gamecontroller.fill") // Replace with your image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 45, height: 45)
-                            .foregroundColor(.purple)
-                    }
-                    .offset(y: isGearExpanded ? -120 : 0)
-
-                    // Button 3
-                    Button(action: {}) {
-                        Image(systemName: "speaker.wave.2.fill") // Replace with your image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 45, height: 45)
-                            .foregroundColor(.teal)
-                    }
-                    .offset(y: isGearExpanded ? -60 : 0)
-                }
-                .offset(y: -15)
-                .opacity(isGearExpanded ? 1 : 0)
-
-                // Gear Button
-                Button(action: {
-                    withAnimation {
-                        self.gearRotationDegrees += 45
-                        self.isGearExpanded.toggle()
-                    }
-                }) {
-                    Image(systemName: "gearshape.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(.gray)
-                        .rotationEffect(.degrees(gearRotationDegrees))
-                }
+            VStack {
+                View1()
+                View2()
             }
         }
 }

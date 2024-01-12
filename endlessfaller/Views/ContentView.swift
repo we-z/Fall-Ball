@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import AudioToolbox
-import AVFoundation
 import GameKit
 import AudioToolbox
 import CoreMotion
@@ -30,7 +28,7 @@ struct ContentView: View {
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
     @ObservedObject private var BallAnimator = BallAnimationManager()
-    @StateObject var groupStateObserver = GroupStateObserver()
+    @ObservedObject private var audioController = AudioManager.sharedAudioManager
     @State var score: Int = -1
     @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
@@ -39,8 +37,6 @@ struct ContentView: View {
     @State var firstGamePlayed = false
     @State var freezeScrolling = false
     @State var continueButtonIsPressed = false
-    @State var showCharactersMenu = false
-    @State var showLeaderBoard = false
     @State var showNewBestScore = false
     @State var showPlaqueShare = false
     @State var showCurrencyPage = false
@@ -50,7 +46,6 @@ struct ContentView: View {
     @State var shouldContinue = false
     @State var showInstructionsAndBall = true
     @State var muteIsPressed = false
-    @State var ballButtonIsPressed = false
     @State var currencyButtonIsPressed = false
     @State var plaqueIsPressed = false
     @State var showBoinFoundAnimation = false
@@ -62,18 +57,10 @@ struct ContentView: View {
     @State var gameOverBackgroundColor: Color = .white
     @State var playedCharacter = ""
     @State private var gameOverTimer: Timer? = nil
-    @State var musicPlayer: AVAudioPlayer!
-    @State var punchSoundEffect: AVAudioPlayer!
-    @State var boingSoundEffect: AVAudioPlayer!
-    @State var dingsSoundEffect: AVAudioPlayer!
     @State var placeOnLeaderBoard = 0
     @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
-    @State private var isGearExpanded = false
-    @State private var gearRotationDegrees = 0.0
-    @State var isActivitySharingSheetPresented = false
-    @State var showGameModesAlert = false
     
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
@@ -150,7 +137,7 @@ struct ContentView: View {
             currentScore = score
         }
         score = -1
-        musicPlayer.rate = 1
+        audioController.musicPlayer.rate = 1
         self.showContinueToPlayScreen = false
         showInstructionsAndBall = true
         gameIsOver = true
@@ -194,7 +181,7 @@ struct ContentView: View {
         shouldContinue = false
         self.circleProgress = 0.0
         showInstructionsAndBall = false
-        self.punchSoundEffect.play()
+        audioController.punchSoundEffect.play()
         currentScore = score
         
         showBoinFoundAnimation = false
@@ -224,7 +211,6 @@ struct ContentView: View {
     }
     
     let heavyHaptic = UINotificationFeedbackGenerator()
-    let gearHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
@@ -598,138 +584,8 @@ struct ContentView: View {
                                 }
                             }
                             Spacer()
-                            ZStack{
-                                HStack{
-                                    ZStack {
-                                        ZStack {
-                                            // Button 1
-                                            Button(action: {
-                                                if groupStateObserver.isEligibleForGroupSession {
-                                                    appModel.startSharing()
-                                                } else {
-                                                    isActivitySharingSheetPresented = true
-                                                }
-                                            }) {
-                                                Image(systemName: "shareplay") // Replace with your image
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 45, height: 45)
-                                                    .foregroundColor(.green)
-                                            }
-                                            .offset(y: isGearExpanded ? -180 : 0)
-
-                                            // Button 2
-                                            Button(action: {
-                                                showGameModesAlert = true
-                                            }) {
-                                                Image(systemName: "gamecontroller.fill") // Replace with your image
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 45, height: 45)
-                                                    .foregroundColor(.purple)
-                                            }
-                                            .offset(y: isGearExpanded ? -120 : 0)
-                                            .alert("Different game modes coming soon", isPresented: $showGameModesAlert) {
-                                                Button("OK", role: .cancel) { }
-                                            }
-
-                                            // Button 3
-                                            Button(action: {
-                                                appModel.mute.toggle()
-                                            }) {
-                                                Image(systemName: appModel.mute ? "speaker.slash.fill" : "speaker.wave.2.fill") // Replace with your image
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 45, height: 45)
-                                                    .foregroundColor(.teal)
-                                            }
-                                            .offset(y: isGearExpanded ? -60 : 0)
-                                            .onChange(of: appModel.mute) { setting in
-                                                if setting == true {
-                                                    self.musicPlayer.setVolume(0, fadeDuration: 0)
-                                                } else {
-                                                    self.musicPlayer.setVolume(1, fadeDuration: 0)
-                                                }
-                                            }
-                                        }
-                                        .offset(y: -15)
-                                        .opacity(isGearExpanded ? 1 : 0)
-
-                                        // Gear Button
-                                        Button(action: {
-                                            withAnimation {
-                                                self.gearRotationDegrees += 45
-                                                self.isGearExpanded.toggle()
-                                            }
-                                            gearHaptic.notificationOccurred(.error)
-                                        }) {
-                                            Image(systemName: "gearshape.fill")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 45, height: 45)
-                                                .padding(36)
-                                                .foregroundColor(.gray)
-                                                .rotationEffect(.degrees(gearRotationDegrees))
-                                        }
-                                        
-                                    }
-                                    .background {
-                                        Capsule()
-                                            .strokeBorder(Color.black,lineWidth: 3)
-                                            .frame(width: 66, height: isGearExpanded ? 254 : 66)
-                                            .background(.black)
-                                            .clipShape(Capsule())
-                                            .offset(y: isGearExpanded ? -95 : 0)
-                                    }
-                                    .onDisappear{
-                                        isGearExpanded = false
-                                    }
-                                    Spacer()
-                                    ZStack{
-                                        if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                                            ZStack{
-                                                AnyView(character.character)
-                                            }
-                                            .padding(30)
-                                            .overlay{
-                                                if appModel.selectedHat != "nohat" {
-                                                    AnyView(hat!.hat)
-                                                        .scaleEffect(0.69)
-                                                        .frame(maxHeight: 30)
-                                                }
-                                            }
-                                            .scaleEffect(ballButtonIsPressed ? 1.2 : 1.4)
-                                        }
-                                    }
-                                    
-                                    .pressEvents {
-                                        // On press
-                                        withAnimation(.easeInOut(duration: 0.1)) {
-                                            ballButtonIsPressed = true
-                                        }
-                                    } onRelease: {
-                                        withAnimation {
-                                            ballButtonIsPressed = false
-                                            showCharactersMenu = true
-                                        }
-                                    }
-                                }
-                                ZStack{
-                                    PodiumView()
-                                        .foregroundColor(.black)
-                                        .padding(36)
-                                        .scaleEffect(1.2)
-                                        .offset(x:3)
-                                        .pressEvents {
-                                            
-                                        } onRelease: {
-                                            withAnimation {
-                                                showLeaderBoard = true
-                                            }
-                                        }
-                                }
-                            }
-                            //}
+                            // delete here
+                            HUDView(backgroundColor: $gameOverBackgroundColor)
                         }
                         .background(gameOverBackgroundColor)
                         .tag(-1)
@@ -780,8 +636,8 @@ struct ContentView: View {
                             
                             DispatchQueue.main.async {
                                 score += 1
-                                if self.musicPlayer.rate < 2 {
-                                    self.musicPlayer.rate += 0.001
+                                if audioController.musicPlayer.rate < 2 {
+                                    audioController.musicPlayer.rate += 0.001
                                 }
                             }
                             // 1052 or 1054
@@ -814,37 +670,9 @@ struct ContentView: View {
                         } else {
                             NewBestScore()
                                 .onAppear{
-                                    self.dingsSoundEffect.play()
+                                    audioController.dingsSoundEffect.play()
                                 }
                             CelebrationEffect()
-                        }
-                        if score > 45 && score < 100 {
-                            ReactionsView()
-                                .offset(y: 70)
-                        }
-                        if score > 100 && score < 150 {
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    SwiftUIXmasTree2()
-                                        .scaleEffect(0.5)
-                                        .offset(x:-deviceWidth/10)
-                                    Spacer()
-                                }
-                            }
-                        }
-                        
-                        if score > 9 && score < 27 {
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    Spacer()
-                                    SVGCharacterView()
-                                        .scaleEffect(0.5)
-                                        .offset(x:deviceWidth/10)
-                                }
-                            }
-                            .allowsHitTesting(false)
                         }
                     }
                     if score >= 0 && currentIndex >= 0{
@@ -977,27 +805,18 @@ struct ContentView: View {
                     if showBoinFoundAnimation{
                         BoinCollectedView()
                             .onAppear{
-                                self.boingSoundEffect.play()
+                                audioController.boingSoundEffect.play()
                             }
                     }
                 }
             }
             .persistentSystemOverlays(.hidden)
-            .sheet(isPresented: self.$showCharactersMenu){
-                CharactersMenuView(backgroundColor: $gameOverBackgroundColor)
-            }
-            .sheet(isPresented: self.$showLeaderBoard){
-                GameCenterLeaderboardView(backgroundColor: $gameOverBackgroundColor)
-            }
             .sheet(isPresented: self.$showPlaqueShare){
                 PlayersPlaqueView(backgroundColor: $gameOverBackgroundColor)
                     .presentationDetents([.height(450)])
             }
             .sheet(isPresented: self.$showCurrencyPage){
                 CurrencyPageView()
-            }
-            .sheet(isPresented: $isActivitySharingSheetPresented) {
-                ActivitySharingViewController(activity: SharePlayActivity())
             }
             .edgesIgnoringSafeArea(.all)
             .scrollDisabled(freezeScrolling)
@@ -1006,52 +825,10 @@ struct ContentView: View {
                 notificationManager.scheduleLocal()
                 checkIfAppOpenToday()
                 playedCharacter = appModel.selectedCharacter
-                setUpAudioFiles()
+//                audioController.setUpAudioFiles()
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()
                 }
-            }
-//            SnowView()
-//                .allowsHitTesting(false)
-//                .ignoresSafeArea()
-        }
-    }
-    
-    func setUpAudioFiles() {
-        if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
-            do {
-                self.musicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: music))
-                self.musicPlayer.numberOfLoops = -1
-                self.musicPlayer.enableRate = true
-                if appModel.mute == true {
-                    self.musicPlayer.setVolume(0, fadeDuration: 0)
-                } else {
-                    self.musicPlayer.setVolume(1, fadeDuration: 0)
-                }
-                self.musicPlayer.play()
-            } catch {
-                print("Error playing audio: \(error)")
-            }
-        }
-        if let punch = Bundle.main.path(forResource: "punchSFX", ofType: "mp3"){
-            do {
-                self.punchSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: punch))
-            } catch {
-                print("Error playing audio: \(error)")
-            }
-        }
-        if let boing = Bundle.main.path(forResource: "Boing", ofType: "mp3"){
-            do {
-                self.boingSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: boing))
-            } catch {
-                print("Error playing audio: \(error)")
-            }
-        }
-        if let dings = Bundle.main.path(forResource: "DingDingDing", ofType: "mp3"){
-            do {
-                self.dingsSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: dings))
-            } catch {
-                print("Error playing audio: \(error)")
             }
         }
     }

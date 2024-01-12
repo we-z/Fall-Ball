@@ -41,27 +41,6 @@ class AppModel: ObservableObject {
         }
     }
     
-    @Published var mute: Bool = false {
-        didSet{
-            saveAudiotSetting()
-        }
-    }
-    
-    func saveAudiotSetting() {
-        if let muteSetting = try? JSONEncoder().encode(mute){
-            UserDefaults.standard.set(muteSetting, forKey: muteKey)
-        }
-    }
-    
-    func getAudioSetting(){
-        guard
-            let muteData = UserDefaults.standard.data(forKey: muteKey),
-            let savedMuteSetting = try? JSONDecoder().decode(Bool.self, from: muteData)
-        else {return}
-        
-        self.mute = savedMuteSetting
-    }
-    
     @Published var hats: [Hat] = [
         Hat(hat: AnyView(NoneView()), hatID: "nohat"),
         Hat(hat: AnyView(PropellerHat()), hatID: "propellerhat"),
@@ -223,7 +202,6 @@ class AppModel: ObservableObject {
     
     init() {
         getPurchasedCharacters()
-        getAudioSetting()
         //assignRandomBall()
     }
 }
