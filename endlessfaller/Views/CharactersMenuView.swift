@@ -24,6 +24,8 @@ struct CharactersMenuView: View {
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     var body: some View {
         ZStack{
+            model.gameOverBackgroundColor
+                .ignoresSafeArea()
             GeometryReader { geometry in
                 VStack{
                     Capsule()
