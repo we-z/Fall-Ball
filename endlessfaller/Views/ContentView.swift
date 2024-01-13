@@ -269,11 +269,11 @@ struct ContentView: View {
                                                             .padding(1)
                                                         ZStack{
                                                             Image(systemName: "stopwatch")
-                                                            //.bold()
+                                                                .bold()
                                                                 .font(.largeTitle)
                                                                 .scaleEffect(2.1)
                                                             Circle()
-                                                                .frame(width: 59)
+                                                                .frame(width: 56)
                                                                 .foregroundColor(.white)
                                                                 .offset(y:3.6)
                                                             Circle()
