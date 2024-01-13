@@ -7,22 +7,18 @@
 
 import SwiftUI
 import GameKit
-import AudioToolbox
 import CoreMotion
 import Combine
-import GroupActivities
 
 let bestScoreKey = "bestscorekey"
 let boinIntervalCounterKey = "boinIntervalCounterKey"
 let levels = 1000
-let difficulty = 8
 
 struct ContentView: View {
     
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    let modelName = UIDevice.modelName
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
@@ -31,21 +27,14 @@ struct ContentView: View {
     @State var score: Int = -1
     @State var currentIndex: Int = -1
     @State var costToContinue: Int = 1
-    @State var gameIsOver = false
     @State var firstGamePlayed = false
     @State var freezeScrolling = false
     @State var continueButtonIsPressed = false
     @State var showNewBestScore = false
-    @State var showPlaqueShare = false
     @State var showCurrencyPage = false
     @State var showContinueToPlayScreen = false
-    @State var gameShouldBeOver = false
     @State var showWastedScreen = false
     @State var shouldContinue = false
-    @State var showInstructionsAndBall = true
-    @State var muteIsPressed = false
-    @State var currencyButtonIsPressed = false
-    @State var plaqueIsPressed = false
     @State var showBoinFoundAnimation = false
     @State var showDailyBoinCollectedAnimation = false
     @State private var triangleScale: CGFloat = 1.0
@@ -53,8 +42,6 @@ struct ContentView: View {
     @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
     @State var highestLevelInRound = -1
     @State private var gameOverTimer: Timer? = nil
-    @State var placeOnLeaderBoard = 0
-    @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
     
     let motionManager = CMMotionManager()
@@ -67,12 +54,6 @@ struct ContentView: View {
     
     init() {
         self.queue.underlyingQueue = rotationQueDispatch
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Error setting up audio session: \(error)")
-        }
     }
     func dropBall() {
         BallAnimator.startTimer(speed: 2)
@@ -134,8 +115,6 @@ struct ContentView: View {
         score = -1
         audioController.musicPlayer.rate = 1
         self.showContinueToPlayScreen = false
-        showInstructionsAndBall = true
-        gameIsOver = true
         showNewBestScore = false
         if appModel.currentScore > appModel.bestScore {
             UserDefaults.standard.set(appModel.bestScore, forKey: bestScoreKey)
@@ -156,12 +135,10 @@ struct ContentView: View {
         costToContinue *= 2
         shouldContinue = true
         showContinueToPlayScreen = false
-        showInstructionsAndBall = true
         currentIndex = 0
     }
     
     func wastedOperations() {
-        gameShouldBeOver = true
         if currentIndex > -1 {
             appModel.gameOverBackgroundColor = colors[currentIndex]
         }
@@ -175,12 +152,10 @@ struct ContentView: View {
         firstGamePlayed = true
         shouldContinue = false
         self.circleProgress = 0.0
-        showInstructionsAndBall = false
         audioController.punchSoundEffect.play()
         appModel.currentScore = score
         
         showBoinFoundAnimation = false
-        gameIsOver = true
         freezeScrolling = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         showWastedScreen = true
@@ -193,7 +168,6 @@ struct ContentView: View {
             self.highestLevelInRound = -1
             self.showWastedScreen = false
         }
-        gameShouldBeOver = false
         appModel.playedCharacter = appModel.selectedCharacter
         gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 
@@ -341,9 +315,6 @@ struct ContentView: View {
                                                 }
                                                 .offset(y: 90)
                                             }
-                                            .sheet(isPresented: self.$showCurrencyPage){
-                                                CurrencyPageView()
-                                            }
                                             Spacer()
                                         }}
                                     Spacer()
@@ -409,8 +380,6 @@ struct ContentView: View {
                                 gameOverOperations()
                             }
                         }
-                        
-                        gameShouldBeOver = false
                         boinIntervalCounter += 1
                         if boinIntervalCounter > 1000 {
                             boinFound()
@@ -439,29 +408,26 @@ struct ContentView: View {
                         }
                     }
                     .allowsHitTesting(!freezeScrolling)
-                    
-                    if showInstructionsAndBall {
-                        if !showNewBestScore {
-                            
-                            if score > 50 && score < 65 {
-                                YourGood()
-                            }
-                            
-                            if score > 100 && score < 115 {
-                                YourInsane()
-                            }
-                            
-                            if score > 300 && score < 315 {
-                                GoBerzerk()
-                            }
-                            
-                        } else {
-                            NewBestScore()
-                                .onAppear{
-                                    audioController.dingsSoundEffect.play()
-                                }
-                            CelebrationEffect()
+                    if !showNewBestScore {
+                        
+                        if score > 50 && score < 65 {
+                            YourGood()
                         }
+                        
+                        if score > 100 && score < 115 {
+                            YourInsane()
+                        }
+                        
+                        if score > 300 && score < 315 {
+                            GoBerzerk()
+                        }
+                        
+                    } else {
+                        NewBestScore()
+                            .onAppear{
+                                audioController.dingsSoundEffect.play()
+                            }
+                        CelebrationEffect()
                     }
                     if score >= 0 && currentIndex >= 0{
                         ZStack{
@@ -579,7 +545,7 @@ struct ContentView: View {
                                         return
                                     }
                                     let attitude: CMAttitude = data.attitude
-                                    if showInstructionsAndBall && currentIndex > -1 {
+                                    if currentIndex > -1 {
                                         if attitude.roll > -1 && attitude.roll < 1 {
                                             ballRoll = attitude.roll
                                         }
