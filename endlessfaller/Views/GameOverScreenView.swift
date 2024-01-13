@@ -132,10 +132,6 @@ struct GameOverScreenView: View {
                 .bold()
                 .foregroundColor(.black)
                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
-                
-                SwipeUpHand()
-                    .scaleEffect(0.7)
-                    .offset(x: 30, y:130)
             }
             .animatedOffset(speed: 1)
             Spacer()

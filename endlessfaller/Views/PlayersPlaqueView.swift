@@ -34,12 +34,17 @@ struct PlayersPlaqueView: View {
             RotatingSunView()
                 .offset(y: -30)
             VStack{
-                Text("I play Fall Ball as:")
+                Text("I Play Fall Ball As:")
                     .bold()
                     .italic()
                 if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                     let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+                    let bag = appModel.bags.first(where: { $0.bagID == appModel.selectedBag})
                     ZStack{
+                        if appModel.selectedBag != "nobag" {
+                            AnyView(bag!.bag)
+                                .frame(maxWidth: 180, maxHeight: 60)
+                        }
                         AnyView(character.character)
                             .scaleEffect(1.5)
                         if appModel.selectedHat != "nohat" {

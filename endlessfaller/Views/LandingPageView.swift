@@ -23,7 +23,8 @@ struct LandingPageView: View {
             .font(.largeTitle)
             .scaleEffect(1.5)
             SwipeUpHand()
-                .offset(x: 45, y:60)
+                .scaleEffect(0.75)
+                .offset(x: 40, y:40)
         }
         .animatedOffset(speed: 1)
     }

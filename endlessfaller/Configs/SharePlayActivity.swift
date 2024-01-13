@@ -12,8 +12,8 @@ struct SharePlayActivity: GroupActivity {
 
     var metadata: GroupActivityMetadata {
         var meta = GroupActivityMetadata()
-        meta.title = NSLocalizedString("SharePlay Example", comment: "")
-        meta.type = .watchTogether
+        meta.title = "Play Fall Ball Together!"
+        meta.type = .generic
         return meta
     }
 }

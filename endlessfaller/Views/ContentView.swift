@@ -336,9 +336,6 @@ struct ContentView: View {
                                                         .padding(60)
                                                         .font(.largeTitle)
                                                         .scaleEffect(1.2)
-                                                        SwipeUpHand()
-                                                            .scaleEffect(0.6)
-                                                            .offset(x: 30, y:100)
                                                     }
                                                     .animatedOffset(speed: 1)
                                                 }
