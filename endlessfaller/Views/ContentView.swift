@@ -321,20 +321,26 @@ struct ContentView: View {
                                                     .frame(width: 300)
                                                     .padding(30)
                                                     
-                                                    VStack{
-                                                        Text("Swipe up\nto cancel")
-                                                            .italic()
-                                                            .bold()
-                                                            .multilineTextAlignment(.center)
-                                                            .foregroundColor(.black)
-                                                            .padding()
-                                                        Image(systemName: "arrow.up")
-                                                            .foregroundColor(.black)
+                                                    ZStack{
+                                                        VStack{
+                                                            Text("Swipe up\nto cancel")
+                                                                .italic()
+                                                                .bold()
+                                                                .multilineTextAlignment(.center)
+                                                                .foregroundColor(.black)
+                                                                .padding()
+                                                            Image(systemName: "arrow.up")
+                                                                .foregroundColor(.black)
+                                                                .bold()
+                                                        }
+                                                        .padding(60)
+                                                        .font(.largeTitle)
+                                                        .scaleEffect(1.2)
+                                                        SwipeUpHand()
+                                                            .scaleEffect(0.6)
+                                                            .offset(x: 30, y:100)
                                                     }
-                                                    .padding(60)
-                                                    .font(.largeTitle)
                                                     .animatedOffset(speed: 1)
-                                                    .scaleEffect(1.2)
                                                 }
                                                 .offset(y: 90)
                                             }
@@ -379,7 +385,7 @@ struct ContentView: View {
                                 colors[index]
                                 if index == 0 && score == 0 {
                                     if self.BallAnimator.ballYPosition > deviceHeight / 2 {
-                                        Instruction2()
+                                        SwipeUpNowView()
                                     } else {
                                         Instruction()
                                     }

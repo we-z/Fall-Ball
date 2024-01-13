@@ -10,7 +10,7 @@ import SwiftUI
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            Instruction2()
+            SwipeUpNowView()
         }
     }
 }
@@ -1056,23 +1056,46 @@ struct Instruction: View {
         //.flashing()
     }
 }
-
-struct Instruction2: View {
+struct SwipeUpHand: View {
+    var body: some View {
+        ZStack{
+            Image(systemName: "hand.point.up.left")
+                .foregroundColor(.black)
+                .scaleEffect(2.1)
+                .bold()
+            Image(systemName: "hand.point.up.left.fill")
+                .foregroundColor(.yellow)
+                .offset(x:0.5, y: -0.2)
+                .scaleEffect(2)
+                
+        }
+        .font(.largeTitle)
+    }
+}
+struct SwipeUpNowView: View {
     var body: some View {
         VStack{
             Text("Swipe up\nnow!")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .scaleEffect(1.5)
                 .padding()
             Image(systemName: "arrow.up")
-                .padding(.top)
+                .padding(.top, 30)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .overlay{
+                    SwipeUpHand()
+                        .offset(x:39, y:69)
+                }
                 .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
-        .font(.largeTitle)
-        .scaleEffect(1.5)
+        
         //.flashing()
     }
 }

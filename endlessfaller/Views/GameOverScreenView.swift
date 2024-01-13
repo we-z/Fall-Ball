@@ -117,21 +117,26 @@ struct GameOverScreenView: View {
                     showPlaqueShare = true
                 }
             }
-            
-            VStack{
-                Text("Swipe up to \nplay again!")
-                    .italic()
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.black)
-                    .padding(.top, deviceHeight * 0.06)
-                    .padding()
-                Image(systemName: "arrow.up")
-                    .foregroundColor(.black)
-                //.shadow(color: .black, radius: 3)
+            ZStack{
+                VStack{
+                    Text("Swipe up to \nplay again!")
+                        .italic()
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
+                        .padding(.top, deviceHeight * 0.06)
+                        .padding()
+                    Image(systemName: "arrow.up")
+                        .foregroundColor(.black)
+                    //.shadow(color: .black, radius: 3)
+                }
+                .bold()
+                .foregroundColor(.black)
+                .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
+                
+                SwipeUpHand()
+                    .scaleEffect(0.7)
+                    .offset(x: 30, y:130)
             }
-            .bold()
-            .foregroundColor(.black)
-            .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
             .animatedOffset(speed: 1)
             Spacer()
         }
