@@ -10,8 +10,8 @@ import SwiftUI
 struct HatDesignsView: View {
     var body: some View {
         ZStack{
-            RobotArms()
-            ShockedBall()
+            Wings()
+            RickView()
                 .scaleEffect(1.5)
         }
     }
@@ -75,7 +75,7 @@ struct JetPack: View {
 
 struct Wings: View {
     var body: some View {
-        HStack(spacing: 39){
+        HStack(spacing: 30){
             Text("🪽")
                 .flipped(.horizontal)
             Text("🪽")
