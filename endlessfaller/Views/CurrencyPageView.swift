@@ -12,7 +12,7 @@ struct CurrencyPageView: View {
     @State var isProcessingPurchase = false
     @State var showAlert = false
     @StateObject var storeKit = StoreKitManager()
-    @StateObject var model = AppModel()
+    @ObservedObject private var model = AppModel.sharedAppModel
     @State var bundles: [CurrencyBundle] = [
         CurrencyBundle(coins: 25, cost: "$4.99", bundleID: "25boins"),
         CurrencyBundle(coins: 55, cost: "$9.99", bundleID: "55boins"),

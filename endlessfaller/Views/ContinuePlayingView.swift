@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContinuePlayingView: View {
-    @StateObject var appModel = AppModel()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
     @State var showCurrencyPage = false
     @State private var circleProgress: CGFloat = 0.0
     @Binding var cost: Int
@@ -19,10 +19,6 @@ struct ContinuePlayingView: View {
     
     var body: some View {
         ZStack{
-//            Color.black
-//                .opacity(0.2)
-//                .ignoresSafeArea()
-            //VTabView(selection: $currentIndex){
             VStack{
                 VStack{
                     HStack{

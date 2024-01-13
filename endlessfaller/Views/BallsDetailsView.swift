@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BallsDetailsView: View {
     @StateObject var storeKit = StoreKitManager()
-    @ObservedObject var model = AppModel()
+    @ObservedObject private var model = AppModel.sharedAppModel
     @State private var isMovingUp = false
     @Binding var ball: Character
     @Binding var ballIndex: Int

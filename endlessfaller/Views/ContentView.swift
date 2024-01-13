@@ -23,14 +23,12 @@ struct ContentView: View {
     let deviceWidth = UIScreen.main.bounds.width
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     let modelName = UIDevice.modelName
-    @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
-    @StateObject var appModel = AppModel()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
     @ObservedObject private var BallAnimator = BallAnimationManager()
     @ObservedObject private var audioController = AudioManager.sharedAudioManager
     @State var score: Int = -1
-    @State var currentScore: Int = 0
     @State var currentIndex: Int = -1
     @State var costToContinue: Int = 1
     @State var gameIsOver = false
@@ -54,11 +52,8 @@ struct ContentView: View {
     @State var triangleColor = Color.black
     @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
     @State var highestLevelInRound = -1
-    @State var gameOverBackgroundColor: Color = .white
-    @State var playedCharacter = ""
     @State private var gameOverTimer: Timer? = nil
     @State var placeOnLeaderBoard = 0
-    @State var isBallButtonMovingUp = false
     @State var isSwipeBannerMovingUp = false
     @State private var circleProgress: CGFloat = 0.0
     
@@ -134,7 +129,7 @@ struct ContentView: View {
         shouldContinue = true
         costToContinue = 1
         if score > -1 {
-            currentScore = score
+            appModel.currentScore = score
         }
         score = -1
         audioController.musicPlayer.rate = 1
@@ -142,14 +137,14 @@ struct ContentView: View {
         showInstructionsAndBall = true
         gameIsOver = true
         showNewBestScore = false
-        if currentScore > bestScore {
-            UserDefaults.standard.set(bestScore, forKey: bestScoreKey)
+        if appModel.currentScore > appModel.bestScore {
+            UserDefaults.standard.set(appModel.bestScore, forKey: bestScoreKey)
             DispatchQueue.main.async{
-                bestScore = currentScore
+                appModel.bestScore = appModel.currentScore
             }
         }
         DispatchQueue.main.async {
-            gameCenter.updateScore(currentScore: currentScore, bestScore: bestScore, ballID: appModel.selectedCharacter)
+            gameCenter.updateScore(currentScore: appModel.currentScore, bestScore: appModel.bestScore, ballID: appModel.selectedCharacter)
         }
     }
     
@@ -168,7 +163,7 @@ struct ContentView: View {
     func wastedOperations() {
         gameShouldBeOver = true
         if currentIndex > -1 {
-            gameOverBackgroundColor = colors[currentIndex]
+            appModel.gameOverBackgroundColor = colors[currentIndex]
         }
         DispatchQueue.main.async{
             showContinueToPlayScreen = true
@@ -182,7 +177,7 @@ struct ContentView: View {
         self.circleProgress = 0.0
         showInstructionsAndBall = false
         audioController.punchSoundEffect.play()
-        currentScore = score
+        appModel.currentScore = score
         
         showBoinFoundAnimation = false
         gameIsOver = true
@@ -199,7 +194,7 @@ struct ContentView: View {
             self.showWastedScreen = false
         }
         gameShouldBeOver = false
-        self.playedCharacter = appModel.selectedCharacter
+        appModel.playedCharacter = appModel.selectedCharacter
         gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 
             print("calling from wasted operations")
@@ -220,7 +215,7 @@ struct ContentView: View {
                 ZStack{
                     VTabView(selection: $currentIndex) {
                         ZStack{
-                            gameOverBackgroundColor
+                            appModel.gameOverBackgroundColor
                             if showContinueToPlayScreen{
                                 VStack{
                                     Spacer()
@@ -368,226 +363,16 @@ struct ContentView: View {
                         }
                         .ignoresSafeArea()
                         .tag(-2)
-                        VStack{
+                        ZStack{
                             Spacer()
-                            
                             if !firstGamePlayed {
-                                ZStack{
-                                    VStack{
-                                        HStack{
-                                            Spacer()
-                                            HStack{
-                                                BoinsView()
-                                                Text(String(appModel.balance))
-                                                    .bold()
-                                                    .italic()
-                                                    .font(.largeTitle)
-                                            }
-                                            .padding(.horizontal)
-                                            .padding(.vertical, 6)
-                                            .background{
-                                                Color.yellow
-                                            }
-                                            .cornerRadius(15)
-                                            .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
-                                            .offset(x: currencyButtonIsPressed ? -6 : 0, y: currencyButtonIsPressed ? 6 : 0)
-                                            .padding()
-                                            .pressEvents {
-                                                // On press
-                                                withAnimation(.easeInOut(duration: 0.1)) {
-                                                    currencyButtonIsPressed = true
-                                                }
-                                            } onRelease: {
-                                                withAnimation {
-                                                    currencyButtonIsPressed = false
-                                                    showCurrencyPage = true
-                                                }
-                                            }
-                                        }
-                                        .padding(.top, 30)
-                                        Spacer()
-                                        VStack{
-                                            Text("Swipe up \nto play!")
-                                                .italic()
-                                                .multilineTextAlignment(.center)
-                                                .foregroundColor(.black)
-                                                .padding()
-                                            Image(systemName: "arrow.up")
-                                                .foregroundColor(.black)
-                                        }
-                                        .animatedOffset(speed: 1)
-                                        .bold()
-                                        .font(.largeTitle)
-                                        .scaleEffect(1.5)
-                                        Spacer()
-                                    }
-                                    if showDailyBoinCollectedAnimation {
-                                        DailyBoinCollectedView()
-                                    }
-                                }
+                                LandingPageView()
                             } else {
-                                VStack{
-                                    HStack{
-                                        Spacer()
-                                        HStack{
-                                            BoinsView()
-                                            Text(String(appModel.balance))
-                                                .bold()
-                                                .italic()
-                                                .font(.largeTitle)
-                                        }
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 6)
-                                        .background{
-                                            Color.yellow
-                                        }
-                                        .cornerRadius(15)
-                                        .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
-                                        .offset(x: currencyButtonIsPressed ? -6 : 0, y: currencyButtonIsPressed ? 6 : 0)
-                                        .padding()
-                                        .pressEvents {
-                                            // On press
-                                            withAnimation(.easeInOut(duration: 0.1)) {
-                                                currencyButtonIsPressed = true
-                                            }
-                                        } onRelease: {
-                                            withAnimation {
-                                                currencyButtonIsPressed = false
-                                                showCurrencyPage = true
-                                            }
-                                        }
-                                    }
-                                    .padding(.top, 30)
-                                    Spacer()
-                                    Text("Game Over!")
-                                        .italic()
-                                        .bold()
-                                        .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
-                                    //                                    .randomColor()
-                                        .scaleEffect(1.8)
-                                    //                                    .shadow(color: .black, radius: 0.1, x: -3, y: 3)
-                                        .padding(.bottom, deviceHeight * 0.04)
-                                    ZStack{
-                                        HStack{
-                                            VStack(alignment: .trailing){
-                                                Spacer()
-                                                    .frame(maxHeight: 10)
-                                                HStack{
-                                                    ZStack{
-                                                        Text("Ball:")
-                                                            .font(.title)
-                                                            .bold()
-                                                            .italic()
-                                                            .foregroundColor(appModel.selectedHat == "nohat" ? .black : .clear)
-                                                            .padding(.leading, 15)
-                                                            .offset(x: 30)
-                                                    }
-                                                    Spacer()
-                                                        .frame(maxWidth: 110)
-                                                    Text("Score:")
-                                                        .foregroundColor(.black)
-                                                        .bold()
-                                                        .italic()
-                                                }
-                                                Text(String(currentScore))
-                                                    .bold()
-                                                    .italic()
-                                                    .offset(y: 6)
-                                                    .foregroundColor(.black)
-                                                    .font(.largeTitle)
-                                                Spacer()
-                                                    .frame(maxHeight: 15)
-                                                Text("Best:")
-                                                    .foregroundColor(.black)
-                                                    .bold()
-                                                    .italic()
-                                                Text(String(bestScore))
-                                                    .bold()
-                                                    .italic()
-                                                    .offset(y: 6)
-                                                    .foregroundColor(.black)
-                                                    .font(.largeTitle)
-                                                Spacer()
-                                                    .frame(maxHeight: 10)
-                                            }
-                                            .padding(.trailing, 30)
-                                            .padding()
-                                            .font(.title)
-                                        }
-                                        if let character = appModel.characters.first(where: { $0.characterID == playedCharacter}) {
-                                            ZStack{
-                                                AnyView(character.character)
-                                                    .scaleEffect(1.5)
-                                                if appModel.selectedHat != "nohat" {
-                                                    AnyView(hat!.hat)
-                                                }
-                                            }
-                                            .scaleEffect(1.5)
-                                            .offset(x: -70, y: appModel.selectedHat == "nohat" ? 18 : 30)
-                                        }
-                                    }
-                                    .background{
-                                        ZStack{
-                                            Rectangle()
-                                                .foregroundColor(.yellow)
-                                                .cornerRadius(30)
-                                                .shadow(color: .black, radius: 0.1, x: plaqueIsPressed ? 0 : -9, y: plaqueIsPressed ? 0 : 9)
-                                                .padding(.horizontal,9)
-                                            VStack{
-                                                Spacer()
-                                                HStack{
-                                                    Image(systemName: "square.and.arrow.up")
-                                                        .bold()
-                                                        .font(.title2)
-                                                        .padding(15)
-                                                        .padding(.horizontal, 12)
-                                                    Spacer()
-                                                }
-                                            }
-                                        }
-                                        
-                                    }
-                                    .offset(x: plaqueIsPressed ? -9 : 0, y: plaqueIsPressed ? 9 : 0)
-                                    .pressEvents {
-                                        // On press
-                                        withAnimation(.easeInOut(duration: 0.1)) {
-                                            plaqueIsPressed = true
-                                        }
-                                    } onRelease: {
-                                        withAnimation {
-                                            plaqueIsPressed = false
-                                            showPlaqueShare = true
-                                        }
-                                    }
-                                    
-                                    VStack{
-                                        Text("Swipe up to \nplay again!")
-                                            .italic()
-                                            .multilineTextAlignment(.center)
-                                            .foregroundColor(.black)
-                                            .padding(.top, deviceHeight * 0.06)
-                                            .padding()
-                                        Image(systemName: "arrow.up")
-                                            .foregroundColor(.black)
-                                        //.shadow(color: .black, radius: 3)
-                                    }
-                                    .bold()
-                                    .foregroundColor(.black)
-                                    .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
-                                    .animatedOffset(speed: 1)
-                                    Spacer()
-                                }
-                                .onAppear() {
-                                    withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: true)) {
-                                        isBallButtonMovingUp.toggle()
-                                    }
-                                }
+                                GameOverScreenView()
                             }
-                            Spacer()
-                            // delete here
-                            HUDView(backgroundColor: $gameOverBackgroundColor)
+                            HUDView()
                         }
-                        .background(gameOverBackgroundColor)
+                        .background(appModel.gameOverBackgroundColor)
                         .tag(-1)
                         ForEach(colors.indices, id: \.self) { index in
                             ZStack{
@@ -646,7 +431,7 @@ struct ContentView: View {
                         }
                         enableScaleAndFlashForDuration()
                         heavyHaptic.notificationOccurred(.success)
-                        if currentIndex > bestScore && currentIndex > 3 {
+                        if currentIndex > appModel.bestScore && currentIndex > 3 {
                             showNewBestScore = true
                         }
                     }
@@ -811,10 +596,6 @@ struct ContentView: View {
                 }
             }
             .persistentSystemOverlays(.hidden)
-            .sheet(isPresented: self.$showPlaqueShare){
-                PlayersPlaqueView(backgroundColor: $gameOverBackgroundColor)
-                    .presentationDetents([.height(450)])
-            }
             .sheet(isPresented: self.$showCurrencyPage){
                 CurrencyPageView()
             }
@@ -824,7 +605,7 @@ struct ContentView: View {
                 notificationManager.registerLocal()
                 notificationManager.scheduleLocal()
                 checkIfAppOpenToday()
-                playedCharacter = appModel.selectedCharacter
+                appModel.playedCharacter = appModel.selectedCharacter
 //                audioController.setUpAudioFiles()
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()

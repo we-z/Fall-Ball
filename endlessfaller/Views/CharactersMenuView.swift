@@ -13,7 +13,7 @@ struct CharactersMenuView: View {
     let deviceWidth = UIScreen.main.bounds.width
     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
     @StateObject var storeKit = StoreKitManager()
-    @ObservedObject var model = AppModel()
+    @ObservedObject private var model = AppModel.sharedAppModel
     @State var isProcessingPurchase = false
     @State var showSecretShop = false
     @State var hapticFeedbackCounter = 0
@@ -22,7 +22,6 @@ struct CharactersMenuView: View {
     @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "", isPurchased: false)
     @State var currentBallIndex = 0
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    @Binding  var backgroundColor: Color
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -193,7 +192,7 @@ struct CharactersMenuView: View {
 
 struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {
-        CharactersMenuView(backgroundColor: .constant(Color.pink))
+        CharactersMenuView()
     }
 }
 

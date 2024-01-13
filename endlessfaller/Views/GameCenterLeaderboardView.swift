@@ -11,7 +11,7 @@ import GameKit
 struct GameCenterLeaderboardView: View {
     let deviceWidth = UIScreen.main.bounds.width
     let deviceHeight = UIScreen.main.bounds.height
-    @StateObject var model = AppModel()
+    @ObservedObject private var model = AppModel.sharedAppModel
     @ObservedObject var gameCenter = GameCenter()
     @State var place = 1
     @State var unserNameTextField = ""
@@ -26,12 +26,7 @@ struct GameCenterLeaderboardView: View {
     let leaderboardIdentifier = "fallball.leaderboard"
     @State var isGameCenterEnabled: Bool = false
     @State var timeLeft = 0.0
-    @Binding  var backgroundColor: Color
     @State var selectedLeaderboard = 0
-    
-    public init(backgroundColor: Binding<Color>) {
-        _backgroundColor = backgroundColor
-    }
     
     
     func formatTimeDuration(_ duration: Double) -> String {
@@ -58,7 +53,7 @@ struct GameCenterLeaderboardView: View {
         let todaysPlayersList = gameCenter.todaysPlayersList
         let allTimePlayersList = gameCenter.allTimePlayersList
         ZStack{
-            backgroundColor
+            model.gameOverBackgroundColor
                 .overlay(.black.opacity(0.2))
                 .ignoresSafeArea()
             VStack{
@@ -79,11 +74,11 @@ struct GameCenterLeaderboardView: View {
                 VStack{
                     //if playersList.isEmpty{
                         ZStack{
-                            backgroundColor
+                            model.gameOverBackgroundColor
                                 .overlay(.black.opacity(0.1))
                             GeometryReader { g in
                                 ZStack{
-                                    backgroundColor
+                                    model.gameOverBackgroundColor
                                         .overlay(.black.opacity(0.2))
                                     VStack{
                                         HStack{
@@ -314,7 +309,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(backgroundColor)
+                                                            .listRowBackground(model.gameOverBackgroundColor)
                                                         }
                                                         
                                                     }
@@ -535,7 +530,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(backgroundColor)
+                                                            .listRowBackground(model.gameOverBackgroundColor)
                                                         }
                                                         
                                                     }
@@ -592,5 +587,5 @@ struct Player: Hashable, Comparable {
 }
 
 #Preview {
-    GameCenterLeaderboardView(backgroundColor: .constant(Color.brown))
+    GameCenterLeaderboardView()
 }

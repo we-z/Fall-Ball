@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SecretShopView: View {
-    @StateObject var model = AppModel()
+    @ObservedObject private var model = AppModel.sharedAppModel
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     var body: some View {
         GeometryReader { geometry in

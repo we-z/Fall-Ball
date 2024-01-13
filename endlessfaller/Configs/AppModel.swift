@@ -31,7 +31,7 @@ class AppModel: ObservableObject {
     @AppStorage("firstBallPicked") var firstBallPicked:Bool = false
     @Published var cancelContinuation = false
     @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
-    
+    @Published var gameOverBackgroundColor: Color = .white
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!
     @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
     @AppStorage(selectedBagKey) var selectedBag: String = UserDefaults.standard.string(forKey: selectedBagKey) ?? "nobag"
@@ -40,6 +40,12 @@ class AppModel: ObservableObject {
             savePurchasedCharacters()
         }
     }
+    
+    @Published var currentScore: Int = 0
+    @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
+    @Published var playedCharacter = ""
+    
+    static let sharedAppModel = AppModel()
     
     @Published var hats: [Hat] = [
         Hat(hat: AnyView(NoneView()), hatID: "nohat"),

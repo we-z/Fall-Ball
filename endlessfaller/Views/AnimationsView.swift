@@ -1348,7 +1348,7 @@ struct DailyBoinCollectedView: View {
     @State private var scale = false
     @State private var appearFromTop = false
     @State private var animationEnding = false
-    @StateObject var appModel = AppModel()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
     
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width

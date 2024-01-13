@@ -9,9 +9,8 @@ import SwiftUI
 import GameKit
 
 struct PlayersPlaqueView: View {
-    @StateObject var appModel = AppModel()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
     @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
-    @Binding  var backgroundColor: Color
     @Environment(\.displayScale) var displayScale
     @State private var sheetPresented : Bool = false
     
@@ -30,7 +29,7 @@ struct PlayersPlaqueView: View {
         
         ZStack{
             Rectangle()
-                .foregroundColor(backgroundColor)
+                .foregroundColor(appModel.gameOverBackgroundColor)
                 .frame(width: 330, height: 330)
             RotatingSunView()
                 .offset(y: -30)
@@ -74,7 +73,7 @@ struct PlayersPlaqueView: View {
     
     var body: some View {
         ZStack{
-            backgroundColor
+            appModel.gameOverBackgroundColor
                 .overlay(.black.opacity(0.6))
             VStack{
                 plaqueView()
@@ -97,7 +96,7 @@ struct PlayersPlaqueView: View {
                     .foregroundColor(.black)
                     .padding(9)
                     .padding(.horizontal, 6)
-                    .background(backgroundColor)
+                    .background(appModel.gameOverBackgroundColor)
                     .cornerRadius(30)
                     .padding(30)
                 }
@@ -117,5 +116,5 @@ struct PlayersPlaqueView: View {
 }
 
 #Preview {
-    PlayersPlaqueView(backgroundColor: .constant(Color.pink))
+    PlayersPlaqueView()
 }
