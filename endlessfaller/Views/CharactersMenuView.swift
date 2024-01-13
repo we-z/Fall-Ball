@@ -22,6 +22,8 @@ struct CharactersMenuView: View {
     @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "", isPurchased: false)
     @State var currentBallIndex = 0
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    @State private var circleProgress: CGFloat = 0.0
+    
     var body: some View {
         ZStack{
             model.gameOverBackgroundColor
@@ -137,12 +139,39 @@ struct CharactersMenuView: View {
                                     .padding(.top)
                             }
                             .overlay{
-                                Text("Secret Shop 🤫")
-                                    .font(.system(size: 12))
-                                    .bold()
-                                    .italic()
-                                    .offset(y:75)
-                                    .scaleEffect(yPosition > -(deviceHeight) ? 1 + ((deviceHeight - abs(yPosition)) / 390) : 1)
+                                VStack{
+                                    Text("Secret Shop 🤫")
+                                        .font(.system(size: 12))
+                                        .bold()
+                                        .italic()
+                                        .scaleEffect(yPosition > -(deviceHeight) ? 1 + ((deviceHeight - abs(yPosition)) / 390) : 1)
+                                    if idiom == .pad {
+                                        ZStack{
+                                            Circle()
+                                                .foregroundColor(.black)
+                                                .frame(width: 69, height: 69)
+                                            Circle()
+                                                .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 600))
+                                                .stroke(Color.blue, lineWidth: 30)
+                                                .rotationEffect(Angle(degrees: -90))
+                                                .frame(width: 30, height: 30)
+                                        }
+                                        .offset(y: 15)
+                                    } else {
+                                        ZStack{
+                                            Circle()
+                                                .foregroundColor(.black)
+                                                .frame(width: 69, height: 69)
+                                            Circle()
+                                                .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 240))
+                                                .stroke(Color.blue, lineWidth: 30)
+                                                .rotationEffect(Angle(degrees: -90))
+                                                .frame(width: 30, height: 30)
+                                        }
+                                        .offset(y: 15)
+                                    }
+                                }
+                                .offset(y:120)
                             }
                             .background(GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
