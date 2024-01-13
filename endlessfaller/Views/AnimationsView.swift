@@ -1061,15 +1061,13 @@ struct SwipeUpHand: View {
         ZStack{
             Image(systemName: "hand.point.up.left")
                 .foregroundColor(.black)
-                .scaleEffect(2.1)
                 .bold()
             Image(systemName: "hand.point.up.left.fill")
                 .foregroundColor(.yellow)
-                .offset(x:0.5, y: -0.2)
-                .scaleEffect(2)
-                
+                .offset(x:0.3)
         }
         .font(.largeTitle)
+        .scaleEffect(2)
     }
 }
 struct SwipeUpNowView: View {
