@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct BallsDetailsView: View {
-    @StateObject var storeKit = StoreKitManager()
     @ObservedObject private var model = AppModel.sharedAppModel
     @State private var isMovingUp = false
     @Binding var ball: Character
     @Binding var ballIndex: Int
-    @State var isProcessingPurchase = false
     @Environment(\.dismiss) private var dismiss
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @State var showCurrencyPage = false
+    @State var obtainIsPressed = false
+    
     var body: some View {
         ZStack{
+            model.gameOverBackgroundColor
+                .ignoresSafeArea()
             VStack{
                 Capsule()
                     .frame(maxWidth: 45, maxHeight: 9)
@@ -38,67 +40,50 @@ struct BallsDetailsView: View {
                 if idiom == .pad {
                     Spacer()
                 }
-                Button {
-                    if ball.isPurchased || ballIndex < 9 {
-                        model.selectedCharacter = ball.characterID
-                        dismiss()
-                    } else {
-//                        isProcessingPurchase = true
-//                        Task {
-//                            do {
-//                                if (try await storeKit.purchase(characterID: ball.characterID)) != nil{
-//                                    model.selectedCharacter = ball.characterID
-//                                    dismiss()
-//                                }
-//                            } catch {
-//                                print("Purchase failed: \(error)")
-//                            }
-//                            isProcessingPurchase = false
-//                        }
-                        if let ballCost = Int(ball.cost) {
-                            if model.balance >= ballCost {
-                                model.characters[ballIndex].isPurchased = true
-                                model.balance -= ballCost
-                                model.selectedCharacter = ball.characterID
-                                model.updatePurchasedCharacters()
-                                dismiss()
-                            } else {
-                                showCurrencyPage = true
-                            }
-                        }
-                    }
-                } label: {
-                    HStack{
-                        Spacer()
-                        Text((ball.isPurchased || ballIndex < 9) ? "EQUIP!" : "OBTAIN:")
-                            .bold()
-                            .italic()
-                            .font(.title)
-                            .foregroundColor(.black)
-                            .padding(.vertical)
-                        if ballIndex > 8 && !ball.isPurchased {
-                            BoinsView()
-                        }
-                        Text((ball.isPurchased || ballIndex < 9) ? "" : "\(ball.cost)")
-                            .bold()
-                            .italic()
-                            .font(.title)
-                            .foregroundColor(.black)
-                        Spacer()
-                    }
-                    .background(.yellow)
-                    .cornerRadius(21)
-                    .padding(.horizontal)
-                    .padding(.bottom, idiom == .pad ? 30 : 0)
+                HStack{
+                    Spacer()
+                    Text("OBTAIN:")
+                        .bold()
+                        .italic()
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(.vertical)
+                    BoinsView()
+                    Text("\(ball.cost)")
+                        .bold()
+                        .italic()
+                        .font(.title)
+                        .foregroundColor(.black)
+                    Spacer()
                 }
-            }
-            if isProcessingPurchase {
-                Color.gray.opacity(0.3) // Gray out the background
-                    .edgesIgnoringSafeArea(.all)
-                ProgressView()
-                    .scaleEffect(2)
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
-            
+                .background(.yellow)
+                .cornerRadius(21)
+                .padding(.horizontal, 30)
+                .padding(.bottom, idiom == .pad ? 30 : 0)
+                .shadow(color: .black, radius: 0.1, x: obtainIsPressed ? 0 : -6, y: obtainIsPressed ? 0 : 6)
+                .offset(x: obtainIsPressed ? -6 : 0, y: obtainIsPressed ? 6 : 0)
+                .pressEvents {
+                    // On press
+                    withAnimation(.easeInOut(duration: 0.1)) {
+                        obtainIsPressed = true
+                    }
+                } onRelease: {
+                    withAnimation {
+                        obtainIsPressed = false
+                    }
+
+                    if let ballCost = Int(ball.cost) {
+                        if model.balance >= ballCost {
+                            model.characters[ballIndex].isPurchased = true
+                            model.balance -= ballCost
+                            model.selectedCharacter = ball.characterID
+                            model.updatePurchasedCharacters()
+                            dismiss()
+                        } else {
+                            showCurrencyPage = true
+                        }
+                    }
+                }
             }
         }
         .onAppear() {
@@ -113,5 +98,5 @@ struct BallsDetailsView: View {
 }
 
 #Preview {
-    BallsDetailsView( ball: .constant(Character(character: AnyView(WhiteBallView()), cost: "String", characterID: "String", isPurchased: false)), ballIndex: .constant(0))
+    BallsDetailsView( ball: .constant(Character(character: AnyView(WhiteBallView()), cost: "69", characterID: "String", isPurchased: false)), ballIndex: .constant(0))
 }
