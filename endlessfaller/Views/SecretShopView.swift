@@ -62,7 +62,7 @@ struct SecretShopView: View {
                                                                 .scaleEffect(1.5)
                                                         }
                                                         AnyView(hat.hat)
-                                                            .offset(y: model.hats[index].hatID == model.selectedHat ? 0 : 30)
+                                                            .offset(y: model.hats[index].hatID == model.selectedHat ? 0 : index == 0 ? 0 : 30)
                                                                 
                                                     }
                                                     .padding()
@@ -96,7 +96,7 @@ struct SecretShopView: View {
                                             Rectangle()
                                                 .fill(.clear)
                                                 .cornerRadius(20)
-                                                .frame(width: geometry.size.width/2.2, height: idiom == .pad ? 270 : 150)
+                                                .frame(width: geometry.size.width/2.2, height: idiom == .pad ? 270 : 180)
                                                 .overlay{
                                                     RoundedRectangle(cornerRadius: 20)
                                                         .stroke(model.bags[index].bagID == model.selectedBag ? Color.black : Color.clear, lineWidth: 3)
@@ -108,6 +108,11 @@ struct SecretShopView: View {
                                                         if model.bags[index].bagID == model.selectedBag && index != 0 {
                                                             AnyView(character?.character)
                                                                 .scaleEffect(1.5)
+                                                            if model.selectedHat != "nohat" {
+                                                                if let hat = model.hats.first(where: { $0.hatID == model.selectedHat}) {
+                                                                    AnyView(hat.hat)
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 )
