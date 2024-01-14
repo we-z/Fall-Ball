@@ -66,14 +66,15 @@ struct ContentView: View {
          1 ->       1, 3
          1000 ->    0.1, 0.3
          */
-        let m1 = (0.1 - 0.5) / (1000 - 1)
-        let c1 = 0.5 - m1 * 1
-        let bottom = m1 * Double(difficultyInput) + c1
+        let m1 = -0.0004004004004004004
+        let c1 = 0.5004004004004003
+        let fastest = m1 * Double(difficultyInput) + c1
 
-        let m2 = (0.3 - 1.5) / (1000 - 1)
-        let c2 = 1.5 - m2 * 1
-        let top = m2 * Double(difficultyInput) + c2
-        let randomSpeed = Double.random(in: bottom...top)
+        let m2 = -0.0012012012012012011
+        let c2 = 1.5012012012012013
+        let slowest = m2 * Double(difficultyInput) + c2
+        
+        let randomSpeed = Double.random(in: fastest...slowest)
         BallAnimator.pushBallUp(newBallSpeed: randomSpeed)
     }
     

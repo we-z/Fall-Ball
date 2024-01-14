@@ -875,7 +875,7 @@ let backgroundColors: [String] = [
     "#00A8E1", // Skype Blue
     "#E31B23", // Netflix Red
     "#ED1C24", // Adobe Red
-    "#99CC33", // Spotify Green
+    "#1ed760", // Spotify Green
     "#BD081C", // Pinterest Red
     "#00AFF0", // LinkedIn Blue
     "#2BAC76", // WhatsApp Green
