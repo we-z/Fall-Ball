@@ -44,6 +44,12 @@ class AudioManager: ObservableObject {
     }
     
     func setUpAudioFiles() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Error setting up audio session: \(error)")
+        }
         if let music = Bundle.main.path(forResource: "FallBallOST120", ofType: "mp3"){
             do {
                 self.musicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: music))
