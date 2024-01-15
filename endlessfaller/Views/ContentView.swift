@@ -563,6 +563,9 @@ struct ContentView: View {
                                 audioController.boingSoundEffect.play()
                             }
                     }
+                    if showDailyBoinCollectedAnimation {
+                        DailyBoinCollectedView()
+                    }
                 }
             }
             .persistentSystemOverlays(.hidden)
