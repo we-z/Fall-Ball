@@ -18,7 +18,7 @@ struct CharactersDesignsView: View {
                     NorwayView()
                 }
                 ZStack{
-                    KenyaView()
+                    YinYangBallView()
                 }
             }
 //            HStack{
@@ -1250,16 +1250,12 @@ struct OrbBallView: View {
 struct YinYangBallView: View {
     var body: some View {
         ZStack{
+            Circle()
+                .foregroundColor(.black)
+                .frame(width: 50, height: 50)
             Image("yinyang")
                 .resizable()
                 .frame(width: 50, height: 50)
-            BallView()
-                .overlay{
-                    Circle()
-                        .stroke()
-                        .foregroundColor(.black)
-                }
-                
         }
     }
 }
