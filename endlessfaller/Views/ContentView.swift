@@ -25,6 +25,7 @@ struct ContentView: View {
     @ObservedObject private var BallAnimator = BallAnimationManager()
     @ObservedObject private var audioController = AudioManager.sharedAudioManager
     @State var score: Int = -1
+    @State var ballSpeed: Double = 0.0
     @State var currentIndex: Int = -1
     @State var costToContinue: Int = 1
     @State var firstGamePlayed = false
@@ -56,7 +57,8 @@ struct ContentView: View {
         self.queue.underlyingQueue = rotationQueDispatch
     }
     func dropBall() {
-        BallAnimator.startTimer(speed: 2)
+        self.ballSpeed = 2
+        BallAnimator.startTimer(speed: self.ballSpeed)
     }
     func liftBall(difficultyInput: Int) {
         /*
@@ -74,8 +76,8 @@ struct ContentView: View {
         let c2 = 1.5012012012012013
         let slowest = m2 * Double(difficultyInput) + c2
         
-        let randomSpeed = Double.random(in: fastest...slowest)
-        BallAnimator.pushBallUp(newBallSpeed: randomSpeed)
+        ballSpeed = Double.random(in: fastest...slowest)
+        BallAnimator.pushBallUp(newBallSpeed: ballSpeed)
     }
     
     func boinFound() {
@@ -124,6 +126,7 @@ struct ContentView: View {
             }
         }
         DispatchQueue.main.async {
+            self.highestLevelInRound = -1
             gameCenter.updateScore(currentScore: appModel.currentScore, bestScore: appModel.bestScore, ballID: appModel.selectedCharacter)
         }
     }
@@ -143,12 +146,14 @@ struct ContentView: View {
         if currentIndex > -1 {
             appModel.gameOverBackgroundColor = colors[currentIndex]
         }
+        self.highestLevelInRound = -1
         DispatchQueue.main.async{
+            self.highestLevelInRound = -1
             showContinueToPlayScreen = true
             self.BallAnimator.endingYPosition = 23
             self.BallAnimator.pushUp = false
             self.currentIndex = -2
-            self.highestLevelInRound = -1
+            
         }
         firstGamePlayed = true
         shouldContinue = false
@@ -378,12 +383,16 @@ struct ContentView: View {
                         if newValue == -1 {
                             if !shouldContinue{
                                 print("calling from screen disappearing")
+                                self.highestLevelInRound = -1
                                 gameOverOperations()
                             }
                         }
                         boinIntervalCounter += 1
                         if boinIntervalCounter > 1000 {
                             boinFound()
+                        }
+                        if newValue == 0 {
+                            self.highestLevelInRound = -1
                         }
                         if newValue > highestLevelInRound {
                             if newValue == 0 {
@@ -501,6 +510,7 @@ struct ContentView: View {
                         }
                         .allowsHitTesting(false)
                         ZStack{
+                            
                             HStack{
                                 Divider()
                                     .frame(width: 3)
@@ -516,8 +526,10 @@ struct ContentView: View {
                                     .offset(x: 21, y: -21)
 
                             }
-                            .frame(width: 66, height: abs(self.BallAnimator.ballYPosition * 0.1))
-                            .offset(x: 0, y:-(self.BallAnimator.ballYPosition * 0.1))
+                            .frame(width: 66, height: abs(60 / self.ballSpeed))
+                            .offset(x: 0, y:-(60 / self.ballSpeed))
+                            
+                                    
                             if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
                                 ZStack{
                                     AnyView(bag!.bag)
