@@ -11,9 +11,15 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                FinlandView()
-                BombBallView()
-                AllmightView()
+                ZStack{
+                    ColombiaView()
+                }
+                ZStack{
+                    NorwayView()
+                }
+                ZStack{
+                    KenyaView()
+                }
             }
 //            HStack{
 //                NorwayView()
@@ -49,7 +55,80 @@ struct CharactersDesignsView: View {
         }
     }
 }
+struct EyesView: View {
+    var body: some View {
+//        Text("👀")
+//            .scaleEffect(1.2)
+//            .offset(y: -6)
+        
+//        HStack(spacing: 3){
+//            ZStack{
+//                Capsule()
+//                    .frame(width: 15, height: 13)
+//                    .foregroundColor(.black)
+//                Capsule()
+//                    .frame(width: 12, height: 10)
+//                    .foregroundColor(.white)
+//            }
+//            ZStack{
+//                Capsule()
+//                    .frame(width: 15, height: 13)
+//                    .foregroundColor(.black)
+//                Capsule()
+//                    .frame(width: 12, height: 10)
+//                    .foregroundColor(.white)
+//            }
+//        }
+//        .offset(y: -3)
+        
+        HStack {
+            Circle()
+                .foregroundColor(.black)
+                .frame(width: 12)
+                .overlay{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 9)
+                        .offset(x: -3, y:-3)
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 3)
+                        .offset(x: 2, y:2)
+                    Circle()
+                        .stroke(.black, lineWidth: 2)
+                }
+                .mask{
+                    Circle()
+                        .frame(width: 12)
+                }
+                
+            Spacer()
+                .frame(maxWidth: 7)
+            Circle()
+                .foregroundColor(.black)
+                .frame(width: 12)
+                .overlay{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 9)
+                        .offset(x: -3, y:-3)
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 3)
+                        .offset(x: 2, y:2)
+                    Circle()
+                        .stroke(.black, lineWidth: 2)
+                }
+                .mask{
+                    Circle()
+                        .frame(width: 12)
+                }
 
+        }
+        .offset(y:-3)
+        
+    }
+}
 struct BoinsView: View {
     var body: some View {
         ZStack{
@@ -1074,10 +1153,13 @@ struct UkView: View {
 
 struct BallView: View {
     var body: some View {
-        Circle()
-            .strokeBorder(Color.black,lineWidth: 2)
-            .allowsHitTesting(false)
-            .frame(width: 46, height: 46)
+        ZStack{
+            Circle()
+                .strokeBorder(Color.black,lineWidth: 2)
+                .allowsHitTesting(false)
+                .frame(width: 46, height: 46)
+            EyesView()
+        }
     }
 }
 
@@ -1200,20 +1282,6 @@ struct BombBallView: View {
         ZStack{
             Text("💣")
                 .font(.system(size: 51))
-        }
-        .frame(height: 46)
-    }
-}
-
-struct LaughBallView: View {
-    var body: some View {
-        ZStack{
-            Circle()
-                .frame(width: 46)
-                .foregroundColor(.black)
-            Text("🤣")
-                .font(.system(size: 48))
-                .offset(x:0.4, y: -0.2)
         }
         .frame(height: 46)
     }

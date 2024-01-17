@@ -23,14 +23,6 @@
 		7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */; };
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
-		7A48042B2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A48042A2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift */; };
-		7A48042D2B54EF6500B6CE87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A48042C2B54EF6500B6CE87 /* ContentView.swift */; };
-		7A48042F2B54EF6600B6CE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A48042E2B54EF6600B6CE87 /* Assets.xcassets */; };
-		7A4804322B54EF6600B6CE87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4804312B54EF6600B6CE87 /* Preview Assets.xcassets */; };
-		7A48043E2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A48043D2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift */; };
-		7A4804482B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4804472B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift */; };
-		7A48044A2B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4804492B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift */; };
-		7A48044D2B54EF6600B6CE87 /* Fall Bal App Clip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 7A4804282B54EF6500B6CE87 /* Fall Bal App Clip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
 		7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */; };
@@ -63,27 +55,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7A48043A2B54EF6600B6CE87 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AD234332A5F824800ED626D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A4804272B54EF6500B6CE87;
-			remoteInfo = "Fall Bal App Clip";
-		};
-		7A4804442B54EF6600B6CE87 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AD234332A5F824800ED626D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A4804272B54EF6500B6CE87;
-			remoteInfo = "Fall Bal App Clip";
-		};
-		7A48044B2B54EF6600B6CE87 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AD234332A5F824800ED626D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A4804272B54EF6500B6CE87;
-			remoteInfo = "Fall Bal App Clip";
-		};
 		7AD2344D2A5F824900ED626D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7AD234332A5F824800ED626D /* Project object */;
@@ -128,7 +99,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
 			dstSubfolderSpec = 16;
 			files = (
-				7A48044D2B54EF6600B6CE87 /* Fall Bal App Clip.app in Embed App Clips */,
 			);
 			name = "Embed App Clips";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,16 +136,13 @@
 		7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FallBallOST120.mp3; sourceTree = "<group>"; };
 		7A43B2312AA3E0440099AFB6 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		7A43B2332AA566A50099AFB6 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
-		7A4804282B54EF6500B6CE87 /* Fall Bal App Clip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fall Bal App Clip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A48042A2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipApp.swift; sourceTree = "<group>"; };
 		7A48042C2B54EF6500B6CE87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7A48042E2B54EF6600B6CE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A4804312B54EF6600B6CE87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7A4804332B54EF6600B6CE87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A4804342B54EF6600B6CE87 /* Fall_Bal_App_Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fall_Bal_App_Clip.entitlements; sourceTree = "<group>"; };
-		7A4804392B54EF6600B6CE87 /* Fall Bal App ClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fall Bal App ClipTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A48043D2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipTests.swift; sourceTree = "<group>"; };
-		7A4804432B54EF6600B6CE87 /* Fall Bal App ClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fall Bal App ClipUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A4804472B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITests.swift; sourceTree = "<group>"; };
 		7A4804492B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
@@ -218,27 +185,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7A4804252B54EF6500B6CE87 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A4804362B54EF6600B6CE87 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A4804402B54EF6600B6CE87 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7AD234382A5F824800ED626D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,9 +368,6 @@
 				7AFDA55E2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app */,
 				7AFDA5702AC1592900D3A1F0 /* FallBallWatchOS Watch AppTests.xctest */,
 				7AFDA57A2AC1592A00D3A1F0 /* FallBallWatchOS Watch AppUITests.xctest */,
-				7A4804282B54EF6500B6CE87 /* Fall Bal App Clip.app */,
-				7A4804392B54EF6600B6CE87 /* Fall Bal App ClipTests.xctest */,
-				7A4804432B54EF6600B6CE87 /* Fall Bal App ClipUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -506,59 +449,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7A4804272B54EF6500B6CE87 /* Fall Bal App Clip */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7A48044E2B54EF6600B6CE87 /* Build configuration list for PBXNativeTarget "Fall Bal App Clip" */;
-			buildPhases = (
-				7A4804242B54EF6500B6CE87 /* Sources */,
-				7A4804252B54EF6500B6CE87 /* Frameworks */,
-				7A4804262B54EF6500B6CE87 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Fall Bal App Clip";
-			productName = "Fall Bal App Clip";
-			productReference = 7A4804282B54EF6500B6CE87 /* Fall Bal App Clip.app */;
-			productType = "com.apple.product-type.application.on-demand-install-capable";
-		};
-		7A4804382B54EF6600B6CE87 /* Fall Bal App ClipTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7A4804522B54EF6600B6CE87 /* Build configuration list for PBXNativeTarget "Fall Bal App ClipTests" */;
-			buildPhases = (
-				7A4804352B54EF6600B6CE87 /* Sources */,
-				7A4804362B54EF6600B6CE87 /* Frameworks */,
-				7A4804372B54EF6600B6CE87 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7A48043B2B54EF6600B6CE87 /* PBXTargetDependency */,
-			);
-			name = "Fall Bal App ClipTests";
-			productName = "Fall Bal App ClipTests";
-			productReference = 7A4804392B54EF6600B6CE87 /* Fall Bal App ClipTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		7A4804422B54EF6600B6CE87 /* Fall Bal App ClipUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7A4804552B54EF6600B6CE87 /* Build configuration list for PBXNativeTarget "Fall Bal App ClipUITests" */;
-			buildPhases = (
-				7A48043F2B54EF6600B6CE87 /* Sources */,
-				7A4804402B54EF6600B6CE87 /* Frameworks */,
-				7A4804412B54EF6600B6CE87 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7A4804452B54EF6600B6CE87 /* PBXTargetDependency */,
-			);
-			name = "Fall Bal App ClipUITests";
-			productName = "Fall Bal App ClipUITests";
-			productReference = 7A4804432B54EF6600B6CE87 /* Fall Bal App ClipUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		7AD2343A2A5F824800ED626D /* Fall Ball */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7AD234602A5F824900ED626D /* Build configuration list for PBXNativeTarget "Fall Ball" */;
@@ -571,7 +461,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7A48044C2B54EF6600B6CE87 /* PBXTargetDependency */,
 			);
 			name = "Fall Ball";
 			packageProductDependencies = (
@@ -696,17 +585,6 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					7A4804272B54EF6500B6CE87 = {
-						CreatedOnToolsVersion = 15.0;
-					};
-					7A4804382B54EF6600B6CE87 = {
-						CreatedOnToolsVersion = 15.0;
-						TestTargetID = 7A4804272B54EF6500B6CE87;
-					};
-					7A4804422B54EF6600B6CE87 = {
-						CreatedOnToolsVersion = 15.0;
-						TestTargetID = 7A4804272B54EF6500B6CE87;
-					};
 					7AD2343A2A5F824800ED626D = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -759,37 +637,11 @@
 				7AFDA55D2AC1592800D3A1F0 /* FallBallWatchOS Watch App */,
 				7AFDA56F2AC1592900D3A1F0 /* FallBallWatchOS Watch AppTests */,
 				7AFDA5792AC1592A00D3A1F0 /* FallBallWatchOS Watch AppUITests */,
-				7A4804272B54EF6500B6CE87 /* Fall Bal App Clip */,
-				7A4804382B54EF6600B6CE87 /* Fall Bal App ClipTests */,
-				7A4804422B54EF6600B6CE87 /* Fall Bal App ClipUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7A4804262B54EF6500B6CE87 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A4804322B54EF6600B6CE87 /* Preview Assets.xcassets in Resources */,
-				7A48042F2B54EF6600B6CE87 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A4804372B54EF6600B6CE87 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A4804412B54EF6600B6CE87 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7AD234392A5F824800ED626D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -851,32 +703,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7A4804242B54EF6500B6CE87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A48042D2B54EF6500B6CE87 /* ContentView.swift in Sources */,
-				7A48042B2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A4804352B54EF6600B6CE87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A48043E2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A48043F2B54EF6600B6CE87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A4804482B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift in Sources */,
-				7A48044A2B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7AD234372A5F824800ED626D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -956,21 +782,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7A48043B2B54EF6600B6CE87 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A4804272B54EF6500B6CE87 /* Fall Bal App Clip */;
-			targetProxy = 7A48043A2B54EF6600B6CE87 /* PBXContainerItemProxy */;
-		};
-		7A4804452B54EF6600B6CE87 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A4804272B54EF6500B6CE87 /* Fall Bal App Clip */;
-			targetProxy = 7A4804442B54EF6600B6CE87 /* PBXContainerItemProxy */;
-		};
-		7A48044C2B54EF6600B6CE87 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A4804272B54EF6500B6CE87 /* Fall Bal App Clip */;
-			targetProxy = 7A48044B2B54EF6600B6CE87 /* PBXContainerItemProxy */;
-		};
 		7AD2344E2A5F824900ED626D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7AD2343A2A5F824800ED626D /* Fall Ball */;
@@ -999,188 +810,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		7A48044F2B54EF6600B6CE87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "Fall Bal App Clip/Fall_Bal_App_Clip.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.7;
-				DEVELOPMENT_ASSET_PATHS = "\"Fall Bal App Clip/Preview Content\"";
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fall Bal App Clip/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Fall Ball";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.5.7;
-				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall.Clip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		7A4804502B54EF6600B6CE87 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "Fall Bal App Clip/Fall_Bal_App_Clip.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.7;
-				DEVELOPMENT_ASSET_PATHS = "\"Fall Bal App Clip/Preview Content\"";
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fall Bal App Clip/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Fall Ball";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.5.7;
-				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall.Clip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7A4804532B54EF6600B6CE87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.endlessfall.Fall-Bal-App-ClipTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fall Bal App Clip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fall Bal App Clip";
-			};
-			name = Debug;
-		};
-		7A4804542B54EF6600B6CE87 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.endlessfall.Fall-Bal-App-ClipTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fall Bal App Clip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fall Bal App Clip";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7A4804562B54EF6600B6CE87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.endlessfall.Fall-Bal-App-ClipUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Fall Bal App Clip";
-			};
-			name = Debug;
-		};
-		7A4804572B54EF6600B6CE87 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.endlessfall.Fall-Bal-App-ClipUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Fall Bal App Clip";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		7AD2345E2A5F824900ED626D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1303,7 +932,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.7;
+				CURRENT_PROJECT_VERSION = 1.5.8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1327,7 +956,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.5.7;
+				MARKETING_VERSION = 1.5.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1349,7 +978,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.7;
+				CURRENT_PROJECT_VERSION = 1.5.8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1373,7 +1002,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.5.7;
+				MARKETING_VERSION = 1.5.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1697,33 +1326,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7A48044E2B54EF6600B6CE87 /* Build configuration list for PBXNativeTarget "Fall Bal App Clip" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A48044F2B54EF6600B6CE87 /* Debug */,
-				7A4804502B54EF6600B6CE87 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7A4804522B54EF6600B6CE87 /* Build configuration list for PBXNativeTarget "Fall Bal App ClipTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A4804532B54EF6600B6CE87 /* Debug */,
-				7A4804542B54EF6600B6CE87 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7A4804552B54EF6600B6CE87 /* Build configuration list for PBXNativeTarget "Fall Bal App ClipUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A4804562B54EF6600B6CE87 /* Debug */,
-				7A4804572B54EF6600B6CE87 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		7AD234362A5F824800ED626D /* Build configuration list for PBXProject "endlessfaller" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
