@@ -166,6 +166,7 @@ struct GameCenterLeaderboardView: View {
                                                         VStack{
                                                             Text("👑")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.5)
                                                                 .opacity(todaysPlayersList.count > 0 ? 1 : 0)
                                                             Circle()
                                                                 .frame(width: 100)
@@ -386,6 +387,7 @@ struct GameCenterLeaderboardView: View {
                                                         VStack{
                                                             Text("👑")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.5)
                                                                 .opacity(allTimePlayersList.count > 0 ? 1 : 0)
                                                             Circle()
                                                                 .frame(width: 100)
