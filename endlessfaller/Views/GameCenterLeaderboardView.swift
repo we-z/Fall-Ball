@@ -340,7 +340,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(model.gameOverBackgroundColor)
+                                                            .listRowBackground(model.gameOverBackgroundColor.overlay(Color.black.opacity((todaysPlayersList.count > num - 1 && todaysPlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
                                                         }
                                                         
                                                     }
@@ -562,7 +562,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(model.gameOverBackgroundColor)
+                                                            .listRowBackground(model.gameOverBackgroundColor.overlay(Color.black.opacity((allTimePlayersList.count > num - 1 && allTimePlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
                                                         }
                                                         
                                                     }
