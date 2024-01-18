@@ -182,6 +182,7 @@ struct GameCenterLeaderboardView: View {
                                                             Circle()
                                                                 .frame(width: 100)
                                                                 .foregroundColor(todaysPlayersList.count > 0 ? .clear : .gray)
+                                                                .padding([.horizontal])
                                                                 .overlay{
                                                                     //                                                                    RickView()
                                                                     //                                                                        .scaleEffect(2.7)
@@ -231,8 +232,9 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             }
                                                         }
-                                                        .frame(maxWidth: deviceWidth / 3)
                                                         .cornerRadius(21)
+                                                        .frame(maxWidth: deviceWidth / 3)
+                                                        
                                                         VStack{
                                                             Circle()
                                                                 .frame(width: 90)
