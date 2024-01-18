@@ -169,9 +169,10 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             }
                                                         }
+                                                        .frame(maxWidth: deviceWidth / 3)
                                                         .cornerRadius(21)
                                                         .padding(.leading)
-                                                        .offset(y: 90)
+                                                        .offset(y: 120)
                                                         .padding(.bottom, 30)
                                                         VStack{
                                                             Text("👑")
@@ -230,6 +231,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             }
                                                         }
+                                                        .frame(maxWidth: deviceWidth / 3)
                                                         .cornerRadius(21)
                                                         VStack{
                                                             Circle()
@@ -285,12 +287,13 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             }
                                                         }
+                                                        .frame(maxWidth: deviceWidth / 3)
                                                         .cornerRadius(21)
                                                         .padding(.trailing)
-                                                        .offset(y: 90)
+                                                        .offset(y: 120)
                                                         .padding(.bottom, 30)
                                                     }
-                                                    .padding(.bottom)
+                                                    .padding(.bottom, 60)
                                                     .background{
                                                         RotatingSunView()
                                                             .offset(y:240)
@@ -370,7 +373,7 @@ struct GameCenterLeaderboardView: View {
                                                             Circle()
                                                                 .frame(width: 90)
                                                                 .foregroundColor(allTimePlayersList.count > 2 ? .clear : .gray)
-                                                                .padding(.horizontal)
+                                                                .padding([.horizontal, .top])
                                                                 .overlay{
                                                                     //                                                                    YinYangBallView()
                                                                     //                                                                        .scaleEffect(2)
@@ -386,6 +389,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             Text("🥉")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.2)
                                                             if allTimePlayersList.count > 2 {
                                                                 Text(allTimePlayersList[2].name)
                                                                 //                                                                    .foregroundStyle(.white)
@@ -411,8 +415,18 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
+                                                        .background{
+                                                            if allTimePlayersList.count > 2 {
+                                                                if allTimePlayersList[2].currentPlayer.alias == localPlayer.alias {
+                                                                    Color.white
+                                                                        .opacity(0.3)
+                                                                }
+                                                            }
+                                                        }
+                                                        .cornerRadius(21)
+                                                        .frame(maxWidth: deviceWidth / 3)
                                                         .padding(.leading)
-                                                        .offset(y: 90)
+                                                        .offset(y: 120)
                                                         .padding(.bottom, 30)
                                                         VStack{
                                                             Text("👑")
@@ -438,6 +452,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             Text("🥇")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.2)
                                                             if allTimePlayersList.count > 0 {
                                                                 Text(allTimePlayersList[0].name)
                                                                 //                                                                    .foregroundStyle(.white)
@@ -463,11 +478,21 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
+                                                        .background{
+                                                            if allTimePlayersList.count > 0 {
+                                                                if allTimePlayersList[0].currentPlayer.alias == localPlayer.alias {
+                                                                    Color.white
+                                                                        .opacity(0.3)
+                                                                }
+                                                            }
+                                                        }
+                                                        .cornerRadius(21)
+                                                        .frame(maxWidth: deviceWidth / 3)
                                                         VStack{
                                                             Circle()
                                                                 .frame(width: 90)
                                                                 .foregroundColor(allTimePlayersList.count > 1  ? .clear : .gray)
-                                                                .padding(.horizontal)
+                                                                .padding([.horizontal, .top])
                                                                 .overlay{
                                                                     //                                                                    IceSpiceView()
                                                                     //                                                                        .scaleEffect(2)
@@ -483,6 +508,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             Text("🥈")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.2)
                                                             if allTimePlayersList.count > 1 {
                                                                 Text(allTimePlayersList[1].name)
                                                                 //                                                                    .foregroundStyle(.white)
@@ -508,11 +534,21 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
+                                                        .background{
+                                                            if allTimePlayersList.count > 1 {
+                                                                if allTimePlayersList[1].currentPlayer.alias == localPlayer.alias {
+                                                                    Color.white
+                                                                        .opacity(0.3)
+                                                                }
+                                                            }
+                                                        }
+                                                        .cornerRadius(21)
+                                                        .frame(maxWidth: deviceWidth / 3)
                                                         .padding(.trailing)
-                                                        .offset(y: 90)
+                                                        .offset(y: 120)
                                                         .padding(.bottom, 30)
                                                     }
-                                                    .padding(.bottom)
+                                                    .padding(.bottom, 60)
                                                     .background{
                                                         RotatingSunView()
                                                             .offset(y:240)
