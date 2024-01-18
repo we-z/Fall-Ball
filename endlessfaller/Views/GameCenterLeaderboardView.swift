@@ -119,7 +119,7 @@ struct GameCenterLeaderboardView: View {
                                                             Circle()
                                                                 .frame(width: 90)
                                                                 .foregroundColor(todaysPlayersList.count > 2 ? .clear : .gray)
-                                                                .padding(.horizontal)
+                                                                .padding([.horizontal, .top])
                                                                 .overlay{
                                                                     //                                                                    YinYangBallView()
                                                                     //                                                                        .scaleEffect(2)
@@ -135,6 +135,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             Text("🥉")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.2)
                                                             if todaysPlayersList.count > 2 {
                                                                 Text(todaysPlayersList[2].name)
                                                                 //                                                                    .foregroundStyle(.white)
@@ -160,6 +161,15 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
+                                                        .background{
+                                                            if todaysPlayersList.count > 2 {
+                                                                if todaysPlayersList[2].currentPlayer.alias == localPlayer.alias {
+                                                                    Color.white
+                                                                        .opacity(0.3)
+                                                                }
+                                                            }
+                                                        }
+                                                        .cornerRadius(21)
                                                         .padding(.leading)
                                                         .offset(y: 90)
                                                         .padding(.bottom, 30)
@@ -186,6 +196,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             Text("🥇")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.2)
                                                             if todaysPlayersList.count > 0 {
                                                                 Text(todaysPlayersList[0].name)
                                                                 //                                                                    .foregroundStyle(.white)
@@ -211,11 +222,20 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
+                                                        .background{
+                                                            if todaysPlayersList.count > 0 {
+                                                                if todaysPlayersList[0].currentPlayer.alias == localPlayer.alias {
+                                                                    Color.white
+                                                                        .opacity(0.3)
+                                                                }
+                                                            }
+                                                        }
+                                                        .cornerRadius(21)
                                                         VStack{
                                                             Circle()
                                                                 .frame(width: 90)
                                                                 .foregroundColor(todaysPlayersList.count > 1  ? .clear : .gray)
-                                                                .padding(.horizontal)
+                                                                .padding([.horizontal, .top])
                                                                 .overlay{
                                                                     //                                                                    IceSpiceView()
                                                                     //                                                                        .scaleEffect(2)
@@ -231,6 +251,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                             Text("🥈")
                                                                 .font(.largeTitle)
+                                                                .scaleEffect(1.2)
                                                             if todaysPlayersList.count > 1 {
                                                                 Text(todaysPlayersList[1].name)
                                                                 //                                                                    .foregroundStyle(.white)
@@ -256,6 +277,15 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
+                                                        .background{
+                                                            if todaysPlayersList.count > 1 {
+                                                                if todaysPlayersList[1].currentPlayer.alias == localPlayer.alias {
+                                                                    Color.white
+                                                                        .opacity(0.3)
+                                                                }
+                                                            }
+                                                        }
+                                                        .cornerRadius(21)
                                                         .padding(.trailing)
                                                         .offset(y: 90)
                                                         .padding(.bottom, 30)
