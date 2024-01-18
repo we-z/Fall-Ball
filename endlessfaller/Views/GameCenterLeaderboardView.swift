@@ -438,6 +438,7 @@ struct GameCenterLeaderboardView: View {
                                                             Circle()
                                                                 .frame(width: 100)
                                                                 .foregroundColor(allTimePlayersList.count > 0 ? .clear : .gray)
+                                                                .padding([.horizontal])
                                                                 .overlay{
                                                                     //                                                                    RickView()
                                                                     //                                                                        .scaleEffect(2.7)
