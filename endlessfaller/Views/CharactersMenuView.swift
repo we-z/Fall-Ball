@@ -27,7 +27,9 @@ struct CharactersMenuView: View {
     var body: some View {
         ZStack{
             model.gameOverBackgroundColor
+                .overlay(.black.opacity(0.2))
                 .ignoresSafeArea()
+            
             GeometryReader { geometry in
                 VStack{
                     Capsule()
@@ -64,11 +66,8 @@ struct CharactersMenuView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
-                                                    .overlay{
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(model.characters[index].characterID == model.selectedCharacter ? Color.black : Color.clear, lineWidth: 3)
-                                                            .padding(1)
-                                                    }
+                                                    .background(model.gameOverBackgroundColor.opacity(model.characters[index].characterID == model.selectedCharacter ? 1 : 0))
+                                                    .cornerRadius(20)
                                                     .overlay(
                                                         ZStack{
                                                             VStack(spacing: 1) {

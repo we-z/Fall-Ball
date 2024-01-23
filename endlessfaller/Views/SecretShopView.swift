@@ -13,6 +13,7 @@ struct SecretShopView: View {
     var body: some View {
         ZStack{
             model.gameOverBackgroundColor
+                .overlay(.black.opacity(0.2))
                 .ignoresSafeArea()
             GeometryReader { geometry in
                 VStack{
@@ -53,11 +54,8 @@ struct SecretShopView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
-                                                    .overlay{
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(model.hats[index].hatID == model.selectedHat ? Color.black : Color.clear, lineWidth: 3)
-                                                            .padding(1)
-                                                    }
+                                                    .background(model.gameOverBackgroundColor.opacity(model.hats[index].hatID == model.selectedHat ? 1 : 0))
+                                                    .cornerRadius(20)
                                                     .overlay(
                                                         ZStack{
                                                             if model.hats[index].hatID == model.selectedHat && index != 0 {
@@ -100,11 +98,8 @@ struct SecretShopView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/2.2, height: idiom == .pad ? 270 : 180)
-                                                    .overlay{
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(model.bags[index].bagID == model.selectedBag ? Color.black : Color.clear, lineWidth: 3)
-                                                            .padding(1)
-                                                    }
+                                                    .background(model.gameOverBackgroundColor.opacity(model.bags[index].bagID == model.selectedBag ? 1 : 0))
+                                                    .cornerRadius(20)
                                                     .overlay(
                                                         ZStack{
                                                             AnyView(bag.bag)
