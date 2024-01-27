@@ -44,6 +44,7 @@ struct ContentView: View {
     @State var highestLevelInRound = -1
     @State private var gameOverTimer: Timer? = nil
     @State private var circleProgress: CGFloat = 0.0
+    @Environment(\.scenePhase) var scenePhase
     
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
@@ -605,9 +606,21 @@ struct ContentView: View {
                 notificationManager.scheduleLocal()
                 checkIfAppOpenToday()
                 appModel.playedCharacter = appModel.selectedCharacter
-//                audioController.setUpAudioFiles()
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()
+                }
+            }
+            .onChange(of: scenePhase) { phase in
+                switch phase {
+                case .background:
+                    print("App is in background")
+                case .active:
+                    print("App is Active")
+                    checkIfAppOpenToday()
+                case .inactive:
+                    print("App is Inactive")
+                @unknown default:
+                    print("New App state not yet introduced")
                 }
             }
         }
