@@ -8,47 +8,36 @@
 import SwiftUI
 import Combine
 
-class SharedData: ObservableObject {
-    @Published var data: String
+struct RandomGradientView: View {
+    private var gradient: LinearGradient {
+        let colors = backgroundColors.randomElement(randomCount: Int.random(in: 2...5)).map { Color(hex: $0)! }
+        let startPoint = UnitPoint.random
+        let endPoint = UnitPoint.random
+        return LinearGradient(gradient: Gradient(colors: colors), startPoint: startPoint, endPoint: endPoint)
+    }
 
-    // Singleton instance
-    static let shared = SharedData()
-
-    private init(data: String = "Initial Data") {
-        self.data = data
+    var body: some View {
+        Rectangle()
+            .fill(gradient)
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
-struct View1: View {
-    @ObservedObject var sharedData = SharedData.shared
-    var body: some View {
-        VStack {
-            Text("View 1: \(sharedData.data)")
-            Button("Update from View 1") {
-                sharedData.data = "Updated by View 1"
-            }
-        }
+extension Array {
+    func randomElement(randomCount: Int) -> [Element] {
+        return (0..<randomCount).compactMap { _ in self.randomElement() }
     }
 }
 
-struct View2: View {
-    @ObservedObject private var sharedData = SharedData.shared
-    var body: some View {
-        VStack {
-            Text("View 2: \(sharedData.data)")
-            Button("Update from View 2") {
-                sharedData.data = "Updated by View 2"
-            }
-        }
+extension UnitPoint {
+    static var random: UnitPoint {
+        return UnitPoint(x: CGFloat.random(in: 0...1), y: CGFloat.random(in: 0...1))
     }
 }
 
 struct TempView: View {
         var body: some View {
-            VStack {
-                View1()
-                View2()
-            }
+            RandomGradientView()
         }
 }
 
