@@ -339,6 +339,20 @@ struct ContentView: View {
                                     Spacer()
                                 }
                                 .allowsHitTesting(false)
+                            } else {
+                                VStack{
+                                    Text("Swipe up to\ncontinue")
+                                        .padding()
+                                    Image(systemName: "arrow.up")
+                                }
+                                .animatedOffset(speed: 1)
+                                .font(.largeTitle)
+                                .bold()
+                                .italic()
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.black)
+                                .scaleEffect(1.5)
+                                
                             }
                         }
                         .ignoresSafeArea()
