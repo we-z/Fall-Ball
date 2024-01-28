@@ -144,9 +144,6 @@ struct ContentView: View {
     }
     
     func wastedOperations() {
-        if currentIndex > -1 {
-            appModel.gameOverBackgroundColor = RandomGradientView()
-        }
         self.highestLevelInRound = -1
         DispatchQueue.main.async{
             self.highestLevelInRound = -1
@@ -196,7 +193,7 @@ struct ContentView: View {
                 ZStack{
                     VTabView(selection: $currentIndex) {
                         ZStack{
-                            appModel.gameOverBackgroundColor
+                            Color.red
                             if showContinueToPlayScreen{
                                 VStack{
                                     Spacer()
@@ -367,7 +364,7 @@ struct ContentView: View {
                             }
                             HUDView()
                         }
-                        .background(appModel.gameOverBackgroundColor)
+                        .background(RandomGradientView())
                         .tag(-1)
                         ForEach(colors.indices, id: \.self) { index in
                             ZStack{

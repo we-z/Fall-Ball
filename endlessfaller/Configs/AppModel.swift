@@ -904,7 +904,7 @@ extension View {
 }
 
 struct RandomGradientView: View {
-    private var gradient: LinearGradient {
+    var gradient: LinearGradient {
         let colors = backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }
         let startPoint = UnitPoint.random
         let endPoint = UnitPoint.random
