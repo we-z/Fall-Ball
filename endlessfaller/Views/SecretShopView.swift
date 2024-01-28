@@ -13,7 +13,6 @@ struct SecretShopView: View {
     var body: some View {
         ZStack{
             model.gameOverBackgroundColor
-                .overlay(.black.opacity(0.2))
                 .ignoresSafeArea()
             GeometryReader { geometry in
                 VStack{

@@ -54,7 +54,6 @@ struct GameCenterLeaderboardView: View {
         let allTimePlayersList = gameCenter.allTimePlayersList
         ZStack{
             model.gameOverBackgroundColor
-                .overlay(.black.opacity(0.2))
                 .ignoresSafeArea()
             VStack{
                 Capsule()
