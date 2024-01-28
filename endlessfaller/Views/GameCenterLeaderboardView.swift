@@ -74,12 +74,8 @@ struct GameCenterLeaderboardView: View {
                 VStack{
                     //if playersList.isEmpty{
                         ZStack{
-                            model.gameOverBackgroundColor
-                                .overlay(.black.opacity(0.1))
                             GeometryReader { g in
                                 ZStack{
-                                    model.gameOverBackgroundColor
-                                        .overlay(.black.opacity(0.2))
                                     VStack{
                                         HStack{
                                             Button {

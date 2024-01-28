@@ -31,7 +31,7 @@ class AppModel: ObservableObject {
     @AppStorage("firstBallPicked") var firstBallPicked:Bool = false
     @Published var cancelContinuation = false
     @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
-    @Published var gameOverBackgroundColor: Color = .white
+    @Published var gameOverBackgroundColor = RandomGradientView()
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!
     @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
     @AppStorage(selectedBagKey) var selectedBag: String = UserDefaults.standard.string(forKey: selectedBagKey) ?? "nobag"
@@ -900,5 +900,32 @@ extension View {
         case .vertical:
             return scaleEffect(CGSize(width: 1, height: -1), anchor: anchor)
         }
+    }
+}
+
+struct RandomGradientView: View {
+    private var gradient: LinearGradient {
+        let colors = backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }
+        let startPoint = UnitPoint.random
+        let endPoint = UnitPoint.random
+        return LinearGradient(gradient: Gradient(colors: colors), startPoint: startPoint, endPoint: endPoint)
+    }
+
+    var body: some View {
+        Rectangle()
+            .fill(gradient)
+            .edgesIgnoringSafeArea(.all)
+    }
+}
+
+extension Array {
+    func randomElement(randomCount: Int) -> [Element] {
+        return (0..<2).compactMap { _ in self.randomElement() }
+    }
+}
+
+extension UnitPoint {
+    static var random: UnitPoint {
+        return UnitPoint(x: CGFloat.random(in: 0...1), y: CGFloat.random(in: 0...1))
     }
 }

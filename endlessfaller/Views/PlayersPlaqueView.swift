@@ -29,7 +29,7 @@ struct PlayersPlaqueView: View {
         
         ZStack{
             Rectangle()
-                .foregroundColor(appModel.gameOverBackgroundColor)
+                .overlay(appModel.gameOverBackgroundColor)
                 .frame(width: 330, height: 330)
             RotatingSunView()
                 .offset(y: -30)

@@ -145,7 +145,7 @@ struct ContentView: View {
     
     func wastedOperations() {
         if currentIndex > -1 {
-            appModel.gameOverBackgroundColor = colors[currentIndex]
+            appModel.gameOverBackgroundColor = RandomGradientView()
         }
         self.highestLevelInRound = -1
         DispatchQueue.main.async{
@@ -268,7 +268,7 @@ struct ContentView: View {
                                                             }
                                                         }
                                                     }
-                                                    .background(.orange)
+                                                    .background(RandomGradientView())
                                                     .cornerRadius(21)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 21)
@@ -371,7 +371,7 @@ struct ContentView: View {
                         .tag(-1)
                         ForEach(colors.indices, id: \.self) { index in
                             ZStack{
-                                colors[index]
+                                RandomGradientView()
                                 if index == 0 && score == 0 {
                                     if self.BallAnimator.ballYPosition > deviceHeight / 2 {
                                         SwipeUpNowView()
