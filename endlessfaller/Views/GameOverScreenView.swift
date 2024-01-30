@@ -25,6 +25,7 @@ struct GameOverScreenView: View {
                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
                 .scaleEffect(1.8)
                 .padding(.bottom, deviceHeight * 0.04)
+                .allowsHitTesting(false)
             ZStack{
                 HStack{
                     VStack(alignment: .trailing){

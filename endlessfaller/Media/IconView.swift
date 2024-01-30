@@ -11,13 +11,11 @@ struct IconView: View {
     var body: some View {
         ZStack{
             VStack(spacing: 0){
-                Rectangle()
-                    .foregroundColor(.blue)
+                RandomGradientView()
                 Divider()
                     .frame(height: 15)
                     .overlay(.black)
-                Rectangle()
-                    .overlay(Color(hex: "e31937ff"))
+                RandomGradientView()
             }
             ZStack{
                 ShockedBall()

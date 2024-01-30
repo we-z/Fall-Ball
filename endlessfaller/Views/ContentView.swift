@@ -393,11 +393,7 @@ struct ContentView: View {
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .onChange(of: currentIndex) { newValue in
                         if newValue == -1 {
-                            if !shouldContinue{
-                                print("calling from screen disappearing")
-                                self.highestLevelInRound = -1
-                                gameOverOperations()
-                            }
+                            gameOverOperations()
                         }
                         boinIntervalCounter += 1
                         if boinIntervalCounter > 1000 {
@@ -522,7 +518,6 @@ struct ContentView: View {
                         }
                         .allowsHitTesting(false)
                         ZStack{
-                            
                             HStack{
                                 Divider()
                                     .frame(width: 3)

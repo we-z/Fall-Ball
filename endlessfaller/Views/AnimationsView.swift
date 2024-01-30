@@ -1228,6 +1228,7 @@ struct NewBestScore: View {
                 dissapear = true
             }
         }
+        .allowsHitTesting(false)
     }
 }
 
