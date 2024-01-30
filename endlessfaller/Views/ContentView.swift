@@ -325,13 +325,15 @@ struct ContentView: View {
                                 }
                                 VStack{
                                     HStack{
-                                        Text(String(score))
-                                            .bold()
-                                            .italic()
-                                            .font(.system(size: 100))
-                                            .padding(36)
-                                            .padding(.top, 30)
-                                            .foregroundColor(.black)
+                                        if score > -1 {
+                                            Text(String(score))
+                                                .bold()
+                                                .italic()
+                                                .font(.system(size: 100))
+                                                .padding(36)
+                                                .padding(.top, 30)
+                                                .foregroundColor(.black)
+                                        }
                                         Spacer()
                                     }
                                     Spacer()
@@ -399,16 +401,12 @@ struct ContentView: View {
                         if boinIntervalCounter > 1000 {
                             boinFound()
                         }
-                        if newValue == 0 {
-                            self.highestLevelInRound = -1
-                        }
                         if newValue > highestLevelInRound {
                             if newValue == 0 {
                                 dropBall()
                             } else {
                                 liftBall(difficultyInput: newValue)
                             }
-                            
                             DispatchQueue.main.async {
                                 score += 1
                                 if audioController.musicPlayer.rate < 2 {
