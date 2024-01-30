@@ -296,13 +296,13 @@ struct ContentView: View {
                                                                 .foregroundColor(.white)
                                                                 .offset(y:3.6)
                                                             Circle()
-                                                                .trim(from: 0, to: circleProgress)
+                                                                .trim(from: 0, to: self.appModel.circleProgress)
                                                                 .stroke(Color.blue, lineWidth: 24)
                                                                 .rotationEffect(Angle(degrees: -90))
                                                                 .frame(width: 24)
                                                                 .offset(y:3.6)
                                                                 .onAppear{
-                                                                    startCircleProgressTimer()
+                                                                    self.appModel.startCircleProgressTimer()
                                                                 }
                                                             
                                                         }

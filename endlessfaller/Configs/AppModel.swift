@@ -46,6 +46,38 @@ class AppModel: ObservableObject {
     @Published var playedCharacter = ""
     
     static let sharedAppModel = AppModel()
+    @Published var circleProgress: Double = 0.0
+    private var circleProgressTimer: Timer?
+    private let circleTimerQueue = DispatchQueue(label: "timer.queue")
+
+
+    func startCircleProgressTimer() {
+        circleTimerQueue.async {
+            self.circleProgress = 0.0
+            self.circleProgressTimer?.invalidate()
+            
+            self.circleProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
+                guard let self = self else { return }
+                
+                if self.circleProgress < 1.0 {
+                    DispatchQueue.main.async {
+                        self.circleProgress += 0.01 // Adjust increment as needed
+                    }
+                } else {
+                    self.circleProgressTimer?.invalidate()
+                }
+            }
+            RunLoop.current.add(self.circleProgressTimer!, forMode: .common)
+            RunLoop.current.run()
+        }
+    }
+
+    func stopTimer() {
+        circleTimerQueue.async {
+            self.circleProgressTimer?.invalidate()
+        }
+    }
+    
     
     @Published var hats: [Hat] = [
         Hat(hat: AnyView(NoneView()), hatID: "nohat"),
