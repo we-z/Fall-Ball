@@ -43,7 +43,8 @@ struct ContentView: View {
     @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
     @State var highestLevelInRound = -1
     @State private var gameOverTimer: Timer? = nil
-    @State private var circleProgress: CGFloat = 0.0
+    @State var circleProgress = 0.0
+    @State var circleProgressTimer: Timer?
     @Environment(\.scenePhase) var scenePhase
     
     let motionManager = CMMotionManager()
@@ -107,6 +108,19 @@ struct ContentView: View {
         }
     }
     
+    func startCircleProgressTimer() {
+        self.circleProgress = 0.0
+        circleProgressTimer?.invalidate() // Invalidate any existing timer
+
+        circleProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.057, repeats: true) { timer in
+            if self.circleProgress < 1.0 {
+                self.circleProgress += 0.01 // Adjust increment as needed
+            } else {
+                timer.invalidate()
+            }
+        }
+    }
+    
     func gameOverOperations() {
         self.currentIndex = -1
         gameOverTimer?.invalidate()
@@ -147,6 +161,7 @@ struct ContentView: View {
         self.highestLevelInRound = -1
         DispatchQueue.main.async{
             self.highestLevelInRound = -1
+            self.circleProgress = 0.0
             showContinueToPlayScreen = true
             self.BallAnimator.endingYPosition = 23
             self.BallAnimator.pushUp = false
@@ -287,10 +302,7 @@ struct ContentView: View {
                                                                 .frame(width: 24)
                                                                 .offset(y:3.6)
                                                                 .onAppear{
-                                                                    circleProgress = 0.0
-                                                                    withAnimation(.linear(duration: 6).repeatCount(0)) {
-                                                                        circleProgress = 1.0
-                                                                    }
+                                                                    startCircleProgressTimer()
                                                                 }
                                                             
                                                         }
