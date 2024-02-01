@@ -10,15 +10,15 @@ import SwiftData
 
 @Model
 class UserData {
-    var bestScore: Int
-    var boinBalance: Int
-    var purchasedSkins: [String]
-    var selectedCharacter: String
-    var selectedBag: String
-    var selectedHat: String
-    var isMuted: Bool
+    var bestScore: Int?
+    var boinBalance: Int?
+    var purchasedSkins: [String]?
+    var selectedCharacter: String?
+    var selectedBag: String?
+    var selectedHat: String?
+    var isMuted: Bool?
     
-    init(bestScore: Int = 0, boinBalance: Int = 0, purchasedSkins: [String] = [], selectedCharacter: String = "io.endlessfall.laugh", selectedBag: String = "nobag", selectedHat: String = "nohat", isMuted: Bool = false) {
+    init(bestScore: Int? = nil, boinBalance: Int? = nil, purchasedSkins: [String]? = nil, selectedCharacter: String? = nil, selectedBag: String? = nil, selectedHat: String? = nil, isMuted: Bool? = nil) {
         self.bestScore = bestScore
         self.boinBalance = boinBalance
         self.purchasedSkins = purchasedSkins
@@ -27,6 +27,16 @@ class UserData {
         self.selectedHat = selectedHat
         self.isMuted = isMuted
     }
-
 }
 
+//class UserDataManager: ObservableObject {
+//    @Environment(\.modelContext) private var modelContext
+//    @Query var userData: [UserData] = []
+//    
+//    func addBoins() {
+//        
+//    }
+//    func removeBoins() {
+//        
+//    }
+//}

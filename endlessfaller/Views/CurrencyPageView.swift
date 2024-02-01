@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CurrencyPageView: View {
     @Environment(\.dismiss) private var dismiss
@@ -25,6 +26,9 @@ struct CurrencyPageView: View {
         CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infinitecoins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    @Environment(\.modelContext) private var modelContext
+    @Query var userData: [UserData]
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack{
@@ -60,7 +64,14 @@ struct CurrencyPageView: View {
                                                         do {
                                                             if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
                                                                 DispatchQueue.main.async {
-                                                                    model.balance += bundle.coins
+                                                                    if userData.isEmpty {
+                                                                        let newBalance = UserData(boinBalance: bundle.coins)
+                                                                        modelContext.insert(newBalance)
+                                                                    } else {
+                                                                        let newBalance = UserData(boinBalance: (userData[0].boinBalance ?? 0) + bundle.coins)
+                                                                        modelContext.insert(newBalance)
+                                                                    }
+                                                                    
                                                                 }
                                                                 dismiss()
                                                             }

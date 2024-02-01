@@ -16,7 +16,6 @@ let selectedHatKey = "SelectedHatID"
 let selectedBagKey = "SelectedBagID"
 let purchasedCharactersKey = "PurchasedCharacters"
 let muteKey = "Mute"
-let balanceKey = "Balance"
 
 var freeBallIDs: [String] = [
     "io.endlessfall.black",
@@ -28,7 +27,6 @@ var freeBallIDs: [String] = [
 ]
 
 class AppModel: ObservableObject {
-    @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
     @Published var gameOverBackgroundColor = RandomGradientView()
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!
     @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"

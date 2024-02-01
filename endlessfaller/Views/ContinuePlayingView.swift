@@ -26,10 +26,10 @@ struct ContinuePlayingView: View {
                         HStack(spacing: 0){
                             BoinsView()
                                 .scaleEffect(0.6)
-                            Text(String(appModel.balance))
-                                .bold()
-                                .italic()
-                                .font(.title)
+//                            Text(String(appModel.balance))
+//                                .bold()
+//                                .italic()
+//                                .font(.title)
                         }
                         .padding(.horizontal, 9)
                         .padding(.top, 12)
@@ -74,11 +74,11 @@ struct ContinuePlayingView: View {
                         withAnimation {
                             buttonIsPressed = false
                         }
-                        if appModel.balance >= cost{
-                            //appModel.shouldContinue = true
-                        } else {
-                            //showCurrencyPage = true
-                        }
+//                        if appModel.balance >= cost{
+//                            //appModel.shouldContinue = true
+//                        } else {
+//                            //showCurrencyPage = true
+//                        }
                     }
                 }
                 .background(.orange)

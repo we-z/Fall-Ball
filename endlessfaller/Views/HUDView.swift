@@ -7,6 +7,7 @@
 
 import SwiftUI
 import GroupActivities
+import SwiftData
 
 struct HUDView: View {
     @StateObject var groupStateObserver = GroupStateObserver()
@@ -21,6 +22,8 @@ struct HUDView: View {
     @State var showLeaderBoard = false
     @State var currencyButtonIsPressed = false
     @State var showCurrencyPage = false
+    @Environment(\.modelContext) private var modelContext
+    @Query var userData: [UserData] = [UserData(boinBalance: 0)]
     
     let gearHaptic = UINotificationFeedbackGenerator()
     
@@ -31,7 +34,7 @@ struct HUDView: View {
                 Spacer()
                 HStack{
                     BoinsView()
-                    Text(String(appModel.balance))
+                    Text(String(!userData.isEmpty ? userData[0].boinBalance ?? 0 : 0))
                         .bold()
                         .italic()
                         .foregroundColor(.black)

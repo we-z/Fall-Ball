@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AnimationsView: View {
     var body: some View {
@@ -1370,7 +1371,8 @@ struct DailyBoinCollectedView: View {
     @State private var scale = false
     @State private var appearFromTop = false
     @State private var animationEnding = false
-    @ObservedObject private var appModel = AppModel.sharedAppModel
+    @Environment(\.modelContext) private var modelContext
+    var userData: UserData?
     
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
@@ -1413,7 +1415,8 @@ struct DailyBoinCollectedView: View {
                     withAnimation(.linear(duration: 0.5)){
                         self.animationEnding = true
                     }
-                    appModel.balance += 1
+                    let balanceIncrease = UserData(boinBalance: (userData?.boinBalance ?? 0)  + 1)
+                    modelContext.insert(balanceIncrease)
                 }
             }
         }
