@@ -20,6 +20,7 @@ struct GameOverScreenView: View {
         VStack{
             Spacer()
             Text("Game Over!")
+                .foregroundColor(.black)
                 .italic()
                 .bold()
                 .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
@@ -96,6 +97,7 @@ struct GameOverScreenView: View {
                         Spacer()
                         HStack{
                             Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.black)
                                 .bold()
                                 .font(.title2)
                                 .padding(15)

@@ -35,6 +35,7 @@ struct PlayersPlaqueView: View {
                 .offset(y: -30)
             VStack{
                 Text("I Play Fall Ball As:")
+                    .foregroundColor(.black)
                     .bold()
                     .italic()
                 if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
@@ -59,12 +60,14 @@ struct PlayersPlaqueView: View {
                 }
                 
                 Text(GKLocalPlayer.local.isAuthenticated ? GKLocalPlayer.local.displayName : "Unknown Player")
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 150)
                     .bold()
                     .italic()
                     .font(.title)
                 Text("Beat My Top Score: \(bestScore)")
+                    .foregroundColor(.black)
                     .font(.caption)
                     .bold()
                     .italic()

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import AVFoundation
+import SwiftData
 
 @main
 struct endlessfallerApp: App {
@@ -14,8 +14,7 @@ struct endlessfallerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.light)
-//                .environmentObject(audioController)
         }
+        .modelContainer(for: UserData.self)
     }
 }

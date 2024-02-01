@@ -7,12 +7,35 @@
 
 import SwiftUI
 import Combine
-
+import SwiftData
 
 
 struct TempView: View {
+    @Environment(\.modelContext) private var modelContext
+        @Query private var items: [UserData]
+        @State private var input: String = ""
+        
+        
         var body: some View {
-            RandomGradientView()
+            VStack {
+//                HStack {
+//                    TextField("Add a task", text: $input )
+//                    Button("Add") {
+//                        let task = UserData(name: input)
+//                        if !task.name.isEmpty{
+//                            modelContext.insert(task)
+//                            input = ""
+//                        }
+//                    }
+//                }.padding()
+//                
+//                List{
+//                    ForEach (items) { item in
+//                        Text(item.name ?? "")
+//                    }
+//                }
+            }
+            .padding()
         }
 }
 

@@ -15,7 +15,7 @@ struct CharactersDesignsView: View {
                     ColombiaView()
                 }
                 ZStack{
-                    NorwayView()
+                    EvilBall()
                 }
                 ZStack{
                     YinYangBallView()
@@ -353,6 +353,7 @@ struct EvilBall: View {
                         .frame(width: 46)
                 )
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 30)
                 .overlay{
                     Circle()

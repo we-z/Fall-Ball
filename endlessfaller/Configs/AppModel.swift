@@ -29,7 +29,6 @@ var freeBallIDs: [String] = [
 
 class AppModel: ObservableObject {
     @AppStorage("firstBallPicked") var firstBallPicked:Bool = false
-    @Published var cancelContinuation = false
     @AppStorage(balanceKey) var balance: Int = UserDefaults.standard.integer(forKey: balanceKey)
     @Published var gameOverBackgroundColor = RandomGradientView()
     @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!

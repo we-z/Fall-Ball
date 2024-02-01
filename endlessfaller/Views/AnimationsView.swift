@@ -1388,10 +1388,10 @@ struct DailyBoinCollectedView: View {
                 Text("Daily Boin Collected!")
                     .italic()
                     .bold()
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .font(.title)
                     .padding(9)
-//                    .offset(y: animationEnding ? deviceHeight : 0)
             }
             .scaleEffect(appearFromTop ? 1 : 0)
             .offset(y: appearFromTop ? -(deviceHeight / 5): -(deviceHeight/2) - 90)

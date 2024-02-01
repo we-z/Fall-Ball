@@ -101,6 +101,7 @@ struct RobotArms: View {
 struct NoneView: View {
     var body: some View {
         Image(systemName: "slash.circle")
+            .foregroundColor(.black)
             .font(.system(size: 60))
     }
 }

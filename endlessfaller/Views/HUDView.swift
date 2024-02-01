@@ -34,6 +34,7 @@ struct HUDView: View {
                     Text(String(appModel.balance))
                         .bold()
                         .italic()
+                        .foregroundColor(.black)
                         .font(.largeTitle)
                 }
                 .padding(.horizontal)
@@ -105,8 +106,8 @@ struct HUDView: View {
                                     .foregroundColor(.teal)
                             }
                             .offset(y: isGearExpanded ? -60 : 0)
-                            .onChange(of: audioController.mute) { setting in
-                                if setting == true {
+                            .onChange(of: audioController.mute) {
+                                if audioController.mute == true {
                                     audioController.musicPlayer.setVolume(0, fadeDuration: 0)
                                 } else {
                                     audioController.musicPlayer.setVolume(1, fadeDuration: 0)

@@ -116,8 +116,6 @@ struct GameCenterLeaderboardView: View {
                                                                 .foregroundColor(todaysPlayersList.count > 2 ? .clear : .gray)
                                                                 .padding([.horizontal, .top])
                                                                 .overlay{
-                                                                    //                                                                    YinYangBallView()
-                                                                    //                                                                        .scaleEffect(2)
                                                                     if todaysPlayersList.count > 2 {
                                                                         if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[2].ballID}) {
                                                                             AnyView(character.character)
@@ -133,14 +131,14 @@ struct GameCenterLeaderboardView: View {
                                                                 .scaleEffect(1.2)
                                                             if todaysPlayersList.count > 2 {
                                                                 Text(todaysPlayersList[2].name)
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                                 Text(String(todaysPlayersList[2].score))
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
@@ -148,7 +146,7 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.largeTitle)
                                                                     .bold()
@@ -196,14 +194,14 @@ struct GameCenterLeaderboardView: View {
                                                                 .scaleEffect(1.2)
                                                             if todaysPlayersList.count > 0 {
                                                                 Text(todaysPlayersList[0].name)
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                                 Text(String(todaysPlayersList[0].score))
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
@@ -211,7 +209,7 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.largeTitle)
                                                                     .bold()
@@ -253,14 +251,14 @@ struct GameCenterLeaderboardView: View {
                                                                 .scaleEffect(1.2)
                                                             if todaysPlayersList.count > 1 {
                                                                 Text(todaysPlayersList[1].name)
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                                 Text(String(todaysPlayersList[1].score))
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
@@ -268,7 +266,7 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.largeTitle)
                                                                     .bold()
@@ -301,17 +299,17 @@ struct GameCenterLeaderboardView: View {
                                                             ZStack{
                                                                 HStack{
                                                                     Text("\(num)")
+                                                                        .foregroundColor(.black)
                                                                         .bold()
                                                                         .italic()
-                                                                    //                                                                        .foregroundColor(.white)
                                                                     //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                     VStack(alignment: .leading){
                                                                         if todaysPlayersList.count > num - 1 {
                                                                             Text(todaysPlayersList[num - 1].name)
+                                                                                .foregroundColor(.black)
                                                                                 .font(.caption)
                                                                                 .bold()
                                                                                 .italic()
-                                                                            //                                                                                .foregroundColor(.white)
                                                                             //                                                                                .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                         }
                                                                         
@@ -319,9 +317,9 @@ struct GameCenterLeaderboardView: View {
                                                                     .offset(x: 80)
                                                                     Spacer()
                                                                     Text(todaysPlayersList.count > num - 1 ? String(todaysPlayersList[num - 1].score) : "-")
+                                                                        .foregroundColor(.black)
                                                                         .bold()
                                                                         .italic()
-                                                                    //                                                                        .foregroundColor(.white)
                                                                     //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                 }
                                                                 if todaysPlayersList.count > num - 1 {
@@ -372,8 +370,6 @@ struct GameCenterLeaderboardView: View {
                                                                 .foregroundColor(allTimePlayersList.count > 2 ? .clear : .gray)
                                                                 .padding([.horizontal, .top])
                                                                 .overlay{
-                                                                    //                                                                    YinYangBallView()
-                                                                    //                                                                        .scaleEffect(2)
                                                                     if allTimePlayersList.count > 2 {
                                                                         if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[2].ballID}) {
                                                                             AnyView(character.character)
@@ -389,14 +385,14 @@ struct GameCenterLeaderboardView: View {
                                                                 .scaleEffect(1.2)
                                                             if allTimePlayersList.count > 2 {
                                                                 Text(allTimePlayersList[2].name)
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                                 Text(String(allTimePlayersList[2].score))
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
@@ -404,7 +400,7 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.largeTitle)
                                                                     .bold()
@@ -435,8 +431,6 @@ struct GameCenterLeaderboardView: View {
                                                                 .foregroundColor(allTimePlayersList.count > 0 ? .clear : .gray)
                                                                 .padding([.horizontal])
                                                                 .overlay{
-                                                                    //                                                                    RickView()
-                                                                    //                                                                        .scaleEffect(2.7)
                                                                     if allTimePlayersList.count > 0 {
                                                                         if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[0].ballID}) {
                                                                             AnyView(character.character)
@@ -453,14 +447,14 @@ struct GameCenterLeaderboardView: View {
                                                                 .scaleEffect(1.2)
                                                             if allTimePlayersList.count > 0 {
                                                                 Text(allTimePlayersList[0].name)
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                                 Text(String(allTimePlayersList[0].score))
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
@@ -468,7 +462,7 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.largeTitle)
                                                                     .bold()
@@ -492,8 +486,6 @@ struct GameCenterLeaderboardView: View {
                                                                 .foregroundColor(allTimePlayersList.count > 1  ? .clear : .gray)
                                                                 .padding([.horizontal, .top])
                                                                 .overlay{
-                                                                    //                                                                    IceSpiceView()
-                                                                    //                                                                        .scaleEffect(2)
                                                                     if allTimePlayersList.count > 1 {
                                                                         if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[1].ballID}) {
                                                                             AnyView(character.character)
@@ -509,14 +501,14 @@ struct GameCenterLeaderboardView: View {
                                                                 .scaleEffect(1.2)
                                                             if allTimePlayersList.count > 1 {
                                                                 Text(allTimePlayersList[1].name)
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                                 Text(String(allTimePlayersList[1].score))
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
@@ -524,7 +516,7 @@ struct GameCenterLeaderboardView: View {
                                                                 //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
-                                                                //                                                                    .foregroundStyle(.white)
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.largeTitle)
                                                                     .bold()
@@ -557,17 +549,17 @@ struct GameCenterLeaderboardView: View {
                                                             ZStack{
                                                                 HStack{
                                                                     Text("\(num)")
+                                                                        .foregroundColor(.black)
                                                                         .bold()
                                                                         .italic()
-                                                                    //                                                                        .foregroundColor(.white)
                                                                     //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                     VStack(alignment: .leading){
                                                                         if allTimePlayersList.count > num - 1 {
                                                                             Text(allTimePlayersList[num - 1].name)
                                                                                 .font(.caption)
+                                                                                .foregroundColor(.black)
                                                                                 .bold()
                                                                                 .italic()
-                                                                            //                                                                                .foregroundColor(.white)
                                                                             //                                                                                .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                         }
                                                                         
@@ -575,6 +567,7 @@ struct GameCenterLeaderboardView: View {
                                                                     .offset(x: 80)
                                                                     Spacer()
                                                                     Text(allTimePlayersList.count > num - 1 ? String(allTimePlayersList[num - 1].score) : "-")
+                                                                        .foregroundColor(.black)
                                                                         .bold()
                                                                         .italic()
                                                                     //                                                                        .foregroundColor(.white)

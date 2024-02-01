@@ -38,6 +38,7 @@ struct CharactersMenuView: View {
                         .opacity(0.3)
                     HStack{
                         Text("🌍 Ball Shop 🌍")
+                            .foregroundColor(.black)
                             .italic()
                             .bold()
                             .font(.largeTitle)
@@ -77,6 +78,7 @@ struct CharactersMenuView: View {
                                                                     .frame(maxHeight: 36)
                                                                 if model.characters[index].isPurchased && index > 8 {
                                                                     Text("Available")
+                                                                        .foregroundColor(.black)
                                                                         .bold()
                                                                         .italic()
                                                                 } else {
@@ -92,7 +94,7 @@ struct CharactersMenuView: View {
                                                                             .font(.title3)
                                                                             .minimumScaleFactor(0.2)
                                                                             .scaleEffect(idiom == .pad ? 1.8 : 1)
-                                                                            
+                                                                            .foregroundColor(.black)
                                                                             .padding(0)
                                                                             
                                                                     }
@@ -106,71 +108,49 @@ struct CharactersMenuView: View {
                                                     )
                                                     .accentColor(.black)
                                                     .padding(1)
-                                                    .onChange(of: model.characters) { newList in
+                                                    .onChange(of: model.characters) {
                                                         model.updatePurchasedCharacters()
-//                                                        if storeIndex >= 0 {
-//                                                            Task {
-//                                                                model.characters[index].isPurchased = (try? await storeKit.isPurchased(characterID: character.characterID)) ?? false
-//                                                                model.updatePurchasedCharacters()
-//                                                            }
-//                                                        }
                                                     }
                                             }
                                             .buttonStyle(.roundedAndShadow)
-//                                            .sheet(isPresented: self.$showBallDetails){
-//                                                BallsDetailsView(ball: model.characters[index])
-//                                            }
                                         }
                                     }
                                 }
                             }
-                            Button {
-                                Task {
-                                    //This call displays a system prompt that asks users to authenticate with their App Store credentials.
-                                    //Call this function only in response to an explicit user action, such as tapping a button.
-                                    SKPaymentQueue.default().restoreCompletedTransactions()
-                                }
-                            } label: {
-                                Text("Restore Purchases")
+                            VStack{
+                                Text("Secret Shop 🤫")
                                     .foregroundColor(.black)
-                                    .underline()
-                                    .padding(.top)
-                            }
-                            .overlay{
-                                VStack{
-                                    Text("Secret Shop 🤫")
-                                        .font(.system(size: 12))
-                                        .bold()
-                                        .italic()
-                                        .scaleEffect(yPosition > -(deviceHeight) ? 1 + ((deviceHeight - abs(yPosition)) / 390) : 1)
-                                    if idiom == .pad {
-                                        ZStack{
-                                            Circle()
-                                                .foregroundColor(.black)
-                                                .frame(width: 69, height: 69)
-                                            Circle()
-                                                .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 600))
-                                                .stroke(Color.blue, lineWidth: 30)
-                                                .rotationEffect(Angle(degrees: -90))
-                                                .frame(width: 30, height: 30)
-                                        }
-                                        .offset(y: 15)
-                                    } else {
-                                        ZStack{
-                                            Circle()
-                                                .foregroundColor(.black)
-                                                .frame(width: 69, height: 69)
-                                            Circle()
-                                                .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 240))
-                                                .stroke(Color.blue, lineWidth: 30)
-                                                .rotationEffect(Angle(degrees: -90))
-                                                .frame(width: 30, height: 30)
-                                        }
-                                        .offset(y: 15)
+                                    .font(.system(size: 12))
+                                    .bold()
+                                    .italic()
+                                    .scaleEffect(yPosition > -(deviceHeight) ? 1 + ((deviceHeight - abs(yPosition)) / 390) : 1)
+                                if idiom == .pad {
+                                    ZStack{
+                                        Circle()
+                                            .foregroundColor(.black)
+                                            .frame(width: 69, height: 69)
+                                        Circle()
+                                            .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 600))
+                                            .stroke(Color.blue, lineWidth: 30)
+                                            .rotationEffect(Angle(degrees: -90))
+                                            .frame(width: 30, height: 30)
                                     }
+                                    .offset(y: 15)
+                                } else {
+                                    ZStack{
+                                        Circle()
+                                            .foregroundColor(.black)
+                                            .frame(width: 69, height: 69)
+                                        Circle()
+                                            .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 240))
+                                            .stroke(Color.blue, lineWidth: 30)
+                                            .rotationEffect(Angle(degrees: -90))
+                                            .frame(width: 30, height: 30)
+                                    }
+                                    .offset(y: 15)
                                 }
-                                .offset(y:120)
                             }
+                            .offset(y:120)
                             .background(GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     yPosition = -proxy.frame(in: .global).maxY

@@ -38,6 +38,7 @@ struct CurrencyPageView: View {
                         .opacity(0.3)
                     HStack{
                         Text("💰 Bundles 💰")
+                            .foregroundColor(.black)
                             .italic()
                             .bold()
                             .font(.largeTitle)
@@ -87,6 +88,7 @@ struct CurrencyPageView: View {
                                                                 .padding(.top)
                                                             if index != 8 {
                                                                 Text(String(bundles[index].coins) + "\nBoins")
+                                                                    .foregroundColor(.black)
                                                                     .multilineTextAlignment(.center)
                                                                     .bold()
                                                                     .italic()
@@ -94,10 +96,12 @@ struct CurrencyPageView: View {
                                                                     .padding(.top, 6)
                                                             } else {
                                                                 Text("∞")
+                                                                    .foregroundColor(.black)
                                                                     .italic()
                                                                     .font(.largeTitle)
                                                                     .scaleEffect(1.8)
                                                                 Text("Boins")
+                                                                    .foregroundColor(.black)
                                                                     .bold()
                                                                     .italic()
                                                                     .font(.title2)
@@ -112,6 +116,7 @@ struct CurrencyPageView: View {
                                                             HStack{
                                                                 Spacer()
                                                                 Text("Best Seller")
+                                                                    .foregroundColor(.black)
                                                                     .bold()
                                                                     .italic()
                                                                 Spacer()

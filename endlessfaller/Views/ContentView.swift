@@ -226,6 +226,7 @@ struct ContentView: View {
                                                                 BoinsView()
                                                                     .scaleEffect(0.6)
                                                                 Text(String(appModel.balance))
+                                                                    .foregroundColor(.black)
                                                                     .bold()
                                                                     .italic()
                                                                     .font(.title)
@@ -242,6 +243,7 @@ struct ContentView: View {
                                                             .offset(x: 9, y: -9)
                                                         }
                                                         Text("Continue?")
+                                                            .foregroundColor(.black)
                                                             .bold()
                                                             .italic()
                                                             .font(.largeTitle)
@@ -249,6 +251,7 @@ struct ContentView: View {
                                                         HStack{
                                                             Spacer()
                                                             Text("\(costToContinue)")
+                                                                .foregroundColor(.black)
                                                                 .bold()
                                                                 .italic()
                                                                 .font(.largeTitle)
@@ -288,6 +291,7 @@ struct ContentView: View {
                                                             .padding(1)
                                                         ZStack{
                                                             Image(systemName: "stopwatch")
+                                                                .foregroundColor(.black)
                                                                 .bold()
                                                                 .font(.largeTitle)
                                                                 .scaleEffect(2.1)
@@ -405,19 +409,19 @@ struct ContentView: View {
                         height: deviceHeight
                     )
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .onChange(of: currentIndex) { newValue in
-                        if newValue == -1 {
+                    .onChange(of: currentIndex) {
+                        if currentIndex == -1 {
                             gameOverOperations()
                         }
                         boinIntervalCounter += 1
                         if boinIntervalCounter > 1000 {
                             boinFound()
                         }
-                        if newValue > highestLevelInRound {
-                            if newValue == 0 {
+                        if currentIndex > highestLevelInRound {
+                            if currentIndex == 0 {
                                 dropBall()
                             } else {
-                                liftBall(difficultyInput: newValue)
+                                liftBall(difficultyInput: currentIndex)
                             }
                             DispatchQueue.main.async {
                                 score += 1
@@ -427,7 +431,7 @@ struct ContentView: View {
                             }
                             // 1052 or 1054
                             AudioServicesPlaySystemSound(1104)
-                            highestLevelInRound = newValue
+                            highestLevelInRound = currentIndex
                         }
                         enableScaleAndFlashForDuration()
                         heavyHaptic.notificationOccurred(.success)
@@ -561,8 +565,8 @@ struct ContentView: View {
                             }
                         }
                         .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
-                        .onChange(of: self.BallAnimator.ballYPosition) { newYPosition in
-                            if deviceHeight - 24 < newYPosition || newYPosition < 23 {
+                        .onChange(of: self.BallAnimator.ballYPosition) {
+                            if deviceHeight - 24 < self.BallAnimator.ballYPosition || self.BallAnimator.ballYPosition < 23 {
                                 wastedOperations()
                             }
                         }
@@ -612,8 +616,8 @@ struct ContentView: View {
                     gameCenter.authenticateUser()
                 }
             }
-            .onChange(of: scenePhase) { phase in
-                switch phase {
+            .onChange(of: scenePhase) {
+                switch scenePhase {
                 case .background:
                     print("App is in background")
                 case .active:
