@@ -108,6 +108,7 @@ struct CurrencyPageView: View {
                                                                 
                                                             }
                                                             Text(bundles[index].cost)
+                                                                .foregroundColor(.black)
                                                                 .padding(.vertical, 9)
                                                                 .italic()
                                                                 .bold()

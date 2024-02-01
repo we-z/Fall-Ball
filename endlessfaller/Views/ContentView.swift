@@ -9,6 +9,7 @@ import SwiftUI
 import GameKit
 import CoreMotion
 import Combine
+import SwiftData
 
 let bestScoreKey = "bestscorekey"
 let boinIntervalCounterKey = "boinIntervalCounterKey"
@@ -46,6 +47,8 @@ struct ContentView: View {
     @State var circleProgress = 0.0
     @State var circleProgressTimer: Timer?
     @Environment(\.scenePhase) var scenePhase
+    @Environment(\.modelContext) private var modelContext
+    @Query var userData: [UserData]
     
     let motionManager = CMMotionManager()
     let queue = OperationQueue()

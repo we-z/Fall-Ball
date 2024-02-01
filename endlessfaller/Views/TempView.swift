@@ -12,8 +12,8 @@ import SwiftData
 
 struct TempView: View {
     @Environment(\.modelContext) private var modelContext
-        @Query private var items: [UserData]
-        @State private var input: String = ""
+    @Query private var items: [UserData]
+    @State private var input: String = ""
         
         
         var body: some View {
