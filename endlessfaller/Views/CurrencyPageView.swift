@@ -68,7 +68,7 @@ struct CurrencyPageView: View {
                                                                         let newBalance = UserData(boinBalance: bundle.coins)
                                                                         modelContext.insert(newBalance)
                                                                     } else {
-                                                                        let newBalance = UserData(boinBalance: (userData[0].boinBalance ?? 0) + bundle.coins)
+                                                                        let newBalance = UserData(boinBalance: (userData.last?.boinBalance ?? 0) + bundle.coins)
                                                                         modelContext.insert(newBalance)
                                                                     }
                                                                     

@@ -34,7 +34,7 @@ struct HUDView: View {
                 Spacer()
                 HStack{
                     BoinsView()
-                    Text(String(!userData.isEmpty ? userData[0].boinBalance ?? 0 : 0))
+                    Text(String(!userData.isEmpty ? userData.last?.boinBalance ?? 0 : 0))
                         .bold()
                         .italic()
                         .foregroundColor(.black)

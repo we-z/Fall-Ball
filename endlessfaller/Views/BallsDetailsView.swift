@@ -77,7 +77,7 @@ struct BallsDetailsView: View {
 
                     if let ballCost = Int(ball.cost) {
                         if !userData.isEmpty {
-                            if var currentBalance = userData[0].boinBalance {
+                            if var currentBalance = userData.last?.boinBalance {
                                 if currentBalance >= ballCost {
                                     model.characters[ballIndex].isPurchased = true
                                     currentBalance -= ballCost

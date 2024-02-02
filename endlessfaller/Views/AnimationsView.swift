@@ -1372,7 +1372,7 @@ struct DailyBoinCollectedView: View {
     @State private var appearFromTop = false
     @State private var animationEnding = false
     @Environment(\.modelContext) private var modelContext
-    var userData: UserData?
+    @Query var userData: [UserData]
     
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
@@ -1415,7 +1415,7 @@ struct DailyBoinCollectedView: View {
                     withAnimation(.linear(duration: 0.5)){
                         self.animationEnding = true
                     }
-                    let balanceIncrease = UserData(boinBalance: (userData?.boinBalance ?? 0)  + 1)
+                    let balanceIncrease = UserData(boinBalance: (userData.last?.boinBalance ?? 0)  + 1)
                     modelContext.insert(balanceIncrease)
                 }
             }

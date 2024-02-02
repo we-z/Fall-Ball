@@ -28,15 +28,3 @@ class UserData {
         self.isMuted = isMuted
     }
 }
-
-//class UserDataManager: ObservableObject {
-//    @Environment(\.modelContext) private var modelContext
-//    @Query var userData: [UserData] = []
-//    
-//    func addBoins() {
-//        
-//    }
-//    func removeBoins() {
-//        
-//    }
-//}

@@ -88,7 +88,7 @@ struct ContentView: View {
     func boinFound() {
         showBoinFoundAnimation = true
         if !userData.isEmpty {
-            let newBalance = UserData(boinBalance: (userData[0].boinBalance ?? 0) + 1)
+            let newBalance = UserData(boinBalance: (userData.last?.boinBalance ?? 0) + 1)
             modelContext.insert(newBalance)
         }
         boinIntervalCounter = 0
@@ -157,7 +157,7 @@ struct ContentView: View {
         gameOverTimer?.invalidate()
         gameOverTimer = nil
         if !userData.isEmpty {
-            let newBalance = UserData(boinBalance: (userData[0].boinBalance ?? 0) - costToContinue)
+            let newBalance = UserData(boinBalance: (userData.last?.boinBalance ?? 0) - costToContinue)
             modelContext.insert(newBalance)
         }
         costToContinue *= 2
@@ -234,7 +234,7 @@ struct ContentView: View {
                                                             HStack(spacing: 0){
                                                                 BoinsView()
                                                                     .scaleEffect(0.6)
-                                                                Text(String(userData.isEmpty ? 0 : userData[0].boinBalance ?? 0))
+                                                                Text(String(userData.isEmpty ? 0 : userData.last?.boinBalance ?? 0))
                                                                     .foregroundColor(.black)
                                                                     .bold()
                                                                     .italic()
@@ -286,7 +286,7 @@ struct ContentView: View {
                                                                 continueButtonIsPressed = false
                                                             }
                                                             if !userData.isEmpty {
-                                                                if userData[0].boinBalance ?? 0 >= costToContinue{
+                                                                if userData.last?.boinBalance ?? 0 >= costToContinue{
                                                                     continuePlaying()
                                                                 } else {
                                                                     showCurrencyPage = true
