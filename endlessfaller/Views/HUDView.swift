@@ -7,7 +7,6 @@
 
 import SwiftUI
 import GroupActivities
-import SwiftData
 
 struct HUDView: View {
     @StateObject var groupStateObserver = GroupStateObserver()
@@ -22,19 +21,18 @@ struct HUDView: View {
     @State var showLeaderBoard = false
     @State var currencyButtonIsPressed = false
     @State var showCurrencyPage = false
-    @Environment(\.modelContext) private var modelContext
-    @Query var userData: [UserData] = [UserData(boinBalance: 0)]
+    @StateObject var userPersistedData = UserPersistedData()
     
     let gearHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
-        let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+        let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
         VStack{
             HStack{
                 Spacer()
                 HStack{
                     BoinsView()
-                    Text(String(!userData.isEmpty ? userData.last?.boinBalance ?? 0 : 0))
+                    Text(String(userPersistedData.boinBalance))
                         .bold()
                         .italic()
                         .foregroundColor(.black)
@@ -109,8 +107,8 @@ struct HUDView: View {
                                     .foregroundColor(.teal)
                             }
                             .offset(y: isGearExpanded ? -60 : 0)
-                            .onChange(of: audioController.mute) {
-                                if audioController.mute == true {
+                            .onChange(of: audioController.mute) { newSetting in
+                                if newSetting == true {
                                     audioController.musicPlayer.setVolume(0, fadeDuration: 0)
                                 } else {
                                     audioController.musicPlayer.setVolume(1, fadeDuration: 0)
@@ -150,13 +148,13 @@ struct HUDView: View {
                     }
                     Spacer()
                     ZStack{
-                        if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                        if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
                             ZStack{
                                 AnyView(character.character)
                             }
                             .padding(30)
                             .overlay{
-                                if appModel.selectedHat != "nohat" {
+                                if userPersistedData.selectedHat != "nohat" {
                                     AnyView(hat!.hat)
                                         .scaleEffect(0.69)
                                         .frame(maxHeight: 30)

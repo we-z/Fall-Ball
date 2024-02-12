@@ -7,36 +7,22 @@
 
 import SwiftUI
 import Combine
-import SwiftData
-
 
 struct TempView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [UserData]
-    @State private var input: String = ""
-        
-        
-        var body: some View {
-            VStack {
-//                HStack {
-//                    TextField("Add a task", text: $input )
-//                    Button("Add") {
-//                        let task = UserData(name: input)
-//                        if !task.name.isEmpty{
-//                            modelContext.insert(task)
-//                            input = ""
-//                        }
-//                    }
-//                }.padding()
-//                
-//                List{
-//                    ForEach (items) { item in
-//                        Text(item.name ?? "")
-//                    }
-//                }
+    @StateObject var userPersistedData = UserPersistedData()
+    var body: some View {
+        Form {
+//            Toggle("Ready", isOn: $settings.readyForAction)
+//                .toggleStyle(.switch)
+//            TextField("Speed",value: $settings.speed,format: .number)
+            Button{
+                userPersistedData.incrementBalance(amount: 1)
+            } label: {
+                Text(String(userPersistedData.boinBalance))
             }
-            .padding()
         }
+        .frame(width: 400, height: 400)
+    }
 }
 
 

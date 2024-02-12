@@ -16,7 +16,6 @@ struct GameCenterLeaderboardView: View {
     @State var place = 1
     @State var unserNameTextField = ""
     @State var recordID: CKRecord.ID? = nil
-    @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @FocusState var isTextFieldFocused: Bool
     @State private var isGameCenterSheetPresented = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }

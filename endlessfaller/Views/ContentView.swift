@@ -9,10 +9,7 @@ import SwiftUI
 import GameKit
 import CoreMotion
 import Combine
-import SwiftData
 
-let bestScoreKey = "bestscorekey"
-let boinIntervalCounterKey = "boinIntervalCounterKey"
 let levels = 1000
 
 struct ContentView: View {
@@ -41,14 +38,12 @@ struct ContentView: View {
     @State var showDailyBoinCollectedAnimation = false
     @State private var triangleScale: CGFloat = 1.0
     @State var triangleColor = Color.black
-    @AppStorage(boinIntervalCounterKey) var boinIntervalCounter: Int = UserDefaults.standard.integer(forKey: boinIntervalCounterKey)
     @State var highestLevelInRound = -1
     @State private var gameOverTimer: Timer? = nil
     @State var circleProgress = 0.0
     @State var circleProgressTimer: Timer?
     @Environment(\.scenePhase) var scenePhase
-    @Environment(\.modelContext) private var modelContext
-    @Query var userData: [UserData]
+    @StateObject var userPersistedData = UserPersistedData()
     
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
@@ -61,6 +56,7 @@ struct ContentView: View {
     init() {
         self.queue.underlyingQueue = rotationQueDispatch
     }
+    
     func dropBall() {
         self.ballSpeed = 2
         BallAnimator.startTimer(speed: self.ballSpeed)
@@ -87,11 +83,8 @@ struct ContentView: View {
     
     func boinFound() {
         showBoinFoundAnimation = true
-        if !userData.isEmpty {
-            let newBalance = UserData(boinBalance: (userData.last?.boinBalance ?? 0) + 1)
-            modelContext.insert(newBalance)
-        }
-        boinIntervalCounter = 0
+        userPersistedData.incrementBalance(amount: 1)
+        userPersistedData.resetBoinIntervalCounter()
     }
     
     func dailyBoinCollected() {
@@ -103,14 +96,14 @@ struct ContentView: View {
     
     let openToday = NSDate().formatted
     func checkIfAppOpenToday() {
-        if (UserDefaults.standard.string(forKey: "lastLaunch") == openToday) {
+        if (userPersistedData.lastLaunch == openToday) {
             //Already Launched today
             print("already opened today")
         } else {
             //Today's First Launch
             print("first open of the day")
             dailyBoinCollected()
-            UserDefaults.standard.setValue(openToday, forKey:"lastLaunch")
+            userPersistedData.updateLastLaunch(date: openToday)
         }
     }
     
@@ -140,15 +133,14 @@ struct ContentView: View {
         audioController.musicPlayer.rate = 1
         self.showContinueToPlayScreen = false
         showNewBestScore = false
-        if appModel.currentScore > appModel.bestScore {
-            UserDefaults.standard.set(appModel.bestScore, forKey: bestScoreKey)
+        if appModel.currentScore > userPersistedData.bestScore {
             DispatchQueue.main.async{
-                appModel.bestScore = appModel.currentScore
+                userPersistedData.updateBalance(amount: appModel.currentScore)
             }
         }
         DispatchQueue.main.async {
             self.highestLevelInRound = -1
-            gameCenter.updateScore(currentScore: appModel.currentScore, bestScore: appModel.bestScore, ballID: appModel.selectedCharacter)
+            gameCenter.updateScore(currentScore: appModel.currentScore, bestScore: userPersistedData.bestScore, ballID: userPersistedData.selectedCharacter)
         }
     }
     
@@ -156,10 +148,7 @@ struct ContentView: View {
         //print("continuePlaying called")
         gameOverTimer?.invalidate()
         gameOverTimer = nil
-        if !userData.isEmpty {
-            let newBalance = UserData(boinBalance: (userData.last?.boinBalance ?? 0) - costToContinue)
-            modelContext.insert(newBalance)
-        }
+        userPersistedData.decrementBalance(amount: costToContinue)
         costToContinue *= 2
         shouldContinue = true
         showContinueToPlayScreen = false
@@ -196,7 +185,7 @@ struct ContentView: View {
             self.highestLevelInRound = -1
             self.showWastedScreen = false
         }
-        appModel.playedCharacter = appModel.selectedCharacter
+        appModel.playedCharacter = userPersistedData.selectedCharacter
         gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 
             print("calling from wasted operations")
@@ -210,8 +199,8 @@ struct ContentView: View {
     let heavyHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
-        let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
-        let bag = appModel.bags.first(where: { $0.bagID == appModel.selectedBag})
+        let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
+        let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
         ZStack{
             ScrollView {
                 ZStack{
@@ -234,7 +223,7 @@ struct ContentView: View {
                                                             HStack(spacing: 0){
                                                                 BoinsView()
                                                                     .scaleEffect(0.6)
-                                                                Text(String(userData.isEmpty ? 0 : userData.last?.boinBalance ?? 0))
+                                                                Text(String(userPersistedData.boinBalance))
                                                                     .foregroundColor(.black)
                                                                     .bold()
                                                                     .italic()
@@ -285,12 +274,10 @@ struct ContentView: View {
                                                             withAnimation {
                                                                 continueButtonIsPressed = false
                                                             }
-                                                            if !userData.isEmpty {
-                                                                if userData.last?.boinBalance ?? 0 >= costToContinue{
-                                                                    continuePlaying()
-                                                                } else {
-                                                                    showCurrencyPage = true
-                                                                }
+                                                            if userPersistedData.boinBalance >= costToContinue{
+                                                                continuePlaying()
+                                                            } else {
+                                                                showCurrencyPage = true
                                                             }
                                                         }
                                                     }
@@ -420,12 +407,12 @@ struct ContentView: View {
                         height: deviceHeight
                     )
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .onChange(of: currentIndex) {
+                    .onChange(of: currentIndex) { newIndex in
                         if currentIndex == -1 {
                             gameOverOperations()
                         }
-                        boinIntervalCounter += 1
-                        if boinIntervalCounter > 1000 {
+                        userPersistedData.incrementBoinIntervalCounter()
+                        if userPersistedData.boinIntervalCounter > 1000 {
                             boinFound()
                         }
                         if currentIndex > highestLevelInRound {
@@ -446,7 +433,7 @@ struct ContentView: View {
                         }
                         enableScaleAndFlashForDuration()
                         heavyHaptic.notificationOccurred(.success)
-                        if currentIndex > appModel.bestScore && currentIndex > 3 {
+                        if currentIndex > userPersistedData.bestScore && currentIndex > 3 {
                             showNewBestScore = true
                         }
                     }
@@ -562,12 +549,12 @@ struct ContentView: View {
                             .offset(x: 0, y:-(60 / self.ballSpeed))
                             
                                     
-                            if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
+                            if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
                                 ZStack{
                                     AnyView(bag!.bag)
                                     AnyView(character.character)
                                         .scaleEffect(1.5)
-                                    if appModel.selectedHat != "nohat" {
+                                    if userPersistedData.selectedHat != "nohat" {
                                         AnyView(hat!.hat)
                                     }
                                 }
@@ -576,7 +563,7 @@ struct ContentView: View {
                             }
                         }
                         .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
-                        .onChange(of: self.BallAnimator.ballYPosition) {
+                        .onChange(of: self.BallAnimator.ballYPosition) { newYposition in
                             if deviceHeight - 24 < self.BallAnimator.ballYPosition || self.BallAnimator.ballYPosition < 23 {
                                 wastedOperations()
                             }
@@ -622,12 +609,12 @@ struct ContentView: View {
                 notificationManager.registerLocal()
                 notificationManager.scheduleLocal()
                 checkIfAppOpenToday()
-                appModel.playedCharacter = appModel.selectedCharacter
+                appModel.playedCharacter = userPersistedData.selectedCharacter
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()
                 }
             }
-            .onChange(of: scenePhase) {
+            .onChange(of: scenePhase) { newScenePhase in
                 switch scenePhase {
                 case .background:
                     print("App is in background")

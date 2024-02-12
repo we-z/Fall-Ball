@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct BallsDetailsView: View {
     @ObservedObject private var model = AppModel.sharedAppModel
@@ -17,9 +16,7 @@ struct BallsDetailsView: View {
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @State var showCurrencyPage = false
     @State var obtainIsPressed = false
-    @Environment(\.modelContext) private var modelContext
-    @Query var userData: [UserData]
-    
+    @StateObject var userPersistedData = UserPersistedData()
     var body: some View {
         ZStack{
             model.gameOverBackgroundColor
@@ -75,22 +72,13 @@ struct BallsDetailsView: View {
                         obtainIsPressed = false
                     }
 
-                    if let ballCost = Int(ball.cost) {
-                        if !userData.isEmpty {
-                            if var currentBalance = userData.last?.boinBalance {
-                                if currentBalance >= ballCost {
-                                    model.characters[ballIndex].isPurchased = true
-                                    currentBalance -= ballCost
-                                    let newBalance = UserData(boinBalance: currentBalance)
-                                    modelContext.insert(newBalance)
-                                    model.selectedCharacter = ball.characterID
-                                    model.updatePurchasedCharacters()
-                                    dismiss()
-                                } else {
-                                    showCurrencyPage = true
-                                }
-                            }
-                        }
+                    if userPersistedData.boinBalance >= Int(ball.cost)! {
+                        userPersistedData.addPurchasedSkin(skinName: ball.characterID)
+                        userPersistedData.decrementBalance(amount: Int(ball.cost)!)
+                        userPersistedData.selectNewBall(ball: ball.characterID)
+                        dismiss()
+                    } else {
+                        showCurrencyPage = true
                     }
                 }
             }
@@ -107,5 +95,5 @@ struct BallsDetailsView: View {
 }
 
 //#Preview {
-//    BallsDetailsView( ball: .constant(Character(character: AnyView(WhiteBallView()), cost: "69", characterID: "String", isPurchased: false)), ballIndex: .constant(0))
+//    BallsDetailsView( ball: .constant(Character(character: AnyView(WhiteBallView()), cost: "69", characterID: "String")), ballIndex: .constant(0))
 //}

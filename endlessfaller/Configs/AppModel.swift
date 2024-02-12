@@ -10,35 +10,15 @@ import SwiftUI
 import AVFoundation
 import Combine
 import UIKit
+import NotificationCenter
+import CoreData
 
-let selectedCharacterKey = "SelectedCharacterID"
-let selectedHatKey = "SelectedHatID"
-let selectedBagKey = "SelectedBagID"
-let purchasedCharactersKey = "PurchasedCharacters"
 let muteKey = "Mute"
-
-var freeBallIDs: [String] = [
-    "io.endlessfall.black",
-    "io.endlessfall.orange",
-    "io.endlessfall.white",
-    "io.endlessfall.evil",
-    "io.endlessfall.shocked",
-    "io.endlessfall.laugh"
-]
 
 class AppModel: ObservableObject {
     @Published var gameOverBackgroundColor = RandomGradientView()
-    @AppStorage(selectedCharacterKey) var selectedCharacter: String = UserDefaults.standard.string(forKey: selectedCharacterKey) ?? freeBallIDs.randomElement()!
-    @AppStorage(selectedHatKey) var selectedHat: String = UserDefaults.standard.string(forKey: selectedHatKey) ?? "nohat"
-    @AppStorage(selectedBagKey) var selectedBag: String = UserDefaults.standard.string(forKey: selectedBagKey) ?? "nobag"
-    @Published var purchasedCharacters: [String] = [] {
-        didSet{
-            savePurchasedCharacters()
-        }
-    }
     
     @Published var currentScore: Int = 0
-    @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @Published var playedCharacter = ""
     
     static let sharedAppModel = AppModel()
@@ -101,81 +81,81 @@ class AppModel: ObservableObject {
     ]
         
     @Published var characters: [Character] = [
-        Character(character: AnyView(WhiteBallView()), cost: "Free", characterID: "io.endlessfall.white", isPurchased: true),
-        Character(character: AnyView(BlackBallView()), cost: "Free", characterID: "io.endlessfall.black", isPurchased: true),
-        Character(character: AnyView(YinYangBallView()), cost: "Free", characterID: "io.endlessfall.orange", isPurchased: true),
-        Character(character: AnyView(FallBallLaughBall()), cost: "Free", characterID: "io.endlessfall.laugh", isPurchased: true),
-        Character(character: AnyView(EvilBall()), cost: "Free", characterID: "io.endlessfall.evil", isPurchased: true),
-        Character(character: AnyView(ShockedBall()), cost: "Free", characterID: "io.endlessfall.shocked", isPurchased: true),
-        Character(character: AnyView(BasketBall()), cost: "Free", characterID: "io.endlessfall.basketball", isPurchased: true),
-        Character(character: AnyView(SoccerBall()), cost: "Free", characterID: "io.endlessfall.soccer", isPurchased: true),
-        Character(character: AnyView(VolleyBall()), cost: "Free", characterID: "io.endlessfall.volleyball", isPurchased: true),
-        Character(character: AnyView(DiscoBall()), cost: "5", characterID: "io.endlessfall.disco", isPurchased: false),
-        Character(character: AnyView(PoolBall()), cost: "5", characterID: "io.endlessfall.poolball", isPurchased: false),
-        Character(character: AnyView(TennisBall()), cost: "5", characterID: "io.endlessfall.tennis", isPurchased: false),
-        Character(character: AnyView(ChinaView()), cost: "30", characterID: "io.endlessfall.china", isPurchased: false),
-        Character(character: AnyView(AmericaView()), cost: "30", characterID: "io.endlessfall.america", isPurchased: false),
-        Character(character: AnyView(IndiaView()), cost: "30", characterID: "io.endlessfall.india", isPurchased: false),
-        Character(character: AnyView(JapanView()), cost: "30", characterID: "io.endlessfall.japan", isPurchased: false),
-        Character(character: AnyView(UkView()), cost: "30", characterID: "io.endlessfall.uk", isPurchased: false),
-        Character(character: AnyView(GermanyView()), cost: "30", characterID: "io.endlessfall.germany", isPurchased: false),
-        Character(character: AnyView(FranceView()), cost: "30", characterID: "io.endlessfall.france", isPurchased: false),
-        Character(character: AnyView(CanadaView()), cost: "30", characterID: "io.endlessfall.canada", isPurchased: false),
-        Character(character: AnyView(BrazilView()), cost: "30", characterID: "io.endlessfall.brazil", isPurchased: false),
-        Character(character: AnyView(ParaguayView()), cost: "30", characterID: "io.endlessfall.paraguay", isPurchased: false),
-        Character(character: AnyView(ColombiaView()), cost: "30", characterID: "io.endlessfall.colombia", isPurchased: false),
-        Character(character: AnyView(SouthKoreaView()), cost: "30", characterID: "io.endlessfall.southkorea", isPurchased: false),
-        Character(character: AnyView(MexicoView()), cost: "30", characterID: "io.endlessfall.mexico", isPurchased: false),
-        Character(character: AnyView(PortugalView()), cost: "30", characterID: "io.endlessfall.portugal", isPurchased: false),
-        Character(character: AnyView(SpainView()), cost: "30", characterID: "io.endlessfall.spain", isPurchased: false),
-        Character(character: AnyView(SaudiArabiaView()), cost: "30", characterID: "io.endlessfall.saudiarabia", isPurchased: false),
-        Character(character: AnyView(UaeView()), cost: "30", characterID: "io.endlessfall.uae", isPurchased: false),
-        Character(character: AnyView(QatarView()), cost: "30", characterID: "io.endlessfall.qatar", isPurchased: false),
-        Character(character: AnyView(EthiopiaView()), cost: "30", characterID: "io.endlessfall.ethiopia", isPurchased: false),
-        Character(character: AnyView(NigeriaView()), cost: "30", characterID: "io.endlessfall.nigeria", isPurchased: false),
-        Character(character: AnyView(SouthAfricaView()), cost: "30", characterID: "io.endlessfall.southafrica", isPurchased: false),
-        Character(character: AnyView(RussiaView()), cost: "30", characterID: "io.endlessfall.russia", isPurchased: false),
-        Character(character: AnyView(BelarusView()), cost: "30", characterID: "io.endlessfall.belarus", isPurchased: false),
-        Character(character: AnyView(PolandView()), cost: "30", characterID: "io.endlessfall.poland", isPurchased: false),
-        Character(character: AnyView(UkraineView()), cost: "30", characterID: "io.endlessfall.ukraine", isPurchased: false),
-        Character(character: AnyView(FinlandView()), cost: "30", characterID: "io.endlessfall.finland", isPurchased: false),
-        Character(character: AnyView(SwedenView()), cost: "30", characterID: "io.endlessfall.sweden", isPurchased: false),
-        Character(character: AnyView(NorwayView()), cost: "30", characterID: "io.endlessfall.norway", isPurchased: false),
-        Character(character: AnyView(DenmarkView()), cost: "30", characterID: "io.endlessfall.denmark", isPurchased: false),
-        Character(character: AnyView(EstoniaView()), cost: "30", characterID: "io.endlessfall.estonia", isPurchased: false),
-        Character(character: AnyView(ItalyView()), cost: "30", characterID: "io.endlessfall.italy", isPurchased: false),
-        Character(character: AnyView(GreeceView()), cost: "30", characterID: "io.endlessfall.greece", isPurchased: false),
-        Character(character: AnyView(TurkeyView()), cost: "30", characterID: "io.endlessfall.turkey", isPurchased: false),
-        Character(character: AnyView(SomaliaView()), cost: "30", characterID: "io.endlessfall.somalia", isPurchased: false),
-        Character(character: AnyView(KenyaView()), cost: "30", characterID: "io.endlessfall.kenya", isPurchased: false),
-        Character(character: AnyView(TanzaniaView()), cost: "30", characterID: "io.endlessfall.tanzania", isPurchased: false),
-        Character(character: AnyView(ThailandView()), cost: "30", characterID: "io.endlessfall.thailand", isPurchased: false),
-        Character(character: AnyView(VietnamView()), cost: "30", characterID: "io.endlessfall.vietnam", isPurchased: false),
-        Character(character: AnyView(MalaysiaView()), cost: "30", characterID: "io.endlessfall.malaysia", isPurchased: false),
-        Character(character: AnyView(ChileView()), cost: "30", characterID: "io.endlessfall.chile", isPurchased: false),
-        Character(character: AnyView(ArgentinaView()), cost: "30", characterID: "io.endlessfall.argentina", isPurchased: false),
-        Character(character: AnyView(PeruView()), cost: "30", characterID: "io.endlessfall.peru", isPurchased: false),
-        Character(character: AnyView(PakistanView()), cost: "30", characterID: "io.endlessfall.pakistan", isPurchased: false),
-        Character(character: AnyView(BangladeshView()), cost: "30", characterID: "io.endlessfall.bangladesh", isPurchased: false),
-        Character(character: AnyView(IndonesiaView()), cost: "30", characterID: "io.endlessfall.indonesia", isPurchased: false),
-        Character(character: AnyView(EgyptView()), cost: "30", characterID: "io.endlessfall.egypt", isPurchased: false),
-        Character(character: AnyView(PalestineView()), cost: "30", characterID: "io.endlessfall.palestine", isPurchased: false),
-        Character(character: AnyView(MoroccoView()), cost: "30", characterID: "io.endlessfall.morocco", isPurchased: false),
-        Character(character: AnyView(JoeRoganView()), cost: "69", characterID: "io.endlessfall.joerogan", isPurchased: false),
-        Character(character: AnyView(DjkhaledView()), cost: "69", characterID: "io.endlessfall.djkhaled", isPurchased: false),
-        Character(character: AnyView(ObamaView()), cost: "69", characterID: "io.endlessfall.obama", isPurchased: false),
-        Character(character: AnyView(AlbertView()), cost: "69", characterID: "io.endlessfall.albert", isPurchased: false),
-        Character(character: AnyView(MonkeyView()), cost: "69", characterID: "io.endlessfall.monkey", isPurchased: false),
-        Character(character: AnyView(IceSpiceView()), cost: "69", characterID: "io.endlessfall.icespice", isPurchased: false),
-        Character(character: AnyView(KaiView()), cost: "69", characterID: "io.endlessfall.kai", isPurchased: false),
-        Character(character: AnyView(RickView()), cost: "69", characterID: "io.endlessfall.rick", isPurchased: false),
-        Character(character: AnyView(MortyView()), cost: "69", characterID: "io.endlessfall.morty", isPurchased: false),
-        Character(character: AnyView(YeatView()), cost: "100", characterID: "io.endlessfall.yeat", isPurchased: false),
-        Character(character: AnyView(OnepieceView()), cost: "100", characterID: "io.endlessfall.onepiece", isPurchased: false),
-        Character(character: AnyView(AllmightView()), cost: "100", characterID: "io.endlessfall.allmight", isPurchased: false),
-        Character(character: AnyView(PearlBallView()), cost: "1000", characterID: "io.endlessfall.pearl", isPurchased: false),
-        Character(character: AnyView(GoldBallView()), cost: "4000", characterID: "io.endlessfall.gold", isPurchased: false),
-        Character(character: AnyView(DiamondBallView()), cost: "10000", characterID: "io.endlessfall.diamond", isPurchased: false)
+        Character(character: AnyView(WhiteBallView()), cost: "Free", characterID: "io.endlessfall.white"),
+        Character(character: AnyView(BlackBallView()), cost: "Free", characterID: "io.endlessfall.black"),
+        Character(character: AnyView(YinYangBallView()), cost: "Free", characterID: "io.endlessfall.orange"),
+        Character(character: AnyView(FallBallLaughBall()), cost: "Free", characterID: "io.endlessfall.laugh"),
+        Character(character: AnyView(EvilBall()), cost: "Free", characterID: "io.endlessfall.evil"),
+        Character(character: AnyView(ShockedBall()), cost: "Free", characterID: "io.endlessfall.shocked"),
+        Character(character: AnyView(BasketBall()), cost: "Free", characterID: "io.endlessfall.basketball"),
+        Character(character: AnyView(SoccerBall()), cost: "Free", characterID: "io.endlessfall.soccer"),
+        Character(character: AnyView(VolleyBall()), cost: "Free", characterID: "io.endlessfall.volleyball"),
+        Character(character: AnyView(DiscoBall()), cost: "5", characterID: "io.endlessfall.disco"),
+        Character(character: AnyView(PoolBall()), cost: "5", characterID: "io.endlessfall.poolball"),
+        Character(character: AnyView(TennisBall()), cost: "5", characterID: "io.endlessfall.tennis"),
+        Character(character: AnyView(ChinaView()), cost: "30", characterID: "io.endlessfall.china"),
+        Character(character: AnyView(AmericaView()), cost: "30", characterID: "io.endlessfall.america"),
+        Character(character: AnyView(IndiaView()), cost: "30", characterID: "io.endlessfall.india"),
+        Character(character: AnyView(JapanView()), cost: "30", characterID: "io.endlessfall.japan"),
+        Character(character: AnyView(UkView()), cost: "30", characterID: "io.endlessfall.uk"),
+        Character(character: AnyView(GermanyView()), cost: "30", characterID: "io.endlessfall.germany"),
+        Character(character: AnyView(FranceView()), cost: "30", characterID: "io.endlessfall.france"),
+        Character(character: AnyView(CanadaView()), cost: "30", characterID: "io.endlessfall.canada"),
+        Character(character: AnyView(BrazilView()), cost: "30", characterID: "io.endlessfall.brazil"),
+        Character(character: AnyView(ParaguayView()), cost: "30", characterID: "io.endlessfall.paraguay"),
+        Character(character: AnyView(ColombiaView()), cost: "30", characterID: "io.endlessfall.colombia"),
+        Character(character: AnyView(SouthKoreaView()), cost: "30", characterID: "io.endlessfall.southkorea"),
+        Character(character: AnyView(MexicoView()), cost: "30", characterID: "io.endlessfall.mexico"),
+        Character(character: AnyView(PortugalView()), cost: "30", characterID: "io.endlessfall.portugal"),
+        Character(character: AnyView(SpainView()), cost: "30", characterID: "io.endlessfall.spain"),
+        Character(character: AnyView(SaudiArabiaView()), cost: "30", characterID: "io.endlessfall.saudiarabia"),
+        Character(character: AnyView(UaeView()), cost: "30", characterID: "io.endlessfall.uae"),
+        Character(character: AnyView(QatarView()), cost: "30", characterID: "io.endlessfall.qatar"),
+        Character(character: AnyView(EthiopiaView()), cost: "30", characterID: "io.endlessfall.ethiopia"),
+        Character(character: AnyView(NigeriaView()), cost: "30", characterID: "io.endlessfall.nigeria"),
+        Character(character: AnyView(SouthAfricaView()), cost: "30", characterID: "io.endlessfall.southafrica"),
+        Character(character: AnyView(RussiaView()), cost: "30", characterID: "io.endlessfall.russia"),
+        Character(character: AnyView(BelarusView()), cost: "30", characterID: "io.endlessfall.belarus"),
+        Character(character: AnyView(PolandView()), cost: "30", characterID: "io.endlessfall.poland"),
+        Character(character: AnyView(UkraineView()), cost: "30", characterID: "io.endlessfall.ukraine"),
+        Character(character: AnyView(FinlandView()), cost: "30", characterID: "io.endlessfall.finland"),
+        Character(character: AnyView(SwedenView()), cost: "30", characterID: "io.endlessfall.sweden"),
+        Character(character: AnyView(NorwayView()), cost: "30", characterID: "io.endlessfall.norway"),
+        Character(character: AnyView(DenmarkView()), cost: "30", characterID: "io.endlessfall.denmark"),
+        Character(character: AnyView(EstoniaView()), cost: "30", characterID: "io.endlessfall.estonia"),
+        Character(character: AnyView(ItalyView()), cost: "30", characterID: "io.endlessfall.italy"),
+        Character(character: AnyView(GreeceView()), cost: "30", characterID: "io.endlessfall.greece"),
+        Character(character: AnyView(TurkeyView()), cost: "30", characterID: "io.endlessfall.turkey"),
+        Character(character: AnyView(SomaliaView()), cost: "30", characterID: "io.endlessfall.somalia"),
+        Character(character: AnyView(KenyaView()), cost: "30", characterID: "io.endlessfall.kenya"),
+        Character(character: AnyView(TanzaniaView()), cost: "30", characterID: "io.endlessfall.tanzania"),
+        Character(character: AnyView(ThailandView()), cost: "30", characterID: "io.endlessfall.thailand"),
+        Character(character: AnyView(VietnamView()), cost: "30", characterID: "io.endlessfall.vietnam"),
+        Character(character: AnyView(MalaysiaView()), cost: "30", characterID: "io.endlessfall.malaysia"),
+        Character(character: AnyView(ChileView()), cost: "30", characterID: "io.endlessfall.chile"),
+        Character(character: AnyView(ArgentinaView()), cost: "30", characterID: "io.endlessfall.argentina"),
+        Character(character: AnyView(PeruView()), cost: "30", characterID: "io.endlessfall.peru"),
+        Character(character: AnyView(PakistanView()), cost: "30", characterID: "io.endlessfall.pakistan"),
+        Character(character: AnyView(BangladeshView()), cost: "30", characterID: "io.endlessfall.bangladesh"),
+        Character(character: AnyView(IndonesiaView()), cost: "30", characterID: "io.endlessfall.indonesia"),
+        Character(character: AnyView(EgyptView()), cost: "30", characterID: "io.endlessfall.egypt"),
+        Character(character: AnyView(PalestineView()), cost: "30", characterID: "io.endlessfall.palestine"),
+        Character(character: AnyView(MoroccoView()), cost: "30", characterID: "io.endlessfall.morocco"),
+        Character(character: AnyView(JoeRoganView()), cost: "69", characterID: "io.endlessfall.joerogan"),
+        Character(character: AnyView(DjkhaledView()), cost: "69", characterID: "io.endlessfall.djkhaled"),
+        Character(character: AnyView(ObamaView()), cost: "69", characterID: "io.endlessfall.obama"),
+        Character(character: AnyView(AlbertView()), cost: "69", characterID: "io.endlessfall.albert"),
+        Character(character: AnyView(MonkeyView()), cost: "69", characterID: "io.endlessfall.monkey"),
+        Character(character: AnyView(IceSpiceView()), cost: "69", characterID: "io.endlessfall.icespice"),
+        Character(character: AnyView(KaiView()), cost: "69", characterID: "io.endlessfall.kai"),
+        Character(character: AnyView(RickView()), cost: "69", characterID: "io.endlessfall.rick"),
+        Character(character: AnyView(MortyView()), cost: "69", characterID: "io.endlessfall.morty"),
+        Character(character: AnyView(YeatView()), cost: "100", characterID: "io.endlessfall.yeat"),
+        Character(character: AnyView(OnepieceView()), cost: "100", characterID: "io.endlessfall.onepiece"),
+        Character(character: AnyView(AllmightView()), cost: "100", characterID: "io.endlessfall.allmight"),
+        Character(character: AnyView(PearlBallView()), cost: "1000", characterID: "io.endlessfall.pearl"),
+        Character(character: AnyView(GoldBallView()), cost: "4000", characterID: "io.endlessfall.gold"),
+        Character(character: AnyView(DiamondBallView()), cost: "10000", characterID: "io.endlessfall.diamond")
     ]
     
     func startSharing() {
@@ -195,56 +175,12 @@ class AppModel: ObservableObject {
             }
         }
     }
-    
-    func updatePurchasedCharacters(){
-        characters.forEach{ character in
-            if character.isPurchased == true {
-                if !purchasedCharacters.contains(character.characterID){
-                    purchasedCharacters.append(character.characterID)
-                }
-            }
-        }
-    }
-    
-    func savePurchasedCharacters(){
-        if let purchasedCharactes = try? JSONEncoder().encode(purchasedCharacters){
-            UserDefaults.standard.set(purchasedCharactes, forKey: purchasedCharactersKey)
-        }
-        
-    }
-    func getPurchasedCharacters(){
-        guard
-            let charactersData = UserDefaults.standard.data(forKey: purchasedCharactersKey),
-            let savedCharacters = try? JSONDecoder().decode([String].self, from: charactersData)
-        else {return}
-        
-        self.purchasedCharacters = savedCharacters
-        
-        //print("purchasedCharacters retrieved: \(purchasedCharacters)")
-        
-        purchasedCharacters.forEach{ purchasedCharacterID in
-            for index in characters.indices {
-                let character = characters[index]
-                if character.characterID == purchasedCharacterID {
-                    characters[index].isPurchased = true
-                }
-            }
-        }
-        //print("purchasedCharacters assigned")
-    }
-    
-    
-    init() {
-        getPurchasedCharacters()
-        //assignRandomBall()
-    }
 }
 
 struct Character: Hashable {
     let character: AnyView // Note: I corrected the type name to 'AnyView' (with a capital 'A')
     let cost: String
     let characterID: String
-    var isPurchased: Bool
 
     func hash(into hasher: inout Hasher) {
         // Implement a custom hash function that combines the hash values of properties that uniquely identify a character

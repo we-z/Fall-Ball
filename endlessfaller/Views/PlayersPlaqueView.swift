@@ -10,9 +10,9 @@ import GameKit
 
 struct PlayersPlaqueView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
-    @AppStorage(bestScoreKey) var bestScore: Int = UserDefaults.standard.integer(forKey: bestScoreKey)
     @Environment(\.displayScale) var displayScale
     @State private var sheetPresented : Bool = false
+    @StateObject var userPersistedData = UserPersistedData()
     
     @MainActor
     private func render() -> UIImage?{
@@ -38,17 +38,17 @@ struct PlayersPlaqueView: View {
                     .foregroundColor(.black)
                     .bold()
                     .italic()
-                if let character = appModel.characters.first(where: { $0.characterID == appModel.selectedCharacter}) {
-                    let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
-                    let bag = appModel.bags.first(where: { $0.bagID == appModel.selectedBag})
+                if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
+                    let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
+                    let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
                     ZStack{
-                        if appModel.selectedBag != "nobag" {
+                        if userPersistedData.selectedBag != "nobag" {
                             AnyView(bag!.bag)
                                 .frame(maxWidth: 180, maxHeight: 60)
                         }
                         AnyView(character.character)
                             .scaleEffect(1.5)
-                        if appModel.selectedHat != "nohat" {
+                        if userPersistedData.selectedHat != "nohat" {
                             AnyView(hat!.hat)
                                 .frame(maxWidth: 60, maxHeight: 60)
                         }
@@ -66,7 +66,7 @@ struct PlayersPlaqueView: View {
                     .bold()
                     .italic()
                     .font(.title)
-                Text("Beat My Top Score: \(bestScore)")
+                Text("Beat My Top Score: \(userPersistedData.bestScore)")
                     .foregroundColor(.black)
                     .font(.caption)
                     .bold()

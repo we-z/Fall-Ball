@@ -14,9 +14,10 @@ struct GameOverScreenView: View {
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    @StateObject var userPersistedData = UserPersistedData()
     
     var body: some View {
-        let hat = appModel.hats.first(where: { $0.hatID == appModel.selectedHat})
+        let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
         VStack{
             Spacer()
             Text("Game Over!")
@@ -38,7 +39,7 @@ struct GameOverScreenView: View {
                                     .font(.title)
                                     .bold()
                                     .italic()
-                                    .foregroundColor(appModel.selectedHat == "nohat" ? .black : .clear)
+                                    .foregroundColor(userPersistedData.selectedHat == "nohat" ? .black : .clear)
                                     .padding(.leading, 15)
                                     .offset(x: 30)
                             }
@@ -61,7 +62,7 @@ struct GameOverScreenView: View {
                             .foregroundColor(.black)
                             .bold()
                             .italic()
-                        Text(String(appModel.bestScore))
+                        Text(String(userPersistedData.bestScore))
                             .bold()
                             .italic()
                             .offset(y: 6)
@@ -78,12 +79,12 @@ struct GameOverScreenView: View {
                     ZStack{
                         AnyView(character.character)
                             .scaleEffect(1.5)
-                        if appModel.selectedHat != "nohat" {
+                        if userPersistedData.selectedHat != "nohat" {
                             AnyView(hat!.hat)
                         }
                     }
                     .scaleEffect(1.5)
-                    .offset(x: -70, y: appModel.selectedHat == "nohat" ? 18 : 30)
+                    .offset(x: -70, y: userPersistedData.selectedHat == "nohat" ? 18 : 30)
                 }
             }
             .background{

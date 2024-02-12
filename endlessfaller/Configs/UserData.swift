@@ -6,25 +6,69 @@
 //
 
 import Foundation
-import SwiftData
+import CloudStorage
 
-@Model
-class UserData {
-    var bestScore: Int?
-    var boinBalance: Int?
-    var purchasedSkins: [String]?
-    var selectedCharacter: String?
-    var selectedBag: String?
-    var selectedHat: String?
-    var isMuted: Bool?
+class UserPersistedData: ObservableObject {
+    @CloudStorage("bestScore") var bestScore: Int = 0
+    @CloudStorage("boinBalance") var boinBalance: Int = 0
+    @CloudStorage("purchasedSkins") var purchasedSkins: String = ""
+    @CloudStorage("selectedCharacter") var selectedCharacter: String = "io.endlessfall.shocked"
+    @CloudStorage("selectedBag") var selectedBag: String = "nobag"
+    @CloudStorage("selectedHat") var selectedHat: String = "nohat"
+    @CloudStorage("isMuted") var isMuted: Bool = false
+    @CloudStorage("lastLaunch") var lastLaunch: String = NSDate().formatted
+    @CloudStorage("lastLaunch") var boinIntervalCounter: Int = 0
     
-    init(bestScore: Int? = nil, boinBalance: Int? = nil, purchasedSkins: [String]? = nil, selectedCharacter: String? = nil, selectedBag: String? = nil, selectedHat: String? = nil, isMuted: Bool? = nil) {
-        self.bestScore = bestScore
-        self.boinBalance = boinBalance
-        self.purchasedSkins = purchasedSkins
-        self.selectedCharacter = selectedCharacter
-        self.selectedBag = selectedBag
-        self.selectedHat = selectedHat
-        self.isMuted = isMuted
+    func addPurchasedSkin(skinName: String) {
+        purchasedSkins += skinName
+        purchasedSkins += ","
+    }
+    
+    func skinIsPurchased(skinName: String) -> Bool {
+        if purchasedSkins.contains(skinName) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func incrementBoinIntervalCounter() {
+        boinIntervalCounter += 1
+    }
+    
+    func resetBoinIntervalCounter() {
+        boinIntervalCounter = 0
+    }
+    
+    func incrementBalance(amount: Int) {
+        boinBalance += amount
+    }
+    
+    func decrementBalance(amount: Int) {
+        boinBalance -= amount
+    }
+    
+    func updateBalance(amount: Int) {
+        bestScore = amount
+    }
+    
+    func updateLastLaunch(date: String) {
+        lastLaunch = date
+    }
+    
+    func selectNewBall(ball: String) {
+        selectedCharacter = ball
+    }
+    
+    func selectNewHat(hat: String) {
+        selectedHat = hat
+    }
+    
+    func selectNewBag(bag: String) {
+        selectedBag = bag
+    }
+    
+    func updateMuteSetting(setting: Bool) {
+        isMuted = setting
     }
 }

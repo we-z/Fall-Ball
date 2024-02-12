@@ -19,10 +19,11 @@ struct CharactersMenuView: View {
     @State var hapticFeedbackCounter = 0
     @State var showBallDetails = false
     @State var yPosition: CGFloat = 0.0
-    @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "", isPurchased: false)
+    @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "")
     @State var currentBallIndex = 0
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @State private var circleProgress: CGFloat = 0.0
+    @StateObject var userPersistedData = UserPersistedData()
     
     var body: some View {
         ZStack{
@@ -54,8 +55,8 @@ struct CharactersMenuView: View {
                                         if index < model.characters.count {
                                             let character = model.characters[index]
                                             Button {
-                                                if index < 8 || model.characters[index].isPurchased {
-                                                    model.selectedCharacter = model.characters[index].characterID
+                                                if index < 9 || userPersistedData.purchasedSkins.contains(character.characterID) {
+                                                    userPersistedData.selectNewBall(ball: model.characters[index].characterID)
                                                 } else {
                                                     currentCharacter = model.characters[index]
                                                     currentBallIndex = index
@@ -66,7 +67,7 @@ struct CharactersMenuView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
-                                                    .background(model.gameOverBackgroundColor.opacity(model.characters[index].characterID == model.selectedCharacter ? 1 : 0))
+                                                    .background(model.gameOverBackgroundColor.opacity(model.characters[index].characterID == userPersistedData.selectedCharacter ? 1 : 0))
                                                     .cornerRadius(20)
                                                     .overlay(
                                                         ZStack{
@@ -76,7 +77,7 @@ struct CharactersMenuView: View {
                                                                     .offset(y: idiom == .pad ? -12 : 0)
                                                                 Spacer()
                                                                     .frame(maxHeight: 36)
-                                                                if model.characters[index].isPurchased && index > 8 {
+                                                                if userPersistedData.purchasedSkins.contains(character.characterID) && index > 8 {
                                                                     Text("Available")
                                                                         .foregroundColor(.black)
                                                                         .bold()
@@ -108,9 +109,6 @@ struct CharactersMenuView: View {
                                                     )
                                                     .accentColor(.black)
                                                     .padding(1)
-                                                    .onChange(of: model.characters) {
-                                                        model.updatePurchasedCharacters()
-                                                    }
                                             }
                                             .buttonStyle(.roundedAndShadow)
                                         }

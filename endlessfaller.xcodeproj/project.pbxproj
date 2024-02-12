@@ -25,6 +25,7 @@
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
+		7A9755D62B78717200473737 /* CloudStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9755D52B78717200473737 /* CloudStorage */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
 		7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */; };
 		7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */; };
@@ -191,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A9755D62B78717200473737 /* CloudStorage in Frameworks */,
 				7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +469,7 @@
 			);
 			name = "Fall Ball";
 			packageProductDependencies = (
+				7A9755D52B78717200473737 /* CloudStorage */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -628,6 +631,7 @@
 				7AD234692A5F848700ED626D /* XCRemoteSwiftPackageReference "swiftui-vertical-tab-view" */,
 				7A3CEA5D2A896FAF00A79E65 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 				7A3CEA602A89F6A400A79E65 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */,
 			);
 			productRefGroup = 7AD2343C2A5F824800ED626D /* Products */;
 			projectDirPath = "";
@@ -955,8 +959,8 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphoneos*]" = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphoneos*]" = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -1002,8 +1006,8 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphoneos*]" = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphoneos*]" = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -1423,6 +1427,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nonstrict-hq/CloudStorage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 		7AD234692A5F848700ED626D /* XCRemoteSwiftPackageReference "swiftui-vertical-tab-view" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-vertical-tab-view";
@@ -1432,6 +1444,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7A9755D52B78717200473737 /* CloudStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */;
+			productName = CloudStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7AD234332A5F824800ED626D /* Project object */;
 }

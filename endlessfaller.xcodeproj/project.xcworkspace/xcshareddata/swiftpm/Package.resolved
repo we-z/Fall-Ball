@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "cloudstorage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nonstrict-hq/CloudStorage.git",
+      "state" : {
+        "revision" : "35700218d35579df091974b6e7765db94c83448b",
+        "version" : "0.4.0"
+      }
+    },
+    {
       "identity" : "flanimatedimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Flipboard/FLAnimatedImage",
