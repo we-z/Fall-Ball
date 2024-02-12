@@ -438,26 +438,28 @@ struct ContentView: View {
                         }
                     }
                     .allowsHitTesting(!freezeScrolling)
-                    if !showNewBestScore {
-                        
-                        if score > 50 && score < 65 {
-                            YourGood()
-                        }
-                        
-                        if score > 100 && score < 115 {
-                            YourInsane()
-                        }
-                        
-                        if score > 300 && score < 315 {
-                            GoBerzerk()
-                        }
-                        
-                    } else {
-                        NewBestScore()
-                            .onAppear{
-                                audioController.dingsSoundEffect.play()
+                    if score >= 0 && currentIndex >= 0 {
+                        if !showNewBestScore {
+                            
+                            if score > 50 && score < 65 {
+                                YourGood()
                             }
-                        CelebrationEffect()
+                            
+                            if score > 100 && score < 115 {
+                                YourInsane()
+                            }
+                            
+                            if score > 300 && score < 315 {
+                                GoBerzerk()
+                            }
+                            
+                        } else {
+                            NewBestScore()
+                                .onAppear{
+                                    audioController.dingsSoundEffect.play()
+                                }
+                            CelebrationEffect()
+                        }
                     }
                     if score >= 0 && currentIndex >= 0{
                         ZStack{

@@ -8,6 +8,7 @@
 import Foundation
 import AVFoundation
 
+let muteKey = "Mute"
 
 class AudioManager: ObservableObject {
     @Published var musicPlayer: AVAudioPlayer!
@@ -18,17 +19,16 @@ class AudioManager: ObservableObject {
     @Published var mute: Bool = false {
         didSet{
             saveAudiotSetting()
-            setAllAudioVolume(shouldMute: mute)
         }
     }
     
-
+    static let sharedAudioManager = AudioManager()
+    
     init() {
         getAudioSetting()
         setUpAudioFiles()
+        setAllAudioVolume()
     }
-    
-    static let sharedAudioManager = AudioManager()
     
     func getAudioSetting(){
         guard
@@ -44,8 +44,8 @@ class AudioManager: ObservableObject {
             UserDefaults.standard.set(muteSetting, forKey: muteKey)
         }
     }
-    func setAllAudioVolume(shouldMute: Bool) {
-        if shouldMute == true {
+    func setAllAudioVolume() {
+        if mute == true {
             self.musicPlayer.setVolume(0, fadeDuration: 0)
             self.punchSoundEffect.setVolume(0, fadeDuration: 0)
             self.boingSoundEffect.setVolume(0, fadeDuration: 0)

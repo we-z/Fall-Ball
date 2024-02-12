@@ -13,8 +13,6 @@ import UIKit
 import NotificationCenter
 import CoreData
 
-let muteKey = "Mute"
-
 class AppModel: ObservableObject {
     @Published var gameOverBackgroundColor = RandomGradientView()
     
