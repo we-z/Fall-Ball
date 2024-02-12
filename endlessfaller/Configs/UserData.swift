@@ -15,7 +15,6 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("selectedCharacter") var selectedCharacter: String = "io.endlessfall.shocked"
     @CloudStorage("selectedBag") var selectedBag: String = "nobag"
     @CloudStorage("selectedHat") var selectedHat: String = "nohat"
-    @CloudStorage("isMuted") var isMuted: Bool = false
     @CloudStorage("lastLaunch") var lastLaunch: String = NSDate().formatted
     @CloudStorage("lastLaunch") var boinIntervalCounter: Int = 0
     
@@ -68,7 +67,4 @@ class UserPersistedData: ObservableObject {
         selectedBag = bag
     }
     
-    func updateMuteSetting(setting: Bool) {
-        isMuted = setting
-    }
 }

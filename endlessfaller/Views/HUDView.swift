@@ -107,13 +107,6 @@ struct HUDView: View {
                                     .foregroundColor(.teal)
                             }
                             .offset(y: isGearExpanded ? -60 : 0)
-                            .onChange(of: audioController.mute) { newSetting in
-                                if newSetting == true {
-                                    audioController.musicPlayer.setVolume(0, fadeDuration: 0)
-                                } else {
-                                    audioController.musicPlayer.setVolume(1, fadeDuration: 0)
-                                }
-                            }
                         }
                         .offset(y: -15)
                         .opacity(isGearExpanded ? 1 : 0)

@@ -18,15 +18,17 @@ class AudioManager: ObservableObject {
     @Published var mute: Bool = false {
         didSet{
             saveAudiotSetting()
+            setAllAudioVolume(shouldMute: mute)
         }
     }
     
-    static let sharedAudioManager = AudioManager()
-    
+
     init() {
         getAudioSetting()
         setUpAudioFiles()
     }
+    
+    static let sharedAudioManager = AudioManager()
     
     func getAudioSetting(){
         guard
@@ -42,7 +44,19 @@ class AudioManager: ObservableObject {
             UserDefaults.standard.set(muteSetting, forKey: muteKey)
         }
     }
-    
+    func setAllAudioVolume(shouldMute: Bool) {
+        if shouldMute == true {
+            self.musicPlayer.setVolume(0, fadeDuration: 0)
+            self.punchSoundEffect.setVolume(0, fadeDuration: 0)
+            self.boingSoundEffect.setVolume(0, fadeDuration: 0)
+            self.dingsSoundEffect.setVolume(0, fadeDuration: 0)
+        } else {
+            self.musicPlayer.setVolume(1, fadeDuration: 0)
+            self.punchSoundEffect.setVolume(1, fadeDuration: 0)
+            self.boingSoundEffect.setVolume(1, fadeDuration: 0)
+            self.dingsSoundEffect.setVolume(1, fadeDuration: 0)
+        }
+    }
     func setUpAudioFiles() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
@@ -68,6 +82,11 @@ class AudioManager: ObservableObject {
         if let punch = Bundle.main.path(forResource: "punchSFX", ofType: "mp3"){
             do {
                 self.punchSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: punch))
+                if mute == true {
+                    self.punchSoundEffect.setVolume(0, fadeDuration: 0)
+                } else {
+                    self.punchSoundEffect.setVolume(1, fadeDuration: 0)
+                }
             } catch {
                 print("Error playing audio: \(error)")
             }
@@ -75,6 +94,11 @@ class AudioManager: ObservableObject {
         if let boing = Bundle.main.path(forResource: "Boing", ofType: "mp3"){
             do {
                 self.boingSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: boing))
+                if mute == true {
+                    self.boingSoundEffect.setVolume(0, fadeDuration: 0)
+                } else {
+                    self.boingSoundEffect.setVolume(1, fadeDuration: 0)
+                }
             } catch {
                 print("Error playing audio: \(error)")
             }
@@ -82,6 +106,11 @@ class AudioManager: ObservableObject {
         if let dings = Bundle.main.path(forResource: "DingDingDing", ofType: "mp3"){
             do {
                 self.dingsSoundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: dings))
+                if mute == true {
+                    self.dingsSoundEffect.setVolume(0, fadeDuration: 0)
+                } else {
+                    self.dingsSoundEffect.setVolume(1, fadeDuration: 0)
+                }
             } catch {
                 print("Error playing audio: \(error)")
             }
