@@ -11,8 +11,6 @@ import AVFoundation
 import Combine
 import UIKit
 import NotificationCenter
-import CoreData
-import CircularProgress
 
 class AppModel: ObservableObject {    
     @Published var currentScore: Int = 0
@@ -93,11 +91,7 @@ class AppModel: ObservableObject {
         DispatchQueue.main.async{
             self.highestLevelInRound = -1
             self.showContinueToPlayScreen = true
-            self.BallAnimator.setBallYPosition(newYposition: 23)
             self.BallAnimator.endingYPosition = 23
-            print("reseted endingYPosition to:")
-            print(self.BallAnimator.endingYPosition)
-            self.BallAnimator.resetPushUp()
             self.currentIndex = -2
         }
         firstGamePlayed = true
@@ -134,7 +128,6 @@ class AppModel: ObservableObject {
             self.gameOverTimer?.invalidate()
             self.gameOverTimer = nil
         }
-        self.BallAnimator.setBallYPosition(newYposition: 23)
         self.costToContinue *= 2
         self.showContinueToPlayScreen = false
         self.currentIndex = 0
@@ -465,81 +458,6 @@ struct RoundedAndShadowButtonStyle:ButtonStyle {
 extension ButtonStyle where Self == RoundedAndShadowButtonStyle {
     static var roundedAndShadow:RoundedAndShadowButtonStyle {
         RoundedAndShadowButtonStyle()
-    }
-}
-
-class BallAnimationManager: ObservableObject {
-    @Published var ballYPosition: CGFloat = -22
-    @Published var startingYPosition: CGFloat = 0
-    @Published var endingYPosition: CGFloat = 23
-    @Published var newBallSpeed: CGFloat = 0
-    @Published var startTime: CFTimeInterval = 0.0
-    @Published var displayLink: CADisplayLink?
-    @Published var pushUp: Bool = false
-    @Published var ballSpeed: Double = 0.0
-    @Published var targetDuration: CFTimeInterval = 0
-    
-    static let sharedBallManager = BallAnimationManager()
-    
-    func startTimer(speed: Double) {
-        print("startTimer called from inside BallAnimationManager")
-        // Invalidate the existing display link
-        self.displayLink?.invalidate()
-        
-        ballSpeed = speed
-        
-        // Create a new display link
-        displayLink = CADisplayLink(target: self, selector: #selector(update(_:)))
-        displayLink?.add(to: .current, forMode: .common)
-        //displayLink?.preferredFrameRateRange = CAFrameRateRange(minimum: 15.0 , maximum: 60.0, preferred: 60.0)
-        
-        // Set the start time
-        startTime = CACurrentMediaTime()
-    }
-    
-    func pushBallUp(newBallSpeed: CGFloat) {
-        ballSpeed = 0.3
-        self.newBallSpeed = newBallSpeed
-        startingYPosition = ballYPosition
-        endingYPosition = startingYPosition - UIScreen.main.bounds.height / 3
-        startTime = CACurrentMediaTime()
-        pushUp = true
-    }
-    
-    @objc func update(_ displayLink: CADisplayLink) {
-        let currentTime = CACurrentMediaTime()
-        let elapsedTime = currentTime - startTime
-        
-        // Calculate the target duration (2 seconds)
-        targetDuration = ballSpeed
-        
-        // Calculate the ball position based on elapsed time and speed
-        if elapsedTime < targetDuration {
-            if pushUp {
-                //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
-                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
-                if ballYPosition <= endingYPosition + 90 {
-                    //print("ball pushed back all the way up")
-                    startTime = CACurrentMediaTime()
-                    startTimer(speed: newBallSpeed)
-                    pushUp = false
-                }
-            } else {
-                ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height))
-            }
-        } else {
-            ballYPosition = UIScreen.main.bounds.height - 23
-            displayLink.invalidate()
-        }
-    }
-    
-    func resetPushUp() {
-        print("resetPushUp called")
-        pushUp = false
-    }
-    
-    func setBallYPosition(newYposition: CGFloat) {
-        self.ballYPosition = newYposition
     }
 }
 
