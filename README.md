@@ -1,6 +1,9 @@
 # Fall Ball 🎱
+IOS game written in Swift. 
 
-Fall Ball is an open source IOS game written in Swift. The objective for the player is to swipe up as fast as possible. 
+```
+The objective for the player is to swipe up as fast as possible.
+```
 
 ## Code Break Down 👨‍💻
 
