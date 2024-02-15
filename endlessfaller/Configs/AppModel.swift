@@ -41,13 +41,11 @@ class AppModel: ObservableObject {
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     
     func dropBall() {
-        print("dropBall called")
         self.ballSpeed = 2
         self.BallAnimator.startTime = 0.0
         self.BallAnimator.startTimer(speed: self.ballSpeed)
     }
     func liftBall(difficultyInput: Int) {
-        print("liftBall called")
         /*
          level 1 is anywhere between 0.5 and 1.5 seconds
          level 1000 is anywhere between 0.1 and 0.3 seconds
@@ -132,7 +130,6 @@ class AppModel: ObservableObject {
     }
     
     func continuePlaying() {
-        //print("continuePlaying called")
         DispatchQueue.main.async{
             self.gameOverTimer?.invalidate()
             self.gameOverTimer = nil
