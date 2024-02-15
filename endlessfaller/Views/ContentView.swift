@@ -9,6 +9,7 @@ import SwiftUI
 import GameKit
 import CoreMotion
 import Combine
+import CircularProgress
 
 let levels = 1000
 
@@ -20,28 +21,11 @@ struct ContentView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
-    @ObservedObject private var BallAnimator = BallAnimationManager()
-    @ObservedObject private var audioController = AudioManager.sharedAudioManager
-    @State var score: Int = -1
-    @State var ballSpeed: Double = 0.0
-    @State var currentIndex: Int = -1
-    @State var costToContinue: Int = 1
-    @State var firstGamePlayed = false
-    @State var freezeScrolling = false
-    @State var continueButtonIsPressed = false
-    @State var showNewBestScore = false
-    @State var showCurrencyPage = false
-    @State var showContinueToPlayScreen = false
-    @State var showWastedScreen = false
-    @State var shouldContinue = false
-    @State var showBoinFoundAnimation = false
+    @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
+    @StateObject var audioController = AudioManager.sharedAudioManager
     @State var showDailyBoinCollectedAnimation = false
     @State private var triangleScale: CGFloat = 1.0
     @State var triangleColor = Color.black
-    @State var highestLevelInRound = -1
-    @State private var gameOverTimer: Timer? = nil
-    @State var circleProgress = 0.0
-    @State var circleProgressTimer: Timer?
     @Environment(\.scenePhase) var scenePhase
     @StateObject var userPersistedData = UserPersistedData()
     
@@ -49,40 +33,13 @@ struct ContentView: View {
     let queue = OperationQueue()
     let rotationQueDispatch = DispatchQueue.init(label: "io.endlessfaller.rotationque", qos: .userInitiated)
     @State private var ballRoll = Double.zero
-    @State var colors: [Color] = (1...levels).map { _ in
-        Color(hex: backgroundColors.randomElement()!)!
-    }
     
     init() {
         self.queue.underlyingQueue = rotationQueDispatch
     }
     
-    func dropBall() {
-        self.ballSpeed = 2
-        BallAnimator.startTimer(speed: self.ballSpeed)
-    }
-    func liftBall(difficultyInput: Int) {
-        /*
-         level 1 is anywhere between 0.5 and 1.5 seconds
-         level 1000 is anywhere between 0.1 and 0.3 seconds
-         use newValue instead of score variable
-         1 ->       1, 3
-         1000 ->    0.1, 0.3
-         */
-        let m1 = -0.0004004004004004004
-        let c1 = 0.5004004004004003
-        let fastest = m1 * Double(difficultyInput) + c1
-
-        let m2 = -0.0012012012012012011
-        let c2 = 1.5012012012012013
-        let slowest = m2 * Double(difficultyInput) + c2
-        
-        ballSpeed = Double.random(in: fastest...slowest)
-        BallAnimator.pushBallUp(newBallSpeed: ballSpeed)
-    }
-    
     func boinFound() {
-        showBoinFoundAnimation = true
+        appModel.showBoinFoundAnimation = true
         userPersistedData.incrementBalance(amount: 1)
         userPersistedData.resetBoinIntervalCounter()
     }
@@ -102,99 +59,12 @@ struct ContentView: View {
         } else {
             //Today's First Launch
             print("first open of the day")
-            dailyBoinCollected()
             userPersistedData.updateLastLaunch(date: openToday)
-        }
-    }
-    
-    func startCircleProgressTimer() {
-        self.circleProgress = 0.0
-        circleProgressTimer?.invalidate() // Invalidate any existing timer
-
-        circleProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.057, repeats: true) { timer in
-            if self.circleProgress < 1.0 {
-                self.circleProgress += 0.01 // Adjust increment as needed
-            } else {
-                timer.invalidate()
-            }
-        }
-    }
-    
-    func gameOverOperations() {
-        self.currentIndex = -1
-        gameOverTimer?.invalidate()
-        gameOverTimer = nil
-        shouldContinue = true
-        costToContinue = 1
-        if score > -1 {
-            appModel.currentScore = score
-        }
-        score = -1
-        audioController.musicPlayer.rate = 1
-        self.showContinueToPlayScreen = false
-        showNewBestScore = false
-        if appModel.currentScore > userPersistedData.bestScore {
-            DispatchQueue.main.async{
-                userPersistedData.updateBalance(amount: appModel.currentScore)
-            }
-        }
-        DispatchQueue.main.async {
-            self.highestLevelInRound = -1
-            gameCenter.updateScore(currentScore: appModel.currentScore, bestScore: userPersistedData.bestScore, ballID: userPersistedData.selectedCharacter)
-        }
-    }
-    
-    func continuePlaying() {
-        //print("continuePlaying called")
-        gameOverTimer?.invalidate()
-        gameOverTimer = nil
-        userPersistedData.decrementBalance(amount: costToContinue)
-        costToContinue *= 2
-        shouldContinue = true
-        showContinueToPlayScreen = false
-        currentIndex = 0
-    }
-    
-    func wastedOperations() {
-        self.highestLevelInRound = -1
-        DispatchQueue.main.async{
-            self.highestLevelInRound = -1
-            self.circleProgress = 0.0
-            showContinueToPlayScreen = true
-            self.BallAnimator.endingYPosition = 23
-            self.BallAnimator.pushUp = false
-            self.currentIndex = -2
+            dailyBoinCollected()
             
         }
-        firstGamePlayed = true
-        shouldContinue = false
-        self.circleProgress = 0.0
-        audioController.punchSoundEffect.play()
-        appModel.currentScore = score
-        
-        showBoinFoundAnimation = false
-        freezeScrolling = true
-        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-        showWastedScreen = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.colors = (1...levels).map { _ in
-                Color(hex: backgroundColors.randomElement()!)!
-            }
-            freezeScrolling = false
-            self.currentIndex = -2
-            self.highestLevelInRound = -1
-            self.showWastedScreen = false
-        }
-        appModel.playedCharacter = userPersistedData.selectedCharacter
-        gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
-                
-            print("calling from wasted operations")
-            gameOverOperations()
-            self.gameOverTimer?.invalidate()
-            self.gameOverTimer = nil
-                
-        }
     }
+
     
     let heavyHaptic = UINotificationFeedbackGenerator()
     
@@ -204,143 +74,23 @@ struct ContentView: View {
         ZStack{
             ScrollView {
                 ZStack{
-                    VTabView(selection: $currentIndex) {
+                    VTabView(selection: $appModel.currentIndex) {
                         ZStack{
                             Color.red
-                            if showContinueToPlayScreen{
+                            if appModel.showContinueToPlayScreen{
                                 VStack{
                                     Spacer()
-                                    if showWastedScreen{
+                                    if appModel.showWastedScreen{
                                         WastedView()
                                     } else {
-                                        HStack{
-                                            Spacer()
-                                            ZStack{
-                                                VStack{
-                                                    VStack{
-                                                        HStack{
-                                                            Spacer()
-                                                            HStack(spacing: 0){
-                                                                BoinsView()
-                                                                    .scaleEffect(0.6)
-                                                                Text(String(userPersistedData.boinBalance))
-                                                                    .foregroundColor(.black)
-                                                                    .bold()
-                                                                    .italic()
-                                                                    .font(.title)
-                                                            }
-                                                            .padding(.horizontal, 9)
-                                                            .padding(.top, 12)
-                                                            .padding(.trailing, 21)
-                                                            .background(.yellow)
-                                                            .cornerRadius(15)
-                                                            .overlay{
-                                                                RoundedRectangle(cornerRadius: 15)
-                                                                    .stroke(Color.black, lineWidth: 3)
-                                                            }
-                                                            .offset(x: 9, y: -9)
-                                                        }
-                                                        Text("Continue?")
-                                                            .foregroundColor(.black)
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.largeTitle)
-                                                            .padding(.bottom, 27)
-                                                        HStack{
-                                                            Spacer()
-                                                            Text("\(costToContinue)")
-                                                                .foregroundColor(.black)
-                                                                .bold()
-                                                                .italic()
-                                                                .font(.largeTitle)
-                                                                .scaleEffect(1.2)
-                                                                .padding(.trailing, 3)
-                                                            BoinsView()
-                                                            Spacer()
-                                                        }
-                                                        .padding(9)
-                                                        .background(.yellow)
-                                                        .cornerRadius(15)
-                                                        .shadow(color: .black, radius: 0.1, x: continueButtonIsPressed ? 0 : -6, y: continueButtonIsPressed ? 0 : 6)
-                                                        .offset(x: continueButtonIsPressed ? -6 : -0, y: continueButtonIsPressed ? 6 : 0)
-                                                        .padding(.horizontal, 30)
-                                                        .padding(.bottom, 30)
-                                                        .pressEvents {
-                                                            // On press
-                                                            withAnimation(.easeInOut(duration: 0.1)) {
-                                                                continueButtonIsPressed = true
-                                                            }
-                                                        } onRelease: {
-                                                            withAnimation {
-                                                                continueButtonIsPressed = false
-                                                            }
-                                                            if userPersistedData.boinBalance >= costToContinue{
-                                                                continuePlaying()
-                                                            } else {
-                                                                showCurrencyPage = true
-                                                            }
-                                                        }
-                                                    }
-                                                    .background(RandomGradientView())
-                                                    .cornerRadius(21)
-                                                    .overlay{
-                                                        RoundedRectangle(cornerRadius: 21)
-                                                            .stroke(Color.black, lineWidth: 6)
-                                                            .padding(1)
-                                                        ZStack{
-                                                            Image(systemName: "stopwatch")
-                                                                .foregroundColor(.black)
-                                                                .bold()
-                                                                .font(.largeTitle)
-                                                                .scaleEffect(2.1)
-                                                            Circle()
-                                                                .frame(width: 56)
-                                                                .foregroundColor(.white)
-                                                                .offset(y:3.6)
-                                                            Circle()
-                                                                .trim(from: 0, to: self.appModel.circleProgress)
-                                                                .stroke(Color.blue, lineWidth: 24)
-                                                                .rotationEffect(Angle(degrees: -90))
-                                                                .frame(width: 24)
-                                                                .offset(y:3.6)
-                                                                .onAppear{
-                                                                    self.appModel.startCircleProgressTimer()
-                                                                }
-                                                            
-                                                        }
-                                                        .offset(x:-136, y: -99)
-                                                    }
-                                                    .frame(width: 300)
-                                                    .padding(30)
-                                                    
-                                                    ZStack{
-                                                        VStack{
-                                                            Text("Swipe up\nto cancel")
-                                                                .italic()
-                                                                .bold()
-                                                                .multilineTextAlignment(.center)
-                                                                .foregroundColor(.black)
-                                                                .padding()
-                                                            Image(systemName: "arrow.up")
-                                                                .foregroundColor(.black)
-                                                                .bold()
-                                                        }
-                                                        .padding(60)
-                                                        .font(.largeTitle)
-                                                        .scaleEffect(1.2)
-                                                    }
-                                                    .animatedOffset(speed: 1)
-                                                }
-                                                .offset(y: 90)
-                                            }
-                                            Spacer()
-                                        }}
+                                        ContinuePlayingView()
+                                    }
                                     Spacer()
                                 }
                                 VStack{
                                     HStack{
-                                        if score > -1 {
-                                            Text(String(score))
+                                        if appModel.score > -1 {
+                                            Text(String(appModel.score))
                                                 .bold()
                                                 .italic()
                                                 .font(.system(size: 100))
@@ -373,19 +123,19 @@ struct ContentView: View {
                         .tag(-2)
                         ZStack{
                             Spacer()
-                            if !firstGamePlayed {
-                                LandingPageView()
-                            } else {
+                            if appModel.firstGamePlayed {
                                 GameOverScreenView()
+                            } else {
+                                LandingPageView()
                             }
                             HUDView()
                         }
                         .background(RandomGradientView())
                         .tag(-1)
-                        ForEach(colors.indices, id: \.self) { index in
+                        ForEach(appModel.colors.indices, id: \.self) { index in
                             ZStack{
                                 RandomGradientView()
-                                if index == 0 && score == 0 {
+                                if index == 0 && appModel.score == 0 {
                                     if self.BallAnimator.ballYPosition > deviceHeight / 2 {
                                         SwipeUpNowView()
                                     } else {
@@ -395,7 +145,7 @@ struct ContentView: View {
                                 VStack{
                                     Divider()
                                         .frame(height: 6)
-                                        .overlay(index > currentIndex ? .black : .white)
+                                        .overlay(index > appModel.currentIndex ? .black : .white)
                                         .offset(y: -6)
                                     Spacer()
                                 }
@@ -407,49 +157,50 @@ struct ContentView: View {
                         height: deviceHeight
                     )
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .onChange(of: currentIndex) { newIndex in
-                        if currentIndex == -1 {
-                            gameOverOperations()
+                    .onChange(of: $appModel.currentIndex.wrappedValue) { newIndex in
+                        if newIndex == -1 {
+                            appModel.gameOverOperations()
+                            audioController.musicPlayer.rate = 1
                         }
                         userPersistedData.incrementBoinIntervalCounter()
                         if userPersistedData.boinIntervalCounter > 1000 {
                             boinFound()
                         }
-                        if currentIndex > highestLevelInRound {
-                            if currentIndex == 0 {
-                                dropBall()
+                        if newIndex > appModel.highestLevelInRound {
+                            if newIndex == 0 {
+                                appModel.dropBall()
                             } else {
-                                liftBall(difficultyInput: currentIndex)
+                                appModel.liftBall(difficultyInput: newIndex)
                             }
                             DispatchQueue.main.async {
-                                score += 1
+                                appModel.score += 1
                                 if audioController.musicPlayer.rate < 2 {
                                     audioController.musicPlayer.rate += 0.001
                                 }
                             }
                             // 1052 or 1054
                             AudioServicesPlaySystemSound(1104)
-                            highestLevelInRound = currentIndex
+                            appModel.highestLevelInRound = newIndex
                         }
                         enableScaleAndFlashForDuration()
                         heavyHaptic.notificationOccurred(.success)
-                        if currentIndex > userPersistedData.bestScore && currentIndex > 3 {
-                            showNewBestScore = true
+                        if newIndex > userPersistedData.bestScore && newIndex > 3 {
+                            appModel.showNewBestScore = true
                         }
                     }
-                    .allowsHitTesting(!freezeScrolling)
-                    if score >= 0 && currentIndex >= 0 {
-                        if !showNewBestScore {
+                    .allowsHitTesting(!appModel.freezeScrolling)
+                    if appModel.currentIndex >= 0 {
+                        if !appModel.showNewBestScore {
                             
-                            if score > 50 && score < 65 {
+                            if appModel.score > 50 && appModel.score < 65 {
                                 YourGood()
                             }
                             
-                            if score > 100 && score < 115 {
+                            if appModel.score > 100 && appModel.score < 115 {
                                 YourInsane()
                             }
                             
-                            if score > 300 && score < 315 {
+                            if appModel.score > 300 && appModel.score < 315 {
                                 GoBerzerk()
                             }
                             
@@ -461,11 +212,11 @@ struct ContentView: View {
                             CelebrationEffect()
                         }
                     }
-                    if score >= 0 && currentIndex >= 0{
+                    if appModel.score >= 0 && appModel.currentIndex >= 0{
                         ZStack{
                             VStack{
                                 HStack{
-                                    Text(String(score))
+                                    Text(String(appModel.score))
                                         .bold()
                                         .italic()
                                         .font(.system(size: 100))
@@ -494,7 +245,7 @@ struct ContentView: View {
                             VStack{
                                 HStack{
                                     Spacer()
-                                    if self.BallAnimator.ballYPosition < deviceHeight * 0.15 && currentIndex != 0 {
+                                    if self.BallAnimator.ballYPosition < deviceHeight * 0.15 && appModel.currentIndex != 0 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
@@ -513,7 +264,7 @@ struct ContentView: View {
                                 Spacer()
                                 HStack{
                                     Spacer()
-                                    if self.BallAnimator.ballYPosition > deviceHeight * 0.85 && currentIndex != 0 {
+                                    if self.BallAnimator.ballYPosition > deviceHeight * 0.85 && appModel.currentIndex != 0 {
                                         ZStack{
                                             Image(systemName: "triangle.fill")
                                                 .foregroundColor(.black)
@@ -547,8 +298,8 @@ struct ContentView: View {
                                     .offset(x: 21, y: -21)
 
                             }
-                            .frame(width: 66, height: abs(60 / self.ballSpeed))
-                            .offset(x: 0, y:-(60 / self.ballSpeed))
+                            .frame(width: 66, height: abs(60 / appModel.ballSpeed))
+                            .offset(x: 0, y:-(60 / appModel.ballSpeed))
                             
                                     
                             if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
@@ -566,20 +317,22 @@ struct ContentView: View {
                         }
                         .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
                         .onChange(of: self.BallAnimator.ballYPosition) { newYposition in
-                            if deviceHeight - 24 < self.BallAnimator.ballYPosition || self.BallAnimator.ballYPosition < 23 {
-                                wastedOperations()
+                            if deviceHeight - 24 < self.BallAnimator.ballYPosition || self.BallAnimator.ballYPosition < -23 {
+                                print("ballYposition at wasted:")
+                                print(self.BallAnimator.ballYPosition)
+                                appModel.wastedOperations()
                             }
                         }
                         .offset(x: ballRoll * (deviceWidth / 3))
                         .onAppear {
-                            if currentIndex > -1 {
+                            if appModel.currentIndex > -1 {
                                 self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
                                     guard let data = data else {
                                         print("Error: \(error!)")
                                         return
                                     }
                                     let attitude: CMAttitude = data.attitude
-                                    if currentIndex > -1 {
+                                    if appModel.currentIndex > -1 {
                                         if attitude.roll > -1 && attitude.roll < 1 {
                                             ballRoll = attitude.roll
                                         }
@@ -590,7 +343,7 @@ struct ContentView: View {
                         }
                         .allowsHitTesting(false)
                     }
-                    if showBoinFoundAnimation{
+                    if appModel.showBoinFoundAnimation{
                         BoinCollectedView()
                             .onAppear{
                                 audioController.boingSoundEffect.play()
@@ -602,22 +355,18 @@ struct ContentView: View {
                 }
             }
             .persistentSystemOverlays(.hidden)
-            .sheet(isPresented: self.$showCurrencyPage){
-                CurrencyPageView()
-            }
             .edgesIgnoringSafeArea(.all)
-            .scrollDisabled(freezeScrolling)
+            .scrollDisabled(appModel.freezeScrolling)
             .onAppear {
                 notificationManager.registerLocal()
                 notificationManager.scheduleLocal()
-                checkIfAppOpenToday()
                 appModel.playedCharacter = userPersistedData.selectedCharacter
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()
                 }
             }
             .onChange(of: scenePhase) { newScenePhase in
-                switch scenePhase {
+                switch newScenePhase {
                 case .background:
                     print("App is in background")
                 case .active:

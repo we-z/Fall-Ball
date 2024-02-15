@@ -12,7 +12,7 @@ struct HUDView: View {
     @StateObject var groupStateObserver = GroupStateObserver()
     @State var isActivitySharingSheetPresented = false
     @ObservedObject private var appModel = AppModel.sharedAppModel
-    @ObservedObject private var audioController = AudioManager.sharedAudioManager
+    @StateObject var audioController = AudioManager.sharedAudioManager
     @State private var isGearExpanded = false
     @State var showGameModesAlert = false
     @State private var gearRotationDegrees = 0.0

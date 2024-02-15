@@ -13,7 +13,7 @@ struct SecretShopView: View {
     @StateObject var userPersistedData = UserPersistedData()
     var body: some View {
         ZStack{
-            model.gameOverBackgroundColor
+            RandomGradientView()
                 .ignoresSafeArea()
             GeometryReader { geometry in
                 VStack{
@@ -56,7 +56,7 @@ struct SecretShopView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
-                                                    .background(model.gameOverBackgroundColor.opacity(model.hats[index].hatID == userPersistedData.selectedHat ? 1 : 0))
+                                                    .background(RandomGradientView().opacity(model.hats[index].hatID == userPersistedData.selectedHat ? 1 : 0))
                                                     .cornerRadius(20)
                                                     .overlay(
                                                         ZStack{
@@ -101,7 +101,8 @@ struct SecretShopView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/2.2, height: idiom == .pad ? 270 : 180)
-                                                    .background(model.gameOverBackgroundColor.opacity(model.bags[index].bagID == userPersistedData.selectedBag ? 1 : 0))
+                                                    .background(RandomGradientView()
+                                                        .opacity(model.bags[index].bagID == userPersistedData.selectedBag ? 1 : 0))
                                                     .cornerRadius(20)
                                                     .overlay(
                                                         ZStack{

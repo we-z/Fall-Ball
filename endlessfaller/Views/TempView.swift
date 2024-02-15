@@ -7,21 +7,29 @@
 
 import SwiftUI
 import Combine
+import CircularProgress
+
 
 struct TempView: View {
-    @StateObject var userPersistedData = UserPersistedData()
+    @State var progress = CircularProgressState.inProgress(0)
+        
     var body: some View {
-        Form {
-//            Toggle("Ready", isOn: $settings.readyForAction)
-//                .toggleStyle(.switch)
-//            TextField("Speed",value: $settings.speed,format: .number)
+        VStack{
+            CircularProgress(lineWidth: 12, state: progress)
+                .onTimer {
+                    progress = if progress.rawValue + 0.02 >= 1 { .succeeded }
+                    else { .inProgress(progress.rawValue + 0.02) }
+                    
+                }
+                .frame(width: 60)
+                .rotationEffect(.degrees(-90))
             Button{
-                userPersistedData.incrementBalance(amount: 1)
+                self.progress = CircularProgressState.inProgress(0)
             } label: {
-                Text(String(userPersistedData.boinBalance))
+                Text("Reset")
             }
         }
-        .frame(width: 400, height: 400)
+        
     }
 }
 

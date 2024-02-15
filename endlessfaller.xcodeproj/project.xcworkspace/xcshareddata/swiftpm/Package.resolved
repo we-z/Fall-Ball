@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "circular-progress",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aleksproger/circular-progress.git",
+      "state" : {
+        "revision" : "21f394bb48d26f63834c7298d538b043fad52bc1",
+        "version" : "1.1.1"
+      }
+    },
+    {
       "identity" : "cloudstorage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nonstrict-hq/CloudStorage.git",

@@ -30,7 +30,7 @@ struct CurrencyPageView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack{
-                model.gameOverBackgroundColor
+                RandomGradientView()
                     .ignoresSafeArea()
                 VStack{
                     Capsule()

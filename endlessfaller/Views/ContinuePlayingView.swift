@@ -11,9 +11,8 @@ struct ContinuePlayingView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @State var showCurrencyPage = false
     @State private var circleProgress: CGFloat = 0.0
-    @Binding var cost: Int
     @State var buttonIsPressed = false
-    @State var currentIndex: Int = 0
+    @StateObject var userPersistedData = UserPersistedData()
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     
@@ -26,10 +25,11 @@ struct ContinuePlayingView: View {
                         HStack(spacing: 0){
                             BoinsView()
                                 .scaleEffect(0.6)
-//                            Text(String(appModel.balance))
-//                                .bold()
-//                                .italic()
-//                                .font(.title)
+                            Text(String(userPersistedData.boinBalance))
+                                .bold()
+                                .italic()
+                                .font(.title)
+                                .foregroundColor(.black)
                         }
                         .padding(.horizontal, 9)
                         .padding(.top, 12)
@@ -47,14 +47,16 @@ struct ContinuePlayingView: View {
                         .italic()
                         .font(.largeTitle)
                         .padding(.bottom, 27)
+                        .foregroundColor(.black)
                     HStack{
                         Spacer()
-                        Text("\(cost)")
+                        Text("\(appModel.costToContinue)")
                             .bold()
                             .italic()
                             .font(.largeTitle)
                             .scaleEffect(1.2)
                             .padding(.trailing, 3)
+                            .foregroundColor(.black)
                         BoinsView()
                         Spacer()
                     }
@@ -74,11 +76,12 @@ struct ContinuePlayingView: View {
                         withAnimation {
                             buttonIsPressed = false
                         }
-//                        if appModel.balance >= cost{
-//                            //appModel.shouldContinue = true
-//                        } else {
-//                            //showCurrencyPage = true
-//                        }
+                        if userPersistedData.boinBalance >= appModel.costToContinue{
+                            userPersistedData.decrementBalance(amount: appModel.costToContinue)
+                            appModel.continuePlaying()
+                        } else {
+                            showCurrencyPage = true
+                        }
                     }
                 }
                 .background(.orange)
@@ -92,6 +95,7 @@ struct ContinuePlayingView: View {
                             .bold()
                             .font(.largeTitle)
                             .scaleEffect(2.1)
+                            .foregroundColor(.black)
                         Circle()
                             .frame(width: 59)
                             .foregroundColor(.white)
@@ -143,5 +147,5 @@ struct ContinuePlayingView: View {
 }
 
 #Preview {
-    ContinuePlayingView(cost: .constant(1))
+    ContinuePlayingView()
 }

@@ -16,7 +16,7 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("selectedBag") var selectedBag: String = "nobag"
     @CloudStorage("selectedHat") var selectedHat: String = "nohat"
     @CloudStorage("lastLaunch") var lastLaunch: String = NSDate().formatted
-    @CloudStorage("lastLaunch") var boinIntervalCounter: Int = 0
+    @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
     
     func addPurchasedSkin(skinName: String) {
         purchasedSkins += skinName

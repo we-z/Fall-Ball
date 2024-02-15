@@ -52,7 +52,7 @@ struct GameCenterLeaderboardView: View {
         let todaysPlayersList = gameCenter.todaysPlayersList
         let allTimePlayersList = gameCenter.allTimePlayersList
         ZStack{
-            model.gameOverBackgroundColor
+            RandomGradientView()
                 .ignoresSafeArea()
             VStack{
                 Capsule()
@@ -337,7 +337,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(model.gameOverBackgroundColor.overlay(Color.black.opacity((todaysPlayersList.count > num - 1 && todaysPlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
+                                                            .listRowBackground(RandomGradientView().overlay(Color.black.opacity((todaysPlayersList.count > num - 1 && todaysPlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
                                                         }
                                                         
                                                     }
@@ -588,7 +588,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(model.gameOverBackgroundColor.overlay(Color.black.opacity((allTimePlayersList.count > num - 1 && allTimePlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
+                                                            .listRowBackground(RandomGradientView().overlay(Color.black.opacity((allTimePlayersList.count > num - 1 && allTimePlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
                                                         }
                                                         
                                                     }

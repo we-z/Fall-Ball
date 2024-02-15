@@ -19,7 +19,7 @@ struct BallsDetailsView: View {
     @StateObject var userPersistedData = UserPersistedData()
     var body: some View {
         ZStack{
-            model.gameOverBackgroundColor
+            RandomGradientView()
                 .ignoresSafeArea()
             VStack{
                 Capsule()

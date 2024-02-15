@@ -22,12 +22,11 @@ struct CharactersMenuView: View {
     @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "")
     @State var currentBallIndex = 0
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    @State private var circleProgress: CGFloat = 0.0
     @StateObject var userPersistedData = UserPersistedData()
     
     var body: some View {
         ZStack{
-            model.gameOverBackgroundColor
+            RandomGradientView()
                 .ignoresSafeArea()
             
             GeometryReader { geometry in
@@ -67,7 +66,7 @@ struct CharactersMenuView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
-                                                    .background(model.gameOverBackgroundColor.opacity(model.characters[index].characterID == userPersistedData.selectedCharacter ? 1 : 0))
+                                                    .background(RandomGradientView().opacity(model.characters[index].characterID == userPersistedData.selectedCharacter ? 1 : 0))
                                                     .cornerRadius(20)
                                                     .overlay(
                                                         ZStack{

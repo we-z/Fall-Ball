@@ -29,7 +29,7 @@ struct PlayersPlaqueView: View {
         
         ZStack{
             Rectangle()
-                .overlay(appModel.gameOverBackgroundColor)
+                .overlay(RandomGradientView())
                 .frame(width: 330, height: 330)
             RotatingSunView()
                 .offset(y: -30)
@@ -81,7 +81,7 @@ struct PlayersPlaqueView: View {
     
     var body: some View {
         ZStack{
-            appModel.gameOverBackgroundColor
+            RandomGradientView()
                 .overlay(.black.opacity(0.6))
             VStack{
                 plaqueView()
@@ -104,7 +104,7 @@ struct PlayersPlaqueView: View {
                     .foregroundColor(.black)
                     .padding(9)
                     .padding(.horizontal, 6)
-                    .background(appModel.gameOverBackgroundColor)
+                    .background(RandomGradientView())
                     .cornerRadius(30)
                     .padding(30)
                 }
