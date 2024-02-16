@@ -92,6 +92,7 @@ class AppModel: ObservableObject {
             self.highestLevelInRound = -1
             self.showContinueToPlayScreen = true
             self.BallAnimator.endingYPosition = 23
+            self.BallAnimator.pushUp = false
             self.currentIndex = -2
         }
         firstGamePlayed = true

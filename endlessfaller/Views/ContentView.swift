@@ -325,21 +325,17 @@ struct ContentView: View {
                         }
                         .offset(x: ballRoll * (deviceWidth / 3))
                         .onAppear {
-                            if appModel.currentIndex > -1 {
-                                self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
-                                    guard let data = data else {
-                                        print("Error: \(error!)")
-                                        return
-                                    }
-                                    let attitude: CMAttitude = data.attitude
-                                    if appModel.currentIndex > -1 {
-                                        if attitude.roll > -1 && attitude.roll < 1 {
-                                            ballRoll = attitude.roll
-                                        }
-                                    }
+                            motionManager.deviceMotionUpdateInterval =  1.0 / 60.0
+                            self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
+                                guard let data = data else {
+                                    print("Error: \(error!)")
+                                    return
+                                }
+                                let attitude: CMAttitude = data.attitude
+                                if attitude.roll > -1 && attitude.roll < 1 {
+                                    ballRoll = attitude.roll
                                 }
                             }
-
                         }
                         .allowsHitTesting(false)
                     }
