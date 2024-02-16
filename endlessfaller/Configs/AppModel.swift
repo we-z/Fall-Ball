@@ -34,7 +34,7 @@ class AppModel: ObservableObject {
     static let sharedAppModel = AppModel()
     
     @ObservedObject var userPersistedData = UserPersistedData()
-    @StateObject var audioController = AudioManager()
+    @ObservedObject var audioController = AudioManager.sharedAudioManager
     @ObservedObject var gameCenter = GameCenter()
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     
@@ -98,8 +98,6 @@ class AppModel: ObservableObject {
         firstGamePlayed = true
         audioController.punchSoundEffect.play()
         currentScore = score
-        
-        
         showBoinFoundAnimation = false
         freezeScrolling = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
