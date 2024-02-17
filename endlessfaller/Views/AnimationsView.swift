@@ -1232,46 +1232,6 @@ struct NewBestScore: View {
     }
 }
 
-//struct WastedView: View {
-//    @State private var shake = false
-//    @State private var rotationAmount: Double = 0
-//    @State private var scaleEffect: CGFloat = 1.2
-//
-//    var body: some View {
-//        ZStack {
-//            VStack {
-//                Text("💀")
-//                    .foregroundColor(.black)
-//                    .bold()
-//                    .font(.largeTitle)
-//                    .scaleEffect(3)
-//                    .padding(.bottom, 40)
-//                Text("WASTED!")
-//                    .foregroundColor(.black)
-//                    .italic()
-//                    .bold()
-//                    .font(.largeTitle)
-//                    .padding(9)
-//                    .scaleEffect(1.5)
-//            }
-//            .scaleEffect(scaleEffect)
-//            .offset(y: shake ? -10 : 10)
-//            .rotationEffect(.degrees(rotationAmount))
-//            .onAppear() {
-//                withAnimation(.easeInOut(duration: 0.1).repeatForever(autoreverses: true)){
-//                    rotationAmount = 5
-//                    scaleEffect = 1
-//                    shake.toggle()
-//                }
-//            }
-//            .onDisappear() {
-//                rotationAmount = 0
-//                scaleEffect = 1
-//            }
-//        }
-//    }
-//}
-
 struct WastedView: View {
     // 1. Define a state variable to control the vertical offset
     @State private var shake = false

@@ -12,10 +12,13 @@ import Combine
 import UIKit
 import NotificationCenter
 
-class AppModel: ObservableObject {    
+let levels = 1000
+let deviceHeight = UIScreen.main.bounds.height
+let deviceWidth = UIScreen.main.bounds.width
+
+class AppModel: ObservableObject {
     @Published var currentScore: Int = 0
     @Published var playedCharacter = ""
-    @Published var gameOverTimer: Timer? = nil
     @Published var costToContinue: Int = 1
     @Published var showContinueToPlayScreen = false
     @Published public var currentIndex: Int = -1
@@ -26,23 +29,68 @@ class AppModel: ObservableObject {
     @Published var showBoinFoundAnimation = false
     @Published var freezeScrolling = false
     @Published var showWastedScreen = false
+    @Published var diedAtTop = false
+    @Published var isWasted = false
     @Published var ballSpeed: Double = 0.0
+    @Published var triangleScale: CGFloat = 1.0
+    @Published var triangleColor = Color.black
+    @Published var showDailyBoinCollectedAnimation = false
+    @Published var ballIsStrobing = false
     @Published var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
     
+    
+    
+    var gameOverDispatchTimer: DispatchSourceTimer?
+
+    // Modifications to gameOverTimer related code
+    func startGameOverTimer() {
+        gameOverDispatchTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
+        gameOverDispatchTimer?.schedule(deadline: .now() + 7)
+        gameOverDispatchTimer?.setEventHandler { [weak self] in
+            print("calling from wasted operations")
+            self?.currentIndex = -1
+        }
+        gameOverDispatchTimer?.resume()
+    }
+
+    func cancelGameOverTimer() {
+        gameOverDispatchTimer?.cancel()
+        gameOverDispatchTimer = nil
+    }
+    
+    
     static let sharedAppModel = AppModel()
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     @ObservedObject var userPersistedData = UserPersistedData()
     @ObservedObject var audioController = AudioManager.sharedAudioManager
     @ObservedObject var gameCenter = GameCenter()
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     
+    func dailyBoinCollected() {
+        self.showDailyBoinCollectedAnimation = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            self.showDailyBoinCollectedAnimation = false
+        }
+    }
+    
     func dropBall() {
         self.ballSpeed = 2
         self.BallAnimator.startTime = 0.0
         self.BallAnimator.startTimer(speed: self.ballSpeed)
     }
+    
+    func FlashTriangles() {
+        triangleScale = 1.5 // Increase the scale factor
+        triangleColor = Color.white
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.triangleScale = 1
+            self.triangleColor = Color.black
+        }
+    }
+    
     func liftBall(difficultyInput: Int) {
         /*
          level 1 is anywhere between 0.5 and 1.5 seconds
@@ -65,9 +113,9 @@ class AppModel: ObservableObject {
     
     func gameOverOperations() {
         self.currentIndex = -1
-        self.gameOverTimer?.invalidate()
-        self.gameOverTimer = nil
+        self.cancelGameOverTimer()
         self.costToContinue = 1
+        audioController.musicPlayer.rate = 1
         if self.score > -1 {
             self.currentScore = self.score
         }
@@ -87,48 +135,48 @@ class AppModel: ObservableObject {
     }
     
     func wastedOperations() {
-        self.highestLevelInRound = -1
-        DispatchQueue.main.async{
-            self.highestLevelInRound = -1
+        self.isWasted = true
+        self.freezeScrolling = true
+        DispatchQueue.main.async {
             self.showContinueToPlayScreen = true
-            self.BallAnimator.endingYPosition = 23
+            self.BallAnimator.endingYPosition = 90
             self.BallAnimator.pushUp = false
-            self.currentIndex = -2
-        }
-        firstGamePlayed = true
-        audioController.punchSoundEffect.play()
-        currentScore = score
-        showBoinFoundAnimation = false
-        freezeScrolling = true
-        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-        showWastedScreen = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.colors = (1...levels).map { _ in
-                Color(hex: backgroundColors.randomElement()!)!
+            self.BallAnimator.displayLink?.invalidate()
+            if self.diedAtTop {
+                if self.idiom == .pad {
+                    self.BallAnimator.ballYPosition = 45
+                } else {
+                    if UIDevice.current.hasDynamicIsland {
+                        self.BallAnimator.ballYPosition = 93
+                    } else {
+                        self.BallAnimator.ballYPosition = 80
+                    }
+                }
+            } else {
+                self.BallAnimator.ballYPosition = UIScreen.main.bounds.height - 24
             }
-            self.freezeScrolling = false
-            self.highestLevelInRound = -1
+        }
+        self.ballIsStrobing = true
+        self.highestLevelInRound = -1
+        self.showContinueToPlayScreen = true
+        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.currentIndex = -2
-            self.showWastedScreen = false
+            self.freezeScrolling = false
+            self.isWasted = false
+            self.ballIsStrobing = false
         }
+        self.firstGamePlayed = true
+        audioController.punchSoundEffect.play()
         playedCharacter = userPersistedData.selectedCharacter
-        gameOverTimer = Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
-                
-            print("calling from wasted operations")
-            self.gameOverOperations()
-            self.gameOverTimer?.invalidate()
-            self.gameOverTimer = nil
-                
-        }
+        startGameOverTimer()
     }
     
     func continuePlaying() {
         DispatchQueue.main.async{
-            self.gameOverTimer?.invalidate()
-            self.gameOverTimer = nil
+            self.cancelGameOverTimer()
         }
         self.costToContinue *= 2
-        self.showContinueToPlayScreen = false
         self.currentIndex = 0
     }
     
@@ -241,14 +289,6 @@ class AppModel: ObservableObject {
                 _ = try await SharePlayActivity().activate()
             } catch {
                 print("Failed to activate SharePlay activity: \(error)")
-            }
-        }
-    }
-    
-    @objc func openGameCenterSettings() {
-        if let url = URL(string: "gamecenter:") {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }
@@ -904,5 +944,25 @@ extension Array {
 extension UnitPoint {
     static var random: UnitPoint {
         return UnitPoint(x: CGFloat.random(in: 0...1), y: CGFloat.random(in: 0...1))
+    }
+}
+
+extension UIDevice {
+    
+    // Get this value after sceneDidBecomeActive
+    var hasDynamicIsland: Bool {
+        // 1. dynamicIsland only support iPhone
+        guard userInterfaceIdiom == .phone else {
+            return false
+        }
+               
+        // 2. Get key window, working after sceneDidBecomeActive
+        guard let window = (UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.flatMap { $0.windows }.first { $0.isKeyWindow}) else {
+            print("Do not found key window")
+            return false
+        }
+       
+        // 3.It works properly when the device orientation is portrait
+        return window.safeAreaInsets.top >= 51
     }
 }

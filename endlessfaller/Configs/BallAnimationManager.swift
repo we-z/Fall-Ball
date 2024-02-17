@@ -10,9 +10,9 @@ import QuartzCore
 import UIKit
 
 class BallAnimationManager: ObservableObject {
-    @Published var ballYPosition: CGFloat = -22
+    @Published var ballYPosition: CGFloat = 90
     @Published var startingYPosition: CGFloat = 0
-    @Published var endingYPosition: CGFloat = 23
+    @Published var endingYPosition: CGFloat = 90
     @Published var newBallSpeed: CGFloat = 0
     @Published var startTime: CFTimeInterval = 0.0
     @Published var displayLink: CADisplayLink?
@@ -68,7 +68,6 @@ class BallAnimationManager: ObservableObject {
                 ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height))
             }
         } else {
-            ballYPosition = UIScreen.main.bounds.height - 23
             displayLink.invalidate()
         }
     }

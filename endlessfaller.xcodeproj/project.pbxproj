@@ -12,7 +12,7 @@
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
 		7A0BB1C62B4F5EB70048B247 /* SharePlayActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */; };
 		7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */; };
-		7A0BB1CA2B4FD1A20048B247 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C92B4FD1A20048B247 /* HUDView.swift */; };
+		7A0BB1CA2B4FD1A20048B247 /* HomeButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */; };
 		7A0BB1CC2B4FD4590048B247 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */; };
 		7A0BB1CE2B51C4DC0048B247 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */; };
 		7A0BB1D02B51CA580048B247 /* GameOverScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */; };
@@ -21,6 +21,8 @@
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
 		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
 		7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */; };
+		7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9B682B80E9800097D3F9 /* HUDView.swift */; };
+		7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */; };
 		7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */; };
 		7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */; };
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
@@ -127,7 +129,7 @@
 		7A0598082B08976E0053646D /* DingDingDing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDingDing.mp3; sourceTree = "<group>"; };
 		7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePlayActivity.swift; sourceTree = "<group>"; };
 		7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySharingViewController.swift; sourceTree = "<group>"; };
-		7A0BB1C92B4FD1A20048B247 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonsView.swift; sourceTree = "<group>"; };
 		7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
 		7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,8 @@
 		7A2201332AB6739000DF04D7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 		7A327D532AD3E700002700DD /* SecretShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretShopView.swift; sourceTree = "<group>"; };
 		7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterLeaderboardView.swift; sourceTree = "<group>"; };
+		7A3C9B682B80E9800097D3F9 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingBallView.swift; sourceTree = "<group>"; };
 		7A3CEA6A2A8AB1E100A79E65 /* pokeball.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pokeball.gif; sourceTree = "<group>"; };
 		7A3CEA6B2A8AB1EB00A79E65 /* bear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bear.gif; sourceTree = "<group>"; };
 		7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = punchSFX.mp3; sourceTree = "<group>"; };
@@ -323,9 +327,11 @@
 				7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */,
 				7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */,
 				7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */,
-				7A0BB1C92B4FD1A20048B247 /* HUDView.swift */,
+				7A3C9B682B80E9800097D3F9 /* HUDView.swift */,
+				7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */,
 				7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */,
 				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
+				7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */,
 				7AE879AC2ACF3F21002CDD4F /* ShareView.swift */,
 				7A327D532AD3E700002700DD /* SecretShopView.swift */,
 				7AD2346E2A62019700ED626D /* TempView.swift */,
@@ -735,7 +741,9 @@
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
+				7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
+				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
 				7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */,
@@ -744,7 +752,7 @@
 				7A0BB1CC2B4FD4590048B247 /* AudioManager.swift in Sources */,
 				7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */,
 				7A16C4492B6AF63C00B6D3B1 /* UserData.swift in Sources */,
-				7A0BB1CA2B4FD1A20048B247 /* HUDView.swift in Sources */,
+				7A0BB1CA2B4FD1A20048B247 /* HomeButtonsView.swift in Sources */,
 				7A0BB1D02B51CA580048B247 /* GameOverScreenView.swift in Sources */,
 				7AEA1AB22AE46BDE00FE6DB5 /* CurrencyPageView.swift in Sources */,
 				7AE879AD2ACF3F21002CDD4F /* ShareView.swift in Sources */,
