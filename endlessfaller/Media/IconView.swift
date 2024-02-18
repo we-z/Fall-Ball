@@ -10,7 +10,8 @@ import SwiftUI
 struct IconView: View {
     var body: some View {
         ZStack{
-            LinearGradient(gradient: Gradient(colors: [.purple,.pink]), startPoint: UnitPoint.random, endPoint: UnitPoint.random)
+            LinearGradient(gradient: Gradient(colors: [.purple,.pink,.blue]), startPoint: UnitPoint(x: 0, y: 0.6), endPoint: UnitPoint(x: 0.6, y: 0.2))
+            RotatingSunView()
             ShockedBall()
                 .scaleEffect(6)
         }

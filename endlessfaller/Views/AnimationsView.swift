@@ -95,7 +95,7 @@ struct SunRayView: View {
     var body: some View {
         Rectangle()
             .fill(LinearGradient(
-                colors: [.clear, .white.opacity(0.06)],
+                colors: [.clear, .white.opacity(0.1)],
                 startPoint: .top,
                 endPoint: .bottom
             ))
