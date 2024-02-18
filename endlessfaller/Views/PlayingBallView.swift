@@ -49,7 +49,7 @@ struct PlayingBallView: View {
                             AnyView(hat!.hat)
                         }
                     }
-                    .opacity(appModel.ballIsStrobing ? 0.3 : 1)
+                    .opacity(appModel.ballIsStrobing ? 0 : 1)
                     .scaleEffect(appModel.ballIsStrobing ? 1.2 : 1)
                     .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
                 }
