@@ -147,7 +147,7 @@ struct ContentView: View {
                         }
                         appModel.FlashTriangles()
                         heavyHaptic.notificationOccurred(.success)
-                        if newIndex > userPersistedData.bestScore && newIndex > 3 {
+                        if appModel.score > userPersistedData.bestScore && newIndex > 3 {
                             appModel.showNewBestScore = true
                         }
                     }

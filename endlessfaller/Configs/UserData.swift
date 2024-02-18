@@ -47,7 +47,7 @@ class UserPersistedData: ObservableObject {
         boinBalance -= amount
     }
     
-    func updateBalance(amount: Int) {
+    func updateBestScore(amount: Int) {
         bestScore = amount
     }
     

@@ -124,7 +124,7 @@ class AppModel: ObservableObject {
         showNewBestScore = false
         if self.currentScore > userPersistedData.bestScore {
             DispatchQueue.main.async{
-                self.userPersistedData.updateBalance(amount: self.currentScore)
+                self.userPersistedData.updateBestScore(amount: self.currentScore)
             }
         }
         DispatchQueue.main.async { [self] in
