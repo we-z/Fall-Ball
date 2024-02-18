@@ -11,6 +11,7 @@ struct PlayingBallView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var userPersistedData = UserPersistedData()
+    @State var deviceCeiling = 0.0
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
@@ -52,17 +53,6 @@ struct PlayingBallView: View {
                 }
             }
             .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
-            .onChange(of: self.BallAnimator.ballYPosition) { newYposition in
-                if deviceHeight - 27 < self.BallAnimator.ballYPosition ||
-                    self.BallAnimator.ballYPosition < 45 {
-                    if self.BallAnimator.ballYPosition < 45 {
-                        self.appModel.diedAtTop = true
-                    } else {
-                        self.appModel.diedAtTop = false
-                    }
-                    appModel.wastedOperations()
-                }
-            }
             .allowsHitTesting(false)
         }
     }

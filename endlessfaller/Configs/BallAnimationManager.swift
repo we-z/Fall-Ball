@@ -8,6 +8,7 @@
 import Foundation
 import QuartzCore
 import UIKit
+import SwiftUI
 
 class BallAnimationManager: ObservableObject {
     @Published var ballYPosition: CGFloat = 90
@@ -69,6 +70,10 @@ class BallAnimationManager: ObservableObject {
             }
         } else {
             displayLink.invalidate()
+        }
+        
+        if deviceHeight - 27 < self.ballYPosition || self.ballYPosition < 90 {
+            AppModel.sharedAppModel.wastedOperations()
         }
     }
     

@@ -29,7 +29,6 @@ class AppModel: ObservableObject {
     @Published var showBoinFoundAnimation = false
     @Published var freezeScrolling = false
     @Published var showWastedScreen = false
-    @Published var diedAtTop = false
     @Published var isWasted = false
     @Published var ballSpeed: Double = 0.0
     @Published var triangleScale: CGFloat = 1.0
@@ -139,22 +138,8 @@ class AppModel: ObservableObject {
         self.freezeScrolling = true
         DispatchQueue.main.async {
             self.showContinueToPlayScreen = true
-            self.BallAnimator.endingYPosition = 90
             self.BallAnimator.pushUp = false
             self.BallAnimator.displayLink?.invalidate()
-            if self.diedAtTop {
-                if self.idiom == .pad {
-                    self.BallAnimator.ballYPosition = 45
-                } else {
-                    if UIDevice.current.hasDynamicIsland {
-                        self.BallAnimator.ballYPosition = 93
-                    } else {
-                        self.BallAnimator.ballYPosition = 80
-                    }
-                }
-            } else {
-                self.BallAnimator.ballYPosition = UIScreen.main.bounds.height - 24
-            }
         }
         self.ballIsStrobing = true
         self.highestLevelInRound = -1
@@ -165,6 +150,7 @@ class AppModel: ObservableObject {
             self.freezeScrolling = false
             self.isWasted = false
             self.ballIsStrobing = false
+            self.BallAnimator.endingYPosition = 90
         }
         self.firstGamePlayed = true
         audioController.punchSoundEffect.play()
