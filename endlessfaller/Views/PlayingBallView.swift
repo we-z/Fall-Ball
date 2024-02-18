@@ -40,16 +40,18 @@ struct PlayingBallView: View {
 
                 if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
                     ZStack{
-                        AnyView(bag!.bag)
+                        if userPersistedData.selectedBag != "nobag" {
+                            AnyView(bag!.bag)
+                        }
                         AnyView(character.character)
                             .scaleEffect(1.5)
                         if userPersistedData.selectedHat != "nohat" {
                             AnyView(hat!.hat)
                         }
                     }
-                    .offset(y: -12)
+                    .opacity(appModel.ballIsStrobing ? 0.3 : 1)
                     .scaleEffect(appModel.ballIsStrobing ? 1.2 : 1)
-                    .animation(.linear(duration: 0.06).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
+                    .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
                 }
             }
             .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)

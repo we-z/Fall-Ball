@@ -20,6 +20,9 @@ class BallAnimationManager: ObservableObject {
     @Published var pushUp: Bool = false
     @Published var ballSpeed: Double = 0.0
     @Published var targetDuration: CFTimeInterval = 0
+    @Published var screenCeiling: CGFloat = 0
+    
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     static let sharedBallManager = BallAnimationManager()
     
@@ -72,7 +75,17 @@ class BallAnimationManager: ObservableObject {
             displayLink.invalidate()
         }
         
-        if deviceHeight - 27 < self.ballYPosition || self.ballYPosition < 90 {
+        if self.idiom == .pad {
+             self.screenCeiling = 60
+         } else {
+             if UIDevice.current.hasDynamicIsland {
+                 self.screenCeiling = 93
+             } else {
+                 self.screenCeiling = 80
+             }
+         }
+        
+        if deviceHeight - 45 < self.ballYPosition || self.ballYPosition < self.screenCeiling {
             AppModel.sharedAppModel.wastedOperations()
         }
     }

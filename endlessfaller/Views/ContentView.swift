@@ -9,12 +9,9 @@ import SwiftUI
 import GameKit
 import CoreMotion
 import Combine
-import CircularProgress
 
 struct ContentView: View {
     
-    let deviceHeight = UIScreen.main.bounds.height
-    let deviceWidth = UIScreen.main.bounds.width
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @ObservedObject private var notificationManager = NotificationManager()
     @ObservedObject var gameCenter = GameCenter()
@@ -42,7 +39,6 @@ struct ContentView: View {
             
         }
     }
-
     
     let heavyHaptic = UINotificationFeedbackGenerator()
     
