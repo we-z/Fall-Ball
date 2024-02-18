@@ -79,7 +79,7 @@ class BallAnimationManager: ObservableObject {
              self.screenCeiling = 60
          } else {
              if UIDevice.current.hasDynamicIsland {
-                 self.screenCeiling = 93
+                 self.screenCeiling = 90
              } else {
                  self.screenCeiling = 80
              }

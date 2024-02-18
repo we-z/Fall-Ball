@@ -50,11 +50,7 @@ struct ContentView: View {
                         ZStack{
                             RandomGradientView()
                             if appModel.showContinueToPlayScreen{
-                                VStack{
-                                    Spacer()
-                                    ContinuePlayingView()
-                                    Spacer()
-                                }
+                                ContinuePlayingView()
                                 VStack{
                                     HStack{
                                         if appModel.score > -1 {

@@ -42,23 +42,23 @@ struct HUDView: View {
             }
             
             if appModel.score >= 0 && appModel.currentIndex >= 0 {
+                VStack{
+                    HStack{
+                        Text(String(appModel.score))
+                            .bold()
+                            .italic()
+                            .font(.system(size: 100))
+                            .padding(36)
+                            .padding(.top, 30)
+                            .foregroundColor(.black)
+                        Spacer()
+                        //                                    Text("\(speedFactor)")
+                        //                                        .padding()
+                    }
+                    Spacer()
+                }
                 if !appModel.isWasted {
                     ZStack{
-                        VStack{
-                            HStack{
-                                Text(String(appModel.score))
-                                    .bold()
-                                    .italic()
-                                    .font(.system(size: 100))
-                                    .padding(36)
-                                    .padding(.top, 30)
-                                    .foregroundColor(.black)
-                                Spacer()
-                                //                                    Text("\(speedFactor)")
-                                //                                        .padding()
-                            }
-                            Spacer()
-                        }
                         VStack{
                             Spacer()
                             HStack{

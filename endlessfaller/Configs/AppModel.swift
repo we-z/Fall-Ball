@@ -143,7 +143,6 @@ class AppModel: ObservableObject {
         }
         self.ballIsStrobing = true
         self.highestLevelInRound = -1
-        self.showContinueToPlayScreen = true
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.currentIndex = -2
@@ -151,6 +150,7 @@ class AppModel: ObservableObject {
             self.isWasted = false
             self.ballIsStrobing = false
             self.BallAnimator.endingYPosition = 90
+            self.BallAnimator.ballYPosition = 90
         }
         self.firstGamePlayed = true
         audioController.punchSoundEffect.play()
@@ -162,6 +162,7 @@ class AppModel: ObservableObject {
         DispatchQueue.main.async{
             self.cancelGameOverTimer()
         }
+        self.showContinueToPlayScreen = false
         self.costToContinue *= 2
         self.currentIndex = 0
     }
