@@ -45,10 +45,12 @@ struct PlayingBallView: View {
                         }
                         AnyView(character.character)
                             .scaleEffect(1.5)
+                            
                         if userPersistedData.selectedHat != "nohat" {
                             AnyView(hat!.hat)
                         }
                     }
+                    .frame(width: 120, height: 120)
                     .opacity(appModel.ballIsStrobing ? 0 : 1)
                     .scaleEffect(appModel.ballIsStrobing ? 1.1 : 1)
                     .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)

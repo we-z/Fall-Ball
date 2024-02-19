@@ -17,7 +17,7 @@ struct HUDView: View {
         ZStack{
             
             // rewards
-            if appModel.currentIndex >= 0 {
+            if appModel.currentIndex >= 0 && !appModel.isWasted {
                 if !appModel.showNewBestScore {
                     
                     if appModel.score > 50 && appModel.score < 65 {

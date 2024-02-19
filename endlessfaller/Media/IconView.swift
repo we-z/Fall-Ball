@@ -13,7 +13,7 @@ struct IconView: View {
             LinearGradient(gradient: Gradient(colors: [.pink,.purple,.blue]), startPoint: UnitPoint(x: 0, y: 0.6), endPoint: UnitPoint(x: 0.6, y: 0.2))
             RotatingSunView()
             ShockedBall()
-                .scaleEffect(6)
+                .scaleEffect(6.9)
         }
         .ignoresSafeArea()
     }

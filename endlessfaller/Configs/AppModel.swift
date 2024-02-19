@@ -139,11 +139,11 @@ class AppModel: ObservableObject {
         DispatchQueue.main.async {
             self.highestLevelInRound = -1
             self.showContinueToPlayScreen = true
-            self.BallAnimator.pushUp = false
             self.BallAnimator.displayLink?.invalidate()
+            self.BallAnimator.pushUp = false
+            self.ballIsStrobing = true
+            self.highestLevelInRound = -1
         }
-        self.ballIsStrobing = true
-        self.highestLevelInRound = -1
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.highestLevelInRound = -1
@@ -166,6 +166,8 @@ class AppModel: ObservableObject {
         }
         self.showContinueToPlayScreen = false
         self.costToContinue *= 2
+        self.BallAnimator.endingYPosition = 90
+        self.BallAnimator.ballYPosition = 90
         self.currentIndex = 0
     }
     

@@ -85,7 +85,9 @@ class BallAnimationManager: ObservableObject {
              }
          }
         
-        if deviceHeight - 33 < self.ballYPosition || self.ballYPosition < self.screenCeiling {
+        if deviceHeight - 39 < self.ballYPosition || self.ballYPosition < self.screenCeiling {
+            print("Ball died at: ")
+            print(self.ballYPosition)
             AppModel.sharedAppModel.wastedOperations()
         }
     }
