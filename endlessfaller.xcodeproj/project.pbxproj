@@ -27,6 +27,7 @@
 		7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */; };
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
+		7A675CED2B835E74001DEF29 /* BoingNotification.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7A9755D62B78717200473737 /* CloudStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9755D52B78717200473737 /* CloudStorage */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
@@ -154,6 +155,7 @@
 		7A48043D2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipTests.swift; sourceTree = "<group>"; };
 		7A4804472B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITests.swift; sourceTree = "<group>"; };
 		7A4804492B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoingNotification.caf; sourceTree = "<group>"; };
 		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
 		7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallsDetailsView.swift; sourceTree = "<group>"; };
 		7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatDesignsView.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
 				7A0598072B08976E0053646D /* Boing.mp3 */,
+				7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */,
 				7A0598082B08976E0053646D /* DingDingDing.mp3 */,
 				7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */,
 				7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */,
@@ -666,6 +669,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A675CED2B835E74001DEF29 /* BoingNotification.caf in Resources */,
 				7A0598092B08976E0053646D /* Boing.mp3 in Resources */,
 				7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */,
 				7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */,
