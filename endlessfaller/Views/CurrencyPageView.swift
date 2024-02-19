@@ -162,13 +162,8 @@ struct CurrencyPageView: View {
                 if isProcessingPurchase {
                     Color.gray.opacity(0.3) // Gray out the background
                         .edgesIgnoringSafeArea(.all)
-                    ProgressView()
-                        .scaleEffect(2)
-                        .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
-                
-                }
-                if appModel.grabbingBoins {
                     HangTight()
+                
                 }
             }
             .alert("Coming Soon", isPresented: $showAlert) {
