@@ -10,7 +10,7 @@ import SwiftUI
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            SwipeUpHand()
+            NewBestScore()
         }
     }
 }
@@ -1214,15 +1214,17 @@ struct NewBestScore: View {
                 Text("New Best Score!")
                     .bold()
                     .italic()
-                    
                     .multilineTextAlignment(.center)
                     .padding()
                     .font(.largeTitle)
                     .foregroundColor(.black)
-                    .flashing()
+                    
                     .allowsHitTesting(false)
             }
         }
+        .background(Color.green)
+        .cornerRadius(15)
+        .flashing()
         .onAppear{
             DispatchQueue.main.asyncAfter(deadline: .now() + 3){
                 dissapear = true

@@ -121,7 +121,7 @@ class AppModel: ObservableObject {
         self.score = -1
         audioController.musicPlayer.rate = 1
         self.showContinueToPlayScreen = false
-        showNewBestScore = false
+//        showNewBestScore = false
         if self.currentScore > userPersistedData.bestScore {
             DispatchQueue.main.async{
                 self.userPersistedData.updateBestScore(amount: self.currentScore)
