@@ -612,9 +612,9 @@ class NotificationManager: ObservableObject {
 
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
-                print("Yay!")
-            } else {
-                print("D'oh")
+                print("Notification permission granted.")
+            } else if let error = error {
+                print("Notification permission error: \(error.localizedDescription)")
             }
         }
     }
