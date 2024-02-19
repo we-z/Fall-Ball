@@ -12,7 +12,7 @@ struct CurrencyPageView: View {
     @State var isProcessingPurchase = false
     @State var showAlert = false
     @StateObject var storeKit = StoreKitManager()
-    @ObservedObject private var model = AppModel.sharedAppModel
+    @ObservedObject var appModel = AppModel.sharedAppModel
     @State var bundles: [CurrencyBundle] = [
         CurrencyBundle(coins: 25, cost: "$4.99", bundleID: "25boins"),
         CurrencyBundle(coins: 55, cost: "$9.99", bundleID: "55boins"),
@@ -58,6 +58,7 @@ struct CurrencyPageView: View {
                                             Button {
                                                 if index != 8 {
                                                     isProcessingPurchase = true
+                                                    appModel.freezeScrolling = true
                                                     Task {
                                                         do {
                                                             if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
@@ -69,7 +70,9 @@ struct CurrencyPageView: View {
                                                         } catch {
                                                             print("Purchase failed: \(error)")
                                                         }
+                                                        appModel.grabbingBoins = false
                                                         isProcessingPurchase = false
+                                                        appModel.freezeScrolling = false
                                                     }
                                                 } else {
                                                     showAlert = true
@@ -163,6 +166,9 @@ struct CurrencyPageView: View {
                         .scaleEffect(2)
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
                 
+                }
+                if appModel.grabbingBoins {
+                    HangTight()
                 }
             }
             .alert("Coming Soon", isPresented: $showAlert) {

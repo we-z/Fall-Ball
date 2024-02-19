@@ -104,23 +104,27 @@ class StoreKitManager: ObservableObject {
         //make a purchase request - optional parameters available
         let result = try await product.purchase()
         
+        await MainActor.run {
+            AppModel.sharedAppModel.grabbingBoins = true
+        }
+        
         // check the results
         switch result {
-        case .success(let verificationResult):
-            //Transaction will be verified for automatically using JWT(jwsRepresentation) - we can check the result
-            let transaction = try checkVerified(verificationResult)
-            
-            //the transaction is verified, deliver the content to the user
-            
-            //always finish a transaction - performance
-            await transaction.finish()
-            
-            return transaction
-            
-        case .userCancelled, .pending:
-            return nil
-        default:
-            return nil
+            case .success(let verificationResult):
+                //Transaction will be verified for automatically using JWT(jwsRepresentation) - we can check the result
+                let transaction = try checkVerified(verificationResult)
+                
+                //the transaction is verified, deliver the content to the user
+                
+                //always finish a transaction - performance
+                await transaction.finish()
+                
+                return transaction
+                
+            case .userCancelled, .pending:
+                return nil
+            default:
+                return nil
         }
         
     }

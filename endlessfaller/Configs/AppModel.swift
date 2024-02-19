@@ -35,6 +35,7 @@ class AppModel: ObservableObject {
     @Published var triangleColor = Color.black
     @Published var showDailyBoinCollectedAnimation = false
     @Published var ballIsStrobing = false
+    @Published var grabbingBoins = false
     @Published var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }

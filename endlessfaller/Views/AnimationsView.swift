@@ -10,7 +10,7 @@ import SwiftUI
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            NewBestScore()
+            HangTight()
         }
     }
 }
@@ -1233,6 +1233,48 @@ struct NewBestScore: View {
         .allowsHitTesting(false)
     }
 }
+
+struct HangTight: View {
+    @State var dissapear = false
+    var body: some View {
+        ZStack{
+            RotatingSunView()
+                .opacity(0.5)
+            Text("Hang tight!\nWe’re grabbing\nyour Boins :)")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+                .font(.largeTitle)
+                .foregroundColor(.black)
+        }
+        .frame(width: 300, height: 300)
+        .background(Color.green)
+        .cornerRadius(30)
+        .animatedOffset(speed: 1.5)
+        .allowsHitTesting(false)
+    }
+}
+
+struct SomethingWentWrongBoins: View {
+    @State var dissapear = false
+    var body: some View {
+        ZStack{
+            Text("Somethng\nwent wrong :(")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+                .font(.largeTitle)
+                .foregroundColor(.black)
+        }
+        .frame(width: 300, height: 300)
+        .background(Color.red)
+        .cornerRadius(30)
+        .allowsHitTesting(false)
+    }
+}
+
 
 struct WastedView: View {
     // 1. Define a state variable to control the vertical offset
