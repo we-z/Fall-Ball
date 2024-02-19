@@ -114,7 +114,7 @@ struct PlayersPlaqueView: View {
                 
             if let data = render() {
        
-                ShareView(activityItems: [data, "https://apps.apple.com/us/app/fall-ball-game/id6452083706"])
+                ShareView(activityItems: [data, "Play Fall Ball with me!\n\nhttps://apps.apple.com/us/app/fall-ball-game/id6452083706"])
            
             }
             
