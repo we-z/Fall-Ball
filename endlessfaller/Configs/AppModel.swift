@@ -137,6 +137,7 @@ class AppModel: ObservableObject {
         self.isWasted = true
         self.freezeScrolling = true
         DispatchQueue.main.async {
+            self.highestLevelInRound = -1
             self.showContinueToPlayScreen = true
             self.BallAnimator.pushUp = false
             self.BallAnimator.displayLink?.invalidate()
@@ -145,6 +146,7 @@ class AppModel: ObservableObject {
         self.highestLevelInRound = -1
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.highestLevelInRound = -1
             self.currentIndex = -2
             self.freezeScrolling = false
             self.isWasted = false

@@ -15,7 +15,7 @@ struct CharactersDesignsView: View {
                     ColombiaView()
                 }
                 ZStack{
-                    EvilBall()
+                    ChinaView()
                 }
                 ZStack{
                     YinYangBallView()

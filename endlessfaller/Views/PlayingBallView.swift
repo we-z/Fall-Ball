@@ -18,7 +18,7 @@ struct PlayingBallView: View {
         let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
         if appModel.score >= 0 && appModel.currentIndex >= 0 {
             ZStack{
-                if !appModel.isWasted{
+                if !appModel.isWasted || !appModel.ballIsStrobing {
                     HStack{
                         Divider()
                             .frame(width: 3)
@@ -50,7 +50,7 @@ struct PlayingBallView: View {
                         }
                     }
                     .opacity(appModel.ballIsStrobing ? 0 : 1)
-                    .scaleEffect(appModel.ballIsStrobing ? 1.2 : 1)
+                    .scaleEffect(appModel.ballIsStrobing ? 1.1 : 1)
                     .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
                 }
             }

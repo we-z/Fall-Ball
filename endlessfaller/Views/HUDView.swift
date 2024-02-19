@@ -75,7 +75,7 @@ struct HUDView: View {
                         VStack{
                             HStack{
                                 Spacer()
-                                if self.BallAnimator.ballYPosition < deviceHeight * 0.15 && appModel.currentIndex != 0 {
+                                if self.BallAnimator.ballYPosition < deviceHeight * 0.2 && appModel.currentIndex != 0 {
                                     ZStack{
                                         Image(systemName: "triangle.fill")
                                             .foregroundColor(.black)
@@ -94,7 +94,7 @@ struct HUDView: View {
                             Spacer()
                             HStack{
                                 Spacer()
-                                if self.BallAnimator.ballYPosition > deviceHeight * 0.85 && appModel.currentIndex != 0 {
+                                if self.BallAnimator.ballYPosition > deviceHeight * 0.8 && appModel.currentIndex != 0 {
                                     ZStack{
                                         Image(systemName: "triangle.fill")
                                             .foregroundColor(.black)

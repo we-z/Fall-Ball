@@ -85,7 +85,7 @@ class BallAnimationManager: ObservableObject {
              }
          }
         
-        if deviceHeight - 45 < self.ballYPosition || self.ballYPosition < self.screenCeiling {
+        if deviceHeight - 33 < self.ballYPosition || self.ballYPosition < self.screenCeiling {
             AppModel.sharedAppModel.wastedOperations()
         }
     }
