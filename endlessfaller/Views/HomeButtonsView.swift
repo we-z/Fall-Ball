@@ -27,6 +27,7 @@ struct HomeButtonsView: View {
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
+        let currentCharacter = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) ?? appModel.characters.first(where: { $0.characterID == "io.endlessfall.shocked"})
         VStack{
             HStack{
                 Spacer()
@@ -144,20 +145,18 @@ struct HomeButtonsView: View {
                     }
                     Spacer()
                     ZStack{
-                        if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
-                            ZStack{
-                                AnyView(character.character)
-                            }
-                            .padding(30)
-                            .overlay{
-                                if userPersistedData.selectedHat != "nohat" {
-                                    AnyView(hat!.hat)
-                                        .scaleEffect(0.69)
-                                        .frame(maxHeight: 30)
-                                }
-                            }
-                            .scaleEffect(ballButtonIsPressed ? 1.2 : 1.4)
+                        ZStack{
+                            AnyView(currentCharacter!.character)
                         }
+                        .padding(30)
+                        .overlay{
+                            if userPersistedData.selectedHat != "nohat" {
+                                AnyView(hat!.hat)
+                                    .scaleEffect(0.69)
+                                    .frame(maxHeight: 30)
+                            }
+                        }
+                        .scaleEffect(ballButtonIsPressed ? 1.2 : 1.4)
                     }
                     
                     .pressEvents {

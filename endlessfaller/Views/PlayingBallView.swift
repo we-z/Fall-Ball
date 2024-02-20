@@ -16,6 +16,8 @@ struct PlayingBallView: View {
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
         let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
+        let currentCharacter = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) ?? appModel.characters.first(where: { $0.characterID == "io.endlessfall.shocked"})
+
         if appModel.score >= 0 && appModel.currentIndex >= 0 {
             ZStack{
                 if !appModel.isWasted || !appModel.ballIsStrobing {
@@ -38,23 +40,21 @@ struct PlayingBallView: View {
                     .offset(x: 0, y:-(60 / appModel.ballSpeed))
                 }
 
-                if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
-                    ZStack{
-                        if userPersistedData.selectedBag != "nobag" {
-                            AnyView(bag!.bag)
-                        }
-                        AnyView(character.character)
-                            .scaleEffect(1.5)
-                            
-                        if userPersistedData.selectedHat != "nohat" {
-                            AnyView(hat!.hat)
-                        }
+                ZStack{
+                    if userPersistedData.selectedBag != "nobag" {
+                        AnyView(bag!.bag)
                     }
-                    .frame(width: 120, height: 120)
-                    .opacity(appModel.ballIsStrobing ? 0 : 1)
-                    .scaleEffect(appModel.ballIsStrobing ? 1.1 : 1)
-                    .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
+                    AnyView(currentCharacter!.character)
+                        .scaleEffect(1.5)
+                        
+                    if userPersistedData.selectedHat != "nohat" {
+                        AnyView(hat!.hat)
+                    }
                 }
+                .frame(width: 120, height: 120)
+                .opacity(appModel.ballIsStrobing ? 0 : 1)
+                .scaleEffect(appModel.ballIsStrobing ? 1.1 : 1)
+                .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
             }
             .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
             .allowsHitTesting(false)
