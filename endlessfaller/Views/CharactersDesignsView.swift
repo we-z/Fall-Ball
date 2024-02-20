@@ -11,46 +11,10 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                ZStack{
-                    ColombiaView()
-                }
-                ZStack{
-                    ChinaView()
-                }
-                ZStack{
-                    YinYangBallView()
-                }
+                UnicornView()
+                EarthBallView()
+                BeachBallView()
             }
-//            HStack{
-//                NorwayView()
-//                DenmarkView()
-//                EstoniaView()
-//            }
-//            HStack{
-//                ItalyView()
-//                GreeceView()
-//                TurkeyView()
-//            }
-//            HStack{
-//                UkraineView()
-//                BelarusView()
-//                PolandView()
-//            }
-//            HStack{
-//                SomaliaView()
-//                KenyaView()
-//                RwandaView()
-//            }
-//            HStack{
-//                ThailandView()
-//                VietnamView()
-//                MalaysiaView()
-//            }
-//            HStack{
-//                ChileView()
-//                ArgentinaView()
-//                PeruView()
-//            }
             Spacer()
         }
     }
@@ -974,6 +938,54 @@ struct ChinaView: View {
                             .frame(width: 46)
                     )
             )
+    }
+}
+
+struct EarthBallView: View {
+    var body: some View {
+        ZStack{
+            Text("🌍")
+                .font(.largeTitle)
+                .scaleEffect(1.33)
+            BallView()
+        }
+    }
+}
+
+struct BeachBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 46)
+            Image("beachball")
+                .resizable()
+                .flipped(.horizontal)
+                .frame(width: 45, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+        }
+    }
+}
+
+struct UnicornView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 46)
+            Image("unicorn")
+                .resizable()
+                .frame(width: 45, height: 43)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+            Image("unicornhorn")
+                .resizable()
+                .frame(width: 12, height: 18)
+                .offset(x:12,y: -16)
+        }
     }
 }
 

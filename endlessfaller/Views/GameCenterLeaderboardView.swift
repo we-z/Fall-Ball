@@ -20,7 +20,6 @@ struct GameCenterLeaderboardView: View {
     @State private var isGameCenterSheetPresented = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     private var localPlayer = GKLocalPlayer.local
-    @AppStorage("GKGameCenterViewControllerState") var gameCenterViewControllerState:GKGameCenterViewControllerState = .default
     @AppStorage("IsGameCenterActive") var isGKActive:Bool = false
     let leaderboardIdentifier = "fallball.leaderboard"
     @State var isGameCenterEnabled: Bool = false
