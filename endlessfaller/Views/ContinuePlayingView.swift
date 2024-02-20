@@ -93,7 +93,7 @@ struct ContinuePlayingView: View {
                     ZStack{
                         Image(systemName: "stopwatch")
                             .bold()
-                            .font(.largeTitle)
+                            .font(.system(size: 33))
                             .scaleEffect(2.1)
                             .foregroundColor(.black)
                         Circle()

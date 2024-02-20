@@ -945,8 +945,7 @@ struct EarthBallView: View {
     var body: some View {
         ZStack{
             Text("🌍")
-                .font(.largeTitle)
-                .scaleEffect(1.33)
+                .font(.system(size: 45))
             BallView()
         }
     }
