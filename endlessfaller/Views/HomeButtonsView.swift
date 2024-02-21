@@ -166,8 +166,10 @@ struct HomeButtonsView: View {
                             ballButtonIsPressed = true
                         }
                     } onRelease: {
-                        withAnimation {
+                        withAnimation(.easeInOut(duration: 0.1)) {
                             ballButtonIsPressed = false
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showCharactersMenu = true
                         }
                     }
