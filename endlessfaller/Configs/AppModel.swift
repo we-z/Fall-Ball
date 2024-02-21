@@ -47,7 +47,7 @@ class AppModel: ObservableObject {
     // Modifications to gameOverTimer related code
     func startGameOverTimer() {
         gameOverDispatchTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
-        gameOverDispatchTimer?.schedule(deadline: .now() + 7)
+        gameOverDispatchTimer?.schedule(deadline: .now() + 7.5)
         gameOverDispatchTimer?.setEventHandler { [weak self] in
             print("calling from wasted operations")
             self?.currentIndex = -1
@@ -149,7 +149,7 @@ class AppModel: ObservableObject {
             self.highestLevelInRound = -1
         }
         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {}
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.highestLevelInRound = -1
             self.currentIndex = -2
             self.freezeScrolling = false
