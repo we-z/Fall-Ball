@@ -49,6 +49,15 @@ struct PlayingBallView: View {
                             .tag("circle")
                     }
                     .offset(y:-39)
+                } else {
+                    VortexView(.fire) {
+                        Circle()
+                            .fill(.white)
+                            .blendMode(.plusLighter)
+                            .blur(radius: 3)
+                            .frame(width: 45)
+                            .tag("circle")
+                    }
                 }
 
                 ZStack{

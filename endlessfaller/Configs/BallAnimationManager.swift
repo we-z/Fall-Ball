@@ -66,7 +66,7 @@ class BallAnimationManager: ObservableObject {
                     //print("ball pushed back all the way up")
                     startTime = CACurrentMediaTime()
                     startTimer(speed: newBallSpeed)
-                    pushUp = false
+                    self.pushUp = false
                 }
             } else {
                 ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height))
