@@ -166,6 +166,7 @@ struct CurrencyPageView: View {
                 
                 }
             }
+            .allowsHitTesting(!isProcessingPurchase)
             .alert("Coming Soon", isPresented: $showAlert) {
                 Button("OK", role: .cancel) { }
             }

@@ -335,8 +335,8 @@
 				7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */,
 				7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */,
 				7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */,
-				7A3C9B682B80E9800097D3F9 /* HUDView.swift */,
 				7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */,
+				7A3C9B682B80E9800097D3F9 /* HUDView.swift */,
 				7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */,
 				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
 				7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */,
@@ -968,7 +968,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.4;
+				CURRENT_PROJECT_VERSION = 1.6.5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -992,7 +992,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.6.4;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1015,7 +1015,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.4;
+				CURRENT_PROJECT_VERSION = 1.6.5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1039,7 +1039,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.6.4;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
