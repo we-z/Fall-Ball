@@ -130,6 +130,9 @@ class AppModel: ObservableObject {
         }
         DispatchQueue.main.async { [self] in
             self.highestLevelInRound = -1
+            self.BallAnimator.pushUp = false
+            self.BallAnimator.endingYPosition = 90
+            self.BallAnimator.ballYPosition = 90
             self.gameCenter.updateScore(currentScore: self.currentScore, bestScore: userPersistedData.bestScore, ballID: userPersistedData.selectedCharacter)
         }
     }
@@ -152,6 +155,7 @@ class AppModel: ObservableObject {
             self.freezeScrolling = false
             self.isWasted = false
             self.ballIsStrobing = false
+            self.BallAnimator.pushUp = false
             self.BallAnimator.endingYPosition = 90
             self.BallAnimator.ballYPosition = 90
         }
