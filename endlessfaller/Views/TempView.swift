@@ -9,39 +9,29 @@ import SwiftUI
 import Vortex
 
 struct TempView: View {
-    @State private var burstCount = 0
 
     var body: some View {
-        VStack{
-            VortexViewReader { proxy in
-                VortexView(.confetti) {
-                    Rectangle()
-                        .fill(.white)
-                        .frame(width: 16, height: 16)
-                        .tag("square")
-                    
-                    Circle()
-                        .fill(.white)
-                        .frame(width: 16)
-                        .tag("circle")
-                }
-                .onAppear {
-                    // Start a timer when the view appears
-                    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                        if burstCount < 4 {
-                            // Call proxy.burst() every second
-                            proxy.burst()
-                            burstCount += 1
-                        } else {
-                            // Invalidate the timer after bursting 3 times
-                            timer.invalidate()
-                        }
-                    }
-                }
-            }
+        VortexView(customTrail()) {
+            Circle()
+                .fill(.white)
+                .frame(width: 32)
+                .tag("circle")
         }
         
     }
+    
+    func customTrail() -> VortexSystem {
+        let system = VortexSystem(tags: ["circle"])
+        system.speed = 2
+        system.stretchFactor = 18
+        system.birthRate = 60
+        system.lifespan = 0.06
+        system.shape = .box(width: 0.15, height: 0)
+        system.size = 0.1
+        system.colors = .random(.black)
+        return system
+    }
+    
 }
 
 struct TempView_Previews: PreviewProvider {

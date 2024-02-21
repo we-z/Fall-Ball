@@ -41,10 +41,9 @@ struct PlayingBallView: View {
 //                    .frame(width: 66, height: abs(60 / appModel.ballSpeed))
 //                    .offset(x: 0, y:-(60 / appModel.ballSpeed))
                     
-                    VortexView(customTrail()) {
+                    VortexView(colourTrail()) {
                         Circle()
                             .fill(.white)
-                            .blur(radius: 1)
                             .frame(width: 32)
                             .tag("circle")
                     }
@@ -81,18 +80,34 @@ struct PlayingBallView: View {
         }
     }
     
-    func customTrail() -> VortexSystem {
+    func randomTrail() -> VortexSystem {
+        return Bool.random() ? colourTrail() : linesTrail()
+    }
+    
+    func colourTrail() -> VortexSystem {
         let system = VortexSystem(tags: ["circle"])
         system.speed = 0.2
         system.attractionStrength = 2
         system.speedVariation = 0.2
         system.shape = .box(width: 0.15, height: 0.15)
-        system.angleRange = .degrees(10)
+        system.angleRange = .degrees(3)
         system.size = 0.25
         system.sizeVariation = 0.5
-        system.colors = .ramp(.blue, .red, .yellow)
+        system.colors = .random(.blue, .red, .yellow, .green)
         system.sizeVariation = 0.5
         system.sizeMultiplierAtDeath = 0.1
+        return system
+    }
+    
+    func linesTrail() -> VortexSystem {
+        let system = VortexSystem(tags: ["circle"])
+        system.speed = 2
+        system.stretchFactor = 18
+        system.birthRate = 60
+        system.lifespan = 0.06
+        system.shape = .box(width: 0.15, height: 0)
+        system.size = 0.1
+        system.colors = .random(.black)
         return system
     }
     
