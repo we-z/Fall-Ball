@@ -18,9 +18,9 @@ struct CharactersMenuView: View {
     @State var showSecretShop = false
     @State var hapticFeedbackCounter = 0
     @State var showBallDetails = false
-    @State var yPosition: CGFloat = 0.0
     @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "")
     @State var currentBallIndex = 0
+    @State var secretShopButtonIsPressed = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @StateObject var userPersistedData = UserPersistedData()
     
@@ -113,68 +113,35 @@ struct CharactersMenuView: View {
                                 }
                             }
                         }
-                        VStack{
+
                             Text("Secret Shop 🤫")
+                                .padding(6)
+                                .padding(.horizontal, 6)
                                 .foregroundColor(.black)
-                                .font(.system(size: 12))
+                                .font(.system(size: 21))
                                 .bold()
                                 .italic()
-                                .scaleEffect(yPosition > -(deviceHeight) ? 1 + ((deviceHeight - abs(yPosition)) / 390) : 1)
-                            if idiom == .pad {
-                                ZStack{
-                                    Circle()
-                                        .foregroundColor(.black)
-                                        .frame(width: 69, height: 69)
-                                    Circle()
-                                        .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 600))
-                                        .stroke(Color.blue, lineWidth: 30)
-                                        .rotationEffect(Angle(degrees: -90))
-                                        .frame(width: 30, height: 30)
+                                .background(RandomGradientView())
+                                .cornerRadius(12)
+                                .padding(.top)
+                                .shadow(color: .black, radius: 0.1, x: secretShopButtonIsPressed ? 0 : -6, y: secretShopButtonIsPressed ? 0 : 6)
+                                .offset(x: secretShopButtonIsPressed ? -6 : 0, y: secretShopButtonIsPressed ? 6 : 0)
+                                .pressEvents {
+                                    // On press
+                                    withAnimation(.easeInOut(duration: 0.1)) {
+                                        secretShopButtonIsPressed = true
+                                    }
+                                } onRelease: {
+                                    withAnimation {
+                                        secretShopButtonIsPressed = false
+                                        self.showSecretShop = true
+                                    }
                                 }
-                                .offset(y: 15)
-                            } else {
-                                ZStack{
-                                    Circle()
-                                        .foregroundColor(.black)
-                                        .frame(width: 69, height: 69)
-                                    Circle()
-                                        .trim(from: 0, to: (deviceHeight - abs(yPosition)) / (deviceHeight - 240))
-                                        .stroke(Color.blue, lineWidth: 30)
-                                        .rotationEffect(Angle(degrees: -90))
-                                        .frame(width: 30, height: 30)
-                                }
-                                .offset(y: 15)
-                            }
                         }
-                        .offset(y:120)
-                        .background(GeometryReader { proxy -> Color in
-                            DispatchQueue.main.async {
-                                yPosition = -proxy.frame(in: .global).maxY
-                                if idiom == .pad {
-                                    if yPosition > -600 {
-                                        self.showSecretShop = true
-                                    }
-                                } else {
-                                    if yPosition > -240 {
-                                        self.showSecretShop = true
-                                    }
-                                }
-                                if yPosition > -(deviceHeight - 90) {
-                                    hapticFeedbackCounter += 1
-                                    if hapticFeedbackCounter > 9 && !showSecretShop {
-                                        impactMed.impactOccurred()
-                                        hapticFeedbackCounter = 0
-                                    }
-                                }
-                            }
-                            return Color.clear
-                        })
-                    }
                     Spacer()
                 }
             }
-//            Text("\(yPosition)")
-//                .offset(y:100)
+
             if isProcessingPurchase {
                 Color.gray.opacity(0.3) // Gray out the background
                     .edgesIgnoringSafeArea(.all)
@@ -200,8 +167,3 @@ struct CharactersView_Previews: PreviewProvider {
     }
 }
 
-/*
- iphone 13 mini: -746
- iphone 15 pro max: -898
- ipad 12.9 inch: -1,346
- */
