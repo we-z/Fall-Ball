@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Vortex
 
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            HangTight()
+            BoinCollectedView()
         }
     }
 }
@@ -380,76 +381,40 @@ struct SnowView: UIViewRepresentable {
 }
 
 struct  CelebrationEffect: View {
-    @State private var messageEffect = 0
-
-    @State private var acceleration1 = false
-    @State private var emitterSize = 0
-    @State private var birth = 2
+    @State private var burstCount = 0
 
     var body: some View {
-        ZStack {
-            ForEach(0 ..< 12) { item in
-
-                    VStack(spacing: 100) {
-                        Capsule()
-                            .frame(width: 6, height: 12)
-                            .foregroundColor(.teal)
-                            .hueRotation(.degrees(Double(item) *  30))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeInOut(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
-                            .opacity(Double(birth))
-                            .animation(Animation.easeOut.delay(1.5).repeatCount(3, autoreverses: false), value: acceleration1)
-
-                        Capsule()
-                            .frame(width: 6, height: 12)
-                            .foregroundColor(.orange)
-                            .hueRotation(.degrees(Double(item) *  30))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeOut(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
-                            .opacity(Double(birth))
-                            .animation(Animation.easeIn.delay(1.5).repeatCount(3, autoreverses: false), value: acceleration1)
-
-                        Capsule()
-                            .frame(width: 6, height: 12)
-                            .foregroundColor(.cyan)
-                            .hueRotation(.degrees(Double(item) *  CGFloat.pi * 2.0))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeIn(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
-                            .opacity(Double(birth))
-                            .animation(Animation.easeInOut.delay(1.5).repeatCount(3, autoreverses: false), value: acceleration1)
-
-                        Capsule()
-                            .frame(width: 6, height: 12)
-                            .foregroundColor(.red)
-                            .hueRotation(.degrees(Double(item) *  30))
-                            .blendMode(.exclusion)
-                            .scaleEffect(CGFloat(emitterSize))
-                            .offset(y: CGFloat(acceleration1 ? 300 : 5))
-                            .rotationEffect(.degrees(Double(item) * 30), anchor: .bottom)
-                            .animation(Animation.easeOut(duration: 2).repeatCount(3, autoreverses: false), value: acceleration1)
-                            .opacity(Double(birth))
-                            .animation(Animation.easeIn.repeatCount(3, autoreverses: false), value: acceleration1)
+        VStack{
+            VortexViewReader { proxy in
+                VortexView(.confetti) {
+                    Rectangle()
+                        .fill(.white)
+                        .frame(width: 16, height: 16)
+                        .tag("square")
+                    
+                    Circle()
+                        .fill(.white)
+                        .frame(width: 16)
+                        .tag("circle")
+                }
+                .onAppear {
+                    // Start a timer when the view appears
+                    proxy.burst()
+                    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                        if burstCount < 3 {
+                            // Call proxy.burst() every second
+                            proxy.burst()
+                            burstCount += 1
+                        } else {
+                            // Invalidate the timer after bursting 3 times
+                            timer.invalidate()
+                        }
                     }
-
+                }
             }
         }
-        .task{
-            withAnimation(.linear)
-            {
-               acceleration1 = true
-               emitterSize = 1
-               birth = 0
-            }
-        }
+        .allowsHitTesting(false)
+        
     }
 }
 
