@@ -58,7 +58,6 @@ struct CurrencyPageView: View {
                                             Button {
                                                 if index != 8 {
                                                     isProcessingPurchase = true
-                                                    appModel.freezeScrolling = true
                                                     Task {
                                                         do {
                                                             if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
@@ -72,7 +71,6 @@ struct CurrencyPageView: View {
                                                         }
                                                         appModel.grabbingBoins = false
                                                         isProcessingPurchase = false
-                                                        appModel.freezeScrolling = false
                                                     }
                                                 } else {
                                                     showAlert = true

@@ -22,6 +22,7 @@ struct HomeButtonsView: View {
     @State var currencyButtonIsPressed = false
     @State var showCurrencyPage = false
     @StateObject var userPersistedData = UserPersistedData()
+    var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     let gearHaptic = UINotificationFeedbackGenerator()
     
@@ -60,7 +61,7 @@ struct HomeButtonsView: View {
                     }
                 }
             }
-            .padding(.top, 45)
+            .padding(.top, idiom == .pad ? 15 : 45)
             Spacer()
             ZStack{
                 HStack{
