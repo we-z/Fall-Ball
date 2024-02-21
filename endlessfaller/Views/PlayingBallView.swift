@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Vortex
 
 struct PlayingBallView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
@@ -21,23 +22,33 @@ struct PlayingBallView: View {
         if appModel.score >= 0 && appModel.currentIndex >= 0 {
             ZStack{
                 if !appModel.isWasted || !appModel.ballIsStrobing {
-                    HStack{
-                        Divider()
-                            .frame(width: 3)
-                            .overlay(.black)
-                            .offset(x: -21, y: -21)
-                        Divider()
-                            .frame(width: 3)
-                            .overlay(.black)
-                            .offset(y: -39)
-                        Divider()
-                            .frame(width: 3)
-                            .overlay(.black)
-                            .offset(x: 21, y: -21)
-                        
+                    
+//                    HStack{
+//                        Divider()
+//                            .frame(width: 3)
+//                            .overlay(.black)
+//                            .offset(x: -21, y: -21)
+//                        Divider()
+//                            .frame(width: 3)
+//                            .overlay(.black)
+//                            .offset(y: -39)
+//                        Divider()
+//                            .frame(width: 3)
+//                            .overlay(.black)
+//                            .offset(x: 21, y: -21)
+//                        
+//                    }
+//                    .frame(width: 66, height: abs(60 / appModel.ballSpeed))
+//                    .offset(x: 0, y:-(60 / appModel.ballSpeed))
+                    
+                    VortexView(customTrail()) {
+                        Circle()
+                            .fill(.white)
+                            .blur(radius: 1)
+                            .frame(width: 32)
+                            .tag("circle")
                     }
-                    .frame(width: 66, height: abs(60 / appModel.ballSpeed))
-                    .offset(x: 0, y:-(60 / appModel.ballSpeed))
+                    .offset(y:-39)
                 }
 
                 ZStack{
@@ -51,7 +62,7 @@ struct PlayingBallView: View {
                         AnyView(hat!.hat)
                     }
                 }
-                .frame(width: 120, height: 120)
+                .frame(width: 180, height: 120)
                 .opacity(appModel.ballIsStrobing ? 0 : 1)
                 .scaleEffect(appModel.ballIsStrobing ? 1.1 : 1)
                 .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
@@ -60,6 +71,22 @@ struct PlayingBallView: View {
             .allowsHitTesting(false)
         }
     }
+    
+    func customTrail() -> VortexSystem {
+        let system = VortexSystem(tags: ["circle"])
+        system.speed = 0.2
+        system.attractionStrength = 2
+        system.speedVariation = 0.2
+        system.shape = .box(width: 0.15, height: 0.15)
+        system.angleRange = .degrees(10)
+        system.size = 0.25
+        system.sizeVariation = 0.5
+        system.colors = .ramp(.blue, .red, .yellow)
+        system.sizeVariation = 0.5
+        system.sizeMultiplierAtDeath = 0.1
+        return system
+    }
+    
 }
 
 #Preview {

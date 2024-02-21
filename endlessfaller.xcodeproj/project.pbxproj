@@ -21,6 +21,8 @@
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
 		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
 		7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */; };
+		7A38B5992B85723400DDD280 /* GKScoreChallengeTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */; };
+		7A38B59C2B85727000DDD280 /* Vortex in Frameworks */ = {isa = PBXBuildFile; productRef = 7A38B59B2B85727000DDD280 /* Vortex */; };
 		7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9B682B80E9800097D3F9 /* HUDView.swift */; };
 		7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */; };
 		7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22D2AA3D74B0099AFB6 /* punchSFX.mp3 */; };
@@ -138,6 +140,7 @@
 		7A2201332AB6739000DF04D7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 		7A327D532AD3E700002700DD /* SecretShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretShopView.swift; sourceTree = "<group>"; };
 		7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterLeaderboardView.swift; sourceTree = "<group>"; };
+		7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKScoreChallengeTesterView.swift; sourceTree = "<group>"; };
 		7A3C9B682B80E9800097D3F9 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingBallView.swift; sourceTree = "<group>"; };
 		7A3CEA6A2A8AB1E100A79E65 /* pokeball.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pokeball.gif; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 			files = (
 				7A9755D62B78717200473737 /* CloudStorage in Frameworks */,
 				7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */,
+				7A38B59C2B85727000DDD280 /* Vortex in Frameworks */,
 				7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +333,7 @@
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
 				7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */,
 				7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */,
+				7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */,
 				7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */,
 				7A3C9B682B80E9800097D3F9 /* HUDView.swift */,
 				7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */,
@@ -485,6 +490,7 @@
 			packageProductDependencies = (
 				7A9755D52B78717200473737 /* CloudStorage */,
 				7A1E4F772B7AFBCC00CDF00F /* CircularProgress */,
+				7A38B59B2B85727000DDD280 /* Vortex */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -648,6 +654,7 @@
 				7A3CEA602A89F6A400A79E65 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */,
 				7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */,
+				7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */,
 			);
 			productRefGroup = 7AD2343C2A5F824800ED626D /* Products */;
 			projectDirPath = "";
@@ -749,6 +756,7 @@
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
+				7A38B5992B85723400DDD280 /* GKScoreChallengeTesterView.swift in Sources */,
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
 				7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */,
 				7A0BB1CE2B51C4DC0048B247 /* LandingPageView.swift in Sources */,
@@ -1439,6 +1447,14 @@
 				minimumVersion = 1.1.1;
 			};
 		};
+		7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/Vortex";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		7A3CEA5D2A896FAF00A79E65 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage";
@@ -1478,6 +1494,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */;
 			productName = CircularProgress;
+		};
+		7A38B59B2B85727000DDD280 /* Vortex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */;
+			productName = Vortex;
 		};
 		7A9755D52B78717200473737 /* CloudStorage */ = {
 			isa = XCSwiftPackageProductDependency;
