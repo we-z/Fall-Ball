@@ -149,6 +149,9 @@ struct ContentView: View {
                         heavyHaptic.notificationOccurred(.success)
                         if appModel.score > userPersistedData.bestScore && newIndex > 3 {
                             appModel.showNewBestScore = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                appModel.showedNewBestScoreOnce = true
+                            }
                         }
                     }
                     .allowsHitTesting(!appModel.freezeScrolling)

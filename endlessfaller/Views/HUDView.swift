@@ -33,11 +33,13 @@ struct HUDView: View {
                     }
                     
                 } else {
-                    NewBestScore()
-                        .onAppear{
-                            audioController.dingsSoundEffect.play()
-                        }
-                    CelebrationEffect()
+                    if !appModel.showedNewBestScoreOnce {
+                        NewBestScore()
+                            .onAppear{
+                                audioController.dingsSoundEffect.play()
+                            }
+                        CelebrationEffect()
+                    }
                 }
             }
             

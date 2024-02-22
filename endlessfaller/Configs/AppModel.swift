@@ -36,6 +36,7 @@ class AppModel: ObservableObject {
     @Published var showDailyBoinCollectedAnimation = false
     @Published var ballIsStrobing = false
     @Published var grabbingBoins = false
+    @Published var showedNewBestScoreOnce = false
     @Published var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
@@ -122,7 +123,7 @@ class AppModel: ObservableObject {
         self.score = -1
         audioController.musicPlayer.rate = 1
         self.showContinueToPlayScreen = false
-//        showNewBestScore = false
+        self.showedNewBestScoreOnce = false
         if self.currentScore > userPersistedData.bestScore {
             DispatchQueue.main.async{
                 self.userPersistedData.updateBestScore(amount: self.currentScore)
