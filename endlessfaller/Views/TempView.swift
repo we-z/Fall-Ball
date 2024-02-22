@@ -11,7 +11,7 @@ import Vortex
 struct TempView: View {
 
     var body: some View {
-        VortexView(customTrail()) {
+        VortexView(colourTrail()) {
             Circle()
                 .fill(.white)
                 .frame(width: 32)
@@ -20,15 +20,17 @@ struct TempView: View {
         
     }
     
-    func customTrail() -> VortexSystem {
+    func colourTrail() -> VortexSystem {
         let system = VortexSystem(tags: ["circle"])
-        system.speed = 2
-        system.stretchFactor = 18
-        system.birthRate = 60
-        system.lifespan = 0.06
-        system.shape = .box(width: 0.15, height: 0)
-        system.size = 0.1
-        system.colors = .random(.black)
+        system.speed = 0.9
+        system.birthRate = 300
+        system.shape = .box(width: 0.15, height: 0.1)
+        system.angleRange = .degrees(3)
+        system.size = 0.3
+        system.colors = .random(.blue, .red, .yellow, .green)
+        system.sizeVariation = 0.6
+        system.lifespan = 0.3
+        system.sizeMultiplierAtDeath = 0.1
         return system
     }
     

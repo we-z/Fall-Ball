@@ -47,7 +47,7 @@ struct PlayingBallView: View {
                             .frame(width: 32)
                             .tag("circle")
                     }
-                    .offset(y:-39)
+                    .offset(y:-30)
                 } else {
                     VortexView(.fire) {
                         Circle()
@@ -86,15 +86,14 @@ struct PlayingBallView: View {
     
     func colourTrail() -> VortexSystem {
         let system = VortexSystem(tags: ["circle"])
-        system.speed = 0.2
-        system.attractionStrength = 2
-        system.speedVariation = 0.2
-        system.shape = .box(width: 0.15, height: 0.15)
+        system.speed = 0.9
+        system.birthRate = 300
+        system.shape = .box(width: 0.15, height: 0.1)
         system.angleRange = .degrees(3)
-        system.size = 0.25
-        system.sizeVariation = 0.5
+        system.size = 0.3
         system.colors = .random(.blue, .red, .yellow, .green)
-        system.sizeVariation = 0.5
+        system.sizeVariation = 0.6
+        system.lifespan = 0.3
         system.sizeMultiplierAtDeath = 0.1
         return system
     }
