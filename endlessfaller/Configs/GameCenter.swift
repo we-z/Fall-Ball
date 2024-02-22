@@ -16,7 +16,6 @@ class GameCenter: ObservableObject {
     @Published var allTimePlayersList: [Player] = []
     init() {
         todaysPlayersList = []
-        //loadScores()
         Task{
             await loadLeaderboard()
         }
@@ -54,6 +53,14 @@ class GameCenter: ObservableObject {
                 }
             }
         }
+        
+        Task{
+            let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
+            if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
+                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
+                allPlayers.1.first?.challengeComposeController(withMessage: "BEAT IT", players: [GKLocalPlayer.local])
+            }
+        }
     }
     
     // local player
@@ -65,7 +72,6 @@ class GameCenter: ObservableObject {
     let leaderboardID = "grp.fallball.leaderboard"
     let allTimeLeaderboardID = "grp.AllTimeLeaderboard"
     
-    //@Published var leaderboardScores: [PlayerScore] = []
  
     private var leaderboard: GKLeaderboard?
     let leaderboardIdentifier = "fallball.leaderboard"
@@ -75,8 +81,6 @@ class GameCenter: ObservableObject {
     
     func loadLeaderboard(source: Int = 0) async {
         DispatchQueue.main.async {
-        print("source:")
-        print(source)
             self.todaysPlayersList.removeAll()
             self.allTimePlayersList.removeAll()
         

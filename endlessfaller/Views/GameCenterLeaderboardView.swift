@@ -616,17 +616,6 @@ struct GameCenterLeaderboardView: View {
                 }
             }
         }
-        .onAppear(){
-            
-            if !GKLocalPlayer.local.isAuthenticated {
-                gameCenter.authenticateUser()
-            } else if todaysPlayersList.count == 0 {
-                Task{
-                    await gameCenter.loadLeaderboard(source: 1)
-                }
-            }
-            
-        }
     }
 }
 
