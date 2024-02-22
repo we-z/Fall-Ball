@@ -29,6 +29,7 @@
 		7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */; };
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
+		7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */; };
 		7A675CED2B835E74001DEF29 /* BoingNotification.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7A9755D62B78717200473737 /* CloudStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9755D52B78717200473737 /* CloudStorage */; };
@@ -149,6 +150,7 @@
 		7A43B22F2AA3D7830099AFB6 /* FallBallOST120.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FallBallOST120.mp3; sourceTree = "<group>"; };
 		7A43B2312AA3E0440099AFB6 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		7A43B2332AA566A50099AFB6 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreScreenShotsView.swift; sourceTree = "<group>"; };
 		7A48042A2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipApp.swift; sourceTree = "<group>"; };
 		7A48042C2B54EF6500B6CE87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7A48042E2B54EF6600B6CE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				7A3CEA692A8AB1D100A79E65 /* Gifs */,
+				7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7A43B2312AA3E0440099AFB6 /* QRView.swift */,
 				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
@@ -756,6 +759,7 @@
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
+				7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */,
 				7A38B5992B85723400DDD280 /* GKScoreChallengeTesterView.swift in Sources */,
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
 				7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */,
