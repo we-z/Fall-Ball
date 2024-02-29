@@ -135,6 +135,7 @@ class AppModel: ObservableObject {
         DispatchQueue.main.async { [self] in
             self.highestLevelInRound = -1
             self.BallAnimator.pushUp = false
+            self.BallAnimator.displayLink?.invalidate()
             self.BallAnimator.endingYPosition = 90
             self.BallAnimator.ballYPosition = 90
             self.gameCenter.updateScore(currentScore: self.currentScore, bestScore: userPersistedData.bestScore, ballID: userPersistedData.selectedCharacter)
