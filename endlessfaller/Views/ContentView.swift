@@ -132,6 +132,8 @@ struct ContentView: View {
                         if newIndex > appModel.highestLevelInRound {
                             if newIndex == 0 {
                                 appModel.dropBall()
+                            } else if newIndex == 1 {
+                                self.BallAnimator.pushBallUp(newBallSpeed: 4)
                             } else {
                                 appModel.liftBall(difficultyInput: newIndex)
                             }

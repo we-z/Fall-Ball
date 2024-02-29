@@ -7,101 +7,140 @@
 
 import SwiftUI
 import GameKit
+import CloudKit
+import Combine
 
 struct GKScoreChallengeTesterView: View {
     
-//    @ObservedObject var gameCenter = GameCenter()
-//    let leaderboardIdentifier = "fallball.leaderboard"
-//    
-//    var body: some View {
-//        VStack {
-//            Button("Issue Challenge") {
-//                issueScoreChallenge()
-//            }
-//        }
-//    }
-//    
-//    func issueScoreChallenge() {
-//        
-//        
-//        // Create a GKScoreChallenge object
-//        let scoreChallenge = GKScoreChallenge()
-//        let score = GKScore()
-//        score.leaderboardIdentifier = "fallball.leaderboard"
-//        
-//        let currentPlayer = gameCenter.todaysPlayersList.first?.currentPlayer
-////        scoreChallenge.score
-//        
-//        // Compose a challenge view controller
-//        if #available(iOS 17.0, *) {
-//            let challengeController = score.challengeComposeController(
-//                withMessage: "Can you beat my score?",
-//                players: nil,
-//                completion: { viewController, didIssue, players in
-//                    if didIssue {
-//                        // Challenge issued successfully
-//                        print("Challenge issued successfully")
-//                    } else {
-//                        // Challenge issuing cancelled
-//                        print("Challenge issuing cancelled")
-//                    }
-//                }
-//            )
-//            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-//                if let window = windowScene.windows.first {
-//                    window.rootViewController?.present(challengeController, animated: true, completion: nil)
-//                }
-//            }
-//        }
-//    }
-    
-    @ObservedObject var gameCenter = GameCenter()
-    let leaderboardIdentifier = "fallball.leaderboard"
-    
+    @StateObject private var vm = CloudKitPushNotifciationBootcampViewModel()
+        
     var body: some View {
-        VStack {
-            Button {
-                issueScoreChallenge()
-            } label: {
-                Text("issue challenge")
+        VStack(spacing: 40) {
+            
+            Button("Authenticate Game Center") {
+                vm.authenticateUser()
             }
-        }
-        .onAppear{
-            if !GKLocalPlayer.local.isAuthenticated {
-                gameCenter.authenticateUser()
+            
+            Button("Request notification permissions") {
+                vm.requestNotificationPermissions()
             }
-        }
-    }
-    
-    func issueScoreChallenge() {
-        Task {
-            do {
-                print("Task running")
-                let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
-                print("leaderboards")
-                print(leaderboards)
-                if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
-                    print("leaderboard")
-                    print(leaderboard)
-                    let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
-                    print("allPlayers:")
-                    print(allPlayers)
-                    DispatchQueue.main.async {
-                        let challengeController = allPlayers.1.first!.challengeComposeController(withMessage: "BEAT IT", players: [GKLocalPlayer.local])
-                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                            if let window = windowScene.windows.first {
-                                window.rootViewController?.present(challengeController, animated: true, completion: nil)
-                            }
-                        }
-                    }
-                }
-            } catch {
-                print("Error: \(error)")
-                // Handle error, perhaps show an alert to the user
+            
+            Button("Subscribe to notifications") {
+                vm.subscribeToNotifications()
+            }
+            
+            Button("Unsubscribe to notifications") {
+                vm.unsubscribeToNotifications()
+            }
+            
+            Button("add challenge to cloud") {
+                vm.createChallenge(senderAlias: "Juan", recieverAlias: GKLocalPlayer.local.alias, levelsPassed: 60)
             }
         }
     }
 }
+
+class CloudKitPushNotifciationBootcampViewModel: ObservableObject {
+    
+    func authenticateUser() {
+        GKLocalPlayer.local.authenticateHandler = { vc, error in
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+        }
+    }
+    
+    func requestNotificationPermissions() {
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { success, error in
+            if let error = error {
+                print(error)
+            } else if success {
+                print("Notification permissions success!")
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            } else {
+                print("Notification permissions failure.")
+            }
+        }
+    }
+    
+    func subscribeToNotifications() {
+        var passer = "Someone"
+        let predicate = NSPredicate(format: "recieverAlias == %@", GKLocalPlayer.local.alias)
+        var cancellables = Set<AnyCancellable>()
+        
+        print("Player alias")
+        print(GKLocalPlayer.local.alias)
+        
+//        let predicate = NSPredicate(value: true)
+
+        let subscription = CKQuerySubscription(recordType: "Challenge", predicate: predicate, subscriptionID: "challenge_added_to_database", options: .firesOnRecordCreation)
+        
+        
+        let notification = CKSubscription.NotificationInfo()
+        
+        
+        
+        notification.title = "subscription"
+        notification.alertBody = "You gonna let em do you like dat? 🤨"
+        notification.soundName = "Boing"
+        
+        subscription.notificationInfo = notification
+        
+        CKContainer.default().publicCloudDatabase.save(subscription) { returnedSubscription, returnedError in
+            if let error = returnedError {
+                print(error)
+            } else {
+                print("Successfully subscribed to notifications!")
+            }
+        }
+    }
+    
+    func unsubscribeToNotifications() {
+//        CKContainer.default().publicCloudDatabase.fetchAllSubscriptions
+        CKContainer.default().publicCloudDatabase.delete(withSubscriptionID: "fruit_added_to_database") { returnedID, returnedError in
+            if let error = returnedError {
+                print(error)
+            } else {
+                print("Successfully unsubscribed!")
+            }
+        }
+    }
+    
+    func createChallenge(senderAlias: String, recieverAlias: String, levelsPassed: Int) {
+        guard let newScore = ChallengeModel(senderAlias: senderAlias, recieverAlias: recieverAlias, levelsPassed: levelsPassed) else { return }
+        CloudKitUtility.add(item: newScore) { result in
+            
+        }
+    }
+    
+}
+
+struct ChallengeModel: Hashable, CloudKitableProtocol {
+    let senderAlias: String
+    let recieverAlias: String
+    let levelsPassed: Int
+    let record: CKRecord
+    
+    init?(record: CKRecord) {
+        self.senderAlias = ""
+        self.recieverAlias = ""
+        self.levelsPassed = 0
+        self.record = record
+    }
+    
+    init?(senderAlias: String, recieverAlias: String, levelsPassed: Int) {
+        let record = CKRecord(recordType: "Challenge")
+        record["senderAlias"] = senderAlias
+        record["recieverAlias"] = recieverAlias
+        record["levelsPassed"] = levelsPassed
+        self.init(record: record)
+    }
+}
+
 
 #Preview {
     GKScoreChallengeTesterView()

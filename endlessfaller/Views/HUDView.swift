@@ -20,6 +20,18 @@ struct HUDView: View {
             if appModel.currentIndex >= 0 && !appModel.isWasted {
                 if !appModel.showNewBestScore {
                     
+                    if appModel.score > 0 && appModel.score < 4 {
+                        KeepSwiping()
+                    }
+                    
+                    if appModel.score > 3 && appModel.score < 9 {
+                        Instruction3()
+                    }
+                    
+                    if appModel.score > 8 && appModel.score < 15 {
+                        Instruction2()
+                    }
+                    
                     if appModel.score > 50 && appModel.score < 65 {
                         YourGood()
                     }

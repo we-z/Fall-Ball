@@ -78,7 +78,7 @@ class AppModel: ObservableObject {
     }
     
     func dropBall() {
-        self.ballSpeed = 2
+        self.ballSpeed = 4
         self.BallAnimator.startTime = 0.0
         self.BallAnimator.startTimer(speed: self.ballSpeed)
     }
@@ -102,13 +102,16 @@ class AppModel: ObservableObject {
          */
         let m1 = -0.0004004004004004004
         let c1 = 0.5004004004004003
-        let fastest = m1 * Double(difficultyInput) + c1
+        let fastest = (m1 * Double(difficultyInput) + c1) * 1.5
+        print("fastest: \(fastest)")
 
         let m2 = -0.0012012012012012011
         let c2 = 1.5012012012012013
-        let slowest = m2 * Double(difficultyInput) + c2
+        let slowest = (m2 * Double(difficultyInput) + c2) * 1.5
+        print("slowest: \(slowest)")
         
         self.ballSpeed = Double.random(in: fastest...slowest)
+        print("ballSpeed: \(ballSpeed)")
         self.BallAnimator.pushBallUp(newBallSpeed: ballSpeed)
     }
     

@@ -2,8 +2,9 @@
 //  CloudKitUtility.swift
 //  Fall Ball
 //
-//  Created by Wheezy Salem on 8/22/23.
+//  Created by Wheezy Salem on 2/25/24.
 //
+
 
 import Foundation
 import CloudKit
@@ -133,19 +134,6 @@ extension CloudKitUtility {
         Future { promise in
             CloudKitUtility.fetch(predicate: predicate, recordType: recordType, sortDescriptions: sortDescriptions, resultsLimit: resultsLimit) { (items: [T]) in
                 promise(.success(items))
-            }
-        }
-    }
-    
-    static func fetchRecord(withRecordID recordID: CKRecord.ID, completion: @escaping (Result<CKRecord, Error>) -> Void) {
-        let database = CKContainer.default().publicCloudDatabase
-        database.fetch(withRecordID: recordID) { (record, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else if let record = record {
-                completion(.success(record))
-            } else {
-                // Handle other cases
             }
         }
     }

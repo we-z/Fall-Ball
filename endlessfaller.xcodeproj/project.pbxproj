@@ -54,6 +54,8 @@
 		7AE879AD2ACF3F21002CDD4F /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE879AC2ACF3F21002CDD4F /* ShareView.swift */; };
 		7AEA1AB22AE46BDE00FE6DB5 /* CurrencyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA1AB12AE46BDE00FE6DB5 /* CurrencyPageView.swift */; };
 		7AEA1AB42AE5C9CA00FE6DB5 /* ContinuePlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA1AB32AE5C9CA00FE6DB5 /* ContinuePlayingView.swift */; };
+		7AF3EC662B8C2F2D003FE015 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
+		7AF3EC682B8FFB22003FE015 /* NBQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC672B8FFB22003FE015 /* NBQRView.swift */; };
 		7AFDA55F2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7AFDA55E2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7AFDA5642AC1592800D3A1F0 /* FallBallWatchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5632AC1592800D3A1F0 /* FallBallWatchOSApp.swift */; };
 		7AFDA5662AC1592800D3A1F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5652AC1592800D3A1F0 /* ContentView.swift */; };
@@ -188,6 +190,8 @@
 		7AE879AC2ACF3F21002CDD4F /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		7AEA1AB12AE46BDE00FE6DB5 /* CurrencyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPageView.swift; sourceTree = "<group>"; };
 		7AEA1AB32AE5C9CA00FE6DB5 /* ContinuePlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuePlayingView.swift; sourceTree = "<group>"; };
+		7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitUtility.swift; sourceTree = "<group>"; };
+		7AF3EC672B8FFB22003FE015 /* NBQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBQRView.swift; sourceTree = "<group>"; };
 		7AFDA5592AC1592800D3A1F0 /* FallBallWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallBallWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFDA55E2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FallBallWatchOS Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFDA5632AC1592800D3A1F0 /* FallBallWatchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOSApp.swift; sourceTree = "<group>"; };
@@ -313,6 +317,7 @@
 				7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7A43B2312AA3E0440099AFB6 /* QRView.swift */,
+				7AF3EC672B8FFB22003FE015 /* NBQRView.swift */,
 				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
 				7A0598072B08976E0053646D /* Boing.mp3 */,
@@ -363,6 +368,7 @@
 				7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */,
 				7A16C4482B6AF63C00B6D3B1 /* UserData.swift */,
 				7AC089382B7EC818008DD71D /* BallAnimationManager.swift */,
+				7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -742,9 +748,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */,
+				7AF3EC682B8FFB22003FE015 /* NBQRView.swift in Sources */,
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
 				7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */,
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
+				7AF3EC662B8C2F2D003FE015 /* CloudKitUtility.swift in Sources */,
 				7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */,
 				7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */,
 				7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */,

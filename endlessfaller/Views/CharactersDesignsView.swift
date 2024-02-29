@@ -11,11 +11,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack{
-                UnicornView()
-                EarthBallView()
-                BeachBallView()
+                EvilBall()
+                    .scaleEffect(6)
             }
-            Spacer()
         }
     }
 }

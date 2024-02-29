@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            NewBestScore()
+            Instruction2()
         }
     }
 }
@@ -876,17 +876,26 @@ struct TearsOfJoyBall: View {
 struct KeepSwiping: View {
     var body: some View {
         VStack{
-            Text("Keep \nSwiping")
+            Text("Keep\nSwiping!")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .scaleEffect(1.5)
                 .padding()
             Image(systemName: "arrow.up")
+                .padding(.top, 30)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .overlay{
+                    SwipeUpHand()
+                        .offset(x:39, y:69)
+                }
+                .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
-        .font(.largeTitle)
-        //.flashing()
     }
 }
 
@@ -1013,6 +1022,7 @@ struct Instruction: View {
                 .multilineTextAlignment(.center)
                 .padding()
             Image(systemName: "arrow.up")
+                .bold()
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1063,21 +1073,43 @@ struct SwipeUpNowView: View {
     }
 }
 
-struct Instruction3: View {
+struct Instruction2: View {
     var body: some View {
         VStack{
-            Text("Time swipe\nkeep ball\non screen")
+            Text("The ball falls\nat random\nspeeds!")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
                 .padding()
-            Image(systemName: "arrow.up")
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.4)
-        //.flashing()
+        .flashing()
+    }
+}
+
+struct Instruction3: View {
+    var body: some View {
+        VStack{
+            Image(systemName: "arrow.up")
+                .bold()
+                .padding()
+            Text("If you hit the top\nor bottom of \nthe screen\nyou lose!")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .padding()
+            Image(systemName: "arrow.down")
+                .bold()
+                .padding()
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
+        .font(.largeTitle)
+        .scaleEffect(1.4)
+        .animatedOffset(speed: 1)
     }
 }
 

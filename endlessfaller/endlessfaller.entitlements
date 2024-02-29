@@ -11,9 +11,13 @@
 	<key>com.apple.developer.group-session</key>
 	<true/>
 	<key>com.apple.developer.icloud-container-identifiers</key>
-	<array/>
+	<array>
+		<string>iCloud.io.endlessfall</string>
+	</array>
 	<key>com.apple.developer.icloud-services</key>
-	<array/>
+	<array>
+		<string>CloudKit</string>
+	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
 	<string>$(TeamIdentifierPrefix)io.endlessfall</string>
 	<key>com.apple.security.files.user-selected.read-only</key>
