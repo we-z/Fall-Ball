@@ -86,15 +86,16 @@ struct HomeButtonsView: View {
                             // Button 2
                             Button(action: {
                                 showGameModesAlert = true
+                                self.userPersistedData.strategyModeEnabled.toggle()
                             }) {
-                                Image(systemName: "gamecontroller.fill") // Replace with your image
+                                Image(systemName: userPersistedData.strategyModeEnabled ? "brain" : "timer") // Replace with your image
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 45, height: 45)
                                     .foregroundColor(.purple)
                             }
                             .offset(y: isGearExpanded ? -120 : 0)
-                            .alert("Different game modes coming soon", isPresented: $showGameModesAlert) {
+                            .alert(userPersistedData.strategyModeEnabled ? "Strategy mode enabled!" : "Speed mode enabled!", isPresented: $showGameModesAlert) {
                                 Button("OK", role: .cancel) { }
                             }
                             
