@@ -22,9 +22,24 @@ class BallAnimationManager: ObservableObject {
     @Published var targetDuration: CFTimeInterval = 0
     @Published var screenCeiling: CGFloat = 0
     
+    @StateObject var userPersistedData = UserPersistedData()
+    
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     static let sharedBallManager = BallAnimationManager()
+    
+    init() {
+        if self.idiom == .pad {
+            self.screenCeiling = 60
+        } else {
+             if UIDevice.current.hasDynamicIsland {
+                 self.screenCeiling = 90
+             } else {
+                 self.screenCeiling = 80
+             }
+         }
+        print("screenCeiling: \(self.screenCeiling)")
+    }
     
     func startTimer(speed: Double) {
         // Invalidate the existing display link
@@ -62,30 +77,21 @@ class BallAnimationManager: ObservableObject {
             if pushUp {
                 //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
                 ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
-                if ballYPosition <= endingYPosition + 90 {
-                    //print("ball pushed back all the way up")
-                    startTime = CACurrentMediaTime()
-                    startTimer(speed: newBallSpeed)
+                if ballYPosition <= endingYPosition + 90 || (self.ballYPosition < self.screenCeiling && self.userPersistedData.strategyModeEnabled == false){
+                    print("ball should stop pushing")
+                    if self.ballYPosition < self.screenCeiling {
+                        self.endingYPosition = screenCeiling
+                        self.ballYPosition = screenCeiling
+                    }
                     self.pushUp = false
+                    startTimer(speed: newBallSpeed)
                 }
             } else {
                 ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height))
             }
-        } else {
-            displayLink.invalidate()
         }
-        
-        if self.idiom == .pad {
-             self.screenCeiling = 60
-         } else {
-             if UIDevice.current.hasDynamicIsland {
-                 self.screenCeiling = 90
-             } else {
-                 self.screenCeiling = 80
-             }
-         }
-        
-        if deviceHeight - 39 < self.ballYPosition || self.ballYPosition < self.screenCeiling {
+
+        if deviceHeight - 39 < self.ballYPosition || (self.ballYPosition < self.screenCeiling && self.userPersistedData.strategyModeEnabled) {
             print("Ball died at: ")
             print(self.ballYPosition)
             AppModel.sharedAppModel.wastedOperations()
