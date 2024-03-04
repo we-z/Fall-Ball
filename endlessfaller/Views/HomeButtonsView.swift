@@ -95,8 +95,8 @@ struct HomeButtonsView: View {
                                     .foregroundColor(.purple)
                             }
                             .offset(y: isGearExpanded ? -120 : 0)
-                            .alert(userPersistedData.strategyModeEnabled ? "Strategy mode enabled!" : "Speed mode enabled!", isPresented: $showGameModesAlert) {
-                                Button("OK", role: .cancel) { }
+                            .alert(userPersistedData.strategyModeEnabled ? "Strategy mode enabled ✅" : "Speed mode enabled ✅", isPresented: $showGameModesAlert) {
+                                Button("Let's Go!", role: .cancel) { }
                             }
                             
                             // Button 3

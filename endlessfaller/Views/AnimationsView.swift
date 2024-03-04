@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            Instruction2()
+            Instruction3()
         }
     }
 }
@@ -1108,7 +1108,7 @@ struct Instruction3: View {
         .foregroundColor(.black)
         .allowsHitTesting(false)
         .font(.largeTitle)
-        .scaleEffect(1.4)
+        .scaleEffect(1.2)
         .animatedOffset(speed: 1)
     }
 }
@@ -1120,13 +1120,22 @@ struct SwipeFaster: View {
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .scaleEffect(1.5)
                 .padding()
             Image(systemName: "arrow.up")
+                .padding(.top, 30)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .overlay{
+                    SwipeUpHand()
+                        .offset(x:39, y:69)
+                }
+                .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
-        .font(.largeTitle)
-        //.flashing()
     }
 }
 
@@ -1137,13 +1146,48 @@ struct JustFaster: View {
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .scaleEffect(1.5)
                 .padding()
             Image(systemName: "arrow.up")
+                .padding(.top, 30)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .overlay{
+                    SwipeUpHand()
+                        .offset(x:39, y:69)
+                }
+                .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
-        .font(.largeTitle)
-        //.flashing()
+    }
+}
+
+struct SwipeAsFastAsYouCan: View {
+    var body: some View {
+        VStack{
+            Text("Swipe as\nfast as\nyou can!")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .padding()
+            Image(systemName: "arrow.up")
+                .padding(.top, 30)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .overlay{
+                    SwipeUpHand()
+                        .offset(x:39, y:69)
+                }
+                .animatedOffset(speed: 0.5)
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
     }
 }
 

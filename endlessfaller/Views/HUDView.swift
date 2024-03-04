@@ -23,13 +23,25 @@ struct HUDView: View {
                     if appModel.score > 0 && appModel.score < 4 {
                         KeepSwiping()
                     }
-                    
-                    if appModel.score > 3 && appModel.score < 9 {
-                        Instruction3()
-                    }
-                    
-                    if appModel.score > 8 && appModel.score < 15 {
-                        Instruction2()
+                    if userPersistedData.strategyModeEnabled {
+                        if appModel.score > 3 && appModel.score < 9 {
+                            Instruction3()
+                        }
+                        
+                        if appModel.score > 8 && appModel.score < 15 {
+                            Instruction2()
+                        }
+                    } else {
+                        if appModel.score > 3 && appModel.score < 9 {
+                            SwipeFaster()
+                        }
+                        
+                        if appModel.score > 8 && appModel.score < 15 {
+                            JustFaster()
+                        }
+                        if appModel.score > 14 && appModel.score < 21 {
+                            SwipeAsFastAsYouCan()
+                        }
                     }
                     
                     if appModel.score > 50 && appModel.score < 65 {
