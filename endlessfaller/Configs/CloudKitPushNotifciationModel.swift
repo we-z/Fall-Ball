@@ -38,7 +38,7 @@ class CloudKitPushNotifciationModel: ObservableObject {
     
     func subscribeToNotifications() {
         unsubscribeToNotifications()
-        let predicate = NSPredicate(format: "recieverAlias == %@", GKLocalPlayer.local.alias)
+        let predicate = NSPredicate(format: "recieverAlias == %@", GKLocalPlayer.local.displayName)
 
         let subscription = CKQuerySubscription(recordType: "LeaderboardPass", predicate: predicate, subscriptionID: "challenge_added_to_database", options: .firesOnRecordCreation)
         
