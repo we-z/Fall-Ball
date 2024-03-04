@@ -71,7 +71,7 @@ struct HUDView: View {
             }
             
             if appModel.score >= 0 && appModel.currentIndex >= 0 {
-//                LevelsToPassPlayerView()
+                LevelsToPassPlayerView()
                 VStack{
                     HStack{
                         Text(String(appModel.score))
