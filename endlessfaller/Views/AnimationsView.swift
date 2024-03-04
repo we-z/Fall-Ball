@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            SpeedInstruction()
+            JustFaster()
         }
     }
 }
@@ -883,16 +883,16 @@ struct KeepSwiping: View {
                 .font(.largeTitle)
                 .scaleEffect(1.5)
                 .padding()
-            Image(systemName: "arrow.up")
-                .padding(.top, 30)
-                .bold()
-                .font(.largeTitle)
-                .scaleEffect(1.5)
-                .overlay{
-                    SwipeUpHand()
-                        .offset(x:39, y:69)
-                }
-                .animatedOffset(speed: 0.5)
+            VStack{
+                Image(systemName: "arrow.up")
+                    .padding(.top, 45)
+                    .bold()
+                    .font(.largeTitle)
+                    .scaleEffect(1.5)
+                SwipeUpHand()
+                    .offset(x:39, y:30)
+            }
+            .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1123,16 +1123,16 @@ struct SwipeFaster: View {
                 .font(.largeTitle)
                 .scaleEffect(1.5)
                 .padding()
-            Image(systemName: "arrow.up")
-                .padding(.top, 30)
-                .bold()
-                .font(.largeTitle)
-                .scaleEffect(1.5)
-                .overlay{
-                    SwipeUpHand()
-                        .offset(x:39, y:69)
-                }
-                .animatedOffset(speed: 0.5)
+            VStack{
+                Image(systemName: "arrow.up")
+                    .padding(.top, 36)
+                    .bold()
+                    .font(.largeTitle)
+                    .scaleEffect(1.5)
+                SwipeUpHand()
+                    .offset(x:39, y:30)
+            }
+            .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1149,16 +1149,16 @@ struct JustFaster: View {
                 .font(.largeTitle)
                 .scaleEffect(1.5)
                 .padding()
-            Image(systemName: "arrow.up")
-                .padding(.top, 30)
-                .bold()
-                .font(.largeTitle)
-                .scaleEffect(1.5)
-                .overlay{
-                    SwipeUpHand()
-                        .offset(x:39, y:69)
-                }
-                .animatedOffset(speed: 0.5)
+            VStack{
+                Image(systemName: "arrow.up")
+                    .padding(.top, 36)
+                    .bold()
+                    .font(.largeTitle)
+                    .scaleEffect(1.5)
+                SwipeUpHand()
+                    .offset(x:39, y:30)
+            }
+            .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1175,16 +1175,16 @@ struct SwipeAsFastAsYouCan: View {
                 .font(.largeTitle)
                 .scaleEffect(1.5)
                 .padding()
-            Image(systemName: "arrow.up")
-                .padding(.top, 30)
-                .bold()
-                .font(.largeTitle)
-                .scaleEffect(1.5)
-                .overlay{
-                    SwipeUpHand()
-                        .offset(x:39, y:69)
-                }
-                .animatedOffset(speed: 0.5)
+            VStack{
+                Image(systemName: "arrow.up")
+                    .padding(.top, 36)
+                    .bold()
+                    .font(.largeTitle)
+                    .scaleEffect(1.5)
+                SwipeUpHand()
+                    .offset(x:39, y:30)
+            }
+            .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1201,16 +1201,16 @@ struct SpeedInstruction: View {
                 .font(.largeTitle)
                 .scaleEffect(1.5)
                 .padding()
-            Image(systemName: "arrow.up")
-                .padding(.top, 60)
-                .bold()
-                .font(.largeTitle)
-                .scaleEffect(1.5)
-                .overlay{
-                    SwipeUpHand()
-                        .offset(x:39, y:120)
-                }
-                .animatedOffset(speed: 0.5)
+            VStack{
+                Image(systemName: "arrow.up")
+                    .padding(.top, 36)
+                    .bold()
+                    .font(.largeTitle)
+                    .scaleEffect(1.5)
+                SwipeUpHand()
+                    .offset(x:39, y:30)
+            }
+            .animatedOffset(speed: 0.5)
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
