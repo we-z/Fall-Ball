@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            Instruction3()
+            SpeedInstruction()
         }
     }
 }
@@ -1183,6 +1183,32 @@ struct SwipeAsFastAsYouCan: View {
                 .overlay{
                     SwipeUpHand()
                         .offset(x:39, y:69)
+                }
+                .animatedOffset(speed: 0.5)
+        }
+        .foregroundColor(.black)
+        .allowsHitTesting(false)
+    }
+}
+
+struct SpeedInstruction: View {
+    var body: some View {
+        VStack{
+            Text("The Ball\nWill Fall\nFaster and\nFaster!")
+                .bold()
+                .italic()
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .padding()
+            Image(systemName: "arrow.up")
+                .padding(.top, 60)
+                .bold()
+                .font(.largeTitle)
+                .scaleEffect(1.5)
+                .overlay{
+                    SwipeUpHand()
+                        .offset(x:39, y:120)
                 }
                 .animatedOffset(speed: 0.5)
         }

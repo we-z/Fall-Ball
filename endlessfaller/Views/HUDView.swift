@@ -42,6 +42,9 @@ struct HUDView: View {
                         if appModel.score > 14 && appModel.score < 21 {
                             SwipeAsFastAsYouCan()
                         }
+                        if appModel.score > 20 && appModel.score < 27 {
+                            SpeedInstruction()
+                        }
                     }
                     
                     if appModel.score > 50 && appModel.score < 65 {
