@@ -22,7 +22,7 @@ class BallAnimationManager: ObservableObject {
     @Published var targetDuration: CFTimeInterval = 0
     @Published var screenCeiling: CGFloat = 0
     
-    @StateObject var userPersistedData = UserPersistedData()
+    @ObservedObject var userPersistedData = UserPersistedData()
     
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
@@ -57,7 +57,11 @@ class BallAnimationManager: ObservableObject {
     }
     
     func pushBallUp(newBallSpeed: CGFloat) {
-        ballSpeed = 0.3
+        if newBallSpeed < 0.3 {
+            ballSpeed = newBallSpeed
+        } else {
+            ballSpeed = 0.3
+        }
         self.newBallSpeed = newBallSpeed
         startingYPosition = ballYPosition
         endingYPosition = startingYPosition - UIScreen.main.bounds.height / 3
@@ -78,7 +82,7 @@ class BallAnimationManager: ObservableObject {
                 //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
                 ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
                 if ballYPosition <= endingYPosition + 90 || (self.ballYPosition < self.screenCeiling && self.userPersistedData.strategyModeEnabled == false){
-                    print("ball should stop pushing")
+//                    print("ball should stop pushing")
                     if self.ballYPosition < self.screenCeiling {
                         self.endingYPosition = screenCeiling
                         self.ballYPosition = screenCeiling

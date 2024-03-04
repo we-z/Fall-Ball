@@ -18,7 +18,7 @@ struct ContentView: View {
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var userPersistedData = UserPersistedData()
+    @ObservedObject var userPersistedData = UserPersistedData()
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true
