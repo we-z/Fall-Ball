@@ -1008,6 +1008,21 @@
       "productID" : "9999boins",
       "referenceName" : "9999boins",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9999.99",
+      "familyShareable" : false,
+      "internalID" : "EBDEB950",
+      "localizations" : [
+        {
+          "description" : "Infinite boins",
+          "displayName" : "Infinite boins",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "infiniteboins",
+      "referenceName" : "infiniteboins",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {

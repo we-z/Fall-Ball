@@ -78,7 +78,7 @@ class AppModel: ObservableObject {
     }
     
     func dropBall() {
-        self.ballSpeed = 4
+        self.ballSpeed = 3
         self.BallAnimator.startTime = 0.0
         self.BallAnimator.startTimer(speed: self.ballSpeed)
     }
@@ -97,17 +97,17 @@ class AppModel: ObservableObject {
          level 1 is anywhere between 0.5 and 1.5 seconds
          level 1000 is anywhere between 0.1 and 0.3 seconds
          use newValue instead of score variable
-         1 ->       1, 3
-         1000 ->    0.1, 0.3
+         1 ->       0.5, 1.5
+         1000 ->    0.05, 0.15
          */
         let m1 = -0.0004004004004004004
         let c1 = 0.5004004004004003
-        let fastest = (m1 * Double(difficultyInput) + c1) * 1.5
+        let fastest = (m1 * Double(difficultyInput) + c1) * 1.2
         print("fastest: \(fastest)")
 
         let m2 = -0.0012012012012012011
         let c2 = 1.5012012012012013
-        let slowest = (m2 * Double(difficultyInput) + c2) * 1.5
+        let slowest = (m2 * Double(difficultyInput) + c2) * 1.2
         print("slowest: \(slowest)")
         
         self.ballSpeed = Double.random(in: fastest...slowest)
@@ -138,7 +138,7 @@ class AppModel: ObservableObject {
             self.BallAnimator.displayLink?.invalidate()
             self.BallAnimator.endingYPosition = 90
             self.BallAnimator.ballYPosition = 90
-            self.gameCenter.updateScore(currentScore: self.currentScore, bestScore: userPersistedData.bestScore, ballID: userPersistedData.selectedCharacter)
+            self.gameCenter.updateScore(currentScore: self.currentScore, ballID: userPersistedData.selectedCharacter)
         }
     }
     

@@ -14,6 +14,8 @@ class GameCenter: ObservableObject {
     
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
+    @ObservedObject var ckPushNotification = CloudKitPushNotifciationModel()
+    
     init() {
         todaysPlayersList = []
         Task{
@@ -26,6 +28,21 @@ class GameCenter: ObservableObject {
     // status of Game Center
     
     private(set) var isGameCenterEnabled: Bool = false
+    
+    func notifyPassedPlayers(newScore: Int) {
+        ckPushNotification.subscribeToNotifications()
+        let oldPlayerPosition = todaysPlayersList.first(where: {$0.currentPlayer == GKLocalPlayer.local})
+        for playerEntry in todaysPlayersList {
+            if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
+                self.ckPushNotification.createPassRecord(recieverAlias: playerEntry.name)
+            }
+        }
+        for playerEntry in allTimePlayersList {
+            if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
+                self.ckPushNotification.createPassRecord(recieverAlias: playerEntry.name)
+            }
+        }
+    }
 
     func authenticateUser() {
         GKLocalPlayer.local.authenticateHandler = { vc, error in
@@ -41,7 +58,8 @@ class GameCenter: ObservableObject {
     
     // update local player score
     
-    func updateScore(currentScore: Int, bestScore: Int, ballID: String) {
+    func updateScore(currentScore: Int, ballID: String) {
+        notifyPassedPlayers(newScore: currentScore)
         // push score to Game Center
         Task{
             GKLeaderboard.submitScore(currentScore, context: ballID.hash, player: GKLocalPlayer.local, leaderboardIDs: [self.leaderboardID, self.allTimeLeaderboardID]) { error in

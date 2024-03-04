@@ -1280,12 +1280,12 @@ struct WastedView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("💀")
-                    .foregroundColor(.black)
-                    .bold()
-                    .font(.largeTitle)
-                    .scaleEffect(3)
-                    .padding(.bottom, 40)
+//                Text("💀")
+//                    .foregroundColor(.black)
+//                    .bold()
+//                    .font(.largeTitle)
+//                    .scaleEffect(3)
+//                    .padding(.bottom, 40)
                 Text("WASTED!")
                     .foregroundColor(.black)
                     .italic()

@@ -64,6 +64,7 @@
 		7AFDA5752AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5742AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift */; };
 		7AFDA57F2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA57E2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift */; };
 		7AFDA5812AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5802AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift */; };
+		7AFFE2282B948E170039214C /* CloudKitPushNotifciationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFE2272B948E170039214C /* CloudKitPushNotifciationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +204,7 @@
 		7AFDA57A2AC1592A00D3A1F0 /* FallBallWatchOS Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FallBallWatchOS Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFDA57E2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOS_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		7AFDA5802AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOS_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7AFFE2272B948E170039214C /* CloudKitPushNotifciationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPushNotifciationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +364,7 @@
 				7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */,
 				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
+				7AFFE2272B948E170039214C /* CloudKitPushNotifciationModel.swift */,
 				7A2201332AB6739000DF04D7 /* GameCenter.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
 				7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */,
@@ -747,6 +750,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AFFE2282B948E170039214C /* CloudKitPushNotifciationModel.swift in Sources */,
 				7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */,
 				7AF3EC682B8FFB22003FE015 /* NBQRView.swift in Sources */,
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
@@ -980,7 +984,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.7;
+				CURRENT_PROJECT_VERSION = 1.6.8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1004,7 +1008,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1027,7 +1031,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.7;
+				CURRENT_PROJECT_VERSION = 1.6.8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1051,7 +1055,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
