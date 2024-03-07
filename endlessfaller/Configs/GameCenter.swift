@@ -14,10 +14,10 @@ class GameCenter: ObservableObject {
     
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
+    @Published var nextPlayer: Player =  Player(name: "", score: 0, ballID: 0, currentPlayer: GKLocalPlayer.local, rank: 0)
     @ObservedObject var ckPushNotification = CloudKitPushNotifciationModel()
     
     init() {
-        todaysPlayersList = []
         Task{
             await loadLeaderboard()
         }
@@ -50,10 +50,19 @@ class GameCenter: ObservableObject {
                 print(error?.localizedDescription ?? "")
                 return
             }
-            Task{
-                await self.loadLeaderboard(source: 3)
+        }
+    }
+    
+    func findNextPlayer(){
+        print("findNextPlayer called")
+        if let playerPosition = todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) {
+            self.nextPlayer = todaysPlayersList[playerPosition + 1]
+        } else {
+            if !todaysPlayersList.isEmpty {
+                self.nextPlayer = todaysPlayersList[0]
             }
         }
+//        print("nextPlayer: \(self.nextPlayer)")
     }
     
     // update local player score
@@ -69,14 +78,6 @@ class GameCenter: ObservableObject {
                 } else {
                     print("Score submitted to daily successfully")
                 }
-            }
-        }
-        
-        Task{
-            let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
-            if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
-                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
-                allPlayers.1.first?.challengeComposeController(withMessage: "BEAT IT", players: [GKLocalPlayer.local])
             }
         }
     }
@@ -97,11 +98,8 @@ class GameCenter: ObservableObject {
     
     // fetching leaderboard method
     
-    func loadLeaderboard(source: Int = 0) async {
+    func loadLeaderboard() async {
         DispatchQueue.main.async {
-            self.todaysPlayersList.removeAll()
-            self.allTimePlayersList.removeAll()
-        
             
             Task{
                 var todaysPlayersListTemp : [Player] = []

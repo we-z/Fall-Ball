@@ -346,7 +346,7 @@ struct GameCenterLeaderboardView: View {
                                                 }
                                                 .refreshable {
                                                     Task{
-                                                        await gameCenter.loadLeaderboard(source: 4)
+                                                        await gameCenter.loadLeaderboard()
                                                     }
                                                 }
                                                 if todaysPlayersList.isEmpty{
@@ -597,7 +597,7 @@ struct GameCenterLeaderboardView: View {
                                                 }
                                                 .refreshable {
                                                     Task{
-                                                        await gameCenter.loadLeaderboard(source: 4)
+                                                        await gameCenter.loadLeaderboard()
                                                     }
                                                 }
                                                 if allTimePlayersList.isEmpty{

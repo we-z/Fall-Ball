@@ -17,10 +17,6 @@ struct GKScoreChallengeTesterView: View {
     var body: some View {
         VStack(spacing: 40) {
             
-            Button("Authenticate Game Center") {
-                vm.authenticateUser()
-            }
-            
             Button("Request notification permissions") {
                 vm.requestNotificationPermissions()
             }
