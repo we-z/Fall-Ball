@@ -142,6 +142,7 @@ struct HUDView: View {
                         }
                     }
                     .allowsHitTesting(false)
+                    LevelsToPassPlayerView()
                 } else {
                     WastedView()
                 }
@@ -155,7 +156,7 @@ struct HUDView: View {
             if appModel.showDailyBoinCollectedAnimation {
                 DailyBoinCollectedView()
             }
-            LevelsToPassPlayerView()
+            
             
         }
     }
