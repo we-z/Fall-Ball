@@ -13,6 +13,7 @@ struct endlessfallerApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.light)
+                .environment(\.sizeCategory, .medium)
         }
     }
 }
