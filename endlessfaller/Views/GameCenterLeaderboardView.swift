@@ -12,7 +12,7 @@ struct GameCenterLeaderboardView: View {
     let deviceWidth = UIScreen.main.bounds.width
     let deviceHeight = UIScreen.main.bounds.height
     @ObservedObject private var model = AppModel.sharedAppModel
-    @ObservedObject var gameCenter = GameCenter()
+    @ObservedObject var gameCenter = GameCenter.shared
     @State var place = 1
     @State var unserNameTextField = ""
     @State var recordID: CKRecord.ID? = nil

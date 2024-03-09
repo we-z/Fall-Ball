@@ -67,7 +67,7 @@ class AppModel: ObservableObject {
     
     @ObservedObject var userPersistedData = UserPersistedData()
     @ObservedObject var audioController = AudioManager.sharedAudioManager
-    @ObservedObject var gameCenter = GameCenter()
+    @ObservedObject var gameCenter = GameCenter.shared
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     
     func dailyBoinCollected() {

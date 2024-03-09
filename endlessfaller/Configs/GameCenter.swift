@@ -17,11 +17,7 @@ class GameCenter: ObservableObject {
     @Published var nextPlayer: Player =  Player(name: "", score: 0, ballID: 0, currentPlayer: GKLocalPlayer.local, rank: 0)
     @ObservedObject var ckPushNotification = CloudKitPushNotifciationModel()
     
-    init() {
-        Task{
-            await loadLeaderboard()
-        }
-    }
+    static let shared = GameCenter()
     
     // API
     
@@ -45,10 +41,14 @@ class GameCenter: ObservableObject {
     }
 
     func authenticateUser() {
+        print("authenticateUser called")
         GKLocalPlayer.local.authenticateHandler = { vc, error in
             guard error == nil else {
                 print(error?.localizedDescription ?? "")
                 return
+            }
+            Task{
+                await self.loadLeaderboard()
             }
         }
     }
@@ -99,7 +99,8 @@ class GameCenter: ObservableObject {
     // fetching leaderboard method
     
     func loadLeaderboard() async {
-        DispatchQueue.main.async {
+        print("loadLeaderboard called")
+//        DispatchQueue.main.async {
             
             Task{
                 var todaysPlayersListTemp : [Player] = []
@@ -115,7 +116,10 @@ class GameCenter: ObservableObject {
                         }
                     }
                 }
-                self.todaysPlayersList = todaysPlayersListTemp
+                if todaysPlayersListTemp.count > 0 {
+                    self.todaysPlayersList = todaysPlayersListTemp
+                }
+                
             }
             Task{
                 var allTimePlayersListTemp : [Player] = []
@@ -133,6 +137,6 @@ class GameCenter: ObservableObject {
                 }
                 self.allTimePlayersList = allTimePlayersListTemp
             }
-        }
+//        }
     }
 }

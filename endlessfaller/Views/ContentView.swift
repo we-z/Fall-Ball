@@ -14,7 +14,7 @@ struct ContentView: View {
     
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @ObservedObject private var notificationManager = NotificationManager()
-    @ObservedObject var gameCenter = GameCenter()
+    @ObservedObject var gameCenter = GameCenter.shared
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
@@ -158,7 +158,6 @@ struct ContentView: View {
                     }
                     .allowsHitTesting(!appModel.freezeScrolling)
                     HUDView()
-//                    LevelsToPassPlayerView()
                     PlayingBallView()
                 }
             }

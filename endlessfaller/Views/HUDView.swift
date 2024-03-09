@@ -155,6 +155,7 @@ struct HUDView: View {
             if appModel.showDailyBoinCollectedAnimation {
                 DailyBoinCollectedView()
             }
+            LevelsToPassPlayerView()
             
         }
     }
