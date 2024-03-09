@@ -89,6 +89,7 @@ struct ContentView: View {
                             Spacer()
                             if appModel.firstGamePlayed {
                                 GameOverScreenView()
+                                    .scaleEffect(UIDevice.isOldDevice ? 0.8 : 1)
                             } else {
                                 LandingPageView()
                             }
