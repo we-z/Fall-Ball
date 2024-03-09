@@ -59,7 +59,7 @@ struct ContentView: View {
                                                 .italic()
                                                 .font(.system(size: 100))
                                                 .padding(36)
-                                                .padding(.top, 30)
+                                                .padding(.top, UIDevice.isOldDevice ? 0 : 30)
                                                 .foregroundColor(.black)
                                         }
                                         Spacer()

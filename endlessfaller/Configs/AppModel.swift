@@ -931,7 +931,7 @@ public extension UIDevice {
             case "AppleTV6,2":                                    return "Apple TV 4K"
             case "AudioAccessory1,1":                             return "HomePod"
             case "AudioAccessory5,1":                             return "HomePod mini"
-            case "i386", "x86_64", "arm64":                       return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
+            case "i386", "x86_64", "arm64":                       return "\(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
             default:                                              return identifier
             }
             #elseif os(tvOS)
@@ -946,7 +946,30 @@ public extension UIDevice {
 
         return mapToDevice(identifier: identifier)
     }()
-
+    
+    static let isOldDevice: Bool = {
+            let oldDeviceNames = [
+                "iPod touch (5th generation)",
+                "iPod touch (6th generation)",
+                "iPod touch (7th generation)",
+                "iPhone 4",
+                "iPhone 4s",
+                "iPhone 5",
+                "iPhone 5c",
+                "iPhone 5s",
+                "iPhone 6",
+                "iPhone 6 Plus",
+                "iPhone 6s",
+                "iPhone 6s Plus",
+                "iPhone 7",
+                "iPhone 7 Plus",
+                "iPhone 8",
+                "iPhone 8 Plus",
+                "iPhone SE", // Assuming this is the 1st generation iPhone SE
+                // Add other older models as needed
+            ]
+        return oldDeviceNames.contains(modelName)
+        }()
 }
 
 extension View {

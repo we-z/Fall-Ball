@@ -61,7 +61,7 @@ struct HomeButtonsView: View {
                     }
                 }
             }
-            .padding(.top, idiom == .pad ? 15 : 45)
+            .padding(.top, idiom == .pad || UIDevice.isOldDevice ? 15 : 45)
             Spacer()
             ZStack{
                 HStack{
