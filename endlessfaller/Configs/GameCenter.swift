@@ -12,6 +12,7 @@ import CoreMotion
 
 class GameCenter: ObservableObject {
     
+    @Published var nextPlayerIndex = 0
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
     @Published var nextPlayer: Player =  Player(name: "", score: 0, ballID: 0, currentPlayer: GKLocalPlayer.local, rank: 0)
@@ -118,6 +119,7 @@ class GameCenter: ObservableObject {
                 }
                 if todaysPlayersListTemp.count > 0 {
                     self.todaysPlayersList = todaysPlayersListTemp
+                    nextPlayerIndex = (todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) ?? 0) - 1
                 }
                 
             }
