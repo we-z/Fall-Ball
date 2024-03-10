@@ -172,6 +172,7 @@ struct ContentView: View {
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()
                 }
+                checkIfAppOpenToday()
             }
             .onChange(of: scenePhase) { newScenePhase in
                 switch newScenePhase {
