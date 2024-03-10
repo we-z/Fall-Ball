@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            JustFaster()
+            DailyBoinCollectedView()
         }
     }
 }
@@ -1451,21 +1451,22 @@ struct DailyBoinCollectedView: View {
         ZStack {
             VStack {
                 BoinsView()
-                    .scaleEffect(scale ? 1 : 1.2)
+                    .scaleEffect(scale ? 1.5 : 1.8)
                     
 //                    .scaleEffect(animationEnding ? 0.2 : 1)
 //                    .offset(x: animationEnding ? deviceWidth : 0, y: (-(deviceHeight / 2)) + 90 )
                     
-                Text("Daily Boin Collected!")
+                Text("Daily Boin\nCollected!")
                     .italic()
                     .bold()
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .font(.title)
-                    .padding(9)
+                    .padding(15)
             }
             .scaleEffect(appearFromTop ? 1 : 0)
             .offset(y: appearFromTop ? -(deviceHeight / 5): -(deviceHeight/2) - 90)
+            .offset(y: animationEnding ? -(deviceHeight / 3) : 0)
             .offset(x: animationEnding ? deviceWidth : 0)
             .onAppear() {
                 
@@ -1474,7 +1475,7 @@ struct DailyBoinCollectedView: View {
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     
-                    withAnimation(.linear(duration: 0.3).repeatForever(autoreverses: true)){
+                    withAnimation(.linear(duration: 0.2).repeatForever(autoreverses: true)){
                         self.scale.toggle()
                     }
                 }
