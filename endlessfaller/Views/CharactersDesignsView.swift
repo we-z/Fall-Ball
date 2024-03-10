@@ -892,6 +892,51 @@ struct EgyptView: View {
     }
 }
 
+struct IranView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("iran")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct ArmeniaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("armenia")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct AfghanistanView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("afghanistan")
+                    .resizable()
+                    .frame(width: 80, height: 50)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
 struct PalestineView: View {
     var body: some View {
         BallView()
