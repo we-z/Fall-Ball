@@ -27,13 +27,16 @@ class GameCenter: ObservableObject {
     private(set) var isGameCenterEnabled: Bool = false
     
     func notifyPassedPlayers(newScore: Int) {
-        ckPushNotification.subscribeToNotifications()
         let oldPlayerPosition = todaysPlayersList.first(where: {$0.currentPlayer == GKLocalPlayer.local})
+        
+        // Todays Players
         for playerEntry in todaysPlayersList {
             if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
                 self.ckPushNotification.createPassRecord(recieverAlias: playerEntry.name)
             }
         }
+        
+        // All time Players
         for playerEntry in allTimePlayersList {
             if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
                 self.ckPushNotification.createPassRecord(recieverAlias: playerEntry.name)

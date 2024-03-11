@@ -19,6 +19,7 @@ struct ContentView: View {
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
     @ObservedObject var userPersistedData = UserPersistedData()
+    @ObservedObject var ckPushNotification = CloudKitPushNotifciationModel()
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true
@@ -174,6 +175,7 @@ struct ContentView: View {
                     gameCenter.authenticateUser()
                 }
                 checkIfAppOpenToday()
+                ckPushNotification.subscribeToNotifications()
             }
             .onChange(of: scenePhase) { newScenePhase in
                 switch newScenePhase {

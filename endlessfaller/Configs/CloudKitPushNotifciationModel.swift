@@ -10,9 +10,7 @@ import CloudKit
 import GameKit
 
 class CloudKitPushNotifciationModel: ObservableObject {
-    
 
-    
     func requestNotificationPermissions() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         UNUserNotificationCenter.current().requestAuthorization(options: options) { success, error in
@@ -30,7 +28,7 @@ class CloudKitPushNotifciationModel: ObservableObject {
     }
     
     func subscribeToNotifications() {
-        unsubscribeToNotifications()
+//        unsubscribeToNotifications()
         let predicate = NSPredicate(format: "recieverAlias == %@", GKLocalPlayer.local.displayName)
 
         let subscription = CKQuerySubscription(recordType: "LeaderboardPass", predicate: predicate, subscriptionID: "challenge_added_to_database", options: .firesOnRecordCreation)
@@ -62,16 +60,6 @@ class CloudKitPushNotifciationModel: ObservableObject {
         }
     }
     
-    func unsubscribeToNotifications() {
-//        CKContainer.default().publicCloudDatabase.fetchAllSubscriptions
-        CKContainer.default().publicCloudDatabase.delete(withSubscriptionID: "challenge_added_to_database") { returnedID, returnedError in
-            if let error = returnedError {
-                print(error)
-            } else {
-                print("Successfully unsubscribed!")
-            }
-        }
-    }
     
     func createPassRecord(recieverAlias: String) {
         guard let newPass = LeaderboardPassModel(recieverAlias: recieverAlias) else { return }

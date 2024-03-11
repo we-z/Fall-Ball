@@ -17,21 +17,7 @@ struct GKScoreChallengeTesterView: View {
     var body: some View {
         VStack(spacing: 40) {
             
-            Button("Request notification permissions") {
-                vm.requestNotificationPermissions()
-            }
-            
-            Button("Subscribe to notifications") {
-                vm.subscribeToNotifications()
-            }
-            
-            Button("Unsubscribe to notifications") {
-                vm.unsubscribeToNotifications()
-            }
-            
-            Button("add challenge to cloud") {
-                vm.createPassRecord(recieverAlias: "Juan")
-            }
+
         }
     }
 }
