@@ -35,6 +35,7 @@ struct ContentView: View {
             //Today's First Launch
             print("first open of the day")
             userPersistedData.updateLastLaunch(date: openToday)
+            userPersistedData.leaderboardWonToday = false
             appModel.dailyBoinCollected()
             
         }
