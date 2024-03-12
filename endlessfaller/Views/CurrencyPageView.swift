@@ -25,7 +25,7 @@ struct CurrencyPageView: View {
         CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infinitecoins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    @StateObject var userPersistedData = UserPersistedData()
+    @ObservedObject var userPersistedData = UserPersistedData()
     
     var body: some View {
         GeometryReader { geometry in

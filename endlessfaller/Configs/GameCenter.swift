@@ -16,7 +16,7 @@ class GameCenter: ObservableObject {
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
     @Published var nextPlayer: Player =  Player(name: "", score: 0, ballID: 0, currentPlayer: GKLocalPlayer.local, rank: 0)
-    @ObservedObject var ckPushNotification = CloudKitPushNotifciationModel()
+    @ObservedObject var notificationManager = NotificationManager()
     
     static let shared = GameCenter()
     
@@ -32,14 +32,14 @@ class GameCenter: ObservableObject {
         // Todays Players
         for playerEntry in todaysPlayersList {
             if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
-                self.ckPushNotification.createPassRecord(recieverAlias: playerEntry.name)
+                self.notificationManager.createPassRecord(recieverAlias: playerEntry.name)
             }
         }
         
         // All time Players
         for playerEntry in allTimePlayersList {
             if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
-                self.ckPushNotification.createPassRecord(recieverAlias: playerEntry.name)
+                self.notificationManager.createPassRecord(recieverAlias: playerEntry.name)
             }
         }
     }
@@ -54,6 +54,7 @@ class GameCenter: ObservableObject {
             Task{
                 await self.loadLeaderboard()
             }
+            self.notificationManager.subscribeToNotifications()
         }
     }
     

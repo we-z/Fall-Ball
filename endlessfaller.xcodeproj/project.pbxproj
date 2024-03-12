@@ -19,6 +19,7 @@
 		7A16C4492B6AF63C00B6D3B1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A16C4482B6AF63C00B6D3B1 /* UserData.swift */; };
 		7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 7A1E4F772B7AFBCC00CDF00F /* CircularProgress */; };
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
+		7A2F39BA2BA0E4C400B15E5E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */; };
 		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
 		7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */; };
 		7A38B5992B85723400DDD280 /* GKScoreChallengeTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */; };
@@ -64,7 +65,6 @@
 		7AFDA5752AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5742AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift */; };
 		7AFDA57F2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA57E2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift */; };
 		7AFDA5812AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5802AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift */; };
-		7AFFE2282B948E170039214C /* CloudKitPushNotifciationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFE2272B948E170039214C /* CloudKitPushNotifciationModel.swift */; };
 		7AFFE22A2B95AE590039214C /* LevelsToPassPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +143,7 @@
 		7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenView.swift; sourceTree = "<group>"; };
 		7A16C4482B6AF63C00B6D3B1 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		7A2201332AB6739000DF04D7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
+		7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7A327D532AD3E700002700DD /* SecretShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretShopView.swift; sourceTree = "<group>"; };
 		7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterLeaderboardView.swift; sourceTree = "<group>"; };
 		7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKScoreChallengeTesterView.swift; sourceTree = "<group>"; };
@@ -205,7 +206,6 @@
 		7AFDA57A2AC1592A00D3A1F0 /* FallBallWatchOS Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FallBallWatchOS Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFDA57E2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOS_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		7AFDA5802AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOS_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7AFFE2272B948E170039214C /* CloudKitPushNotifciationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPushNotifciationModel.swift; sourceTree = "<group>"; };
 		7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsToPassPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -367,12 +367,12 @@
 				7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */,
 				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
-				7AFFE2272B948E170039214C /* CloudKitPushNotifciationModel.swift */,
 				7A2201332AB6739000DF04D7 /* GameCenter.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
 				7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */,
 				7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */,
 				7A16C4482B6AF63C00B6D3B1 /* UserData.swift */,
+				7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */,
 				7AC089382B7EC818008DD71D /* BallAnimationManager.swift */,
 				7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */,
 			);
@@ -753,7 +753,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AFFE2282B948E170039214C /* CloudKitPushNotifciationModel.swift in Sources */,
 				7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */,
 				7AF3EC682B8FFB22003FE015 /* NBQRView.swift in Sources */,
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
@@ -761,6 +760,7 @@
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7AF3EC662B8C2F2D003FE015 /* CloudKitUtility.swift in Sources */,
 				7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */,
+				7A2F39BA2BA0E4C400B15E5E /* NotificationManager.swift in Sources */,
 				7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */,
 				7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */,
 				7AC089392B7EC818008DD71D /* BallAnimationManager.swift in Sources */,

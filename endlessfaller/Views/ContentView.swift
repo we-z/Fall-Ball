@@ -19,7 +19,6 @@ struct ContentView: View {
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
     @ObservedObject var userPersistedData = UserPersistedData()
-    @ObservedObject var ckPushNotification = CloudKitPushNotifciationModel()
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true
@@ -170,12 +169,12 @@ struct ContentView: View {
             .onAppear {
                 notificationManager.registerLocal()
                 notificationManager.scheduleLocal()
+                self.notificationManager.subscribeToNotifications()
                 appModel.playedCharacter = userPersistedData.selectedCharacter
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()
                 }
                 checkIfAppOpenToday()
-                ckPushNotification.subscribeToNotifications()
             }
             .onChange(of: scenePhase) { newScenePhase in
                 switch newScenePhase {
