@@ -142,7 +142,13 @@ struct HUDView: View {
                         }
                     }
                     .allowsHitTesting(false)
-                    LevelsToPassPlayerView()
+                    VStack{
+                        HStack{
+                            Spacer()
+                            LevelsToPassPlayerView()
+                        }
+                        Spacer()
+                    }
                 } else {
                     WastedView()
                 }
@@ -153,6 +159,11 @@ struct HUDView: View {
                         audioController.boingSoundEffect.play()
                     }
             }
+            
+            if appModel.show5boinsAnimation {
+                LeaderboardRewardView()
+            }
+            
             if appModel.showDailyBoinCollectedAnimation {
                 DailyBoinCollectedView()
             }

@@ -37,6 +37,7 @@ class AppModel: ObservableObject {
     @Published var ballIsStrobing = false
     @Published var grabbingBoins = false
     @Published var showedNewBestScoreOnce = false
+    @Published var show5boinsAnimation = false
     @Published var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
