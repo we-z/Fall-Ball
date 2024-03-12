@@ -27,6 +27,25 @@ struct CurrencyPageView: View {
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
     
+    
+
+    @MainActor
+    func buyBoins(bundle: CurrencyBundle) async {
+        do {
+            if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
+                DispatchQueue.main.async {
+                    userPersistedData.incrementBalance(amount: bundle.coins)
+                }
+                dismiss()
+            }
+        } catch {
+            print("Purchase failed: \(error)")
+        }
+        appModel.grabbingBoins = false
+        isProcessingPurchase = false
+    }
+    
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack{
@@ -59,18 +78,7 @@ struct CurrencyPageView: View {
                                                 if index != 8 {
                                                     isProcessingPurchase = true
                                                     Task {
-                                                        do {
-                                                            if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
-                                                                DispatchQueue.main.async {
-                                                                    userPersistedData.incrementBalance(amount: bundle.coins)
-                                                                }
-                                                                dismiss()
-                                                            }
-                                                        } catch {
-                                                            print("Purchase failed: \(error)")
-                                                        }
-                                                        appModel.grabbingBoins = false
-                                                        isProcessingPurchase = false
+                                                        await buyBoins(bundle: bundle)
                                                     }
                                                 } else {
                                                     showAlert = true
