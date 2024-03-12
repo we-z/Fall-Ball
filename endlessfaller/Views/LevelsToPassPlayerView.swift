@@ -42,8 +42,7 @@ struct LevelsToPassPlayerView: View {
                 HStack{
                     Spacer()
                     if todaysPlayersList.count > 0 {
-                        if todaysPlayersList[0].currentPlayer != GKLocalPlayer.local {
-                            if userPersistedData.leaderboardWonToday == false {
+                        if todaysPlayersList[0].currentPlayer != GKLocalPlayer.local && gameCenter.nextPlayerIndex > -1 {
                                 VStack{
                                     Text("\(todaysPlayersList[gameCenter.nextPlayerIndex].score - appModel.score) to pass")
                                         .bold()
@@ -76,10 +75,10 @@ struct LevelsToPassPlayerView: View {
                                             gameCenter.nextPlayerIndex -= 1
                                         } else {
                                             firstPlaceOnLeaderboardReward()
+                                            gameCenter.nextPlayerIndex = -1
                                         }
                                     }
                                 }
-                            }
                         }
                     }
                 }

@@ -130,3 +130,19 @@ class NotificationManager: ObservableObject {
         CloudKitUtility.add(item: newPass) { result in }
     }
 }
+
+struct LeaderboardPassModel: Hashable, CloudKitableProtocol {
+    let recieverAlias: String
+    let record: CKRecord
+    
+    init?(record: CKRecord) {
+        self.recieverAlias = ""
+        self.record = record
+    }
+    
+    init?(recieverAlias: String) {
+        let record = CKRecord(recordType: "LeaderboardPass")
+        record["recieverAlias"] = recieverAlias
+        self.init(record: record)
+    }
+}

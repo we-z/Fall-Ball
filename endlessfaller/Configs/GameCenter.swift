@@ -12,10 +12,9 @@ import CoreMotion
 
 class GameCenter: ObservableObject {
     
-    @Published var nextPlayerIndex = 0
+    @Published var nextPlayerIndex = -1
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
-    @Published var nextPlayer: Player =  Player(name: "", score: 0, ballID: 0, currentPlayer: GKLocalPlayer.local, rank: 0)
     @ObservedObject var notificationManager = NotificationManager()
     
     static let shared = GameCenter()
@@ -56,18 +55,6 @@ class GameCenter: ObservableObject {
             }
             self.notificationManager.subscribeToNotifications()
         }
-    }
-    
-    func findNextPlayer(){
-        print("findNextPlayer called")
-        if let playerPosition = todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) {
-            self.nextPlayer = todaysPlayersList[playerPosition + 1]
-        } else {
-            if !todaysPlayersList.isEmpty {
-                self.nextPlayer = todaysPlayersList[0]
-            }
-        }
-//        print("nextPlayer: \(self.nextPlayer)")
     }
     
     // update local player score
