@@ -121,7 +121,7 @@ struct LeaderboardRewardView: View {
         }
         .scaleEffect(scaleSize)
         .offset(x: animationXoffset, y: animationYoffset)
-        
+        .allowsHitTesting(false)
         .onAppear {
             withAnimation(.easeInOut(duration: 2)) {
                 animationYoffset = 0
