@@ -74,7 +74,7 @@ struct SecretShopView: View {
                                                     .accentColor(.black)
                                                     .padding(1)
                                             }
-                                            .buttonStyle(.roundedAndShadow)
+                                            .buttonStyle(.characterMenu)
                                             
                                         }
                                     }
@@ -121,7 +121,7 @@ struct SecretShopView: View {
                                                     .accentColor(.black)
                                                     .padding(1)
                                             }
-                                            .buttonStyle(.roundedAndShadow)
+                                            .buttonStyle(.characterMenu)
                                             
                                         }
                                     }

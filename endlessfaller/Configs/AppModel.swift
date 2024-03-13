@@ -515,6 +515,19 @@ struct RoundedAndShadowButtonStyle:ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .compositingGroup()
+            .shadow(color: .black, radius: 0.1, x: configuration.isPressed ? 0 : -4, y: configuration.isPressed ? 0 : 4)
+            .offset(x: configuration.isPressed ? -4 : 0, y: configuration.isPressed ? 4 : 0)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+            .onChange(of: configuration.isPressed) { newPressSetting in
+                impactMed.impactOccurred()
+            }
+    }
+}
+
+struct CharacterMenuButtonStyle:ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .compositingGroup()
             .scaleEffect(configuration.isPressed ? 0.85 : 1)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
     }
@@ -523,6 +536,12 @@ struct RoundedAndShadowButtonStyle:ButtonStyle {
 extension ButtonStyle where Self == RoundedAndShadowButtonStyle {
     static var roundedAndShadow:RoundedAndShadowButtonStyle {
         RoundedAndShadowButtonStyle()
+    }
+}
+
+extension ButtonStyle where Self == CharacterMenuButtonStyle {
+    static var characterMenu:CharacterMenuButtonStyle {
+        CharacterMenuButtonStyle()
     }
 }
 

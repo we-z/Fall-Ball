@@ -58,8 +58,9 @@ struct CurrencyPageView: View {
                         .foregroundColor(.black)
                         .opacity(0.3)
                     HStack{
-                        Text("💰 Bundles 💰")
-                            .foregroundColor(.black)
+                        Text("💰🤩 Bundles 🤩💰")
+                            .foregroundColor(.white)
+                            .shadow(color: .black, radius: 0.1, x: -3, y: 3)
                             .italic()
                             .bold()
                             .font(.largeTitle)
@@ -87,11 +88,11 @@ struct CurrencyPageView: View {
                                                 Rectangle()
                                                     .fill(.yellow)
                                                     .cornerRadius(20)
-                                                    .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
+                                                    .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
                                                     .overlay{
                                                         RoundedRectangle(cornerRadius: 20)
                                                             .stroke(Color.black, lineWidth: 3)
-                                                            .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
+                                                            .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
                                                             .padding(1)
                                                         VStack{
                                                             BoinsView()
@@ -131,6 +132,7 @@ struct CurrencyPageView: View {
                                                                     .foregroundColor(.black)
                                                                     .bold()
                                                                     .italic()
+                                                                    .font(.system(size: 15))
                                                                 Spacer()
                                                                     
                                                             }
@@ -146,13 +148,39 @@ struct CurrencyPageView: View {
                                                             .offset(x:idiom == .pad ? 60 : 21, y: idiom == .pad ? -90 : -69)
                                                             .mask{
                                                                 Rectangle()
-                                                                    .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 210)
+                                                                    .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
+                                                            }
+                                                            
+                                                        }
+                                                        if index == 8 {
+                                                            HStack{
+                                                                Spacer()
+                                                                Text("Coming Soon")
+                                                                    .foregroundColor(.black)
+                                                                    .bold()
+                                                                    .italic()
+                                                                    .font(.system(size: 12))
+                                                                Spacer()
+                                                            }
+                                                            .background{
+                                                                Color.green
+                                                            }
+                                                            .frame(width: 210)
+                                                            .overlay{
+                                                                Rectangle()
+                                                                    .stroke(Color.black, lineWidth: 3)
+                                                            }
+                                                            .rotationEffect(.degrees(45))
+                                                            .offset(x:idiom == .pad ? 60 : 18, y: idiom == .pad ? -90 : -69)
+                                                            .mask{
+                                                                Rectangle()
+                                                                    .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
                                                             }
                                                             
                                                         }
                                                     }
                                                     .accentColor(.black)
-                                                    .padding(1)
+                                                    .padding(6)
                                             }
                                             .buttonStyle(.roundedAndShadow)
                                             

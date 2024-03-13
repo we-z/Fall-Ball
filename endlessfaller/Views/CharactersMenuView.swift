@@ -66,7 +66,6 @@ struct CharactersMenuView: View {
                                                 .cornerRadius(20)
                                                 .frame(width: idiom == .pad ? deviceWidth/4.8 : deviceWidth/3.3, height: idiom == .pad ? 270 : 150)
                                                 .background(RandomGradientView().opacity(model.characters[index].characterID == userPersistedData.selectedCharacter ? 1 : 0))
-                                                .cornerRadius(20)
                                                 .overlay(
                                                     ZStack{
                                                         VStack(spacing: 1) {
@@ -108,7 +107,7 @@ struct CharactersMenuView: View {
                                                 .accentColor(.black)
                                                 .padding(1)
                                         }
-                                        .buttonStyle(.roundedAndShadow)
+                                        .buttonStyle(.characterMenu)
                                     }
                                 }
                             }
