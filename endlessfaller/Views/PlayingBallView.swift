@@ -23,31 +23,16 @@ struct PlayingBallView: View {
             ZStack{
                 if !appModel.isWasted || !appModel.ballIsStrobing {
                     
-//                    HStack{
-//                        Divider()
-//                            .frame(width: 3)
-//                            .overlay(.black)
-//                            .offset(x: -21, y: -21)
-//                        Divider()
-//                            .frame(width: 3)
-//                            .overlay(.black)
-//                            .offset(y: -39)
-//                        Divider()
-//                            .frame(width: 3)
-//                            .overlay(.black)
-//                            .offset(x: 21, y: -21)
-//                        
-//                    }
-//                    .frame(width: 66, height: abs(60 / appModel.ballSpeed))
-//                    .offset(x: 0, y:-(60 / appModel.ballSpeed))
-                    
-                    VortexView(colourTrail()) {
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 32)
-                            .tag("circle")
+                    if !appModel.paused {
+                        VortexView(colourTrail()) {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 32)
+                                .tag("circle")
+                        }
+                        .offset(y:-30)
                     }
-                    .offset(y:-30)
+                    
                 } else {
                     VortexView(.fire) {
                         Circle()

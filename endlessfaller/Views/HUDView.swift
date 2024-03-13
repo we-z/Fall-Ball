@@ -92,7 +92,7 @@ struct HUDView: View {
                                     .foregroundColor(.blue)
                                     .frame(width: 69, height: 75)
                                     .cornerRadius(15)
-                                Image(systemName: "pause.fill")
+                                Image(systemName: appModel.paused ? "play.fill" : "pause.fill")
                                     .foregroundColor(.white)
                                     .font(.system(size: 60))
                             }
@@ -101,6 +101,12 @@ struct HUDView: View {
                             .padding(30)
                             .pressEvents {
                                 // On press
+                                if !appModel.paused {
+                                    appModel.pauseGame()
+                                } else {
+                                    appModel.continueGame()
+                                }
+                                
                                 withAnimation(.easeInOut(duration: 0.1)) {
                                     pauseButtonPressed = true
                                 }

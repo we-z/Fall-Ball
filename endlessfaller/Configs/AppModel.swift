@@ -38,11 +38,25 @@ class AppModel: ObservableObject {
     @Published var grabbingBoins = false
     @Published var showedNewBestScoreOnce = false
     @Published var show5boinsAnimation = false
+    @Published var paused = false
+    @Published var pausedYposition = 0.0
     @Published var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
     
+    func pauseGame() {
+        BallAnimator.displayLink?.invalidate()
+        freezeScrolling = true
+        paused = true
+        pausedYposition = BallAnimator.ballYPosition
+    }
     
+    func continueGame() {
+        freezeScrolling = false
+        BallAnimator.endingYPosition = pausedYposition
+        BallAnimator.startTimer(speed: BallAnimator.ballSpeed)
+        paused = false
+    }
     
     var gameOverDispatchTimer: DispatchSourceTimer?
 
