@@ -47,41 +47,36 @@ struct ContinuePlayingView: View {
                     .font(.largeTitle)
                     .padding(.bottom, 27)
                     .foregroundColor(.black)
-                HStack{
-                    Spacer()
-                    Text("\(appModel.costToContinue)")
-                        .bold()
-                        .italic()
-                        .font(.largeTitle)
-                        .scaleEffect(1.2)
-                        .padding(.trailing, 3)
-                        .foregroundColor(.black)
-                    BoinsView()
-                    Spacer()
-                }
-                .padding(9)
-                .background(.yellow)
-                .cornerRadius(15)
-                .shadow(color: .black, radius: 0.1, x: buttonIsPressed ? 0 : -6, y: buttonIsPressed ? 0 : 6)
-                .offset(x: buttonIsPressed ? -6 : -0, y: buttonIsPressed ? 6 : 0)
-                .padding(.horizontal, 30)
-                .padding(.bottom, 30)
-                .pressEvents {
-                    // On press
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        buttonIsPressed = true
-                    }
-                } onRelease: {
-                    withAnimation {
-                        buttonIsPressed = false
-                    }
+                Button {
                     if userPersistedData.boinBalance >= appModel.costToContinue{
                         userPersistedData.decrementBalance(amount: appModel.costToContinue)
                         appModel.continuePlaying()
                     } else {
                         showCurrencyPage = true
                     }
+                } label: {
+                    
+                    HStack{
+                        Spacer()
+                        Text("\(appModel.costToContinue)")
+                            .bold()
+                            .italic()
+                            .font(.largeTitle)
+                            .scaleEffect(1.2)
+                            .padding(.trailing, 3)
+                            .foregroundColor(.black)
+                        BoinsView()
+                        Spacer()
+                    }
+                    .padding(9)
+                    .background(.yellow)
+                    .cornerRadius(15)
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 30)
+
                 }
+                .buttonStyle(.roundedAndShadow6)
+                
             }
             .background(.orange)
             .cornerRadius(21)
