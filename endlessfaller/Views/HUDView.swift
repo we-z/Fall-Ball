@@ -86,7 +86,7 @@ struct HUDView: View {
                     }
                     Spacer()
                     HStack{
-                        if userPersistedData.strategyModeEnabled {
+                        if userPersistedData.strategyModeEnabled && !appModel.isWasted {
                             ZStack {
                                 Rectangle()
                                     .foregroundColor(.blue)
