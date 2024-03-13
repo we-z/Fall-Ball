@@ -1002,10 +1002,12 @@ struct PodiumView: View {
         }
         .pressEvents {
             // On press
+            hapticGenerator.notificationOccurred(.success)
             withAnimation(.easeInOut(duration: 0.1)) {
                 podiumIsPressed = true
             }
         } onRelease: {
+            hapticGenerator.notificationOccurred(.success)
             withAnimation {
                 podiumIsPressed = false
             }

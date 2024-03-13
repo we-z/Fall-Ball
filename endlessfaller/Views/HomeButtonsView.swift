@@ -8,6 +8,8 @@
 import SwiftUI
 import GroupActivities
 
+let hapticGenerator = UINotificationFeedbackGenerator()
+
 struct HomeButtonsView: View {
     @StateObject var groupStateObserver = GroupStateObserver()
     @State var isActivitySharingSheetPresented = false
@@ -23,8 +25,6 @@ struct HomeButtonsView: View {
     @State var showCurrencyPage = false
     @StateObject var userPersistedData = UserPersistedData()
     var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    
-    let gearHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
@@ -51,10 +51,12 @@ struct HomeButtonsView: View {
                 .padding()
                 .pressEvents {
                     // On press
+                    hapticGenerator.notificationOccurred(.success)
                     withAnimation(.easeInOut(duration: 0.1)) {
                         currencyButtonIsPressed = true
                     }
                 } onRelease: {
+                    hapticGenerator.notificationOccurred(.success)
                     withAnimation {
                         currencyButtonIsPressed = false
                         showCurrencyPage = true
@@ -123,7 +125,7 @@ struct HomeButtonsView: View {
                                 self.gearRotationDegrees += 45
                                 self.isGearExpanded.toggle()
                             }
-                            gearHaptic.notificationOccurred(.error)
+                            hapticGenerator.notificationOccurred(.error)
                         }) {
                             Image(systemName: "gearshape.fill")
                                 .resizable()
@@ -162,10 +164,12 @@ struct HomeButtonsView: View {
                     }
                     .pressEvents {
                         // On press
+                        hapticGenerator.notificationOccurred(.success)
                         withAnimation(.easeInOut(duration: 0.1)) {
                             ballButtonIsPressed = true
                         }
                     } onRelease: {
+                        hapticGenerator.notificationOccurred(.success)
                         withAnimation(.easeInOut(duration: 0.1)) {
                             ballButtonIsPressed = false
                         }

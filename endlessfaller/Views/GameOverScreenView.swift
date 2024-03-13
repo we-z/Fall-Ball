@@ -113,10 +113,12 @@ struct GameOverScreenView: View {
                 .offset(x: plaqueIsPressed ? -9 : 0, y: plaqueIsPressed ? 9 : 0)
                 .pressEvents {
                     // On press
+                    hapticGenerator.notificationOccurred(.success)
                     withAnimation(.easeInOut(duration: 0.1)) {
                         plaqueIsPressed = true
                     }
                 } onRelease: {
+                    hapticGenerator.notificationOccurred(.success)
                     withAnimation {
                         plaqueIsPressed = false
                         showPlaqueShare = true
