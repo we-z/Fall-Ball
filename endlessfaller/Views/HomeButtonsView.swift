@@ -51,12 +51,12 @@ struct HomeButtonsView: View {
                 .padding()
                 .pressEvents {
                     // On press
-                    hapticGenerator.notificationOccurred(.success)
+                    impactMed.impactOccurred()
                     withAnimation(.easeInOut(duration: 0.1)) {
                         currencyButtonIsPressed = true
                     }
                 } onRelease: {
-                    hapticGenerator.notificationOccurred(.success)
+                    impactMed.impactOccurred()
                     withAnimation {
                         currencyButtonIsPressed = false
                         showCurrencyPage = true
@@ -164,12 +164,12 @@ struct HomeButtonsView: View {
                     }
                     .pressEvents {
                         // On press
-                        hapticGenerator.notificationOccurred(.success)
+                        impactMed.impactOccurred()
                         withAnimation(.easeInOut(duration: 0.1)) {
                             ballButtonIsPressed = true
                         }
                     } onRelease: {
-                        hapticGenerator.notificationOccurred(.success)
+                        impactMed.impactOccurred()
                         withAnimation(.easeInOut(duration: 0.1)) {
                             ballButtonIsPressed = false
                         }

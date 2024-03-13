@@ -7,11 +7,11 @@
 
 import SwiftUI
 import StoreKit
-
+let impactMed = UIImpactFeedbackGenerator(style: .heavy)
 struct CharactersMenuView: View {
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
-    let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+    
     @StateObject var storeKit = StoreKitManager()
     @ObservedObject private var model = AppModel.sharedAppModel
     @State var isProcessingPurchase = false
