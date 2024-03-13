@@ -56,9 +56,9 @@ struct LevelsToPassPlayerView: View {
                         .multilineTextAlignment(.center)
                         .padding([.horizontal, .bottom])
                 }
+                .frame(width: 120)
                 .background(Color.primary.opacity(0.1))
                 .cornerRadius(21)
-                .frame(width: 120)
                 .padding()
                 .padding(.top, 36)
                 .offset(x: cardXoffset, y: cardYoffset)
