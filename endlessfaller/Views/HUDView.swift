@@ -106,11 +106,12 @@ struct HUDView: View {
                                 } else {
                                     appModel.continueGame()
                                 }
-                                
+                                hapticGenerator.notificationOccurred(.success)
                                 withAnimation(.easeInOut(duration: 0.1)) {
                                     pauseButtonPressed = true
                                 }
                             } onRelease: {
+                                hapticGenerator.notificationOccurred(.success)
                                 withAnimation(.easeInOut(duration: 0.1)) {
                                     pauseButtonPressed = false
                                 }
