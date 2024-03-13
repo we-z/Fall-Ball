@@ -122,6 +122,15 @@ struct HUDView: View {
                 }
                 
                 if !appModel.isWasted {
+                    VStack{
+                        HStack{
+                            Spacer()
+                            VStack {
+                                LevelsToPassPlayerView()
+                            }
+                        }
+                        Spacer()
+                    }
                     ZStack{
                         VStack{
                             Spacer()
@@ -176,15 +185,7 @@ struct HUDView: View {
                         }
                     }
                     .allowsHitTesting(false)
-                    VStack{
-                        HStack{
-                            Spacer()
-                            VStack {
-                                LevelsToPassPlayerView()
-                            }
-                        }
-                        Spacer()
-                    }
+                    
                 } else {
                     WastedView()
                 }

@@ -13,6 +13,7 @@ struct PlayingBallView: View {
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var userPersistedData = UserPersistedData()
     @State var deviceCeiling = 0.0
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
@@ -73,7 +74,7 @@ struct PlayingBallView: View {
         let system = VortexSystem(tags: ["circle"])
         system.speed = 0.9
         system.birthRate = 300
-        system.shape = .box(width: 0.15, height: 0.1)
+        system.shape = .box(width: idiom == .pad ? 0.075 : 0.15, height: 0.1)
         system.angleRange = .degrees(3)
         system.size = 0.3
         system.colors = .random(.blue, .red, .yellow, .green)
