@@ -12,7 +12,7 @@ struct HUDView: View {
     @StateObject var audioController = AudioManager.sharedAudioManager
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var userPersistedData = UserPersistedData()
-    
+    @State var pauseButtonPressed = false
     var body: some View {
         ZStack{
             
@@ -85,6 +85,33 @@ struct HUDView: View {
                         //                                        .padding()
                     }
                     Spacer()
+                    HStack{
+                        if userPersistedData.strategyModeEnabled {
+                            ZStack {
+                                Rectangle()
+                                    .foregroundColor(.blue)
+                                    .frame(width: 69, height: 75)
+                                    .cornerRadius(15)
+                                Image(systemName: "pause.fill")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 60))
+                            }
+                            .shadow(color: .black, radius: 0.1, x: pauseButtonPressed ? 0 : -4, y: pauseButtonPressed ? 0 : 4)
+                            .offset(x: pauseButtonPressed ? -4 : 0, y: pauseButtonPressed ? 4 : 0)
+                            .padding(30)
+                            .pressEvents {
+                                // On press
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    pauseButtonPressed = true
+                                }
+                            } onRelease: {
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    pauseButtonPressed = false
+                                }
+                            }
+                        }
+                        Spacer()
+                    }
                 }
                 
                 if !appModel.isWasted {
@@ -145,7 +172,9 @@ struct HUDView: View {
                     VStack{
                         HStack{
                             Spacer()
-                            LevelsToPassPlayerView()
+                            VStack {
+                                LevelsToPassPlayerView()
+                            }
                         }
                         Spacer()
                     }

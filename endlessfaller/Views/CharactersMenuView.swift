@@ -113,30 +113,29 @@ struct CharactersMenuView: View {
                                 }
                             }
                         }
-
-                            Text("Secret Shop 🤫")
-                                .padding(6)
-                                .padding(.horizontal, 6)
-                                .foregroundColor(.black)
-                                .font(.system(size: 21))
-                                .bold()
-                                .italic()
-                                .background(RandomGradientView())
-                                .cornerRadius(12)
-                                .padding(.top)
-                                .shadow(color: .black, radius: 0.1, x: secretShopButtonIsPressed ? 0 : -6, y: secretShopButtonIsPressed ? 0 : 6)
-                                .offset(x: secretShopButtonIsPressed ? -6 : 0, y: secretShopButtonIsPressed ? 6 : 0)
-                                .pressEvents {
-                                    // On press
-                                    withAnimation(.easeInOut(duration: 0.1)) {
-                                        secretShopButtonIsPressed = true
-                                    }
-                                } onRelease: {
-                                    withAnimation {
-                                        secretShopButtonIsPressed = false
-                                        self.showSecretShop = true
-                                    }
+                        Text("Secret Shop 🤫")
+                            .padding(6)
+                            .padding(.horizontal, 6)
+                            .foregroundColor(.black)
+                            .font(.system(size: 21))
+                            .bold()
+                            .italic()
+                            .background(RandomGradientView())
+                            .cornerRadius(12)
+                            .shadow(color: .black, radius: 0.1, x: secretShopButtonIsPressed ? 0 : -6, y: secretShopButtonIsPressed ? 0 : 6)
+                            .offset(x: secretShopButtonIsPressed ? -6 : 0, y: secretShopButtonIsPressed ? 6 : 0)
+                            .padding(.vertical)
+                            .pressEvents {
+                                // On press
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    secretShopButtonIsPressed = true
                                 }
+                            } onRelease: {
+                                withAnimation {
+                                    secretShopButtonIsPressed = false
+                                    self.showSecretShop = true
+                                }
+                            }
                         }
                     Spacer()
                 }

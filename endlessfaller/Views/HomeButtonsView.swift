@@ -160,7 +160,6 @@ struct HomeButtonsView: View {
                         }
                         .scaleEffect(ballButtonIsPressed ? 1.2 : 1.4)
                     }
-                    
                     .pressEvents {
                         // On press
                         withAnimation(.easeInOut(duration: 0.1)) {
