@@ -182,13 +182,13 @@ struct CurrencyPageView: View {
                                                     .accentColor(.black)
                                                     .padding(6)
                                             }
-                                            .buttonStyle(.roundedAndShadow)
+                                            .buttonStyle(.roundedAndShadow6)
                                             
                                         }
                                     }
                                 }
+                                .offset(x: 3)
                             }
-                            
                         }
                         Spacer()
                     }

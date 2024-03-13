@@ -511,12 +511,51 @@ extension View {
     }
 }
 
-struct RoundedAndShadowButtonStyle:ButtonStyle {
+struct RoundedAndShadowButtonStyle4:ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .compositingGroup()
             .shadow(color: .black, radius: 0.1, x: configuration.isPressed ? 0 : -4, y: configuration.isPressed ? 0 : 4)
             .offset(x: configuration.isPressed ? -4 : 0, y: configuration.isPressed ? 4 : 0)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+            .onChange(of: configuration.isPressed) { newPressSetting in
+                impactMed.impactOccurred()
+            }
+    }
+}
+
+struct RoundedAndShadowButtonStyle3:ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .compositingGroup()
+            .shadow(color: .black, radius: 0.1, x: configuration.isPressed ? 0 : -3, y: configuration.isPressed ? 0 : 3)
+            .offset(x: configuration.isPressed ? -3 : 0, y: configuration.isPressed ? 3 : 0)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+            .onChange(of: configuration.isPressed) { newPressSetting in
+                impactMed.impactOccurred()
+            }
+    }
+}
+
+struct RoundedAndShadowButtonStyle6:ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .compositingGroup()
+            .shadow(color: .black, radius: 0.1, x: configuration.isPressed ? 0 : -6, y: configuration.isPressed ? 0 : 6)
+            .offset(x: configuration.isPressed ? -6 : 0, y: configuration.isPressed ? 6 : 0)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+            .onChange(of: configuration.isPressed) { newPressSetting in
+                impactMed.impactOccurred()
+            }
+    }
+}
+
+struct RoundedAndShadowButtonStyle9:ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .compositingGroup()
+            .shadow(color: .black, radius: 0.1, x: configuration.isPressed ? 0 : -9, y: configuration.isPressed ? 0 : 9)
+            .offset(x: configuration.isPressed ? -9 : 0, y: configuration.isPressed ? 9 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
                 impactMed.impactOccurred()
@@ -533,9 +572,27 @@ struct CharacterMenuButtonStyle:ButtonStyle {
     }
 }
 
-extension ButtonStyle where Self == RoundedAndShadowButtonStyle {
-    static var roundedAndShadow:RoundedAndShadowButtonStyle {
-        RoundedAndShadowButtonStyle()
+extension ButtonStyle where Self == RoundedAndShadowButtonStyle4 {
+    static var roundedAndShadow4:RoundedAndShadowButtonStyle4 {
+        RoundedAndShadowButtonStyle4()
+    }
+}
+
+extension ButtonStyle where Self == RoundedAndShadowButtonStyle6 {
+    static var roundedAndShadow6:RoundedAndShadowButtonStyle6 {
+        RoundedAndShadowButtonStyle6()
+    }
+}
+
+extension ButtonStyle where Self == RoundedAndShadowButtonStyle3 {
+    static var roundedAndShadow3:RoundedAndShadowButtonStyle3 {
+        RoundedAndShadowButtonStyle3()
+    }
+}
+
+extension ButtonStyle where Self == RoundedAndShadowButtonStyle9 {
+    static var roundedAndShadow9:RoundedAndShadowButtonStyle9 {
+        RoundedAndShadowButtonStyle9()
     }
 }
 

@@ -66,6 +66,7 @@ struct CharactersMenuView: View {
                                                 .cornerRadius(20)
                                                 .frame(width: idiom == .pad ? deviceWidth/4.8 : deviceWidth/3.3, height: idiom == .pad ? 270 : 150)
                                                 .background(RandomGradientView().opacity(model.characters[index].characterID == userPersistedData.selectedCharacter ? 1 : 0))
+                                                .cornerRadius(20)
                                                 .overlay(
                                                     ZStack{
                                                         VStack(spacing: 1) {
@@ -112,30 +113,22 @@ struct CharactersMenuView: View {
                                 }
                             }
                         }
-                        Text("Secret Shop 🤫")
-                            .padding(6)
-                            .padding(.horizontal, 6)
-                            .foregroundColor(.black)
-                            .font(.system(size: 21))
-                            .bold()
-                            .italic()
-                            .background(RandomGradientView())
-                            .cornerRadius(12)
-                            .shadow(color: .black, radius: 0.1, x: secretShopButtonIsPressed ? 0 : -6, y: secretShopButtonIsPressed ? 0 : 6)
-                            .offset(x: secretShopButtonIsPressed ? -6 : 0, y: secretShopButtonIsPressed ? 6 : 0)
-                            .padding(.vertical)
-                            .pressEvents {
-                                // On press
-                                withAnimation(.easeInOut(duration: 0.1)) {
-                                    secretShopButtonIsPressed = true
-                                }
-                            } onRelease: {
-                                withAnimation {
-                                    secretShopButtonIsPressed = false
-                                    self.showSecretShop = true
-                                }
-                            }
+                        Button {
+                            self.showSecretShop = true
+                        } label: {
+                            Text("Secret Shop 🤫")
+                                .padding(6)
+                                .padding(.horizontal, 6)
+                                .foregroundColor(.black)
+                                .font(.system(size: 21))
+                                .bold()
+                                .italic()
+                                .background(RandomGradientView())
+                                .cornerRadius(12)
+                                .padding(.vertical)
                         }
+                        .buttonStyle(.roundedAndShadow6)
+                    }
                     Spacer()
                 }
             }

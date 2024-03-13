@@ -18,10 +18,8 @@ struct HomeButtonsView: View {
     @State private var isGearExpanded = false
     @State var showGameModesAlert = false
     @State private var gearRotationDegrees = 0.0
-    @State var ballButtonIsPressed = false
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
-    @State var currencyButtonIsPressed = false
     @State var showCurrencyPage = false
     @StateObject var userPersistedData = UserPersistedData()
     var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
@@ -32,36 +30,26 @@ struct HomeButtonsView: View {
         VStack{
             HStack{
                 Spacer()
-                HStack{
-                    BoinsView()
-                    Text(String(userPersistedData.boinBalance))
-                        .bold()
-                        .italic()
-                        .foregroundColor(.black)
-                        .font(.largeTitle)
-                }
-                .padding(.horizontal)
-                .padding(.vertical, 6)
-                .background{
-                    Color.yellow
-                }
-                .cornerRadius(15)
-                .shadow(color: .black, radius: 0.1, x: currencyButtonIsPressed ? 0 : -6, y: currencyButtonIsPressed ? 0 : 6)
-                .offset(x: currencyButtonIsPressed ? -6 : 0, y: currencyButtonIsPressed ? 6 : 0)
-                .padding()
-                .pressEvents {
-                    // On press
-                    impactMed.impactOccurred()
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        currencyButtonIsPressed = true
+                Button {
+                    showCurrencyPage = true
+                } label: {
+                    HStack{
+                        BoinsView()
+                        Text(String(userPersistedData.boinBalance))
+                            .bold()
+                            .italic()
+                            .foregroundColor(.black)
+                            .font(.largeTitle)
                     }
-                } onRelease: {
-                    impactMed.impactOccurred()
-                    withAnimation {
-                        currencyButtonIsPressed = false
-                        showCurrencyPage = true
+                    .padding(.horizontal)
+                    .padding(.vertical, 6)
+                    .background{
+                        Color.yellow
                     }
+                    .cornerRadius(15)
+                    .padding()
                 }
+                .buttonStyle(.roundedAndShadow6)
             }
             .padding(.top, idiom == .pad || UIDevice.isOldDevice ? 15 : 45)
             Spacer()
@@ -148,7 +136,9 @@ struct HomeButtonsView: View {
                         isGearExpanded = false
                     }
                     Spacer()
-                    ZStack{
+                    Button {
+                        showCharactersMenu = true
+                    } label: {
                         ZStack{
                             AnyView(currentCharacter!.character)
                         }
@@ -160,38 +150,21 @@ struct HomeButtonsView: View {
                                     .frame(maxHeight: 30)
                             }
                         }
-                        .scaleEffect(ballButtonIsPressed ? 1.2 : 1.4)
+                        .scaleEffect(1.4)
                     }
-                    .pressEvents {
-                        // On press
-                        impactMed.impactOccurred()
-                        withAnimation(.easeInOut(duration: 0.1)) {
-                            ballButtonIsPressed = true
-                        }
-                    } onRelease: {
-                        impactMed.impactOccurred()
-                        withAnimation(.easeInOut(duration: 0.1)) {
-                            ballButtonIsPressed = false
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            showCharactersMenu = true
-                        }
-                    }
+                    .buttonStyle(.roundedAndShadow3)
                 }
-                ZStack{
-                    PodiumView()
-                        .foregroundColor(.black)
-                        .padding(36)
-                        .scaleEffect(1.2)
-                        .offset(x:3)
-                        .pressEvents {
-                            
-                        } onRelease: {
-                            withAnimation {
-                                showLeaderBoard = true
-                            }
-                        }
+                Button {
+                    showLeaderBoard = true
+                } label: {
+                    
+                PodiumView()
+                    .foregroundColor(.black)
+                    .padding(36)
+                    .scaleEffect(1.2)
+                    .offset(x:3)
                 }
+                .buttonStyle(.roundedAndShadow3)
             }
         }
         .ignoresSafeArea()

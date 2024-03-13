@@ -87,35 +87,26 @@ struct HUDView: View {
                     Spacer()
                     HStack{
                         if userPersistedData.strategyModeEnabled && !appModel.isWasted {
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(.blue)
-                                    .frame(width: 69, height: 75)
-                                    .cornerRadius(15)
-                                Image(systemName: appModel.paused ? "play.fill" : "pause.fill")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 60))
-                            }
-                            .shadow(color: .black, radius: 0.1, x: pauseButtonPressed ? 0 : -4, y: pauseButtonPressed ? 0 : 4)
-                            .offset(x: pauseButtonPressed ? -4 : 0, y: pauseButtonPressed ? 4 : 0)
-                            .padding(30)
-                            .pressEvents {
-                                // On press
+                            Button {
                                 if !appModel.paused {
                                     appModel.pauseGame()
                                 } else {
                                     appModel.continueGame()
                                 }
-                                impactMed.impactOccurred()
-                                withAnimation(.easeInOut(duration: 0.1)) {
-                                    pauseButtonPressed = true
+                            } label: {
+                                
+                                ZStack {
+                                    Rectangle()
+                                        .foregroundColor(.blue)
+                                        .frame(width: 69, height: 75)
+                                        .cornerRadius(15)
+                                    Image(systemName: appModel.paused ? "play.fill" : "pause.fill")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 60))
                                 }
-                            } onRelease: {
-                                impactMed.impactOccurred()
-                                withAnimation(.easeInOut(duration: 0.1)) {
-                                    pauseButtonPressed = false
-                                }
+                                .padding(30)
                             }
+                            .buttonStyle(.roundedAndShadow6)
                         }
                         Spacer()
                     }

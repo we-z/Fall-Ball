@@ -900,7 +900,6 @@ struct KeepSwiping: View {
 }
 
 struct PodiumView: View {
-    @State var podiumIsPressed = false
     var body: some View {
         HStack(alignment: .bottom, spacing: 0){
             ZStack{
@@ -954,64 +953,7 @@ struct PodiumView: View {
             }
             .offset(x: 2)
         }
-        .offset(x: podiumIsPressed ? -3 : 0, y: podiumIsPressed ? 3 : 0)
         .font(.largeTitle)
-        .background{
-            HStack(alignment: .bottom, spacing: 0){
-                ZStack{
-                    Rectangle()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.black)
-                        .roundedCorner(6, corners: [.topLeft])
-                        .background{
-                            Rectangle()
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.black)
-                                .roundedCorner(8, corners: [.topLeft])
-                        }
-                }
-                ZStack{
-                    Rectangle()
-                        .foregroundColor(.black)
-                        .frame(width: 20, height: 40)
-                        .roundedCorner(6, corners: [.topLeft, .topRight])
-                        .background{
-                            Rectangle()
-                                .foregroundColor(.black)
-                                .frame(width: 24, height: 44)
-                                .roundedCorner(7.8, corners: [.topLeft, .topRight])
-                        }
-                        
-                }
-                ZStack{
-                    Rectangle()
-                        .foregroundColor(.black)
-                        .frame(width: 20, height: 30)
-                        .roundedCorner(6, corners: [ .topRight])
-                        .clipped()
-                        .background{
-                            Rectangle()
-                                .foregroundColor(.black)
-                                .frame(width: 24, height: 34)
-                                .roundedCorner(8, corners: [ .topRight])
-                        }
-                }
-                .offset(x: 2)
-            }
-            .offset(x: -3, y: 3)
-        }
-        .pressEvents {
-            // On press
-            impactMed.impactOccurred()
-            withAnimation(.easeInOut(duration: 0.1)) {
-                podiumIsPressed = true
-            }
-        } onRelease: {
-            impactMed.impactOccurred()
-            withAnimation {
-                podiumIsPressed = false
-            }
-        }
     }
 }
 
