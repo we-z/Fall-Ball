@@ -519,7 +519,7 @@ struct RoundedAndShadowButtonStyle4:ButtonStyle {
             .offset(x: configuration.isPressed ? -4 : 0, y: configuration.isPressed ? 4 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                impactMed.impactOccurred()
+                hapticGenerator.notificationOccurred(.success)
             }
     }
 }
@@ -532,7 +532,7 @@ struct RoundedAndShadowButtonStyle3:ButtonStyle {
             .offset(x: configuration.isPressed ? -3 : 0, y: configuration.isPressed ? 3 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                impactMed.impactOccurred()
+                hapticGenerator.notificationOccurred(.success)
             }
     }
 }
@@ -545,7 +545,7 @@ struct RoundedAndShadowButtonStyle6:ButtonStyle {
             .offset(x: configuration.isPressed ? -6 : 0, y: configuration.isPressed ? 6 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                impactMed.impactOccurred()
+                hapticGenerator.notificationOccurred(.success)
             }
     }
 }
@@ -558,7 +558,7 @@ struct RoundedAndShadowButtonStyle9:ButtonStyle {
             .offset(x: configuration.isPressed ? -9 : 0, y: configuration.isPressed ? 9 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                impactMed.impactOccurred()
+                hapticGenerator.notificationOccurred(.success)
             }
     }
 }

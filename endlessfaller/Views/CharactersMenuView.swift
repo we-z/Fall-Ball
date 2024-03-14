@@ -37,7 +37,8 @@ struct CharactersMenuView: View {
                     .opacity(0.3)
                 HStack{
                     Text("🌍 Ball Shop 🌍")
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
+                        .shadow(color: .black, radius: 0.1, x: -3, y: 3)
                         .italic()
                         .bold()
                         .font(.largeTitle)
