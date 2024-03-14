@@ -11,9 +11,8 @@ import Vortex
 struct TempView: View {
 
     var body: some View {
-        Text("ضمير")
-            .font(.largeTitle)
-            .bold()
+        RandomGradientView()
+            .ignoresSafeArea()
     }
 }
 

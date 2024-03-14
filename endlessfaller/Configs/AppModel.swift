@@ -1011,17 +1011,48 @@ extension View {
 }
 
 struct RandomGradientView: View {
-    var gradient: LinearGradient {
-        let colors = backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }
-        let startPoint = UnitPoint.random
-        let endPoint = UnitPoint.random
-        return LinearGradient(gradient: Gradient(colors: colors), startPoint: startPoint, endPoint: endPoint)
-    }
+    let unitPoints: [UnitPoint] = [
+        UnitPoint.bottom,
+        UnitPoint.top,
+        UnitPoint.bottomLeading,
+        UnitPoint.bottomTrailing,
+        UnitPoint.leading,
+        UnitPoint.topLeading,
+        UnitPoint.topTrailing,
+        UnitPoint.trailing,
+    ]
+    // Define a state for the gradient to trigger updates
+    @State private var gradient: LinearGradient = LinearGradient(gradient: Gradient(colors: backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }), startPoint: UnitPoint.random, endPoint: UnitPoint.random)
+    
+    // Timer to change the gradient periodically
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     var body: some View {
         Rectangle()
             .fill(gradient)
             .edgesIgnoringSafeArea(.all)
+            .onAppear{
+                let newGradient = self.randomGradient()
+                // Animate the change
+                withAnimation(.linear(duration: 6)) {
+                    self.gradient = newGradient
+                }
+            }
+            .onReceive(timer) { _ in
+                // Generate a new gradient
+                let newGradient = self.randomGradient()
+                // Animate the change
+                withAnimation(.linear(duration: 6)) {
+                    self.gradient = newGradient
+                }
+            }
+    }
+    
+    func randomGradient() -> LinearGradient {
+        let colors = backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }
+        let startPoint = unitPoints.randomElement()!
+        let endPoint = unitPoints.randomElement()!
+        return LinearGradient(gradient: Gradient(colors: colors), startPoint: startPoint, endPoint: endPoint)
     }
 }
 
