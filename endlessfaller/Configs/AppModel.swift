@@ -990,7 +990,9 @@ public extension UIDevice {
                 "iPhone 7 Plus",
                 "iPhone 8",
                 "iPhone 8 Plus",
-                "iPhone SE", // Assuming this is the 1st generation iPhone SE
+                "iPhone SE",
+                "iPhone SE (2nd generation)",
+                "iPhone SE (3rd generation)"// Assuming this is the 1st generation iPhone SE
                 // Add other older models as needed
             ]
         return oldDeviceNames.contains(modelName)
