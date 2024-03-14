@@ -16,6 +16,31 @@ struct ContinuePlayingView: View {
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     
+    // Timer related states
+        @State private var timer: Timer? = nil
+        @State private var animationDuration: CGFloat = 6.0 // Total duration of the animation
+        @State private var currentTime: CGFloat = 0.0 // Current time elapsed
+    
+    // Function to start the timer and control the animation
+    private func startAnimationTimer() {
+        // Reset the progress and current time
+        self.circleProgress = 0.0
+        self.currentTime = 0.0
+        
+        // Configure and start the timer
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
+            self.currentTime += 0.05 // Increment the current time
+            let progress = self.currentTime / self.animationDuration
+            
+            if progress >= 1.0 {
+                self.circleProgress = 1.0
+                timer.invalidate() // Stop the timer if the animation is complete
+            } else {
+                self.circleProgress = progress
+            }
+        }
+        }
+    
     var body: some View {
         VStack{
             VStack{
@@ -129,9 +154,12 @@ struct ContinuePlayingView: View {
         .offset(y: UIDevice.isOldDevice ? 60 : 90)
         .scaleEffect(UIDevice.isOldDevice ? 0.7 : 1)
         .onAppear{
-            withAnimation(.linear(duration: 6)) {
-                circleProgress = 1.0
-            }
+            // Initialize the timer and the animation process
+            self.startAnimationTimer()
+        }
+        .onDisappear {
+            // Invalidate the timer when the view disappears to stop the animation
+            self.timer?.invalidate()
         }
         .sheet(isPresented: self.$showCurrencyPage){
             CurrencyPageView()
