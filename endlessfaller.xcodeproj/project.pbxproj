@@ -165,6 +165,7 @@
 		7A48043D2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipTests.swift; sourceTree = "<group>"; };
 		7A4804472B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITests.swift; sourceTree = "<group>"; };
 		7A4804492B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoingNotification.caf; sourceTree = "<group>"; };
 		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
 		7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallsDetailsView.swift; sourceTree = "<group>"; };
@@ -369,6 +370,7 @@
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
 				7A2201332AB6739000DF04D7 /* GameCenter.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
+				7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */,
 				7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */,
 				7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */,
 				7A16C4482B6AF63C00B6D3B1 /* UserData.swift */,
