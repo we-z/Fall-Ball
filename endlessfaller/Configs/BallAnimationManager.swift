@@ -64,7 +64,11 @@ class BallAnimationManager: ObservableObject {
         }
         self.newBallSpeed = newBallSpeed
         startingYPosition = ballYPosition
-        endingYPosition = startingYPosition - UIScreen.main.bounds.height / 3
+        if userPersistedData.strategyModeEnabled {
+            endingYPosition = startingYPosition - UIScreen.main.bounds.height / 3
+        } else {
+            endingYPosition = startingYPosition - UIScreen.main.bounds.height * (newBallSpeed * 0.1)
+        }
         startTime = CACurrentMediaTime()
         pushUp = true
     }
@@ -80,7 +84,7 @@ class BallAnimationManager: ObservableObject {
         if elapsedTime < targetDuration {
             if pushUp {
                 //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
-                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3) //CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height / 2)
+                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3)
                 if ballYPosition <= endingYPosition + 90 || (self.ballYPosition < self.screenCeiling && self.userPersistedData.strategyModeEnabled == false){
 //                    print("ball should stop pushing")
                     if self.ballYPosition < self.screenCeiling {

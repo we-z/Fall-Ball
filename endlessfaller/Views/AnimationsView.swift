@@ -992,7 +992,7 @@ struct SwipeUpHand: View {
 struct SwipeUpNowView: View {
     var body: some View {
         VStack{
-            Text("Swipe up\nnow!")
+            Text("Swipe up\nagain!")
                 .bold()
                 .italic()
                 .multilineTextAlignment(.center)

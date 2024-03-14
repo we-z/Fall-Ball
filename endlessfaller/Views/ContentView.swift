@@ -104,8 +104,6 @@ struct ContentView: View {
                                 if index == 0 && appModel.score == 0 && !appModel.isWasted {
                                     if self.BallAnimator.ballYPosition > deviceHeight / 2 {
                                         SwipeUpNowView()
-                                    } else {
-                                        Instruction()
                                     }
                                 }
                                 VStack{
