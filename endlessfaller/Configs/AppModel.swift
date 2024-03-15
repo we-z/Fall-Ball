@@ -128,7 +128,7 @@ class AppModel: ObservableObject {
             
             self.ballSpeed = Double.random(in: fastest...slowest)
         } else {
-            self.ballSpeed = (2/(Double(difficultyInput)+60))*60
+            self.ballSpeed = (2/(Double(difficultyInput)+30))*30
         }
         print("ballSpeed: \(ballSpeed)")
         self.BallAnimator.pushBallUp(newBallSpeed: ballSpeed)
