@@ -24,10 +24,10 @@ struct ContinuePlayingView: View {
                     HStack(spacing: 0){
                         BoinsView()
                             .scaleEffect(0.6)
-                        Text(String(userPersistedData.boinBalance))
+                        Text(userPersistedData.infiniteBoinsUnlocked ? "∞" : String(userPersistedData.boinBalance))
                             .bold()
                             .italic()
-                            .font(.title)
+                            .font(userPersistedData.infiniteBoinsUnlocked ? .largeTitle : .title)
                             .foregroundColor(.black)
                     }
                     .padding(.horizontal, 9)
@@ -48,7 +48,7 @@ struct ContinuePlayingView: View {
                     .padding(.bottom, 27)
                     .foregroundColor(.black)
                 Button {
-                    if userPersistedData.boinBalance >= appModel.costToContinue{
+                    if userPersistedData.boinBalance >= appModel.costToContinue || userPersistedData.infiniteBoinsUnlocked {
                         userPersistedData.decrementBalance(amount: appModel.costToContinue)
                         appModel.continuePlaying()
                     } else {

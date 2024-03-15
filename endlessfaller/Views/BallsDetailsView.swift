@@ -72,7 +72,7 @@ struct BallsDetailsView: View {
                         obtainIsPressed = false
                     }
 
-                    if userPersistedData.boinBalance >= Int(ball.cost)! {
+                    if userPersistedData.boinBalance >= Int(ball.cost)! || userPersistedData.infiniteBoinsUnlocked {
                         userPersistedData.addPurchasedSkin(skinName: ball.characterID)
                         userPersistedData.decrementBalance(amount: Int(ball.cost)!)
                         userPersistedData.selectNewBall(ball: ball.characterID)

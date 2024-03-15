@@ -35,7 +35,7 @@ struct HomeButtonsView: View {
                 } label: {
                     HStack{
                         BoinsView()
-                        Text(String(userPersistedData.boinBalance))
+                        Text(userPersistedData.infiniteBoinsUnlocked ? "∞" : String(userPersistedData.boinBalance))
                             .bold()
                             .italic()
                             .foregroundColor(.black)
