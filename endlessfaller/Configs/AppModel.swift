@@ -1011,18 +1011,8 @@ extension View {
 }
 
 struct RandomGradientView: View {
-    let unitPoints: [UnitPoint] = [
-        UnitPoint.bottom,
-        UnitPoint.top,
-        UnitPoint.bottomLeading,
-        UnitPoint.bottomTrailing,
-        UnitPoint.leading,
-        UnitPoint.topLeading,
-        UnitPoint.topTrailing,
-        UnitPoint.trailing,
-    ]
     // Define a state for the gradient to trigger updates
-    @State private var gradient: LinearGradient = LinearGradient(gradient: Gradient(colors: backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }), startPoint: UnitPoint.random, endPoint: UnitPoint.random)
+    @State private var gradient: LinearGradient = LinearGradient(gradient: Gradient(colors: backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }), startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1))
     
     // Timer to change the gradient periodically
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
@@ -1034,7 +1024,7 @@ struct RandomGradientView: View {
             .onAppear{
                 let newGradient = self.randomGradient()
                 // Animate the change
-                withAnimation(.linear(duration: 6)) {
+                withAnimation(.linear(duration: 3)) {
                     self.gradient = newGradient
                 }
             }
@@ -1042,7 +1032,7 @@ struct RandomGradientView: View {
                 // Generate a new gradient
                 let newGradient = self.randomGradient()
                 // Animate the change
-                withAnimation(.linear(duration: 6)) {
+                withAnimation(.linear(duration: 3)) {
                     self.gradient = newGradient
                 }
             }
@@ -1050,8 +1040,8 @@ struct RandomGradientView: View {
     
     func randomGradient() -> LinearGradient {
         let colors = backgroundColors.randomElement(randomCount: 3).map { Color(hex: $0)! }
-        let startPoint = unitPoints.randomElement()!
-        let endPoint = unitPoints.randomElement()!
+        let startPoint = UnitPoint(x: 0, y: 0)
+        let endPoint = UnitPoint(x: 1, y: 1)
         return LinearGradient(gradient: Gradient(colors: colors), startPoint: startPoint, endPoint: endPoint)
     }
 }
@@ -1064,7 +1054,7 @@ extension Array {
 
 extension UnitPoint {
     static var random: UnitPoint {
-        return UnitPoint(x: CGFloat.random(in: 0...1), y: CGFloat.random(in: 0...1))
+        return UnitPoint(x: CGFloat(Int.random(in: 0...1)), y: CGFloat(Int.random(in: 0...1)))
     }
 }
 
