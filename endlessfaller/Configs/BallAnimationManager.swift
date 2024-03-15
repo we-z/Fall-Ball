@@ -67,7 +67,7 @@ class BallAnimationManager: ObservableObject {
         if userPersistedData.strategyModeEnabled {
             endingYPosition = startingYPosition - UIScreen.main.bounds.height / 3
         } else {
-            endingYPosition = startingYPosition - UIScreen.main.bounds.height * (newBallSpeed * 0.1)
+            endingYPosition = startingYPosition - UIScreen.main.bounds.height * ((newBallSpeed * 0.06) + 0.1)
         }
         startTime = CACurrentMediaTime()
         pushUp = true
