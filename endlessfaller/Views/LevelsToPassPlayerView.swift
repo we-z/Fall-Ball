@@ -56,7 +56,7 @@ struct LevelsToPassPlayerView: View {
                         .multilineTextAlignment(.center)
                         .padding([.horizontal, .bottom])
                 }
-                .frame(width: 120)
+                .frame(width: 127)
                 .background(Color.primary.opacity(0.1))
                 .cornerRadius(21)
                 .padding()
