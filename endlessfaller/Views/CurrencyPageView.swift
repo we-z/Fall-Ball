@@ -57,140 +57,167 @@ struct CurrencyPageView: View {
                         .padding(.top, 9)
                         .foregroundColor(.black)
                         .opacity(0.3)
-                    HStack{
-                        Text("💰🤩 Bundles 🤩💰")
-                            .foregroundColor(.white)
-                            .shadow(color: .black, radius: 0.1, x: -3, y: 3)
-                            .italic()
-                            .bold()
-                            .font(.largeTitle)
-                            .scaleEffect(1.1)
-                    }
-                    HStack{
-                        Spacer()
-                        ScrollView(showsIndicators: false){
-                            ForEach(0..<bundles.count/3, id: \.self) { rowIndex in
-                                HStack {
-                                    ForEach(0..<3, id: \.self) { columnIndex in
-                                        let index = rowIndex * 3 + columnIndex
-                                        if index < bundles.count {
-                                            let bundle = bundles[index]
-                                            Button {
-                                                if index != 8 {
-                                                    isProcessingPurchase = true
-                                                    Task {
-                                                        await buyBoins(bundle: bundle)
+                    if userPersistedData.infiniteBoinsUnlocked {
+                        VStack {
+                            Spacer()
+                            ZStack {
+                                RotatingSunView()
+                                    .frame(maxWidth: deviceWidth)
+                                VStack{
+                                    Text("∞")
+                                        .font(.system(size: 180))
+                                        .bold()
+                                        .italic()
+                                        .padding(1)
+                                        .animatedOffset(speed: 2)
+                                    Text("Infinite Boins\nUnlocked\n🔓")
+                                        .font(.largeTitle)
+                                        .bold()
+                                        .italic()
+                                        .multilineTextAlignment(.center)
+                                        .scaleEffect(1.5)
+                                }
+                                .offset(y:-60)
+                                
+                            }
+                            Spacer()
+                        }
+                    } else {
+                        HStack{
+                            Text("💰🤩 Bundles 🤩💰")
+                                .foregroundColor(.white)
+                                .shadow(color: .black, radius: 0.1, x: -3, y: 3)
+                                .italic()
+                                .bold()
+                                .font(.largeTitle)
+                                .scaleEffect(1.1)
+                        }
+                        HStack{
+                            Spacer()
+                            ScrollView(showsIndicators: false){
+                                ForEach(0..<bundles.count/3, id: \.self) { rowIndex in
+                                    HStack {
+                                        ForEach(0..<3, id: \.self) { columnIndex in
+                                            let index = rowIndex * 3 + columnIndex
+                                            if index < bundles.count {
+                                                let bundle = bundles[index]
+                                                Button {
+                                                    if index != 8 {
+                                                        isProcessingPurchase = true
+                                                        Task {
+                                                            await buyBoins(bundle: bundle)
+                                                        }
+                                                    } else {
+                                                        showAlert = true
                                                     }
-                                                } else {
-                                                    showAlert = true
-                                                }
-                                            } label: {
-                                                Rectangle()
-                                                    .fill(.yellow)
-                                                    .cornerRadius(20)
-                                                    .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                    .overlay{
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(Color.black, lineWidth: 3)
-                                                            .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                            .padding(1)
-                                                        VStack{
-                                                            BoinsView()
-                                                                .scaleEffect(1.5)
-                                                                .padding(.top)
-                                                            if index != 8 {
-                                                                Text(String(bundles[index].coins) + "\nBoins")
+                                                } label: {
+                                                    Rectangle()
+                                                        .fill(.yellow)
+                                                        .cornerRadius(20)
+                                                        .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
+                                                        .overlay{
+                                                            RoundedRectangle(cornerRadius: 20)
+                                                                .stroke(Color.black, lineWidth: 3)
+                                                                .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
+                                                                .padding(1)
+                                                            VStack{
+                                                                BoinsView()
+                                                                    .scaleEffect(1.5)
+                                                                    .padding(.top)
+                                                                if index != 8 {
+                                                                    Text(String(bundles[index].coins) + "\nBoins")
+                                                                        .foregroundColor(.black)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .font(.title2)
+                                                                        .padding(.top, 6)
+                                                                } else {
+                                                                    Text("∞")
+                                                                        .foregroundColor(.black)
+                                                                        .italic()
+                                                                        .font(.largeTitle)
+                                                                        .scaleEffect(1.8)
+                                                                    Text("Boins")
+                                                                        .foregroundColor(.black)
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .font(.title2)
+                                                                    
+                                                                }
+                                                                Text(bundles[index].cost)
                                                                     .foregroundColor(.black)
-                                                                    .multilineTextAlignment(.center)
+                                                                    .padding(.vertical, 9)
+                                                                    .italic()
                                                                     .bold()
-                                                                    .italic()
-                                                                    .font(.title2)
-                                                                    .padding(.top, 6)
-                                                            } else {
-                                                                Text("∞")
-                                                                    .foregroundColor(.black)
-                                                                    .italic()
-                                                                    .font(.largeTitle)
-                                                                    .scaleEffect(1.8)
-                                                                Text("Boins")
-                                                                    .foregroundColor(.black)
-                                                                    .bold()
-                                                                    .italic()
-                                                                    .font(.title2)
+                                                            }
+                                                            if index == 1 {
+                                                                HStack{
+                                                                    Spacer()
+                                                                    Text("Best Seller")
+                                                                        .foregroundColor(.black)
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .font(.system(size: 15))
+                                                                    Spacer()
+                                                                    
+                                                                }
+                                                                .background{
+                                                                    Color.red
+                                                                }
+                                                                .frame(width: 210)
+                                                                .overlay{
+                                                                    Rectangle()
+                                                                        .stroke(Color.black, lineWidth: 3)
+                                                                }
+                                                                .rotationEffect(.degrees(45))
+                                                                .offset(x:idiom == .pad ? 60 : 21, y: idiom == .pad ? -90 : -69)
+                                                                .mask{
+                                                                    Rectangle()
+                                                                        .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
+                                                                }
                                                                 
                                                             }
-                                                            Text(bundles[index].cost)
-                                                                .foregroundColor(.black)
-                                                                .padding(.vertical, 9)
-                                                                .italic()
-                                                                .bold()
+                                                            if index == 8 {
+                                                                HStack{
+                                                                    Spacer()
+                                                                    Text("Coming Soon")
+                                                                        .foregroundColor(.black)
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .font(.system(size: 12))
+                                                                    Spacer()
+                                                                }
+                                                                .background{
+                                                                    Color.green
+                                                                }
+                                                                .frame(width: 210)
+                                                                .overlay{
+                                                                    Rectangle()
+                                                                        .stroke(Color.black, lineWidth: 3)
+                                                                }
+                                                                .rotationEffect(.degrees(45))
+                                                                .offset(x:idiom == .pad ? 60 : 18, y: idiom == .pad ? -90 : -69)
+                                                                .mask{
+                                                                    Rectangle()
+                                                                        .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
+                                                                }
+                                                                
+                                                            }
                                                         }
-                                                        if index == 1 {
-                                                            HStack{
-                                                                Spacer()
-                                                                Text("Best Seller")
-                                                                    .foregroundColor(.black)
-                                                                    .bold()
-                                                                    .italic()
-                                                                    .font(.system(size: 15))
-                                                                Spacer()
-                                                                    
-                                                            }
-                                                            .background{
-                                                                Color.red
-                                                            }
-                                                            .frame(width: 210)
-                                                            .overlay{
-                                                                Rectangle()
-                                                                    .stroke(Color.black, lineWidth: 3)
-                                                            }
-                                                            .rotationEffect(.degrees(45))
-                                                            .offset(x:idiom == .pad ? 60 : 21, y: idiom == .pad ? -90 : -69)
-                                                            .mask{
-                                                                Rectangle()
-                                                                    .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                            }
-                                                            
-                                                        }
-                                                        if index == 8 {
-                                                            HStack{
-                                                                Spacer()
-                                                                Text("Coming Soon")
-                                                                    .foregroundColor(.black)
-                                                                    .bold()
-                                                                    .italic()
-                                                                    .font(.system(size: 12))
-                                                                Spacer()
-                                                            }
-                                                            .background{
-                                                                Color.green
-                                                            }
-                                                            .frame(width: 210)
-                                                            .overlay{
-                                                                Rectangle()
-                                                                    .stroke(Color.black, lineWidth: 3)
-                                                            }
-                                                            .rotationEffect(.degrees(45))
-                                                            .offset(x:idiom == .pad ? 60 : 18, y: idiom == .pad ? -90 : -69)
-                                                            .mask{
-                                                                Rectangle()
-                                                                    .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                            }
-                                                            
-                                                        }
-                                                    }
-                                                    .accentColor(.black)
-                                                    .padding(6)
+                                                        .accentColor(.black)
+                                                        .padding(6)
+                                                }
+                                                .buttonStyle(.roundedAndShadow6)
+                                                
                                             }
-                                            .buttonStyle(.roundedAndShadow6)
-                                            
                                         }
                                     }
+                                    .offset(x: 3)
                                 }
-                                .offset(x: 3)
                             }
+                            Spacer()
                         }
-                        Spacer()
                     }
                 }
                 if isProcessingPurchase {

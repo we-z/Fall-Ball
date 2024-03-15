@@ -41,6 +41,7 @@
 		7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB05CE42A65C67A00EE4D7B /* ProductList.plist */; };
 		7ABA579A2BA4CD36000E5907 /* RandomGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABA57992BA4CD36000E5907 /* RandomGradientView.swift */; };
 		7AC089392B7EC818008DD71D /* BallAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC089382B7EC818008DD71D /* BallAnimationManager.swift */; };
+		7AC672AD2BA5072B0055CCDE /* InfiniteBoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */; };
 		7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */; };
 		7AD234412A5F824800ED626D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234402A5F824800ED626D /* ContentView.swift */; };
 		7AD234432A5F824900ED626D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234422A5F824900ED626D /* Assets.xcassets */; };
@@ -177,6 +178,7 @@
 		7AB05CE42A65C67A00EE4D7B /* ProductList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ProductList.plist; sourceTree = "<group>"; };
 		7ABA57992BA4CD36000E5907 /* RandomGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGradientView.swift; sourceTree = "<group>"; };
 		7AC089382B7EC818008DD71D /* BallAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallAnimationManager.swift; sourceTree = "<group>"; };
+		7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBoinsView.swift; sourceTree = "<group>"; };
 		7AD2343B2A5F824800ED626D /* Fall Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fall Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerApp.swift; sourceTree = "<group>"; };
 		7AD234402A5F824800ED626D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */,
 				7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */,
 				7A3C9B682B80E9800097D3F9 /* HUDView.swift */,
+				7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */,
 				7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */,
 				7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */,
 				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
@@ -770,6 +773,7 @@
 				7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */,
 				7AC089392B7EC818008DD71D /* BallAnimationManager.swift in Sources */,
 				7ABA579A2BA4CD36000E5907 /* RandomGradientView.swift in Sources */,
+				7AC672AD2BA5072B0055CCDE /* InfiniteBoinsView.swift in Sources */,
 				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
 				7A0BB1C62B4F5EB70048B247 /* SharePlayActivity.swift in Sources */,
 				7AEA1AB42AE5C9CA00FE6DB5 /* ContinuePlayingView.swift in Sources */,

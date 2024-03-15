@@ -40,6 +40,9 @@ struct HomeButtonsView: View {
                             .italic()
                             .foregroundColor(.black)
                             .font(.largeTitle)
+                            .scaleEffect(userPersistedData.infiniteBoinsUnlocked ? 1.8 : 1)
+                            .padding(.horizontal, userPersistedData.infiniteBoinsUnlocked ? 12 : 0)
+                            .offset(y: userPersistedData.infiniteBoinsUnlocked ? -3 : 0)
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 6)
