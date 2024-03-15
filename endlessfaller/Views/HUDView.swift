@@ -20,7 +20,7 @@ struct HUDView: View {
             if appModel.currentIndex >= 0 && !appModel.isWasted {
                 if !appModel.showNewBestScore {
                     
-                    if appModel.score > 0 && appModel.score < 4 {
+                    if appModel.score >= 0 && appModel.score < 4 {
                         KeepSwiping()
                     }
                     if userPersistedData.strategyModeEnabled {

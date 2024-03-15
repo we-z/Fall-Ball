@@ -101,11 +101,6 @@ struct ContentView: View {
                         ForEach(appModel.colors.indices, id: \.self) { index in
                             ZStack{
                                 RandomGradientView()
-                                if index == 0 && appModel.score == 0 && !appModel.isWasted {
-                                    if self.BallAnimator.ballYPosition > deviceHeight / 2 {
-                                        SwipeUpNowView()
-                                    }
-                                }
                                 VStack{
                                     Divider()
                                         .frame(height: 6)
