@@ -22,7 +22,7 @@ struct CurrencyPageView: View {
         CurrencyBundle(coins: 1700, cost: "$199.99", bundleID: "1700boins"),
         CurrencyBundle(coins: 3900, cost: "$499.99", bundleID: "3900boins"),
         CurrencyBundle(coins: 9999, cost: "$999.99", bundleID: "9999boins"),
-        CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infiniteboins")
+        CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infinitecoins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
@@ -48,7 +48,7 @@ struct CurrencyPageView: View {
     @MainActor
     func unlockInfiniteBoins() async {
         do {
-            if (try await storeKit.purchase(bundleID: "infiniteboins")) != nil{
+            if (try await storeKit.purchase(bundleID: "infinitecoins")) != nil{
                 DispatchQueue.main.async {
                     userPersistedData.infiniteBoinsUnlocked = true
                 }
