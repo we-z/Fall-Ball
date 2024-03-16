@@ -22,7 +22,7 @@ struct CurrencyPageView: View {
         CurrencyBundle(coins: 1700, cost: "$199.99", bundleID: "1700boins"),
         CurrencyBundle(coins: 3900, cost: "$499.99", bundleID: "3900boins"),
         CurrencyBundle(coins: 9999, cost: "$999.99", bundleID: "9999boins"),
-        CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infinitecoins")
+        CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infiniteboins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
@@ -35,6 +35,22 @@ struct CurrencyPageView: View {
             if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
                 DispatchQueue.main.async {
                     userPersistedData.incrementBalance(amount: bundle.coins)
+                }
+                dismiss()
+            }
+        } catch {
+            print("Purchase failed: \(error)")
+        }
+        appModel.grabbingBoins = false
+        isProcessingPurchase = false
+    }
+    
+    @MainActor
+    func unlockInfiniteBoins() async {
+        do {
+            if (try await storeKit.purchase(bundleID: "infiniteboins")) != nil{
+                DispatchQueue.main.async {
+                    userPersistedData.infiniteBoinsUnlocked = true
                 }
                 dismiss()
             }
@@ -102,13 +118,15 @@ struct CurrencyPageView: View {
                                             if index < bundles.count {
                                                 let bundle = bundles[index]
                                                 Button {
+                                                    isProcessingPurchase = true
                                                     if index != 8 {
-                                                        isProcessingPurchase = true
                                                         Task {
                                                             await buyBoins(bundle: bundle)
                                                         }
                                                     } else {
-                                                        showAlert = true
+                                                        Task {
+                                                            await unlockInfiniteBoins()
+                                                        }
                                                     }
                                                 } label: {
                                                     Rectangle()
@@ -181,11 +199,11 @@ struct CurrencyPageView: View {
                                                             if index == 8 {
                                                                 HStack{
                                                                     Spacer()
-                                                                    Text("Coming Soon")
+                                                                    Text("God Mode")
                                                                         .foregroundColor(.black)
                                                                         .bold()
                                                                         .italic()
-                                                                        .font(.system(size: 12))
+                                                                        .font(.system(size: 15))
                                                                     Spacer()
                                                                 }
                                                                 .background{
@@ -215,6 +233,7 @@ struct CurrencyPageView: View {
                                     }
                                     .offset(x: 3)
                                 }
+                                .padding(.bottom)
                             }
                             Spacer()
                         }
