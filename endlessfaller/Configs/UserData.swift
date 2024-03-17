@@ -15,7 +15,7 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("selectedCharacter") var selectedCharacter: String = "io.endlessfall.shocked"
     @CloudStorage("selectedBag") var selectedBag: String = "nobag"
     @CloudStorage("selectedHat") var selectedHat: String = "nohat"
-    @CloudStorage("lastLaunch") var lastLaunch: String = NSDate().formatted
+    @CloudStorage("lastLaunch") var lastLaunch: String = ""
     @CloudStorage("leaderboardWonToday") var leaderboardWonToday: Bool = false
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
     @CloudStorage("infiniteBoinsUnlocked") var infiniteBoinsUnlocked: Bool = false
