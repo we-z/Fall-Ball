@@ -32,6 +32,7 @@
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
 		7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */; };
 		7A675CED2B835E74001DEF29 /* BoingNotification.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */; };
+		7A689B392BA7853F006D3AA5 /* LeaderboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7A9755D62B78717200473737 /* CloudStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9755D52B78717200473737 /* CloudStorage */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
@@ -169,6 +170,7 @@
 		7A4804492B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoingNotification.caf; sourceTree = "<group>"; };
+		7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardInfoView.swift; sourceTree = "<group>"; };
 		7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsView.swift; sourceTree = "<group>"; };
 		7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallsDetailsView.swift; sourceTree = "<group>"; };
 		7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatDesignsView.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				7A3C9B682B80E9800097D3F9 /* HUDView.swift */,
 				7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */,
 				7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */,
+				7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */,
 				7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */,
 				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
 				7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */,
@@ -765,6 +768,7 @@
 				7AF3EC682B8FFB22003FE015 /* NBQRView.swift in Sources */,
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
 				7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */,
+				7A689B392BA7853F006D3AA5 /* LeaderboardInfoView.swift in Sources */,
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7AF3EC662B8C2F2D003FE015 /* CloudKitUtility.swift in Sources */,
 				7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */,

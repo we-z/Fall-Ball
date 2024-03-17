@@ -615,6 +615,9 @@ struct GameCenterLeaderboardView: View {
                         .ignoresSafeArea()
                 }
             }
+            if !GKLocalPlayer.local.isAuthenticated {
+                LeaderboardInfoView()
+            }
         }
     }
 }
