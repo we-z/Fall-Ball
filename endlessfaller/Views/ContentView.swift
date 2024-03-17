@@ -156,7 +156,6 @@ struct ContentView: View {
                     PlayingBallView()
                 }
             }
-            .persistentSystemOverlays(.hidden)
             .edgesIgnoringSafeArea(.all)
             .scrollDisabled(appModel.freezeScrolling)
             .onAppear {

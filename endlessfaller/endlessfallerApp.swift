@@ -14,6 +14,7 @@ struct endlessfallerApp: App {
             ContentView()
                 .preferredColorScheme(.light)
                 .environment(\.sizeCategory, .medium)
+                .defersSystemGestures(on: .bottom)
         }
     }
 }
