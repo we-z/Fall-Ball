@@ -160,9 +160,6 @@ struct ContentView: View {
             .edgesIgnoringSafeArea(.all)
             .scrollDisabled(appModel.freezeScrolling)
             .onAppear {
-                notificationManager.registerLocal()
-                notificationManager.scheduleLocal()
-                self.notificationManager.subscribeToNotifications()
                 appModel.playedCharacter = userPersistedData.selectedCharacter
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()

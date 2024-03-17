@@ -53,7 +53,7 @@ class GameCenter: ObservableObject {
             Task{
                 await self.loadLeaderboard()
             }
-            self.notificationManager.subscribeToNotifications()
+            self.notificationManager.registerLocal()
         }
     }
     

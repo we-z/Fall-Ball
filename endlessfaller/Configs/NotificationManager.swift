@@ -49,6 +49,7 @@ class NotificationManager: ObservableObject {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
                 self.subscribeToNotifications()
+                self.scheduleLocal()
             } else if let error = error {
                 print("Notification permission error: \(error.localizedDescription)")
             }
