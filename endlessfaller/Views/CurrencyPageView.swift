@@ -199,7 +199,7 @@ struct CurrencyPageView: View {
                                                             if index == 8 {
                                                                 HStack{
                                                                     Spacer()
-                                                                    Text("God Mode")
+                                                                    Text("NEW!!!")
                                                                         .foregroundColor(.black)
                                                                         .bold()
                                                                         .italic()
