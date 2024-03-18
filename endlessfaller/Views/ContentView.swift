@@ -166,16 +166,8 @@ struct ContentView: View {
                 checkIfAppOpenToday()
             }
             .onChange(of: scenePhase) { newScenePhase in
-                switch newScenePhase {
-                case .background:
-                    print("App is in background")
-                case .active:
-                    print("App is Active")
+                if newScenePhase == .active {
                     checkIfAppOpenToday()
-                case .inactive:
-                    print("App is Inactive")
-                @unknown default:
-                    print("New App state not yet introduced")
                 }
             }
         }
