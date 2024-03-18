@@ -3,13 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>NSPrivacyAccessedAPITypes</key>
-	<array>
-		<dict>
-			<key>NSPrivacyAccessedAPIType</key>
-			<string>CA92.1</string>
-		</dict>
-	</array>
-	<key>NSPrivacyAccessedAPICategoryUserDefaults</key>
-	<true/>
+    <array>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>CA92.1</string>
+                <!-- Add other reason codes as needed -->
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>
