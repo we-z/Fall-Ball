@@ -169,7 +169,6 @@ struct ContentView: View {
                 switch newScenePhase {
                 case .background:
                     print("App is in background")
-                    appModel.gameOverOperations()
                 case .active:
                     print("App is Active")
                     checkIfAppOpenToday()
