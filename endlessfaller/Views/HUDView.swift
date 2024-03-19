@@ -118,6 +118,7 @@ struct HUDView: View {
                             Spacer()
                             VStack {
                                 LevelsToPassPlayerView()
+                                    .allowsHitTesting(false)
                             }
                         }
                         Spacer()
