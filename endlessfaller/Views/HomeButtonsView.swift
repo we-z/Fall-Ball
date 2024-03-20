@@ -47,7 +47,11 @@ struct HomeButtonsView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 6)
                     .background{
-                        Color.yellow
+                        if userPersistedData.infiniteBoinsUnlocked {
+                            RandomGradientView()
+                        } else {
+                            Color.yellow
+                        }
                     }
                     .cornerRadius(15)
                     .padding()

@@ -33,7 +33,13 @@ struct ContinuePlayingView: View {
                     .padding(.horizontal, 9)
                     .padding(.top, 12)
                     .padding(.trailing, 21)
-                    .background(.yellow)
+                    .background{
+                        if userPersistedData.infiniteBoinsUnlocked {
+                            RandomGradientView()
+                        } else {
+                            Color.yellow
+                        }
+                    }
                     .cornerRadius(15)
                     .overlay{
                         RoundedRectangle(cornerRadius: 15)
