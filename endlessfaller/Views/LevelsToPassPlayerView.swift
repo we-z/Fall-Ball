@@ -69,7 +69,9 @@ struct LevelsToPassPlayerView: View {
                             cardPassAnimation()
                             gameCenter.nextPlayerIndex -= 1
                         } else {
-                            firstPlaceOnLeaderboardReward()
+                            if !userPersistedData.leaderboardWonToday {
+                                firstPlaceOnLeaderboardReward()
+                            }
                             gameCenter.nextPlayerIndex = -1
                         }
                     }
