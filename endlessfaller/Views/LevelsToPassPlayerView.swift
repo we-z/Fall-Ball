@@ -67,13 +67,12 @@ struct LevelsToPassPlayerView: View {
                         if gameCenter.nextPlayerIndex > 0 {
                             print("nextPlayerIndex should be modified")
                             cardPassAnimation()
-                            gameCenter.nextPlayerIndex -= 1
                         } else {
                             if !userPersistedData.leaderboardWonToday {
                                 firstPlaceOnLeaderboardReward()
                             }
-                            gameCenter.nextPlayerIndex = -1
                         }
+                        gameCenter.nextPlayerIndex = -1
                     }
                 }
             }

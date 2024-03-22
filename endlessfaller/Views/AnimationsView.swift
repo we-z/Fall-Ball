@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            DailyBoinCollectedView()
+            LeaderboardRewardView()
         }
     }
 }
@@ -1439,6 +1439,7 @@ struct DailyBoinCollectedView: View {
 
 struct LeaderboardRewardView: View {
     @ObservedObject var userPersistedData = UserPersistedData()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
     @State var animationXoffset = 0.0
     @State var animationYoffset = -(deviceHeight / 1.5)
     @State var scaleSize = 1.0
@@ -1454,7 +1455,7 @@ struct LeaderboardRewardView: View {
                 }
             }
             .rotationEffect(.degrees(isAnimating ? 360 : 0))
-            .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false), value: isAnimating)
+            .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false), value: isAnimating)
             .onAppear {
                 self.isAnimating = true
             }
@@ -1481,6 +1482,7 @@ struct LeaderboardRewardView: View {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 userPersistedData.incrementBalance(amount: 5)
+                appModel.show5boinsAnimation = false
             }
         }
     }
