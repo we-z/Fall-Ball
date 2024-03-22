@@ -17,22 +17,34 @@ struct QRView: View {
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .shadow(color: .black, radius: 0.1, x: -3, y: 3)
-                .scaleEffect(2.1)
-                .offset(y: -210)
+                .scaleEffect(1.5)
+                .offset(y: -140)
             Text("FALL BALL")
                 .bold()
                 .italic()
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .shadow(color: .black, radius: 0.1, x: -3, y: 3)
-                .scaleEffect(2.1)
-                .offset(y: 210)
+                .scaleEffect(1.5)
+                .offset(y: 139)
+            ShockedBall()
+                .offset(x:106)
+                .scaleEffect(1.5)
+            FallBallLaughBall()
+                .offset(x:-106)
+                .scaleEffect(1.5)
+            RotatingSunView()
             Image("fallballQR")
                 .resizable()
-                .frame(width: 300, height: 300)
+                .frame(width: 210, height: 210)
                 .cornerRadius(30)
-
+    
+            
         }
+        .mask(
+            Circle()
+                .frame(width: deviceWidth)
+        )
         .ignoresSafeArea()
     }
 }
