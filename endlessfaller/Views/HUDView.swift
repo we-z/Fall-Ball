@@ -80,6 +80,7 @@ struct HUDView: View {
                             .padding(36)
                             .padding(.top, UIDevice.isOldDevice ? 0 : 30)
                             .foregroundColor(.black)
+                            .allowsHitTesting(false)
                         Spacer()
                         //                                    Text("\(speedFactor)")
                         //                                        .padding()
