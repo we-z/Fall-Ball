@@ -15,7 +15,6 @@ struct BallsDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @State var showCurrencyPage = false
-    @State var obtainIsPressed = false
     @StateObject var userPersistedData = UserPersistedData()
     var body: some View {
         ZStack{
@@ -40,38 +39,7 @@ struct BallsDetailsView: View {
                 if idiom == .pad {
                     Spacer()
                 }
-                HStack{
-                    Spacer()
-                    Text("OBTAIN:")
-                        .bold()
-                        .italic()
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .padding(.vertical)
-                    BoinsView()
-                    Text("\(ball.cost)")
-                        .bold()
-                        .italic()
-                        .font(.title)
-                        .foregroundColor(.black)
-                    Spacer()
-                }
-                .background(.yellow)
-                .cornerRadius(21)
-                .padding(.horizontal, 30)
-                .padding(.bottom, idiom == .pad ? 30 : 0)
-                .shadow(color: .black, radius: 0.1, x: obtainIsPressed ? 0 : -6, y: obtainIsPressed ? 0 : 6)
-                .offset(x: obtainIsPressed ? -6 : 0, y: obtainIsPressed ? 6 : 0)
-                .pressEvents {
-                    // On press
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        obtainIsPressed = true
-                    }
-                } onRelease: {
-                    withAnimation {
-                        obtainIsPressed = false
-                    }
-
+                Button{
                     if userPersistedData.boinBalance >= Int(ball.cost)! || userPersistedData.infiniteBoinsUnlocked {
                         userPersistedData.addPurchasedSkin(skinName: ball.characterID)
                         userPersistedData.decrementBalance(amount: Int(ball.cost)!)
@@ -80,7 +48,29 @@ struct BallsDetailsView: View {
                     } else {
                         showCurrencyPage = true
                     }
+                } label: {
+                    HStack{
+                        Spacer()
+                        Text("OBTAIN:")
+                            .bold()
+                            .italic()
+                            .font(.title)
+                            .foregroundColor(.black)
+                            .padding(.vertical)
+                        BoinsView()
+                        Text("\(ball.cost)")
+                            .bold()
+                            .italic()
+                            .font(.title)
+                            .foregroundColor(.black)
+                        Spacer()
+                    }
+                    .background(.yellow)
+                    .cornerRadius(21)
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, idiom == .pad || UIDevice.isOldDevice ? 30 : 0)
                 }
+                .buttonStyle(.roundedAndShadow6)
             }
         }
         .onAppear() {
