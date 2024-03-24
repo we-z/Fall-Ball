@@ -24,7 +24,7 @@ struct PlayingBallView: View {
             ZStack{
                 if !appModel.isWasted || !appModel.ballIsStrobing {
                     
-                    if !appModel.paused {
+                    if !appModel.paused && userPersistedData.selectedBag != "jetpack" {
                         VortexView(colourTrail()) {
                             Circle()
                                 .fill(.white)
@@ -44,7 +44,32 @@ struct PlayingBallView: View {
                             .tag("circle")
                     }
                 }
-
+                if userPersistedData.selectedBag == "jetpack" {
+                    HStack{
+                        VortexView(.fire) {
+                            Circle()
+                                .fill(.white)
+                                .blendMode(.plusLighter)
+                                .blur(radius: 3)
+                                .frame(width: 15)
+                                .tag("circle")
+                        }
+                        .scaleEffect(0.6)
+                        .offset(x: 78)
+                        VortexView(.fire) {
+                            Circle()
+                                .fill(.white)
+                                .blendMode(.plusLighter)
+                                .blur(radius: 3)
+                                .frame(width: 15)
+                                .tag("circle")
+                        }
+                        .scaleEffect(0.6)
+                        .offset(x: -78)
+                    }
+                    .rotationEffect(.degrees(180))
+                    .offset(y:18)
+                }
                 ZStack{
                     if userPersistedData.selectedBag != "nobag" {
                         AnyView(bag!.bag)

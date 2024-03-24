@@ -72,7 +72,7 @@ struct LevelsToPassPlayerView: View {
                                 firstPlaceOnLeaderboardReward()
                             }
                         }
-                        gameCenter.nextPlayerIndex = -1
+                        gameCenter.nextPlayerIndex -= 1
                     }
                 }
             }

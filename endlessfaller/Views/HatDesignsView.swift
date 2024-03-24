@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Vortex
 
 struct HatDesignsView: View {
     var body: some View {
         ZStack{
-            Wings()
-            RickView()
+            JetPack()
+            ShockedBall()
                 .scaleEffect(1.5)
         }
     }

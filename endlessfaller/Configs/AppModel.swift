@@ -128,7 +128,11 @@ class AppModel: ObservableObject {
             
             self.ballSpeed = Double.random(in: fastest...slowest)
         } else {
-            self.ballSpeed = (2/(Double(difficultyInput)+60))*60
+            if userPersistedData.selectedBag == "jetpack" {
+                self.ballSpeed = (2/(Double(difficultyInput)+90))*90
+            } else {
+                self.ballSpeed = (2/(Double(difficultyInput)+60))*60
+            }
         }
         print("ballSpeed: \(ballSpeed)")
         self.BallAnimator.pushBallUp(newBallSpeed: ballSpeed)
