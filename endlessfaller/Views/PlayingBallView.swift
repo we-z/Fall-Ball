@@ -51,7 +51,7 @@ struct PlayingBallView: View {
                                 .fill(.white)
                                 .blendMode(.plusLighter)
                                 .blur(radius: 3)
-                                .frame(width: 15)
+                                .frame(width: 30)
                                 .tag("circle")
                         }
                         .scaleEffect(0.6)
@@ -61,7 +61,7 @@ struct PlayingBallView: View {
                                 .fill(.white)
                                 .blendMode(.plusLighter)
                                 .blur(radius: 3)
-                                .frame(width: 15)
+                                .frame(width: 30)
                                 .tag("circle")
                         }
                         .scaleEffect(0.6)

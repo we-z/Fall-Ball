@@ -6,14 +6,38 @@
 //
 
 import SwiftUI
+import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        VStack(spacing: 0){
+        ZStack {
             HStack{
-                EvilBall()
-                    .scaleEffect(6)
+                VortexView(.fire) {
+                    Circle()
+                        .fill(.white)
+                        .blendMode(.plusLighter)
+                        .blur(radius: 3)
+                        .frame(width: 30)
+                        .tag("circle")
+                }
+                .scaleEffect(0.6)
+                .offset(x: 78)
+                VortexView(.fire) {
+                    Circle()
+                        .fill(.white)
+                        .blendMode(.plusLighter)
+                        .blur(radius: 3)
+                        .frame(width: 30)
+                        .tag("circle")
+                }
+                .scaleEffect(0.6)
+                .offset(x: -78)
             }
+            .rotationEffect(.degrees(180))
+            .offset(y:18)
+            JetPack()
+            ShockedBall()
+                .scaleEffect(1.5)
         }
     }
 }
