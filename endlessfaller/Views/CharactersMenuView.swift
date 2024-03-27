@@ -86,8 +86,6 @@ struct CharactersMenuView: View {
                                                                     .font(idiom == .pad ? .system(size: 39) :.system(size: 21))
                                                                     .bold()
                                                                     .italic()
-                                                                    .padding(.top)
-                                                                    .padding(0)
                                                             } else {
                                                                 HStack(spacing: idiom == .pad ? 21 : 0){
                                                                     if index > 8 {

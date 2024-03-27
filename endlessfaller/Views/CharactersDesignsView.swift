@@ -10,7 +10,7 @@ import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        BoinsView()
+        WhiteBallView()
     }
 }
 struct EyesView: View {
