@@ -80,6 +80,14 @@ struct CharactersMenuView: View {
                                                                     .customTextStroke()
                                                                     .bold()
                                                                     .italic()
+                                                            } else if index < 9 {
+                                                                Text("Free")
+                                                                    .customTextStroke(width: 1.5)
+                                                                    .font(idiom == .pad ? .system(size: 39) :.system(size: 21))
+                                                                    .bold()
+                                                                    .italic()
+                                                                    .padding(.top)
+                                                                    .padding(0)
                                                             } else {
                                                                 HStack(spacing: idiom == .pad ? 21 : 0){
                                                                     if index > 8 {
@@ -87,14 +95,25 @@ struct CharactersMenuView: View {
                                                                             .scaleEffect(idiom == .pad ? 1 : 0.6)
                                                                             .padding(0)
                                                                     }
-                                                                    Text("\(character.cost)")
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .font(.title3)
-                                                                        .minimumScaleFactor(0.2)
-                                                                        .scaleEffect(idiom == .pad ? 1.8 : 1)
-                                                                        .customTextStroke()
-                                                                        .padding(0)
+                                                                    if character.cost.count < 4 {
+                                                                        Text("\(character.cost)")
+                                                                        
+                                                                            .bold()
+                                                                            .italic()
+                                                                            .lineLimit(1)
+                                                                            .customTextStroke(width: 1.2)
+                                                                            .font(idiom == .pad ? .system(size: 39) : .system(size: 21))
+                                                                            .padding(0)
+
+                                                                    } else {
+                                                                        Text("\(character.cost)")
+                                                                            .bold()
+                                                                            .italic()
+                                                                            .lineLimit(1)
+                                                                            .customTextStroke(width: 1.2)
+                                                                            .font(idiom == .pad ? .system(size: 36) : .system(size: 12))
+                                                                            .padding(0)
+                                                                    }
                                                                         
                                                                 }
                                                                 .offset(y: idiom == .pad ? 30 : 0)

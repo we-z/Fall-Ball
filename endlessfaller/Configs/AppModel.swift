@@ -484,7 +484,7 @@ struct CustomTextStrokeModifier: ViewModifier {
             }
         } symbols: {
             content
-                
+                .minimumScaleFactor(0.2)
                 .tag(id)
                 .blur(radius: strokeSize)
         }
