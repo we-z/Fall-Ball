@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            SpeedInstruction()
+            HangTight()
         }
     }
 }
@@ -1264,12 +1264,11 @@ struct HangTight: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .font(.largeTitle)
-                .customTextStroke()
+                .customTextStroke(width:1.5)
         }
         .frame(width: 300, height: 300)
         .background(Color.green)
         .cornerRadius(30)
-        .animatedOffset(speed: 1.5)
         .allowsHitTesting(false)
     }
 }
