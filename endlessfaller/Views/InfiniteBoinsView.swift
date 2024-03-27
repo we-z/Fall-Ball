@@ -35,6 +35,7 @@ struct InfiniteBoinsView: View {
                             .multilineTextAlignment(.center)
                             .scaleEffect(1.5)
                     }
+                    .customTextStroke()
                     .offset(y:-60)
                 }
                 Spacer()

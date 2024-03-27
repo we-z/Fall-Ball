@@ -14,19 +14,18 @@ struct LandingPageView: View {
                 Text("Swipe up \nto play!")
                     .italic()
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.black)
                     .padding()
                 Image(systemName: "arrow.up")
-                    .foregroundColor(.black)
             }
             .bold()
             .font(.largeTitle)
             .scaleEffect(1.5)
             SwipeUpHand()
-                .scaleEffect(0.75)
                 .offset(x: 40, y:40)
         }
+        .frame(width: 300, height: 400)
         .animatedOffset(speed: 1)
+        .customTextStroke(width: 1.8)
     }
 }
 

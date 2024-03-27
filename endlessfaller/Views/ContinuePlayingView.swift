@@ -28,7 +28,7 @@ struct ContinuePlayingView: View {
                             .bold()
                             .italic()
                             .font(userPersistedData.infiniteBoinsUnlocked ? .largeTitle : .title)
-                            .foregroundColor(.black)
+                            .customTextStroke()
                     }
                     .padding(.horizontal, 9)
                     .padding(.top, 12)
@@ -52,7 +52,7 @@ struct ContinuePlayingView: View {
                     .italic()
                     .font(.largeTitle)
                     .padding(.bottom, 27)
-                    .foregroundColor(.black)
+                    .customTextStroke(width: 1.5)
                 Button {
                     if userPersistedData.boinBalance >= appModel.costToContinue || userPersistedData.infiniteBoinsUnlocked {
                         userPersistedData.decrementBalance(amount: appModel.costToContinue)
@@ -70,7 +70,7 @@ struct ContinuePlayingView: View {
                             .font(.largeTitle)
                             .scaleEffect(1.2)
                             .padding(.trailing, 3)
-                            .foregroundColor(.black)
+                            .customTextStroke(width: 1.5)
                         BoinsView()
                         Spacer()
                     }
@@ -122,15 +122,14 @@ struct ContinuePlayingView: View {
                 Text("Swipe up\nto cancel")
                     .italic()
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.black)
                     .padding()
                 Image(systemName: "arrow.up")
-                    .foregroundColor(.black)
             }
             .padding(60)
             .bold()
             .font(.largeTitle)
             .animatedOffset(speed: 1)
+            .customTextStroke(width: 1.5)
             .scaleEffect(1.2)
         }
         .offset(y: UIDevice.isOldDevice ? 60 : 90)

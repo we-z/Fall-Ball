@@ -448,6 +448,55 @@ extension Color {
     }
 }
 
+struct CustomTextStrokeModifier: ViewModifier {
+    private let id = UUID()
+    var strokeSize: CGFloat = 1
+    var strokeColor: Color = .black
+
+    func body(content: Content) -> some View {
+        if strokeSize > 0 {
+            appliedStrokeBackground(content: content)
+        } else {
+            content
+        }
+    }
+
+    private func appliedStrokeBackground(content: Content) -> some View {
+        
+        content
+            .background(
+                Rectangle()
+                    .foregroundColor(strokeColor)
+                    .mask(alignment: .center) {
+                        mask(content: content)
+                    }
+                    .padding(-10)
+                    .allowsHitTesting(false)
+            )
+            .foregroundColor(.white)
+    }
+
+    func mask(content: Content) -> some View {
+        Canvas { context, size in
+            context.addFilter(.alphaThreshold(min: 0.01))
+            if let resolvedView = context.resolveSymbol(id: id) {
+                context.draw(resolvedView, at: .init(x: size.width/2, y: size.height/2))
+            }
+        } symbols: {
+            content
+                
+                .tag(id)
+                .blur(radius: strokeSize)
+        }
+    }
+}
+
+extension View {
+    func customTextStroke(color: Color = .black, width: CGFloat = 1) -> some View {
+        modifier(CustomTextStrokeModifier(strokeSize: width, strokeColor: color))
+    }
+}
+
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners

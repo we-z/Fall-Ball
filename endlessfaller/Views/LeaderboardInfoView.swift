@@ -25,6 +25,7 @@ struct LeaderboardInfoView: View {
                     .multilineTextAlignment(.center)
                     .padding()
             }
+            .customTextStroke()
         }
         .frame(width: 300, height: 300)
         .background(RandomGradientView())

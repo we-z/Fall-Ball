@@ -10,26 +10,19 @@ import SwiftUI
 struct TitleView: View {
     var body: some View {
         ZStack{
-            VStack(spacing: 0){
-                Rectangle()
-                    .foregroundColor(.blue)
-                Rectangle()
-                    .foregroundColor(.red)
-            }
+            RandomGradientView()
             VStack(spacing: 6){
                 Text("FALL")
                     .bold()
                     .font(.largeTitle)
                     .italic()
-                    .foregroundColor(.white)
-                    .shadow(color: .black, radius: 0.5, x: -3, y: 3)
+                    .customTextStroke()
                     
                 Text("BALL")
                     .bold()
                     .font(.largeTitle)
                     .italic()
-                    .foregroundColor(.white)
-                    .shadow(color: .black, radius: 0.5, x: -3, y: 3)
+                    .customTextStroke()
                     
             }
             .scaleEffect(3)

@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            LeaderboardRewardView()
+            SpeedInstruction()
         }
     }
 }
@@ -894,7 +894,9 @@ struct KeepSwiping: View {
             }
             .animatedOffset(speed: 0.5)
         }
-        .foregroundColor(.black)
+        .frame(width: 300, height: 450)
+        
+        .customTextStroke(width: 1.8)
         .allowsHitTesting(false)
     }
 }
@@ -916,6 +918,7 @@ struct PodiumView: View {
                 Text("3")
                     .bold()
                     .font(.system(size: 15))
+                    .customTextStroke()
             }
             ZStack{
                 Rectangle()
@@ -932,6 +935,7 @@ struct PodiumView: View {
                     .bold()
                     .font(.system(size: 15))
                     .offset(y: -9)
+                    .customTextStroke()
                     
             }
             ZStack{
@@ -950,6 +954,7 @@ struct PodiumView: View {
                     .bold()
                     .font(.system(size: 15))
                     .offset(y: -3)
+                    .customTextStroke()
             }
             .offset(x: 2)
         }
@@ -972,15 +977,12 @@ struct Instruction: View {
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.5)
-        //.flashing()
+        .customTextStroke()
     }
 }
 struct SwipeUpHand: View {
     var body: some View {
         ZStack{
-            Image(systemName: "hand.point.up.left")
-                .foregroundColor(.black)
-                .bold()
             Image(systemName: "hand.point.up.left.fill")
                 .foregroundColor(.yellow)
                 .offset(x:0.3)
@@ -997,18 +999,20 @@ struct SwipeUpNowView: View {
                 .italic()
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
+                .customTextStroke()
                 .scaleEffect(1.5)
                 .padding()
             Image(systemName: "arrow.up")
                 .padding(.top, 30)
                 .bold()
                 .font(.largeTitle)
+                .customTextStroke()
                 .scaleEffect(1.5)
                 .overlay{
                     SwipeUpHand()
                         .offset(x:39, y:69)
                 }
-                .animatedOffset(speed: 0.5)
+                
         }
         .foregroundColor(.black)
         .allowsHitTesting(false)
@@ -1026,7 +1030,7 @@ struct Instruction2: View {
                 .multilineTextAlignment(.center)
                 .padding()
         }
-        .foregroundColor(.black)
+        .customTextStroke()
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.4)
@@ -1049,7 +1053,7 @@ struct Instruction3: View {
                 .bold()
                 .padding()
         }
-        .foregroundColor(.black)
+        .customTextStroke()
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.2)
@@ -1078,7 +1082,8 @@ struct SwipeFaster: View {
             }
             .animatedOffset(speed: 0.5)
         }
-        .foregroundColor(.black)
+        .frame(width: 180, height: 390)
+        .customTextStroke(width: 1.8)
         .allowsHitTesting(false)
     }
 }
@@ -1104,7 +1109,8 @@ struct JustFaster: View {
             }
             .animatedOffset(speed: 0.5)
         }
-        .foregroundColor(.black)
+        .frame(width: 180, height: 330)
+        .customTextStroke(width: 1.8)
         .allowsHitTesting(false)
     }
 }
@@ -1130,7 +1136,8 @@ struct SwipeAsFastAsYouCan: View {
             }
             .animatedOffset(speed: 0.5)
         }
-        .foregroundColor(.black)
+        .frame(width: 210, height: 410)
+        .customTextStroke(width: 1.8)
         .allowsHitTesting(false)
     }
 }
@@ -1147,7 +1154,7 @@ struct SpeedInstruction: View {
                 .padding()
             VStack{
                 Image(systemName: "arrow.up")
-                    .padding(.top, 36)
+                    .padding(.top, 45)
                     .bold()
                     .font(.largeTitle)
                     .scaleEffect(1.5)
@@ -1156,7 +1163,8 @@ struct SpeedInstruction: View {
             }
             .animatedOffset(speed: 0.5)
         }
-        .foregroundColor(.black)
+        .frame(width: 240, height: 480)
+        .customTextStroke(width: 1.8)
         .allowsHitTesting(false)
     }
 }
@@ -1170,7 +1178,7 @@ struct KeepGoing: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
-            .foregroundColor(.black)
+            .customTextStroke()
             .flashing()
     }
 }
@@ -1184,7 +1192,7 @@ struct YourGood: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
-            .foregroundColor(.black)
+            .customTextStroke()
             .flashing()
     }
 }
@@ -1198,7 +1206,7 @@ struct YourInsane: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
-            .foregroundColor(.black)
+            .customTextStroke()
             .flashing()
     }
 }
@@ -1212,7 +1220,7 @@ struct GoBerzerk: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
-            .foregroundColor(.black)
+            .customTextStroke()
             .flashing()
     }
 }
@@ -1228,8 +1236,7 @@ struct NewBestScore: View {
                     .multilineTextAlignment(.center)
                     .padding()
                     .font(.largeTitle)
-                    .foregroundColor(.black)
-                    
+                    .customTextStroke()
                     .allowsHitTesting(false)
             }
         }
@@ -1257,7 +1264,7 @@ struct HangTight: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .font(.largeTitle)
-                .foregroundColor(.black)
+                .customTextStroke()
         }
         .frame(width: 300, height: 300)
         .background(Color.green)
@@ -1277,7 +1284,7 @@ struct SomethingWentWrongBoins: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .font(.largeTitle)
-                .foregroundColor(.black)
+                .customTextStroke()
         }
         .frame(width: 300, height: 300)
         .background(Color.red)
@@ -1294,27 +1301,24 @@ struct WastedView: View {
     var body: some View {
         ZStack {
             VStack {
-//                Text("💀")
-//                    .foregroundColor(.black)
-//                    .bold()
-//                    .font(.largeTitle)
-//                    .scaleEffect(3)
-//                    .padding(.bottom, 40)
-                Text("WASTED!")
+                Text("💀")
                     .foregroundColor(.black)
+                    .bold()
+                    .font(.largeTitle)
+                    .scaleEffect(3)
+                    .padding(.bottom, 40)
+                Text("WASTED!")
                     .italic()
                     .bold()
                     .font(.largeTitle)
                     .padding(9)
                     .scaleEffect(1.5)
+                    
             }
-            // 2. Apply the offset modifier based on the shake state variable
-            .offset(y: shake ? -21 : 21)
-            .onAppear() {
-                withAnimation(.linear(duration: 0.1).repeatForever(autoreverses: true)){
-                    self.shake.toggle()
-                }
-            }
+            .frame(width: 300, height: 300)
+            .animatedOffset(speed: 0.1)
+            .customTextStroke(color: .black, width: 1.8)
+            
         }
         .allowsHitTesting(false)
     }
@@ -1347,8 +1351,8 @@ struct BoinCollectedView: View {
                     .italic()
                     .bold()
                     .multilineTextAlignment(.center)
-                    .foregroundColor(textColor)
                     .font(.largeTitle)
+                    .customTextStroke()
                     .padding(9)
                     .scaleEffect(1.5)
                     .offset(y: animationEnding ? deviceHeight : 0)
@@ -1403,9 +1407,9 @@ struct DailyBoinCollectedView: View {
                 Text("Daily Boin\nCollected!")
                     .italic()
                     .bold()
-                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .font(.title)
+                    .customTextStroke()
                     .padding(15)
             }
             .scaleEffect(appearFromTop ? 1 : 0)
@@ -1463,6 +1467,7 @@ struct LeaderboardRewardView: View {
                 .font(.largeTitle)
                 .bold()
                 .italic()
+                .customTextStroke()
                 .padding(45)
             
         }

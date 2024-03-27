@@ -61,7 +61,7 @@ struct ContentView: View {
                                                 .font(.system(size: 100))
                                                 .padding(36)
                                                 .padding(.top, UIDevice.isOldDevice ? 0 : 30)
-                                                .foregroundColor(.black)
+                                                .customTextStroke(width: 3)
                                         }
                                         Spacer()
                                     }
@@ -79,7 +79,7 @@ struct ContentView: View {
                                 .bold()
                                 .italic()
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(.black)
+                                .customTextStroke()
                                 .scaleEffect(1.5)
                                 
                             }
@@ -90,6 +90,7 @@ struct ContentView: View {
                             Spacer()
                             if appModel.firstGamePlayed {
                                 GameOverScreenView()
+                                    .offset(y: deviceHeight * 0.045)
                                     .scaleEffect(UIDevice.isOldDevice ? 0.8 : 1)
                             } else {
                                 LandingPageView()

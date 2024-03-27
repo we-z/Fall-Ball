@@ -74,12 +74,12 @@ struct HUDView: View {
                 VStack{
                     HStack{
                         Text(String(appModel.score))
+                            .customTextStroke(width: 3)
                             .bold()
                             .italic()
                             .font(.system(size: 100))
                             .padding(36)
                             .padding(.top, UIDevice.isOldDevice ? 0 : 30)
-                            .foregroundColor(.black)
                             .allowsHitTesting(false)
                         Spacer()
                         //                                    Text("\(speedFactor)")

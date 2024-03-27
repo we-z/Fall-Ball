@@ -24,12 +24,13 @@ struct SecretShopView: View {
                         .opacity(0.3)
                     HStack{
                         Text("🤫 Secret Shop 🤫")
-                            .foregroundColor(.black)
+                            .customTextStroke()
                             .italic()
                             .bold()
                             .font(.largeTitle)
                     }
                     Divider()
+                        .frame(height: 3)
                         .overlay(.black)
                         .padding([.horizontal])
                     HStack{
@@ -37,7 +38,7 @@ struct SecretShopView: View {
                         ScrollView(showsIndicators: false){
                             HStack{
                                 Text("🎩 Hats 🎩")
-                                    .foregroundColor(.black)
+                                    .customTextStroke()
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)
@@ -82,7 +83,7 @@ struct SecretShopView: View {
                             }
                             HStack{
                                 Text("🎒 Bags 🎒")
-                                    .foregroundColor(.black)
+                                    .customTextStroke()
                                     .italic()
                                     .bold()
                                     .font(.largeTitle)

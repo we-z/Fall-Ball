@@ -42,6 +42,7 @@ struct LevelsToPassPlayerView: View {
                     Text("\(todaysPlayersList[gameCenter.nextPlayerIndex].score - appModel.score) to pass")
                         .bold()
                         .italic()
+                        .customTextStroke()
                         .multilineTextAlignment(.center)
                         .padding([.horizontal, .top])
                     if let character = appModel.characters.first(where: {$0.characterID.hash == todaysPlayersList[gameCenter.nextPlayerIndex].ballID}) {
@@ -54,6 +55,8 @@ struct LevelsToPassPlayerView: View {
                         .bold()
                         .italic()
                         .multilineTextAlignment(.center)
+                        .customTextStroke()
+                        .frame(width: 127)
                         .padding([.horizontal, .bottom])
                 }
                 .frame(width: 127)

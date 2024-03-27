@@ -37,8 +37,7 @@ struct CharactersMenuView: View {
                     .opacity(0.3)
                 HStack{
                     Text("🌍 Ball Shop 🌍")
-                        .foregroundColor(.white)
-                        .shadow(color: .black, radius: 0.1, x: -3, y: 3)
+                        .customTextStroke()
                         .italic()
                         .bold()
                         .font(.largeTitle)
@@ -78,7 +77,7 @@ struct CharactersMenuView: View {
                                                                 .frame(maxHeight: 36)
                                                             if userPersistedData.purchasedSkins.contains(character.characterID) && index > 8 {
                                                                 Text("Available")
-                                                                    .foregroundColor(.black)
+                                                                    .customTextStroke()
                                                                     .bold()
                                                                     .italic()
                                                             } else {
@@ -94,7 +93,7 @@ struct CharactersMenuView: View {
                                                                         .font(.title3)
                                                                         .minimumScaleFactor(0.2)
                                                                         .scaleEffect(idiom == .pad ? 1.8 : 1)
-                                                                        .foregroundColor(.black)
+                                                                        .customTextStroke()
                                                                         .padding(0)
                                                                         
                                                                 }
@@ -120,7 +119,7 @@ struct CharactersMenuView: View {
                             Text("Secret Shop 🤫")
                                 .padding(6)
                                 .padding(.horizontal, 6)
-                                .foregroundColor(.black)
+                                .customTextStroke()
                                 .font(.system(size: 21))
                                 .bold()
                                 .italic()

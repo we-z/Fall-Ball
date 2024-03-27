@@ -38,8 +38,10 @@ struct HomeButtonsView: View {
                         Text(userPersistedData.infiniteBoinsUnlocked ? "∞" : String(userPersistedData.boinBalance))
                             .bold()
                             .italic()
-                            .foregroundColor(.black)
+                        
+                            .customTextStroke()
                             .font(.largeTitle)
+                            
                             .scaleEffect(userPersistedData.infiniteBoinsUnlocked ? 1.8 : 1)
                             .padding(.horizontal, userPersistedData.infiniteBoinsUnlocked ? 12 : 0)
                             .offset(y: userPersistedData.infiniteBoinsUnlocked ? -3 : 0)

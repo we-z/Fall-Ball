@@ -10,35 +10,7 @@ import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        ZStack {
-            HStack{
-                VortexView(.fire) {
-                    Circle()
-                        .fill(.white)
-                        .blendMode(.plusLighter)
-                        .blur(radius: 3)
-                        .frame(width: 30)
-                        .tag("circle")
-                }
-                .scaleEffect(0.6)
-                .offset(x: 78)
-                VortexView(.fire) {
-                    Circle()
-                        .fill(.white)
-                        .blendMode(.plusLighter)
-                        .blur(radius: 3)
-                        .frame(width: 30)
-                        .tag("circle")
-                }
-                .scaleEffect(0.6)
-                .offset(x: -78)
-            }
-            .rotationEffect(.degrees(180))
-            .offset(y:18)
-            JetPack()
-            ShockedBall()
-                .scaleEffect(1.5)
-        }
+        BoinsView()
     }
 }
 struct EyesView: View {
@@ -119,7 +91,7 @@ struct BoinsView: View {
     var body: some View {
         ZStack{
             Circle()
-                .frame(width: 36, height: 36)
+                .frame(width: 39, height: 39)
                 .foregroundColor(.black)
             Circle()
                 .frame(width: 30, height: 30)

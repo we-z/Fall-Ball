@@ -93,16 +93,16 @@ struct CurrencyPageView: View {
                                         .multilineTextAlignment(.center)
                                         .scaleEffect(1.5)
                                 }
+                                .frame(width: deviceWidth, height: deviceHeight / 2)
+                                .customTextStroke(width: 3)
                                 .offset(y:-60)
-                                
                             }
                             Spacer()
                         }
                     } else {
                         HStack{
                             Text("💰🤩 Bundles 🤩💰")
-                                .foregroundColor(.white)
-                                .shadow(color: .black, radius: 0.1, x: -3, y: 3)
+                                .customTextStroke()
                                 .italic()
                                 .bold()
                                 .font(.largeTitle)
@@ -144,7 +144,7 @@ struct CurrencyPageView: View {
                                                                     .padding(.top)
                                                                 if index != 8 {
                                                                     Text(String(bundles[index].coins) + "\nBoins")
-                                                                        .foregroundColor(.black)
+                                                                        .customTextStroke()
                                                                         .multilineTextAlignment(.center)
                                                                         .bold()
                                                                         .italic()
@@ -152,19 +152,19 @@ struct CurrencyPageView: View {
                                                                         .padding(.top, 6)
                                                                 } else {
                                                                     Text("∞")
-                                                                        .foregroundColor(.black)
+                                                                        .customTextStroke()
                                                                         .italic()
                                                                         .font(.largeTitle)
                                                                         .scaleEffect(1.8)
                                                                     Text("Boins")
-                                                                        .foregroundColor(.black)
+                                                                        .customTextStroke()
                                                                         .bold()
                                                                         .italic()
                                                                         .font(.title2)
                                                                     
                                                                 }
                                                                 Text(bundles[index].cost)
-                                                                    .foregroundColor(.black)
+                                                                    .customTextStroke()
                                                                     .padding(.vertical, 9)
                                                                     .italic()
                                                                     .bold()

@@ -19,8 +19,7 @@ struct AppStoreScreenShotsView: View {
                     .font(.largeTitle)
                     .bold()
                     .italic()
-                    .foregroundColor(.white)
-                    .shadow(color: .black, radius: 0.1, x: -3, y: 3)
+                    .customTextStroke()
                     .scaleEffect(1.5)
                 ZStack{
                     Image("homescreenshot")
