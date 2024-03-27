@@ -60,7 +60,7 @@ struct PlayersPlaqueView: View {
                 }
                 
                 Text(GKLocalPlayer.local.isAuthenticated ? GKLocalPlayer.local.displayName : "Unknown Player")
-                    .customTextStroke()
+                    .customTextStroke(width: 1.5)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 150)
                     .bold()
