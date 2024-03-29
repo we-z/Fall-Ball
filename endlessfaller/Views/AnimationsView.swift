@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            HangTight()
+            WastedView()
         }
     }
 }

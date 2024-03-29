@@ -137,9 +137,10 @@ struct GameOverScreenView: View {
                     .bold()
                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
                 }
-                .frame(height: 300)
+                
                 .animatedOffset(speed: 1)
-                .customTextStroke(width: 1.5)
+                .frame(height: 300)
+                .customTextStroke(width: 1.8)
                 Spacer()
             }
             if appModel.showNewBestScore {
