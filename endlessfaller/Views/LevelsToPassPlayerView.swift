@@ -52,11 +52,10 @@ struct LevelsToPassPlayerView: View {
                             .font(.system(size: 40))
                     }
                     Text(todaysPlayersList[gameCenter.nextPlayerIndex].name)
+                        .customTextStroke()
+                        .multilineTextAlignment(.center)
                         .bold()
                         .italic()
-                        .multilineTextAlignment(.center)
-                        .customTextStroke()
-                        .frame(width: 127)
                         .padding([.horizontal, .bottom])
                 }
                 .frame(width: 127)

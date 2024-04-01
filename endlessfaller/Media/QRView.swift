@@ -19,15 +19,13 @@ struct QRView: View {
                 Text("Download")
                     .bold()
                     .italic()
-                    .font(.largeTitle)
-                    .customTextStroke(width: 1.5)
-                    .scaleEffect(1.5)
+                    .font(.system(size: 45))
+                    .customTextStroke(width: 2.1)
                 Text("FALL BALL")
                     .bold()
                     .italic()
-                    .font(.largeTitle)
-                    .customTextStroke(width: 1.5)
-                    .scaleEffect(1.5)
+                    .font(.system(size: 45))
+                    .customTextStroke(width: 2.1)
             }
             HStack(spacing: 270) {
                 ShockedBall()
@@ -37,13 +35,13 @@ struct QRView: View {
             }
             ZStack{
                 Rectangle()
-                    .frame(width:224, height: 224)
+                    .frame(width:221, height: 221)
                 Image("fallballQR")
                     .resizable()
                     .frame(width: 210, height: 210)
                     .cornerRadius(30)
             }
-            .cornerRadius(39)
+            .cornerRadius(36)
         }
         .mask(
             Circle()
