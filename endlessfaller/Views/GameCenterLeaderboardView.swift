@@ -622,6 +622,11 @@ struct GameCenterLeaderboardView: View {
                 LeaderboardInfoView()
             }
         }
+        .onAppear{
+            Task{
+                await gameCenter.loadLeaderboard()
+            }
+        }
     }
 }
 
