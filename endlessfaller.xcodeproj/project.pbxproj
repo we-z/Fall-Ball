@@ -38,6 +38,7 @@
 		7A9755D62B78717200473737 /* CloudStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9755D52B78717200473737 /* CloudStorage */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
 		7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */; };
+		7AA5F9752BBCFF2F0003B2AD /* SwiftFX in Frameworks */ = {isa = PBXBuildFile; productRef = 7AA5F9742BBCFF2F0003B2AD /* SwiftFX */; };
 		7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */; };
 		7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */; };
 		7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB05CE42A65C67A00EE4D7B /* ProductList.plist */; };
@@ -222,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA5F9752BBCFF2F0003B2AD /* SwiftFX in Frameworks */,
 				7A9755D62B78717200473737 /* CloudStorage in Frameworks */,
 				7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */,
 				7A689B3C2BA79AE1006D3AA5 /* SwizzleSwift in Frameworks */,
@@ -520,6 +522,7 @@
 				7A1E4F772B7AFBCC00CDF00F /* CircularProgress */,
 				7A38B59B2B85727000DDD280 /* Vortex */,
 				7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */,
+				7AA5F9742BBCFF2F0003B2AD /* SwiftFX */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -685,6 +688,7 @@
 				7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */,
 				7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */,
 				7A689B3A2BA79AE1006D3AA5 /* XCRemoteSwiftPackageReference "SwizzleSwift" */,
+				7AA5F9732BBCFF2F0003B2AD /* XCRemoteSwiftPackageReference "SwiftFX" */,
 			);
 			productRefGroup = 7AD2343C2A5F824800ED626D /* Products */;
 			projectDirPath = "";
@@ -1525,6 +1529,14 @@
 				minimumVersion = 0.4.0;
 			};
 		};
+		7AA5F9732BBCFF2F0003B2AD /* XCRemoteSwiftPackageReference "SwiftFX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hexagons/SwiftFX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		7AD234692A5F848700ED626D /* XCRemoteSwiftPackageReference "swiftui-vertical-tab-view" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-vertical-tab-view";
@@ -1555,6 +1567,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */;
 			productName = CloudStorage;
+		};
+		7AA5F9742BBCFF2F0003B2AD /* SwiftFX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7AA5F9732BBCFF2F0003B2AD /* XCRemoteSwiftPackageReference "SwiftFX" */;
+			productName = SwiftFX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

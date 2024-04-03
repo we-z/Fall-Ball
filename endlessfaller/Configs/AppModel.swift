@@ -467,7 +467,7 @@ struct CustomTextStrokeModifier: ViewModifier {
             .background(
                 Rectangle()
                     .foregroundColor(strokeColor)
-                    .mask(alignment: .center) {
+                    .mask {
                         mask(content: content)
                     }
                     .padding(-10)
@@ -484,7 +484,6 @@ struct CustomTextStrokeModifier: ViewModifier {
             }
         } symbols: {
             content
-                .minimumScaleFactor(0.2)
                 .tag(id)
                 .blur(radius: strokeSize)
         }
@@ -494,6 +493,28 @@ struct CustomTextStrokeModifier: ViewModifier {
 extension View {
     func customTextStroke(color: Color = .black, width: CGFloat = 1) -> some View {
         modifier(CustomTextStrokeModifier(strokeSize: width, strokeColor: color))
+    }
+}
+
+struct CustomShadowModifier: ViewModifier {
+    var strokeSize: CGFloat = 1
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .shadow(color: .black, radius: 0.3, x: -strokeSize, y: 0)
+            .shadow(color: .black, radius: 0.3, x: -strokeSize, y: -strokeSize)
+            .shadow(color: .black, radius: 0.3, x: -strokeSize, y: strokeSize)
+            .shadow(color: .black, radius: 0.3, x: 0, y: -1)
+            .shadow(color: .black, radius: 0.3, x: 0, y: 1)
+            .shadow(color: .black, radius: 0.3, x: strokeSize, y: strokeSize)
+            .shadow(color: .black, radius: 0.3, x: strokeSize, y: 0)
+            .shadow(color: .black, radius: 0.3, x: strokeSize, y: -strokeSize)
+    }
+}
+
+extension View {
+    func customShadow(width: CGFloat = 1) -> some View {
+        self.modifier(CustomShadowModifier(strokeSize: width))
     }
 }
 

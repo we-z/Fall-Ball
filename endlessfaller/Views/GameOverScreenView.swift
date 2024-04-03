@@ -23,7 +23,7 @@ struct GameOverScreenView: View {
             VStack{
                 Spacer()
                 Text("Game Over!")
-                    .customTextStroke(width: 1.5)
+                    .customShadow(width: 0.6)
                     .italic()
                     .bold()
                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))

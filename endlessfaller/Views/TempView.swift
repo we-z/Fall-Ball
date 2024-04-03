@@ -15,14 +15,11 @@ struct TempView: View {
             VStack{
                 Text("Free him!")
                     .font(.largeTitle)
-                    .multilineTextAlignment(.center)
                     .bold()
                     .italic()
                     .multilineTextAlignment(.center)
-                    .customTextStroke()
             }
             .frame(width: 127)
-            .background(Color.primary.opacity(0.1))
             .cornerRadius(21)
         }
     }
