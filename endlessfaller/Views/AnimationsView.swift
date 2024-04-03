@@ -1316,7 +1316,7 @@ struct WastedView: View {
             }
             .frame(width: 300, height: 300)
             .animatedOffset(speed: 0.1)
-            .customTextStroke(color: .black, width: 1.8)
+            .customShadow()
             
         }
         .allowsHitTesting(false)
