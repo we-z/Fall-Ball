@@ -9,21 +9,10 @@ import CloudKit
 import GameKit
 
 struct GameCenterLeaderboardView: View {
-    let deviceWidth = UIScreen.main.bounds.width
-    let deviceHeight = UIScreen.main.bounds.height
     @ObservedObject private var model = AppModel.sharedAppModel
     @ObservedObject var gameCenter = GameCenter.shared
-    @State var place = 1
-    @State var unserNameTextField = ""
-    @State var recordID: CKRecord.ID? = nil
-    @FocusState var isTextFieldFocused: Bool
-    @State private var isGameCenterSheetPresented = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     private var localPlayer = GKLocalPlayer.local
-    @AppStorage("IsGameCenterActive") var isGKActive:Bool = false
-    let leaderboardIdentifier = "fallball.leaderboard"
-    @State var isGameCenterEnabled: Bool = false
-    @State var timeLeft = 0.0
     @State var selectedLeaderboard = 0
     
     
@@ -70,7 +59,6 @@ struct GameCenterLeaderboardView: View {
                 VStack{
                     //if playersList.isEmpty{
                         ZStack{
-                            GeometryReader { g in
                                 ZStack{
                                     VStack{
                                         HStack{
@@ -339,7 +327,7 @@ struct GameCenterLeaderboardView: View {
                                                         
                                                     }
                                                     .allowsHitTesting(false)
-                                                    .frame(width: g.size.width, height: 3400, alignment: .center)
+                                                    .frame(width: self.idiom == .pad ? deviceWidth / 1.5 : deviceWidth, height: 3400, alignment: .center)
                                                     .scrollContentBackground(.hidden)
                                                 }
                                                 .refreshable {
@@ -591,7 +579,7 @@ struct GameCenterLeaderboardView: View {
                                                         
                                                     }
                                                     .allowsHitTesting(false)
-                                                    .frame(width: g.size.width, height: 3400, alignment: .center)
+                                                    .frame(width: self.idiom == .pad ? deviceWidth / 1.5 : deviceWidth, height: 3400, alignment: .center)
                                                     .scrollContentBackground(.hidden)
                                                 }
                                                 .refreshable {
@@ -609,7 +597,6 @@ struct GameCenterLeaderboardView: View {
                                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                                     }
                                 }
-                            }
                         }
                         .ignoresSafeArea()
                 }

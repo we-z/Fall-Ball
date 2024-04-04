@@ -52,7 +52,7 @@ struct LevelsToPassPlayerView: View {
                             .font(.system(size: 40))
                     }
                     Text(todaysPlayersList[gameCenter.nextPlayerIndex].name)
-                        .customShadow(width: 0.6)
+                        .customShadow(radius: 0.1, width: 0.6)
                         .multilineTextAlignment(.center)
                         .bold()
                         .italic()
