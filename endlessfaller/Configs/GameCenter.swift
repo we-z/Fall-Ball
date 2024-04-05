@@ -110,7 +110,7 @@ class GameCenter: ObservableObject {
                 }
                 if todaysPlayersListTemp.count > 0 {
                     self.todaysPlayersList = todaysPlayersListTemp
-                    nextPlayerIndex = (todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) ?? 0) - 1
+                    nextPlayerIndex = (todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) ?? todaysPlayersList.count) - 1
                 }
                 
             }
