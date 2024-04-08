@@ -770,21 +770,6 @@
       "type" : "NonConsumable"
     },
     {
-      "displayPrice" : "9999.99",
-      "familyShareable" : false,
-      "internalID" : "34FDC230",
-      "localizations" : [
-        {
-          "description" : "Infinite Coins",
-          "displayName" : "Infinite Coins",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "infinitecoins",
-      "referenceName" : "infinitecoins",
-      "type" : "NonConsumable"
-    },
-    {
       "displayPrice" : "4.99",
       "familyShareable" : false,
       "internalID" : "301A4154",
@@ -1008,6 +993,21 @@
       "productID" : "9999boins",
       "referenceName" : "9999boins",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9999.99",
+      "familyShareable" : false,
+      "internalID" : "C13DC712",
+      "localizations" : [
+        {
+          "description" : "Infinite Boins!",
+          "displayName" : "Infinite Boins!",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "infinite_boins",
+      "referenceName" : "infinite_boins",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {

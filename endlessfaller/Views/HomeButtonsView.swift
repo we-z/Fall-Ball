@@ -39,7 +39,7 @@ struct HomeButtonsView: View {
                             .bold()
                             .italic()
                         
-                            .customTextStroke()
+                            .customTextStroke(width:1.8)
                             .font(.largeTitle)
                             
                             .scaleEffect(userPersistedData.infiniteBoinsUnlocked ? 1.8 : 1)
@@ -166,12 +166,11 @@ struct HomeButtonsView: View {
                 Button {
                     showLeaderBoard = true
                 } label: {
-                    
-                PodiumView()
-                    .foregroundColor(.black)
-                    .padding(36)
-                    .scaleEffect(1.2)
-                    .offset(x:3)
+                    PodiumView()
+                        .foregroundColor(.black)
+                        .padding(36)
+                        .scaleEffect(1.2)
+                        .offset(x:3)
                 }
                 .buttonStyle(.roundedAndShadow3)
             }

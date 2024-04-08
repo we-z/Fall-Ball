@@ -510,7 +510,6 @@ struct CustomShadowModifier: ViewModifier {
             .shadow(color: .black, radius: radius, x: strokeSize, y: strokeSize)
             .shadow(color: .black, radius: radius, x: strokeSize, y: 0)
             .shadow(color: .black, radius: radius, x: strokeSize, y: -strokeSize)
-            .padding(.horizontal)
     }
 }
 
@@ -586,19 +585,9 @@ extension View {
         overlay(EdgeBorder(width: width, edges: edges).foregroundColor(color))
     }
 }
+
 let impactHeavy = UIImpactFeedbackGenerator(style: .heavy)
-struct RoundedAndShadowButtonStyle4:ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .compositingGroup()
-            .shadow(color: .black, radius: 0.1, x: configuration.isPressed ? 0 : -4, y: configuration.isPressed ? 0 : 4)
-            .offset(x: configuration.isPressed ? -4 : 0, y: configuration.isPressed ? 4 : 0)
-            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
-            .onChange(of: configuration.isPressed) { newPressSetting in
-                impactHeavy.impactOccurred()
-            }
-    }
-}
+
 
 struct RoundedAndShadowButtonStyle3:ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
@@ -645,12 +634,6 @@ struct CharacterMenuButtonStyle:ButtonStyle {
             .compositingGroup()
             .scaleEffect(configuration.isPressed ? 0.85 : 1)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
-    }
-}
-
-extension ButtonStyle where Self == RoundedAndShadowButtonStyle4 {
-    static var roundedAndShadow4:RoundedAndShadowButtonStyle4 {
-        RoundedAndShadowButtonStyle4()
     }
 }
 

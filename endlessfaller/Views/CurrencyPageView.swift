@@ -48,7 +48,7 @@ struct CurrencyPageView: View {
     @MainActor
     func unlockInfiniteBoins() async {
         do {
-            if (try await storeKit.purchase(bundleID: "infinitecoins")) != nil{
+            if (try await storeKit.purchase(bundleID: "infinite_boins")) != nil{
                 DispatchQueue.main.async {
                     userPersistedData.infiniteBoinsUnlocked = true
                 }
@@ -63,193 +63,196 @@ struct CurrencyPageView: View {
     
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack{
-                RandomGradientView()
-                    .ignoresSafeArea()
-                VStack{
-                    Capsule()
-                        .frame(maxWidth: 45, maxHeight: 9)
-                        .padding(.top, 9)
-                        .foregroundColor(.black)
-                        .opacity(0.3)
-                    if userPersistedData.infiniteBoinsUnlocked {
-                        VStack {
-                            Spacer()
-                            ZStack {
-                                RotatingSunView()
-                                    .frame(maxWidth: deviceWidth)
-                                VStack{
-                                    Text("∞")
-                                        .font(.system(size: 180))
-                                        .bold()
-                                        .italic()
-                                        .padding(1)
-                                        .animatedOffset(speed: 2)
-                                    Text("Infinite Boins\nUnlocked\n🔓")
-                                        .font(.largeTitle)
-                                        .bold()
-                                        .italic()
-                                        .multilineTextAlignment(.center)
-                                        .scaleEffect(1.5)
-                                }
-                                .frame(width: deviceWidth, height: deviceHeight / 2)
-                                .customTextStroke(width: 3)
-                                .offset(y:-60)
+        ZStack{
+            RandomGradientView()
+                .ignoresSafeArea()
+            VStack{
+                Capsule()
+                    .frame(maxWidth: 45, maxHeight: 9)
+                    .padding(.top, 9)
+                    .foregroundColor(.black)
+                    .opacity(0.3)
+                if userPersistedData.infiniteBoinsUnlocked {
+                    VStack {
+                        Spacer()
+                        ZStack {
+                            RotatingSunView()
+                                .frame(maxWidth: deviceWidth)
+                            VStack{
+                                Text("∞")
+                                    .font(.system(size: 180))
+                                    .bold()
+                                    .italic()
+                                    .padding(1)
+                                    .animatedOffset(speed: 2)
+                                Text("Infinite Boins\nUnlocked\n🔓")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .italic()
+                                    .multilineTextAlignment(.center)
+                                    .scaleEffect(1.5)
                             }
-                            Spacer()
+                            .frame(width: deviceWidth, height: deviceHeight / 2)
+                            .customTextStroke(width: 3)
+                            .offset(y:-60)
                         }
-                    } else {
-                        HStack{
-                            Text("💰🤩 Bundles 🤩💰")
-                                .customTextStroke()
-                                .italic()
-                                .bold()
-                                .font(.largeTitle)
-                                .scaleEffect(1.1)
-                        }
-                        HStack{
-                            Spacer()
-                            ScrollView(showsIndicators: false){
-                                ForEach(0..<bundles.count/3, id: \.self) { rowIndex in
-                                    HStack {
-                                        ForEach(0..<3, id: \.self) { columnIndex in
-                                            let index = rowIndex * 3 + columnIndex
-                                            if index < bundles.count {
-                                                let bundle = bundles[index]
-                                                Button {
-                                                    isProcessingPurchase = true
-                                                    if index != 8 {
-                                                        Task {
-                                                            await buyBoins(bundle: bundle)
-                                                        }
-                                                    } else {
-                                                        Task {
-                                                            await unlockInfiniteBoins()
-                                                        }
-                                                    }
-                                                } label: {
-                                                    Rectangle()
-                                                        .fill(.yellow)
-                                                        .cornerRadius(20)
-                                                        .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                        .overlay{
-                                                            RoundedRectangle(cornerRadius: 20)
-                                                                .stroke(Color.black, lineWidth: 3)
-                                                                .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                                .padding(1)
-                                                            VStack{
-                                                                BoinsView()
-                                                                    .scaleEffect(1.5)
-                                                                    .padding(.top)
-                                                                if index != 8 {
-                                                                    Text(String(bundles[index].coins) + "\nBoins")
-                                                                        .customTextStroke()
-                                                                        .multilineTextAlignment(.center)
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .font(.title2)
-                                                                        .padding(.top, 6)
-                                                                } else {
-                                                                    Text("∞")
-                                                                        .customTextStroke()
-                                                                        .italic()
-                                                                        .font(.largeTitle)
-                                                                        .scaleEffect(1.8)
-                                                                    Text("Boins")
-                                                                        .customTextStroke()
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .font(.title2)
-                                                                    
-                                                                }
-                                                                Text(bundles[index].cost)
-                                                                    .customTextStroke()
-                                                                    .padding(.vertical, 9)
-                                                                    .italic()
-                                                                    .bold()
-                                                            }
-                                                            if index == 1 {
-                                                                HStack{
-                                                                    Spacer()
-                                                                    Text("Best Seller")
-                                                                        .foregroundColor(.black)
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .font(.system(size: 15))
-                                                                    Spacer()
-                                                                    
-                                                                }
-                                                                .background{
-                                                                    Color.red
-                                                                }
-                                                                .frame(width: 210)
-                                                                .overlay{
-                                                                    Rectangle()
-                                                                        .stroke(Color.black, lineWidth: 3)
-                                                                }
-                                                                .rotationEffect(.degrees(45))
-                                                                .offset(x:idiom == .pad ? 60 : 21, y: idiom == .pad ? -90 : -69)
-                                                                .mask{
-                                                                    Rectangle()
-                                                                        .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                                }
-                                                                
-                                                            }
-                                                            if index == 8 {
-                                                                HStack{
-                                                                    Spacer()
-                                                                    Text("NEW!!!")
-                                                                        .foregroundColor(.black)
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .font(.system(size: 15))
-                                                                    Spacer()
-                                                                }
-                                                                .background{
-                                                                    Color.green
-                                                                }
-                                                                .frame(width: 210)
-                                                                .overlay{
-                                                                    Rectangle()
-                                                                        .stroke(Color.black, lineWidth: 3)
-                                                                }
-                                                                .rotationEffect(.degrees(45))
-                                                                .offset(x:idiom == .pad ? 60 : 18, y: idiom == .pad ? -90 : -69)
-                                                                .mask{
-                                                                    Rectangle()
-                                                                        .frame(width: geometry.size.width/3.6, height: idiom == .pad ? 270 : 210)
-                                                                }
-                                                                
-                                                            }
-                                                        }
-                                                        .accentColor(.black)
-                                                        .padding(6)
-                                                }
-                                                .buttonStyle(.roundedAndShadow6)
-                                                
+                        Spacer()
+                    }
+                } else {
+                    HStack{
+                        Text("💰🤩 Bundles 🤩💰")
+                            .customTextStroke()
+                            .italic()
+                            .bold()
+                            .font(.largeTitle)
+                            .scaleEffect(1.1)
+                    }
+                    HStack{
+                        Spacer()
+                        ScrollView(showsIndicators: false){
+                            ForEach(0..<bundles.count, id: \.self) { index in
+                                if index < bundles.count {
+                                    let bundle = bundles[index]
+                                    Button {
+                                        if index != 8 {
+                                            isProcessingPurchase = true
+                                            Task {
+                                                await buyBoins(bundle: bundle)
                                             }
+                                        } else {
+//                                            Task {
+//                                                await unlockInfiniteBoins()
+//                                            }
+                                            showAlert = true
                                         }
+                                    } label: {
+                                        Rectangle()
+                                            .fill(.yellow)
+                                            .cornerRadius(20)
+                                            .frame(height: 120)
+                                            .overlay{
+                                                RoundedRectangle(cornerRadius: 20)
+                                                    .stroke(Color.black, lineWidth: 3)
+                                                    .frame(height: 120)
+                                                    .padding(1)
+                                                HStack{
+                                                    BoinsView()
+                                                        .scaleEffect(1.5)
+                                                        .padding()
+                                                        .padding(.leading, deviceWidth / 30)
+                                                    if index != 8 {
+                                                        Text(String(bundles[index].coins) + " Boins")
+                                                            .customTextStroke(width: 1.5)
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.system(size: 27))
+                                                    } else {
+                                                        Text("∞")
+                                                            .customTextStroke()
+                                                            .italic()
+                                                            .font(.largeTitle)
+                                                            .padding()
+                                                            .scaleEffect(1.8)
+                                                        Text("Boins")
+                                                            .customTextStroke(width: 1.5)
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.system(size: 27))
+                                                        
+                                                    }
+                                                    Spacer()
+                                                    Text(bundles[index].cost)
+                                                        .customShadow()
+                                                        .font(.title3)
+                                                        .lineLimit(1)
+                                                        .italic()
+                                                        .bold()
+                                                        .padding(9)
+                                                        .background(.green)
+                                                        .cornerRadius(21)
+                                                        .padding(3)
+                                                        .background(.black)
+                                                        .cornerRadius(24)
+                                                        .padding(.trailing, 12)
+                                                }
+                                                if index == 1 {
+                                                    HStack{
+                                                        Spacer()
+                                                        Text("MOST POPULAR")
+                                                            .foregroundColor(.black)
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.system(size: 15))
+                                                        Spacer()
+                                                        
+                                                    }
+                                                    .background{
+                                                        Color.orange
+                                                    }
+                                                    .overlay{
+                                                        Rectangle()
+                                                            .stroke(Color.black, lineWidth: 3)
+                                                    }
+                                                    .rotationEffect(.degrees(30))
+                                                    .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
+                                                    .mask{
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
+                                                    }
+                                                    
+                                                }
+                                                if index == 8 {
+                                                    HStack{
+                                                        Spacer()
+                                                        Text("COMING SOON")
+                                                            .foregroundColor(.black)
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.system(size: 15))
+                                                        Spacer()
+                                                        
+                                                    }
+                                                    .background{
+                                                        Color.green
+                                                    }
+                                                    .overlay{
+                                                        Rectangle()
+                                                            .stroke(Color.black, lineWidth: 3)
+                                                    }
+                                                    .rotationEffect(.degrees(30))
+                                                    .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
+                                                    .mask{
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
+                                                    }
+                                                    
+                                                }
+
+                                            }
+                                            .accentColor(.black)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 9)
                                     }
-                                    .offset(x: 3)
+                                    .buttonStyle(.roundedAndShadow9)
+                                    
                                 }
-                                .padding(.bottom)
                             }
-                            Spacer()
+                            .padding(.bottom)
                         }
+                        Spacer()
                     }
                 }
-                if isProcessingPurchase {
-                    Color.gray.opacity(0.3) // Gray out the background
-                        .edgesIgnoringSafeArea(.all)
-                    HangTight()
-                
-                }
             }
-            .allowsHitTesting(!isProcessingPurchase)
-            .alert("Coming Soon", isPresented: $showAlert) {
-                Button("OK", role: .cancel) { }
+            if isProcessingPurchase {
+                Color.gray.opacity(0.3) // Gray out the background
+                    .edgesIgnoringSafeArea(.all)
+                HangTight()
+            
             }
+        }
+        .allowsHitTesting(!isProcessingPurchase)
+        .alert("Coming Soon", isPresented: $showAlert) {
+            Button("OK", role: .cancel) { }
         }
     }
 }
