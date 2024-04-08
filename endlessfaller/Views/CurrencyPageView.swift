@@ -99,148 +99,140 @@ struct CurrencyPageView: View {
                         Spacer()
                     }
                 } else {
-                    HStack{
-                        Text("💰🤩 Bundles 🤩💰")
-                            .customTextStroke()
-                            .italic()
-                            .bold()
-                            .font(.largeTitle)
-                            .scaleEffect(1.1)
-                    }
-                    HStack{
-                        Spacer()
-                        ScrollView(showsIndicators: false){
-                            ForEach(0..<bundles.count, id: \.self) { index in
-                                if index < bundles.count {
-                                    let bundle = bundles[index]
-                                    Button {
-                                        if index != 8 {
-                                            isProcessingPurchase = true
-                                            Task {
-                                                await buyBoins(bundle: bundle)
-                                            }
-                                        } else {
+                    Text("💰🤩 Bundles 🤩💰")
+                        .customTextStroke()
+                        .italic()
+                        .bold()
+                        .font(.largeTitle)
+                        .scaleEffect(1.1)
+                    ScrollView(showsIndicators: false){
+                        ForEach(0..<bundles.count, id: \.self) { index in
+                                let bundle = bundles[index]
+                                Button {
+                                    if index != 8 {
+                                        isProcessingPurchase = true
+                                        Task {
+                                            await buyBoins(bundle: bundle)
+                                        }
+                                    } else {
 //                                            Task {
 //                                                await unlockInfiniteBoins()
 //                                            }
-                                            showAlert = true
-                                        }
-                                    } label: {
-                                        Rectangle()
-                                            .fill(.yellow)
-                                            .cornerRadius(20)
-                                            .frame(height: 120)
-                                            .overlay{
-                                                RoundedRectangle(cornerRadius: 20)
-                                                    .stroke(Color.black, lineWidth: 3)
-                                                    .frame(height: 120)
-                                                    .padding(1)
-                                                HStack{
-                                                    BoinsView()
-                                                        .scaleEffect(1.5)
-                                                        .padding()
-                                                        .padding(.leading, deviceWidth / 30)
-                                                    if index != 8 {
-                                                        Text(String(bundles[index].coins) + " Boins")
-                                                            .customTextStroke(width: 1.5)
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.system(size: 27))
-                                                    } else {
-                                                        Text("∞")
-                                                            .customTextStroke()
-                                                            .italic()
-                                                            .font(.largeTitle)
-                                                            .padding()
-                                                            .scaleEffect(1.8)
-                                                        Text("Boins")
-                                                            .customTextStroke(width: 1.5)
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.system(size: 27))
-                                                        
-                                                    }
-                                                    Spacer()
-                                                    Text(bundles[index].cost)
-                                                        .customShadow()
-                                                        .font(.title3)
-                                                        .lineLimit(1)
-                                                        .italic()
-                                                        .bold()
-                                                        .padding(9)
-                                                        .background(.green)
-                                                        .cornerRadius(21)
-                                                        .padding(3)
-                                                        .background(.black)
-                                                        .cornerRadius(24)
-                                                        .padding(.trailing, 12)
-                                                }
-                                                if index == 1 {
-                                                    HStack{
-                                                        Spacer()
-                                                        Text("MOST POPULAR")
-                                                            .foregroundColor(.black)
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.system(size: 15))
-                                                        Spacer()
-                                                        
-                                                    }
-                                                    .background{
-                                                        Color.orange
-                                                    }
-                                                    .overlay{
-                                                        Rectangle()
-                                                            .stroke(Color.black, lineWidth: 3)
-                                                    }
-                                                    .rotationEffect(.degrees(30))
-                                                    .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
-                                                    .mask{
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
-                                                    }
-                                                    
-                                                }
-                                                if index == 8 {
-                                                    HStack{
-                                                        Spacer()
-                                                        Text("COMING SOON")
-                                                            .foregroundColor(.black)
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.system(size: 15))
-                                                        Spacer()
-                                                        
-                                                    }
-                                                    .background{
-                                                        Color.green
-                                                    }
-                                                    .overlay{
-                                                        Rectangle()
-                                                            .stroke(Color.black, lineWidth: 3)
-                                                    }
-                                                    .rotationEffect(.degrees(30))
-                                                    .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
-                                                    .mask{
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
-                                                    }
-                                                    
-                                                }
-
-                                            }
-                                            .accentColor(.black)
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 9)
+                                        showAlert = true
                                     }
-                                    .buttonStyle(.roundedAndShadow9)
-                                    
+                                } label: {
+                                    Rectangle()
+                                        .fill(.yellow)
+                                        .cornerRadius(20)
+                                        .frame(height: 120)
+                                        .overlay{
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.black, lineWidth: 3)
+                                                .frame(height: 120)
+                                                .padding(1)
+                                            HStack{
+                                                BoinsView()
+                                                    .scaleEffect(1.5)
+                                                    .padding()
+                                                    .padding(.leading, deviceWidth / 30)
+                                                if index != 8 {
+                                                    Text(String(bundles[index].coins) + " Boins")
+                                                        .customTextStroke(width: 1.5)
+                                                        .bold()
+                                                        .italic()
+                                                        .font(.system(size: 27))
+                                                } else {
+                                                    Text("∞")
+                                                        .customTextStroke()
+                                                        .italic()
+                                                        .font(.largeTitle)
+                                                        .padding()
+                                                        .scaleEffect(1.8)
+                                                    Text("Boins")
+                                                        .customTextStroke(width: 1.5)
+                                                        .bold()
+                                                        .italic()
+                                                        .font(.system(size: 27))
+                                                    
+                                                }
+                                                Spacer()
+                                                Text(bundles[index].cost)
+                                                    .customShadow()
+                                                    .font(.title3)
+                                                    .lineLimit(1)
+                                                    .italic()
+                                                    .bold()
+                                                    .padding(9)
+                                                    .background(.green)
+                                                    .cornerRadius(21)
+                                                    .padding(3)
+                                                    .background(.black)
+                                                    .cornerRadius(24)
+                                                    .padding(.trailing, 12)
+                                            }
+                                            if index == 1 {
+                                                HStack{
+                                                    Spacer()
+                                                    Text("MOST POPULAR")
+                                                        .foregroundColor(.black)
+                                                        .bold()
+                                                        .italic()
+                                                        .font(.system(size: 15))
+                                                    Spacer()
+                                                    
+                                                }
+                                                .background{
+                                                    Color.orange
+                                                }
+                                                .overlay{
+                                                    Rectangle()
+                                                        .stroke(Color.black, lineWidth: 3)
+                                                }
+                                                .rotationEffect(.degrees(30))
+                                                .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
+                                                .mask{
+                                                    RoundedRectangle(cornerRadius: 20)
+                                                        .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
+                                                }
+                                                
+                                            }
+                                            if index == 8 {
+                                                HStack{
+                                                    Spacer()
+                                                    Text("COMING SOON")
+                                                        .foregroundColor(.black)
+                                                        .bold()
+                                                        .italic()
+                                                        .font(.system(size: 15))
+                                                    Spacer()
+                                                    
+                                                }
+                                                .background{
+                                                    Color.green
+                                                }
+                                                .overlay{
+                                                    Rectangle()
+                                                        .stroke(Color.black, lineWidth: 3)
+                                                }
+                                                .rotationEffect(.degrees(30))
+                                                .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
+                                                .mask{
+                                                    RoundedRectangle(cornerRadius: 20)
+                                                        .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
+                                                }
+                                                
+                                            }
+
+                                        }
+                                        .accentColor(.black)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 9)
                                 }
-                            }
-                            .padding(.bottom)
+                                .buttonStyle(.roundedAndShadow9)
                         }
-                        Spacer()
+                        
                     }
+                    .padding(.leading, 9)
                 }
             }
             if isProcessingPurchase {
