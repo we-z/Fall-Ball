@@ -90,10 +90,10 @@ struct GameCenterLeaderboardView: View {
                                         TabView(selection: $selectedLeaderboard){
                                             ZStack{
                                                 ScrollView(showsIndicators: false) {
-                                                    //                                                    Text(formatTimeDuration(timeLeft))
-                                                    //                                                        .foregroundColor(.white)
-                                                    //                                                        .bold()
-                                                    //                                                        .italic()
+//                                                    Text(formatTimeDuration(timeLeft))
+//                                                        .foregroundColor(.white)
+//                                                        .bold()
+//                                                        .italic()
                                                     HStack{
                                                         VStack{
                                                             Circle()
@@ -128,7 +128,6 @@ struct GameCenterLeaderboardView: View {
                                                                     .font(.title)
                                                                     .bold()
                                                                     .italic()
-                                                                //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
                                                                     .customTextStroke()
@@ -321,7 +320,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(RandomGradientView().overlay(Color.black.opacity((todaysPlayersList.count > num - 1 && todaysPlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
+                                                            .listRowBackground(RandomGradientView())
                                                         }
                                                         
                                                     }
@@ -342,10 +341,6 @@ struct GameCenterLeaderboardView: View {
                                             .tag(0)
                                             ZStack{
                                                 ScrollView(showsIndicators: false) {
-                                                    //                                                    Text(formatTimeDuration(timeLeft))
-                                                    //                                                        .foregroundColor(.white)
-                                                    //                                                        .bold()
-                                                    //                                                        .italic()
                                                     HStack{
                                                         VStack{
                                                             Circle()
@@ -374,14 +369,12 @@ struct GameCenterLeaderboardView: View {
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                                 Text(String(allTimePlayersList[2].score))
                                                                     .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
                                                                     .italic()
-                                                                //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
                                                                     .customTextStroke()
@@ -536,7 +529,6 @@ struct GameCenterLeaderboardView: View {
                                                                         .customTextStroke()
                                                                         .bold()
                                                                         .italic()
-                                                                    //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
                                                                     VStack(alignment: .leading){
                                                                         if allTimePlayersList.count > num - 1 {
                                                                             Text(allTimePlayersList[num - 1].name)
@@ -573,7 +565,7 @@ struct GameCenterLeaderboardView: View {
                                                                 }
                                                                 
                                                             }
-                                                            .listRowBackground(RandomGradientView().overlay(Color.black.opacity((allTimePlayersList.count > num - 1 && allTimePlayersList[num - 1 ].currentPlayer.alias == localPlayer.alias) ? 0.1 : 0)))
+                                                            .listRowBackground(RandomGradientView())
                                                         }
                                                         
                                                     }
