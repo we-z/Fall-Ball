@@ -181,18 +181,18 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if todaysPlayersList.count > 0 {
                                                                 Text(todaysPlayersList[0].name)
-                                                                    .customShadow(width: 0.6)
+                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
+                                                                    .customShadow(width: 0.6)
                                                                 Text(String(todaysPlayersList[0].score))
                                                                     .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
                                                                     .italic()
-                                                                //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
                                                                     .customTextStroke()
@@ -200,7 +200,6 @@ struct GameCenterLeaderboardView: View {
                                                                     .font(.largeTitle)
                                                                     .bold()
                                                                     .italic()
-                                                                //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
                                                         .background{

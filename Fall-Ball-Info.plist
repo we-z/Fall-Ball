@@ -23,5 +23,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Fall Ball Does not use your camera</string>
 </dict>
 </plist>

@@ -510,6 +510,7 @@ struct CustomShadowModifier: ViewModifier {
             .shadow(color: .black, radius: radius, x: strokeSize, y: strokeSize)
             .shadow(color: .black, radius: radius, x: strokeSize, y: 0)
             .shadow(color: .black, radius: radius, x: strokeSize, y: -strokeSize)
+            .padding(10)
     }
 }
 
