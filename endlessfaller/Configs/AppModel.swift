@@ -510,7 +510,7 @@ struct CustomShadowModifier: ViewModifier {
             .shadow(color: .black, radius: radius, x: strokeSize, y: strokeSize)
             .shadow(color: .black, radius: radius, x: strokeSize, y: 0)
             .shadow(color: .black, radius: radius, x: strokeSize, y: -strokeSize)
-            .padding(10)
+            .padding(.horizontal)
     }
 }
 
@@ -586,7 +586,7 @@ extension View {
         overlay(EdgeBorder(width: width, edges: edges).foregroundColor(color))
     }
 }
-
+let impactHeavy = UIImpactFeedbackGenerator(style: .heavy)
 struct RoundedAndShadowButtonStyle4:ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -595,7 +595,7 @@ struct RoundedAndShadowButtonStyle4:ButtonStyle {
             .offset(x: configuration.isPressed ? -4 : 0, y: configuration.isPressed ? 4 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                hapticGenerator.notificationOccurred(.success)
+                impactHeavy.impactOccurred()
             }
     }
 }
@@ -608,7 +608,7 @@ struct RoundedAndShadowButtonStyle3:ButtonStyle {
             .offset(x: configuration.isPressed ? -3 : 0, y: configuration.isPressed ? 3 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                hapticGenerator.notificationOccurred(.success)
+                impactHeavy.impactOccurred()
             }
     }
 }
@@ -621,7 +621,7 @@ struct RoundedAndShadowButtonStyle6:ButtonStyle {
             .offset(x: configuration.isPressed ? -6 : 0, y: configuration.isPressed ? 6 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                hapticGenerator.notificationOccurred(.success)
+                impactHeavy.impactOccurred()
             }
     }
 }
@@ -634,7 +634,7 @@ struct RoundedAndShadowButtonStyle9:ButtonStyle {
             .offset(x: configuration.isPressed ? -9 : 0, y: configuration.isPressed ? 9 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                hapticGenerator.notificationOccurred(.success)
+                impactHeavy.impactOccurred()
             }
     }
 }
