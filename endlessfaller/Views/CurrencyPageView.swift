@@ -157,8 +157,7 @@ struct CurrencyPageView: View {
                                                 }
                                                 Spacer()
                                                 Text(bundles[index].cost)
-                                                    .customShadow()
-                                                    .font(.title3)
+                                                    .font(.title2)
                                                     .lineLimit(1)
                                                     .italic()
                                                     .bold()
