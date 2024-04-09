@@ -180,56 +180,58 @@ struct CurrencyPageView: View {
                                             if index == 1 {
                                                 HStack{
                                                     Spacer()
-                                                    Text("MOST POPULAR")
-                                                        .foregroundColor(.black)
-                                                        .bold()
-                                                        .italic()
-                                                        .font(.system(size: 15))
-                                                    Spacer()
-                                                    
+                                                    HStack{
+                                                        Spacer()
+                                                        Text("MOST POPULAR")
+                                                            .foregroundColor(.black)
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.system(size: 15))
+                                                        Spacer()
+                                                        
+                                                    }
+                                                    .background{
+                                                        Color.orange
+                                                    }
+                                                    .overlay{
+                                                        Rectangle()
+                                                            .stroke(Color.black, lineWidth: 3)
+                                                    }
+                                                    .frame(width: 180)
+                                                    .rotationEffect(.degrees(30))
+                                                    .offset(x: 30, y: -24)
                                                 }
-                                                .background{
-                                                    Color.orange
-                                                }
-                                                .overlay{
-                                                    Rectangle()
-                                                        .stroke(Color.black, lineWidth: 3)
-                                                }
-                                                .rotationEffect(.degrees(30))
-                                                .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
-                                                .mask{
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
-                                                }
-                                                
                                             }
                                             if index > 6 {
                                                 HStack{
                                                     Spacer()
-                                                    Text("COMING SOON!")
-                                                        .foregroundColor(.black)
-                                                        .bold()
-                                                        .italic()
-                                                        .font(.system(size: 15))
-                                                    Spacer()
-                                                    
-                                                }
-                                                .background{
-                                                    Color.green
-                                                }
-                                                .overlay{
-                                                    Rectangle()
-                                                        .stroke(Color.black, lineWidth: 3)
-                                                }
-                                                .rotationEffect(.degrees(30))
-                                                .offset(x:idiom == .pad ? deviceWidth / 3.9 : deviceWidth / 3.1, y: idiom == .pad ? -36 : -27)
-                                                .mask{
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .frame(width: idiom == .pad ? deviceWidth/1.55 : deviceWidth/1.1, height: 120)
+                                                    HStack{
+                                                        Spacer()
+                                                        Text("COMING SOON!")
+                                                            .foregroundColor(.black)
+                                                            .bold()
+                                                            .italic()
+                                                            .font(.system(size: 15))
+                                                        Spacer()
+                                                        
+                                                    }
+                                                    .background{
+                                                        Color.green
+                                                    }
+                                                    .overlay{
+                                                        Rectangle()
+                                                            .stroke(Color.black, lineWidth: 3)
+                                                    }
+                                                    .frame(width: 180)
+                                                    .rotationEffect(.degrees(30))
+                                                    .offset(x: 30, y: -24)
                                                 }
                                                 
                                             }
 
+                                        }
+                                        .mask{
+                                            Rectangle()
                                         }
                                         .accentColor(.black)
                                         .padding(.horizontal, 12)
