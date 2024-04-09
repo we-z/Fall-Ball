@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            WastedView()
+            SwipeFaster()
         }
     }
 }
@@ -896,7 +896,7 @@ struct KeepSwiping: View {
         }
         .frame(width: 300, height: 450)
         
-        .customTextStroke(width: 1.8)
+        .customTextStroke(width: 2.7)
         .allowsHitTesting(false)
     }
 }
@@ -1030,7 +1030,7 @@ struct Instruction2: View {
                 .multilineTextAlignment(.center)
                 .padding()
         }
-        .customTextStroke()
+        .customTextStroke(width: 3)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.4)
@@ -1053,7 +1053,7 @@ struct Instruction3: View {
                 .bold()
                 .padding()
         }
-        .customTextStroke()
+        .customTextStroke(width: 3)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.2)
@@ -1083,7 +1083,7 @@ struct SwipeFaster: View {
             .animatedOffset(speed: 0.5)
         }
         .frame(width: 180, height: 390)
-        .customTextStroke(width: 1.8)
+        .customTextStroke(width: 3)
         .allowsHitTesting(false)
     }
 }
@@ -1110,7 +1110,7 @@ struct JustFaster: View {
             .animatedOffset(speed: 0.5)
         }
         .frame(width: 180, height: 330)
-        .customTextStroke(width: 1.8)
+        .customTextStroke(width: 3)
         .allowsHitTesting(false)
     }
 }
@@ -1137,7 +1137,7 @@ struct SwipeAsFastAsYouCan: View {
             .animatedOffset(speed: 0.5)
         }
         .frame(width: 210, height: 410)
-        .customTextStroke(width: 1.8)
+        .customTextStroke(width: 3)
         .allowsHitTesting(false)
     }
 }
@@ -1164,7 +1164,7 @@ struct SpeedInstruction: View {
             .animatedOffset(speed: 0.5)
         }
         .frame(width: 240, height: 480)
-        .customTextStroke(width: 1.8)
+        .customTextStroke(width: 3)
         .allowsHitTesting(false)
     }
 }
@@ -1192,7 +1192,7 @@ struct YourGood: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
-            .customTextStroke()
+            .customTextStroke(width: 2.1)
             .flashing()
     }
 }
@@ -1206,7 +1206,7 @@ struct YourInsane: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
-            .customTextStroke()
+            .customTextStroke(width: 2.1)
             .flashing()
     }
 }
@@ -1220,7 +1220,7 @@ struct GoBerzerk: View {
             .multilineTextAlignment(.center)
             .padding()
             .font(.largeTitle)
-            .customTextStroke()
+            .customTextStroke(width: 2.1)
             .flashing()
     }
 }
@@ -1316,7 +1316,7 @@ struct WastedView: View {
             }
             .frame(width: 300, height: 300)
             .animatedOffset(speed: 0.1)
-            .customTextStroke()
+            .customTextStroke(width: 3)
             
         }
         .allowsHitTesting(false)
