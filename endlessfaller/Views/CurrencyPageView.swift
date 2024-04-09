@@ -100,7 +100,7 @@ struct CurrencyPageView: View {
                     }
                 } else {
                     Text("💰🤩 Bundles 🤩💰")
-                        .customTextStroke()
+                        .customTextStroke(width: 1.8)
                         .italic()
                         .bold()
                         .font(.largeTitle)

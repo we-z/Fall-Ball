@@ -53,7 +53,7 @@ struct GameCenterLeaderboardView: View {
                         .bold()
                         .italic()
                         .font(.title)
-                        .customTextStroke(width: 1.5)
+                        .customTextStroke(width: 2.4)
                         .offset(y: 6)
                 }
                 VStack{
@@ -85,7 +85,7 @@ struct GameCenterLeaderboardView: View {
                                         .font(.title3)
                                         .bold()
                                         .italic()
-                                        .customTextStroke()
+                                        .customTextStroke(width: 1.5)
                                         
                                         TabView(selection: $selectedLeaderboard){
                                             ZStack{

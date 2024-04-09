@@ -37,7 +37,7 @@ struct CharactersMenuView: View {
                     .opacity(0.3)
                 HStack{
                     Text("🌍 Ball Shop 🌍")
-                        .customTextStroke()
+                        .customTextStroke(width: 1.8)
                         .italic()
                         .bold()
                         .font(.largeTitle)
