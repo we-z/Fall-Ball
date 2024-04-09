@@ -130,10 +130,6 @@ struct CurrencyPageView: View {
                                                 RandomGradientView()
                                                     .cornerRadius(30)
                                             }
-                                            RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.black, lineWidth: 3)
-                                                .frame(height: 120)
-                                                .padding(1)
                                             HStack{
                                                 BoinsView()
                                                     .scaleEffect(1.5)
@@ -232,6 +228,12 @@ struct CurrencyPageView: View {
                                         }
                                         .mask{
                                             Rectangle()
+                                        }
+                                        .overlay{
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .stroke(Color.black, lineWidth: 3)
+                                                .frame(height: 120)
+                                                .padding(1)
                                         }
                                         .accentColor(.black)
                                         .padding(.horizontal, 12)
