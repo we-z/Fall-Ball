@@ -109,24 +109,28 @@ struct CurrencyPageView: View {
                         ForEach(0..<bundles.count, id: \.self) { index in
                                 let bundle = bundles[index]
                                 Button {
-                                    if index != 8 {
+                                    if index < 7 {
                                         isProcessingPurchase = true
                                         Task {
                                             await buyBoins(bundle: bundle)
                                         }
                                     } else {
-                                        Task {
-                                            await unlockInfiniteBoins()
-                                        }
-//                                        showAlert = true
+//                                        Task {
+//                                            await unlockInfiniteBoins()
+//                                        }
+                                        showAlert = true
                                     }
                                 } label: {
                                     Rectangle()
                                         .fill(.yellow)
-                                        .cornerRadius(20)
+                                        .cornerRadius(30)
                                         .frame(height: 120)
                                         .overlay{
-                                            RoundedRectangle(cornerRadius: 20)
+                                            if index == 8 {
+                                                RandomGradientView()
+                                                    .cornerRadius(30)
+                                            }
+                                            RoundedRectangle(cornerRadius: 30)
                                                 .stroke(Color.black, lineWidth: 3)
                                                 .frame(height: 120)
                                                 .padding(1)
@@ -137,14 +141,17 @@ struct CurrencyPageView: View {
                                                     .padding(.leading, deviceWidth / 30)
                                                 if index != 8 {
                                                     Text(String(bundles[index].coins) + " Boins")
-                                                        .customTextStroke(width: 1.5)
                                                         .bold()
                                                         .italic()
                                                         .font(.system(size: 27))
+                                                        .lineLimit(1)
+                                                        .minimumScaleFactor(0.01)
+//                                                        .customTextStroke()
                                                 } else {
                                                     Text("∞")
                                                         .customTextStroke()
                                                         .italic()
+                                                        .bold()
                                                         .font(.largeTitle)
                                                         .padding()
                                                         .scaleEffect(1.8)
@@ -196,10 +203,10 @@ struct CurrencyPageView: View {
                                                 }
                                                 
                                             }
-                                            if index == 8 {
+                                            if index > 6 {
                                                 HStack{
                                                     Spacer()
-                                                    Text("GOD MODE")
+                                                    Text("COMING SOON!")
                                                         .foregroundColor(.black)
                                                         .bold()
                                                         .italic()

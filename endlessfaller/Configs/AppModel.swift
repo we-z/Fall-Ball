@@ -449,7 +449,7 @@ extension Color {
 }
 
 struct CustomTextStrokeModifier: ViewModifier {
-    private let id = UUID()
+    var id = UUID()
     var strokeSize: CGFloat = 1
     var strokeColor: Color = .black
 
@@ -461,7 +461,7 @@ struct CustomTextStrokeModifier: ViewModifier {
         }
     }
 
-    private func appliedStrokeBackground(content: Content) -> some View {
+    func appliedStrokeBackground(content: Content) -> some View {
         
         content
             .background(
@@ -492,7 +492,7 @@ struct CustomTextStrokeModifier: ViewModifier {
 
 extension View {
     func customTextStroke(color: Color = .black, width: CGFloat = 1) -> some View {
-        modifier(CustomTextStrokeModifier(strokeSize: width, strokeColor: color))
+        self.modifier(CustomTextStrokeModifier(strokeSize: width, strokeColor: color))
     }
 }
 

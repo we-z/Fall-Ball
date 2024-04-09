@@ -117,7 +117,7 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if todaysPlayersList.count > 2 {
                                                                 Text(todaysPlayersList[2].name)
-                                                                    .customShadow(width: 0.6)
+                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
@@ -186,7 +186,7 @@ struct GameCenterLeaderboardView: View {
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                    .customShadow(width: 0.6)
+                                                                    
                                                                     .padding(.horizontal)
                                                                 Text(String(todaysPlayersList[0].score))
                                                                     .customTextStroke(width: 1.5)
@@ -238,7 +238,7 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if todaysPlayersList.count > 1 {
                                                                 Text(todaysPlayersList[1].name)
-                                                                    .customShadow(width: 0.6)
+                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
@@ -365,7 +365,7 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if allTimePlayersList.count > 2 {
                                                                 Text(allTimePlayersList[2].name)
-                                                                    .customShadow(width: 0.6)
+                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
@@ -428,7 +428,7 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if allTimePlayersList.count > 0 {
                                                                 Text(allTimePlayersList[0].name)
-                                                                    .customShadow(width: 0.6)
+                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
@@ -481,7 +481,7 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if allTimePlayersList.count > 1 {
                                                                 Text(allTimePlayersList[1].name)
-                                                                    .customShadow(width: 0.6)
+                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
