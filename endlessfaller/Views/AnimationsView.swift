@@ -1030,7 +1030,7 @@ struct Instruction2: View {
                 .multilineTextAlignment(.center)
                 .padding()
         }
-        .customTextStroke(width: 3)
+        .customTextStroke(width: 2.7)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.4)
@@ -1053,7 +1053,7 @@ struct Instruction3: View {
                 .bold()
                 .padding()
         }
-        .customTextStroke(width: 3)
+        .customTextStroke(width: 2.7)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.2)
