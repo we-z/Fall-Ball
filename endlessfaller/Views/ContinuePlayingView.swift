@@ -28,7 +28,7 @@ struct ContinuePlayingView: View {
                             .bold()
                             .italic()
                             .font(userPersistedData.infiniteBoinsUnlocked ? .largeTitle : .title)
-                            .customTextStroke()
+                            .customTextStroke(width: 1.5)
                     }
                     .padding(.horizontal, 9)
                     .padding(.top, 12)
@@ -52,7 +52,7 @@ struct ContinuePlayingView: View {
                     .italic()
                     .font(.largeTitle)
                     .padding(.bottom, 27)
-                    .customTextStroke(width: 1.5)
+                    .customTextStroke(width: 2.1)
                 Button {
                     if userPersistedData.boinBalance >= appModel.costToContinue || userPersistedData.infiniteBoinsUnlocked {
                         userPersistedData.decrementBalance(amount: appModel.costToContinue)
@@ -70,7 +70,7 @@ struct ContinuePlayingView: View {
                             .font(.largeTitle)
                             .scaleEffect(1.2)
                             .padding(.trailing, 3)
-                            .customTextStroke(width: 1.5)
+                            .customTextStroke(width: 1.8)
                         BoinsView()
                         Spacer()
                     }
@@ -129,7 +129,7 @@ struct ContinuePlayingView: View {
             .bold()
             .font(.largeTitle)
             .animatedOffset(speed: 1)
-            .customTextStroke(width: 1.5)
+            .customTextStroke(width: 1.8)
             .scaleEffect(1.2)
         }
         .offset(y: UIDevice.isOldDevice ? 60 : 90)

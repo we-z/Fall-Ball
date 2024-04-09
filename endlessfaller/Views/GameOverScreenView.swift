@@ -140,7 +140,7 @@ struct GameOverScreenView: View {
                 
                 .animatedOffset(speed: 1)
                 .frame(height: 300)
-                .customTextStroke(width: 1.8)
+                .customTextStroke(width: 2.4)
                 Spacer()
             }
             if appModel.showNewBestScore {
