@@ -159,6 +159,7 @@ struct CurrencyPageView: View {
                                                 Text(bundles[index].cost)
                                                     .font(.title2)
                                                     .lineLimit(1)
+                                                    .minimumScaleFactor(0.01)
                                                     .italic()
                                                     .bold()
                                                     .padding(9)

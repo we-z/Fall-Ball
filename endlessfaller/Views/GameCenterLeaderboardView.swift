@@ -250,7 +250,6 @@ struct GameCenterLeaderboardView: View {
                                                                     .font(.title)
                                                                     .bold()
                                                                     .italic()
-                                                                //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             } else{
                                                                 Text("-")
                                                                     .customTextStroke()
@@ -258,7 +257,6 @@ struct GameCenterLeaderboardView: View {
                                                                     .font(.largeTitle)
                                                                     .bold()
                                                                     .italic()
-                                                                //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                                                             }
                                                         }
                                                         .background{
