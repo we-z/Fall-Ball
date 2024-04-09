@@ -115,10 +115,10 @@ struct CurrencyPageView: View {
                                             await buyBoins(bundle: bundle)
                                         }
                                     } else {
-//                                            Task {
-//                                                await unlockInfiniteBoins()
-//                                            }
-                                        showAlert = true
+                                        Task {
+                                            await unlockInfiniteBoins()
+                                        }
+//                                        showAlert = true
                                     }
                                 } label: {
                                     Rectangle()
@@ -198,7 +198,7 @@ struct CurrencyPageView: View {
                                             if index == 8 {
                                                 HStack{
                                                     Spacer()
-                                                    Text("COMING SOON")
+                                                    Text("GOD MODE")
                                                         .foregroundColor(.black)
                                                         .bold()
                                                         .italic()
