@@ -39,7 +39,7 @@ struct HomeButtonsView: View {
                             .bold()
                             .italic()
                         
-                            .customTextStroke(width:1.8)
+                            .customTextStroke(width:2.4)
                             .font(.largeTitle)
                             
                             .scaleEffect(userPersistedData.infiniteBoinsUnlocked ? 1.8 : 1)
