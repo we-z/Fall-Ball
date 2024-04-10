@@ -1009,22 +1009,23 @@ struct BeachBallView: View {
 
 struct UnicornView: View {
     var body: some View {
-        ZStack{
-            Circle()
-                .frame(width: 46)
-            Image("unicorn")
-                .resizable()
-                .frame(width: 45, height: 43)
-                .mask(
-                    Circle()
-                        .frame(width: 42)
-                )
-            Image("unicornhorn")
-                .resizable()
-                .frame(width: 12, height: 18)
-                .offset(x:12,y: -16)
+        Group{
+            ZStack{
+                Circle()
+                    .frame(width: 46)
+                Image("unicorn")
+                    .resizable()
+                    .frame(width: 45, height: 43)
+                    .mask(
+                        Circle()
+                            .frame(width: 42)
+                    )
+                Image("unicornhorn")
+                    .resizable()
+                    .frame(width: 12, height: 18)
+                    .offset(x:12,y: -16)
+            }
         }
-        .compositingGroup()
     }
 }
 

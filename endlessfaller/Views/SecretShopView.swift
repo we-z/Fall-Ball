@@ -60,6 +60,12 @@ struct SecretShopView: View {
                                                 .background(RandomGradientView())
                                                 .cornerRadius(20)
                                                 .overlay{
+                                                    if model.hats[index].hatID == userPersistedData.selectedHat {
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .stroke(Color.black, lineWidth: 6)
+                                                    }
+                                                }
+                                                .overlay{
                                                     ZStack{
                                                         if model.hats[index].hatID == userPersistedData.selectedHat && index != 0 {
                                                             AnyView(character?.character)
@@ -71,10 +77,7 @@ struct SecretShopView: View {
                                                     }
                                                     .padding()
                                                     .offset(y: index == 0 ? 0 : 12)
-                                                    if model.hats[index].hatID == userPersistedData.selectedHat {
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(Color.black, lineWidth: 6)
-                                                    }
+                                                    
                                                 }
                                                 .accentColor(.black)
                                                 .padding(1)
@@ -111,6 +114,12 @@ struct SecretShopView: View {
                                                 .background(RandomGradientView())
                                                 .cornerRadius(20)
                                                 .overlay{
+                                                    if model.bags[index].bagID == userPersistedData.selectedBag {
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .stroke(Color.black, lineWidth: 6)
+                                                    }
+                                                }
+                                                .overlay{
                                                     ZStack{
                                                         AnyView(bag.bag)
                                                         if model.bags[index].bagID == userPersistedData.selectedBag && index != 0 {
@@ -122,10 +131,6 @@ struct SecretShopView: View {
                                                                 }
                                                             }
                                                         }
-                                                    }
-                                                    if model.bags[index].bagID == userPersistedData.selectedBag {
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(Color.black, lineWidth: 6)
                                                     }
                                                 }
                                                 .accentColor(.black)
