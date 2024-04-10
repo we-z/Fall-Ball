@@ -12,27 +12,27 @@ struct QRView: View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [.pink,.purple,.blue]), startPoint: UnitPoint(x: 0, y: 0.6), endPoint: UnitPoint(x: 0.6, y: 0.2))
             RotatingSunView()
-//            Circle()
-//                .stroke(lineWidth: 6)
-//                .frame(width: 424)
+            Circle()
+                .stroke(lineWidth: 6)
+                .frame(width: 424)
             VStack(spacing: 240){
                 Text("Download")
                     .bold()
                     .italic()
                     .font(.system(size: 45))
-                    .customTextStroke(width: 2.1)
+                    .customTextStroke(width: 3)
                 Text("FALL BALL")
                     .bold()
                     .italic()
                     .font(.system(size: 45))
-                    .customTextStroke(width: 2.1)
+                    .customTextStroke(width: 3)
             }
-//            HStack(spacing: 270) {
-//                ShockedBall()
-//                    .scaleEffect(1.5)
-//                FallBallLaughBall()
-//                    .scaleEffect(1.5)
-//            }
+            HStack(spacing: 270) {
+                ShockedBall()
+                    .scaleEffect(1.5)
+                FallBallLaughBall()
+                    .scaleEffect(1.5)
+            }
             ZStack{
                 Rectangle()
                     .frame(width:221, height: 221)
@@ -43,10 +43,10 @@ struct QRView: View {
             }
             .cornerRadius(36)
         }
-//        .mask(
-//            Circle()
-//                .frame(width: deviceWidth)
-//        )
+        .mask(
+            Circle()
+                .frame(width: deviceWidth)
+        )
         .ignoresSafeArea()
     }
 }
