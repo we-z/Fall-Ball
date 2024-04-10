@@ -634,6 +634,9 @@ struct CharacterMenuButtonStyle:ButtonStyle {
             .compositingGroup()
             .scaleEffect(configuration.isPressed ? 0.85 : 1)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+            .onChange(of: configuration.isPressed) { newPressSetting in
+                impactHeavy.impactOccurred()
+            }
     }
 }
 
