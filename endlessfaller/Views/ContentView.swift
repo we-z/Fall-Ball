@@ -80,7 +80,7 @@ struct ContentView: View {
                                 .italic()
                                 .multilineTextAlignment(.center)
                                 .frame(height: 300)
-                                .customTextStroke()
+                                .customTextStroke(width: 2.1)
                                 .scaleEffect(1.5)
                                 
                             }
