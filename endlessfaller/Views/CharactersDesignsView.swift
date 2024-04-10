@@ -10,7 +10,7 @@ import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        BoinsView()
+        MonkeyView()
             .scaleEffect(3)
     }
 }
@@ -502,18 +502,16 @@ struct AlbertView: View {
 
 struct MonkeyView: View {
     var body: some View {
-        BallView()
-            .overlay{
+
                 Image("monkey")
                     .resizable()
-                    .frame(width: 71, height: 79)
+                    .frame(width: 60, height: 69)
                     .mask(
                         Rectangle()
                             .frame(width: 69, height: 59)
                     )
                     .offset(x: -0.1, y: -0.4)
                     
-            }
         
     }
 }

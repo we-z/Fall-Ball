@@ -66,11 +66,11 @@ struct BallsDetailsView: View {
                         Spacer()
                     }
                     .background(.yellow)
-                    .cornerRadius(21)
+                    .cornerRadius(27)
                     .padding(.horizontal, 30)
                     .padding(.bottom, idiom == .pad || UIDevice.isOldDevice ? 30 : 0)
                 }
-                .buttonStyle(.roundedAndShadow6)
+                .buttonStyle(.roundedAndShadow9)
             }
         }
         .onAppear() {

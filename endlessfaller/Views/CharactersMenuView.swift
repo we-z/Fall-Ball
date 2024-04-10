@@ -43,110 +43,112 @@ struct CharactersMenuView: View {
                         .font(.largeTitle)
                         .scaleEffect(1.1)
                 }
-                HStack{
-                    Spacer()
-                    ScrollView(showsIndicators: false){
-                        ForEach(0..<model.characters.count/3, id: \.self) { rowIndex in
-                            HStack {
-                                ForEach(0..<3, id: \.self) { columnIndex in
-                                    let index = rowIndex * 3 + columnIndex
-                                    if index < model.characters.count {
-                                        let character = model.characters[index]
-                                        Button {
-                                            if index < 9 || userPersistedData.purchasedSkins.contains(character.characterID) {
-                                                userPersistedData.selectNewBall(ball: model.characters[index].characterID)
-                                            } else {
-                                                currentCharacter = model.characters[index]
-                                                currentBallIndex = index
-                                                showBallDetails = true
-                                            }
-                                        } label: {
-                                            Rectangle()
-                                                .fill(.clear)
-                                                .cornerRadius(20)
-                                                .frame(width: idiom == .pad ? deviceWidth/4.8 : deviceWidth/3.3, height: idiom == .pad ? 270 : 150)
-                                                .background(RandomGradientView().opacity(model.characters[index].characterID == userPersistedData.selectedCharacter ? 1 : 0))
-                                                .cornerRadius(20)
-                                                .overlay(
-                                                    ZStack{
-                                                        VStack(spacing: 1) {
-                                                            AnyView(character.character)
-                                                                .scaleEffect(idiom == .pad ? 2.7 : 1.8)
-                                                                .offset(y: idiom == .pad ? -12 : 0)
-                                                            Spacer()
-                                                                .frame(maxHeight: 36)
-                                                            if userPersistedData.purchasedSkins.contains(character.characterID) && index > 8 {
-                                                                Text("Available")
-                                                                    .customTextStroke()
-                                                                    .bold()
-                                                                    .italic()
-                                                            } else if index < 9 {
-                                                                Text("Free")
-                                                                    .customTextStroke(width: 1.5)
-                                                                    .font(idiom == .pad ? .system(size: 39) :.system(size: 21))
-                                                                    .bold()
-                                                                    .italic()
-                                                            } else {
-                                                                HStack(spacing: idiom == .pad ? 21 : 0){
-                                                                    if index > 8 {
-                                                                        BoinsView()
-                                                                            .scaleEffect(idiom == .pad ? 1 : 0.6)
-                                                                            .padding(0)
-                                                                    }
-                                                                    if character.cost.count < 4 {
-                                                                        Text("\(character.cost)")
-                                                                        
-                                                                            .bold()
-                                                                            .italic()
-                                                                            .lineLimit(1)
-                                                                            .customTextStroke(width: 1.2)
-                                                                            .font(idiom == .pad ? .system(size: 39) : .system(size: 21))
-                                                                            .padding(0)
-
-                                                                    } else {
-                                                                        Text("\(character.cost)")
-                                                                            .bold()
-                                                                            .italic()
-                                                                            .lineLimit(1)
-                                                                            .customTextStroke(width: 1.2)
-                                                                            .font(idiom == .pad ? .system(size: 36) : .system(size: 12))
-                                                                            .padding(0)
-                                                                    }
-                                                                        
-                                                                }
-                                                                .offset(y: idiom == .pad ? 30 : 0)
-                                                            }
-                                                            
-                                                        }
-                                                        .padding()
-                                                    }
-                                                        .offset(y:12)
-                                                )
-                                                .accentColor(.black)
-                                                .padding(1)
+                ScrollView(showsIndicators: false){
+                    ForEach(0..<model.characters.count/3, id: \.self) { rowIndex in
+                        HStack {
+                            Spacer()
+                            ForEach(0..<3, id: \.self) { columnIndex in
+                                let index = rowIndex * 3 + columnIndex
+                                if index < model.characters.count {
+                                    let character = model.characters[index]
+                                    Button {
+                                        if index < 9 || userPersistedData.purchasedSkins.contains(character.characterID) {
+                                            userPersistedData.selectNewBall(ball: model.characters[index].characterID)
+                                        } else {
+                                            currentCharacter = model.characters[index]
+                                            currentBallIndex = index
+                                            showBallDetails = true
                                         }
-                                        .buttonStyle(.characterMenu)
+                                    } label: {
+                                        Rectangle()
+                                            .fill(.clear)
+                                            .cornerRadius(20)
+                                            .frame(width: idiom == .pad ? deviceWidth/4.8 : deviceWidth/3.3, height: idiom == .pad ? 270 : 150)
+                                            .background(RandomGradientView())
+                                            .cornerRadius(20)
+                                            .overlay{
+                                                ZStack{
+                                                    VStack(spacing: 1) {
+                                                        AnyView(character.character)
+                                                            .scaleEffect(idiom == .pad ? 2.7 : 1.8)
+                                                            .offset(y: idiom == .pad ? -12 : 0)
+                                                        Spacer()
+                                                            .frame(maxHeight: 36)
+                                                        if userPersistedData.purchasedSkins.contains(character.characterID) && index > 8 {
+                                                            Text("Available")
+                                                                .customTextStroke()
+                                                                .bold()
+                                                                .italic()
+                                                        } else if index < 9 {
+                                                            Text("Free")
+                                                                .customTextStroke(width: 1.5)
+                                                                .font(idiom == .pad ? .system(size: 39) :.system(size: 21))
+                                                                .bold()
+                                                                .italic()
+                                                        } else {
+                                                            HStack(spacing: idiom == .pad ? 21 : 0){
+                                                                if index > 8 {
+                                                                    BoinsView()
+                                                                        .scaleEffect(idiom == .pad ? 1 : 0.6)
+                                                                        .padding(0)
+                                                                }
+                                                                if character.cost.count < 4 {
+                                                                    Text("\(character.cost)")
+                                                                    
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .lineLimit(1)
+                                                                        .customTextStroke(width: 1.2)
+                                                                        .font(idiom == .pad ? .system(size: 39) : .system(size: 21))
+                                                                        .padding(0)
+                                                                    
+                                                                } else {
+                                                                    Text("\(character.cost)")
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .lineLimit(1)
+                                                                        .customTextStroke(width: 1.2)
+                                                                        .font(idiom == .pad ? .system(size: 36) : .system(size: 12))
+                                                                        .padding(0)
+                                                                }
+                                                                
+                                                            }
+                                                            .offset(y: idiom == .pad ? 30 : 0)
+                                                        }
+                                                        
+                                                    }
+                                                    .padding()
+                                                }
+                                                .offset(y:12)
+                                                if model.characters[index].characterID == userPersistedData.selectedCharacter {
+                                                    RoundedRectangle(cornerRadius: 20)
+                                                        .stroke(Color.black, lineWidth: 6)
+                                                }
+                                            }
+                                            .accentColor(.black)
+                                            .offset(y:6)
                                     }
+                                    .buttonStyle(.characterMenu)
                                 }
                             }
+                            Spacer()
                         }
-                        Button {
-                            self.showSecretShop = true
-                        } label: {
-                            Text("Secret Shop 🤫")
-                                .padding(6)
-                                .padding(.horizontal, 6)
-                                .customTextStroke()
-                                .font(.system(size: 21))
-                                .bold()
-                                .italic()
-                                .background(RandomGradientView())
-                                .cornerRadius(12)
-                                .padding(.vertical)
-                        }
-                        .buttonStyle(.roundedAndShadow6)
                     }
-                    Spacer()
+                    Button {
+                        self.showSecretShop = true
+                    } label: {
+                        Text("Secret Shop 🤫")
+                            .padding(6)
+                            .padding(.horizontal, 6)
+                            .customTextStroke()
+                            .font(.system(size: 21))
+                            .bold()
+                            .italic()
+                            .background(RandomGradientView())
+                            .cornerRadius(12)
+                            .padding(.vertical)
+                    }
+                    .buttonStyle(.roundedAndShadow6)
                 }
             }
 
