@@ -106,7 +106,13 @@ struct GameOverScreenView: View {
                             Rectangle()
                                 .foregroundColor(.yellow)
                                 .cornerRadius(30)
+                                .overlay{
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .stroke(Color.black, lineWidth: 3)
+                                        .padding(1)
+                                }
                                 .padding(.horizontal,9)
+                                
                             VStack{
                                 Spacer()
                                 HStack{

@@ -49,13 +49,14 @@ struct HomeButtonsView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 6)
                     .background{
-                        if userPersistedData.infiniteBoinsUnlocked {
-                            RandomGradientView()
-                        } else {
-                            Color.yellow
-                        }
+                        Color.yellow
                     }
                     .cornerRadius(15)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.black, lineWidth: 3)
+                            .padding(1)
+                    }
                     .padding()
                 }
                 .buttonStyle(.roundedAndShadow6)
