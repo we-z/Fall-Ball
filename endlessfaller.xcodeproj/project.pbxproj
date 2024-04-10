@@ -17,6 +17,7 @@
 		7A0BB1CE2B51C4DC0048B247 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */; };
 		7A0BB1D02B51CA580048B247 /* GameOverScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */; };
 		7A16C4492B6AF63C00B6D3B1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A16C4482B6AF63C00B6D3B1 /* UserData.swift */; };
+		7A1B4B322BC660D500C58084 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */; };
 		7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 7A1E4F772B7AFBCC00CDF00F /* CircularProgress */; };
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
 		7A2F39BA2BA0E4C400B15E5E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */; };
@@ -713,6 +714,7 @@
 				7A675CED2B835E74001DEF29 /* BoingNotification.caf in Resources */,
 				7A0598092B08976E0053646D /* Boing.mp3 in Resources */,
 				7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */,
+				7A1B4B322BC660D500C58084 /* PrivacyInfo.xcprivacy in Resources */,
 				7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */,
 				7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */,
 				7AD234472A5F824900ED626D /* Preview Assets.xcassets in Resources */,

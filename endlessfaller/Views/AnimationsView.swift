@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            SwipeFaster()
+            DailyBoinCollectedView()
         }
     }
 }
@@ -1408,7 +1408,7 @@ struct DailyBoinCollectedView: View {
                     .bold()
                     .multilineTextAlignment(.center)
                     .font(.title)
-                    .customTextStroke()
+                    .customTextStroke(width: 1.8)
                     .padding(15)
             }
             .scaleEffect(appearFromTop ? 1 : 0)

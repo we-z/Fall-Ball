@@ -76,6 +76,7 @@ struct CurrencyPageView: View {
                                                 Image(bundles[index].image)
                                                     .resizable()
                                                     .frame(width: 90, height: 90)
+                                                    .customTextStroke()
                                                     .padding(.leading)
                                                 Text(String(bundles[index].coins) + " Boins")
                                                     .bold()
