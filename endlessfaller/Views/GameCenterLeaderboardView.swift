@@ -479,7 +479,7 @@ struct GameCenterLeaderboardView: View {
                                                                     .italic()
                                                                     .customShadow(radius: 0.1, width: 0.6)
                                                                 Text(String(allTimePlayersList[1].score))
-                                                                    .customTextStroke()
+                                                                    .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title)
                                                                     .bold()
