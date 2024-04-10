@@ -35,16 +35,11 @@ struct HomeButtonsView: View {
                 } label: {
                     HStack{
                         BoinsView()
-                        Text(userPersistedData.infiniteBoinsUnlocked ? "∞" : String(userPersistedData.boinBalance))
+                        Text(String(userPersistedData.boinBalance))
                             .bold()
                             .italic()
-                        
-                            .customTextStroke(width:2.4)
+                            .customTextStroke(width:2.1)
                             .font(.largeTitle)
-                            
-                            .scaleEffect(userPersistedData.infiniteBoinsUnlocked ? 1.8 : 1)
-                            .padding(.horizontal, userPersistedData.infiniteBoinsUnlocked ? 12 : 0)
-                            .offset(y: userPersistedData.infiniteBoinsUnlocked ? -3 : 0)
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 6)

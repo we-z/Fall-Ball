@@ -10,7 +10,7 @@ import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        MonkeyView()
+        MoroccoView()
             .scaleEffect(3)
     }
 }
@@ -960,6 +960,7 @@ struct MoroccoView: View {
                             .frame(width: 46)
                     )
             )
+            .frame(width: 46, height: 46)
     }
 }
 
