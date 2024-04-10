@@ -117,12 +117,11 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if todaysPlayersList.count > 2 {
                                                                 Text(todaysPlayersList[2].name)
-                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                    .padding(.horizontal)
+                                                                    .customTextStroke(width:1.5)
                                                                 Text(String(todaysPlayersList[2].score))
                                                                     .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
@@ -181,13 +180,11 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if todaysPlayersList.count > 0 {
                                                                 Text(todaysPlayersList[0].name)
-                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                    
-                                                                    .padding(.horizontal)
+                                                                    .customTextStroke(width:1.5)
                                                                 Text(String(todaysPlayersList[0].score))
                                                                     .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
@@ -238,12 +235,11 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if todaysPlayersList.count > 1 {
                                                                 Text(todaysPlayersList[1].name)
-                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                    .padding(.horizontal)
+                                                                    .customTextStroke(width:1.5)
                                                                 Text(String(todaysPlayersList[1].score))
                                                                     .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
@@ -365,12 +361,11 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if allTimePlayersList.count > 2 {
                                                                 Text(allTimePlayersList[2].name)
-                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                    .padding(.horizontal)
+                                                                    .customTextStroke(width:1.5)
                                                                 Text(String(allTimePlayersList[2].score))
                                                                     .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
@@ -428,12 +423,11 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if allTimePlayersList.count > 0 {
                                                                 Text(allTimePlayersList[0].name)
-                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                    .padding(.horizontal)
+                                                                    .customTextStroke(width:1.5)
                                                                 Text(String(allTimePlayersList[0].score))
                                                                     .customTextStroke(width: 1.5)
                                                                     .multilineTextAlignment(.center)
@@ -481,12 +475,11 @@ struct GameCenterLeaderboardView: View {
                                                                 .customTextStroke()
                                                             if allTimePlayersList.count > 1 {
                                                                 Text(allTimePlayersList[1].name)
-                                                                    
                                                                     .multilineTextAlignment(.center)
                                                                     .font(.title3)
                                                                     .bold()
                                                                     .italic()
-                                                                    .padding(.horizontal)
+                                                                    .customTextStroke(width:1.5)
                                                                 Text(String(allTimePlayersList[1].score))
                                                                     .customTextStroke(width:1.5)
                                                                     .multilineTextAlignment(.center)
