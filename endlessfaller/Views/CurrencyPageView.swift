@@ -48,7 +48,7 @@ struct CurrencyPageView: View {
                     .padding(.top, 9)
                     .foregroundColor(.black)
                     .opacity(0.3)
-                    Text("💰🤩 Bundles 🤩💰")
+                    Text("💰🤩 BOINS 🤩💰")
                         .customTextStroke(width: 1.8)
                         .italic()
                         .bold()
@@ -78,7 +78,7 @@ struct CurrencyPageView: View {
                                                     .frame(width: 90, height: 90)
                                                     .customTextStroke()
                                                     .padding(.leading)
-                                                Text(String(bundles[index].coins) + " Boins")
+                                                Text(String(bundles[index].coins) + " BOINS")
                                                     .bold()
                                                     .italic()
                                                     .font(.system(size: 27))
@@ -100,58 +100,42 @@ struct CurrencyPageView: View {
                                             }
                                             if index == 1 {
                                                 HStack{
-                                                    Spacer()
-                                                    HStack{
-                                                        Spacer()
-                                                        Text("MOST POPULAR")
-                                                            .foregroundColor(.black)
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.system(size: 15))
-                                                        Spacer()
-                                                        
-                                                    }
-                                                    .background{
-                                                        Color.red
-                                                    }
-                                                    .overlay{
-                                                        Rectangle()
-                                                            .stroke(Color.black, lineWidth: 3)
-                                                    }
-                                                    .frame(width: 180)
-                                                    .rotationEffect(.degrees(30))
-                                                    .offset(x: 30, y: -24)
+                                                    Text("MOST POPULAR")
+                                                        .foregroundColor(.black)
+                                                        .bold()
+                                                        .italic()
+                                                        .font(.system(size: 12))
+                                                        .padding(.horizontal, 9)
+                                                        .padding(.vertical, 6)
                                                 }
+                                                .background{
+                                                    Color.red
+                                                }
+                                                .roundedCorner(12, corners: [.bottomLeft, .bottomRight])
+                                                .customTextStroke(width: 1.5)
+                                                .offset(x: 39, y: -48)
                                             }
                                             if index == 4 {
                                                 HStack{
-                                                    Spacer()
-                                                    HStack{
-                                                        Spacer()
-                                                        Text("BEST DEAL!")
-                                                            .foregroundColor(.black)
-                                                            .bold()
-                                                            .italic()
-                                                            .font(.system(size: 15))
-                                                        Spacer()
-                                                        
-                                                    }
-                                                    .background{
-                                                        Color.green
-                                                    }
-                                                    .overlay{
-                                                        Rectangle()
-                                                            .stroke(Color.black, lineWidth: 3)
-                                                    }
-                                                    .frame(width: 180)
-                                                    .rotationEffect(.degrees(30))
-                                                    .offset(x: 30, y: -24)
+                                                    Text("BEST DEAL!")
+                                                        .foregroundColor(.black)
+                                                        .bold()
+                                                        .italic()
+                                                        .font(.system(size: 12))
+                                                        .padding(.horizontal, 9)
+                                                        .padding(.vertical, 6)
                                                 }
+                                                .background{
+                                                    Color.green
+                                                }
+                                                .roundedCorner(12, corners: [.bottomLeft, .bottomRight])
+                                                .customTextStroke(width: 1.5)
+                                                .offset(x: 39, y: -48)
                                             }
 
                                         }
                                         .mask{
-                                            Rectangle()
+                                            RoundedRectangle(cornerRadius: 30)
                                         }
                                         .overlay{
                                             RoundedRectangle(cornerRadius: 30)
