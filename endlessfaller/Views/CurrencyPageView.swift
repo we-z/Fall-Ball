@@ -10,24 +10,17 @@ import SwiftUI
 struct CurrencyPageView: View {
     @Environment(\.dismiss) private var dismiss
     @State var isProcessingPurchase = false
-    @State var showAlert = false
     @StateObject var storeKit = StoreKitManager()
     @ObservedObject var appModel = AppModel.sharedAppModel
     @State var bundles: [CurrencyBundle] = [
-        CurrencyBundle(coins: 25, cost: "$4.99", bundleID: "25boins"),
-        CurrencyBundle(coins: 55, cost: "$9.99", bundleID: "55boins"),
-        CurrencyBundle(coins: 125, cost: "$19.99", bundleID: "125boins"),
-        CurrencyBundle(coins: 350, cost: "$49.99", bundleID: "350boins"),
-        CurrencyBundle(coins: 800, cost: "$99.99", bundleID: "800boins"),
-        CurrencyBundle(coins: 1700, cost: "$199.99", bundleID: "1700boins"),
-        CurrencyBundle(coins: 3900, cost: "$499.99", bundleID: "3900boins"),
-        CurrencyBundle(coins: 9999, cost: "$999.99", bundleID: "9999boins"),
-        CurrencyBundle(coins: 0, cost: "$9,999.99", bundleID: "infinitecoins")
+        CurrencyBundle(image: "small-pile", coins: 25, cost: "$4.99", bundleID: "25boins"),
+        CurrencyBundle(image: "box-pile", coins: 55, cost: "$9.99", bundleID: "55boins"),
+        CurrencyBundle(image: "bucket-pile", coins: 125, cost: "$19.99", bundleID: "125boins"),
+        CurrencyBundle(image: "crate-pile", coins: 350, cost: "$49.99", bundleID: "350boins"),
+        CurrencyBundle(image: "big-pile", coins: 800, cost: "$99.99", bundleID: "800boins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
-    
-    
 
     @MainActor
     func buyBoins(bundle: CurrencyBundle) async {
@@ -45,23 +38,6 @@ struct CurrencyPageView: View {
         isProcessingPurchase = false
     }
     
-    @MainActor
-    func unlockInfiniteBoins() async {
-        do {
-            if (try await storeKit.purchase(bundleID: "infinite_boins")) != nil{
-                DispatchQueue.main.async {
-                    userPersistedData.infiniteBoinsUnlocked = true
-                }
-                dismiss()
-            }
-        } catch {
-            print("Purchase failed: \(error)")
-        }
-        appModel.grabbingBoins = false
-        isProcessingPurchase = false
-    }
-    
-    
     var body: some View {
         ZStack{
             RandomGradientView()
@@ -72,33 +48,6 @@ struct CurrencyPageView: View {
                     .padding(.top, 9)
                     .foregroundColor(.black)
                     .opacity(0.3)
-                if userPersistedData.infiniteBoinsUnlocked {
-                    VStack {
-                        Spacer()
-                        ZStack {
-                            RotatingSunView()
-                                .frame(maxWidth: deviceWidth)
-                            VStack{
-                                Text("∞")
-                                    .font(.system(size: 180))
-                                    .bold()
-                                    .italic()
-                                    .padding(1)
-                                    .animatedOffset(speed: 2)
-                                Text("Infinite Boins\nUnlocked\n🔓")
-                                    .font(.largeTitle)
-                                    .bold()
-                                    .italic()
-                                    .multilineTextAlignment(.center)
-                                    .scaleEffect(1.5)
-                            }
-                            .frame(width: deviceWidth, height: deviceHeight / 2)
-                            .customTextStroke(width: 3)
-                            .offset(y:-60)
-                        }
-                        Spacer()
-                    }
-                } else {
                     Text("💰🤩 Bundles 🤩💰")
                         .customTextStroke(width: 1.8)
                         .italic()
@@ -109,16 +58,9 @@ struct CurrencyPageView: View {
                         ForEach(0..<bundles.count, id: \.self) { index in
                                 let bundle = bundles[index]
                                 Button {
-                                    if index < 7 {
-                                        isProcessingPurchase = true
-                                        Task {
-                                            await buyBoins(bundle: bundle)
-                                        }
-                                    } else {
-//                                        Task {
-//                                            await unlockInfiniteBoins()
-//                                        }
-                                        showAlert = true
+                                    isProcessingPurchase = true
+                                    Task {
+                                        await buyBoins(bundle: bundle)
                                     }
                                 } label: {
                                     Rectangle()
@@ -131,10 +73,10 @@ struct CurrencyPageView: View {
                                                     .cornerRadius(30)
                                             }
                                             HStack{
-                                                BoinsView()
-                                                    .scaleEffect(1.5)
-                                                    .padding()
-                                                    .padding(.leading, deviceWidth / 30)
+                                                Image(bundles[index].image)
+                                                    .resizable()
+                                                    .frame(width: 90, height: 90)
+                                                    .padding(.leading)
                                                 if index != 8 {
                                                     Text(String(bundles[index].coins) + " Boins")
                                                         .bold()
@@ -244,7 +186,6 @@ struct CurrencyPageView: View {
                         
                     }
                     .padding(.leading, 9)
-                }
             }
             if isProcessingPurchase {
                 Color.gray.opacity(0.3) // Gray out the background
@@ -254,13 +195,11 @@ struct CurrencyPageView: View {
             }
         }
         .allowsHitTesting(!isProcessingPurchase)
-        .alert("Coming Soon", isPresented: $showAlert) {
-            Button("OK", role: .cancel) { }
-        }
     }
 }
 
 struct CurrencyBundle: Hashable {
+    let image: String
     let coins: Int // Note: I corrected the type name to 'AnyView' (with a capital 'A')
     let cost: String
     let bundleID: String
