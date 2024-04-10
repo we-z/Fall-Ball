@@ -111,7 +111,7 @@ struct CurrencyPageView: View {
                                                         
                                                     }
                                                     .background{
-                                                        Color.orange
+                                                        Color.red
                                                     }
                                                     .overlay{
                                                         Rectangle()
@@ -122,12 +122,12 @@ struct CurrencyPageView: View {
                                                     .offset(x: 30, y: -24)
                                                 }
                                             }
-                                            if index > 6 {
+                                            if index == 4 {
                                                 HStack{
                                                     Spacer()
                                                     HStack{
                                                         Spacer()
-                                                        Text("COMING SOON!")
+                                                        Text("BEST DEAL!")
                                                             .foregroundColor(.black)
                                                             .bold()
                                                             .italic()
@@ -146,7 +146,6 @@ struct CurrencyPageView: View {
                                                     .rotationEffect(.degrees(30))
                                                     .offset(x: 30, y: -24)
                                                 }
-                                                
                                             }
 
                                         }
