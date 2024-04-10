@@ -45,6 +45,7 @@ struct SecretShopView: View {
                             }
                             ForEach(0..<model.hats.count/3, id: \.self) { rowIndex in
                                 HStack {
+                                    Spacer()
                                     ForEach(0..<3, id: \.self) { columnIndex in
                                         let index = rowIndex * 3 + columnIndex
                                         if index < model.hats.count {
@@ -57,9 +58,9 @@ struct SecretShopView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/3.3, height: idiom == .pad ? 270 : 150)
-                                                    .background(RandomGradientView().opacity(model.hats[index].hatID == userPersistedData.selectedHat ? 1 : 0))
+                                                    .background(RandomGradientView())
                                                     .cornerRadius(20)
-                                                    .overlay(
+                                                    .overlay{
                                                         ZStack{
                                                             if model.hats[index].hatID == userPersistedData.selectedHat && index != 0 {
                                                                 AnyView(character?.character)
@@ -69,9 +70,13 @@ struct SecretShopView: View {
                                                                 .offset(y: model.hats[index].hatID == userPersistedData.selectedHat ? 0 : index == 0 ? 0 : 30)
                                                             
                                                         }
-                                                            .padding()
-                                                            .offset(y: index == 0 ? 0 : 12)
-                                                    )
+                                                        .padding()
+                                                        .offset(y: index == 0 ? 0 : 12)
+                                                        if model.hats[index].hatID == userPersistedData.selectedHat {
+                                                            RoundedRectangle(cornerRadius: 20)
+                                                                .stroke(Color.black, lineWidth: 6)
+                                                        }
+                                                    }
                                                     .accentColor(.black)
                                                     .padding(1)
                                             }
@@ -79,6 +84,7 @@ struct SecretShopView: View {
                                             
                                         }
                                     }
+                                    Spacer()
                                 }
                             }
                             HStack{
@@ -90,6 +96,7 @@ struct SecretShopView: View {
                             }
                             ForEach(0..<model.bags.count/2, id: \.self) { rowIndex in
                                 HStack {
+                                    Spacer()
                                     ForEach(0..<2, id: \.self) { columnIndex in
                                         let index = rowIndex * 2 + columnIndex
                                         if index < model.bags.count {
@@ -102,10 +109,9 @@ struct SecretShopView: View {
                                                     .fill(.clear)
                                                     .cornerRadius(20)
                                                     .frame(width: geometry.size.width/2.2, height: idiom == .pad ? 270 : 180)
-                                                    .background(RandomGradientView()
-                                                        .opacity(model.bags[index].bagID == userPersistedData.selectedBag ? 1 : 0))
+                                                    .background(RandomGradientView())
                                                     .cornerRadius(20)
-                                                    .overlay(
+                                                    .overlay{
                                                         ZStack{
                                                             AnyView(bag.bag)
                                                             if model.bags[index].bagID == userPersistedData.selectedBag && index != 0 {
@@ -118,7 +124,11 @@ struct SecretShopView: View {
                                                                 }
                                                             }
                                                         }
-                                                    )
+                                                        if model.bags[index].bagID == userPersistedData.selectedBag {
+                                                            RoundedRectangle(cornerRadius: 20)
+                                                                .stroke(Color.black, lineWidth: 6)
+                                                        }
+                                                    }
                                                     .accentColor(.black)
                                                     .padding(1)
                                             }
@@ -126,6 +136,7 @@ struct SecretShopView: View {
                                             
                                         }
                                     }
+                                    Spacer()
                                 }
                             }
                         }

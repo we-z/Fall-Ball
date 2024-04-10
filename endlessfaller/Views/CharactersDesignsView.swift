@@ -10,7 +10,7 @@ import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        MoroccoView()
+        UnicornView()
             .scaleEffect(3)
     }
 }
@@ -1024,6 +1024,7 @@ struct UnicornView: View {
                 .frame(width: 12, height: 18)
                 .offset(x:12,y: -16)
         }
+        .compositingGroup()
     }
 }
 

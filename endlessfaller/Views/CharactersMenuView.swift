@@ -82,11 +82,11 @@ struct CharactersMenuView: View {
                                                         } else if index < 9 {
                                                             Text("Free")
                                                                 .customTextStroke(width: 1.5)
-                                                                .font(idiom == .pad ? .system(size: 39) :.system(size: 21))
+                                                                .font(idiom == .pad ? .system(size: 36) :.system(size: 21))
                                                                 .bold()
                                                                 .italic()
                                                         } else {
-                                                            HStack(spacing: idiom == .pad ? 21 : 0){
+                                                            HStack(spacing: idiom == .pad ? 15 : 0){
                                                                 if index > 8 {
                                                                     BoinsView()
                                                                         .scaleEffect(idiom == .pad ? 1 : 0.6)
@@ -108,7 +108,7 @@ struct CharactersMenuView: View {
                                                                         .italic()
                                                                         .lineLimit(1)
                                                                         .customTextStroke(width: 1.2)
-                                                                        .font(idiom == .pad ? .system(size: 36) : .system(size: 12))
+                                                                        .font(idiom == .pad ? .system(size: 21) : .system(size: 12))
                                                                         .padding(0)
                                                                 }
                                                                 
