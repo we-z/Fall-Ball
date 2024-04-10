@@ -276,7 +276,7 @@ struct GameCenterLeaderboardView: View {
                                                     .padding(.bottom, 60)
                                                     .background{
                                                         RotatingSunView()
-                                                            .offset(y:240)
+                                                            .offset(y:270)
                                                     }
                                                     List {
                                                         ForEach(4...50, id: \.self) { num in
