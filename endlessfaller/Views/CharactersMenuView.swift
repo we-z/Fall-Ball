@@ -52,13 +52,9 @@ struct CharactersMenuView: View {
                                 if index < model.characters.count {
                                     let character = model.characters[index]
                                     Button {
-                                        if index < 9 || userPersistedData.purchasedSkins.contains(character.characterID) {
-                                            userPersistedData.selectNewBall(ball: model.characters[index].characterID)
-                                        } else {
-                                            currentCharacter = model.characters[index]
-                                            currentBallIndex = index
-                                            showBallDetails = true
-                                        }
+                                        currentCharacter = model.characters[index]
+                                        currentBallIndex = index
+                                        showBallDetails = true
                                     } label: {
                                         Rectangle()
                                             .fill(.clear)

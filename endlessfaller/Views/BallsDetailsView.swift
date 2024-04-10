@@ -40,29 +40,36 @@ struct BallsDetailsView: View {
                     Spacer()
                 }
                 Button{
-                    if userPersistedData.boinBalance >= Int(ball.cost)! || userPersistedData.infiniteBoinsUnlocked {
-                        userPersistedData.addPurchasedSkin(skinName: ball.characterID)
-                        userPersistedData.decrementBalance(amount: Int(ball.cost)!)
+                    if ballIndex < 9 || userPersistedData.purchasedSkins.contains(ball.characterID) {
                         userPersistedData.selectNewBall(ball: ball.characterID)
                         dismiss()
                     } else {
-                        showCurrencyPage = true
+                        if userPersistedData.boinBalance >= Int(ball.cost)! {
+                            userPersistedData.addPurchasedSkin(skinName: ball.characterID)
+                            userPersistedData.decrementBalance(amount: Int(ball.cost)!)
+                            userPersistedData.selectNewBall(ball: ball.characterID)
+                            dismiss()
+                        } else {
+                            showCurrencyPage = true
+                        }
                     }
                 } label: {
                     HStack{
                         Spacer()
-                        Text("OBTAIN:")
+                        Text(ballIndex < 9 || userPersistedData.purchasedSkins.contains(ball.characterID) ? "EQUIP" : "OBTAIN:")
                             .bold()
                             .italic()
                             .font(.title)
                             .customTextStroke(width: 1.8)
                             .padding(.vertical)
-                        BoinsView()
-                        Text("\(ball.cost)")
-                            .bold()
-                            .italic()
-                            .font(.title)
-                            .customTextStroke(width: 1.8)
+                        if ballIndex > 8 && !userPersistedData.purchasedSkins.contains(ball.characterID) {
+                            BoinsView()
+                            Text("\(ball.cost)")
+                                .bold()
+                                .italic()
+                                .font(.title)
+                                .customTextStroke(width: 1.8)
+                        }
                         Spacer()
                     }
                     .background(.yellow)
