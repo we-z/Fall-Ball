@@ -18,7 +18,7 @@ struct CharactersMenuView: View {
     @State var showSecretShop = false
     @State var hapticFeedbackCounter = 0
     @State var showBallDetails = false
-    @State var currentCharacter = Character(character: AnyView(WhiteBallView()), cost: "", characterID: "")
+    @State var currentCharacter = Character(name: "", character: AnyView(WhiteBallView()), cost: "", characterID: "")
     @State var currentBallIndex = 0
     @State var secretShopButtonIsPressed = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }

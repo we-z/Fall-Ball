@@ -11,16 +11,17 @@ struct TempView: View {
 
     var body: some View {
         ZStack{
-            RandomGradientView()
+            Color(hex: "283047")
             VStack{
-                Text("Free him!")
+                Text("I N A S   K A N D E E L")
+                    .foregroundColor(.white)
                     .font(.largeTitle)
-                    .bold()
-                    .italic()
-                    .multilineTextAlignment(.center)
+                    .padding()
+                Text("F A S H I O N . B E A U T Y . S T O R I E S")
+                    .foregroundColor(.white)
+                    .font(.caption)
+                
             }
-            .frame(width: 127)
-            .cornerRadius(21)
         }
     }
 }

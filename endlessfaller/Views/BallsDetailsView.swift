@@ -35,10 +35,15 @@ struct BallsDetailsView: View {
                 Ellipse()
                     .frame(width: 120, height: 30)
                     .blur(radius: 21)
-                    .padding(.bottom, 45)
                 if idiom == .pad {
                     Spacer()
                 }
+                Text(ball.name)
+                    .font(.system(size: 27))
+                    .textCase(.uppercase)
+                    .bold()
+                    .italic()
+                    .customTextStroke(width: 1.8)
                 Button{
                     if ballIndex < 9 || userPersistedData.purchasedSkins.contains(ball.characterID) {
                         userPersistedData.selectNewBall(ball: ball.characterID)
