@@ -83,7 +83,7 @@ struct PlayingBallView: View {
                 }
                 .frame(width: 180, height: 120)
                 .opacity(appModel.ballIsStrobing ? 0 : 1)
-                .scaleEffect(appModel.ballIsStrobing ? 1.2 : 1)
+                .scaleEffect(appModel.ballIsStrobing ? 2.1 : 1.5)
                 .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
             }
             .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)

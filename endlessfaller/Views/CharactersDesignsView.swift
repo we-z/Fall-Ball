@@ -10,8 +10,11 @@ import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        UnicornView()
-            .scaleEffect(3)
+        HStack{
+            NinjaBallView()
+            ShockedBall()
+            ElonView()
+        }
     }
 }
 struct EyesView: View {
@@ -1004,6 +1007,59 @@ struct BeachBallView: View {
                         .frame(width: 42)
                 )
         }
+    }
+}
+
+struct KanyeView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 45)
+            Image("kanye")
+                .resizable()
+                .frame(width: 99, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 41)
+                        .offset(x: -1, y: -1)
+                )
+                .offset(x: 1, y: 1)
+        }
+        .frame(width: 45, height: 45)
+    }
+}
+
+struct NinjaBallView: View {
+    var body: some View {
+        ZStack{
+            Image("ninja")
+                .resizable()
+                .frame(width: 69, height: 69)
+        }
+        .frame(width: 46, height: 46)
+    }
+}
+
+struct ElonView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 47)
+            Circle()
+                .foregroundColor(.white)
+                .frame(width: 30)
+            Image("elon")
+                .resizable()
+                .frame(width: 135, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+        }
+        .frame(width: 46)
+        .allowsHitTesting(false)
+        .compositingGroup()
+        
     }
 }
 
