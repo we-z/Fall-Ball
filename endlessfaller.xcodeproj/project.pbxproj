@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E43A0AC2BCAF2DC003EF367 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
@@ -137,6 +138,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fall-Ball-Info.plist"; sourceTree = "<group>"; };
 		7A053E4F2B553EA8007485A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7A0598072B08976E0053646D /* Boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boing.mp3; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				7AB05CE32A65C65500EE4D7B /* products.storekit */,
+				2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */,
 				7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */,
 				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
@@ -718,6 +721,7 @@
 				7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */,
 				7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */,
 				7AD234472A5F824900ED626D /* Preview Assets.xcassets in Resources */,
+				2E43A0AC2BCAF2DC003EF367 /* GoogleService-Info.plist in Resources */,
 				7AD234432A5F824900ED626D /* Assets.xcassets in Resources */,
 				7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */,
 			);
