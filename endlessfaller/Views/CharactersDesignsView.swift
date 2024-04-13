@@ -10,10 +10,13 @@ import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
-        HStack{
-            NinjaBallView()
-            UnicornView()
-            ElonView()
+        VStack {
+            HStack{
+                NinjaBallView()
+                EvilBall()
+                ElonView()
+            }
+            Spacer()
         }
     }
 }

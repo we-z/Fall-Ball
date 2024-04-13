@@ -103,8 +103,9 @@ struct CharactersMenuView: View {
                                                                         .bold()
                                                                         .italic()
                                                                         .lineLimit(1)
+                                                                        .minimumScaleFactor(0.01)
                                                                         .customTextStroke(width: 1.2)
-                                                                        .font(idiom == .pad ? .system(size: 21) : .system(size: 12))
+                                                                        .font(idiom == .pad ? .system(size: 21) : .system(size: 18))
                                                                         .padding(0)
                                                                 }
                                                                 
