@@ -12,7 +12,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         HStack{
             NinjaBallView()
-            ShockedBall()
+            UnicornView()
             ElonView()
         }
     }
@@ -1081,6 +1081,8 @@ struct UnicornView: View {
                 .frame(width: 12, height: 18)
                 .offset(x:12,y: -16)
         }
+        .compositingGroup()
+        .frame(width: 46, height: 46)
     }
 }
 
