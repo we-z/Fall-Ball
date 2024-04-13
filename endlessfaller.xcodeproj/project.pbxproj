@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2E43A0AC2BCAF2DC003EF367 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */; };
+		2E43A0AF2BCAF702003EF367 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0AE2BCAF702003EF367 /* FirebaseAnalyticsSwift */; };
+		2E43A0B12BCAF702003EF367 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B02BCAF702003EF367 /* FirebaseAuth */; };
+		2E43A0B32BCAF702003EF367 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B22BCAF702003EF367 /* FirebaseDatabaseSwift */; };
+		2E43A0B52BCAF702003EF367 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B42BCAF702003EF367 /* FirebaseInstallations */; };
+		2E43A0B72BCAF702003EF367 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B62BCAF702003EF367 /* FirebaseRemoteConfigSwift */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
@@ -229,9 +234,14 @@
 				7AA5F9752BBCFF2F0003B2AD /* SwiftFX in Frameworks */,
 				7A9755D62B78717200473737 /* CloudStorage in Frameworks */,
 				7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */,
+				2E43A0B32BCAF702003EF367 /* FirebaseDatabaseSwift in Frameworks */,
 				7A689B3C2BA79AE1006D3AA5 /* SwizzleSwift in Frameworks */,
+				2E43A0B72BCAF702003EF367 /* FirebaseRemoteConfigSwift in Frameworks */,
+				2E43A0AF2BCAF702003EF367 /* FirebaseAnalyticsSwift in Frameworks */,
 				7A38B59C2B85727000DDD280 /* Vortex in Frameworks */,
 				7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */,
+				2E43A0B12BCAF702003EF367 /* FirebaseAuth in Frameworks */,
+				2E43A0B52BCAF702003EF367 /* FirebaseInstallations in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +537,11 @@
 				7A38B59B2B85727000DDD280 /* Vortex */,
 				7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */,
 				7AA5F9742BBCFF2F0003B2AD /* SwiftFX */,
+				2E43A0AE2BCAF702003EF367 /* FirebaseAnalyticsSwift */,
+				2E43A0B02BCAF702003EF367 /* FirebaseAuth */,
+				2E43A0B22BCAF702003EF367 /* FirebaseDatabaseSwift */,
+				2E43A0B42BCAF702003EF367 /* FirebaseInstallations */,
+				2E43A0B62BCAF702003EF367 /* FirebaseRemoteConfigSwift */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -693,6 +708,7 @@
 				7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */,
 				7A689B3A2BA79AE1006D3AA5 /* XCRemoteSwiftPackageReference "SwizzleSwift" */,
 				7AA5F9732BBCFF2F0003B2AD /* XCRemoteSwiftPackageReference "SwiftFX" */,
+				2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 7AD2343C2A5F824800ED626D /* Products */;
 			projectDirPath = "";
@@ -1019,11 +1035,12 @@
 				CURRENT_PROJECT_VERSION = 1.7.7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
+				DEVELOPMENT_TEAM = 9AEE6NMN4R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fall-Ball-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fall Ball Does not use your camera";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This App would like to save photo to photo library";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -1041,7 +1058,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.7.7;
-				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
+				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall.sam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1066,11 +1083,12 @@
 				CURRENT_PROJECT_VERSION = 1.7.7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
-				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
+				DEVELOPMENT_TEAM = 9AEE6NMN4R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fall-Ball-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fall Ball Does not use your camera";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This App would like to save photo to photo library";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -1088,7 +1106,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.7.7;
-				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
+				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall.sam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1487,6 +1505,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.24.0;
+			};
+		};
 		7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aleksproger/circular-progress.git";
@@ -1554,6 +1580,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2E43A0AE2BCAF702003EF367 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		2E43A0B02BCAF702003EF367 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		2E43A0B22BCAF702003EF367 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		2E43A0B42BCAF702003EF367 /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
+		};
+		2E43A0B62BCAF702003EF367 /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
 		7A1E4F772B7AFBCC00CDF00F /* CircularProgress */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */;
