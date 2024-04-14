@@ -73,6 +73,12 @@
             ReferencedContainer = "container:endlessfaller.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-FIRAnalyticsDebugEnabled"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <StoreKitConfigurationFileReference
          identifier = "../../endlessfaller/Configs/products.storekit">
       </StoreKitConfigurationFileReference>
