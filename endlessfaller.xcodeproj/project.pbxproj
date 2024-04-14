@@ -1063,7 +1063,7 @@
 				CURRENT_PROJECT_VERSION = 1.7.7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
-				DEVELOPMENT_TEAM = 9AEE6NMN4R;
+				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1086,7 +1086,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.7.7;
-				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall.sam;
+				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1111,7 +1111,7 @@
 				CURRENT_PROJECT_VERSION = 1.7.7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
-				DEVELOPMENT_TEAM = 9AEE6NMN4R;
+				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1134,7 +1134,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.7.7;
-				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall.sam;
+				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
