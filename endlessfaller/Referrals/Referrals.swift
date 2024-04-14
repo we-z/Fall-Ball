@@ -11,22 +11,6 @@ import FirebaseDatabase
 import FirebaseAnalytics
 
 struct Referrals {
-    static func verifyPhone(_ phoneNumber: String, complete: @escaping (String?) -> Void) {
-        PhoneAuthProvider.provider()
-            .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in      guard let verificationID = verificationID else {
-                    if let error = error {
-                        debugPrint("Error verifying phone. Details: \(error.localizedDescription)")
-                    }
-                    complete(nil)
-                    return
-                }
-                
-                User.setVerificationID(verificationID)
-                // Sign in using the verificationID and the code sent to the user
-                complete(verificationID)
-            }
-    }
-    
     static func verifyAnonymous() {
         guard Auth.auth().currentUser?.isAnonymous == false else {
             debugPrint("verifyAnonymous - but we're already anonymous!")
@@ -48,8 +32,12 @@ struct Referrals {
     
     static func verifyGameCenter() async {
         if let credential = try? await GameCenterAuthProvider.getCredential() {
-            authorize(credential: credential) { user, auth in
-                debugPrint("user: \(user.description) - auth: \(auth)")
+            if let result = try? await Auth.auth().currentUser?.link(with: credential) {
+                debugPrint("Linked GameCenter to currentUser - \(result)")
+            } else {
+                authorize(credential: credential) { user, auth in
+                    debugPrint("user: \(user.description) - auth: \(auth)")
+                }
             }
         }
     }
@@ -63,24 +51,39 @@ struct Referrals {
     }
     
     static func authorize(credential: AuthCredential, complete: @escaping (User, Bool) -> Void) {
+        // Ensure we don't keep signing in and creating countless users®
+        if let user = Auth.auth().currentUser {
+            provisionNewUser(user)
+            
+            return complete(user, false)
+        }
+        
         Auth.auth().signIn(with: credential) { result, error in
             guard let result = result,
             let isNewUser = result.additionalUserInfo?.isNewUser else {
                 return
             }
             
-            if isNewUser == true, let moreInfo = result.additionalUserInfo {
-                Analytics.logEvent("create_new_user", parameters: moreInfo.profile)
-                Referrals.provisionNewUser(result.user)
+            if isNewUser == true {
+                handleNew(result.user)
             } else {
-                Analytics.logEvent("returning_user", parameters: ["uid": result.user.uid])
-                Referrals.updateExistingUser(result.user)
+                handleReturning(result.user)
             }
             
             Analytics.setUserID(result.user.uid)
             
             complete(result.user, isNewUser)
         }
+    }
+    
+    private static func handleReturning(_ user: User) {
+        Analytics.logEvent(AnalyticsEventLogin, parameters: ["uid": user.uid])
+        Referrals.updateExistingUser(user)
+    }
+    
+    private static func handleNew(_ user: User) {
+        Analytics.logEvent(AnalyticsEventSignUp, parameters: ["uid": user.uid])
+        Referrals.provisionNewUser(user)
     }
     
     static func provisionNewUser(_ user: User) {

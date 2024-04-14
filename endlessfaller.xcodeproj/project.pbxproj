@@ -10,6 +10,7 @@
 		2E43A0AC2BCAF2DC003EF367 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */; };
 		2E43A0B12BCAF702003EF367 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B02BCAF702003EF367 /* FirebaseAuth */; };
 		2E43A0B52BCAF702003EF367 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B42BCAF702003EF367 /* FirebaseInstallations */; };
+		2EBDDF012BCB8F9A004DA24C /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBDDF002BCB8F9A004DA24C /* AdServices.framework */; };
 		2EDAA7AB2BCAFFE50077C4A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EDAA7AA2BCAFFE50077C4A8 /* Assets.xcassets */; };
 		2EDAA7AD2BCB094B0077C4A8 /* Referrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDAA7AC2BCB094B0077C4A8 /* Referrals.swift */; };
 		2EDAA7AF2BCB15470077C4A8 /* NanoID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDAA7AE2BCB15470077C4A8 /* NanoID.swift */; };
@@ -149,6 +150,7 @@
 
 /* Begin PBXFileReference section */
 		2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2EBDDF002BCB8F9A004DA24C /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.4.sdk/System/Library/Frameworks/AdServices.framework; sourceTree = DEVELOPER_DIR; };
 		2EDAA7AA2BCAFFE50077C4A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EDAA7AC2BCB094B0077C4A8 /* Referrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referrals.swift; sourceTree = "<group>"; };
 		2EDAA7AE2BCB15470077C4A8 /* NanoID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoID.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				2EDAA7B62BCB481B0077C4A8 /* AdSupport.framework in Frameworks */,
 				2EDAA7BC2BCB72390077C4A8 /* FirebaseDatabase in Frameworks */,
 				2EDAA7B82BCB722A0077C4A8 /* FirebaseAnalytics in Frameworks */,
+				2EBDDF012BCB8F9A004DA24C /* AdServices.framework in Frameworks */,
 				7A38B59C2B85727000DDD280 /* Vortex in Frameworks */,
 				7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */,
 				2E43A0B12BCAF702003EF367 /* FirebaseAuth in Frameworks */,
@@ -306,6 +309,7 @@
 		7A053E4E2B553EA8007485A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2EBDDF002BCB8F9A004DA24C /* AdServices.framework */,
 				2EDAA7B52BCB481B0077C4A8 /* AdSupport.framework */,
 				7A053E4F2B553EA8007485A0 /* StoreKit.framework */,
 			);

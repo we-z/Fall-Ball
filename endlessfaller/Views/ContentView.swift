@@ -21,56 +21,27 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @ObservedObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     
+    let openToday = NSDate().formatted
+    let heavyHaptic = UINotificationFeedbackGenerator()
+    
     func boinFound() {
         appModel.showBoinFoundAnimation = true
         userPersistedData.incrementBalance(amount: 1)
         userPersistedData.resetBoinIntervalCounter()
     }
-    
-//    func assignReferralURL(){
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            print("user assigned from state change listener")
-//            user?.makeReferralLink(complete: { url in
-//                self.referralURL = url
-//            })
-//        }
-//        GameCenterAuthProvider.getCredential() { (credential, error) in
-//            guard error == nil else {
-//                debugPrint("getCredential - ERROR: \(error!.localizedDescription)")
-//                return
-//            }
-//            // The credential can be used to sign in, or re-auth, or link or unlink.
-//            Auth.auth().signIn(with:credential!) { (result, error) in
-//                guard error == nil else {
-//                    debugPrint("signIn - ERROR: \(error!.localizedDescription)")
-//                    return
-//                }
-//                // Player is signed in!
-//                print("user assigned from state change listener")
-//                result!.user.makeReferralLink(complete: { url in
-//                    self.referralURL = url
-//                    userPersistedData.referralURL = url?.absoluteString ?? "none"
-//                })
-//            }
-//        }
-//    }
-    
-    let openToday = NSDate().formatted
+        
     func checkIfAppOpenToday() {
         if (userPersistedData.lastLaunch == openToday) {
-            //Already Launched today
-            print("already opened today")
+            // Already Launched today
+            //print("already opened today")
         } else {
-            //Today's First Launch
-            print("first open of the day")
+            // Today's First Launch
+            //print("first open of the day")
             userPersistedData.updateLastLaunch(date: openToday)
             userPersistedData.leaderboardWonToday = false
             appModel.dailyBoinCollected()
-            
         }
     }
-    
-    let heavyHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
         ZStack{

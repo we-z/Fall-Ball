@@ -14,7 +14,7 @@ enum UserDataKey {
     static let lastLoginDate = "lastLoginDate"
     static let signUpDate = "signUpDate"
     static let referralCode = "referralCode"
-    static let referredBy = "referredBy"
+    static let referredBy = "referrer"
 }
 
 extension User {
@@ -31,17 +31,28 @@ extension User {
     }
     
     func makeReferralLink(complete: @escaping (URL?) -> Void) {
-        databaseRef.child(UserDataKey.referralCode).observeSingleEvent(of: .value) { snapshot in
-            let URL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot.value ?? "none")")
-            complete(URL)
+        databaseRef.child(UserDataKey.referralCode).keepSynced(true)
+        databaseRef.child(UserDataKey.referralCode).getData { error, snapshot in
+            guard error == nil else {
+                debugPrint("makeReferralLink - ERROR: \(error)")
+                return
+            }
+            if let snapshot = snapshot {
+                let URL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot.value ?? "none")")
+                complete(URL)
+            }
         }
+//        databaseRef.child(UserDataKey.referralCode).observeSingleEvent(of: .value) { snapshot in
+//            let URL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot.value ?? "none")")
+//            complete(URL)
+//        }
     }
     
-    func makeReferralLink() async -> URL? {
-        let snapshot = try? await databaseRef.child(UserDataKey.referralCode).getData()
-        guard let referralURL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot?.value ?? "none")") else {
-            return nil
-        }
-        return referralURL
-    }
+//    func makeReferralLink() async -> URL? {
+//        let snapshot = try? await databaseRef.child(UserDataKey.referralCode).getData()
+//        guard let referralURL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot?.value ?? "none")") else {
+//            return nil
+//        }
+//        return referralURL
+//    }
 }

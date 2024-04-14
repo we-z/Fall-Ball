@@ -65,7 +65,7 @@ class GameCenter: ObservableObject {
                 }
             }
             Task {
-                await self.loadLeaderboard()
+                await self.loadLeaderboards()
             }
             self.notificationManager.registerLocal()
             
@@ -75,17 +75,21 @@ class GameCenter: ObservableObject {
     // update local player score
     
     func updateScore(currentScore: Int, ballID: String) {
-        Analytics.logEvent(AnalyticsEventPostScore, parameters: [AnalyticsParameterScore: currentScore, AnalyticsParameterCharacter: ballID])
+        Analytics.logEvent(AnalyticsEventPostScore, parameters: [
+            AnalyticsParameterScore: currentScore,
+            AnalyticsParameterCharacter: ballID
+        ])
+        
         notifyPassedPlayers(newScore: currentScore)
-        // push score to Game Center
-        Task{
-            GKLeaderboard.submitScore(currentScore, context: ballID.hash, player: GKLocalPlayer.local, leaderboardIDs: [self.leaderboardID, self.allTimeLeaderboardID]) { error in
-                
-                if let error = error {
-                    print("Error submitting score: \(error)")
-                } else {
-                    print("Score submitted to daily successfully")
-                }
+        // push score to Game Center leaderboards
+        GKLeaderboard.submitScore(currentScore,
+                                  context: ballID.hash,
+                                  player: GKLocalPlayer.local,
+                                  leaderboardIDs: [self.leaderboardID, self.allTimeLeaderboardID]) { error in
+            if let error = error {
+                print("Error submitting score: \(error)")
+            } else {
+                print("Score submitted to daily successfully")
             }
         }
     }
@@ -105,47 +109,71 @@ class GameCenter: ObservableObject {
     let allTimeLeaderboardIdentifier = "grp.AllTimeLeaderboard"
     
     // fetching leaderboard method
-    
-    func loadLeaderboard() async {
-        print("loadLeaderboard called")
-//        DispatchQueue.main.async {
+    func loadLeaderboard(withIdentifier: String) async {
+        GKLeaderboard.loadLeaderboards(IDs: [leaderboardIdentifier, allTimeLeaderboardID]) { leaderboards, error in
+            leaderboards?[0].loadEntries(
+                for: .global,
+                timeScope: .allTime,
+                range: NSRange(1...50),
+                completionHandler: { mine, entries, count,  error in
+                    debugPrint("loadEntries .allTime - \(mine)")
+                }
+            )
             
-            Task{
-                var todaysPlayersListTemp : [Player] = []
-                let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
-                if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
-                    let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
-                    if allPlayers.1.count > 0 {
-                        allPlayers.1.forEach { leaderboardEntry in
-                            todaysPlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
-                            todaysPlayersListTemp.sort{
-                                $0.score > $1.score
-                            }
-                        }
-                    }
+            leaderboards?[1].loadEntries(
+                for: .global,
+                timeScope: .today,
+                range: NSRange(1...50),
+                completionHandler: { mine, entries, count,  error in
+                    debugPrint("loadEntries .today - \(mine)")
                 }
-                if todaysPlayersListTemp.count > 0 {
-                    self.todaysPlayersList = todaysPlayersListTemp
-                    nextPlayerIndex = (todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) ?? todaysPlayersList.count) - 1
-                }
-                
-            }
-            Task{
-                var allTimePlayersListTemp : [Player] = []
-                let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.allTimeLeaderboardIdentifier])
-                if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.allTimeLeaderboardIdentifier }).first {
-                    let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
-                    if allPlayers.1.count > 0 {
-                        allPlayers.1.forEach { leaderboardEntry in
-                            allTimePlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
-                            allTimePlayersListTemp.sort{
-                                $0.score > $1.score
-                            }
-                        }
-                    }
-                }
-                self.allTimePlayersList = allTimePlayersListTemp
-            }
+            )
+        }
+    }
+    
+    func loadLeaderboards() async {
+        print("loadLeaderboards called")
+        
+//        Task {
+//            await loadLeaderboard(withIdentifier: leaderboardIdentifier)
+//            await loadLeaderboard(withIdentifier: allTimeLeaderboardIdentifier)
 //        }
+        
+        Task{
+            var todaysPlayersListTemp : [Player] = []
+            let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
+            if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
+                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
+                if allPlayers.1.count > 0 {
+                    allPlayers.1.forEach { leaderboardEntry in
+                        todaysPlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
+                        todaysPlayersListTemp.sort{
+                            $0.score > $1.score
+                        }
+                    }
+                }
+            }
+            if todaysPlayersListTemp.count > 0 {
+                self.todaysPlayersList = todaysPlayersListTemp
+                nextPlayerIndex = (todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) ?? todaysPlayersList.count) - 1
+            }
+            
+        }
+        Task{
+            var allTimePlayersListTemp : [Player] = []
+            let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.allTimeLeaderboardIdentifier])
+            if let leaderboard = leaderboards.filter ({ $0.baseLeaderboardID == self.allTimeLeaderboardIdentifier }).first {
+                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
+                if allPlayers.1.count > 0 {
+                    allPlayers.1.forEach { leaderboardEntry in
+                        allTimePlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score:leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
+                        allTimePlayersListTemp.sort{
+                            $0.score > $1.score
+                        }
+                    }
+                }
+            }
+            self.allTimePlayersList = allTimePlayersListTemp
+        }
     }
 }
