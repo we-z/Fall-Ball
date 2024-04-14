@@ -15,6 +15,7 @@ enum UserDataKey {
     static let signUpDate = "signUpDate"
     static let referralCode = "referralCode"
     static let referredBy = "referrer"
+    static let displayName = "displayName"
 }
 
 extension User {
@@ -30,29 +31,21 @@ extension User {
         return Database.database().reference(withPath: "/users/\(self.uid)")
     }
     
+    func setDisplayName(_ name: String) {
+        databaseRef.child(UserDataKey.displayName).setValue(name)
+    }
+    
     func makeReferralLink(complete: @escaping (URL?) -> Void) {
         databaseRef.child(UserDataKey.referralCode).keepSynced(true)
         databaseRef.child(UserDataKey.referralCode).getData { error, snapshot in
             guard error == nil else {
-                debugPrint("makeReferralLink - ERROR: \(error)")
+                debugPrint("makeReferralLink - ERROR: \(error!)")
                 return
             }
             if let snapshot = snapshot {
-                let URL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot.value ?? "none")")
+                let URL = URL(string: "https://fallball.io/link/?\(UserDataKey.referredBy)=\(snapshot.value ?? "none")")
                 complete(URL)
             }
         }
-//        databaseRef.child(UserDataKey.referralCode).observeSingleEvent(of: .value) { snapshot in
-//            let URL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot.value ?? "none")")
-//            complete(URL)
-//        }
     }
-    
-//    func makeReferralLink() async -> URL? {
-//        let snapshot = try? await databaseRef.child(UserDataKey.referralCode).getData()
-//        guard let referralURL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot?.value ?? "none")") else {
-//            return nil
-//        }
-//        return referralURL
-//    }
 }

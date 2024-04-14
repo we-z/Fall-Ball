@@ -47,7 +47,7 @@ class GameCenter: ObservableObject {
     }
 
     func authenticateUser(userData: UserPersistedData) {
-        print("authenticateUser called")
+//        print("authenticateUser called")
         GKLocalPlayer.local.authenticateHandler = { vc, error in
             guard error == nil else {
                 debugPrint("authHandler - ERROR: \(error!.localizedDescription)")
@@ -61,6 +61,7 @@ class GameCenter: ObservableObject {
                         user.makeReferralLink { url in
                             userData.referralURL = url?.absoluteString ?? "none"
                         }
+                        user.setDisplayName(GKLocalPlayer.local.displayName)
                     }
                 }
             }

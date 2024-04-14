@@ -12,19 +12,21 @@ import FirebaseAnalytics
 
 struct Referrals {
     static func verifyAnonymous() {
-        guard Auth.auth().currentUser?.isAnonymous == false else {
-            debugPrint("verifyAnonymous - but we're already anonymous!")
-            return
-        }
-        
-        Auth.auth().signInAnonymously { result, error in
-            guard error == nil else {
-                debugPrint("signInAnonymously - ERROR: \(error!.localizedDescription)")
+        if let user = Auth.auth().currentUser {
+            if user.isAnonymous {
+                debugPrint("verifyAnonymous - but we're already anonymous!")
                 return
             }
-            if let credential = result?.credential {
-                authorize(credential: credential) { user, done in
-                    debugPrint("verifyAnonymous - authorize - \(user.debugDescription)")
+        } else {
+            Auth.auth().signInAnonymously { result, error in
+                guard error == nil else {
+                    debugPrint("signInAnonymously - ERROR: \(error!.localizedDescription)")
+                    return
+                }
+                if let credential = result?.credential {
+                    authorize(credential: credential) { user, done in
+                        debugPrint("verifyAnonymous - authorize - \(user.debugDescription)")
+                    }
                 }
             }
         }
