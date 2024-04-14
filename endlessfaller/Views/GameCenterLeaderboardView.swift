@@ -7,6 +7,7 @@
 import SwiftUI
 import CloudKit
 import GameKit
+import FirebaseAnalytics
 
 struct GameCenterLeaderboardView: View {
     @ObservedObject private var model = AppModel.sharedAppModel
@@ -573,6 +574,7 @@ struct GameCenterLeaderboardView: View {
                                                     .scrollContentBackground(.hidden)
                                                 }
                                                 .refreshable {
+                                                    Analytics.logEvent("refresh_leaderboards", parameters: nil)
                                                     Task{
                                                         await gameCenter.loadLeaderboard()
                                                     }

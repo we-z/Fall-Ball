@@ -7,6 +7,7 @@
 
 import Foundation
 import CloudStorage
+import FirebaseAnalytics
 
 class UserPersistedData: ObservableObject {
     @CloudStorage("bestScore") var bestScore: Int = 0
@@ -24,6 +25,7 @@ class UserPersistedData: ObservableObject {
     func addPurchasedSkin(skinName: String) {
         purchasedSkins += skinName
         purchasedSkins += ","
+        Analytics.logEvent("purchase", parameters: [AnalyticsParameterItemID: skinName])
     }
     
     func skinIsPurchased(skinName: String) -> Bool {
@@ -44,14 +46,25 @@ class UserPersistedData: ObservableObject {
     
     func incrementBalance(amount: Int) {
         boinBalance += amount
+        Analytics.logEvent("earn_virtual_currency", parameters: [
+            AnalyticsParameterValue: amount,
+            AnalyticsParameterVirtualCurrencyName: "boins",
+            "new_balance": boinBalance
+        ])
     }
     
     func decrementBalance(amount: Int) {
         boinBalance -= amount
+        Analytics.logEvent("spend_virtual_currency", parameters: [
+            AnalyticsParameterValue: amount,
+            AnalyticsParameterVirtualCurrencyName: "boins",
+            "new_balance": boinBalance
+        ])
     }
     
     func updateBestScore(amount: Int) {
         bestScore = amount
+        Analytics.setUserProperty(String(bestScore), forName: "best_score")
     }
     
     func updateLastLaunch(date: String) {
@@ -60,14 +73,17 @@ class UserPersistedData: ObservableObject {
     
     func selectNewBall(ball: String) {
         selectedCharacter = ball
+        Analytics.setUserProperty(String(bestScore), forName: "selected_character")
     }
     
     func selectNewHat(hat: String) {
         selectedHat = hat
+        Analytics.setUserProperty(String(bestScore), forName: "selected_hat")
     }
     
     func selectNewBag(bag: String) {
         selectedBag = bag
+        Analytics.setUserProperty(String(bestScore), forName: "selected_bag")
     }
     
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct ContinuePlayingView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
@@ -55,6 +56,7 @@ struct ContinuePlayingView: View {
                     .customTextStroke(width: 2.1)
                 Button {
                     if userPersistedData.boinBalance >= appModel.costToContinue || userPersistedData.infiniteBoinsUnlocked {
+                        Analytics.logEvent("pay_for_continue", parameters: ["price": appModel.costToContinue])
                         userPersistedData.decrementBalance(amount: appModel.costToContinue)
                         appModel.continuePlaying()
                     } else {

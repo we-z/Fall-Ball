@@ -9,6 +9,7 @@ import SwiftUI
 import GameKit
 import CoreMotion
 import Combine
+import FirebaseAnalytics
 
 struct ContentView: View {
     

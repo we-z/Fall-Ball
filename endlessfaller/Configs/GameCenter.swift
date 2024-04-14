@@ -9,6 +9,7 @@ import Foundation
 import GameKit
 import SwiftUI
 import CoreMotion
+import FirebaseAnalytics
 
 class GameCenter: ObservableObject {
     
@@ -60,6 +61,7 @@ class GameCenter: ObservableObject {
     // update local player score
     
     func updateScore(currentScore: Int, ballID: String) {
+        Analytics.logEvent(AnalyticsEventPostScore, parameters: [AnalyticsParameterScore: currentScore, AnalyticsParameterCharacter: ballID])
         notifyPassedPlayers(newScore: currentScore)
         // push score to Game Center
         Task{

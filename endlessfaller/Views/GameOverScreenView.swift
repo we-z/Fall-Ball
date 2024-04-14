@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct GameOverScreenView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
@@ -160,6 +161,8 @@ struct GameOverScreenView: View {
             }
         }
         .onAppear{
+            Analytics.logEvent(AnalyticsEventScreenView, parameters: [AnalyticsParameterScreenName: "GameOverScreenView"])
+                                
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 appModel.showNewBestScore = false
             }
