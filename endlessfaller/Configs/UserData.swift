@@ -46,7 +46,7 @@ class UserPersistedData: ObservableObject {
     
     func incrementBalance(amount: Int) {
         boinBalance += amount
-        Analytics.logEvent("earn_virtual_currency", parameters: [
+        Analytics.logEvent(AnalyticsEventEarnVirtualCurrency, parameters: [
             AnalyticsParameterValue: amount,
             AnalyticsParameterVirtualCurrencyName: "boins",
             "new_balance": boinBalance
@@ -55,7 +55,7 @@ class UserPersistedData: ObservableObject {
     
     func decrementBalance(amount: Int) {
         boinBalance -= amount
-        Analytics.logEvent("spend_virtual_currency", parameters: [
+        Analytics.logEvent(AnalyticsEventSpendVirtualCurrency, parameters: [
             AnalyticsParameterValue: amount,
             AnalyticsParameterVirtualCurrencyName: "boins",
             "new_balance": boinBalance
