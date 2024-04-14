@@ -10,12 +10,14 @@ import GameKit
 import SwiftUI
 import CoreMotion
 import FirebaseAnalytics
+import FirebaseAuth
 
 class GameCenter: ObservableObject {
     
     @Published var nextPlayerIndex = -1
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
+    @Published var referralURL: URL? = URL(string: "")
     @ObservedObject var notificationManager = NotificationManager()
     
     static let shared = GameCenter()
@@ -44,17 +46,29 @@ class GameCenter: ObservableObject {
         }
     }
 
-    func authenticateUser() {
+    func authenticateUser(userData: UserPersistedData) {
         print("authenticateUser called")
         GKLocalPlayer.local.authenticateHandler = { vc, error in
             guard error == nil else {
-                print(error?.localizedDescription ?? "")
+                debugPrint("authHandler - ERROR: \(error!.localizedDescription)")
                 return
             }
-            Task{
+            Task {
+                let credential = try? await GameCenterAuthProvider.getCredential()
+                if let credential = credential {
+                    Referrals.authorize(credential: credential) { user, status in
+                        debugPrint("authenticateUser - \(user)")
+                        user.makeReferralLink { url in
+                            userData.referralURL = url?.absoluteString ?? "none"
+                        }
+                    }
+                }
+            }
+            Task {
                 await self.loadLeaderboard()
             }
             self.notificationManager.registerLocal()
+            
         }
     }
     

@@ -36,4 +36,12 @@ extension User {
             complete(URL)
         }
     }
+    
+    func makeReferralLink() async -> URL? {
+        let snapshot = try? await databaseRef.child(UserDataKey.referralCode).getData()
+        guard let referralURL = URL(string: "https://endlessfall.io/link/?\(UserDataKey.referredBy)=\(snapshot?.value ?? "none")") else {
+            return nil
+        }
+        return referralURL
+    }
 }

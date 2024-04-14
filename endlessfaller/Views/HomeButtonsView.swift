@@ -22,7 +22,7 @@ struct HomeButtonsView: View {
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
     @State var showCurrencyPage = false
-    @StateObject var userPersistedData = UserPersistedData()
+    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     var body: some View {

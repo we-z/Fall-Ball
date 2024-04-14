@@ -13,7 +13,7 @@ struct ContinuePlayingView: View {
     @State var showCurrencyPage = false
     @State private var circleProgress: CGFloat = 0.0
     @State var buttonIsPressed = false
-    @StateObject var userPersistedData = UserPersistedData()
+    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     

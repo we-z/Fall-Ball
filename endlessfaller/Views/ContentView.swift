@@ -9,6 +9,7 @@ import SwiftUI
 import GameKit
 import CoreMotion
 import Combine
+import FirebaseAuth
 
 struct ContentView: View {
     
@@ -18,13 +19,41 @@ struct ContentView: View {
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
-    @ObservedObject var userPersistedData = UserPersistedData()
+    @ObservedObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true
         userPersistedData.incrementBalance(amount: 1)
         userPersistedData.resetBoinIntervalCounter()
     }
+    
+//    func assignReferralURL(){
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            print("user assigned from state change listener")
+//            user?.makeReferralLink(complete: { url in
+//                self.referralURL = url
+//            })
+//        }
+//        GameCenterAuthProvider.getCredential() { (credential, error) in
+//            guard error == nil else {
+//                debugPrint("getCredential - ERROR: \(error!.localizedDescription)")
+//                return
+//            }
+//            // The credential can be used to sign in, or re-auth, or link or unlink.
+//            Auth.auth().signIn(with:credential!) { (result, error) in
+//                guard error == nil else {
+//                    debugPrint("signIn - ERROR: \(error!.localizedDescription)")
+//                    return
+//                }
+//                // Player is signed in!
+//                print("user assigned from state change listener")
+//                result!.user.makeReferralLink(complete: { url in
+//                    self.referralURL = url
+//                    userPersistedData.referralURL = url?.absoluteString ?? "none"
+//                })
+//            }
+//        }
+//    }
     
     let openToday = NSDate().formatted
     func checkIfAppOpenToday() {
@@ -163,7 +192,7 @@ struct ContentView: View {
             .onAppear {
                 appModel.playedCharacter = userPersistedData.selectedCharacter
                 if !GKLocalPlayer.local.isAuthenticated {
-                    gameCenter.authenticateUser()
+                    gameCenter.authenticateUser(userData: userPersistedData)
                 }
                 checkIfAppOpenToday()
             }

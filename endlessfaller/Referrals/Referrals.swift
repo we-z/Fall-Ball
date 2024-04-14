@@ -27,6 +27,34 @@ struct Referrals {
             }
     }
     
+    static func verifyAnonymous() {
+        guard Auth.auth().currentUser?.isAnonymous == false else {
+            debugPrint("verifyAnonymous - but we're already anonymous!")
+            return
+        }
+        
+        Auth.auth().signInAnonymously { result, error in
+            guard error == nil else {
+                debugPrint("signInAnonymously - ERROR: \(error!.localizedDescription)")
+                return
+            }
+            if let credential = result?.credential {
+                authorize(credential: credential) { user, done in
+                    debugPrint("verifyAnonymous - authorize - \(user.debugDescription)")
+                }
+            }
+        }
+    }
+    
+    static func verifyGameCenter() async {
+        if let credential = try? await GameCenterAuthProvider.getCredential() {
+            authorize(credential: credential) { user, auth in
+                debugPrint("user: \(user.description) - auth: \(auth)")
+            }
+        }
+    }
+    
+    
     func makeCredentials(_ verificationID: String, verificationCode: String) -> PhoneAuthCredential {
         return PhoneAuthProvider.provider().credential(
             withVerificationID: verificationID,
@@ -34,7 +62,7 @@ struct Referrals {
         )
     }
     
-    func authorize(credential: AuthCredential, complete: @escaping (User, Bool) -> Void) {
+    static func authorize(credential: AuthCredential, complete: @escaping (User, Bool) -> Void) {
         Auth.auth().signIn(with: credential) { result, error in
             guard let result = result,
             let isNewUser = result.additionalUserInfo?.isNewUser else {
@@ -43,10 +71,10 @@ struct Referrals {
             
             if isNewUser == true, let moreInfo = result.additionalUserInfo {
                 Analytics.logEvent("create_new_user", parameters: moreInfo.profile)
-                provisionNewUser(result.user)
+                Referrals.provisionNewUser(result.user)
             } else {
                 Analytics.logEvent("returning_user", parameters: ["uid": result.user.uid])
-                updateExistingUser(result.user)
+                Referrals.updateExistingUser(result.user)
             }
             
             Analytics.setUserID(result.user.uid)
@@ -55,24 +83,25 @@ struct Referrals {
         }
     }
     
-    func provisionNewUser(_ user: User) {
+    static func provisionNewUser(_ user: User) {
         let userRef = user.databaseRef
         
         // Save the current timestamp as the sign up date
         userRef.child(UserDataKey.signUpDate).setValue(ServerValue.timestamp())
         
-        // Generate a new referral code for this user
-        let codeGenerator = NanoID(alphabet: .uppercasedLatinLetters, .numbers, size: 6)
-        userRef.child(UserDataKey.referralCode).setValue(codeGenerator.new())
-        
-        // Save the referredBy so we can reward them later
-        userRef.updateChildValues([UserDataKey.referredBy: codeGenerator.new()])
+        updateExistingUser(user)
     }
     
-    func updateExistingUser(_ user: User) {
+    static func updateExistingUser(_ user: User) {
         let userRef = user.databaseRef
         
         // Update the last time we've seen this user
         userRef.child(UserDataKey.lastLoginDate).setValue(ServerValue.timestamp())
+        
+        let codeGenerator = NanoID(alphabet: .uppercasedLatinLetters, .numbers, size: 6)
+        userRef.updateChildValues([
+            UserDataKey.referredBy: "SAMMY",
+            UserDataKey.referralCode: codeGenerator.new()
+        ])
     }
 }

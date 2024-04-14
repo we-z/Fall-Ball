@@ -21,7 +21,7 @@ struct CurrencyPageView: View {
         CurrencyBundle(image: "big-pile", coins: 800, cost: "$99.99", bundleID: "800boins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    @ObservedObject var userPersistedData = UserPersistedData()
+    @ObservedObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
 
     @MainActor
     func buyBoins(bundle: CurrencyBundle) async {

@@ -21,6 +21,7 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
     @CloudStorage("infiniteBoinsUnlocked") var infiniteBoinsUnlocked: Bool = false
     @CloudStorage("strategyModeEnabled") var strategyModeEnabled: Bool = false
+    @CloudStorage("referralURL") var referralURL: String = ""
     
     func addPurchasedSkin(skinName: String) {
         purchasedSkins += skinName
