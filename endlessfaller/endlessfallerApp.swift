@@ -17,6 +17,13 @@ struct endlessfallerApp: App {
                 .preferredColorScheme(.light)
                 .environment(\.sizeCategory, .medium)
                 .defersSystemGestures(on: .bottom)
+                .onOpenURL(perform: { url in
+                    if Referrals.isReferralLink(url) {
+                        debugPrint("referrer :\(Referrals.parseReferralLink(url))")
+                        // TODO: Save referrer here
+                    }
+                    debugPrint("URL: \(url)")
+                })
         }
     }
 }
