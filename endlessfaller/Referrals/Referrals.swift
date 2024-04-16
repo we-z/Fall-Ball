@@ -94,6 +94,9 @@ struct Referrals {
         // Save the current timestamp as the sign up date
         userRef.child(UserDataKey.signUpDate).setValue(ServerValue.timestamp())
         
+        let codeGenerator = NanoID(alphabet: .uppercasedLatinLetters, .numbers, size: 6)
+        userRef.child(UserDataKey.referralCode).setValue(codeGenerator.new())
+        
         updateExistingUser(user)
     }
     
@@ -102,11 +105,27 @@ struct Referrals {
         
         // Update the last time we've seen this user
         userRef.child(UserDataKey.lastLoginDate).setValue(ServerValue.timestamp())
-        
-        let codeGenerator = NanoID(alphabet: .uppercasedLatinLetters, .numbers, size: 6)
         userRef.updateChildValues([
             UserDataKey.referredBy: "SAMMY",
-            UserDataKey.referralCode: codeGenerator.new()
         ])
+    }
+    
+    static func isReferralLink(_ url: URL) -> Bool {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            return false
+        }
+        
+        if components.host == "install" || url.lastPathComponent == "link" {
+            debugPrint("isReferralLink - \(url) - true")
+            return true
+        }
+        return false
+    }
+    
+    static func parseReferralLink(_ url: URL) -> String? {
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        return components?.queryItems?.first(where: { queryItem in
+            queryItem.name == "ref"
+        })?.value
     }
 }
