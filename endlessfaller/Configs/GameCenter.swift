@@ -17,7 +17,6 @@ class GameCenter: ObservableObject {
     @Published var nextPlayerIndex = -1
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
-    @Published var referralURL: URL? = URL(string: "")
     @ObservedObject var notificationManager = NotificationManager()
     
     static let shared = GameCenter()
