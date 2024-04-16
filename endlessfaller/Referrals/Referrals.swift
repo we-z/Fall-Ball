@@ -53,9 +53,9 @@ struct Referrals {
     }
     
     static func authorize(credential: AuthCredential, complete: @escaping (User, Bool) -> Void) {
-        // Ensure we don't keep signing in and creating countless users®
+        // Ensure we don't keep signing in and creating countless users
         if let user = Auth.auth().currentUser {
-            provisionNewUser(user)
+            updateExistingUser(user)
             
             return complete(user, false)
         }
@@ -90,12 +90,12 @@ struct Referrals {
     
     static func provisionNewUser(_ user: User) {
         let userRef = user.databaseRef
-        
-        // Save the current timestamp as the sign up date
-        userRef.child(UserDataKey.signUpDate).setValue(ServerValue.timestamp())
-        
         let codeGenerator = NanoID(alphabet: .uppercasedLatinLetters, .numbers, size: 6)
-        userRef.child(UserDataKey.referralCode).setValue(codeGenerator.new())
+        
+        userRef.updateChildValues([
+            UserDataKey.signUpDate: ServerValue.timestamp(),
+            UserDataKey.referralCode: codeGenerator.new()
+        ])
         
         updateExistingUser(user)
     }
@@ -105,9 +105,6 @@ struct Referrals {
         
         // Update the last time we've seen this user
         userRef.child(UserDataKey.lastLoginDate).setValue(ServerValue.timestamp())
-        userRef.updateChildValues([
-            UserDataKey.referredBy: "SAMMY",
-        ])
     }
     
     static func isReferralLink(_ url: URL) -> Bool {
@@ -116,7 +113,7 @@ struct Referrals {
         }
         
         if components.host == "install" || url.lastPathComponent == "link" {
-            debugPrint("isReferralLink - \(url) - true")
+//            debugPrint("isReferralLink - \(url) - true")
             return true
         }
         return false
@@ -125,7 +122,34 @@ struct Referrals {
     static func parseReferralLink(_ url: URL) -> String? {
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         return components?.queryItems?.first(where: { queryItem in
-            queryItem.name == "ref"
+            queryItem.name == UserDataKey.referredBy
         })?.value
+    }
+    
+    /// This saves a first launch referral to a user's profile in Realtime
+    /// Database. It waits for the user profile to become valid so it might
+    /// happen at some point in the future if the user isn't logged in
+    static func saveReferrer(url: URL) {
+        guard let referralCode = Referrals.parseReferralLink(url) else {
+            debugPrint("saveReferrer - FAILED to parse link: \(url)")
+            return
+        }
+        
+        Auth.auth().addStateDidChangeListener { auth, user in
+            debugPrint("saveReferrer - authStateChange - \(auth) - \(user)")
+            guard let user = user else {
+                return
+            }
+//            debugPrint("saveReferrer - subscribing to check existing ref: \(user.databaseRef.description())")
+            let dbRef = user.databaseRef
+            dbRef.observeSingleEvent(of: .value) { snapshot in
+                if (snapshot.hasChild(UserDataKey.referredBy) == false) {
+                    debugPrint("saveReferrer - writing to user: \(dbRef.key)")
+                    dbRef.child(UserDataKey.referredBy).setValue(referralCode)
+                } else {
+                    debugPrint("saveReferrer - ref wasn't nil NOT OVERWRITING: \(snapshot.value!)")
+                }
+            }
+        }
     }
 }
