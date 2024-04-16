@@ -78,6 +78,10 @@
             argument = "-FIRAnalyticsDebugEnabled"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-noFIRAnalyticsDebugEnabled"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
       <StoreKitConfigurationFileReference
          identifier = "../../endlessfaller/Configs/products.storekit">
