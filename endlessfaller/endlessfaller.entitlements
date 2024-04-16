@@ -9,6 +9,7 @@
 		<string>applinks:fallball.io</string>
 		<string>webcredentials:fallball.io</string>
 		<string>developer:fallball.io</string>
+		<string>applinks:fallball.io?mode=developer</string>
 	</array>
 	<key>com.apple.developer.game-center</key>
 	<true/>
