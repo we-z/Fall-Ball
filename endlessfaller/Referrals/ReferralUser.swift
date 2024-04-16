@@ -14,7 +14,7 @@ enum UserDataKey {
     static let lastLoginDate = "lastLoginDate"
     static let signUpDate = "signUpDate"
     static let referralCode = "referralCode"
-    static let referredBy = "referrer"
+    static let referredBy = "ref"
     static let displayName = "displayName"
 }
 
@@ -40,6 +40,7 @@ extension User {
         databaseRef.child(UserDataKey.referralCode).getData { error, snapshot in
             guard error == nil else {
                 debugPrint("makeReferralLink - ERROR: \(error!)")
+                complete(nil)
                 return
             }
             if let snapshot = snapshot {
