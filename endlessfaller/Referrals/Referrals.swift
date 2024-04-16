@@ -90,7 +90,7 @@ struct Referrals {
     
     static func provisionNewUser(_ user: User) {
         let userRef = user.databaseRef
-        let codeGenerator = NanoID(alphabet: .uppercasedLatinLetters, .numbers, size: 6)
+        let codeGenerator = NanoID(alphabet: .uppercasedLatinLetters, .numbers, size: 5)
         
         userRef.updateChildValues([
             UserDataKey.signUpDate: ServerValue.timestamp(),
@@ -147,7 +147,7 @@ struct Referrals {
                     debugPrint("saveReferrer - writing to user: \(dbRef.key)")
                     dbRef.child(UserDataKey.referredBy).setValue(referralCode)
                 } else {
-                    debugPrint("saveReferrer - ref wasn't nil NOT OVERWRITING: \(snapshot.value!)")
+                    debugPrint("saveReferrer - ref wasn't nil NOT OVERWRITING: \(snapshot.childSnapshot(forPath: UserDataKey.referredBy).value!)")
                 }
             }
         }
