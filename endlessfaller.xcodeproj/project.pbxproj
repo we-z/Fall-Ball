@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EF816AF2BCE1D1A00EA74F3 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF816AE2BCE1D1A00EA74F3 /* QRCodeGenerator.swift */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
@@ -137,6 +138,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2EF816AE2BCE1D1A00EA74F3 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 		7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fall-Ball-Info.plist"; sourceTree = "<group>"; };
 		7A053E4F2B553EA8007485A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7A0598072B08976E0053646D /* Boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boing.mp3; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		7A6977CB2A956C95005967F1 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				2EF816AE2BCE1D1A00EA74F3 /* QRCodeGenerator.swift */,
 				7A3CEA692A8AB1D100A79E65 /* Gifs */,
 				7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
@@ -779,6 +782,7 @@
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
 				7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */,
 				7A689B392BA7853F006D3AA5 /* LeaderboardInfoView.swift in Sources */,
+				2EF816AF2BCE1D1A00EA74F3 /* QRCodeGenerator.swift in Sources */,
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7AF3EC662B8C2F2D003FE015 /* CloudKitUtility.swift in Sources */,
 				7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */,
