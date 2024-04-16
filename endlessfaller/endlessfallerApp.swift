@@ -19,10 +19,9 @@ struct endlessfallerApp: App {
                 .defersSystemGestures(on: .bottom)
                 .onOpenURL(perform: { url in
                     if Referrals.isReferralLink(url) {
-                        debugPrint("referrer :\(Referrals.parseReferralLink(url))")
-                        // TODO: Save referrer here
+                        Referrals.saveReferrer(url: url)
                     }
-                    debugPrint("URL: \(url)")
+                    debugPrint("onOpenURL - URL: \(url)")
                 })
         }
     }
