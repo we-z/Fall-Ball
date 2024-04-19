@@ -15,32 +15,28 @@ import FirebaseAuth
 class GameCenter: ObservableObject {
     
     @Published var nextPlayerIndex = -1
-    @Published var todaysPlayersList: [Player] = []
-    @Published var allTimePlayersList: [Player] = []
+    @Published var todaysPlayersList = [Player]()
+    @Published var allTimePlayersList = [Player]()
     @ObservedObject var notificationManager = NotificationManager()
     
     static let shared = GameCenter()
     
-    // API
-    
-    // status of Game Center
-    
-    private(set) var isGameCenterEnabled: Bool = false
-    
     func notifyPassedPlayers(newScore: Int) {
-        let oldPlayerPosition = todaysPlayersList.first(where: {$0.currentPlayer == GKLocalPlayer.local})
+        let oldPlayerPosition = todaysPlayersList.first(where: {
+            $0.currentPlayer == GKLocalPlayer.local
+        })
         
         // Todays Players
         for playerEntry in todaysPlayersList {
             if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
-                self.notificationManager.createPassRecord(recieverAlias: playerEntry.name)
+                notificationManager.createPassRecord(recieverAlias: playerEntry.name)
             }
         }
         
         // All time Players
         for playerEntry in allTimePlayersList {
             if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
-                self.notificationManager.createPassRecord(recieverAlias: playerEntry.name)
+                notificationManager.createPassRecord(recieverAlias: playerEntry.name)
             }
         }
     }
@@ -52,15 +48,17 @@ class GameCenter: ObservableObject {
                 debugPrint("authHandler - ERROR: \(error!.localizedDescription)")
                 return
             }
-            Task {
-                let credential = try? await GameCenterAuthProvider.getCredential()
-                if let credential = credential {
-                    Referrals.authorize(credential: credential) { user, status in
-                        debugPrint("authenticateUser - \(user)")
-                        user.makeReferralLink { url in
-                            userData.referralURL = url?.absoluteString ?? "none"
+            if Referrals.isFeatureEnabled() {
+                Task {
+                    let credential = try? await GameCenterAuthProvider.getCredential()
+                    if let credential = credential {
+                        Referrals.authorize(credential: credential) { user, status in
+                            debugPrint("authenticateUser - \(user)")
+                            user.makeReferralLink { url in
+                                userData.referralURL = url?.absoluteString ?? "none"
+                            }
+                            user.setDisplayName(GKLocalPlayer.local.displayName)
                         }
-                        user.setDisplayName(GKLocalPlayer.local.displayName)
                     }
                 }
             }
@@ -73,7 +71,6 @@ class GameCenter: ObservableObject {
     }
     
     // update local player score
-    
     func updateScore(currentScore: Int, ballID: String) {
         Analytics.logEvent(AnalyticsEventPostScore, parameters: [
             AnalyticsParameterScore: currentScore,
@@ -81,6 +78,7 @@ class GameCenter: ObservableObject {
         ])
         
         notifyPassedPlayers(newScore: currentScore)
+        
         // push score to Game Center leaderboards
         GKLeaderboard.submitScore(currentScore,
                                   context: ballID.hash,
@@ -116,7 +114,7 @@ class GameCenter: ObservableObject {
                 timeScope: .allTime,
                 range: NSRange(1...50),
                 completionHandler: { mine, entries, count,  error in
-                    debugPrint("loadEntries .allTime - \(mine)")
+                    debugPrint("loadEntries .allTime - \(mine.debugDescription)")
                 }
             )
             
@@ -125,7 +123,7 @@ class GameCenter: ObservableObject {
                 timeScope: .today,
                 range: NSRange(1...50),
                 completionHandler: { mine, entries, count,  error in
-                    debugPrint("loadEntries .today - \(mine)")
+                    debugPrint("loadEntries .today - \(mine.debugDescription)")
                 }
             )
         }
@@ -154,8 +152,10 @@ class GameCenter: ObservableObject {
                 }
             }
             if todaysPlayersListTemp.count > 0 {
-                self.todaysPlayersList = todaysPlayersListTemp
-                nextPlayerIndex = (todaysPlayersList.firstIndex(where: {$0.currentPlayer == GKLocalPlayer.local}) ?? todaysPlayersList.count) - 1
+                todaysPlayersList = todaysPlayersListTemp
+                nextPlayerIndex = (todaysPlayersList.firstIndex(where: {
+                    $0.currentPlayer == GKLocalPlayer.local
+                }) ?? todaysPlayersList.count) - 1
             }
             
         }
