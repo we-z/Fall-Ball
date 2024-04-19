@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseRemoteConfig
 
 @main
 struct endlessfallerApp: App {
@@ -18,7 +19,7 @@ struct endlessfallerApp: App {
                 .environment(\.sizeCategory, .medium)
                 .defersSystemGestures(on: .bottom)
                 .onOpenURL(perform: { url in
-                    if Referrals.isReferralLink(url) {
+                    if Referrals.isFeatureEnabled() && Referrals.isReferralLink(url) {
                         Referrals.saveReferrer(url: url)
                     }
                     debugPrint("onOpenURL - URL: \(url)")
