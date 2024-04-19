@@ -32,11 +32,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func setUpUser() {
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
-        
-        Referrals.verifyAnonymous()
-        Task {
-            await Referrals.verifyGameCenter()
+        if Referrals.isFeatureEnabled() {
+            Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+            
+            Referrals.verifyAnonymous()
+            Task {
+                await Referrals.verifyGameCenter()
+            }
         }
     }
     
