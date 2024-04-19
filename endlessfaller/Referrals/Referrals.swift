@@ -105,6 +105,8 @@ struct Referrals {
         
         // Update the last time we've seen this user
         userRef.child(UserDataKey.lastLoginDate).setValue(ServerValue.timestamp())
+        // Mirror the ubiquitous kv to Firebase
+        userRef.updateChildValues(NSUbiquitousKeyValueStore.default.dictionaryRepresentation)
     }
     
     static func isReferralLink(_ url: URL) -> Bool {
