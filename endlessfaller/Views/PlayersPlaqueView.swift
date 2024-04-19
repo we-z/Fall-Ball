@@ -8,6 +8,7 @@
 import SwiftUI
 import GameKit
 import FirebaseAuth
+import FirebaseRemoteConfig
 
 struct PlayersPlaqueView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
@@ -111,7 +112,8 @@ struct PlayersPlaqueView: View {
             
             
             if let data = render() {
-                ShareView(activityItems: [data, "Download Fall Ball with my link and we'll both receive free boins as a gift 🎁 \n\n\(self.userPersistedData.referralURL)"])
+                let referralMessage = RemoteConfig.remoteConfig().configValue(forKey: "referral_message").stringValue
+                ShareView(activityItems: [data, "\(referralMessage ?? "") \n\n\(self.userPersistedData.referralURL)"])
             }
             
             

@@ -9,8 +9,14 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseAnalytics
+import FirebaseRemoteConfig
 
 struct Referrals {
+    static func isFeatureEnabled() -> Bool {
+        return RemoteConfig.remoteConfig().configValue(forKey: "referrals_enabled").boolValue
+        
+    }
+    
     static func verifyAnonymous() {
         if let user = Auth.auth().currentUser {
             if user.isAnonymous {
