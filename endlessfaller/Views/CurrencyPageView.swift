@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseAnalytics
 
 struct CurrencyPageView: View {
     @Environment(\.dismiss) private var dismiss
@@ -21,12 +20,12 @@ struct CurrencyPageView: View {
         CurrencyBundle(image: "big-pile", coins: 800, cost: "$99.99", bundleID: "800boins")
     ]
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    @ObservedObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
+    @ObservedObject var userPersistedData = UserPersistedData()
 
     @MainActor
     func buyBoins(bundle: CurrencyBundle) async {
         do {
-            if let _ = try await storeKit.purchase(bundleID: bundle.bundleID) {
+            if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
                 DispatchQueue.main.async {
                     userPersistedData.incrementBalance(amount: bundle.coins)
                 }
@@ -34,7 +33,6 @@ struct CurrencyPageView: View {
             }
         } catch {
             print("Purchase failed: \(error)")
-            Analytics.logEvent("failed_buy_boins", parameters: ["error": error.localizedDescription, "value": bundle.coins, "bundle_id": bundle.bundleID])
         }
         appModel.grabbingBoins = false
         isProcessingPurchase = false
@@ -163,9 +161,6 @@ struct CurrencyPageView: View {
             }
         }
         .allowsHitTesting(!isProcessingPurchase)
-        .onAppear {
-            Analytics.logEvent(AnalyticsEventScreenView, parameters: [AnalyticsParameterScreenName: "CurrencyPageView"])
-        }
     }
 }
 

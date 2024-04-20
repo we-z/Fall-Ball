@@ -8,7 +8,6 @@
 
 import Foundation
 import StoreKit
-import FirebaseAnalytics
 
 public enum StoreError: Error {
     case failedVerification
@@ -119,8 +118,6 @@ class StoreKitManager: ObservableObject {
                 
                 //always finish a transaction - performance
                 await transaction.finish()
-            
-                Analytics.logTransaction(transaction)
                 
                 return transaction
                 

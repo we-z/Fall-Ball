@@ -11,7 +11,7 @@ import GameKit
 struct LevelsToPassPlayerView: View {
     @ObservedObject var gameCenter = GameCenter.shared
     @ObservedObject private var appModel = AppModel.sharedAppModel
-    @ObservedObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
+    @ObservedObject var userPersistedData = UserPersistedData()
     @State var cardXoffset = 0.0
     @State var cardYoffset = 0.0
     

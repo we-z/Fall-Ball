@@ -7,7 +7,6 @@
 
 import SwiftUI
 import GroupActivities
-import FirebaseAnalytics
 
 let hapticGenerator = UINotificationFeedbackGenerator()
 
@@ -22,7 +21,7 @@ struct HomeButtonsView: View {
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
     @State var showCurrencyPage = false
-    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
+    @StateObject var userPersistedData = UserPersistedData()
     var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     var body: some View {
@@ -83,7 +82,6 @@ struct HomeButtonsView: View {
                             Button(action: {
                                 showGameModesAlert = true
                                 self.userPersistedData.strategyModeEnabled.toggle()
-                                Analytics.logEvent(AnalyticsEventSelectContent, parameters: [AnalyticsParameterLevelName: userPersistedData.strategyModeEnabled ? "brain" : "timer"])
                             }) {
                                 Image(systemName: userPersistedData.strategyModeEnabled ? "brain" : "timer") // Replace with your image
                                     .resizable()
@@ -108,7 +106,6 @@ struct HomeButtonsView: View {
                             }
                             .offset(y: isGearExpanded ? -60 : 0)
                             .onChange(of: audioController.mute) { newSetting in
-                                Analytics.logEvent("toggle_mute", parameters: ["muted": newSetting])
                                 audioController.setAllAudioVolume()
                             }
                         }

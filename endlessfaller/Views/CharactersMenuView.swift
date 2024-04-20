@@ -22,7 +22,7 @@ struct CharactersMenuView: View {
     @State var currentBallIndex = 0
     @State var secretShopButtonIsPressed = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
+    @StateObject var userPersistedData = UserPersistedData()
     
     var body: some View {
         ZStack{
