@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		2EF816AF2BCE1D1A00EA74F3 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF816AE2BCE1D1A00EA74F3 /* QRCodeGenerator.swift */; };
+		2E43A0AC2BCAF2DC003EF367 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */; };
+		2E43A0B12BCAF702003EF367 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B02BCAF702003EF367 /* FirebaseAuth */; };
+		2E43A0B52BCAF702003EF367 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43A0B42BCAF702003EF367 /* FirebaseInstallations */; };
+		2EBDDF012BCB8F9A004DA24C /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBDDF002BCB8F9A004DA24C /* AdServices.framework */; };
+		2EDAA7AB2BCAFFE50077C4A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EDAA7AA2BCAFFE50077C4A8 /* Assets.xcassets */; };
+		2EDAA7AD2BCB094B0077C4A8 /* Referrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDAA7AC2BCB094B0077C4A8 /* Referrals.swift */; };
+		2EDAA7AF2BCB15470077C4A8 /* NanoID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDAA7AE2BCB15470077C4A8 /* NanoID.swift */; };
+		2EDAA7B22BCB2E250077C4A8 /* ReferralUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDAA7B12BCB2E250077C4A8 /* ReferralUser.swift */; };
+		2EDAA7B42BCB37370077C4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDAA7B32BCB37370077C4A8 /* AppDelegate.swift */; };
+		2EDAA7B62BCB481B0077C4A8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDAA7B52BCB481B0077C4A8 /* AdSupport.framework */; };
+		2EDAA7B82BCB722A0077C4A8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EDAA7B72BCB722A0077C4A8 /* FirebaseAnalytics */; };
+		2EDAA7BA2BCB72300077C4A8 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 2EDAA7B92BCB72300077C4A8 /* FirebaseRemoteConfig */; };
+		2EDAA7BC2BCB72390077C4A8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2EDAA7BB2BCB72390077C4A8 /* FirebaseDatabase */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
@@ -49,7 +62,6 @@
 		7AC672AD2BA5072B0055CCDE /* InfiniteBoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */; };
 		7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */; };
 		7AD234412A5F824800ED626D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234402A5F824800ED626D /* ContentView.swift */; };
-		7AD234432A5F824900ED626D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234422A5F824900ED626D /* Assets.xcassets */; };
 		7AD234472A5F824900ED626D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234462A5F824900ED626D /* Preview Assets.xcassets */; };
 		7AD234512A5F824900ED626D /* endlessfallerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234502A5F824900ED626D /* endlessfallerTests.swift */; };
 		7AD2345B2A5F824900ED626D /* endlessfallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2345A2A5F824900ED626D /* endlessfallerUITests.swift */; };
@@ -139,6 +151,14 @@
 
 /* Begin PBXFileReference section */
 		2EF816AE2BCE1D1A00EA74F3 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2EBDDF002BCB8F9A004DA24C /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.4.sdk/System/Library/Frameworks/AdServices.framework; sourceTree = DEVELOPER_DIR; };
+		2EDAA7AA2BCAFFE50077C4A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2EDAA7AC2BCB094B0077C4A8 /* Referrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referrals.swift; sourceTree = "<group>"; };
+		2EDAA7AE2BCB15470077C4A8 /* NanoID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoID.swift; sourceTree = "<group>"; };
+		2EDAA7B12BCB2E250077C4A8 /* ReferralUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralUser.swift; sourceTree = "<group>"; };
+		2EDAA7B32BCB37370077C4A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2EDAA7B52BCB481B0077C4A8 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.4.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
 		7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fall-Ball-Info.plist"; sourceTree = "<group>"; };
 		7A053E4F2B553EA8007485A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7A0598072B08976E0053646D /* Boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boing.mp3; sourceTree = "<group>"; };
@@ -189,7 +209,6 @@
 		7AD2343B2A5F824800ED626D /* Fall Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fall Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerApp.swift; sourceTree = "<group>"; };
 		7AD234402A5F824800ED626D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		7AD234422A5F824900ED626D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AD234442A5F824900ED626D /* endlessfaller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = endlessfaller.entitlements; sourceTree = "<group>"; };
 		7AD234462A5F824900ED626D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7AD2344C2A5F824900ED626D /* endlessfallerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = endlessfallerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,9 +248,16 @@
 				7AA5F9752BBCFF2F0003B2AD /* SwiftFX in Frameworks */,
 				7A9755D62B78717200473737 /* CloudStorage in Frameworks */,
 				7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */,
+				2EDAA7BA2BCB72300077C4A8 /* FirebaseRemoteConfig in Frameworks */,
 				7A689B3C2BA79AE1006D3AA5 /* SwizzleSwift in Frameworks */,
+				2EDAA7B62BCB481B0077C4A8 /* AdSupport.framework in Frameworks */,
+				2EDAA7BC2BCB72390077C4A8 /* FirebaseDatabase in Frameworks */,
+				2EDAA7B82BCB722A0077C4A8 /* FirebaseAnalytics in Frameworks */,
+				2EBDDF012BCB8F9A004DA24C /* AdServices.framework in Frameworks */,
 				7A38B59C2B85727000DDD280 /* Vortex in Frameworks */,
 				7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */,
+				2E43A0B12BCAF702003EF367 /* FirebaseAuth in Frameworks */,
+				2E43A0B52BCAF702003EF367 /* FirebaseInstallations in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,9 +299,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EDAA7B02BCB2DE20077C4A8 /* Referrals */ = {
+			isa = PBXGroup;
+			children = (
+				2EDAA7AC2BCB094B0077C4A8 /* Referrals.swift */,
+				2EDAA7B12BCB2E250077C4A8 /* ReferralUser.swift */,
+			);
+			path = Referrals;
+			sourceTree = "<group>";
+		};
 		7A053E4E2B553EA8007485A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2EBDDF002BCB8F9A004DA24C /* AdServices.framework */,
+				2EDAA7B52BCB481B0077C4A8 /* AdSupport.framework */,
 				7A053E4F2B553EA8007485A0 /* StoreKit.framework */,
 			);
 			name = Frameworks;
@@ -332,13 +369,13 @@
 			isa = PBXGroup;
 			children = (
 				2EF816AE2BCE1D1A00EA74F3 /* QRCodeGenerator.swift */,
+				2EDAA7AA2BCAFFE50077C4A8 /* Assets.xcassets */,
 				7A3CEA692A8AB1D100A79E65 /* Gifs */,
 				7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7A43B2312AA3E0440099AFB6 /* QRView.swift */,
 				7AF3EC672B8FFB22003FE015 /* NBQRView.swift */,
 				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
-				7AD234422A5F824900ED626D /* Assets.xcassets */,
 				7A0598072B08976E0053646D /* Boing.mp3 */,
 				7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */,
 				7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */,
@@ -383,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				7AB05CE32A65C65500EE4D7B /* products.storekit */,
+				2E43A0AB2BCAF2DC003EF367 /* GoogleService-Info.plist */,
 				7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */,
 				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
@@ -394,6 +432,7 @@
 				7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */,
 				7AC089382B7EC818008DD71D /* BallAnimationManager.swift */,
 				7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */,
+				2EDAA7AE2BCB15470077C4A8 /* NanoID.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -434,6 +473,8 @@
 			isa = PBXGroup;
 			children = (
 				7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */,
+				2EDAA7B32BCB37370077C4A8 /* AppDelegate.swift */,
+				2EDAA7B02BCB2DE20077C4A8 /* Referrals */,
 				7A6977CE2A956D63005967F1 /* Configs */,
 				7A6977CB2A956C95005967F1 /* Media */,
 				7A6977CD2A956D01005967F1 /* Views */,
@@ -527,6 +568,11 @@
 				7A38B59B2B85727000DDD280 /* Vortex */,
 				7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */,
 				7AA5F9742BBCFF2F0003B2AD /* SwiftFX */,
+				2E43A0B02BCAF702003EF367 /* FirebaseAuth */,
+				2E43A0B42BCAF702003EF367 /* FirebaseInstallations */,
+				2EDAA7B72BCB722A0077C4A8 /* FirebaseAnalytics */,
+				2EDAA7B92BCB72300077C4A8 /* FirebaseRemoteConfig */,
+				2EDAA7BB2BCB72390077C4A8 /* FirebaseDatabase */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -693,6 +739,7 @@
 				7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */,
 				7A689B3A2BA79AE1006D3AA5 /* XCRemoteSwiftPackageReference "SwizzleSwift" */,
 				7AA5F9732BBCFF2F0003B2AD /* XCRemoteSwiftPackageReference "SwiftFX" */,
+				2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 7AD2343C2A5F824800ED626D /* Products */;
 			projectDirPath = "";
@@ -718,10 +765,11 @@
 				7A0598092B08976E0053646D /* Boing.mp3 in Resources */,
 				7A43B22E2AA3D74B0099AFB6 /* punchSFX.mp3 in Resources */,
 				7A1B4B322BC660D500C58084 /* PrivacyInfo.xcprivacy in Resources */,
+				2EDAA7AB2BCAFFE50077C4A8 /* Assets.xcassets in Resources */,
 				7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */,
 				7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */,
 				7AD234472A5F824900ED626D /* Preview Assets.xcassets in Resources */,
-				7AD234432A5F824900ED626D /* Assets.xcassets in Resources */,
+				2E43A0AC2BCAF2DC003EF367 /* GoogleService-Info.plist in Resources */,
 				7A43B2302AA3D7830099AFB6 /* FallBallOST120.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,15 +849,19 @@
 				7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
+				2EDAA7AF2BCB15470077C4A8 /* NanoID.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
 				7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */,
 				7A38B5992B85723400DDD280 /* GKScoreChallengeTesterView.swift in Sources */,
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
 				7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */,
 				7A0BB1CE2B51C4DC0048B247 /* LandingPageView.swift in Sources */,
+				2EDAA7B22BCB2E250077C4A8 /* ReferralUser.swift in Sources */,
+				2EDAA7B42BCB37370077C4A8 /* AppDelegate.swift in Sources */,
 				7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */,
 				7A0BB1CC2B4FD4590048B247 /* AudioManager.swift in Sources */,
 				7AFFE22A2B95AE590039214C /* LevelsToPassPlayerView.swift in Sources */,
+				2EDAA7AD2BCB094B0077C4A8 /* Referrals.swift in Sources */,
 				7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */,
 				7A16C4492B6AF63C00B6D3B1 /* UserData.swift in Sources */,
 				7A0BB1CA2B4FD1A20048B247 /* HomeButtonsView.swift in Sources */,
@@ -1024,6 +1076,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fall-Ball-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fall Ball Does not use your camera";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This App would like to save photo to photo library";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -1071,6 +1124,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fall-Ball-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fall Ball Does not use your camera";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This App would like to save photo to photo library";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -1487,6 +1541,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.24.0;
+			};
+		};
 		7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aleksproger/circular-progress.git";
@@ -1554,6 +1616,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2E43A0B02BCAF702003EF367 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		2E43A0B42BCAF702003EF367 /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
+		};
+		2EDAA7B72BCB722A0077C4A8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2EDAA7B92BCB72300077C4A8 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		2EDAA7BB2BCB72390077C4A8 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E43A0AD2BCAF702003EF367 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
 		7A1E4F772B7AFBCC00CDF00F /* CircularProgress */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */;

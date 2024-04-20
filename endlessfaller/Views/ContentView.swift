@@ -9,6 +9,7 @@ import SwiftUI
 import GameKit
 import CoreMotion
 import Combine
+import FirebaseAuth
 
 struct ContentView: View {
     
@@ -18,30 +19,29 @@ struct ContentView: View {
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
-    @ObservedObject var userPersistedData = UserPersistedData()
+    @ObservedObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
+    
+    let openToday = NSDate().formatted
+    let heavyHaptic = UINotificationFeedbackGenerator()
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true
         userPersistedData.incrementBalance(amount: 1)
         userPersistedData.resetBoinIntervalCounter()
     }
-    
-    let openToday = NSDate().formatted
+        
     func checkIfAppOpenToday() {
         if (userPersistedData.lastLaunch == openToday) {
-            //Already Launched today
-            print("already opened today")
+            // Already Launched today
+            //print("already opened today")
         } else {
-            //Today's First Launch
-            print("first open of the day")
+            // Today's First Launch
+            //print("first open of the day")
             userPersistedData.updateLastLaunch(date: openToday)
             userPersistedData.leaderboardWonToday = false
             appModel.dailyBoinCollected()
-            
         }
     }
-    
-    let heavyHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
         ZStack{
@@ -163,7 +163,7 @@ struct ContentView: View {
             .onAppear {
                 appModel.playedCharacter = userPersistedData.selectedCharacter
                 if !GKLocalPlayer.local.isAuthenticated {
-                    gameCenter.authenticateUser()
+                    gameCenter.authenticateUser(userData: userPersistedData)
                 }
                 checkIfAppOpenToday()
             }

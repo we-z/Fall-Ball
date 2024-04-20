@@ -7,23 +7,21 @@
 
 import SwiftUI
 import GameKit
+import FirebaseAuth
+import FirebaseRemoteConfig
 
 struct PlayersPlaqueView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @Environment(\.displayScale) var displayScale
     @State private var sheetPresented : Bool = false
-    @StateObject var userPersistedData = UserPersistedData()
+    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     
     @MainActor
-    private func render() -> UIImage?{
-        
+    private func render() -> UIImage? {
         let renderer = ImageRenderer(content: plaqueView())
-
         renderer.scale = displayScale
-     
         return renderer.uiImage
     }
-    
     
     private func plaqueView () -> some View {
         
@@ -38,9 +36,9 @@ struct PlayersPlaqueView: View {
                     .customTextStroke()
                     .bold()
                     .italic()
-                if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
-                    let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
-                    let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
+                if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter }) {
+                    let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat })
+                    let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag })
                     ZStack{
                         if userPersistedData.selectedBag != "nobag" {
                             AnyView(bag!.bag)
@@ -111,12 +109,14 @@ struct PlayersPlaqueView: View {
             }
         }
         .sheet(isPresented: $sheetPresented, content: {
-                
+            
+            
             if let data = render() {
-       
-                ShareView(activityItems: [data, "Play Fall Ball with me!\n\nhttps://apps.apple.com/us/app/fall-ball-game/id6452083706"])
-           
+                let referralMessage = RemoteConfig.remoteConfig().configValue(forKey: "referral_message").stringValue
+                ShareView(activityItems: [data, "\(referralMessage ?? "") \n\n\(self.userPersistedData.referralURL)"])
             }
+            
+            
             
         })
         .ignoresSafeArea()

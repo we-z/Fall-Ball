@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct GameOverScreenView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
@@ -14,7 +15,7 @@ struct GameOverScreenView: View {
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    @StateObject var userPersistedData = UserPersistedData()
+    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
@@ -160,6 +161,8 @@ struct GameOverScreenView: View {
             }
         }
         .onAppear{
+            Analytics.logEvent(AnalyticsEventScreenView, parameters: [AnalyticsParameterScreenName: "GameOverScreenView"])
+                                
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 appModel.showNewBestScore = false
             }
