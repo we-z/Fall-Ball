@@ -1388,7 +1388,7 @@ struct DailyBoinCollectedView: View {
     @State private var scale = false
     @State private var appearFromTop = false
     @State private var animationEnding = false
-    @StateObject var userPersistedData = UserPersistedData()
+    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width

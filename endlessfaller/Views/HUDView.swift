@@ -11,7 +11,7 @@ struct HUDView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @StateObject var audioController = AudioManager.sharedAudioManager
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
-    @StateObject var userPersistedData = UserPersistedData()
+    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
     @State var pauseButtonPressed = false
     var body: some View {
         ZStack{
