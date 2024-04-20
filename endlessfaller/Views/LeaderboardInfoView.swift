@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct LeaderboardInfoView: View {
+    init() {
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [AnalyticsParameterScreenName: "LeaderboardInfoView"])
+    }
+    
     var body: some View {
         ZStack{
             RotatingSunView()

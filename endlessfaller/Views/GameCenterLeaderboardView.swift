@@ -7,6 +7,7 @@
 import SwiftUI
 import CloudKit
 import GameKit
+import FirebaseAnalytics
 
 struct GameCenterLeaderboardView: View {
     @ObservedObject private var model = AppModel.sharedAppModel
@@ -328,7 +329,7 @@ struct GameCenterLeaderboardView: View {
                                                 }
                                                 .refreshable {
                                                     Task{
-                                                        await gameCenter.loadLeaderboard()
+                                                        await gameCenter.loadLeaderboards()
                                                     }
                                                 }
                                                 if todaysPlayersList.isEmpty{
@@ -573,8 +574,9 @@ struct GameCenterLeaderboardView: View {
                                                     .scrollContentBackground(.hidden)
                                                 }
                                                 .refreshable {
+                                                    Analytics.logEvent("refresh_leaderboards", parameters: nil)
                                                     Task{
-                                                        await gameCenter.loadLeaderboard()
+                                                        await gameCenter.loadLeaderboards()
                                                     }
                                                 }
                                                 if allTimePlayersList.isEmpty{
@@ -597,7 +599,7 @@ struct GameCenterLeaderboardView: View {
         }
         .onAppear{
             Task{
-                await gameCenter.loadLeaderboard()
+                await gameCenter.loadLeaderboards()
             }
         }
     }
