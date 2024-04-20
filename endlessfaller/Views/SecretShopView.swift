@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct SecretShopView: View {
     @ObservedObject private var model = AppModel.sharedAppModel
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @StateObject var userPersistedData = UserPersistedData()
+    
+    init(model: AppModel = AppModel.sharedAppModel) {
+        self.model = model
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [AnalyticsParameterScreenName: "SecretShopView"])
+    }
+    
     var body: some View {
         ZStack{
             RandomGradientView()
