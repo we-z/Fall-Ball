@@ -18,7 +18,7 @@ struct GKScoreChallengeTesterView: View {
     var body: some View {
         VStack(spacing: 40) {
             Button("login game center") {
-                gameCenter.authenticateUser(userData: UserPersistedData())
+                gameCenter.authenticateUser()
             }
             
 //            Button("Request notification permissions") {

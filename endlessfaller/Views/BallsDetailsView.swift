@@ -15,7 +15,7 @@ struct BallsDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @State var showCurrencyPage = false
-    @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
+    @StateObject var userPersistedData = UserPersistedData()
     var body: some View {
         ZStack{
             RandomGradientView()

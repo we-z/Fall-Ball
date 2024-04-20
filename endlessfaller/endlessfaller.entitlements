@@ -5,12 +5,7 @@
 	<key>aps-environment</key>
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
-	<array>
-		<string>applinks:fallball.io</string>
-		<string>webcredentials:fallball.io</string>
-		<string>developer:fallball.io</string>
-		<string>applinks:fallball.io?mode=developer</string>
-	</array>
+	<array/>
 	<key>com.apple.developer.game-center</key>
 	<true/>
 	<key>com.apple.developer.group-session</key>

@@ -11,7 +11,6 @@ import AVFoundation
 import Combine
 import UIKit
 import NotificationCenter
-import FirebaseAnalytics
 
 let levels = 1000
 let deviceHeight = UIScreen.main.bounds.height
@@ -140,7 +139,6 @@ class AppModel: ObservableObject {
     }
     
     func gameOverOperations() {
-        Analytics.logEvent(AnalyticsEventLevelEnd, parameters: [AnalyticsParameterScore: currentScore])
         self.currentIndex = -1
         self.cancelGameOverTimer()
         self.costToContinue = 1
@@ -198,7 +196,6 @@ class AppModel: ObservableObject {
     func continuePlaying() {
         DispatchQueue.main.async{
             self.cancelGameOverTimer()
-            Analytics.logEvent("level_continue", parameters: [AnalyticsParameterPrice: self.costToContinue])
         }
         self.showContinueToPlayScreen = false
         self.costToContinue *= 2

@@ -2,19 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>We need to track across installs to reward boins</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>app-1-852852570615-ios-6cd67149dfa30c13c756f2</string>
-			</array>
-		</dict>
-	</array>
 	<key>GCSupportedGameControllers</key>
 	<array>
 		<dict>
@@ -36,5 +23,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Fall Ball Does not use your camera</string>
 </dict>
 </plist>

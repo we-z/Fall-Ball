@@ -7,7 +7,6 @@
 
 import Foundation
 import CloudStorage
-import FirebaseAnalytics
 
 class UserPersistedData: ObservableObject {
     @CloudStorage("bestScore") var bestScore: Int = 0
@@ -21,12 +20,10 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
     @CloudStorage("infiniteBoinsUnlocked") var infiniteBoinsUnlocked: Bool = false
     @CloudStorage("strategyModeEnabled") var strategyModeEnabled: Bool = false
-    @CloudStorage("referralURL") var referralURL: String = ""
     
     func addPurchasedSkin(skinName: String) {
         purchasedSkins += skinName
         purchasedSkins += ","
-        Analytics.logEvent("purchase", parameters: [AnalyticsParameterItemID: skinName])
     }
     
     func skinIsPurchased(skinName: String) -> Bool {
@@ -47,25 +44,14 @@ class UserPersistedData: ObservableObject {
     
     func incrementBalance(amount: Int) {
         boinBalance += amount
-        Analytics.logEvent(AnalyticsEventEarnVirtualCurrency, parameters: [
-            AnalyticsParameterValue: amount,
-            AnalyticsParameterVirtualCurrencyName: "boins",
-            "new_balance": boinBalance
-        ])
     }
     
     func decrementBalance(amount: Int) {
         boinBalance -= amount
-        Analytics.logEvent(AnalyticsEventSpendVirtualCurrency, parameters: [
-            AnalyticsParameterValue: amount,
-            AnalyticsParameterVirtualCurrencyName: "boins",
-            "new_balance": boinBalance
-        ])
     }
     
     func updateBestScore(amount: Int) {
         bestScore = amount
-        Analytics.setUserProperty(String(bestScore), forName: "best_score")
     }
     
     func updateLastLaunch(date: String) {
@@ -74,17 +60,14 @@ class UserPersistedData: ObservableObject {
     
     func selectNewBall(ball: String) {
         selectedCharacter = ball
-        Analytics.setUserProperty(String(bestScore), forName: "selected_character")
     }
     
     func selectNewHat(hat: String) {
         selectedHat = hat
-        Analytics.setUserProperty(String(bestScore), forName: "selected_hat")
     }
     
     func selectNewBag(bag: String) {
         selectedBag = bag
-        Analytics.setUserProperty(String(bestScore), forName: "selected_bag")
     }
     
 }
