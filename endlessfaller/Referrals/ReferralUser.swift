@@ -49,4 +49,15 @@ extension User {
             }
         }
     }
+    
+    func makeReferralLinkAsync() async -> URL? {
+        databaseRef.child(UserDataKey.referralCode).keepSynced(true)
+        if let data = try? await databaseRef.child(UserDataKey.referralCode).getData(),
+           let code = data.value as? String {
+            return URL(string: "https://fallball.io/link/?\(UserDataKey.referredBy)=\(code)")
+        } else {
+            debugPrint("makeReferralLink - failed to generate referral link")
+            return nil
+        }
+    }
 }

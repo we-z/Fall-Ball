@@ -15,6 +15,7 @@ struct PlayersPlaqueView: View {
     @Environment(\.displayScale) var displayScale
     @State private var sheetPresented : Bool = false
     @StateObject var userPersistedData = AppModel.sharedAppModel.userPersistedData
+    @State private var referralURL: URL?
     
     @MainActor
     private func render() -> UIImage? {
@@ -109,15 +110,17 @@ struct PlayersPlaqueView: View {
             }
         }
         .sheet(isPresented: $sheetPresented, content: {
-            
-            
+            let referralMessage = RemoteConfig.remoteConfig().configValue(forKey: "referral_message").stringValue
             if let data = render() {
-                let referralMessage = RemoteConfig.remoteConfig().configValue(forKey: "referral_message").stringValue
-                ShareView(activityItems: [data, "\(referralMessage ?? "") \n\n\(self.userPersistedData.referralURL)"])
+                ShareView(activityItems: [data, "\(referralMessage ?? "") \n\n\(referralURL)"])
             }
-            
-            
-            
+        })
+        .onAppear(perform: {
+            Task {
+                if let user = Auth.auth().currentUser {
+                    self.referralURL = await user.makeReferralLinkAsync()
+                }
+            }
         })
         .ignoresSafeArea()
     }
