@@ -86,6 +86,11 @@ struct PlayersPlaqueView: View {
             VStack{
                 plaqueView()
                     .cornerRadius(30)
+                Text("Tell your friends and earn 5 Boins ↙️")
+                    .bold()
+                    .italic()
+                    .customTextStroke()
+                    .opacity(userPersistedData.hasSharedFallBall ? 0 : 1)
                 Button(action: {
                     
                     withAnimation{
@@ -106,7 +111,6 @@ struct PlayersPlaqueView: View {
                     .padding(.horizontal, 6)
                     .background(RandomGradientView())
                     .cornerRadius(30)
-                    .padding(30)
                 }
             }
         }
