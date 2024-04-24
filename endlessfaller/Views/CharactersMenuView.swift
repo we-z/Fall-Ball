@@ -23,6 +23,15 @@ struct CharactersMenuView: View {
     @State var secretShopButtonIsPressed = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @StateObject var userPersistedData = UserPersistedData()
+    @State private var searchText = ""
+    
+    private var filteredCharacters: [Character] {
+        if searchText.isEmpty {
+            return model.characters
+        } else {
+            return model.characters.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
     
     var body: some View {
         ZStack{
@@ -43,16 +52,25 @@ struct CharactersMenuView: View {
                         .font(.largeTitle)
                         .scaleEffect(1.1)
                 }
+                TextField("Search Balls", text: $searchText)
+                    .padding(9)
+                    .padding(.horizontal, 9)
+                    .background(.white.opacity(0.6))
+                    .cornerRadius(12)
+                    .padding(.horizontal, 12)
                 ScrollView(showsIndicators: false){
-                    ForEach(0..<model.characters.count/3, id: \.self) { rowIndex in
+                    ForEach(0..<(filteredCharacters.count + 2) / 3, id: \.self) { rowIndex in
                         HStack {
                             Spacer()
-                            ForEach(0..<3, id: \.self) { columnIndex in
-                                let index = rowIndex * 3 + columnIndex
-                                if index < model.characters.count {
-                                    let character = model.characters[index]
+                            let startIndex = rowIndex * 3
+                            // Calculate the end index, ensuring it does not exceed the count of filteredCharacters
+                            let endIndex = min(startIndex + 3, filteredCharacters.count)
+                            
+                            ForEach(startIndex..<endIndex, id: \.self) { index in
+                                let character = filteredCharacters[index]
+                                if index < filteredCharacters.count {
                                     Button {
-                                        currentCharacter = model.characters[index]
+                                        currentCharacter = filteredCharacters[index]
                                         currentBallIndex = index
                                         showBallDetails = true
                                     } label: {
@@ -117,7 +135,7 @@ struct CharactersMenuView: View {
                                                     .padding()
                                                 }
                                                 .offset(y:12)
-                                                if model.characters[index].characterID == userPersistedData.selectedCharacter {
+                                                if filteredCharacters[index].characterID == userPersistedData.selectedCharacter {
                                                     RoundedRectangle(cornerRadius: 20)
                                                         .stroke(Color.black, lineWidth: 6)
                                                 }
