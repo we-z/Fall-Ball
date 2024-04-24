@@ -41,6 +41,11 @@ struct NewsBannerView: View {
                 .offset(y: 90)
                 .scaleEffect(2.1)
                 .padding(.bottom, 160)
+                Text("Get yours in the Ball Shop!")
+                    .customTextStroke(width: 1.8)
+                    .italic()
+                    .bold()
+                    .font(.title3)
             }
             .frame(height: 390)
         }

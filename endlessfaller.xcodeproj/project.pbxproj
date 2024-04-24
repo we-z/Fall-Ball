@@ -383,17 +383,17 @@
 			isa = PBXGroup;
 			children = (
 				7AB05CE32A65C65500EE4D7B /* products.storekit */,
-				7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */,
-				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
-				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
-				7A2201332AB6739000DF04D7 /* GameCenter.swift */,
-				7AD234742A64533700ED626D /* AppModel.swift */,
-				7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */,
 				7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */,
-				7A16C4482B6AF63C00B6D3B1 /* UserData.swift */,
-				7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */,
+				7AD234742A64533700ED626D /* AppModel.swift */,
+				7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */,
 				7AC089382B7EC818008DD71D /* BallAnimationManager.swift */,
 				7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */,
+				7A2201332AB6739000DF04D7 /* GameCenter.swift */,
+				7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */,
+				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
+				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
+				7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */,
+				7A16C4482B6AF63C00B6D3B1 /* UserData.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
