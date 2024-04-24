@@ -32,6 +32,7 @@
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
 		7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */; };
+		7A4773B12BD9A076001A2278 /* NewsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4773B02BD9A076001A2278 /* NewsBannerView.swift */; };
 		7A675CED2B835E74001DEF29 /* BoingNotification.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */; };
 		7A689B392BA7853F006D3AA5 /* LeaderboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */; };
 		7A689B3C2BA79AE1006D3AA5 /* SwizzleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */; };
@@ -162,6 +163,7 @@
 		7A43B2312AA3E0440099AFB6 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		7A43B2332AA566A50099AFB6 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreScreenShotsView.swift; sourceTree = "<group>"; };
+		7A4773B02BD9A076001A2278 /* NewsBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBannerView.swift; sourceTree = "<group>"; };
 		7A48042A2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipApp.swift; sourceTree = "<group>"; };
 		7A48042C2B54EF6500B6CE87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7A48042E2B54EF6600B6CE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */,
 				7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */,
 				7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */,
+				7A4773B02BD9A076001A2278 /* NewsBannerView.swift */,
 				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
 				7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */,
 				7ABA57992BA4CD36000E5907 /* RandomGradientView.swift */,
@@ -795,6 +798,7 @@
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
 				7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */,
+				7A4773B12BD9A076001A2278 /* NewsBannerView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
@@ -1012,7 +1016,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.7.8;
+				CURRENT_PROJECT_VERSION = 1.7.9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1036,7 +1040,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.7.8;
+				MARKETING_VERSION = 1.7.9;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1059,7 +1063,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.7.8;
+				CURRENT_PROJECT_VERSION = 1.7.9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1083,7 +1087,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.7.8;
+				MARKETING_VERSION = 1.7.9;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

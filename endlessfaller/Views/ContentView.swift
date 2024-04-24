@@ -19,6 +19,7 @@ struct ContentView: View {
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
     @ObservedObject var userPersistedData = UserPersistedData()
+    @State var showNewsBanner = true
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true
@@ -172,6 +173,10 @@ struct ContentView: View {
                     checkIfAppOpenToday()
                 }
             }
+        }
+        .sheet(isPresented: self.$showNewsBanner){
+            NewsBannerView()
+                .presentationDetents([.height(390)])
         }
     }
 }
