@@ -71,7 +71,7 @@ struct CharactersMenuView: View {
                                 if index < filteredCharacters.count {
                                     Button {
                                         currentCharacter = filteredCharacters[index]
-                                        currentBallIndex = index
+                                        currentBallIndex = model.characters.firstIndex(where: {$0.characterID == character.characterID})!
                                         showBallDetails = true
                                     } label: {
                                         Rectangle()
@@ -93,12 +93,12 @@ struct CharactersMenuView: View {
                                                                 .customTextStroke()
                                                                 .bold()
                                                                 .italic()
-                                                        } else if index < 9 {
-                                                            Text("Free")
-                                                                .customTextStroke(width: 1.5)
-                                                                .font(idiom == .pad ? .system(size: 36) :.system(size: 21))
-                                                                .bold()
-                                                                .italic()
+//                                                        } else if index < 9 {
+//                                                            Text("Free")
+//                                                                .customTextStroke(width: 1.5)
+//                                                                .font(idiom == .pad ? .system(size: 36) :.system(size: 21))
+//                                                                .bold()
+//                                                                .italic()
                                                         } else {
                                                             HStack(spacing: idiom == .pad ? 15 : 0){
                                                                 if index > 8 {
