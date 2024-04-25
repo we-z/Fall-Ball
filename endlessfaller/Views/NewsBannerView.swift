@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NewsBannerView: View {
+    @Environment(\.dismiss) private var dismiss
+    @GestureState private var translation: CGFloat = 0
     @State var showBallMenu = false
     var body: some View {
         ZStack{
@@ -55,6 +57,12 @@ struct NewsBannerView: View {
                 }
                 .buttonStyle(.roundedAndShadow6)
             }
+            .gesture(
+                DragGesture().updating($translation) { value, state, _ in
+                    state = value.translation.height
+                    dismiss()
+                }
+            )
             .frame(height: 390)
         }
         .sheet(isPresented: self.$showBallMenu) {

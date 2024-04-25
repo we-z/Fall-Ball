@@ -13,8 +13,11 @@ struct TempView: View {
     }
 
     var body: some View {
-        VStack{
-            Text("level 2: \(decayFunction(x: Double(155)))")
+        ZStack{
+            Color.black
+                .ignoresSafeArea()
+            Text("level 2: \(decayFunction(x: Double(2)))")
+                .foregroundColor(.white)
                 .font(.system(size: 30))
         }
     }
