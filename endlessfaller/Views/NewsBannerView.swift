@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewsBannerView: View {
+    @State var showBallMenu = false
     var body: some View {
         ZStack{
             RandomGradientView()
@@ -29,27 +30,36 @@ struct NewsBannerView: View {
                 Spacer()
                 HStack(spacing: 15){
                     UnicornView()
-                        .offset(y: -60)
+                        .offset(y: 30)
                         .animatedOffset(speed: 1.2)
                     NinjaBallView()
-                        .offset(y: -90)
-                        .animatedOffset(speed: 1.8)
+                        .offset(y: 30)
+                        .animatedOffset(speed: 1.5)
                     EarthBallView()
-                        .offset(y: -60)
+                        .offset(y: 30)
                         .animatedOffset(speed: 0.9)
                 }
-                .offset(y: 90)
                 .scaleEffect(2.1)
                 .padding(.bottom, 160)
-                Text("Get yours in the Ball Shop!")
-                    .customTextStroke(width: 1.8)
-                    .italic()
-                    .bold()
-                    .font(.title3)
+                Button{
+                    self.showBallMenu = true
+                } label: {
+                    Text("Shop New Balls 🛍️")
+                        .customTextStroke(width: 1.5)
+                        .italic()
+                        .bold()
+                        .font(.title3)
+                        .padding(12)
+                        .background(.yellow)
+                        .cornerRadius(15)
+                }
+                .buttonStyle(.roundedAndShadow6)
             }
             .frame(height: 390)
         }
-        
+        .sheet(isPresented: self.$showBallMenu) {
+            CharactersMenuView()
+        }
     }
 }
 

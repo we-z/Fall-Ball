@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            DailyBoinCollectedView()
+            Instruction2()
         }
     }
 }
@@ -1030,7 +1030,7 @@ struct Instruction2: View {
                 .multilineTextAlignment(.center)
                 .padding()
         }
-        .customTextStroke(width: 2.7)
+        .customTextStroke(width: 2.1)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.4)
