@@ -89,7 +89,7 @@ struct CharactersMenuView: View {
                                                             .offset(y: idiom == .pad ? -12 : 0)
                                                         Spacer()
                                                             .frame(maxHeight: 36)
-                                                        if userPersistedData.purchasedSkins.contains(character.characterID) && index > 8 {
+                                                        if userPersistedData.purchasedSkins.contains(character.characterID) {
                                                             Text("Available")
                                                                 .customTextStroke()
                                                                 .bold()
