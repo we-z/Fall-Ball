@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack {
             HStack{
                 NinjaBallView()
-                EvilBall()
+                MoroccoView()
                 ElonView()
             }
             Spacer()
@@ -964,6 +964,7 @@ struct MoroccoView: View {
                     .mask(
                         Circle()
                             .frame(width: 46)
+                            .clipped()
                     )
             )
             .frame(width: 46, height: 46)
