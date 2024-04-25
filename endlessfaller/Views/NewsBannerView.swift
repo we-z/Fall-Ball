@@ -28,13 +28,13 @@ struct NewsBannerView: View {
                 }
                 Spacer()
                 HStack(spacing: 15){
-                    ElonView()
+                    UnicornView()
                         .offset(y: -60)
                         .animatedOffset(speed: 1.2)
                     NinjaBallView()
                         .offset(y: -90)
                         .animatedOffset(speed: 1.8)
-                    KanyeView()
+                    EarthBallView()
                         .offset(y: -60)
                         .animatedOffset(speed: 0.9)
                 }
