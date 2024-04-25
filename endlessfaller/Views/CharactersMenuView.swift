@@ -19,7 +19,7 @@ struct CharactersMenuView: View {
     @State var hapticFeedbackCounter = 0
     @State var showBallDetails = false
     @State var currentCharacter = Character(name: "", character: AnyView(WhiteBallView()), cost: "", characterID: "")
-    @State var currentBallIndex = 0
+    @State var chosenBallIndex = 0
     @State var secretShopButtonIsPressed = false
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @StateObject var userPersistedData = UserPersistedData()
@@ -68,10 +68,11 @@ struct CharactersMenuView: View {
                             
                             ForEach(startIndex..<endIndex, id: \.self) { index in
                                 let character = filteredCharacters[index]
+                                let currentBallIndex = model.characters.firstIndex(where: {$0.characterID == character.characterID})!
                                 if index < filteredCharacters.count {
                                     Button {
                                         currentCharacter = filteredCharacters[index]
-                                        currentBallIndex = model.characters.firstIndex(where: {$0.characterID == character.characterID})!
+                                        chosenBallIndex = currentBallIndex
                                         showBallDetails = true
                                     } label: {
                                         Rectangle()
@@ -93,15 +94,9 @@ struct CharactersMenuView: View {
                                                                 .customTextStroke()
                                                                 .bold()
                                                                 .italic()
-//                                                        } else if index < 9 {
-//                                                            Text("Free")
-//                                                                .customTextStroke(width: 1.5)
-//                                                                .font(idiom == .pad ? .system(size: 36) :.system(size: 21))
-//                                                                .bold()
-//                                                                .italic()
                                                         } else {
                                                             HStack(spacing: idiom == .pad ? 15 : 0){
-                                                                if index > 8 {
+                                                                if currentBallIndex > 8 {
                                                                     BoinsView()
                                                                         .scaleEffect(idiom == .pad ? 1 : 0.6)
                                                                         .padding(0)
@@ -180,7 +175,7 @@ struct CharactersMenuView: View {
             SecretShopView()
         }
         .sheet(isPresented: self.$showBallDetails){
-            BallsDetailsView(ball: $currentCharacter, ballIndex: $currentBallIndex)
+            BallsDetailsView(ball: $currentCharacter, ballIndex: $chosenBallIndex)
                 .presentationDetents([.height(390)])
         }
     }
