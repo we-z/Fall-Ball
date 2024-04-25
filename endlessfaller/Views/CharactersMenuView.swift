@@ -156,7 +156,7 @@ struct CharactersMenuView: View {
                             .italic()
                             .background(RandomGradientView())
                             .cornerRadius(12)
-                            .padding(.vertical)
+                            .padding()
                     }
                     .buttonStyle(.roundedAndShadow6)
                 }
