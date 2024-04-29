@@ -99,7 +99,7 @@ struct PlayingBallView: View {
         let system = VortexSystem(tags: ["circle"])
         system.speed = 0.9
         system.birthRate = 300
-        system.shape = .box(width: idiom == .pad ? 0.075 : 0.15, height: 0.1)
+        system.shape = .box(width: idiom == .pad ? 0.075 : 0.21, height: 0.1)
         system.angleRange = .degrees(3)
         system.size = 0.3
         system.colors = .random(.blue, .red, .yellow, .green)
@@ -115,7 +115,7 @@ struct PlayingBallView: View {
         system.stretchFactor = 18
         system.birthRate = 60
         system.lifespan = 0.06
-        system.shape = .box(width: 0.15, height: 0)
+        system.shape = .box(width: 0.21, height: 0)
         system.size = 0.1
         system.colors = .random(.black)
         return system

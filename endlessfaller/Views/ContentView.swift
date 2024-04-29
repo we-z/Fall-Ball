@@ -20,6 +20,7 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @ObservedObject var userPersistedData = UserPersistedData()
     @State var showNewsBanner = true
+    @GestureState private var translation: CGFloat = 0
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true

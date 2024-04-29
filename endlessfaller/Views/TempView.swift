@@ -9,14 +9,16 @@ import SwiftUI
 
 struct TempView: View {
     func decayFunction(x: Double) -> Double {
-        return 2 * exp(-0.21 * log(x - 1))
+        return 2 * exp(-0.27 * log(x - 1))
     }
-
+    
+    let input = 90
+    
     var body: some View {
         ZStack{
             Color.black
                 .ignoresSafeArea()
-            Text("level 2: \(decayFunction(x: Double(2)))")
+            Text("level \(input): \(decayFunction(x: Double(input))) seconds")
                 .foregroundColor(.white)
                 .font(.system(size: 30))
         }
