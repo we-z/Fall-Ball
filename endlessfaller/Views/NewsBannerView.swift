@@ -11,6 +11,7 @@ struct NewsBannerView: View {
     @Environment(\.dismiss) private var dismiss
     @GestureState private var translation: CGFloat = 0
     @State var showBallMenu = false
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     var body: some View {
         ZStack{
             RandomGradientView()
@@ -43,6 +44,7 @@ struct NewsBannerView: View {
                 }
                 .scaleEffect(2.1)
                 .padding(.bottom, 160)
+                Spacer()
                 Button{
                     self.showBallMenu = true
                 } label: {
@@ -54,6 +56,7 @@ struct NewsBannerView: View {
                         .padding(12)
                         .background(.yellow)
                         .cornerRadius(15)
+                        .padding(.bottom)
                 }
                 .buttonStyle(.roundedAndShadow6)
             }
@@ -63,7 +66,7 @@ struct NewsBannerView: View {
                     dismiss()
                 }
             )
-            .frame(height: 390)
+            .frame(height: idiom == .pad ? .infinity : 390)
         }
         .sheet(isPresented: self.$showBallMenu) {
             CharactersMenuView()

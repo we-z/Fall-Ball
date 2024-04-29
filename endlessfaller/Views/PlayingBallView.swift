@@ -40,7 +40,7 @@ struct PlayingBallView: View {
                             .fill(.white)
                             .blendMode(.plusLighter)
                             .blur(radius: 3)
-                            .frame(width: 45)
+                            .frame(width: 60)
                             .tag("circle")
                     }
                 }
