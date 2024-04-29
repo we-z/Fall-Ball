@@ -12,9 +12,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                NinjaBallView()
-                MoroccoView()
-                ElonView()
+                AlbaniaView()
+                BosniaView()
+                CroatiaView()
             }
             Spacer()
         }
@@ -946,6 +946,51 @@ struct PalestineView: View {
                     .resizable()
                     .frame(width: 90, height: 50)
                     .offset(x:18)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct AlbaniaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("albania")
+                    .resizable()
+                    .frame(width: 60, height: 45)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct BosniaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("bosnia")
+                    .resizable()
+                    .frame(width: 90, height: 45)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct CroatiaView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("croatia")
+                    .resizable()
+                    .frame(width: 90, height: 45)
                     .mask(
                         Circle()
                             .frame(width: 46)
