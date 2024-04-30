@@ -12,11 +12,11 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                AirBallView()
-                FireBallView()
-                WaterBallView()
+                HeartEyeBallView()
+                StarEyeBallView()
+                DollarsignBallView()
             }
-            .scaleEffect(3)
+            .scaleEffect(2.1)
         }
     }
 }
@@ -1159,6 +1159,66 @@ struct FireBallView: View {
             Circle()
                 .frame(width: 47)
             Image("fireball")
+                .resizable()
+                .frame(width: 45, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+                .allowsHitTesting(false)
+        }
+        .frame(width: 46)
+        .compositingGroup()
+        
+    }
+}
+
+struct HeartEyeBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 47)
+            Image("hearteyes")
+                .resizable()
+                .frame(width: 45, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+                .allowsHitTesting(false)
+        }
+        .frame(width: 46)
+        .compositingGroup()
+        
+    }
+}
+
+struct StarEyeBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 47)
+            Image("stareyes")
+                .resizable()
+                .frame(width: 45, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+                .allowsHitTesting(false)
+        }
+        .frame(width: 46)
+        .compositingGroup()
+        
+    }
+}
+
+struct DollarsignBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 47)
+            Image("dollarsigneyes")
                 .resizable()
                 .frame(width: 45, height: 45)
                 .mask(
