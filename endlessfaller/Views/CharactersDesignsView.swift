@@ -12,11 +12,11 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                AlbaniaView()
-                BosniaView()
-                CroatiaView()
+                AirBallView()
+                FireBallView()
+                WaterBallView()
             }
-            Spacer()
+            .scaleEffect(3)
         }
     }
 }
@@ -1101,6 +1101,66 @@ struct ElonView: View {
             Image("elon")
                 .resizable()
                 .frame(width: 135, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+                .allowsHitTesting(false)
+        }
+        .frame(width: 46)
+        .compositingGroup()
+        
+    }
+}
+
+struct AirBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 47)
+            Image("airball")
+                .resizable()
+                .frame(width: 45, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+                .allowsHitTesting(false)
+        }
+        .frame(width: 46)
+        .compositingGroup()
+        
+    }
+}
+
+struct WaterBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 47)
+            Image("waterball")
+                .resizable()
+                .frame(width: 45, height: 45)
+                .mask(
+                    Circle()
+                        .frame(width: 42)
+                )
+                .allowsHitTesting(false)
+        }
+        .frame(width: 46)
+        .compositingGroup()
+        
+    }
+}
+
+struct FireBallView: View {
+    var body: some View {
+        ZStack{
+            Circle()
+                .frame(width: 47)
+            Image("fireball")
+                .resizable()
+                .frame(width: 45, height: 45)
                 .mask(
                     Circle()
                         .frame(width: 42)
