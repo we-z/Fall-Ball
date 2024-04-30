@@ -172,7 +172,6 @@ struct CharactersMenuView: View {
                 }
             }
             
-//            Text("\(deviceHeight)")
         }
         .sheet(isPresented: self.$showSecretShop){
             SecretShopView()
