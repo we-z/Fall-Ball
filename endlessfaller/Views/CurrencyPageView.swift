@@ -85,6 +85,7 @@ struct CurrencyPageView: View {
                                                     .customTextStroke(width:1.5)
                                                 Spacer()
                                                 Text(bundles[index].cost)
+                                                    .foregroundColor(.black)
                                                     .font(.title2)
                                                     .lineLimit(1)
                                                     .minimumScaleFactor(0.01)
