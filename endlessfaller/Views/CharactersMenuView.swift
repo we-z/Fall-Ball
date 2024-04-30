@@ -14,7 +14,6 @@ struct CharactersMenuView: View {
     
     @StateObject var storeKit = StoreKitManager()
     @ObservedObject private var model = AppModel.sharedAppModel
-    @State var isProcessingPurchase = false
     @State var showSecretShop = false
     @State var hapticFeedbackCounter = 0
     @State var showBallDetails = false
@@ -172,22 +171,15 @@ struct CharactersMenuView: View {
                     .buttonStyle(.roundedAndShadow6)
                 }
             }
-
-            if isProcessingPurchase {
-                Color.gray.opacity(0.3) // Gray out the background
-                    .edgesIgnoringSafeArea(.all)
-                ProgressView()
-                    .scaleEffect(2)
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
             
-            }
+//            Text("\(deviceHeight)")
         }
         .sheet(isPresented: self.$showSecretShop){
             SecretShopView()
         }
         .sheet(isPresented: self.$showBallDetails){
             BallsDetailsView(ball: $currentCharacter, ballIndex: $chosenBallIndex)
-                .presentationDetents([.height(390)])
+                .presentationDetents([.height(550)])
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BallsDetailsView: View {
     @ObservedObject private var model = AppModel.sharedAppModel
-    @State private var isMovingUp = false
+    @State  var isMovingUp = false
     @Binding var ball: Character
     @Binding var ballIndex: Int
     @Environment(\.dismiss) private var dismiss
@@ -28,11 +28,12 @@ struct BallsDetailsView: View {
                     .opacity(0.3)
                 Spacer()
                 ball.character
-                    .scaleEffect(3)
+                    .scaleEffect(6)
                     .padding(.bottom, 60)
-                    .offset(y: isMovingUp ? -30 : 0)
+                    .offset(y: isMovingUp ? -120 : -60)
                 
                 Ellipse()
+                    .foregroundColor(.black)
                     .frame(width: 120, height: 30)
                     .blur(radius: 21)
                 if idiom == .pad {
