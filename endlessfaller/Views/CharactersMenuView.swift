@@ -52,9 +52,20 @@ struct CharactersMenuView: View {
                         .font(.largeTitle)
                         .scaleEffect(1.1)
                 }
-                TextField("Search Balls", text: $searchText)
+                TextField("wqw", text: $searchText)
+                    .overlay{
+                        if searchText.isEmpty{
+                            HStack{
+                                Text("Search Balls...")
+                                    .foregroundColor(.black)
+                                    .allowsHitTesting(false)
+                                Spacer()
+                            }
+                        }
+                    }
                     .padding(9)
                     .padding(.horizontal, 9)
+                    .foregroundColor(.black)
                     .background(.white.opacity(0.6))
                     .cornerRadius(12)
                     .padding(.horizontal, 12)

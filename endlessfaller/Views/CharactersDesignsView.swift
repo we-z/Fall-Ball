@@ -1046,6 +1046,7 @@ struct BeachBallView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 46)
             Image("beachball")
                 .resizable()
@@ -1063,6 +1064,7 @@ struct KanyeView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 45)
             Image("kanye")
                 .resizable()
@@ -1094,6 +1096,7 @@ struct ElonView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 47)
             Circle()
                 .foregroundColor(.white)
@@ -1117,6 +1120,7 @@ struct AirBallView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 47)
             Image("airball")
                 .resizable()
@@ -1137,6 +1141,7 @@ struct WaterBallView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 47)
             Image("waterball")
                 .resizable()
@@ -1157,6 +1162,7 @@ struct FireBallView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 47)
             Image("fireball")
                 .resizable()
@@ -1177,6 +1183,7 @@ struct HeartEyeBallView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 47)
             Image("hearteyes")
                 .resizable()
@@ -1197,6 +1204,7 @@ struct StarEyeBallView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 47)
             Image("stareyes")
                 .resizable()
@@ -1217,6 +1225,7 @@ struct DollarsignBallView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 47)
             Image("dollarsigneyes")
                 .resizable()
@@ -1237,6 +1246,7 @@ struct UnicornView: View {
     var body: some View {
         ZStack{
             Circle()
+                .foregroundColor(.black)
                 .frame(width: 46)
             Image("unicorn")
                 .resizable()
