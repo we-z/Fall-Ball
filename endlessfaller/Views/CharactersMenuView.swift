@@ -51,7 +51,7 @@ struct CharactersMenuView: View {
                         .font(.largeTitle)
                         .scaleEffect(1.1)
                 }
-                TextField("wqw", text: $searchText)
+                TextField("", text: $searchText)
                     .overlay{
                         if searchText.isEmpty{
                             HStack{
