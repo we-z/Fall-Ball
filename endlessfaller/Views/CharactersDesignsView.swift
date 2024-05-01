@@ -12,9 +12,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                HeartEyeBallView()
-                StarEyeBallView()
-                DollarsignBallView()
+                BDSMFlagView()
+                LGBTQFlagView()
+                TransFlagView()
             }
             .scaleEffect(2.1)
         }
@@ -946,6 +946,53 @@ struct PalestineView: View {
                     .resizable()
                     .frame(width: 90, height: 50)
                     .offset(x:18)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct LGBTQFlagView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("lgbtq")
+                    .resizable()
+                    .frame(width: 90, height: 50)
+                    .offset(x:12)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct BDSMFlagView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("bdsmflag")
+                    .resizable()
+                    .frame(width: 60, height: 42)
+                    .offset(x:7)
+                    .mask(
+                        Circle()
+                            .frame(width: 46)
+                    )
+            )
+    }
+}
+
+struct TransFlagView: View {
+    var body: some View {
+        BallView()
+            .background(
+                Image("transflag")
+                    .resizable()
+                    .frame(width: 90, height: 42)
                     .mask(
                         Circle()
                             .frame(width: 46)
