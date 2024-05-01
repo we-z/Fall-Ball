@@ -890,7 +890,7 @@ struct KeepSwiping: View {
                     .font(.largeTitle)
                     .scaleEffect(1.5)
                 SwipeUpHand()
-                    .offset(x:39, y:30)
+                    .offset(x:60, y:60)
             }
             .animatedOffset(speed: 0.5)
         }
@@ -1030,7 +1030,7 @@ struct Instruction2: View {
                 .multilineTextAlignment(.center)
                 .padding()
         }
-        .customTextStroke(width: 2.1)
+        .customTextStroke(width: 1.3)
         .allowsHitTesting(false)
         .font(.largeTitle)
         .scaleEffect(1.4)

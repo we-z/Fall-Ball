@@ -96,9 +96,11 @@ struct CharactersMenuView: View {
                                                     VStack(spacing: 1) {
                                                         AnyView(character.character)
                                                             .scaleEffect(idiom == .pad ? 2.7 : 1.8)
-                                                            .offset(y: idiom == .pad ? -12 : 0)
-                                                        Spacer()
-                                                            .frame(maxHeight: 36)
+                                                            .offset(y: idiom == .pad ? -39 : -18)
+
+                                                    }
+                                                    .padding()
+                                                    ZStack{
                                                         if userPersistedData.purchasedSkins.contains(character.characterID) {
                                                             Text("Available")
                                                                 .customTextStroke()
@@ -111,35 +113,20 @@ struct CharactersMenuView: View {
                                                                         .scaleEffect(idiom == .pad ? 1 : 0.6)
                                                                         .padding(0)
                                                                 }
-                                                                if character.cost.count < 4 {
-                                                                    Text("\(character.cost)")
-                                                                    
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .lineLimit(1)
-                                                                        .customTextStroke(width: 1.2)
-                                                                        .font(idiom == .pad ? .system(size: 39) : .system(size: 21))
-                                                                        .padding(0)
-                                                                    
-                                                                } else {
-                                                                    Text("\(character.cost)")
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .lineLimit(1)
-                                                                        .minimumScaleFactor(0.01)
-                                                                        .customTextStroke(width: 1.2)
-                                                                        .font(idiom == .pad ? .system(size: 21) : .system(size: 18))
-                                                                        .padding(0)
-                                                                }
+                                                                Text("\(character.cost)")
+                                                                
+                                                                    .bold()
+                                                                    .italic()
+                                                                    .lineLimit(1)
+                                                                    .customTextStroke(width: 1.2)
+                                                                    .font(idiom == .pad ? .system(size: 39) : .system(size: 21))
                                                                 
                                                             }
                                                             .offset(y: idiom == .pad ? 30 : 0)
                                                         }
-                                                        
                                                     }
-                                                    .padding()
+                                                    .offset(y: idiom == .pad ? 60 : 51)
                                                 }
-                                                .offset(y:12)
                                                 if filteredCharacters[index].characterID == userPersistedData.selectedCharacter {
                                                     RoundedRectangle(cornerRadius: 20)
                                                         .stroke(Color.black, lineWidth: 6)
