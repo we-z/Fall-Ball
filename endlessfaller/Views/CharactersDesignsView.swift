@@ -12,9 +12,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                BDSMFlagView()
-                LGBTQFlagView()
-                TransFlagView()
+                WhiteBallView()
+                BlackBallView()
+                YinYangBallView()
             }
             .scaleEffect(2.1)
         }
@@ -1508,6 +1508,13 @@ struct WhiteBallView: View {
             Circle()
                 .frame(width: 40)
                 .foregroundColor(.white)
+            HStack(spacing: 9){
+                Capsule()
+                    .frame(width: 6, height: 12)
+                Capsule()
+                    .frame(width: 6, height: 12)
+            }
+            .offset(y: -3)
         }
     }
 }
@@ -1605,6 +1612,15 @@ struct BlackBallView: View {
             Circle()
                 .strokeBorder(Color.white,lineWidth: 2)
                 .frame(width: 44, height: 44)
+            HStack(spacing: 9){
+                Capsule()
+                    .frame(width: 6, height: 12)
+                    .foregroundColor(.white)
+                Capsule()
+                    .frame(width: 6, height: 12)
+                    .foregroundColor(.white)
+            }
+            .offset(y: -3)
         }
     }
 }
