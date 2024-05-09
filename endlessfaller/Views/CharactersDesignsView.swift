@@ -1510,8 +1510,10 @@ struct WhiteBallView: View {
                 .foregroundColor(.white)
             HStack(spacing: 9){
                 Capsule()
+                    .foregroundColor(.black)
                     .frame(width: 6, height: 12)
                 Capsule()
+                    .foregroundColor(.black)
                     .frame(width: 6, height: 12)
             }
             .offset(y: -3)
