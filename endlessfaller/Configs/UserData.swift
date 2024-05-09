@@ -17,6 +17,7 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("selectedHat") var selectedHat: String = "nohat"
     @CloudStorage("lastLaunch") var lastLaunch: String = ""
     @CloudStorage("leaderboardWonToday") var leaderboardWonToday: Bool = false
+    @CloudStorage("firstGameEverPlayed") var firstGameEverPlayed: Bool = false
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
     @CloudStorage("infiniteBoinsUnlocked") var infiniteBoinsUnlocked: Bool = false
     @CloudStorage("strategyModeEnabled") var strategyModeEnabled: Bool = false

@@ -168,6 +168,21 @@ struct ContentView: View {
                     gameCenter.authenticateUser()
                 }
                 checkIfAppOpenToday()
+                if !userPersistedData.firstGameEverPlayed {
+                    let freeBalls = [
+                        "io.endlessfall.white",
+                        "io.endlessfall.black",
+                        "io.endlessfall.orange",
+                        "io.endlessfall.laugh",
+                        "io.endlessfall.evil",
+                        "io.endlessfall.shocked",
+                        "io.endlessfall.basketball",
+                        "io.endlessfall.soccer",
+                        "io.endlessfall.volleyball"
+                     ]
+                    userPersistedData.selectedCharacter = freeBalls.randomElement() ?? "io.endlessfall.shocked"
+                    userPersistedData.firstGameEverPlayed = true
+                }
             }
             .onChange(of: scenePhase) { newScenePhase in
                 if newScenePhase == .active {
