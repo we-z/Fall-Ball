@@ -596,6 +596,7 @@ struct GameCenterLeaderboardView: View {
             }
         }
         .onAppear{
+            impactHeavy.impactOccurred()
             Task{
                 await gameCenter.loadLeaderboard()
             }
