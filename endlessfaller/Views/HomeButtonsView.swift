@@ -157,7 +157,7 @@ struct HomeButtonsView: View {
                         }
                         .scaleEffect(1.4)
                     }
-//                    .buttonStyle(.roundedAndShadow3)
+                    .buttonStyle(.roundedAndShadow3)
                 }
                 Button {
                     showLeaderBoard = true
@@ -168,7 +168,7 @@ struct HomeButtonsView: View {
                         .scaleEffect(1.2)
                         .offset(x:3)
                 }
-//                .buttonStyle(.roundedAndShadow3)
+                .buttonStyle(.roundedAndShadow3)
             }
         }
         .ignoresSafeArea()
