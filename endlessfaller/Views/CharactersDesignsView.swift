@@ -12,9 +12,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                WhiteBallView()
+                BosniaView()
                 MonkeyView()
-                YinYangBallView()
+                MoroccoView()
             }
             .scaleEffect(2.1)
         }
@@ -1009,6 +1009,7 @@ struct AlbaniaView: View {
                     .mask(
                         Circle()
                             .frame(width: 46)
+                            .clipped()
                     )
             )
     }
@@ -1024,8 +1025,10 @@ struct BosniaView: View {
                     .mask(
                         Circle()
                             .frame(width: 46)
+                            .clipped()
                     )
             )
+            .frame(width: 46, height: 46)
     }
 }
 
@@ -1039,6 +1042,7 @@ struct CroatiaView: View {
                     .mask(
                         Circle()
                             .frame(width: 46)
+                            .clipped()
                     )
             )
     }
