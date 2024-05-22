@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack {
             HStack{
                 WhiteBallView()
-                BlackBallView()
+                MonkeyView()
                 YinYangBallView()
             }
             .scaleEffect(2.1)
@@ -508,17 +508,15 @@ struct AlbertView: View {
 
 struct MonkeyView: View {
     var body: some View {
-
-                Image("monkey")
-                    .resizable()
-                    .frame(width: 60, height: 69)
-                    .mask(
-                        Rectangle()
-                            .frame(width: 69, height: 59)
-                    )
-                    .offset(x: -0.1, y: -0.4)
-                    
-        
+        Image("monkey")
+            .resizable()
+            .frame(width: 60, height: 69)
+            .mask(
+                Rectangle()
+                    .frame(width: 69, height: 59)
+            )
+            .offset(x: -0.1, y: -0.4)
+            .frame(width: 46, height: 46)
     }
 }
 
