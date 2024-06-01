@@ -1,0 +1,140 @@
+{
+  "pins" : [
+    {
+      "identity" : "circular-progress",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aleksproger/circular-progress.git",
+      "state" : {
+        "revision" : "21f394bb48d26f63834c7298d538b043fad52bc1",
+        "version" : "1.1.1"
+      }
+    },
+    {
+      "identity" : "cloudstorage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nonstrict-hq/CloudStorage.git",
+      "state" : {
+        "revision" : "35700218d35579df091974b6e7765db94c83448b",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "coregraphicsextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/CoreGraphicsExtensions",
+      "state" : {
+        "revision" : "7ddb96f057a10694ceaa4581bdaa5aa0c7eef87d",
+        "version" : "1.7.1"
+      }
+    },
+    {
+      "identity" : "flanimatedimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flipboard/FLAnimatedImage",
+      "state" : {
+        "revision" : "d4f07b6f164d53c1212c3e54d6460738b1981e9f",
+        "version" : "1.0.17"
+      }
+    },
+    {
+      "identity" : "pixelcolor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/PixelColor",
+      "state" : {
+        "revision" : "cfc6181e25b1963206cb8c9d0f556adb6a625925",
+        "version" : "1.4.1"
+      }
+    },
+    {
+      "identity" : "pixelkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/PixelKit",
+      "state" : {
+        "revision" : "1d20f0db7536ea433fecd924b5eea8e1ad3bd8f1",
+        "version" : "2.2.4"
+      }
+    },
+    {
+      "identity" : "renderkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/RenderKit",
+      "state" : {
+        "revision" : "06782ee0ea9d15ded503bfc7ee7efb9db53859b1",
+        "version" : "1.2.3"
+      }
+    },
+    {
+      "identity" : "resolution",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/Resolution",
+      "state" : {
+        "revision" : "0fdee03d7b312f075897cdac437f366cc6631d6a",
+        "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "633996a807442ec28df9d33b0f88ce57a0e2fdbf",
+        "version" : "5.17.0"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
+      "state" : {
+        "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
+        "version" : "2.2.3"
+      }
+    },
+    {
+      "identity" : "swiftfx",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hexagons/SwiftFX.git",
+      "state" : {
+        "revision" : "5542eae94ac014b78ab832dfd22610904d626c60",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swiftui-vertical-tab-view",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lorenzofiamingo/swiftui-vertical-tab-view",
+      "state" : {
+        "revision" : "e029f75f9c43e52e351528a78e293a997200b9f8",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "swizzleswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Amzd/SwizzleSwift",
+      "state" : {
+        "revision" : "e2d31c646182bf94a496b173c6ee5ad191230e9a",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "texturemap",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/TextureMap",
+      "state" : {
+        "revision" : "c6845fb31a7ba5337c607faeedbeb1d3053c4a50",
+        "version" : "0.9.0"
+      }
+    },
+    {
+      "identity" : "vortex",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/twostraws/Vortex",
+      "state" : {
+        "revision" : "3eabf0572fd37e943be64b9d2589f97f1999cb26",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}
