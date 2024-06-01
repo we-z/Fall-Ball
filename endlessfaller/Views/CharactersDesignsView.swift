@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack {
             HStack{
                 DjkhaledView()
-                WhiteBallView()
+                PeaceView()
                 BlackBallView()
             }
             .scaleEffect(2.1)
@@ -153,7 +153,7 @@ struct PeaceView: View {
         Image("peacesign")
             .resizable()
             .frame(width: 46, height: 46)
-            .scaleEffect(1.1)
+            .customTextStroke(width: 1)
     }
 }
 
