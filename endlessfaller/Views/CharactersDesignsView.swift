@@ -13,8 +13,8 @@ struct CharactersDesignsView: View {
         VStack {
             HStack{
                 DjkhaledView()
-                PeaceView()
-                IceSpiceView()
+                WhiteBallView()
+                BlackBallView()
             }
             .scaleEffect(2.1)
         }
@@ -1531,7 +1531,7 @@ struct WhiteBallView: View {
                     .foregroundColor(.black)
                     .frame(width: 6, height: 12)
             }
-            .offset(y: -3)
+            .offset(y: 3)
         }
     }
 }
@@ -1637,7 +1637,7 @@ struct BlackBallView: View {
                     .frame(width: 6, height: 12)
                     .foregroundColor(.white)
             }
-            .offset(y: -3)
+            .offset(y: 3)
         }
     }
 }
