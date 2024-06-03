@@ -14,6 +14,7 @@ struct CharactersDesignsView: View {
             HStack{
                 PeaceView()
                 WizardView()
+                AlienBall()
             }
             .scaleEffect(2.1)
         }
@@ -21,29 +22,6 @@ struct CharactersDesignsView: View {
 }
 struct EyesView: View {
     var body: some View {
-//        Text("👀")
-//            .scaleEffect(1.2)
-//            .offset(y: -6)
-        
-//        HStack(spacing: 3){
-//            ZStack{
-//                Capsule()
-//                    .frame(width: 15, height: 13)
-//                    .foregroundColor(.black)
-//                Capsule()
-//                    .frame(width: 12, height: 10)
-//                    .foregroundColor(.white)
-//            }
-//            ZStack{
-//                Capsule()
-//                    .frame(width: 15, height: 13)
-//                    .foregroundColor(.black)
-//                Capsule()
-//                    .frame(width: 12, height: 10)
-//                    .foregroundColor(.white)
-//            }
-//        }
-//        .offset(y: -3)
         
         HStack {
             Circle()
@@ -248,6 +226,15 @@ struct TennisBall: View {
 struct BasketBall: View {
     var body: some View {
         Text("🏀")
+            .font(.system(size: 48))
+            .offset(x:-1)
+            .frame(width: 50, height: 50)
+    }
+}
+
+struct AlienBall: View {
+    var body: some View {
+        Text("👽")
             .font(.system(size: 48))
             .offset(x:-1)
             .frame(width: 50, height: 50)
