@@ -12,9 +12,8 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                DjkhaledView()
                 PeaceView()
-                BlackBallView()
+                WizardView()
             }
             .scaleEffect(2.1)
         }
@@ -153,7 +152,14 @@ struct PeaceView: View {
         Image("peacesign")
             .resizable()
             .frame(width: 46, height: 46)
-            .customTextStroke(width: 1)
+    }
+}
+
+struct WizardView: View {
+    var body: some View {
+        Image("wizard")
+            .resizable()
+            .frame(width: 46, height: 46)
     }
 }
 
