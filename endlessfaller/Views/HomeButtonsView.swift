@@ -18,6 +18,7 @@ struct HomeButtonsView: View {
     @State private var isGearExpanded = false
     @State var showGameModesAlert = false
     @State private var gearRotationDegrees = 0.0
+    @State var whiteCircleOffset = 0.0
     @State var showCharactersMenu = false
     @State var showLeaderBoard = false
     @State var showCurrencyPage = false
@@ -62,28 +63,36 @@ struct HomeButtonsView: View {
                 HStack{
                     ZStack {
                         ZStack {
+                            Circle()
+                                .frame(width: 53)
+                                .foregroundColor(.white)
+                                .offset(y: isGearExpanded ? -180 : 0)
+                                .offset(y: whiteCircleOffset)
                             // Button 1
                             Button(action: {
-                                if groupStateObserver.isEligibleForGroupSession {
-                                    appModel.startSharing()
-                                } else {
-                                    isActivitySharingSheetPresented = true
+                                withAnimation(){
+                                    whiteCircleOffset = 0
+                                    self.userPersistedData.strategyModeEnabled = false
                                 }
+                                showGameModesAlert = true
                             }) {
-                                Image(systemName: "shareplay") // Replace with your image
+                                Image(systemName: "timer") // Replace with your image
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 45, height: 45)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.red)
                             }
                             .offset(y: isGearExpanded ? -180 : 0)
                             
                             // Button 2
                             Button(action: {
+                                withAnimation(){
+                                    whiteCircleOffset = 60
+                                    self.userPersistedData.strategyModeEnabled = true
+                                }
                                 showGameModesAlert = true
-                                self.userPersistedData.strategyModeEnabled.toggle()
                             }) {
-                                Image(systemName: userPersistedData.strategyModeEnabled ? "brain" : "timer") // Replace with your image
+                                Image(systemName: "brain") // Replace with your image
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 45, height: 45)
@@ -109,7 +118,7 @@ struct HomeButtonsView: View {
                                 audioController.setAllAudioVolume()
                             }
                         }
-                        .offset(y: -15)
+                        .offset(y: -9)
                         .opacity(isGearExpanded ? 1 : 0)
                         
                         // Gear Button
@@ -132,7 +141,7 @@ struct HomeButtonsView: View {
                     .background {
                         Capsule()
                             .strokeBorder(Color.black,lineWidth: 3)
-                            .frame(width: 66, height: isGearExpanded ? 254 : 66)
+                            .frame(width: 69, height: isGearExpanded ? 260 : 69)
                             .background(.black)
                             .clipShape(Capsule())
                             .offset(y: isGearExpanded ? -95 : 0)
@@ -183,6 +192,11 @@ struct HomeButtonsView: View {
         }
         .sheet(isPresented: self.$showCurrencyPage){
             CurrencyPageView()
+        }
+        .onAppear(){
+            if self.userPersistedData.strategyModeEnabled {
+                whiteCircleOffset = 60
+            }
         }
     }
 }
