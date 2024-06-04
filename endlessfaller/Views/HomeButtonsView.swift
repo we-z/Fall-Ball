@@ -264,9 +264,6 @@ struct HomeButtonsView: View {
         }
         .onChange(of: self.userPersistedData.strategyModeEnabled){ newValue in
             showGameMode = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                showGameMode = false
-            }
         }
     }
 }
