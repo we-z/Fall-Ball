@@ -16,10 +16,10 @@ struct HomeButtonsView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @StateObject var audioController = AudioManager.sharedAudioManager
     @State private var isGearExpanded = false
-    @State var showGameModesAlert = false
     @State private var gearRotationDegrees = 0.0
     @State var whiteCircleOffset = 0.0
     @State var showCharactersMenu = false
+    @State var showGameMode = false
     @State var showLeaderBoard = false
     @State var showCurrencyPage = false
     @StateObject var userPersistedData = UserPersistedData()
@@ -28,156 +28,209 @@ struct HomeButtonsView: View {
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
         let currentCharacter = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) ?? appModel.characters.first(where: { $0.characterID == "io.endlessfall.shocked"})
-        VStack{
-            HStack{
-                Spacer()
-                Button {
-                    showCurrencyPage = true
-                } label: {
-                    HStack{
-                        BoinsView()
-                        Text(String(userPersistedData.boinBalance))
-                            .bold()
-                            .italic()
-                            .customTextStroke(width:2.1)
-                            .font(.largeTitle)
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical, 6)
-                    .background{
-                        Color.yellow
-                    }
-                    .cornerRadius(15)
-                    .overlay{
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.black, lineWidth: 3)
-                            .padding(1)
-                    }
-                    .padding()
-                }
-                .buttonStyle(.roundedAndShadow6)
+        ZStack{
+            VStack{
+                Text(" ")
             }
-            .padding(.top, idiom == .pad || UIDevice.isOldDevice ? 15 : 45)
-            Spacer()
-            ZStack{
-                HStack{
-                    ZStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 53)
-                                .foregroundColor(.white)
-                                .offset(y: isGearExpanded ? -180 : 0)
-                                .offset(y: whiteCircleOffset)
-                            // Button 1
-                            Button(action: {
-                                withAnimation(){
-                                    whiteCircleOffset = 0
-                                    self.userPersistedData.strategyModeEnabled = false
-                                }
-                                showGameModesAlert = true
-                            }) {
-                                Image(systemName: "timer") // Replace with your image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 45, height: 45)
-                                    .foregroundColor(.red)
-                            }
-                            .offset(y: isGearExpanded ? -180 : 0)
-                            
-                            // Button 2
-                            Button(action: {
-                                withAnimation(){
-                                    whiteCircleOffset = 60
-                                    self.userPersistedData.strategyModeEnabled = true
-                                }
-                                showGameModesAlert = true
-                            }) {
-                                Image(systemName: "brain") // Replace with your image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 45, height: 45)
-                                    .foregroundColor(.purple)
-                            }
-                            .offset(y: isGearExpanded ? -120 : 0)
-                            .alert(userPersistedData.strategyModeEnabled ? "Strategy mode enabled ✅" : "Speed mode enabled ✅", isPresented: $showGameModesAlert) {
-                                Button("Let's Go!", role: .cancel) { }
-                            }
-                            
-                            // Button 3
-                            Button(action: {
-                                audioController.mute.toggle()
-                            }) {
-                                Image(systemName: audioController.mute ? "speaker.slash.fill" : "speaker.wave.2.fill") // Replace with your image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 45, height: 45)
-                                    .foregroundColor(.teal)
-                            }
-                            .offset(y: isGearExpanded ? -60 : 0)
-                            .onChange(of: audioController.mute) { newSetting in
-                                audioController.setAllAudioVolume()
-                            }
-                        }
-                        .offset(y: -9)
-                        .opacity(isGearExpanded ? 1 : 0)
-                        
-                        // Gear Button
-                        Button(action: {
+            .frame(width: deviceWidth, height: deviceHeight)
+            .background(.white.opacity(0.0001))
+            .onTapGesture {
+                showGameMode = false
+                withAnimation {
+                    isGearExpanded = false
+                }
+            }
+            .gesture(
+                DragGesture()
+                    .onEnded { value in
+                        let threshold: CGFloat = 50 // Adjust this threshold as needed
+                        if value.translation.width > threshold || value.translation.width < -threshold {
+                            // Swipe detected, perform the swipe action here
+                            showGameMode = false
                             withAnimation {
-                                self.gearRotationDegrees += 45
-                                self.isGearExpanded.toggle()
+                                isGearExpanded = false
                             }
-                            hapticGenerator.notificationOccurred(.error)
-                        }) {
-                            Image(systemName: "gearshape.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 45, height: 45)
-                                .padding(36)
-                                .foregroundColor(.gray)
-                                .rotationEffect(.degrees(gearRotationDegrees))
+                        } else {
+                            // Tap detected, perform the tap action here
+                            showGameMode = false
+                            withAnimation {
+                                isGearExpanded = false
+                            }
                         }
                     }
-                    .background {
-                        Capsule()
-                            .strokeBorder(Color.black,lineWidth: 3)
-                            .frame(width: 69, height: isGearExpanded ? 260 : 69)
-                            .background(.black)
-                            .clipShape(Capsule())
-                            .offset(y: isGearExpanded ? -95 : 0)
-                    }
-                    .onDisappear{
-                        isGearExpanded = false
-                    }
+            )
+            VStack{
+                HStack{
                     Spacer()
                     Button {
-                        showCharactersMenu = true
+                        showCurrencyPage = true
                     } label: {
-                        ZStack{
-                            AnyView(currentCharacter!.character)
+                        HStack{
+                            BoinsView()
+                            Text(String(userPersistedData.boinBalance))
+                                .bold()
+                                .italic()
+                                .customTextStroke(width:2.1)
+                                .font(.largeTitle)
                         }
-                        .padding(30)
+                        .padding(.horizontal)
+                        .padding(.vertical, 6)
+                        .background{
+                            Color.yellow
+                        }
+                        .cornerRadius(15)
                         .overlay{
-                            if userPersistedData.selectedHat != "nohat" {
-                                AnyView(hat!.hat)
-                                    .scaleEffect(0.69)
-                                    .frame(maxHeight: 30)
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.black, lineWidth: 3)
+                                .padding(1)
+                        }
+                        .padding()
+                    }
+                    .buttonStyle(.roundedAndShadow6)
+                }
+                .padding(.top, idiom == .pad || UIDevice.isOldDevice ? 15 : 45)
+                Spacer()
+                ZStack{
+                    HStack{
+                        ZStack {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 53)
+                                    .foregroundColor(.white)
+                                    .offset(y: isGearExpanded ? -180 : 0)
+                                    .offset(y: whiteCircleOffset)
+                                // Button 1
+                                Button(action: {
+                                        whiteCircleOffset = 0
+                                        self.userPersistedData.strategyModeEnabled = false
+                                }) {
+                                    Text("🏎️") // Replace with your image
+                                        .font(.system(size: 40))
+                                        .customTextStroke()
+                                        .offset(y: -9)
+                                }
+                                .offset(y: isGearExpanded ? -180 : 0)
+                                
+                                // Button 2
+                                Button(action: {
+                                        whiteCircleOffset = 60
+                                        self.userPersistedData.strategyModeEnabled = true
+                                }) {
+                                    Text("🤔") // Replace with your image
+                                        .font(.system(size: 40))
+                                        .customTextStroke()
+                                }
+                                .offset(y: isGearExpanded ? -120 : 0)
+                                
+                                // Button 3
+                                Button(action: {
+                                    audioController.mute.toggle()
+                                }) {
+                                    Image(systemName: audioController.mute ? "speaker.slash.fill" : "speaker.wave.2.fill") // Replace with your image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 45, height: 45)
+                                        .foregroundColor(.teal)
+                                }
+                                .offset(y: isGearExpanded ? -60 : 0)
+                                .onChange(of: audioController.mute) { newSetting in
+                                    audioController.setAllAudioVolume()
+                                }
+                            }
+                            .offset(y: -9)
+                            .opacity(isGearExpanded ? 1 : 0)
+                            
+                            // Gear Button
+                            Button(action: {
+                                withAnimation {
+                                    self.gearRotationDegrees += 45
+                                    self.isGearExpanded.toggle()
+                                }
+                                hapticGenerator.notificationOccurred(.error)
+                            }) {
+                                Image(systemName: "gearshape.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 45, height: 45)
+                                    .padding(36)
+                                    .foregroundColor(.gray)
+                                    .rotationEffect(.degrees(gearRotationDegrees))
                             }
                         }
-                        .scaleEffect(1.4)
+                        .background {
+                            Capsule()
+                                .strokeBorder(Color.black,lineWidth: 3)
+                                .frame(width: 69, height: isGearExpanded ? 260 : 69)
+                                .background(.black)
+                                .clipShape(Capsule())
+                                .offset(y: isGearExpanded ? -95 : 0)
+                        }
+                        .onDisappear{
+                            isGearExpanded = false
+                        }
+                        Spacer()
+                        Button {
+                            showCharactersMenu = true
+                        } label: {
+                            ZStack{
+                                AnyView(currentCharacter!.character)
+                            }
+                            .padding(30)
+                            .overlay{
+                                if userPersistedData.selectedHat != "nohat" {
+                                    AnyView(hat!.hat)
+                                        .scaleEffect(0.69)
+                                        .frame(maxHeight: 30)
+                                }
+                            }
+                            .scaleEffect(1.4)
+                        }
+                        .buttonStyle(.roundedAndShadow3)
+                    }
+                    Button {
+                        showLeaderBoard = true
+                    } label: {
+                        PodiumView()
+                            .foregroundColor(.black)
+                            .padding(36)
+                            .scaleEffect(1.2)
+                            .offset(x:3)
                     }
                     .buttonStyle(.roundedAndShadow3)
                 }
-                Button {
-                    showLeaderBoard = true
-                } label: {
-                    PodiumView()
-                        .foregroundColor(.black)
-                        .padding(36)
-                        .scaleEffect(1.2)
-                        .offset(x:3)
+            }
+            if showGameMode {
+                ZStack{
+                    RandomGradientView()
+                    RotatingSunView()
+                        .frame(width: 210, height: 210)
+                    VStack{
+                        Spacer()
+                        Text("Game Mode:")
+                            .font(.system(size: 30))
+                            .customTextStroke(width: 1.5)
+                            .italic()
+                            .bold()
+                        Spacer()
+                        Text(self.userPersistedData.strategyModeEnabled ? "Strategy 🤔" : "Speed 🏎️ 💨")
+                            .font(.system(size: 27))
+                            .customTextStroke(width: 1.5)
+                            .italic()
+                            .bold()
+                        Spacer()
+                        Text(self.userPersistedData.strategyModeEnabled ? "Time your swipes\nThink fast!" : "Swipe up as fast\nas you can!")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 21))
+                            .customTextStroke(width: 1.5)
+                            .italic()
+                            .bold()
+                        Spacer()
+                    }
                 }
-                .buttonStyle(.roundedAndShadow3)
+                .cornerRadius(30)
+                
+                .frame(width: 210, height: 210)
+                .customTextStroke(width: 3)
             }
         }
         .ignoresSafeArea()
@@ -197,6 +250,9 @@ struct HomeButtonsView: View {
             if self.userPersistedData.strategyModeEnabled {
                 whiteCircleOffset = 60
             }
+        }
+        .onChange(of: self.userPersistedData.strategyModeEnabled){ newValue in
+            showGameMode = true
         }
     }
 }
