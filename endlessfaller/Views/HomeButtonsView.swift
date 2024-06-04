@@ -94,6 +94,11 @@ struct HomeButtonsView: View {
                     HStack{
                         ZStack {
                             ZStack {
+                                Capsule()
+                                    .frame(width: 60, height: isGearExpanded ? 120 : 0)
+                                    .foregroundColor(.gray)
+                                    .clipShape(Capsule())
+                                    .offset(y: isGearExpanded ? -150 : 0)
                                 Circle()
                                     .frame(width: 53)
                                     .foregroundColor(.white)
@@ -101,7 +106,9 @@ struct HomeButtonsView: View {
                                     .offset(y: whiteCircleOffset)
                                 // Button 1
                                 Button(action: {
+                                    withAnimation() {
                                         whiteCircleOffset = 0
+                                    }
                                         self.userPersistedData.strategyModeEnabled = false
                                 }) {
                                     Text("🏎️") // Replace with your image
@@ -113,7 +120,9 @@ struct HomeButtonsView: View {
                                 
                                 // Button 2
                                 Button(action: {
+                                    withAnimation() {
                                         whiteCircleOffset = 60
+                                    }
                                         self.userPersistedData.strategyModeEnabled = true
                                 }) {
                                     Text("🤔") // Replace with your image
@@ -145,6 +154,7 @@ struct HomeButtonsView: View {
                                 withAnimation {
                                     self.gearRotationDegrees += 45
                                     self.isGearExpanded.toggle()
+                                    self.showGameMode = false
                                 }
                                 hapticGenerator.notificationOccurred(.error)
                             }) {
