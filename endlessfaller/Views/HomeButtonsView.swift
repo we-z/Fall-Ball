@@ -33,7 +33,7 @@ struct HomeButtonsView: View {
                 Text(" ")
             }
             .frame(width: deviceWidth, height: deviceHeight)
-            .background(.white.opacity(0.0001))
+            .background(.white.opacity( isGearExpanded ? 0.0001 : 0))
             .onTapGesture {
                 showGameMode = false
                 withAnimation {
@@ -167,6 +167,7 @@ struct HomeButtonsView: View {
                         }
                         .onDisappear{
                             isGearExpanded = false
+                            showGameMode = false
                         }
                         Spacer()
                         Button {
