@@ -36,6 +36,7 @@ struct HomeButtonsView: View {
             .background(.white.opacity( showGameMode ? 0.6 : 0))
             .background(.gray.opacity( isGearExpanded ? 0.0001 : 0))
             .onTapGesture {
+                impactHeavy.impactOccurred()
                 withAnimation {
                     showGameMode = false
                     isGearExpanded = false
