@@ -1,0 +1,7 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.6//EN
+N:Smith;Ted;;;
+FN:Ted Smith
+TEL;type=pref:+1 (240) 743-9679
+END:VCARD
