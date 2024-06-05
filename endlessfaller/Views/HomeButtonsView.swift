@@ -121,7 +121,7 @@ struct HomeButtonsView: View {
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 6)
-                        .frame(height: 57)
+                        .frame(height: 60)
                         .background{
                             Color.yellow
                         }
