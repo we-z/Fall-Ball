@@ -33,7 +33,7 @@ struct HomeButtonsView: View {
                 Text(" ")
             }
             .frame(width: deviceWidth, height: deviceHeight)
-            .background(.gray.opacity( showGameMode ? 0.75 : 0))
+            .background(.white.opacity( showGameMode ? 0.6 : 0))
             .background(.gray.opacity( isGearExpanded ? 0.0001 : 0))
             .onTapGesture {
                 withAnimation {
