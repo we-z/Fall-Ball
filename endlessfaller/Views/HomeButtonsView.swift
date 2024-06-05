@@ -17,7 +17,7 @@ struct HomeButtonsView: View {
     @StateObject var audioController = AudioManager.sharedAudioManager
     @State private var isGearExpanded = false
     @State private var gearRotationDegrees = 0.0
-    @State var whiteCircleOffset = 0.0
+    @State var whiteCircleOffset = -30.0
     @State var showCharactersMenu = false
     @State var showGameMode = false
     @State var showLeaderBoard = false
@@ -33,10 +33,11 @@ struct HomeButtonsView: View {
                 Text(" ")
             }
             .frame(width: deviceWidth, height: deviceHeight)
-            .background(.white.opacity( isGearExpanded ? 0.0001 : 0))
+            .background(.gray.opacity( showGameMode ? 0.9 : 0))
+            .background(.gray.opacity( isGearExpanded ? 0.0001 : 0))
             .onTapGesture {
-                showGameMode = false
                 withAnimation {
+                    showGameMode = false
                     isGearExpanded = false
                 }
             }
@@ -46,14 +47,15 @@ struct HomeButtonsView: View {
                         let threshold: CGFloat = 50 // Adjust this threshold as needed
                         if value.translation.width > threshold || value.translation.width < -threshold {
                             // Swipe detected, perform the swipe action here
-                            showGameMode = false
+                            
                             withAnimation {
+                                showGameMode = false
                                 isGearExpanded = false
                             }
                         } else {
                             // Tap detected, perform the tap action here
-                            showGameMode = false
                             withAnimation {
+                                showGameMode = false
                                 isGearExpanded = false
                             }
                         }
@@ -61,6 +63,48 @@ struct HomeButtonsView: View {
             )
             VStack{
                 HStack{
+                    ZStack{
+                        Capsule()
+                            .frame(width: 129, height: 69)
+                            .foregroundColor(.black)
+                            .clipShape(Capsule())
+                            .padding(.horizontal)
+                        Capsule()
+                            .frame(width: 120, height: 60)
+                            .foregroundColor(.gray)
+                            .clipShape(Capsule())
+                            .padding(.horizontal)
+                        Circle()
+                            .frame(width: 53)
+                            .foregroundColor(.white)
+                            .offset(x: whiteCircleOffset)
+                        // Button 1
+                        HStack(spacing:15){
+                            Button(action: {
+                                withAnimation() {
+                                    whiteCircleOffset = -30
+                                }
+                                self.userPersistedData.strategyModeEnabled = false
+                            }) {
+                                Text("🏎️") // Replace with your image
+                                    .font(.system(size: 40))
+                                    .customTextStroke()
+                                    .offset(y: -9)
+                            }
+                            
+                            // Button 2
+                            Button(action: {
+                                withAnimation() {
+                                    whiteCircleOffset = 30
+                                }
+                                self.userPersistedData.strategyModeEnabled = true
+                            }) {
+                                Text("🤔") // Replace with your image
+                                    .font(.system(size: 40))
+                                    .customTextStroke()
+                            }
+                        }
+                    }
                     Spacer()
                     Button {
                         showCurrencyPage = true
@@ -94,42 +138,6 @@ struct HomeButtonsView: View {
                     HStack{
                         ZStack {
                             ZStack {
-                                Capsule()
-                                    .frame(width: 60, height: isGearExpanded ? 120 : 0)
-                                    .foregroundColor(.gray)
-                                    .clipShape(Capsule())
-                                    .offset(y: isGearExpanded ? -150 : 0)
-                                Circle()
-                                    .frame(width: 53)
-                                    .foregroundColor(.white)
-                                    .offset(y: isGearExpanded ? -180 : 0)
-                                    .offset(y: whiteCircleOffset)
-                                // Button 1
-                                Button(action: {
-                                    withAnimation() {
-                                        whiteCircleOffset = 0
-                                    }
-                                        self.userPersistedData.strategyModeEnabled = false
-                                }) {
-                                    Text("🏎️") // Replace with your image
-                                        .font(.system(size: 40))
-                                        .customTextStroke()
-                                        .offset(y: -9)
-                                }
-                                .offset(y: isGearExpanded ? -180 : 0)
-                                
-                                // Button 2
-                                Button(action: {
-                                    withAnimation() {
-                                        whiteCircleOffset = 60
-                                    }
-                                        self.userPersistedData.strategyModeEnabled = true
-                                }) {
-                                    Text("🤔") // Replace with your image
-                                        .font(.system(size: 40))
-                                        .customTextStroke()
-                                }
-                                .offset(y: isGearExpanded ? -120 : 0)
                                 
                                 // Button 3
                                 Button(action: {
@@ -146,7 +154,7 @@ struct HomeButtonsView: View {
                                     audioController.setAllAudioVolume()
                                 }
                             }
-                            .offset(y: -9)
+                            .offset(y: -6)
                             .opacity(isGearExpanded ? 1 : 0)
                             
                             // Gear Button
@@ -163,17 +171,17 @@ struct HomeButtonsView: View {
                                     .scaledToFit()
                                     .frame(width: 45, height: 45)
                                     .padding(36)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white.opacity(0.8))
                                     .rotationEffect(.degrees(gearRotationDegrees))
                             }
                         }
                         .background {
                             Capsule()
                                 .strokeBorder(Color.black,lineWidth: 3)
-                                .frame(width: 69, height: isGearExpanded ? 260 : 69)
+                                .frame(width: 69, height: isGearExpanded ? 139 : 69)
                                 .background(.black)
                                 .clipShape(Capsule())
-                                .offset(y: isGearExpanded ? -95 : 0)
+                                .offset(y: isGearExpanded ? -36 : 0)
                         }
                         .onDisappear{
                             isGearExpanded = false
@@ -259,11 +267,13 @@ struct HomeButtonsView: View {
         }
         .onAppear(){
             if self.userPersistedData.strategyModeEnabled {
-                whiteCircleOffset = 60
+                whiteCircleOffset = 30
             }
         }
         .onChange(of: self.userPersistedData.strategyModeEnabled){ newValue in
-            showGameMode = true
+            withAnimation(){
+                showGameMode = true
+            }
         }
     }
 }
