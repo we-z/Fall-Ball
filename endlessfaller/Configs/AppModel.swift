@@ -1054,30 +1054,37 @@ public extension UIDevice {
     }()
     
     static let isOldDevice: Bool = {
-            let oldDeviceNames = [
-                "iPod touch (5th generation)",
-                "iPod touch (6th generation)",
-                "iPod touch (7th generation)",
-                "iPhone 4",
-                "iPhone 4s",
-                "iPhone 5",
-                "iPhone 5c",
-                "iPhone 5s",
-                "iPhone 6",
-                "iPhone 6 Plus",
-                "iPhone 6s",
-                "iPhone 6s Plus",
-                "iPhone 7",
-                "iPhone 7 Plus",
-                "iPhone 8",
-                "iPhone 8 Plus",
-                "iPhone SE",
-                "iPhone SE (2nd generation)",
-                "iPhone SE (3rd generation)"// Assuming this is the 1st generation iPhone SE
-                // Add other older models as needed
-            ]
-        return oldDeviceNames.contains(modelName)
-        }()
+        let oldDeviceNames = [
+            "iPod touch (5th generation)",
+            "iPod touch (6th generation)",
+            "iPod touch (7th generation)",
+            "iPhone 4",
+            "iPhone 4s",
+            "iPhone 5",
+            "iPhone 5c",
+            "iPhone 5s",
+            "iPhone 6",
+            "iPhone 6 Plus",
+            "iPhone 6s",
+            "iPhone 6s Plus",
+            "iPhone 7",
+            "iPhone 7 Plus",
+            "iPhone 8",
+            "iPhone 8 Plus",
+            "iPhone SE",
+            "iPhone SE (2nd generation)",
+            "iPhone SE (3rd generation)"// Assuming this is the 1st generation iPhone SE
+            // Add other older models as needed
+        ]
+    return oldDeviceNames.contains(modelName)
+    }()
+    
+    static let isSmallDevice: Bool = {
+        let oldDeviceNames = [
+            "iPhone 13 mini"
+        ]
+    return oldDeviceNames.contains(modelName)
+    }()
 }
 
 extension View {
