@@ -64,44 +64,33 @@ struct HomeButtonsView: View {
             )
             VStack{
                 HStack{
-                    ZStack{
-                        Capsule()
-                            .frame(width: 130, height: 72)
-                            .foregroundColor(.black)
-                            .clipShape(Capsule())
-                            .padding(.horizontal)
-                        Capsule()
-                            .frame(width: 123, height: 64)
-//                            .foregroundColor(.white.opacity(0.75))
-                            .foregroundColor(self.userPersistedData.strategyModeEnabled ? .yellow : .red)
-                            .clipShape(Capsule())
-                            .padding(.horizontal)
-                        Circle()
-                            .frame(width: 53)
-                            .foregroundColor(.white)
-                            .customTextStroke(width: 1.5)
-                            .offset(x: whiteCircleOffset)
-                        // Button 1
-                        HStack(spacing:15){
-                            Button(action: {
-                                withAnimation() {
-                                    whiteCircleOffset = -30
-                                }
-                                self.userPersistedData.strategyModeEnabled = false
-                            }) {
+                    Button{
+                        self.userPersistedData.strategyModeEnabled.toggle()
+                    } label: {
+                        ZStack{
+                            Capsule()
+                                .frame(width: 130, height: 72)
+                                .foregroundColor(.black)
+                                .clipShape(Capsule())
+                                .padding(.horizontal)
+                            Capsule()
+                                .frame(width: 123, height: 64)
+                            //                            .foregroundColor(.white.opacity(0.75))
+                                .foregroundColor(self.userPersistedData.strategyModeEnabled ? .yellow : .red)
+                                .clipShape(Capsule())
+                                .padding(.horizontal)
+                            Circle()
+                                .frame(width: 53)
+                                .foregroundColor(.white)
+                                .customTextStroke(width: 1.5)
+                                .offset(x: whiteCircleOffset)
+                            // Button 1
+                            HStack(spacing:15){
                                 Text("🏎️") // Replace with your image
                                     .font(.system(size: 40))
                                     .customTextStroke()
                                     .offset(y: -9)
-                            }
-                            
-                            // Button 2
-                            Button(action: {
-                                withAnimation() {
-                                    whiteCircleOffset = 30
-                                }
-                                self.userPersistedData.strategyModeEnabled = true
-                            }) {
+                                
                                 Text("🤔") // Replace with your image
                                     .font(.system(size: 40))
                                     .customTextStroke()
@@ -276,6 +265,15 @@ struct HomeButtonsView: View {
         }
         .onChange(of: self.userPersistedData.strategyModeEnabled){ newValue in
             impactHeavy.impactOccurred()
+            if newValue {
+                withAnimation(){
+                    whiteCircleOffset = 30
+                }
+            } else {
+                withAnimation(){
+                    whiteCircleOffset = -30
+                }
+            }
             if showGameMode == false {
                 withAnimation(){
                     showGameMode = true
