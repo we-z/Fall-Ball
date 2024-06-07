@@ -27,15 +27,15 @@ class NotificationManager: ObservableObject {
     
     // Updated bodies to mention "boins" in each message
     let bodies = [
-        "Come collect your daily boins bonus!",
+        "Come collect your daily boin!",
         "Your adventure for boins awaits. Dive in!",
         "A surprise boin is waiting for you 🎁",
         "It's time for your daily boin!",
         "Unlock your daily boin reward now!",
         "Embark on a new quest today for more boins!",
-        "Special rewards in boins for special players like you! 🏆",
-        "Your favorite game misses you. Return for a boins surprise! ✨",
-        "Epic boins adventures await your return!",
+        "Special boin reward for special players like you! 🏆",
+        "Your favorite game misses you. Return for a surprise boin! ✨",
+        "Epic boin adventures await your return!",
         "Your journey for boins continues today. Don't miss out! 🌟"
     ]
     

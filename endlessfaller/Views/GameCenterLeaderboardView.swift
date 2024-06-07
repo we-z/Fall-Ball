@@ -106,6 +106,7 @@ struct GameCenterLeaderboardView: View {
                                                                             if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[2].ballID}) {
                                                                                 AnyView(character.character)
                                                                                     .scaleEffect(2)
+                                                                                    .offset(y:3)
                                                                             } else {
                                                                                 Image(systemName: "questionmark.circle")
                                                                                     .font(.system(size: 90))
@@ -170,6 +171,7 @@ struct GameCenterLeaderboardView: View {
                                                                             if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[0].ballID}) {
                                                                                 AnyView(character.character)
                                                                                     .scaleEffect(2)
+                                                                                    .offset(y:3)
                                                                             } else {
                                                                                 Image(systemName: "questionmark.circle")
                                                                                     .font(.system(size: 100))
@@ -226,6 +228,7 @@ struct GameCenterLeaderboardView: View {
                                                                             if let character = model.characters.first(where: {$0.characterID.hash == todaysPlayersList[1].ballID}) {
                                                                                 AnyView(character.character)
                                                                                     .scaleEffect(2)
+                                                                                    .offset(y:3)
                                                                             } else {
                                                                                 Image(systemName: "questionmark.circle")
                                                                                     .font(.system(size: 90))
@@ -355,6 +358,7 @@ struct GameCenterLeaderboardView: View {
                                                                             if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[2].ballID}) {
                                                                                 AnyView(character.character)
                                                                                     .scaleEffect(2)
+                                                                                    .offset(y:3)
                                                                             } else {
                                                                                 Image(systemName: "questionmark.circle")
                                                                                     .font(.system(size: 90))
@@ -417,6 +421,7 @@ struct GameCenterLeaderboardView: View {
                                                                             if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[0].ballID}) {
                                                                                 AnyView(character.character)
                                                                                     .scaleEffect(2)
+                                                                                    .offset(y:3)
                                                                             } else {
                                                                                 Image(systemName: "questionmark.circle")
                                                                                     .font(.system(size: 90))
@@ -471,6 +476,7 @@ struct GameCenterLeaderboardView: View {
                                                                             if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[1].ballID}) {
                                                                                 AnyView(character.character)
                                                                                     .scaleEffect(2)
+                                                                                    .offset(y:3)
                                                                             } else {
                                                                                 Image(systemName: "questionmark.circle")
                                                                                     .font(.system(size: 90))
