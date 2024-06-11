@@ -65,13 +65,9 @@ struct CurrencyPageView: View {
                                 } label: {
                                     Rectangle()
                                         .fill(.yellow)
-                                        .cornerRadius(30)
+                                        .cornerRadius(45)
                                         .frame(height: 120)
                                         .overlay{
-                                            if index == 8 {
-                                                RandomGradientView()
-                                                    .cornerRadius(30)
-                                            }
                                             HStack{
                                                 Image(bundles[index].image)
                                                     .resizable()
@@ -136,10 +132,10 @@ struct CurrencyPageView: View {
 
                                         }
                                         .mask{
-                                            RoundedRectangle(cornerRadius: 30)
+                                            RoundedRectangle(cornerRadius: 45)
                                         }
                                         .overlay{
-                                            RoundedRectangle(cornerRadius: 30)
+                                            RoundedRectangle(cornerRadius: 45)
                                                 .stroke(Color.black, lineWidth: 3)
                                                 .frame(height: 120)
                                                 .padding(1)

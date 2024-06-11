@@ -92,8 +92,6 @@ class GameCenter: ObservableObject {
     
     func loadLeaderboard() async {
         print("loadLeaderboard called")
-//        DispatchQueue.main.async {
-            
             Task{
                 var todaysPlayersListTemp : [Player] = []
                 let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
@@ -130,6 +128,5 @@ class GameCenter: ObservableObject {
                 }
                 self.allTimePlayersList = allTimePlayersListTemp
             }
-//        }
     }
 }
