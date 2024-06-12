@@ -65,7 +65,7 @@ class BallAnimationManager: ObservableObject {
         self.newBallSpeed = newBallSpeed
         startingYPosition = ballYPosition
         if userPersistedData.strategyModeEnabled {
-            endingYPosition = startingYPosition - UIScreen.main.bounds.height / 3
+            endingYPosition = startingYPosition - UIScreen.main.bounds.height / 6
         } else {
             endingYPosition = startingYPosition - UIScreen.main.bounds.height * ((newBallSpeed * 0.06) + 0.1)
         }

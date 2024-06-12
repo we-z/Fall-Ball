@@ -141,7 +141,7 @@ struct HomeButtonsView: View {
                                         .scaledToFit()
                                         .frame(width: 60, height: 60)
                                         .foregroundColor(.teal)
-                                        .padding(.leading)
+                                        .padding(.leading, 30)
                                 }
                                 .buttonStyle(.roundedAndShadow3)
                                 .onChange(of: audioController.mute) { newSetting in
