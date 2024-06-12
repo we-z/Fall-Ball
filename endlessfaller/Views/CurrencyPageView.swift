@@ -10,6 +10,7 @@ import SwiftUI
 struct CurrencyPageView: View {
     @Environment(\.dismiss) private var dismiss
     @State var isProcessingPurchase = false
+    @State var showSubscriptionOptions = false
     @StateObject var storeKit = StoreKitManager()
     @ObservedObject var appModel = AppModel.sharedAppModel
     @State var bundles: [CurrencyBundle] = [
@@ -19,6 +20,8 @@ struct CurrencyPageView: View {
         CurrencyBundle(image: "crate-pile", coins: 350, cost: "$49.99", bundleID: "350boins"),
         CurrencyBundle(image: "big-pile", coins: 800, cost: "$99.99", bundleID: "800boins")
     ]
+    @State var selectedBundle = CurrencyBundle(image: "", coins: 0, cost: "", bundleID: "")
+    
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
 
@@ -58,10 +61,12 @@ struct CurrencyPageView: View {
                         ForEach(0..<bundles.count, id: \.self) { index in
                                 let bundle = bundles[index]
                                 Button {
-                                    isProcessingPurchase = true
-                                    Task {
-                                        await buyBoins(bundle: bundle)
-                                    }
+//                                    isProcessingPurchase = true
+//                                    Task {
+//                                        await buyBoins(bundle: bundle)
+//                                    }
+                                    selectedBundle = CurrencyBundle(image: bundle.image, coins: bundle.coins, cost: bundle.cost, bundleID: bundle.bundleID)
+                                    showSubscriptionOptions = true
                                 } label: {
                                     Rectangle()
                                         .fill(.yellow)
@@ -158,6 +163,10 @@ struct CurrencyPageView: View {
             }
         }
         .allowsHitTesting(!isProcessingPurchase)
+        .sheet(isPresented: self.$showSubscriptionOptions) {
+            SubscriptionOptions(bundle: $selectedBundle)
+                .presentationDetents([.height(550)])
+        }
     }
 }
 
