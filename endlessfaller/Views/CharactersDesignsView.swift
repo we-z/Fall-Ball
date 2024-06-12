@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
         VStack {
             HStack{
                 PeaceView()
-                WizardBall()
+                AlbertView()
                 AlienBall()
             }
             .scaleEffect(2.1)
@@ -507,6 +507,7 @@ struct AlbertView: View {
         Image("albertball")
             .resizable()
             .frame(width: 56, height: 46)
+            .customTextStroke()
             
     }
 }
