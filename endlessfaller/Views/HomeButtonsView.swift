@@ -139,47 +139,45 @@ struct HomeButtonsView: View {
                                     Image(systemName: audioController.mute ? "speaker.slash.fill" : "speaker.wave.2.fill") // Replace with your image
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 45, height: 45)
+                                        .frame(width: 60, height: 60)
                                         .foregroundColor(.teal)
+                                        .padding(.leading)
                                 }
-                                .offset(y: isGearExpanded ? -60 : 0)
                                 .onChange(of: audioController.mute) { newSetting in
                                     audioController.setAllAudioVolume()
                                 }
                             }
-                            .offset(y: -6)
-                            .opacity(isGearExpanded ? 1 : 0)
                             
-                            // Gear Button
-                            Button(action: {
-                                withAnimation {
-                                    self.gearRotationDegrees += 45
-                                    self.isGearExpanded.toggle()
-                                    self.showGameMode = false
-                                }
-                                hapticGenerator.notificationOccurred(.error)
-                            }) {
-                                Image(systemName: "gearshape.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 45, height: 45)
-                                    .padding(36)
-                                    .foregroundColor(.white.opacity(0.8))
-                                    .rotationEffect(.degrees(gearRotationDegrees))
-                            }
+//                            // Gear Button
+//                            Button(action: {
+//                                withAnimation {
+//                                    self.gearRotationDegrees += 45
+//                                    self.isGearExpanded.toggle()
+//                                    self.showGameMode = false
+//                                }
+//                                hapticGenerator.notificationOccurred(.error)
+//                            }) {
+//                                Image(systemName: "gearshape.fill")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 45, height: 45)
+//                                    .padding(36)
+//                                    .foregroundColor(.white.opacity(0.8))
+//                                    .rotationEffect(.degrees(gearRotationDegrees))
+//                            }
                         }
-                        .background {
-                            Capsule()
-                                .strokeBorder(Color.black,lineWidth: 3)
-                                .frame(width: 69, height: isGearExpanded ? 139 : 69)
-                                .background(.black)
-                                .clipShape(Capsule())
-                                .offset(y: isGearExpanded ? -36 : 0)
-                        }
-                        .onDisappear{
-                            isGearExpanded = false
-                            showGameMode = false
-                        }
+//                        .background {
+//                            Capsule()
+//                                .strokeBorder(Color.black,lineWidth: 3)
+//                                .frame(width: 69, height: isGearExpanded ? 139 : 69)
+//                                .background(.black)
+//                                .clipShape(Capsule())
+//                                .offset(y: isGearExpanded ? -36 : 0)
+//                        }
+//                        .onDisappear{
+//                            isGearExpanded = false
+//                            showGameMode = false
+//                        }
                         Spacer()
                         Button {
                             showCharactersMenu = true
@@ -206,7 +204,7 @@ struct HomeButtonsView: View {
                             .foregroundColor(.black)
                             .padding(36)
                             .scaleEffect(1.2)
-                            .offset(x:3)
+                            .offset(x:-3)
                     }
                     .buttonStyle(.roundedAndShadow3)
                 }
