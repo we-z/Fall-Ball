@@ -143,6 +143,7 @@ struct HomeButtonsView: View {
                                         .foregroundColor(.teal)
                                         .padding(.leading)
                                 }
+                                .buttonStyle(.roundedAndShadow3)
                                 .onChange(of: audioController.mute) { newSetting in
                                     audioController.setAllAudioVolume()
                                 }
