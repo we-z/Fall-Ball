@@ -10,6 +10,8 @@ import SwiftUI
 struct SubscriptionOptions: View {
     @Binding var bundle: CurrencyBundle
     @State var subscriptionDeal = 0
+    @StateObject var storeKit = StoreKitManager()
+    @State var isProcessingPurchase = false
     @State var subscriptionPlans: [BundleSubscription] = [
         BundleSubscription(image: "small-pile", coins: 35, cost: "$4.99", bundleID: "25boins"),
         BundleSubscription(image: "box-pile", coins: 75, cost: "$9.99", bundleID: "55boins"),
@@ -17,6 +19,25 @@ struct SubscriptionOptions: View {
         BundleSubscription(image: "crate-pile", coins: 500, cost: "$49.99", bundleID: "350boins"),
         BundleSubscription(image: "big-pile", coins: 1000, cost: "$99.99", bundleID: "800boins")
     ]
+    @ObservedObject var userPersistedData = UserPersistedData()
+    @Environment(\.dismiss) private var dismiss
+    @ObservedObject var appModel = AppModel.sharedAppModel
+    
+    @MainActor
+    func buyBoins(bundle: CurrencyBundle) async {
+        do {
+            if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
+                DispatchQueue.main.async {
+                    userPersistedData.incrementBalance(amount: bundle.coins)
+                }
+                dismiss()
+            }
+        } catch {
+            print("Purchase failed: \(error)")
+        }
+        appModel.grabbingBoins = false
+        isProcessingPurchase = false
+    }
     
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     var body: some View {
@@ -64,7 +85,11 @@ struct SubscriptionOptions: View {
                 }
                 .buttonStyle(.roundedAndShadow9)
                 Button{
-
+                    impactHeavy.impactOccurred()
+                    isProcessingPurchase = true
+                    Task {
+                        await buyBoins(bundle: bundle)
+                    }
                 } label: {
                     HStack{
                         Spacer()
@@ -83,7 +108,14 @@ struct SubscriptionOptions: View {
                     .padding(.bottom, idiom == .pad || UIDevice.isOldDevice ? 30 : 0)
                 }
             }
+            if isProcessingPurchase {
+                Color.gray.opacity(0.3) // Gray out the background
+                    .edgesIgnoringSafeArea(.all)
+                HangTight()
+            
+            }
         }
+        .allowsHitTesting(!isProcessingPurchase)
         .onAppear{
             subscriptionDeal = subscriptionPlans.first(where: {$0.bundleID == bundle.bundleID})!.coins
         }
