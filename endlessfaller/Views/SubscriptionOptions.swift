@@ -6,23 +6,27 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SubscriptionOptions: View {
     @Binding var bundle: CurrencyBundle
-    @State var subscriptionDeal = 0
+    @State var subscriptionDeal = BundleSubscription(image: "", coins: 0, cost: "", bundleID: "")
     @StateObject var storeKit = StoreKitManager()
     @State var isProcessingPurchase = false
     @State var subscriptionPlans: [BundleSubscription] = [
-        BundleSubscription(image: "small-pile", coins: 35, cost: "$4.99", bundleID: "25boins"),
-        BundleSubscription(image: "box-pile", coins: 75, cost: "$9.99", bundleID: "55boins"),
-        BundleSubscription(image: "bucket-pile", coins: 200, cost: "$19.99", bundleID: "125boins"),
-        BundleSubscription(image: "crate-pile", coins: 500, cost: "$49.99", bundleID: "350boins"),
-        BundleSubscription(image: "big-pile", coins: 1000, cost: "$99.99", bundleID: "800boins")
+        BundleSubscription(image: "small-pile", coins: 35, cost: "$4.99", bundleID: "35boinsubscription"),
+        BundleSubscription(image: "box-pile", coins: 75, cost: "$9.99", bundleID: "75boinsubscription"),
+        BundleSubscription(image: "bucket-pile", coins: 200, cost: "$19.99", bundleID: "200boinsubscription"),
+        BundleSubscription(image: "crate-pile", coins: 500, cost: "$49.99", bundleID: "500boinsubscription"),
+        BundleSubscription(image: "big-pile", coins: 1000, cost: "$99.99", bundleID: "1000boinsubscription")
     ]
     @ObservedObject var userPersistedData = UserPersistedData()
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var appModel = AppModel.sharedAppModel
     
+    @State var errorTitle = ""
+    @State var isShowingError: Bool = false
+        
     @MainActor
     func buyBoins(bundle: CurrencyBundle) async {
         do {
@@ -65,12 +69,14 @@ struct SubscriptionOptions: View {
                     .customTextStroke(width:2.1)
                     .padding()
                 Button{
-
+                    Task {
+                        await buySubscription()
+                    }
                 } label: {
                     HStack{
                         Spacer()
                         BoinsView()
-                        Text(String(subscriptionDeal)+" / week")
+                        Text(String(subscriptionDeal.coins)+" / month")
                             .bold()
                             .italic()
                             .font(.title)
@@ -117,7 +123,23 @@ struct SubscriptionOptions: View {
         }
         .allowsHitTesting(!isProcessingPurchase)
         .onAppear{
-            subscriptionDeal = subscriptionPlans.first(where: {$0.bundleID == bundle.bundleID})!.coins
+            subscriptionDeal = subscriptionPlans.first(where: {$0.bundleID == bundle.bundleID})!
+        }
+        .alert(isPresented: $isShowingError, content: {
+            Alert(title: Text(errorTitle), message: nil, dismissButton: .default(Text("Okay")))
+        })
+    }
+    
+    func buySubscription() async {
+        do {
+            if try await storeKit.purchase(bundleID: subscriptionDeal.bundleID) != nil {
+                dismiss()
+            }
+        } catch StoreError.failedVerification {
+            errorTitle = "Your purchase could not be verified by the App Store."
+            isShowingError = true
+        } catch {
+            print("Failed purchase for \(subscriptionDeal.bundleID): \(error)")
         }
     }
 }
