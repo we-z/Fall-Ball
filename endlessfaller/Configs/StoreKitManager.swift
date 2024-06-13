@@ -9,6 +9,8 @@
 import Foundation
 import StoreKit
 
+typealias RenewalState = StoreKit.Product.SubscriptionInfo.RenewalState
+
 public enum StoreError: Error {
     case failedVerification
 }
@@ -18,6 +20,9 @@ class StoreKitManager: ObservableObject {
     @Published var storeProducts: [Product] = []
     
     var updateListenerTask: Task<Void, Error>? = nil
+    @Published private(set) var subscriptions: [Product]
+    @Published private(set) var purchasedSubscriptions: [Product] = []
+    @Published private(set) var subscriptionGroupStatus: RenewalState?
     
     //maintain a plist of products
     private let productDict: [String : String]
@@ -30,6 +35,8 @@ class StoreKitManager: ObservableObject {
         } else {
             productDict = [:]
         }
+        
+        subscriptions = []
         
         //Start a transaction listener as close to the app launch as possible so you don't miss any transaction
         updateListenerTask = listenForTransactions()
@@ -72,6 +79,20 @@ class StoreKitManager: ObservableObject {
         do {
             //using the Product static method products to retrieve the list of products
             storeProducts = try await Product.products(for: productDict.values)
+            
+            var newSubscriptions: [Product] = []
+            
+            for product in storeProducts {
+                switch product.type {
+                case .autoRenewable:
+                    newSubscriptions.append(product)
+                default:
+                    //Ignore this product.
+                    print("Unknown product")
+                }
+            }
+            
+            subscriptions = newSubscriptions
             
             // iterate the "type" if there are multiple product types.
         } catch {
@@ -127,6 +148,42 @@ class StoreKitManager: ObservableObject {
                 return nil
         }
         
+    }
+    
+    @MainActor
+    func updateCustomerProductStatus() async {
+        var purchasedSubscriptions: [Product] = []
+
+        //Iterate through all of the user's purchased products.
+        for await result in Transaction.currentEntitlements {
+            do {
+                //Check whether the transaction is verified. If it isn’t, catch `failedVerification` error.
+                let transaction = try checkVerified(result)
+
+                //Check the `productType` of the transaction and get the corresponding product from the store.
+                switch transaction.productType {
+
+                case .autoRenewable:
+                    if let subscription = subscriptions.first(where: { $0.id == transaction.productID }) {
+                        purchasedSubscriptions.append(subscription)
+                    }
+                default:
+                    break
+                }
+            } catch {
+                print()
+            }
+        }
+
+
+        //Update the store information with auto-renewable subscription products.
+        self.purchasedSubscriptions = purchasedSubscriptions
+
+        //Check the `subscriptionGroupStatus` to learn the auto-renewable subscription state to determine whether the customer
+        //is new (never subscribed), active, or inactive (expired subscription). This app has only one subscription
+        //group, so products in the subscriptions array all belong to the same group. The statuses that
+        //`product.subscription.status` returns apply to the entire subscription group.
+        subscriptionGroupStatus = try? await subscriptions.first?.subscription?.status.first?.state
     }
     
 }
