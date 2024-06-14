@@ -138,6 +138,24 @@ class AppModel: ObservableObject {
         self.BallAnimator.pushBallUp(newBallSpeed: ballSpeed)
     }
     
+    func setFirstRandomSkin() {
+        if !userPersistedData.firstGameEverPlayed {
+            let freeBalls = [
+                "io.endlessfall.white",
+                "io.endlessfall.black",
+                "io.endlessfall.orange",
+                "io.endlessfall.laugh",
+                "io.endlessfall.evil",
+                "io.endlessfall.shocked",
+                "io.endlessfall.basketball",
+                "io.endlessfall.soccer",
+                "io.endlessfall.volleyball"
+             ]
+            userPersistedData.selectedCharacter = freeBalls.randomElement() ?? "io.endlessfall.shocked"
+            userPersistedData.firstGameEverPlayed = true
+        }
+    }
+    
     func gameOverOperations() {
         self.currentIndex = -1
         self.cancelGameOverTimer()
