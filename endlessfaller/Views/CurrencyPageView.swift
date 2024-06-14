@@ -11,7 +11,6 @@ struct CurrencyPageView: View {
     @Environment(\.dismiss) private var dismiss
     @State var isProcessingPurchase = false
     @State var showSubscriptionOptions = false
-    
     @ObservedObject var appModel = AppModel.sharedAppModel
     @State var bundles: [CurrencyBundle] = [
         CurrencyBundle(image: "small-pile", coins: 25, cost: "$4.99", bundleID: "25boins"),
@@ -21,9 +20,25 @@ struct CurrencyPageView: View {
         CurrencyBundle(image: "big-pile", coins: 800, cost: "$99.99", bundleID: "800boins")
     ]
     @State var selectedBundle = CurrencyBundle(image: "", coins: 0, cost: "", bundleID: "")
-    
+    @StateObject var storeKit = StoreKitManager()
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
+    
+    @MainActor
+    func buyBoins(bundle: CurrencyBundle) async {
+        do {
+            if (try await storeKit.purchase(bundleID: bundle.bundleID)) != nil{
+                DispatchQueue.main.async {
+                    userPersistedData.incrementBalance(amount: bundle.coins)
+                }
+                dismiss()
+            }
+        } catch {
+            print("Purchase failed: \(error)")
+        }
+        appModel.grabbingBoins = false
+        isProcessingPurchase = false
+    }
     
     var body: some View {
         ZStack{
@@ -46,7 +61,14 @@ struct CurrencyPageView: View {
                                 let bundle = bundles[index]
                                 Button {
                                     selectedBundle = CurrencyBundle(image: bundle.image, coins: bundle.coins, cost: bundle.cost, bundleID: bundle.bundleID)
-                                    showSubscriptionOptions = true
+                                    if storeKit.purchasedSubscriptions.isEmpty {
+                                        showSubscriptionOptions = true
+                                    }  else {
+                                        isProcessingPurchase = true
+                                        Task {
+                                            await buyBoins(bundle: bundle)
+                                        }
+                                    }
                                 } label: {
                                     Rectangle()
                                         .fill(.yellow)
