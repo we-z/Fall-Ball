@@ -16,7 +16,7 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("selectedBag") var selectedBag: String = "nobag"
     @CloudStorage("selectedHat") var selectedHat: String = "nohat"
     @CloudStorage("lastLaunch") var lastLaunch: String = ""
-    @CloudStorage("lastBoinRenewel") var lastBoinRenewel: String = ""
+    @CloudStorage("lastBoinRenewal") var lastBoinRenewal: String = ""
     @CloudStorage("leaderboardWonToday") var leaderboardWonToday: Bool = false
     @CloudStorage("firstGameEverPlayed") var firstGameEverPlayed: Bool = false
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
@@ -59,6 +59,10 @@ class UserPersistedData: ObservableObject {
     
     func updateLastLaunch(date: String) {
         lastLaunch = date
+    }
+    
+    func updateLastRenewal(date: String) {
+        lastBoinRenewal = date
     }
     
     func selectNewBall(ball: String) {

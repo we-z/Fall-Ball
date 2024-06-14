@@ -84,6 +84,33 @@ class AppModel: ObservableObject {
     @ObservedObject var audioController = AudioManager.sharedAudioManager
     @ObservedObject var gameCenter = GameCenter.shared
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
+    @StateObject var storeKit = StoreKitManager()
+    
+    let openToday = NSDate().formatted
+    
+    func checkBoinSubscription() {
+        if !storeKit.purchasedSubscriptions.isEmpty {
+            if (userPersistedData.lastBoinRenewal == openToday) {
+                print("already recieved monthly boins")
+            } else {
+                print("boin subscription incremented")
+                userPersistedData.updateLastRenewal(date: openToday)
+            }
+        }
+    }
+    
+    func checkIfAppOpenToday() {
+        if (userPersistedData.lastLaunch == openToday) {
+            //Already Launched today
+            print("already opened today")
+        } else {
+            //Today's First Launch
+            print("first open of the day")
+            userPersistedData.updateLastLaunch(date: openToday)
+            userPersistedData.leaderboardWonToday = false
+            dailyBoinCollected()
+        }
+    }
     
     func dailyBoinCollected() {
         self.showDailyBoinCollectedAnimation = true

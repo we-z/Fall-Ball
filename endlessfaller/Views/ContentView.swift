@@ -28,21 +28,6 @@ struct ContentView: View {
         userPersistedData.resetBoinIntervalCounter()
     }
     
-    let openToday = NSDate().formatted
-    func checkIfAppOpenToday() {
-        if (userPersistedData.lastLaunch == openToday) {
-            //Already Launched today
-            print("already opened today")
-        } else {
-            //Today's First Launch
-            print("first open of the day")
-            userPersistedData.updateLastLaunch(date: openToday)
-            userPersistedData.leaderboardWonToday = false
-            appModel.dailyBoinCollected()
-            
-        }
-    }
-    
     let heavyHaptic = UINotificationFeedbackGenerator()
     
     var body: some View {
@@ -168,12 +153,13 @@ struct ContentView: View {
                 if !GKLocalPlayer.local.isAuthenticated {
                     gameCenter.authenticateUser()
                 }
-                checkIfAppOpenToday()
+                appModel.checkIfAppOpenToday()
                 appModel.setFirstRandomSkin()
+                appModel.checkBoinSubscription()
             }
             .onChange(of: scenePhase) { newScenePhase in
                 if newScenePhase == .active {
-                    checkIfAppOpenToday()
+                    appModel.checkIfAppOpenToday()
                 }
             }
         }
