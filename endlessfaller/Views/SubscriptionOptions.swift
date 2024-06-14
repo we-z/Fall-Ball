@@ -69,6 +69,7 @@ struct SubscriptionOptions: View {
                     .customTextStroke(width:2.1)
                     .padding()
                 Button{
+                    isProcessingPurchase = true
                     Task {
                         await buySubscription()
                     }
@@ -132,7 +133,7 @@ struct SubscriptionOptions: View {
     
     func buySubscription() async {
         do {
-            if try await storeKit.purchase(bundleID: subscriptionDeal.bundleID) != nil {
+            if try await storeKit.purchase(bundleID: subscriptionDeal.subscriptionID) != nil {
                 dismiss()
             }
         } catch StoreError.failedVerification {
@@ -141,6 +142,7 @@ struct SubscriptionOptions: View {
         } catch {
             print("Failed purchase for \(subscriptionDeal.bundleID): \(error)")
         }
+        isProcessingPurchase = false
     }
 }
 

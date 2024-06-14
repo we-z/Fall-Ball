@@ -45,6 +45,8 @@ class StoreKitManager: ObservableObject {
         Task {
             await requestProducts()
             
+            //Deliver products that the customer purchases.
+            await updateCustomerProductStatus()
         }
     }
     
@@ -61,7 +63,8 @@ class StoreKitManager: ObservableObject {
                 do {
                     let transaction = try self.checkVerified(result)
                     
-                    //the transaction is verified, deliver the content to the user
+                    //Deliver products to the user.
+                    await self.updateCustomerProductStatus()
                     
                     //Always finish a transaction
                     await transaction.finish()
@@ -136,6 +139,7 @@ class StoreKitManager: ObservableObject {
                 let transaction = try checkVerified(verificationResult)
                 
                 //the transaction is verified, deliver the content to the user
+                await updateCustomerProductStatus()
                 
                 //always finish a transaction - performance
                 await transaction.finish()
