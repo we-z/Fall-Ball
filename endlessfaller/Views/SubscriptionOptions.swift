@@ -134,6 +134,7 @@ struct SubscriptionOptions: View {
     func buySubscription() async {
         do {
             if try await storeKit.purchase(bundleID: subscriptionDeal.subscriptionID) != nil {
+                userPersistedData.purchasedSubscriptionAmount = subscriptionDeal.coins
                 dismiss()
             }
         } catch StoreError.failedVerification {

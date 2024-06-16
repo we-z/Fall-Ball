@@ -90,13 +90,12 @@ class AppModel: ObservableObject {
     
     func checkBoinSubscription() {
         if !storeKit.purchasedSubscriptions.isEmpty {
-            let subscription = storeKit.purchasedSubscriptions.first
             if (userPersistedData.lastBoinRenewal == openToday) {
                 print("already recieved monthly boins")
             } else {
                 print("boin subscription incremented")
                 userPersistedData.updateLastRenewal(date: openToday)
-                userPersistedData.incrementBalance(amount: 10)
+                userPersistedData.incrementBalance(amount: userPersistedData.purchasedSubscriptionAmount)
             }
         }
     }
