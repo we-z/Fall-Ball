@@ -15,6 +15,41 @@ struct AppStoreScreenShotsView: View {
             RotatingSunView()
                 .offset(y: -90)
             VStack{
+                Spacer()
+                HStack{
+                    WizardBall()
+                        .scaleEffect(1.5)
+                        .padding(30)
+                    Spacer()
+                    NinjaBallView()
+                        .scaleEffect(1.5)
+                        .padding(30)
+                }
+                .frame(width: deviceWidth, height: 300)
+                
+                
+                HStack{
+                    UnicornView()
+                        .scaleEffect(1.5)
+                        .padding(30)
+                    Spacer()
+                    AirBallView()
+                        .scaleEffect(1.5)
+                        .padding(30)
+                }
+                .frame(width: deviceWidth, height: 300)
+                Spacer()
+                HStack{
+                    SouthKoreaView()
+                    AmericaView()
+                    FallBallLaughBall()
+                    LGBTQFlagView()
+                    ChinaView()
+                }
+                .scaleEffect(1.5)
+            }
+            .offset(y: -50)
+            VStack{
                 Text("Fall Ball")
                     .font(.system(size: 100))
                     .bold()
@@ -34,12 +69,13 @@ struct AppStoreScreenShotsView: View {
                     }
                     .bold()
                     .font(.largeTitle)
-                    .scaleEffect(1.5)
+                    .scaleEffect(1.2)
                     SwipeUpHand()
-                        .offset(x: 60, y:60)
+                        .offset(x: 40, y:40)
                 }
                 .frame(width: 300, height: 400)
                 .customTextStroke(width: 2.7)
+                .offset(y: -50)
             }
             .offset(y:30)
         }
