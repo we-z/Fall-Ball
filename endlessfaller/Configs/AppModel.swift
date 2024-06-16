@@ -90,13 +90,18 @@ class AppModel: ObservableObject {
     
     func checkBoinSubscription() {
         if !storeKit.purchasedSubscriptions.isEmpty {
-            if (userPersistedData.lastBoinRenewal == openToday) {
-                print("already recieved monthly boins")
-            } else {
-                print("boin subscription incremented")
-                userPersistedData.updateLastRenewal(date: openToday)
-                userPersistedData.incrementBalance(amount: userPersistedData.purchasedSubscriptionAmount)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            if let monthsSinceLastVisit = Calendar.current.dateComponents([.month], from: dateFormatter.date(from: userPersistedData.lastBoinRenewal)!, to: Date()).month {
+                if monthsSinceLastVisit < 1 {
+                    print("already recieved monthly boins")
+                } else {
+                    print("boin subscription incremented")
+                    userPersistedData.updateLastRenewal(date: openToday)
+                    userPersistedData.incrementBalance(amount: userPersistedData.purchasedSubscriptionAmount * monthsSinceLastVisit)
+                }
             }
+            
         }
     }
     
