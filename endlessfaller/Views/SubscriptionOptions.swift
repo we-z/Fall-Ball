@@ -131,10 +131,13 @@ struct SubscriptionOptions: View {
         })
     }
     
+    let openToday = NSDate().formatted
+    
     func buySubscription() async {
         do {
             if try await storeKit.purchase(bundleID: subscriptionDeal.subscriptionID) != nil {
                 userPersistedData.purchasedSubscriptionAmount = subscriptionDeal.coins
+                userPersistedData.updateLastRenewal(date: openToday)
                 dismiss()
             }
         } catch StoreError.failedVerification {

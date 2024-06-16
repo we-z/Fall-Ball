@@ -89,6 +89,7 @@ class AppModel: ObservableObject {
     let openToday = NSDate().formatted
     
     func checkBoinSubscription() {
+        print("openToday: \(openToday)")
         if !storeKit.purchasedSubscriptions.isEmpty {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
