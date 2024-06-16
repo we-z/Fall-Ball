@@ -151,12 +151,12 @@ class AppModel: ObservableObject {
         if userPersistedData.strategyModeEnabled {
             let m1 = -0.0004004004004004004
             let c1 = 0.5004004004004003
-            let fastest = (m1 * Double(difficultyInput) + c1) * 1.7
+            let fastest = (m1 * Double(difficultyInput) + c1) * 1.8
             print("fastest: \(fastest)")
             
             let m2 = -0.0012012012012012011
             let c2 = 1.5012012012012013
-            let slowest = (m2 * Double(difficultyInput) + c2) * 1.7
+            let slowest = (m2 * Double(difficultyInput) + c2) * 1.8
             print("slowest: \(slowest)")
             
             self.ballSpeed = Double.random(in: fastest...slowest)
