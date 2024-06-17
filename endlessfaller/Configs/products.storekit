@@ -164,8 +164,8 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "",
-              "displayName" : "",
+              "description" : "35 boin subscription",
+              "displayName" : "35 boin subscription",
               "locale" : "en_US"
             }
           ],
@@ -192,8 +192,8 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "",
-              "displayName" : "",
+              "description" : "75 boin subscription",
+              "displayName" : "75 boin subscription",
               "locale" : "en_US"
             }
           ],
@@ -220,8 +220,8 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "",
-              "displayName" : "",
+              "description" : "200 boin subscription",
+              "displayName" : "200 boin subscription",
               "locale" : "en_US"
             }
           ],
@@ -248,8 +248,8 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "",
-              "displayName" : "",
+              "description" : "500 boin subscription",
+              "displayName" : "500 boin subscription",
               "locale" : "en_US"
             }
           ],
@@ -276,8 +276,8 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "",
-              "displayName" : "",
+              "description" : "1000 boin subscription",
+              "displayName" : "1000 boin subscription",
               "locale" : "en_US"
             }
           ],
