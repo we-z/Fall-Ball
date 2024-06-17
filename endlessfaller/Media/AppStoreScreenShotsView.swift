@@ -75,7 +75,7 @@ struct AppStoreScreenShotsView: View {
                 }
                 .frame(width: 300, height: 400)
                 .customTextStroke(width: 2.7)
-                .scaleEffect(0.8)
+                .scaleEffect(0.75)
                 .offset(y: -60)
             }
             .offset(y:30)
