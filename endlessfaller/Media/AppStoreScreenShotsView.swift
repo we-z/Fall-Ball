@@ -58,7 +58,7 @@ struct AppStoreScreenShotsView: View {
                     
                 DollarsignBallView()
                     .scaleEffect(7)
-                    .padding(90)
+                    .padding(110)
                 VStack{
                     VStack{
                         Text("Swipe up \nto play!")
@@ -69,13 +69,14 @@ struct AppStoreScreenShotsView: View {
                     }
                     .bold()
                     .font(.largeTitle)
-                    .scaleEffect(1.2)
+                    .scaleEffect(1.5)
                     SwipeUpHand()
-                        .offset(x: 40, y:40)
+                        .offset(x: 60, y:60)
                 }
                 .frame(width: 300, height: 400)
                 .customTextStroke(width: 2.7)
-                .offset(y: -50)
+                .scaleEffect(0.8)
+                .offset(y: -60)
             }
             .offset(y:30)
         }
