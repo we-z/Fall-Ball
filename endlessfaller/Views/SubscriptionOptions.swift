@@ -137,6 +137,7 @@ struct SubscriptionOptions: View {
         do {
             if try await storeKit.purchase(bundleID: subscriptionDeal.subscriptionID) != nil {
                 userPersistedData.purchasedSubscriptionAmount = subscriptionDeal.coins
+                userPersistedData.incrementBalance(amount: subscriptionDeal.coins)
                 userPersistedData.updateLastRenewal(date: openToday)
                 dismiss()
             }

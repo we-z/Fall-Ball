@@ -30,7 +30,6 @@ struct ContentView: View {
     
     let heavyHaptic = UINotificationFeedbackGenerator()
     
-    
     var body: some View {
         ZStack{
             ScrollView {
