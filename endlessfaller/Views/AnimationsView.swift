@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            Instruction2()
+            LeaderboardRewardView()
         }
     }
 }
@@ -1466,7 +1466,7 @@ struct LeaderboardRewardView: View {
                 .font(.largeTitle)
                 .bold()
                 .italic()
-                .customTextStroke()
+                .customTextStroke(width: 2)
                 .padding(45)
             
         }
