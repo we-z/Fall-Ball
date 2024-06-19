@@ -23,6 +23,8 @@ struct CurrencyPageView: View {
     @StateObject var storeKit = StoreKitManager()
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
+    @State private var showManageSubscriptions = false
+    
     
     @MainActor
     func buyBoins(bundle: CurrencyBundle) async {
@@ -153,7 +155,16 @@ struct CurrencyPageView: View {
                                 }
                                 .buttonStyle(.roundedAndShadow9)
                         }
-                        
+                        Button{
+                            showManageSubscriptions = true
+                        } label: {
+                            Text("Subscriptions 📆")
+                                .font(.system(size: 30))
+                                .customTextStroke(width: 2)
+                                .bold()
+                                .italic()
+                                .padding()
+                        }
                     }
                     .padding(.leading, 9)
             }
@@ -169,6 +180,7 @@ struct CurrencyPageView: View {
             SubscriptionOptions(bundle: $selectedBundle)
                 .presentationDetents([.height(550)])
         }
+        .manageSubscriptionsSheet(isPresented: $showManageSubscriptions)
     }
 }
 
