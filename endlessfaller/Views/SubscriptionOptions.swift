@@ -137,6 +137,7 @@ struct SubscriptionOptions: View {
     func buySubscription() async {
         do {
             if try await storeKit.purchase(bundleID: subscriptionDeal.subscriptionID) != nil {
+                print("Boin Subscription succesful")
                 userPersistedData.purchasedSubscriptionAmount = subscriptionDeal.coins
                 userPersistedData.incrementBalance(amount: subscriptionDeal.coins)
                 userPersistedData.updateLastRenewal(date: openToday)

@@ -173,10 +173,7 @@
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "35boinsubscription",
           "subscriptionGroupID" : "617E892B",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
+          "type" : "RecurringSubscription"
         },
         {
           "adHocOffers" : [
@@ -201,10 +198,7 @@
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "75boinsubscription",
           "subscriptionGroupID" : "617E892B",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
+          "type" : "RecurringSubscription"
         },
         {
           "adHocOffers" : [
@@ -229,10 +223,7 @@
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "200boinsubscription",
           "subscriptionGroupID" : "617E892B",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
+          "type" : "RecurringSubscription"
         },
         {
           "adHocOffers" : [
@@ -257,10 +248,7 @@
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "500boinsubscription",
           "subscriptionGroupID" : "617E892B",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
+          "type" : "RecurringSubscription"
         },
         {
           "adHocOffers" : [
@@ -285,16 +273,13 @@
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "1000boinsubscription",
           "subscriptionGroupID" : "617E892B",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
+          "type" : "RecurringSubscription"
         }
       ]
     }
   ],
   "version" : {
-    "major" : 4,
+    "major" : 3,
     "minor" : 0
   }
 }
