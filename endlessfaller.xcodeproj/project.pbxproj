@@ -19,7 +19,6 @@
 		7A0BF2D52C190ADC00163668 /* SubscriptionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BF2D42C190ADC00163668 /* SubscriptionOptions.swift */; };
 		7A16C4492B6AF63C00B6D3B1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A16C4482B6AF63C00B6D3B1 /* UserData.swift */; };
 		7A1B4B322BC660D500C58084 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */; };
-		7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 7A1E4F772B7AFBCC00CDF00F /* CircularProgress */; };
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
 		7A2F39BA2BA0E4C400B15E5E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */; };
 		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
@@ -49,7 +48,6 @@
 		7A9755D62B78717200473737 /* CloudStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9755D52B78717200473737 /* CloudStorage */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
 		7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */; };
-		7AA5F9752BBCFF2F0003B2AD /* SwiftFX in Frameworks */ = {isa = PBXBuildFile; productRef = 7AA5F9742BBCFF2F0003B2AD /* SwiftFX */; };
 		7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CDE2A64EC4F00EE4D7B /* CharactersDesignsView.swift */; };
 		7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */; };
 		7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB05CE42A65C67A00EE4D7B /* ProductList.plist */; };
@@ -272,12 +270,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AA5F9752BBCFF2F0003B2AD /* SwiftFX in Frameworks */,
 				7A9755D62B78717200473737 /* CloudStorage in Frameworks */,
 				7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */,
 				7A689B3C2BA79AE1006D3AA5 /* SwizzleSwift in Frameworks */,
 				7A38B59C2B85727000DDD280 /* Vortex in Frameworks */,
-				7A1E4F782B7AFBCC00CDF00F /* CircularProgress in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,10 +602,8 @@
 			name = "Fall Ball";
 			packageProductDependencies = (
 				7A9755D52B78717200473737 /* CloudStorage */,
-				7A1E4F772B7AFBCC00CDF00F /* CircularProgress */,
 				7A38B59B2B85727000DDD280 /* Vortex */,
 				7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */,
-				7AA5F9742BBCFF2F0003B2AD /* SwiftFX */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -1743,11 +1737,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7A1E4F772B7AFBCC00CDF00F /* CircularProgress */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */;
-			productName = CircularProgress;
-		};
 		7A38B59B2B85727000DDD280 /* Vortex */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */;
@@ -1762,11 +1751,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */;
 			productName = CloudStorage;
-		};
-		7AA5F9742BBCFF2F0003B2AD /* SwiftFX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7AA5F9732BBCFF2F0003B2AD /* XCRemoteSwiftPackageReference "SwiftFX" */;
-			productName = SwiftFX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

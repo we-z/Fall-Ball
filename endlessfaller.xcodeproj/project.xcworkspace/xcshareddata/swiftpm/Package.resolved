@@ -1,4 +1,5 @@
 {
+  "originHash" : "586a6e8889146be5e4a1ecbca217ca3fc1804d5c8ecfcd8ec19d97095c240dee",
   "pins" : [
     {
       "identity" : "circular-progress",
@@ -23,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heestand-xyz/CoreGraphicsExtensions",
       "state" : {
-        "revision" : "7ddb96f057a10694ceaa4581bdaa5aa0c7eef87d",
-        "version" : "1.7.1"
+        "revision" : "a10de5109601c6d478b040486c921e3e82a5c3c8",
+        "version" : "1.8.0"
       }
     },
     {
@@ -77,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "633996a807442ec28df9d33b0f88ce57a0e2fdbf",
-        "version" : "5.17.0"
+        "revision" : "b8523c1642f3c142b06dd98443ea7c48343a4dfd",
+        "version" : "5.19.3"
       }
     },
     {
@@ -86,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
       "state" : {
-        "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
-        "version" : "2.2.3"
+        "revision" : "53573d6dd017e354c0e7d8f1c86b77ef1383c996",
+        "version" : "2.2.7"
       }
     },
     {
@@ -131,10 +132,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/Vortex",
       "state" : {
-        "revision" : "3eabf0572fd37e943be64b9d2589f97f1999cb26",
-        "version" : "1.0.0"
+        "revision" : "bb48b128d3c13c68c68e83833c622eec9f6c701f",
+        "version" : "1.0.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

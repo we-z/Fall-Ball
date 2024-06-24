@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            LeaderboardRewardView()
+            WastedView()
         }
     }
 }
@@ -1299,24 +1299,20 @@ struct WastedView: View {
     
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 9){
                 Text("💀")
                     .foregroundColor(.black)
                     .bold()
-                    .font(.largeTitle)
-                    .scaleEffect(3)
-                    .padding(.bottom, 40)
+                    .font(.system(size: 120))
                 Text("WASTED!")
                     .italic()
                     .bold()
-                    .font(.largeTitle)
-                    .padding(9)
-                    .scaleEffect(1.5)
-                    
+                    .font(.system(size: 54))
             }
             .frame(width: 300, height: 300)
+            .background(.red)
+            .cornerRadius(60)
             .animatedOffset(speed: 0.1)
-            .customTextStroke(width: 3)
             
         }
         .allowsHitTesting(false)
