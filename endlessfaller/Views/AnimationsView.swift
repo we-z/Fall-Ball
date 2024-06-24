@@ -416,7 +416,9 @@ struct  CelebrationEffect: View {
                 }
             }
         }
+        #if os(visionOS)
         .frame(depth: 100)
+        #endif
         .allowsHitTesting(false)
         
     }
@@ -906,8 +908,9 @@ struct KeepSwiping: View {
             .animatedOffset(speed: 0.5)
         }
         .frame(width: 300, height: 450)
+        #if os(visionOS)
         .frame(depth: 75, alignment: .front)
-        
+        #endif
         .customTextStroke(width: 2.7)
         .allowsHitTesting(false)
     }
@@ -1327,7 +1330,9 @@ struct WastedView: View {
                     
             }
             .frame(width: 300, height: 300)
+#if os(visionOS)
             .frame(depth: 30, alignment: .front)
+#endif
             .animatedOffset(speed: 0.1)
             .customTextStroke(width: 3)
             
@@ -1392,7 +1397,9 @@ struct BoinCollectedView: View {
                 }
             }
         }
+#if os(visionOS)
         .frame(depth: 50)
+#endif
         .allowsHitTesting(false)
     }
 }

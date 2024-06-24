@@ -245,7 +245,9 @@ struct HomeButtonsView: View {
                 .cornerRadius(30)
                 
                 .frame(width: 300, height: 300)
+                #if os(visionOS)
                 .frame(depth: 25)
+                #endif
                 .customTextStroke(width: 3)
             }
         }

@@ -68,7 +68,9 @@ struct ContentView: View {
                                 .bold()
                                 .italic()
                                 .multilineTextAlignment(.center)
+#if os(visionOS)
                                 .frame(depth: 250)
+#endif
                                 .customTextStroke(width: 2.1)
                                 .scaleEffect(1.5)
                                 
@@ -107,7 +109,9 @@ struct ContentView: View {
                         width: deviceWidth,
                         height: deviceHeight
                     )
+#if os(visionOS)
                     .frame(minDepth: 0, idealDepth: 250, maxDepth: 500, alignment: .front)
+#endif
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .onChange(of: $appModel.currentIndex.wrappedValue) { newIndex in
                         if newIndex == -1 {

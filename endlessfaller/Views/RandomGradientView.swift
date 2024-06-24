@@ -23,7 +23,7 @@ struct RandomGradientView: View {
         guard let image = smoothLinearGradient.outputImage?.cgImage! else {
             return nil
         }
-        if #available(visionOS 2.0, *) {
+        if #available(visionOS 2.0, *), #available(iOS 18, *) {
             return try? TextureResource(image: image, options: .init(semantic: .color))
         } else {
             // Fallback on earlier versions

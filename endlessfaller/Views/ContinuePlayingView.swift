@@ -131,7 +131,9 @@ struct ContinuePlayingView: View {
             .animatedOffset(speed: 1)
             .customTextStroke(width: 1.8)
             .scaleEffect(1.2)
+#if os(visionOS)
             .frame(depth: 100)
+#endif
         }
         .offset(y: UIDevice.isOldDevice ? 60 : 90)
         .scaleEffect(UIDevice.isOldDevice ? 0.7 : 1)

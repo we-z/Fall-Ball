@@ -29,7 +29,9 @@ struct GameOverScreenView: View {
                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
                     .padding(.bottom, deviceHeight * 0.04)
                     .scaledToFit()
+                #if os(visionOS)
                     .frame(depth: 15)
+                #endif
                     .allowsHitTesting(false)
                 Button {
                     showPlaqueShare = true
@@ -90,7 +92,9 @@ struct GameOverScreenView: View {
                             }
                             .padding(.trailing, 30)
                             .scaledToFit()
+#if os(visionOS)
                             .frame(depth: 50)
+#endif
                             .font(.title)
                         }
                         ZStack{
@@ -147,7 +151,9 @@ struct GameOverScreenView: View {
                 }
                 .scaledToFit()
                 .offset(y: -60)
+#if os(visionOS)
                 .frame(depth: 75)
+#endif
                 .animatedOffset(speed: 1)
                 .customTextStroke(width: 2.7)
                 Spacer()
