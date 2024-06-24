@@ -54,8 +54,7 @@ struct PlayingBallView: View {
                                 .frame(width: 30)
                                 .tag("circle")
                         }
-                        .scaleEffect(0.6)
-                        .offset(x: 60)
+                        .offset(x: 80)
                         VortexView(.fire) {
                             Circle()
                                 .fill(.white)
@@ -64,9 +63,9 @@ struct PlayingBallView: View {
                                 .frame(width: 30)
                                 .tag("circle")
                         }
-                        .scaleEffect(0.6)
-                        .offset(x: -60)
+                        .offset(x: -80)
                     }
+                    .frame(width: 120)
                     .rotationEffect(.degrees(180))
                     .offset(y:18)
                 }
