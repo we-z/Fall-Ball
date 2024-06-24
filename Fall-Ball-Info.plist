@@ -17,13 +17,30 @@
 			<string>DirectionalGamepad</string>
 		</dict>
 	</array>
-	<key>GCSupportsControllerUserInteraction</key>
-	<true/>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
+		<string>UIWindowSceneSessionRoleVolumetricApplication</string>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleVolumetricApplication</key>
+			<array>
+				<dict>
+					<key>UISceneInitialImmersionStyle</key>
+					<string>UIImmersionStyleMixed</string>
+					<key>UISceneClassName</key>
+					<string>endlessfallerApp</string>
+					<key>UISceneConfigurationName</key>
+					<string>endlessfaller</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Fall Ball Does not use your camera</string>
 </dict>
 </plist>

@@ -10,11 +10,20 @@ import SwiftUI
 @main
 struct endlessfallerApp: App {
     var body: some Scene {
-        WindowGroup {
+#if os(visionOS)
+        if #available(visionOS 2.0, *) {
+            return WindowGroup {
+                ContentView()
+                    .environment(\.sizeCategory, .medium)
+            }
+            .volumeWorldAlignment(.gravityAligned)
+            .windowStyle(.volumetric)
+        }
+#endif
+        return WindowGroup {
             ContentView()
-//                .preferredColorScheme(.light)
                 .environment(\.sizeCategory, .medium)
-                .defersSystemGestures(on: .bottom)
         }
     }
 }
+

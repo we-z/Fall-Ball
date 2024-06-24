@@ -10,11 +10,11 @@ import SwiftUI
 import AVFoundation
 import Combine
 import UIKit
-import NotificationCenter
+//import NotificationCenter
 
 let levels = 1000
-let deviceHeight = UIScreen.main.bounds.height
-let deviceWidth = UIScreen.main.bounds.width
+let deviceHeight = 1080.0
+let deviceWidth = 1920.0
 
 class AppModel: ObservableObject {
     @Published var currentScore: Int = 0
@@ -657,7 +657,9 @@ extension View {
     }
 }
 
+#if os(iOS)
 let impactHeavy = UIImpactFeedbackGenerator(style: .heavy)
+#endif
 
 
 struct RoundedAndShadowButtonStyle3:ButtonStyle {
@@ -668,7 +670,9 @@ struct RoundedAndShadowButtonStyle3:ButtonStyle {
             .offset(x: configuration.isPressed ? -3 : 0, y: configuration.isPressed ? 3 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
+                #if os(iOS)
                 impactHeavy.impactOccurred()
+                #endif
             }
     }
 }
@@ -681,7 +685,9 @@ struct RoundedAndShadowButtonStyle6:ButtonStyle {
             .offset(x: configuration.isPressed ? -6 : 0, y: configuration.isPressed ? 6 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                impactHeavy.impactOccurred()
+#if os(iOS)
+impactHeavy.impactOccurred()
+#endif
             }
     }
 }
@@ -694,7 +700,9 @@ struct RoundedAndShadowButtonStyle9:ButtonStyle {
             .offset(x: configuration.isPressed ? -9 : 0, y: configuration.isPressed ? 9 : 0)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                impactHeavy.impactOccurred()
+#if os(iOS)
+impactHeavy.impactOccurred()
+#endif
             }
     }
 }
@@ -706,7 +714,9 @@ struct CharacterMenuButtonStyle:ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.85 : 1)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .onChange(of: configuration.isPressed) { newPressSetting in
-                impactHeavy.impactOccurred()
+#if os(iOS)
+impactHeavy.impactOccurred()
+#endif
             }
     }
 }
@@ -1099,6 +1109,8 @@ public extension UIDevice {
             case "i386", "x86_64": return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "tvOS"))"
             default: return identifier
             }
+            #else
+            return "Apple Vision Pro"
             #endif
         }
 

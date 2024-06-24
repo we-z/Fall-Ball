@@ -13,8 +13,8 @@ struct ContinuePlayingView: View {
     @State private var circleProgress: CGFloat = 0.0
     @State var buttonIsPressed = false
     @StateObject var userPersistedData = UserPersistedData()
-    let deviceHeight = UIScreen.main.bounds.height
-    let deviceWidth = UIScreen.main.bounds.width
+    let deviceHeight = FallBallDefaults.Sizes.deviceHeight
+    let deviceWidth = FallBallDefaults.Sizes.deviceWidth
     
     var body: some View {
         VStack{
@@ -131,6 +131,7 @@ struct ContinuePlayingView: View {
             .animatedOffset(speed: 1)
             .customTextStroke(width: 1.8)
             .scaleEffect(1.2)
+            .frame(depth: 100)
         }
         .offset(y: UIDevice.isOldDevice ? 60 : 90)
         .scaleEffect(UIDevice.isOldDevice ? 0.7 : 1)

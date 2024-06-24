@@ -65,9 +65,9 @@ class BallAnimationManager: ObservableObject {
         self.newBallSpeed = newBallSpeed
         startingYPosition = ballYPosition
         if userPersistedData.strategyModeEnabled {
-            endingYPosition = startingYPosition - UIScreen.main.bounds.height * ((newBallSpeed * 0.06) + 0.1)
+            endingYPosition = startingYPosition - FallBallDefaults.Sizes.deviceHeight.rawValue * ((newBallSpeed * 0.06) + 0.1)
         } else {
-            endingYPosition = startingYPosition - UIScreen.main.bounds.height * ((newBallSpeed * 0.06) + 0.1)
+            endingYPosition = startingYPosition - FallBallDefaults.Sizes.deviceHeight.rawValue * ((newBallSpeed * 0.06) + 0.1)
         }
         startTime = CACurrentMediaTime()
         pushUp = true
@@ -84,7 +84,7 @@ class BallAnimationManager: ObservableObject {
         if elapsedTime < targetDuration {
             if pushUp {
                 //calculate the inverse position from startingYPosition to endingYPosition. use half of screen as the number to get the percentage of.
-                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * UIScreen.main.bounds.height) / 3)
+                ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * FallBallDefaults.Sizes.deviceHeight.rawValue) / 3)
                 if ballYPosition <= endingYPosition + 90 || (self.ballYPosition < self.screenCeiling && self.userPersistedData.strategyModeEnabled == false){
 //                    print("ball should stop pushing")
                     if self.ballYPosition < self.screenCeiling {
@@ -95,7 +95,7 @@ class BallAnimationManager: ObservableObject {
                     startTimer(speed: newBallSpeed)
                 }
             } else {
-                ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height))
+                ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (FallBallDefaults.Sizes.deviceHeight.rawValue))
             }
         }
 

@@ -28,7 +28,9 @@ struct ContentView: View {
         userPersistedData.resetBoinIntervalCounter()
     }
     
+    #if os(iOS)
     let heavyHaptic = UINotificationFeedbackGenerator()
+    #endif
     
     var body: some View {
         ZStack{
@@ -66,7 +68,7 @@ struct ContentView: View {
                                 .bold()
                                 .italic()
                                 .multilineTextAlignment(.center)
-                                .frame(height: 300)
+                                .frame(depth: 250)
                                 .customTextStroke(width: 2.1)
                                 .scaleEffect(1.5)
                                 
@@ -105,6 +107,7 @@ struct ContentView: View {
                         width: deviceWidth,
                         height: deviceHeight
                     )
+                    .frame(minDepth: 0, idealDepth: 250, maxDepth: 500, alignment: .front)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .onChange(of: $appModel.currentIndex.wrappedValue) { newIndex in
                         if newIndex == -1 {
@@ -133,7 +136,9 @@ struct ContentView: View {
                             appModel.highestLevelInRound = newIndex
                         }
                         appModel.FlashTriangles()
+                        #if os(iOS)
                         heavyHaptic.notificationOccurred(.success)
+                        #endif
                         if appModel.score > userPersistedData.bestScore && newIndex > 30 {
                             appModel.showNewBestScore = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

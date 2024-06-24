@@ -1,5 +1,15 @@
 {
+  "originHash" : "586a6e8889146be5e4a1ecbca217ca3fc1804d5c8ecfcd8ec19d97095c240dee",
   "pins" : [
+    {
+      "identity" : "asyncgraphics",
+      "kind" : "remoteSourceControl",
+      "location" : "http://github.com/heestand-xyz/AsyncGraphics",
+      "state" : {
+        "revision" : "70f57529578b3c3c403573e9e80276ad37014736",
+        "version" : "2.1.0"
+      }
+    },
     {
       "identity" : "circular-progress",
       "kind" : "remoteSourceControl",
@@ -23,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heestand-xyz/CoreGraphicsExtensions",
       "state" : {
-        "revision" : "7ddb96f057a10694ceaa4581bdaa5aa0c7eef87d",
-        "version" : "1.7.1"
+        "revision" : "a10de5109601c6d478b040486c921e3e82a5c3c8",
+        "version" : "1.8.0"
       }
     },
     {
@@ -37,39 +47,21 @@
       }
     },
     {
+      "identity" : "multiviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/MultiViews",
+      "state" : {
+        "revision" : "035f67144c6a2ca6ff7ac476567d9c6df933ac34",
+        "version" : "2.2.3"
+      }
+    },
+    {
       "identity" : "pixelcolor",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heestand-xyz/PixelColor",
       "state" : {
-        "revision" : "cfc6181e25b1963206cb8c9d0f556adb6a625925",
-        "version" : "1.4.1"
-      }
-    },
-    {
-      "identity" : "pixelkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/heestand-xyz/PixelKit",
-      "state" : {
-        "revision" : "1d20f0db7536ea433fecd924b5eea8e1ad3bd8f1",
-        "version" : "2.2.4"
-      }
-    },
-    {
-      "identity" : "renderkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/heestand-xyz/RenderKit",
-      "state" : {
-        "revision" : "06782ee0ea9d15ded503bfc7ee7efb9db53859b1",
-        "version" : "1.2.3"
-      }
-    },
-    {
-      "identity" : "resolution",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/heestand-xyz/Resolution",
-      "state" : {
-        "revision" : "0fdee03d7b312f075897cdac437f366cc6631d6a",
-        "version" : "1.0.4"
+        "revision" : "985d12c8339bc0ae08803a0abde32c2e4696c4ce",
+        "version" : "2.2.2"
       }
     },
     {
@@ -77,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "633996a807442ec28df9d33b0f88ce57a0e2fdbf",
-        "version" : "5.17.0"
+        "revision" : "b8523c1642f3c142b06dd98443ea7c48343a4dfd",
+        "version" : "5.19.3"
       }
     },
     {
@@ -86,8 +78,26 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
       "state" : {
-        "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
-        "version" : "2.2.3"
+        "revision" : "53573d6dd017e354c0e7d8f1c86b77ef1383c996",
+        "version" : "2.2.7"
+      }
+    },
+    {
+      "identity" : "spatialextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/SpatialExtensions",
+      "state" : {
+        "revision" : "f2b83a6928847f8cc9fa792af5f7d003a34b33c9",
+        "version" : "0.1.2"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax",
+      "state" : {
+        "revision" : "64889f0c732f210a935a0ad7cda38f77f876262d",
+        "version" : "509.1.1"
       }
     },
     {
@@ -95,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hexagons/SwiftFX.git",
       "state" : {
-        "revision" : "5542eae94ac014b78ab832dfd22610904d626c60",
-        "version" : "1.0.0"
+        "branch" : "main",
+        "revision" : "bb5c3ad68c249e2ac2f1b4428e9cc49f4c56d333"
       }
     },
     {
@@ -122,8 +132,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heestand-xyz/TextureMap",
       "state" : {
-        "revision" : "c6845fb31a7ba5337c607faeedbeb1d3053c4a50",
-        "version" : "0.9.0"
+        "revision" : "7f26073c7dcf4e76dded9ef1cd6adf0a879e0e66",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "videoframes",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heestand-xyz/VideoFrames",
+      "state" : {
+        "revision" : "3de476e958b765699eb2f98ca42336acfc262f49",
+        "version" : "1.1.1"
       }
     },
     {
@@ -131,10 +150,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/Vortex",
       "state" : {
-        "revision" : "3eabf0572fd37e943be64b9d2589f97f1999cb26",
-        "version" : "1.0.0"
+        "revision" : "bb48b128d3c13c68c68e83833c622eec9f6c701f",
+        "version" : "1.0.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

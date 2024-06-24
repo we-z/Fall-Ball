@@ -11,8 +11,8 @@ struct GameOverScreenView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @StateObject var audioController = AudioManager.sharedAudioManager
     @State var showPlaqueShare = false
-    let deviceHeight = UIScreen.main.bounds.height
-    let deviceWidth = UIScreen.main.bounds.width
+    let deviceHeight = FallBallDefaults.Sizes.deviceHeight.rawValue
+    let deviceWidth = FallBallDefaults.Sizes.deviceWidth.rawValue
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @StateObject var userPersistedData = UserPersistedData()
     
@@ -27,8 +27,9 @@ struct GameOverScreenView: View {
                     .italic()
                     .bold()
                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.08))
-                    .scaleEffect(1.8)
                     .padding(.bottom, deviceHeight * 0.04)
+                    .scaledToFit()
+                    .frame(depth: 15)
                     .allowsHitTesting(false)
                 Button {
                     showPlaqueShare = true
@@ -88,17 +89,17 @@ struct GameOverScreenView: View {
                                     .frame(maxHeight: 10)
                             }
                             .padding(.trailing, 30)
-                            .padding()
+                            .scaledToFit()
+                            .frame(depth: 50)
                             .font(.title)
                         }
                         ZStack{
                             AnyView(character!.character)
-                                .scaleEffect(1.5)
                             if userPersistedData.selectedHat != "nohat" {
                                 AnyView(hat!.hat)
                             }
                         }
-                        .scaleEffect(1.5)
+                        .scaledToFit()
                         .offset(x: -70, y: userPersistedData.selectedHat == "nohat" ? 18 : 30)
                     }
                     .background{
@@ -121,7 +122,6 @@ struct GameOverScreenView: View {
                                         .bold()
                                         .font(.title2)
                                         .padding(15)
-                                        .padding(.horizontal, 12)
                                     Spacer()
                                 }
                             }
@@ -137,15 +137,18 @@ struct GameOverScreenView: View {
                             .italic()
                             .multilineTextAlignment(.center)
                             .padding(.bottom)
+                            .lineLimit(2, reservesSpace: true)
                         Image(systemName: "arrow.up")
-                        //.shadow(color: .black, radius: 3)
+                            .frame(width: 64, height: 64)
                     }
                     .bold()
                     .font(idiom == .pad ? .largeTitle : .system(size: deviceWidth * 0.1))
+                    
                 }
-                
+                .scaledToFit()
+                .offset(y: -60)
+                .frame(depth: 75)
                 .animatedOffset(speed: 1)
-                .frame(height: 300)
                 .customTextStroke(width: 2.7)
                 Spacer()
             }

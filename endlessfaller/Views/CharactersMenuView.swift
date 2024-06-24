@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+#if os(iOS)
 let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+#endif
 
 struct CharactersMenuView: View {
-    let deviceHeight = UIScreen.main.bounds.height
-    let deviceWidth = UIScreen.main.bounds.width
+    let deviceHeight = FallBallDefaults.Sizes.deviceHeight.rawValue
+    let deviceWidth = FallBallDefaults.Sizes.deviceWidth.rawValue
     
     @StateObject var storeKit = StoreKitManager()
     @ObservedObject private var model = AppModel.sharedAppModel
@@ -110,9 +112,11 @@ struct CharactersMenuView: View {
                 }
             }
         }
+        #if os(iOS)
         .onAppear {
             impactMed.impactOccurred()
         }
+        #endif
         .sheet(isPresented: self.$showSecretShop) {
             SecretShopView()
         }

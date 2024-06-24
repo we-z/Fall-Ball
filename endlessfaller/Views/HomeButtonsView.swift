@@ -8,7 +8,9 @@
 import SwiftUI
 import GroupActivities
 
+#if os(iOS)
 let hapticGenerator = UINotificationFeedbackGenerator()
+#endif
 
 struct HomeButtonsView: View {
     @StateObject var groupStateObserver = GroupStateObserver()
@@ -36,7 +38,9 @@ struct HomeButtonsView: View {
             .background(.white.opacity( showGameMode ? 0.6 : 0))
             .background(.gray.opacity( isGearExpanded ? 0.0001 : 0))
             .onTapGesture {
+                #if os(iOS)
                 impactHeavy.impactOccurred()
+                #endif
                 withAnimation {
                     showGameMode = false
                     isGearExpanded = false
@@ -241,6 +245,7 @@ struct HomeButtonsView: View {
                 .cornerRadius(30)
                 
                 .frame(width: 300, height: 300)
+                .frame(depth: 25)
                 .customTextStroke(width: 3)
             }
         }
@@ -263,7 +268,10 @@ struct HomeButtonsView: View {
             }
         }
         .onChange(of: self.userPersistedData.strategyModeEnabled){ newValue in
+            
+            #if os(iOS)
             impactHeavy.impactOccurred()
+            #endif
             if newValue {
                 withAnimation(){
                     whiteCircleOffset = 30
