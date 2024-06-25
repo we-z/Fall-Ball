@@ -56,7 +56,7 @@ struct SecretShopView: View {
                                             Rectangle()
                                                 .fill(.clear)
                                                 .cornerRadius(20)
-                                                .frame(width: deviceWidth/3.3, height: idiom == .pad ? 270 : 150)
+                                                .frame(width: idiom == .pad ? deviceWidth / 4.8 : deviceWidth / 3.3, height: idiom == .pad ? 270 : 150)
                                                 .background(RandomGradientView())
                                                 .cornerRadius(20)
                                                 .overlay{
@@ -110,7 +110,7 @@ struct SecretShopView: View {
                                             Rectangle()
                                                 .fill(.clear)
                                                 .cornerRadius(20)
-                                                .frame(width: deviceWidth/2.2, height: idiom == .pad ? 270 : 180)
+                                                .frame(width: idiom == .pad ? deviceWidth / 3.2 : deviceWidth / 2.2, height: idiom == .pad ? 270 : 180)
                                                 .background(RandomGradientView())
                                                 .cornerRadius(20)
                                                 .overlay{
