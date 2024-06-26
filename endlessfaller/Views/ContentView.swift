@@ -150,9 +150,6 @@ struct ContentView: View {
             .scrollDisabled(appModel.freezeScrolling)
             .onAppear {
                 appModel.playedCharacter = userPersistedData.selectedCharacter
-                if !GKLocalPlayer.local.isAuthenticated {
-                    gameCenter.authenticateUser()
-                }
                 appModel.checkIfAppOpenToday()
                 appModel.setFirstRandomSkin()
                 appModel.checkBoinSubscription()
