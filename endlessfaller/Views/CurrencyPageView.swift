@@ -62,15 +62,15 @@ struct CurrencyPageView: View {
                         ForEach(0..<bundles.count, id: \.self) { index in
                                 let bundle = bundles[index]
                                 Button {
-                                    selectedBundle = CurrencyBundle(image: bundle.image, coins: bundle.coins, cost: bundle.cost, bundleID: bundle.bundleID)
-                                    if storeKit.purchasedSubscriptions.isEmpty {
-                                        showSubscriptionOptions = true
-                                    }  else {
+//                                    selectedBundle = CurrencyBundle(image: bundle.image, coins: bundle.coins, cost: bundle.cost, bundleID: bundle.bundleID)
+//                                    if storeKit.purchasedSubscriptions.isEmpty {
+//                                        showSubscriptionOptions = true
+//                                    }  else {
                                         isProcessingPurchase = true
                                         Task {
                                             await buyBoins(bundle: bundle)
                                         }
-                                    }
+//                                    }
                                 } label: {
                                     Rectangle()
                                         .fill(.yellow)
@@ -155,17 +155,17 @@ struct CurrencyPageView: View {
                                 }
                                 .buttonStyle(.roundedAndShadow9)
                         }
-                        Button{
-                            impactHeavy.impactOccurred()
-                            showManageSubscriptions = true
-                        } label: {
-                            Text("Subscriptions 📆")
-                                .font(.system(size: 30))
-                                .customTextStroke(width: 2)
-                                .bold()
-                                .italic()
-                                .padding()
-                        }
+//                        Button{
+//                            impactHeavy.impactOccurred()
+//                            showManageSubscriptions = true
+//                        } label: {
+//                            Text("Subscriptions 📆")
+//                                .font(.system(size: 30))
+//                                .customTextStroke(width: 2)
+//                                .bold()
+//                                .italic()
+//                                .padding()
+//                        }
                     }
                     .padding(.leading, 9)
             }
