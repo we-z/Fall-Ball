@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            WastedView()
+            BoinCollectedView()
         }
     }
 }
@@ -1348,7 +1348,7 @@ struct BoinCollectedView: View {
                     .bold()
                     .multilineTextAlignment(.center)
                     .font(.largeTitle)
-                    .customTextStroke()
+                    .customTextStroke(width: 1.8)
                     .padding(9)
                     .scaleEffect(1.5)
                     .offset(y: animationEnding ? deviceHeight : 0)
