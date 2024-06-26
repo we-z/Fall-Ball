@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            BoinCollectedView()
+            WastedView()
         }
     }
 }
@@ -1305,13 +1305,14 @@ struct WastedView: View {
                     .bold()
                     .font(.system(size: 120))
                  Text("WASTED!")
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .italic()
                     .bold()
                     .font(.system(size: 54))
             }
+            .customShadow(radius: 0.1, width: 2.1)
             .frame(width: 300, height: 300)
-            .background(.red)
+//            .background(.red)
             .cornerRadius(60)
             .animatedOffset(speed: 0.1)
             
