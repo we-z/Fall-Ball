@@ -12,15 +12,15 @@
 	<string>350boins</string>
 	<key>800boins</key>
 	<string>800boins</string>
-	<key>35boinsubscription</key>
-	<string>35boinsubscription</string>
-	<key>75boinsubscription</key>
-	<string>75boinsubscription</string>
-	<key>200boinsubscription</key>
-	<string>200boinsubscription</string>
-	<key>500boinsubscription</key>
-	<string>500boinsubscription</string>
-	<key>1000boinsubscription</key>
-	<string>1000boinsubscription</string>
+	<key>35boinssubscription</key>
+	<string>35boinssubscription</string>
+	<key>75boinssubscription</key>
+	<string>75boinssubscription</string>
+	<key>200boinssubscription</key>
+	<string>200boinssubscription</string>
+	<key>500boinssubscription</key>
+	<string>500boinssubscription</string>
+	<key>1000boinssubscription</key>
+	<string>1000boinssubscription</string>
 </dict>
 </plist>
