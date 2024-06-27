@@ -611,9 +611,7 @@ struct GameCenterLeaderboardView: View {
         }
         .onAppear{
             impactHeavy.impactOccurred()
-            while !GKLocalPlayer.local.isAuthenticated {
-                gameCenter.authenticateUser()
-            }
+            gameCenter.authenticateUser()
             Task{
                 await gameCenter.loadLeaderboard()
             }
