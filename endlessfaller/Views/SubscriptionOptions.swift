@@ -59,7 +59,7 @@ struct SubscriptionOptions: View {
                 Image(bundle.image)
                     .resizable()
                     .frame(width: 300, height: 300)
-                    .customTextStroke()
+                    .customShadow()
                     .padding(.leading)
                     .animatedOffset(speed: 1)
                 Spacer()
