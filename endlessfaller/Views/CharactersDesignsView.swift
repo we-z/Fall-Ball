@@ -12,11 +12,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                PeaceView()
-                AlbertView()
-                AlienBall()
+                CanadaView()
             }
-            .scaleEffect(2.1)
+            .scaleEffect(6)
         }
     }
 }
@@ -1367,6 +1365,10 @@ struct CanadaView: View {
                         .mask(
                             Circle()
                                 .frame(width: 46, height: 46)
+                        )
+                        .mask(
+                            Rectangle()
+                                .frame(width: 46, height: 29)
                         )
                 }
             )
