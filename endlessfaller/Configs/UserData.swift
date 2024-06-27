@@ -20,6 +20,7 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("purchasedSubscriptionAmount") var purchasedSubscriptionAmount: Int = 0
     @CloudStorage("leaderboardWonToday") var leaderboardWonToday: Bool = false
     @CloudStorage("firstGameEverPlayed") var firstGameEverPlayed: Bool = false
+    @CloudStorage("gameCenterLoggedIn") var gameCenterLoggedIn: Bool = false
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
     @CloudStorage("infiniteBoinsUnlocked") var infiniteBoinsUnlocked: Bool = false
     @CloudStorage("strategyModeEnabled") var strategyModeEnabled: Bool = false
