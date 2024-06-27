@@ -606,7 +606,12 @@ struct GameCenterLeaderboardView: View {
                 }
             }
             if !GKLocalPlayer.local.isAuthenticated {
-                LeaderboardInfoView()
+                Button {
+                    impactHeavy.impactOccurred()
+                    gameCenter.authenticateUser()
+                } label: {
+                    LeaderboardInfoView()
+                }
             }
         }
         .onAppear{
