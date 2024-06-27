@@ -608,7 +608,7 @@ struct GameCenterLeaderboardView: View {
             if !GKLocalPlayer.local.isAuthenticated {
                 Button {
                     impactHeavy.impactOccurred()
-                    gameCenter.authenticateUser()
+                    openSettings()
                 } label: {
                     LeaderboardInfoView()
                 }
@@ -619,6 +619,13 @@ struct GameCenterLeaderboardView: View {
             gameCenter.authenticateUser()
             Task{
                 await gameCenter.loadLeaderboard()
+            }
+        }
+    }
+    func openSettings() {
+        if let url = URL(string: "App-Prefs:root=GameCenter") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }
