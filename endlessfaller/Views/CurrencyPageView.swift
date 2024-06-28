@@ -53,17 +53,12 @@ struct CurrencyPageView: View {
                     .padding(.top, 9)
                     .foregroundColor(.black)
                     .opacity(0.3)
-                Button{
-                    showBoinInfo = true
-                } label: {
-                    
                     Text("💰🤩 Boins 🤩💰")
                         .customTextStroke(width: 1.8)
                         .italic()
                         .bold()
                         .font(.largeTitle)
                         .scaleEffect(1.1)
-                }
                     ScrollView(showsIndicators: false){
                         ForEach(0..<bundles.count, id: \.self) { index in
                                 let bundle = bundles[index]
@@ -171,6 +166,17 @@ struct CurrencyPageView: View {
                                 .bold()
                                 .italic()
                                 .padding()
+                        }
+                        Button{
+                            impactHeavy.impactOccurred()
+                            showBoinInfo = true
+                        } label: {
+                            Text("What is a Boin? 🤨")
+                                .font(.system(size: 27))
+                                .customTextStroke(width: 2)
+                                .bold()
+                                .italic()
+                                .padding(.bottom)
                         }
                     }
                     .padding(.leading, 9)
