@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Vortex
+import Spatial
 
 struct PlayingBallView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
@@ -82,10 +83,13 @@ struct PlayingBallView: View {
                 }
                 .frame(width: 180, height: 120)
                 .opacity(appModel.ballIsStrobing ? 0 : 1)
-                .scaleEffect(appModel.ballIsStrobing ? 2.1 : 1.5)
                 .animation(.linear(duration: 0.1).repeatForever(autoreverses: true), value: appModel.ballIsStrobing)
             }
             .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
+            #if os(visionOS)
+            .frame(depth: 50, alignment: .center)
+            .transform3DEffect(.init().translated(by: .forward * 50))
+            #endif
             .allowsHitTesting(false)
         }
     }

@@ -98,7 +98,9 @@ struct SubscriptionOptions: View {
                 }
                 .buttonStyle(.roundedAndShadow9)
                 Button{
+                    #if os(iOS)
                     impactHeavy.impactOccurred()
+                    #endif
                     isProcessingPurchase = true
                     Task {
                         await buyBoins(bundle: bundle)

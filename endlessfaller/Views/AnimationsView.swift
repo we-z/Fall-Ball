@@ -345,8 +345,11 @@ struct SwiftUIXmasTree2: View {
 struct SnowView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> some UIView {
-        
+        #if os(iOS)
         let screenSize = UIScreen.main.bounds
+        #else
+        let screenSize = CGSize(width: FallBallDefaults.Sizes.deviceWidth.rawValue, height: FallBallDefaults.Sizes.deviceHeight.rawValue)
+        #endif
         let view = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
         view.layer.masksToBounds = true
         
@@ -413,6 +416,9 @@ struct  CelebrationEffect: View {
                 }
             }
         }
+        #if os(visionOS)
+        .frame(depth: 100)
+        #endif
         .allowsHitTesting(false)
         
     }
@@ -532,9 +538,16 @@ struct SVGCharacterView: View {
     }
 }
 
+struct FallBallDefaults {
+    enum Sizes: CGFloat {
+        case deviceHeight = 1080
+        case deviceWidth = 1920
+    }
+}
+
 struct ReactionsView: View {
     @State var showReactions = false
-    let deviceHeight = UIScreen.main.bounds.height
+    let deviceHeight = FallBallDefaults.Sizes.deviceHeight.rawValue
     
     var body: some View {
         VStack{
@@ -895,7 +908,9 @@ struct KeepSwiping: View {
             .animatedOffset(speed: 0.5)
         }
         .frame(width: 300, height: 450)
-        
+        #if os(visionOS)
+        .frame(depth: 75, alignment: .front)
+        #endif
         .customShadow(width: 2)
         .allowsHitTesting(false)
     }
@@ -1312,7 +1327,9 @@ struct WastedView: View {
             }
             .customShadow(radius: 0.1, width: 2.1)
             .frame(width: 300, height: 300)
-//            .background(.red)
+#if os(visionOS)
+            .frame(depth: 30, alignment: .front)
+#endif
             .cornerRadius(60)
             .animatedOffset(speed: 0.1)
             
@@ -1329,8 +1346,8 @@ struct BoinCollectedView: View {
     @State private var appearFromBottom = false
     @State private var animationEnding = false
     
-    let deviceHeight = UIScreen.main.bounds.height
-    let deviceWidth = UIScreen.main.bounds.width
+    let deviceHeight = FallBallDefaults.Sizes.deviceHeight.rawValue
+    let deviceWidth = FallBallDefaults.Sizes.deviceWidth.rawValue
     
     
     var body: some View {
@@ -1377,6 +1394,9 @@ struct BoinCollectedView: View {
                 }
             }
         }
+#if os(visionOS)
+        .frame(depth: 50)
+#endif
         .allowsHitTesting(false)
     }
 }
@@ -1388,8 +1408,8 @@ struct DailyBoinCollectedView: View {
     @State private var animationEnding = false
     @StateObject var userPersistedData = UserPersistedData()
     
-    let deviceHeight = UIScreen.main.bounds.height
-    let deviceWidth = UIScreen.main.bounds.width
+    let deviceHeight = FallBallDefaults.Sizes.deviceHeight.rawValue
+    let deviceWidth = FallBallDefaults.Sizes.deviceWidth.rawValue
     
     
     var body: some View {

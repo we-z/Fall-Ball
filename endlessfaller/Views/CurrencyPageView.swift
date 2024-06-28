@@ -157,7 +157,9 @@ struct CurrencyPageView: View {
                                 .buttonStyle(.roundedAndShadow9)
                         }
                         Button{
+                            #if os(iOS)
                             impactHeavy.impactOccurred()
+                            #endif
                             showManageSubscriptions = true
                         } label: {
                             Text("Subscriptions 📆")

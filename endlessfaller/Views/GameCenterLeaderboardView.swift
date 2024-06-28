@@ -615,7 +615,9 @@ struct GameCenterLeaderboardView: View {
             }
         }
         .onAppear{
+            #if os(iOS)
             impactHeavy.impactOccurred()
+            #endif
             gameCenter.authenticateUser()
             Task{
                 await gameCenter.loadLeaderboard()

@@ -126,7 +126,9 @@ class StoreKitManager: ObservableObject {
             return nil
         }
         //make a purchase request - optional parameters available
+        #if os(iOS)
         let result = try await product.purchase()
+       
         
         await MainActor.run {
             AppModel.sharedAppModel.grabbingBoins = true
@@ -151,6 +153,9 @@ class StoreKitManager: ObservableObject {
             default:
                 return nil
         }
+        #else
+        return nil
+#endif
         
     }
     
