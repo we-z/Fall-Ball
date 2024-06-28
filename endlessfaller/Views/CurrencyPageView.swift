@@ -171,8 +171,8 @@ struct CurrencyPageView: View {
                             impactHeavy.impactOccurred()
                             showBoinInfo = true
                         } label: {
-                            Text("What is a Boin? 🤨")
-                                .font(.system(size: 27))
+                            Text("Boins? 🤔")
+                                .font(.system(size: 30))
                                 .customTextStroke(width: 2)
                                 .bold()
                                 .italic()
@@ -195,7 +195,7 @@ struct CurrencyPageView: View {
         }
         .sheet(isPresented: self.$showBoinInfo) {
             BoinInfoView()
-                .presentationDetents([.height(360)])
+                .presentationDetents([.height(300)])
         }
         .manageSubscriptionsSheet(isPresented: $showManageSubscriptions)
     }
