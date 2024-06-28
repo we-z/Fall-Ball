@@ -100,6 +100,11 @@ struct HUDView: View {
                                     Rectangle()
                                         .foregroundColor(.blue)
                                         .frame(width: 69, height: 75)
+                                        .overlay{
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .stroke(Color.black, lineWidth: 3)
+                                                .padding(1)
+                                        }
                                         .cornerRadius(15)
                                     Image(systemName: appModel.paused ? "play.fill" : "pause.fill")
                                         .foregroundColor(.white)
