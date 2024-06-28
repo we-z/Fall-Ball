@@ -12,7 +12,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                CanadaView()
+                BoinsView()
             }
             .scaleEffect(6)
         }
@@ -71,24 +71,11 @@ struct EyesView: View {
 }
 struct BoinsView: View {
     var body: some View {
-        ZStack{
-            Circle()
-                .frame(width: 39, height: 39)
-                .foregroundColor(.black)
-            Circle()
-                .frame(width: 30, height: 30)
-                .foregroundColor(.orange)
-            Circle()
-                .stroke(lineWidth: 3)
-                .frame(width: 30, height: 30)
-                .foregroundColor(.yellow)
-            Text("B")
-                .bold()
-                .italic()
-                .foregroundColor(.yellow)
-                .shadow(radius: 1)
-                .font(.title2)
-        }
+        Image("boin")
+            .resizable()
+            .frame(width: 30, height: 30)
+            .offset(x: -2)
+            .customTextStroke()
     }
 }
 
