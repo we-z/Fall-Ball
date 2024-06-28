@@ -102,6 +102,11 @@ struct CharactersMenuView: View {
                                 .bold()
                                 .italic()
                                 .background(RandomGradientView())
+                                .overlay{
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.black, lineWidth: 3)
+                                        .padding(1)
+                                }
                                 .cornerRadius(12)
                                 .padding()
                         }
@@ -174,7 +179,7 @@ struct CharacterButton: View {
                     }
                     if character.characterID == userPersistedData.selectedCharacter {
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.black, lineWidth: 6)
+                            .stroke(Color.black, lineWidth: 3)
                     }
                 }
                 .accentColor(.black)

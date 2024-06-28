@@ -80,6 +80,11 @@ struct BallsDetailsView: View {
                         Spacer()
                     }
                     .background(.yellow)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 27)
+                            .stroke(Color.black, lineWidth: 3)
+                            .padding(1)
+                    }
                     .cornerRadius(27)
                     .padding(.horizontal, 30)
                     .padding(.bottom, idiom == .pad || UIDevice.isOldDevice ? 30 : 0)
