@@ -77,6 +77,11 @@ struct ContinuePlayingView: View {
                     .padding(9)
                     .background(.yellow)
                     .cornerRadius(15)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.black, lineWidth: 3)
+                            .padding(1)
+                    }
                     .padding(.horizontal, 30)
                     .padding(.bottom, 30)
 
@@ -129,7 +134,7 @@ struct ContinuePlayingView: View {
             .bold()
             .font(.largeTitle)
             .animatedOffset(speed: 1)
-            .customTextStroke(width: 1.8)
+            .customShadow(width: 1)
             .scaleEffect(1.2)
 #if os(visionOS)
             .frame(depth: 100)

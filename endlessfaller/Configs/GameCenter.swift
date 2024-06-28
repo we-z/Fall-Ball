@@ -16,6 +16,7 @@ class GameCenter: ObservableObject {
     @Published var todaysPlayersList: [Player] = []
     @Published var allTimePlayersList: [Player] = []
     @ObservedObject var notificationManager = NotificationManager()
+    @ObservedObject var userPersistedData = UserPersistedData()
     
     static let shared = GameCenter()
     
@@ -50,6 +51,7 @@ class GameCenter: ObservableObject {
                 print(error?.localizedDescription ?? "")
                 return
             }
+            self.userPersistedData.gameCenterLoggedIn = true
             Task{
                 await self.loadLeaderboard()
             }

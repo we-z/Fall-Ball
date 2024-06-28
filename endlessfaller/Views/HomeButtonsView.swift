@@ -7,6 +7,7 @@
 
 import SwiftUI
 import GroupActivities
+import GameKit
 
 #if os(iOS)
 let hapticGenerator = UINotificationFeedbackGenerator()
@@ -25,6 +26,7 @@ struct HomeButtonsView: View {
     @State var showLeaderBoard = false
     @State var showCurrencyPage = false
     @StateObject var userPersistedData = UserPersistedData()
+    @ObservedObject var gameCenter = GameCenter.shared
     var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     var body: some View {
@@ -145,6 +147,7 @@ struct HomeButtonsView: View {
                                         .scaledToFit()
                                         .frame(width: 60, height: 60)
                                         .foregroundColor(.teal)
+                                        .customTextStroke()
                                         .padding(.leading, 30)
                                 }
                                 .buttonStyle(.roundedAndShadow3)
@@ -153,36 +156,8 @@ struct HomeButtonsView: View {
                                 }
                             }
                             
-//                            // Gear Button
-//                            Button(action: {
-//                                withAnimation {
-//                                    self.gearRotationDegrees += 45
-//                                    self.isGearExpanded.toggle()
-//                                    self.showGameMode = false
-//                                }
-//                                hapticGenerator.notificationOccurred(.error)
-//                            }) {
-//                                Image(systemName: "gearshape.fill")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 45, height: 45)
-//                                    .padding(36)
-//                                    .foregroundColor(.white.opacity(0.8))
-//                                    .rotationEffect(.degrees(gearRotationDegrees))
-//                            }
                         }
-//                        .background {
-//                            Capsule()
-//                                .strokeBorder(Color.black,lineWidth: 3)
-//                                .frame(width: 69, height: isGearExpanded ? 139 : 69)
-//                                .background(.black)
-//                                .clipShape(Capsule())
-//                                .offset(y: isGearExpanded ? -36 : 0)
-//                        }
-//                        .onDisappear{
-//                            isGearExpanded = false
-//                            showGameMode = false
-//                        }
+
                         Spacer()
                         Button {
                             showCharactersMenu = true

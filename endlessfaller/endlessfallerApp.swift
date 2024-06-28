@@ -23,6 +23,9 @@ struct endlessfallerApp: App {
         return WindowGroup {
             ContentView()
                 .environment(\.sizeCategory, .medium)
+#if os(iOS)
+                .defersSystemGestures(on: .bottom)
+#endif
         }
     }
 }

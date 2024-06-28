@@ -15,11 +15,11 @@ struct SubscriptionOptions: View {
     @StateObject var storeKit = StoreKitManager()
     @State var isProcessingPurchase = false
     @State var subscriptionPlans: [BundleSubscription] = [
-        BundleSubscription(image: "small-pile", coins: 35, cost: "$4.99", subscriptionID: "35boinsubscription", bundleID: "25boins"),
-        BundleSubscription(image: "box-pile", coins: 75, cost: "$9.99", subscriptionID: "75boinsubscription", bundleID: "55boins"),
-        BundleSubscription(image: "bucket-pile", coins: 200, cost: "$19.99", subscriptionID: "200boinsubscription", bundleID: "125boins"),
-        BundleSubscription(image: "crate-pile", coins: 500, cost: "$49.99", subscriptionID: "500boinsubscription", bundleID: "350boins"),
-        BundleSubscription(image: "big-pile", coins: 1000, cost: "$99.99", subscriptionID: "1000boinsubscription", bundleID: "800boins")
+        BundleSubscription(image: "small-pile", coins: 35, cost: "$4.99", subscriptionID: "35boinssubscription", bundleID: "25boins"),
+        BundleSubscription(image: "box-pile", coins: 75, cost: "$9.99", subscriptionID: "75boinssubscription", bundleID: "55boins"),
+        BundleSubscription(image: "bucket-pile", coins: 200, cost: "$19.99", subscriptionID: "200boinssubscription", bundleID: "125boins"),
+        BundleSubscription(image: "crate-pile", coins: 500, cost: "$49.99", subscriptionID: "500boinssubscription", bundleID: "350boins"),
+        BundleSubscription(image: "big-pile", coins: 1000, cost: "$99.99", subscriptionID: "1000boinssubscription", bundleID: "800boins")
     ]
     @ObservedObject var userPersistedData = UserPersistedData()
     @Environment(\.dismiss) private var dismiss
@@ -59,7 +59,7 @@ struct SubscriptionOptions: View {
                 Image(bundle.image)
                     .resizable()
                     .frame(width: 300, height: 300)
-                    .customTextStroke()
+                    .customShadow()
                     .padding(.leading)
                     .animatedOffset(speed: 1)
                 Spacer()
@@ -87,6 +87,11 @@ struct SubscriptionOptions: View {
                         Spacer()
                     }
                     .background(.yellow)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 27)
+                            .stroke(Color.black, lineWidth: 3)
+                            .padding(1)
+                    }
                     .cornerRadius(27)
                     .padding(.horizontal, 30)
                     .padding(.bottom, idiom == .pad || UIDevice.isOldDevice ? 30 : 0)

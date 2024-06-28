@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            LeaderboardRewardView()
+            KeepSwiping()
         }
     }
 }
@@ -911,7 +911,7 @@ struct KeepSwiping: View {
         #if os(visionOS)
         .frame(depth: 75, alignment: .front)
         #endif
-        .customTextStroke(width: 2.7)
+        .customShadow(width: 2)
         .allowsHitTesting(false)
     }
 }
@@ -1314,27 +1314,24 @@ struct WastedView: View {
     
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 9){
                 Text("💀")
                     .foregroundColor(.black)
                     .bold()
-                    .font(.largeTitle)
-                    .scaleEffect(3)
-                    .padding(.bottom, 40)
-                Text("WASTED!")
+                    .font(.system(size: 120))
+                 Text("WASTED!")
+                    .foregroundColor(.white)
                     .italic()
                     .bold()
-                    .font(.largeTitle)
-                    .padding(9)
-                    .scaleEffect(1.5)
-                    
+                    .font(.system(size: 54))
             }
+            .customShadow(radius: 0.1, width: 2.1)
             .frame(width: 300, height: 300)
 #if os(visionOS)
             .frame(depth: 30, alignment: .front)
 #endif
+            .cornerRadius(60)
             .animatedOffset(speed: 0.1)
-            .customTextStroke(width: 3)
             
         }
         .allowsHitTesting(false)
@@ -1369,7 +1366,7 @@ struct BoinCollectedView: View {
                     .bold()
                     .multilineTextAlignment(.center)
                     .font(.largeTitle)
-                    .customTextStroke()
+                    .customTextStroke(width: 1.8)
                     .padding(9)
                     .scaleEffect(1.5)
                     .offset(y: animationEnding ? deviceHeight : 0)

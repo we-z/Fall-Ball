@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heestand-xyz/SpatialExtensions",
       "state" : {
-        "revision" : "f2b83a6928847f8cc9fa792af5f7d003a34b33c9",
-        "version" : "0.1.2"
+        "revision" : "b8523c1642f3c142b06dd98443ea7c48343a4dfd",
+        "version" : "5.19.3"
       }
     },
     {

@@ -169,9 +169,9 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "35boinsubscription",
+          "productID" : "35boinssubscription",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "35boinsubscription",
+          "referenceName" : "35boinssubscription",
           "subscriptionGroupID" : "617E892B",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
@@ -197,9 +197,9 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "75boinsubscription",
+          "productID" : "75boinssubscription",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "75boinsubscription",
+          "referenceName" : "75boinssubscription",
           "subscriptionGroupID" : "617E892B",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
@@ -225,9 +225,9 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "200boinsubscription",
+          "productID" : "200boinssubscription",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "200boinsubscription",
+          "referenceName" : "200boinssubscription",
           "subscriptionGroupID" : "617E892B",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
@@ -253,9 +253,9 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "500boinsubscription",
+          "productID" : "500boinssubscription",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "500boinsubscription",
+          "referenceName" : "500boinssubscription",
           "subscriptionGroupID" : "617E892B",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
@@ -281,9 +281,9 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "1000boinsubscription",
+          "productID" : "1000boinssubscription",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "1000boinsubscription",
+          "referenceName" : "1000boinssubscription",
           "subscriptionGroupID" : "617E892B",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
