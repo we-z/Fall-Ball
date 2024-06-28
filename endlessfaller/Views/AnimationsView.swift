@@ -11,7 +11,7 @@ import Vortex
 struct AnimationsView: View {
     var body: some View {
         ZStack{
-            WastedView()
+            KeepSwiping()
         }
     }
 }
@@ -896,7 +896,7 @@ struct KeepSwiping: View {
         }
         .frame(width: 300, height: 450)
         
-        .customTextStroke(width: 2.7)
+        .customShadow(width: 2)
         .allowsHitTesting(false)
     }
 }
