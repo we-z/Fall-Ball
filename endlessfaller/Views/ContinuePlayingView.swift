@@ -134,7 +134,7 @@ struct ContinuePlayingView: View {
             .bold()
             .font(.largeTitle)
             .animatedOffset(speed: 1)
-            .customTextStroke(width: 1.8)
+            .customShadow(width: 1)
             .scaleEffect(1.2)
         }
         .offset(y: UIDevice.isOldDevice ? 60 : 90)
