@@ -143,6 +143,7 @@ struct HomeButtonsView: View {
                                         .scaledToFit()
                                         .frame(width: 60, height: 60)
                                         .foregroundColor(.teal)
+                                        .customTextStroke()
                                         .padding(.leading, 30)
                                 }
                                 .buttonStyle(.roundedAndShadow3)
