@@ -77,6 +77,11 @@ struct ContinuePlayingView: View {
                     .padding(9)
                     .background(.yellow)
                     .cornerRadius(15)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.black, lineWidth: 3)
+                            .padding(1)
+                    }
                     .padding(.horizontal, 30)
                     .padding(.bottom, 30)
 
