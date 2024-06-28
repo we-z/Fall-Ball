@@ -24,6 +24,7 @@ struct CurrencyPageView: View {
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @ObservedObject var userPersistedData = UserPersistedData()
     @State private var showManageSubscriptions = false
+    @State private var showBoinInfo = false
     
     
     @MainActor
@@ -52,12 +53,17 @@ struct CurrencyPageView: View {
                     .padding(.top, 9)
                     .foregroundColor(.black)
                     .opacity(0.3)
+                Button{
+                    showBoinInfo = true
+                } label: {
+                    
                     Text("💰🤩 Boins 🤩💰")
                         .customTextStroke(width: 1.8)
                         .italic()
                         .bold()
                         .font(.largeTitle)
                         .scaleEffect(1.1)
+                }
                     ScrollView(showsIndicators: false){
                         ForEach(0..<bundles.count, id: \.self) { index in
                                 let bundle = bundles[index]
@@ -180,6 +186,10 @@ struct CurrencyPageView: View {
         .sheet(isPresented: self.$showSubscriptionOptions) {
             SubscriptionOptions(bundle: $selectedBundle)
                 .presentationDetents([.height(550)])
+        }
+        .sheet(isPresented: self.$showBoinInfo) {
+            BoinInfoView()
+                .presentationDetents([.height(360)])
         }
         .manageSubscriptionsSheet(isPresented: $showManageSubscriptions)
     }

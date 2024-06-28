@@ -74,7 +74,7 @@ struct BoinsView: View {
         Image("boin")
             .resizable()
             .frame(width: 30, height: 30)
-            .offset(x: -2)
+            .offset(y: 2)
             .rotationEffect(.degrees(90))
             .customTextStroke()
     }

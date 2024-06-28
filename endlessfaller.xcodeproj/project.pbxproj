@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
@@ -163,6 +164,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoinInfoView.swift; sourceTree = "<group>"; };
 		7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fall-Ball-Info.plist"; sourceTree = "<group>"; };
 		7A053E4F2B553EA8007485A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7A0598072B08976E0053646D /* Boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boing.mp3; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 			children = (
 				7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */,
 				7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */,
+				763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */,
 				7AD234402A5F824800ED626D /* ContentView.swift */,
 				7AEA1AB32AE5C9CA00FE6DB5 /* ContinuePlayingView.swift */,
 				7AEA1AB12AE46BDE00FE6DB5 /* CurrencyPageView.swift */,
@@ -885,6 +888,7 @@
 				7AD234752A64533700ED626D /* AppModel.swift in Sources */,
 				7AF3EC662B8C2F2D003FE015 /* CloudKitUtility.swift in Sources */,
 				7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */,
+				763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */,
 				7A2F39BA2BA0E4C400B15E5E /* NotificationManager.swift in Sources */,
 				7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */,
 				7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */,
