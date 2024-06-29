@@ -35,13 +35,6 @@ class GameCenter: ObservableObject {
                 self.notificationManager.createPassRecord(recieverAlias: playerEntry.name)
             }
         }
-        
-        // All time Players
-        for playerEntry in allTimePlayersList {
-            if playerEntry.score > oldPlayerPosition?.score ?? 0 && playerEntry.score < newScore {
-                self.notificationManager.createPassRecord(recieverAlias: playerEntry.name)
-            }
-        }
     }
 
     func authenticateUser() {
