@@ -160,7 +160,7 @@ struct CurrencyPageView: View {
                                         }
                                     } label: {
                                         Rectangle()
-                                            .overlay(.green)
+                                            .overlay(RandomGradientView())
                                             .cornerRadius(21)
                                             .frame(width: 120, height: 120)
                                             .overlay{
@@ -207,7 +207,7 @@ struct CurrencyPageView: View {
                                                             .padding(.top, 6)
                                                     }
                                                     .background{
-                                                        Color.blue
+                                                        Color.green
                                                     }
                                                     .roundedCorner(0, corners: [.bottomLeft, .bottomRight])
                                                     .customTextStroke(width: 1.5)
@@ -235,21 +235,23 @@ struct CurrencyPageView: View {
                         }
                         Button{
                             impactHeavy.impactOccurred()
-                            showManageSubscriptions = true
+                            showBoinInfo = true
                         } label: {
-                            Text("Subscriptions 📆")
+                            Text("What are Boins? 🤔")
                                 .font(.system(size: 30))
                                 .customTextStroke(width: 2)
+                                .padding(.vertical)
                                 .bold()
                                 .italic()
-                                .padding()
                         }
                         Button{
                             impactHeavy.impactOccurred()
-                            showBoinInfo = true
+                            if let url = URL(string: "https://fallball.io/") {
+                                UIApplication.shared.open(url)
+                            }
                         } label: {
-                            Text("Boins? 🤔")
-                                .font(.system(size: 30))
+                            Text("Privacy Policy 🔒")
+                                .font(.system(size: 27))
                                 .customTextStroke(width: 2)
                                 .bold()
                                 .italic()
