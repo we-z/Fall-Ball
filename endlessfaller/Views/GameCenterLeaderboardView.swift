@@ -14,6 +14,8 @@ struct GameCenterLeaderboardView: View {
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     private var localPlayer = GKLocalPlayer.local
     @State var selectedLeaderboard = 0
+    @State var todayLeaderboardSelected = true
+    @State var capsuleOffset = -55.0
     
     
     func formatTimeDuration(_ duration: Double) -> String {
@@ -53,7 +55,7 @@ struct GameCenterLeaderboardView: View {
                         .bold()
                         .italic()
                         .font(.title)
-                        .customTextStroke(width: 2.4)
+                        .customTextStroke(width: 2.3)
                         .offset(y: 6)
                 }
                 VStack{
@@ -61,32 +63,53 @@ struct GameCenterLeaderboardView: View {
                         ZStack{
                                 ZStack{
                                     VStack{
-                                        HStack{
-                                            Button {
-                                                withAnimation{
-                                                    self.selectedLeaderboard = 0
+                                        Button {
+                                            impactHeavy.impactOccurred()
+                                            self.todayLeaderboardSelected.toggle()
+                                        } label: {
+                                            ZStack{
+                                                Capsule()
+                                                    .frame(width: 215, height: 45)
+                                                    .foregroundColor(.black)
+                                                    .clipShape(Capsule())
+                                                    .padding(.horizontal)
+                                                Capsule()
+                                                    .frame(width: 210, height: 40)
+                                                    .foregroundColor(self.todayLeaderboardSelected ? .red : .blue)
+                                                    .clipShape(Capsule())
+                                                    .padding(.horizontal)
+                                                Capsule()
+                                                    .frame(width: self.todayLeaderboardSelected ? 90 : 108, height: 30)
+                                                    .offset(x: capsuleOffset)
+                                                    .foregroundColor(.white)
+                                                    .padding(.horizontal)
+                                                HStack{
+                                                    Text("TODAY")
+                                                        .padding(.leading)
+                                                    
+                                                    Text("ALL TIME")
+                                                        .padding(.leading)
                                                 }
-                                            } label: {
-                                                Text("TODAY")
-                                                    .opacity(selectedLeaderboard == 0 ? 1 : 0.5)
-                                                    .padding(.leading)
-                                            }
-                                            Button {
-                                                withAnimation{
-                                                    self.selectedLeaderboard = 1
-                                                }
-                                            } label: {
-                                                
-                                                Text("ALL TIME")
-                                                    .opacity(selectedLeaderboard == 1 ? 1 : 0.5)
-                                                    .padding(.leading)
+                                                .offset(x: -9)
+                                                .font(.title3)
+                                                .bold()
+                                                .italic()
+                                                .customTextStroke(width: 1.8)
                                             }
                                         }
-                                        .font(.title3)
-                                        .bold()
-                                        .italic()
-                                        .customTextStroke(width: 1.5)
-                                        
+                                        .onChange(of: todayLeaderboardSelected) { todayLeaderboard in
+                                            if todayLeaderboard {
+                                                withAnimation(){
+                                                    capsuleOffset = -55
+                                                    self.selectedLeaderboard = 0
+                                                }
+                                            } else {
+                                                withAnimation(){
+                                                    capsuleOffset = 45
+                                                    self.selectedLeaderboard = 1
+                                                }
+                                            }
+                                        }
                                         TabView(selection: $selectedLeaderboard){
                                             ZStack{
                                                 ScrollView(showsIndicators: false) {
