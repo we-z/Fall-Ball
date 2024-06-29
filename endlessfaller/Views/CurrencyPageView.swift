@@ -85,19 +85,26 @@ struct CurrencyPageView: View {
                                 let bundle = boinBundles[index]
                             HStack{
                                 VStack{
+                                    if index == 0 {
+                                        Text("Price 💸")
+                                            .customTextStroke(width: 1.5)
+                                        .italic()
+                                        .bold()
+                                        .font(.system(size: 18))
+                                        .offset(y: -6)
+                                    }
                                     Image(boinBundles[index].image)
                                         .resizable()
-                                        .frame(width: 75, height: 75)
+                                        .frame(width: 84, height: 84)
                                         .customTextStroke()
                                     Text(boinBundles[index].cost)
-                                        .font(.system(size: 21))
+                                        .font(.system(size: 26))
                                         .lineLimit(1)
                                         .italic()
                                         .bold()
                                         .customTextStroke(width: 1.5)
 
                                 }
-                                .offset(y: 9)
                                 .frame(width: 90)
                                 Spacer()
                                 VStack {
@@ -120,13 +127,15 @@ struct CurrencyPageView: View {
                                             .cornerRadius(21)
                                             .frame(width: 120, height: 120)
                                             .overlay{
-                                                HStack{
+                                                VStack{
                                                     BoinsView()
+                                                        .offset(y: 6)
+                                                        .scaleEffect(1.2)
                                                     Text(String(boinBundles[index].amount))
                                                         .bold()
                                                         .italic()
-                                                        .font(.system(size: 21))
-                                                        .customTextStroke(width:1.5)
+                                                        .font(.system(size: 39))
+                                                        .customTextStroke(width:2.7)
                                                 }
                                             }
                                             .mask{
@@ -170,15 +179,17 @@ struct CurrencyPageView: View {
                                                         Text(String(boinBundles[index].subscriptionAmount))
                                                             .bold()
                                                             .italic()
-                                                            .font(.system(size: 21))
-                                                            .customTextStroke(width:1.5)
+                                                            .font(.system(size: 24))
+                                                            .customTextStroke(width:1.8)
                                                     }
-                                                    Text("/ month")
+                                                    
+                                                    Text("/month")
                                                         .bold()
                                                         .italic()
-                                                        .font(.system(size: 21))
+                                                        .font(.system(size: 27))
                                                         .customTextStroke(width:1.5)
                                                 }
+                                                .offset(y: 3)
                                                 if index == 1 {
                                                     HStack{
                                                         Text("MOST POPULAR")
