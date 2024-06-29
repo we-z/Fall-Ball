@@ -199,12 +199,15 @@ struct GameOverScreenView: View {
                 }
                 .buttonStyle(.roundedAndShadow9)
                 if !userPersistedData.hasSharedFallBall {
-                    Text("⬆️ Share and earn 5 Boins!")
-                        .bold()
-                        .italic()
-                        .font(.system(size: 21))
-                        .customTextStroke(width: 1.5)
-                        .offset(y: 21)
+                    HStack {
+                        Text("⬆️ Share and earn 5 Boins!")
+                            .bold()
+                            .italic()
+                            .font(.system(size: 21))
+                            .customTextStroke(width: 1.5)
+                        BoinsView()
+                    }
+                    .offset(y: 21)
                 }
                 ZStack{
                     VStack{
