@@ -16,6 +16,7 @@ struct GameCenterLeaderboardView: View {
     @State var selectedLeaderboard = 0
     @State var todayLeaderboardSelected = true
     @State var capsuleOffset = -55.0
+    @State var capsuleWidth = 90.0
     
     
     func formatTimeDuration(_ duration: Double) -> String {
@@ -64,7 +65,6 @@ struct GameCenterLeaderboardView: View {
                                 ZStack{
                                     VStack{
                                         Button {
-                                            impactHeavy.impactOccurred()
                                             self.todayLeaderboardSelected.toggle()
                                         } label: {
                                             ZStack{
@@ -75,11 +75,11 @@ struct GameCenterLeaderboardView: View {
                                                     .padding(.horizontal)
                                                 Capsule()
                                                     .frame(width: 210, height: 40)
-                                                    .foregroundColor(self.todayLeaderboardSelected ? .red : .blue)
+                                                    .foregroundColor(self.selectedLeaderboard == 0 ? .red : .blue)
                                                     .clipShape(Capsule())
                                                     .padding(.horizontal)
                                                 Capsule()
-                                                    .frame(width: self.todayLeaderboardSelected ? 90 : 108, height: 30)
+                                                    .frame(width: self.capsuleWidth, height: 30)
                                                     .offset(x: capsuleOffset)
                                                     .foregroundColor(.white)
                                                     .padding(.horizontal)
@@ -91,7 +91,7 @@ struct GameCenterLeaderboardView: View {
                                                         .padding(.leading)
                                                 }
                                                 .offset(x: -9)
-                                                .font(.title3)
+                                                .font(.system(size: 20))
                                                 .bold()
                                                 .italic()
                                                 .customTextStroke(width: 1.8)
@@ -101,12 +101,28 @@ struct GameCenterLeaderboardView: View {
                                             if todayLeaderboard {
                                                 withAnimation(){
                                                     capsuleOffset = -55
+                                                    capsuleWidth = 90.0
                                                     self.selectedLeaderboard = 0
                                                 }
                                             } else {
                                                 withAnimation(){
                                                     capsuleOffset = 45
+                                                    capsuleWidth = 108.0
                                                     self.selectedLeaderboard = 1
+                                                }
+                                            }
+                                        }
+                                        .onChange(of: selectedLeaderboard) { selected in
+                                            impactHeavy.impactOccurred()
+                                            if selected == 0 {
+                                                withAnimation(){
+                                                    capsuleOffset = -55
+                                                    capsuleWidth = 90.0
+                                                }
+                                            } else {
+                                                withAnimation(){
+                                                    capsuleOffset = 45
+                                                    capsuleWidth = 108.0
                                                 }
                                             }
                                         }
