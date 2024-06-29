@@ -84,7 +84,6 @@ struct CurrencyPageView: View {
                         ForEach(0..<boinBundles.count, id: \.self) { index in
                                 let bundle = boinBundles[index]
                             HStack{
-                                Spacer()
                                 VStack{
                                     Image(boinBundles[index].image)
                                         .resizable()
@@ -104,11 +103,11 @@ struct CurrencyPageView: View {
                                 VStack {
                                     if index == 0 {
                                         Text("One Time ☝️")
-                                        .customTextStroke(width: 1)
+                                            .customTextStroke(width: 1.8)
                                         .italic()
                                         .bold()
                                         .font(.system(size: 18))
-                                        .padding(.top, 2)
+                                        .padding(.top, 3)
                                     }
                                     Button {
                                         isProcessingPurchase = true
@@ -148,11 +147,11 @@ struct CurrencyPageView: View {
                                 VStack {
                                     if index == 0 {
                                         Text("Subscribe 📆")
-                                        .customTextStroke(width: 1)
+                                            .customTextStroke(width: 1.8)
                                         .italic()
                                         .bold()
                                         .font(.system(size: 18))
-                                        .padding(.top, 2)
+                                        .padding(.top, 3)
                                     }
                                     Button {
                                         isProcessingPurchase = true
