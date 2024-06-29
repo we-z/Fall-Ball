@@ -10,7 +10,6 @@ import SwiftUI
 struct CurrencyPageView: View {
     @Environment(\.dismiss) private var dismiss
     @State var isProcessingPurchase = false
-    @State var showSubscriptionOptions = false
     @ObservedObject var appModel = AppModel.sharedAppModel
     @State var boinBundles: [BoinBundles] = [
         BoinBundles(image: "small-pile", amount: 25, subscriptionAmount: 35, cost: "$4.99", subscriptionID: "35boinssubscription", bundleID: "25boins"),
@@ -125,7 +124,7 @@ struct CurrencyPageView: View {
                                         Rectangle()
                                             .fill(.yellow)
                                             .cornerRadius(21)
-                                            .frame(width: 120, height: 120)
+                                            .frame(height: 120)
                                             .overlay{
                                                 VStack{
                                                     BoinsView()
@@ -135,7 +134,7 @@ struct CurrencyPageView: View {
                                                         .bold()
                                                         .italic()
                                                         .font(.system(size: 39))
-                                                        .customTextStroke(width:2.7)
+                                                        .customTextStroke(width:2.1)
                                                 }
                                             }
                                             .mask{
@@ -148,6 +147,7 @@ struct CurrencyPageView: View {
                                                     .padding(1)
                                             }
                                             .accentColor(.black)
+                                            .padding(.horizontal, 6)
                                             .padding(.vertical, 9)
                                     }
                                     .buttonStyle(.roundedAndShadow6)
@@ -171,7 +171,7 @@ struct CurrencyPageView: View {
                                         Rectangle()
                                             .overlay(RandomGradientView())
                                             .cornerRadius(21)
-                                            .frame(width: 120, height: 120)
+                                            .frame(height: 120)
                                             .overlay{
                                                 VStack{
                                                     HStack{
@@ -192,37 +192,43 @@ struct CurrencyPageView: View {
                                                 .offset(y: 3)
                                                 if index == 1 {
                                                     HStack{
+                                                        Spacer()
                                                         Text("MOST POPULAR")
+                                                            .lineLimit(1)
+                                                            .minimumScaleFactor(0.1)
                                                             .foregroundColor(.black)
                                                             .bold()
                                                             .italic()
                                                             .font(.system(size: 12))
                                                             .padding(.horizontal, 9)
-                                                            .padding(.top, 6)
+                                                            .padding(.vertical, 3)
+                                                        Spacer()
                                                     }
                                                     .background{
                                                         Color.red
                                                     }
-                                                    .roundedCorner(0, corners: [.bottomLeft, .bottomRight])
-                                                    .customTextStroke(width: 1.5)
-                                                    .offset(y: -51)
+                                                    .customTextStroke(width: 1)
+                                                    .offset(y: -48)
                                                 }
                                                 if index == 4 {
                                                     HStack{
+                                                        Spacer()
                                                         Text("BEST DEAL!")
+                                                            .lineLimit(1)
+                                                            .minimumScaleFactor(0.1)
                                                             .foregroundColor(.black)
                                                             .bold()
                                                             .italic()
                                                             .font(.system(size: 12))
                                                             .padding(.horizontal, 21)
-                                                            .padding(.top, 6)
+                                                            .padding(.vertical, 3)
+                                                        Spacer()
                                                     }
                                                     .background{
                                                         Color.green
                                                     }
-                                                    .roundedCorner(0, corners: [.bottomLeft, .bottomRight])
-                                                    .customTextStroke(width: 1.5)
-                                                    .offset(y: -51)
+                                                    .customTextStroke(width: 1)
+                                                    .offset(y: -48)
                                                 }
                                                 
                                             }
@@ -236,7 +242,7 @@ struct CurrencyPageView: View {
                                                     .padding(1)
                                             }
                                             .accentColor(.black)
-                                            .padding(.horizontal, 12)
+                                            .padding(.horizontal, 6)
                                             .padding(.vertical, 9)
                                     }
                                     .buttonStyle(.roundedAndShadow6)
@@ -295,10 +301,6 @@ struct CurrencyPageView: View {
             Alert(title: Text(errorTitle), message: nil, dismissButton: .default(Text("Okay")))
         })
         .allowsHitTesting(!isProcessingPurchase)
-        .sheet(isPresented: self.$showSubscriptionOptions) {
-            SubscriptionOptions(bundle: $selectedBundle)
-                .presentationDetents([.height(550)])
-        }
         .sheet(isPresented: self.$showBoinInfo) {
             BoinInfoView()
                 .presentationDetents([.height(300)])
