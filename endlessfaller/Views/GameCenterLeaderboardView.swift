@@ -69,7 +69,7 @@ struct GameCenterLeaderboardView: View {
                                         } label: {
                                             ZStack{
                                                 Capsule()
-                                                    .frame(width: 215, height: 45)
+                                                    .frame(width: 219, height: 48)
                                                     .foregroundColor(.black)
                                                     .clipShape(Capsule())
                                                     .padding(.horizontal)
