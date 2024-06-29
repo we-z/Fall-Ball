@@ -6,15 +6,83 @@
 //
 
 import SwiftUI
+import GameKit
 
 struct GameOverScreenView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @StateObject var audioController = AudioManager.sharedAudioManager
+    @State private var sheetPresented : Bool = false
+    @Environment(\.displayScale) var displayScale
     @State var showPlaqueShare = false
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     @StateObject var userPersistedData = UserPersistedData()
+    
+    @MainActor
+    private func render() -> UIImage?{
+        
+        let renderer = ImageRenderer(content: plaqueView())
+
+        renderer.scale = displayScale
+     
+        return renderer.uiImage
+    }
+    
+    private func plaqueView () -> some View {
+        
+        ZStack{
+            Rectangle()
+                .overlay(RandomGradientView())
+                .frame(width: 330, height: 330)
+            RotatingSunView()
+                .offset(y: -45)
+            VStack{
+                Text("I Play Fall Ball As:")
+                    .customTextStroke(width: 1.5)
+                    .font(.system(size: 21))
+                    .bold()
+                    .italic()
+                if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
+                    let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
+                    let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
+                    ZStack{
+                        if userPersistedData.selectedBag != "nobag" {
+                            AnyView(bag!.bag)
+                                .frame(maxWidth: 180, maxHeight: 60)
+                        }
+                        AnyView(character.character)
+                            .scaleEffect(1.5)
+                        if userPersistedData.selectedHat != "nohat" {
+                            AnyView(hat!.hat)
+                                .frame(maxWidth: 60, maxHeight: 60)
+                        }
+                    }
+                    .padding(.top, 30)
+                    .padding(.bottom, 39)
+                    .scaleEffect(1.2)
+                    .offset(y:20)
+                }
+                
+                Text(GKLocalPlayer.local.isAuthenticated ? GKLocalPlayer.local.displayName : "Unknown Player")
+                    .customShadow(width: 1)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 150)
+                    .bold()
+                    .italic()
+                    .font(.system(size: 30))
+                Text("Beat My Top Score: \(userPersistedData.bestScore)")
+                    .customTextStroke(width: 1.5)
+                    .font(.system(size: 21))
+                    .bold()
+                    .italic()
+                    .padding(12)
+                    .background(.black.opacity(0.1))
+                    .cornerRadius(18)
+            }
+        }
+        .frame(width: 330, height: 330)
+    }
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
@@ -31,7 +99,7 @@ struct GameOverScreenView: View {
                     .padding(.bottom, deviceHeight * 0.04)
                     .allowsHitTesting(false)
                 Button {
-                    showPlaqueShare = true
+                    self.sheetPresented = true
                 } label: {
                     
                     ZStack{
@@ -130,7 +198,14 @@ struct GameOverScreenView: View {
                     }
                 }
                 .buttonStyle(.roundedAndShadow9)
-                
+                if !userPersistedData.hasSharedFallBall {
+                    Text("⬆️ Share and earn 5 Boins!")
+                        .bold()
+                        .italic()
+                        .font(.system(size: 21))
+                        .customTextStroke(width: 1.5)
+                        .offset(y: 21)
+                }
                 ZStack{
                     VStack{
                         Text("Swipe up to \nplay again!")
@@ -149,6 +224,7 @@ struct GameOverScreenView: View {
                 .customTextStroke(width: 2.7)
                 Spacer()
             }
+            .offset(y: userPersistedData.hasSharedFallBall ? 0 : 15)
             if appModel.showNewBestScore {
                 ZStack{
                     NewBestScore()
@@ -159,6 +235,15 @@ struct GameOverScreenView: View {
                 }
             }
         }
+        .sheet(isPresented: $sheetPresented, content: {
+                
+            if let data = render() {
+       
+                ShareView(activityItems: [data, "Play Fall Ball with me!\n\nhttps://apple.co/48036v5"])
+           
+            }
+            
+        })
         .onAppear{
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 appModel.showNewBestScore = false
