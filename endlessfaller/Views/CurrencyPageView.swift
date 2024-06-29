@@ -255,6 +255,19 @@ struct CurrencyPageView: View {
                                 .italic()
                                 .padding(.bottom)
                         }
+                        Button{
+                            impactHeavy.impactOccurred()
+                            if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
+                                UIApplication.shared.open(url)
+                            }
+                        } label: {
+                            Text("EULA 📑")
+                                .font(.system(size: 27))
+                                .customTextStroke(width: 2)
+                                .bold()
+                                .italic()
+                                .padding(.bottom)
+                        }
                     }
                     .padding(.leading, 9)
             }
