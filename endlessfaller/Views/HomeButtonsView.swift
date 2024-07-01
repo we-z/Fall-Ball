@@ -105,22 +105,21 @@ struct HomeButtonsView: View {
                     } label: {
                         HStack{
                             BoinsView()
-                            Text(String(userPersistedData.boinBalance))
-                                .bold()
+                            Text(String(userPersistedData.boinBalance))                                .bold()
                                 .italic()
                                 .customTextStroke(width:2.1)
-                                .font(.largeTitle)
+                                .font(.system(size: 30))
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 21)
                         .padding(.vertical, 6)
-                        .frame(height: 60)
+                        .frame(height: 70)
                         .background{
                             Color.yellow
                         }
-                        .cornerRadius(15)
+                        .cornerRadius(50)
                         .overlay{
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.black, lineWidth: 3)
+                            RoundedRectangle(cornerRadius: 50)
+                                .stroke(Color.black, lineWidth: 4)
                                 .padding(1)
                         }
                         .padding()
