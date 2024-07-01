@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		762E44932C3356120034D989 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
 		763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
@@ -871,6 +872,7 @@
 			files = (
 				7A5CE0D22C0044E500F2ABD2 /* LeaderboardLiveActivity.swift in Sources */,
 				7A5CE0D62C0044E500F2ABD2 /* AppIntent.swift in Sources */,
+				762E44932C3356120034D989 /* CloudKitUtility.swift in Sources */,
 				7A5CE0D42C0044E500F2ABD2 /* Leaderboard.swift in Sources */,
 				7A5CE0D02C0044E500F2ABD2 /* LeaderboardBundle.swift in Sources */,
 			);

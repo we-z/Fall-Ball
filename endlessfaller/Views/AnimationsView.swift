@@ -10,9 +10,16 @@ import Vortex
 
 struct AnimationsView: View {
     var body: some View {
-        ZStack{
-            KeepSwiping()
+        Button {
+        } label: {
+            PodiumView()
+                .foregroundColor(.black)
+                .padding(36)
+                .scaleEffect(1.2)
+                .offset(x:-3)
         }
+        .buttonStyle(.roundedAndShadow3)
+        .scaleEffect(3)
     }
 }
 

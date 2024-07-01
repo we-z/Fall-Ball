@@ -224,7 +224,7 @@ struct GameOverScreenView: View {
                 
                 .animatedOffset(speed: 1)
                 .frame(height: 300)
-                .customTextStroke(width: 2.7)
+                .customShadow(width: 1.8)
                 Spacer()
             }
             .offset(y: userPersistedData.hasSharedFallBall ? 0 : 15)

@@ -670,18 +670,7 @@ struct GameCenterLeaderboardView: View {
     }
 }
 
-struct Player: Hashable, Comparable {
-    static func < (lhs: Player, rhs: Player) -> Bool {
-        return rhs.score > lhs.score
-    }
-    
-    let id = UUID()
-    let name: String
-    let score: Int
-    let ballID: Int
-    let currentPlayer: GKPlayer
-    let rank: Int
-}
+
 
 #Preview {
     GameCenterLeaderboardView()
