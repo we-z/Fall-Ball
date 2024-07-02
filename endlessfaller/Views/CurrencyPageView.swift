@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct CurrencyPageView: View {
     @Environment(\.dismiss) private var dismiss
@@ -255,9 +256,22 @@ struct CurrencyPageView: View {
                             showBoinInfo = true
                         } label: {
                             Text("What are Boins? 🤔")
-                                .font(.system(size: 30))
+                                .font(.system(size: 36))
                                 .customTextStroke(width: 2)
                                 .padding(.vertical)
+                                .bold()
+                                .italic()
+                        }
+                        Button(action: {
+                            impactHeavy.impactOccurred()
+                            Task{
+                                try? await AppStore.sync()
+                            }
+                        }){
+                            Text("Restore Purchases 🔄")
+                                .font(.system(size: 24))
+                                .customTextStroke(width: 2)
+                                .padding(.bottom)
                                 .bold()
                                 .italic()
                         }
@@ -268,7 +282,7 @@ struct CurrencyPageView: View {
                             }
                         } label: {
                             Text("Privacy Policy 🔒")
-                                .font(.system(size: 27))
+                                .font(.system(size: 24))
                                 .customTextStroke(width: 2)
                                 .bold()
                                 .italic()
