@@ -37,7 +37,9 @@ struct LevelsToPassPlayerView: View {
     var body: some View {
         let todaysPlayersList = gameCenter.todaysPlayersList
         if todaysPlayersList.count > 0 {
-            if todaysPlayersList[0].currentPlayer != GKLocalPlayer.local && gameCenter.nextPlayerIndex > -1 && todaysPlayersList[gameCenter.nextPlayerIndex].score >= appModel.score {
+            if todaysPlayersList[0].currentPlayer != GKLocalPlayer.local 
+                && gameCenter.nextPlayerIndex > -1
+                && todaysPlayersList[gameCenter.nextPlayerIndex].score >= appModel.score {
                 VStack{
                     Text("\(todaysPlayersList[gameCenter.nextPlayerIndex].score - appModel.score) to pass")
                         .bold()
@@ -45,7 +47,9 @@ struct LevelsToPassPlayerView: View {
                         .customTextStroke()
                         .multilineTextAlignment(.center)
                         .padding([.horizontal, .top])
-                    if let character = appModel.characters.first(where: {$0.characterID.hash == todaysPlayersList[gameCenter.nextPlayerIndex].ballID}) {
+                    if let character = appModel.characters.first(
+                        where: {$0.characterID.hash == todaysPlayersList[gameCenter.nextPlayerIndex].ballID}
+                    ) {
                         AnyView(character.character)
                     } else {
                         Image(systemName: "questionmark.circle")
