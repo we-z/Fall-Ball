@@ -66,6 +66,33 @@ struct HomeButtonsView: View {
             )
             VStack{
                 HStack{
+                    Button {
+                        showCurrencyPage = true
+                    } label: {
+                        HStack{
+                            BoinsView()
+                            Text(String(userPersistedData.boinBalance))                                .bold()
+                                .italic()
+                                .customTextStroke(width:2.1)
+                                .font(.system(size: 30))
+                        }
+                        .padding(.horizontal, 21)
+                        .padding(.vertical, 6)
+                        .frame(height: 70)
+                        .background{
+                            Color.yellow
+                        }
+                        .cornerRadius(50)
+                        .overlay{
+                            RoundedRectangle(cornerRadius: 50)
+                                .stroke(Color.black, lineWidth: 4)
+                                .padding(1)
+                        }
+                        .padding()
+                    }
+                    .buttonStyle(.roundedAndShadow6)
+                    .padding(.leading, 6)
+                    Spacer()
                     Button{
                         self.userPersistedData.strategyModeEnabled.toggle()
                     } label: {
@@ -99,32 +126,6 @@ struct HomeButtonsView: View {
                             }
                         }
                     }
-                    Spacer()
-                    Button {
-                        showCurrencyPage = true
-                    } label: {
-                        HStack{
-                            BoinsView()
-                            Text(String(userPersistedData.boinBalance))                                .bold()
-                                .italic()
-                                .customTextStroke(width:2.1)
-                                .font(.system(size: 30))
-                        }
-                        .padding(.horizontal, 21)
-                        .padding(.vertical, 6)
-                        .frame(height: 70)
-                        .background{
-                            Color.yellow
-                        }
-                        .cornerRadius(50)
-                        .overlay{
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.black, lineWidth: 4)
-                                .padding(1)
-                        }
-                        .padding()
-                    }
-                    .buttonStyle(.roundedAndShadow6)
                 }
                 .padding(.top, idiom == .pad || UIDevice.isOldDevice ? 15 : 45)
                 Spacer()
