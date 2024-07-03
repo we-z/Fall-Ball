@@ -146,7 +146,7 @@ struct HUDView: View {
                         VStack{
                             HStack{
                                 Spacer()
-                                if self.BallAnimator.ballYPosition < deviceHeight * 0.2 && appModel.currentIndex != 0 && userPersistedData.strategyModeEnabled {
+                                if self.BallAnimator.ballYPosition < deviceHeight * 0.3 && appModel.currentIndex != 0 && userPersistedData.strategyModeEnabled {
                                     ZStack{
                                         Image(systemName: "triangle.fill")
                                             .foregroundColor(.black)
@@ -165,7 +165,7 @@ struct HUDView: View {
                             Spacer()
                             HStack{
                                 Spacer()
-                                if self.BallAnimator.ballYPosition > deviceHeight * 0.8 && appModel.currentIndex != 0 {
+                                if self.BallAnimator.ballYPosition > deviceHeight * 0.7 && appModel.currentIndex != 0 {
                                     ZStack{
                                         Image(systemName: "triangle.fill")
                                             .foregroundColor(.black)
