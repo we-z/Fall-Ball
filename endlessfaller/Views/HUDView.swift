@@ -155,8 +155,7 @@ struct HUDView: View {
                                         Image(systemName: "exclamationmark.triangle.fill")
                                             .foregroundColor(.red)
                                     }
-                                    .font(.largeTitle)
-                                    .scaleEffect(1.5)
+                                    .font(.system(size: 60))
                                     .padding(.top, 75)
                                     .padding(.horizontal, 30)
                                     .flashing()
@@ -174,9 +173,8 @@ struct HUDView: View {
                                         Image(systemName: "exclamationmark.triangle.fill")
                                             .foregroundColor(.red)
                                     }
-                                    .font(.largeTitle)
-                                    .scaleEffect(1.5)
-                                    .padding(40)
+                                    .font(.system(size: 60))
+                                    .padding(30)
                                     .flashing()
                                 }
                             }
