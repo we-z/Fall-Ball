@@ -10,16 +10,7 @@ import Vortex
 
 struct AnimationsView: View {
     var body: some View {
-        Button {
-        } label: {
-            PodiumView()
-                .foregroundColor(.black)
-                .padding(36)
-                .scaleEffect(1.2)
-                .offset(x:-3)
-        }
-        .buttonStyle(.roundedAndShadow3)
-        .scaleEffect(3)
+        DailyBoinCollectedView()
     }
 }
 
@@ -1419,7 +1410,7 @@ struct DailyBoinCollectedView: View {
             .scaleEffect(appearFromTop ? 1 : 0)
             .offset(y: appearFromTop ? -(deviceHeight / 5): -(deviceHeight/2) - 90)
             .offset(y: animationEnding ? -(deviceHeight / 3) : 0)
-            .offset(x: animationEnding ? deviceWidth : 0)
+            .offset(x: animationEnding ? -deviceWidth : 0)
             .onAppear() {
                 
                 withAnimation(.linear(duration: 1)){
