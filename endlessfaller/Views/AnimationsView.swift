@@ -10,7 +10,7 @@ import Vortex
 
 struct AnimationsView: View {
     var body: some View {
-        DailyBoinCollectedView()
+        LeaderboardRewardView()
     }
 }
 
@@ -1476,7 +1476,7 @@ struct LeaderboardRewardView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                 withAnimation(.easeInOut(duration: 2)) {
                     animationYoffset = -(deviceHeight / 1.5)
-                    animationXoffset = deviceWidth / 1.5
+                    animationXoffset = -deviceWidth / 1.5
                     scaleSize = 0
                 }
             }
