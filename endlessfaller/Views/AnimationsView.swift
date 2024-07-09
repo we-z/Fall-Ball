@@ -10,7 +10,7 @@ import Vortex
 
 struct AnimationsView: View {
     var body: some View {
-        LeaderboardRewardView()
+        BoinCollectedView()
     }
 }
 
@@ -1340,7 +1340,7 @@ struct BoinCollectedView: View {
                     .padding(.bottom, 60)
                     .scaleEffect(scale ? 1 : 1.2)
                     .scaleEffect(animationEnding ? 0.2 : 1)
-                    .offset(x: animationEnding ? deviceWidth : 0, y: animationEnding ? -deviceHeight : 0)
+                    .offset(x: animationEnding ? -deviceWidth : 0, y: animationEnding ? -deviceHeight : 0)
                     
                 Text("Boin\nFound!")
                     .italic()
