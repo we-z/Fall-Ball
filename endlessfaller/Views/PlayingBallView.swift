@@ -44,7 +44,7 @@ struct PlayingBallView: View {
                             .tag("circle")
                     }
                 }
-                if userPersistedData.selectedBag == "jetpack" {
+                if userPersistedData.selectedBag == "jetpack" && !appModel.ballIsStrobing {
                     HStack{
                         VortexView(.fire) {
                             Circle()
