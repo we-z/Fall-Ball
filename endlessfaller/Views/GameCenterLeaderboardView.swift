@@ -13,7 +13,7 @@ struct GameCenterLeaderboardView: View {
     @ObservedObject var gameCenter = GameCenter.shared
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     private var localPlayer = GKLocalPlayer.local
-    @State var selectedLeaderboard = 0
+    @State var selectedLeaderboard = 1
     @State var todayLeaderboardSelected = true
     @State var capsuleOffset = -55.0
     @State var capsuleWidth = 90.0
