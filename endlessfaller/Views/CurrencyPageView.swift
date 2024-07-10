@@ -98,11 +98,11 @@ struct CurrencyPageView: View {
                                         .frame(width: 84, height: 84)
                                         .customTextStroke()
                                     Text(boinBundles[index].cost)
-                                        .font(.system(size: 26))
+                                        .font(.system(size: 24))
                                         .lineLimit(1)
                                         .italic()
                                         .bold()
-                                        .customTextStroke(width: 1.5)
+                                        .customShadow(width: 1)
 
                                 }
                                 .frame(width: 90)

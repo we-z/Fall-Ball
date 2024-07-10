@@ -20,7 +20,7 @@ struct PlayingBallView: View {
         let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
         let currentCharacter = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) ?? appModel.characters.first(where: { $0.characterID == "io.endlessfall.shocked"})
 
-        //if appModel.score >= 0 && appModel.currentIndex >= 0 {
+        if appModel.score >= 0 && appModel.currentIndex >= 0 {
             ZStack{
                 if !appModel.isWasted || !appModel.ballIsStrobing {
                     
@@ -87,7 +87,7 @@ struct PlayingBallView: View {
             }
             .position(x: deviceWidth / 2, y: self.BallAnimator.ballYPosition)
             .allowsHitTesting(false)
-        //}
+        }
     }
     
     func randomTrail() -> VortexSystem {
