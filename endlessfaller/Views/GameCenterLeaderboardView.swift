@@ -13,10 +13,10 @@ struct GameCenterLeaderboardView: View {
     @ObservedObject var gameCenter = GameCenter.shared
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     private var localPlayer = GKLocalPlayer.local
-    @State var selectedLeaderboard = 1
+    @State var selectedLeaderboard = 0
     @State var todayLeaderboardSelected = true
-    @State var capsuleOffset = -55.0
-    @State var capsuleWidth = 90.0
+    @State var capsuleOffset = -45.0
+    @State var capsuleWidth = 108.0
     
     
     func formatTimeDuration(_ duration: Double) -> String {
@@ -84,11 +84,11 @@ struct GameCenterLeaderboardView: View {
                                                     .foregroundColor(.white)
                                                     .padding(.horizontal)
                                                 HStack{
+                                                    Text("ALL TIME")
+                                                        .padding(.leading)
                                                     Text("TODAY")
                                                         .padding(.leading)
                                                     
-                                                    Text("ALL TIME")
-                                                        .padding(.leading)
                                                 }
                                                 .offset(x: -9)
                                                 .font(.system(size: 20))
@@ -100,14 +100,14 @@ struct GameCenterLeaderboardView: View {
                                         .onChange(of: todayLeaderboardSelected) { todayLeaderboard in
                                             if todayLeaderboard {
                                                 withAnimation(){
-                                                    capsuleOffset = -55
-                                                    capsuleWidth = 90.0
+                                                    capsuleOffset = -45
+                                                    capsuleWidth = 108.0
                                                     self.selectedLeaderboard = 0
                                                 }
                                             } else {
                                                 withAnimation(){
-                                                    capsuleOffset = 45
-                                                    capsuleWidth = 108.0
+                                                    capsuleOffset = 55
+                                                    capsuleWidth = 90.0
                                                     self.selectedLeaderboard = 1
                                                 }
                                             }
@@ -116,17 +116,271 @@ struct GameCenterLeaderboardView: View {
                                             impactHeavy.impactOccurred()
                                             if selected == 0 {
                                                 withAnimation(){
-                                                    capsuleOffset = -55
-                                                    capsuleWidth = 90.0
+                                                    capsuleOffset = -45
+                                                    capsuleWidth = 108.0
                                                 }
                                             } else {
                                                 withAnimation(){
-                                                    capsuleOffset = 45
-                                                    capsuleWidth = 108.0
+                                                    capsuleOffset = 55
+                                                    capsuleWidth = 90.0
                                                 }
                                             }
                                         }
                                         TabView(selection: $selectedLeaderboard){
+                                            
+                                            ZStack{
+                                                ScrollView(showsIndicators: false) {
+                                                    LazyVStack {
+                                                        HStack{
+                                                            VStack{
+                                                                Circle()
+                                                                    .frame(width: 90)
+                                                                    .foregroundColor(allTimePlayersList.count > 2 ? .clear : .gray)
+                                                                    .padding([.horizontal, .top])
+                                                                    .overlay{
+                                                                        if allTimePlayersList.count > 2 {
+                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[2].ballID}) {
+                                                                                AnyView(character.character)
+                                                                                    .scaleEffect(2)
+                                                                                    .offset(y:3)
+                                                                            } else {
+                                                                                Image(systemName: "questionmark.circle")
+                                                                                    .font(.system(size: 90))
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                Text("🥉")
+                                                                    .font(.largeTitle)
+                                                                    .scaleEffect(1.2)
+                                                                    .customTextStroke()
+                                                                if allTimePlayersList.count > 2 {
+                                                                    Text(allTimePlayersList[2].name)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.title3)
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .customShadow(radius: 0.1, width: 0.6)
+                                                                        .padding(.horizontal)
+                                                                    Text(String(allTimePlayersList[2].score))
+                                                                        .customTextStroke(width: 1.5)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.title)
+                                                                        .bold()
+                                                                        .italic()
+                                                                } else{
+                                                                    Text("-")
+                                                                        .customTextStroke()
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.largeTitle)
+                                                                        .bold()
+                                                                        .italic()
+                                                                    //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                                                                }
+                                                            }
+                                                            .background{
+                                                                if allTimePlayersList.count > 2 {
+                                                                    if allTimePlayersList[2].currentPlayer.alias == localPlayer.alias {
+                                                                        Color.white
+                                                                            .opacity(0.3)
+                                                                    }
+                                                                }
+                                                            }
+                                                            .cornerRadius(21)
+                                                            .frame(maxWidth: deviceWidth / 3)
+                                                            .padding(.leading)
+                                                            .offset(y: 120)
+                                                            .padding(.bottom, 30)
+                                                            VStack{
+                                                                Text("👑")
+                                                                    .font(.largeTitle)
+                                                                    .scaleEffect(1.5)
+                                                                    .opacity(allTimePlayersList.count > 0 ? 1 : 0)
+                                                                    .customTextStroke()
+                                                                Circle()
+                                                                    .frame(width: 100)
+                                                                    .foregroundColor(allTimePlayersList.count > 0 ? .clear : .gray)
+                                                                    .padding([.horizontal])
+                                                                    .overlay{
+                                                                        if allTimePlayersList.count > 0 {
+                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[0].ballID}) {
+                                                                                AnyView(character.character)
+                                                                                    .scaleEffect(2)
+                                                                                    .offset(y:3)
+                                                                            } else {
+                                                                                Image(systemName: "questionmark.circle")
+                                                                                    .font(.system(size: 90))
+                                                                            }
+                                                                        }
+                                                                        
+                                                                    }
+                                                                Text("🥇")
+                                                                    .font(.largeTitle)
+                                                                    .scaleEffect(1.2)
+                                                                    .customTextStroke()
+                                                                if allTimePlayersList.count > 0 {
+                                                                    Text(allTimePlayersList[0].name)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.title3)
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .customShadow(radius: 0.1, width: 0.6)
+                                                                        .padding(.horizontal)
+                                                                    Text(String(allTimePlayersList[0].score))
+                                                                        .customTextStroke(width: 1.5)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.title)
+                                                                        .bold()
+                                                                        .italic()
+                                                                } else{
+                                                                    Text("-")
+                                                                        .customTextStroke()
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.largeTitle)
+                                                                        .bold()
+                                                                        .italic()
+                                                                }
+                                                            }
+                                                            .background{
+                                                                if allTimePlayersList.count > 0 {
+                                                                    if allTimePlayersList[0].currentPlayer.alias == localPlayer.alias {
+                                                                        Color.white
+                                                                            .opacity(0.3)
+                                                                    }
+                                                                }
+                                                            }
+                                                            .cornerRadius(21)
+                                                            .frame(maxWidth: deviceWidth / 3)
+                                                            VStack{
+                                                                Circle()
+                                                                    .frame(width: 90)
+                                                                    .foregroundColor(allTimePlayersList.count > 1  ? .clear : .gray)
+                                                                    .padding([.horizontal, .top])
+                                                                    .overlay{
+                                                                        if allTimePlayersList.count > 1 {
+                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[1].ballID}) {
+                                                                                AnyView(character.character)
+                                                                                    .scaleEffect(2)
+                                                                                    .offset(y:3)
+                                                                            } else {
+                                                                                Image(systemName: "questionmark.circle")
+                                                                                    .font(.system(size: 90))
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                Text("🥈")
+                                                                    .font(.largeTitle)
+                                                                    .scaleEffect(1.2)
+                                                                    .customTextStroke()
+                                                                if allTimePlayersList.count > 1 {
+                                                                    Text(allTimePlayersList[1].name)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.title3)
+                                                                        .bold()
+                                                                        .italic()
+                                                                        .customShadow(radius: 0.1, width: 0.6)
+                                                                        .padding(.horizontal)
+                                                                    Text(String(allTimePlayersList[1].score))
+                                                                        .customTextStroke(width: 1.5)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.title)
+                                                                        .bold()
+                                                                        .italic()
+                                                                    //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                                                                } else{
+                                                                    Text("-")
+                                                                        .customTextStroke()
+                                                                        .multilineTextAlignment(.center)
+                                                                        .font(.largeTitle)
+                                                                        .bold()
+                                                                        .italic()
+                                                                    //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                                                                }
+                                                            }
+                                                            .background{
+                                                                if allTimePlayersList.count > 1 {
+                                                                    if allTimePlayersList[1].currentPlayer.alias == localPlayer.alias {
+                                                                        Color.white
+                                                                            .opacity(0.3)
+                                                                    }
+                                                                }
+                                                            }
+                                                            .cornerRadius(21)
+                                                            .frame(maxWidth: deviceWidth / 3)
+                                                            .padding(.trailing)
+                                                            .offset(y: 120)
+                                                            .padding(.bottom, 30)
+                                                        }
+                                                        .padding(.bottom, 60)
+                                                        .background{
+                                                            RotatingSunView()
+                                                                .offset(y:240)
+                                                        }
+                                                        //                                                    .frame(height: 270)
+                                                        LazyVStack {
+                                                            List {
+                                                                ForEach(4...50, id: \.self) { num in
+                                                                    ZStack{
+                                                                        HStack{
+                                                                            Text("\(num)")
+                                                                                .customTextStroke()
+                                                                                .bold()
+                                                                                .italic()
+                                                                            VStack(alignment: .leading){
+                                                                                if allTimePlayersList.count > num - 1 {
+                                                                                    Text(allTimePlayersList[num - 1].name)
+                                                                                        .font(.caption)
+                                                                                        .customTextStroke()
+                                                                                        .bold()
+                                                                                        .italic()
+                                                                                }
+                                                                                
+                                                                            }
+                                                                            .offset(x: 80)
+                                                                            Spacer()
+                                                                            Text(allTimePlayersList.count > num - 1 ? String(allTimePlayersList[num - 1].score) : "-")
+                                                                                .customTextStroke()
+                                                                                .bold()
+                                                                                .italic()
+                                                                            //                                                                        .foregroundColor(.white)
+                                                                            //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
+                                                                        }
+                                                                        if allTimePlayersList.count > num - 1 {
+                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[num - 1].ballID}) {
+                                                                                AnyView(character.character)
+                                                                                    .position(x: 55, y: 30)
+                                                                            } else {
+                                                                                Image(systemName: "questionmark.circle")
+                                                                                    .font(.system(size: 40))
+                                                                                    .position(x: 55, y: 30)
+                                                                            }
+                                                                        } else {
+                                                                            WhiteBallView()
+                                                                                .opacity(0.5)
+                                                                                .position(x: 55, y: 30)
+                                                                        }
+                                                                        
+                                                                    }
+                                                                    .listRowBackground(RandomGradientView())
+                                                                }
+                                                                
+                                                            }
+                                                            .allowsHitTesting(false)
+                                                            .frame(width: self.idiom == .pad ? deviceWidth / 1.5 : deviceWidth, height: 3400, alignment: .center)
+                                                            .scrollContentBackground(.hidden)
+                                                        }
+                                                    }
+                                                }
+                                                .refreshable {
+                                                    Task{
+                                                        await gameCenter.loadLeaderboard()
+                                                    }
+                                                }
+                                                if allTimePlayersList.isEmpty{
+                                                    ProgressView()
+                                                        .scaleEffect(3)
+                                                }
+                                            }
+                                            .tag(0)
                                             ZStack{
                                                 ScrollView(showsIndicators: false) {
 //                                                    Text(formatTimeDuration(timeLeft))
@@ -378,259 +632,6 @@ struct GameCenterLeaderboardView: View {
                                                     }
                                                 }
                                                 if todaysPlayersList.isEmpty{
-                                                    ProgressView()
-                                                        .scaleEffect(3)
-                                                }
-                                            }
-                                            .tag(0)
-                                            ZStack{
-                                                ScrollView(showsIndicators: false) {
-                                                    LazyVStack {
-                                                        HStack{
-                                                            VStack{
-                                                                Circle()
-                                                                    .frame(width: 90)
-                                                                    .foregroundColor(allTimePlayersList.count > 2 ? .clear : .gray)
-                                                                    .padding([.horizontal, .top])
-                                                                    .overlay{
-                                                                        if allTimePlayersList.count > 2 {
-                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[2].ballID}) {
-                                                                                AnyView(character.character)
-                                                                                    .scaleEffect(2)
-                                                                                    .offset(y:3)
-                                                                            } else {
-                                                                                Image(systemName: "questionmark.circle")
-                                                                                    .font(.system(size: 90))
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                Text("🥉")
-                                                                    .font(.largeTitle)
-                                                                    .scaleEffect(1.2)
-                                                                    .customTextStroke()
-                                                                if allTimePlayersList.count > 2 {
-                                                                    Text(allTimePlayersList[2].name)
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.title3)
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .customShadow(radius: 0.1, width: 0.6)
-                                                                        .padding(.horizontal)
-                                                                    Text(String(allTimePlayersList[2].score))
-                                                                        .customTextStroke(width: 1.5)
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.title)
-                                                                        .bold()
-                                                                        .italic()
-                                                                } else{
-                                                                    Text("-")
-                                                                        .customTextStroke()
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.largeTitle)
-                                                                        .bold()
-                                                                        .italic()
-                                                                    //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
-                                                                }
-                                                            }
-                                                            .background{
-                                                                if allTimePlayersList.count > 2 {
-                                                                    if allTimePlayersList[2].currentPlayer.alias == localPlayer.alias {
-                                                                        Color.white
-                                                                            .opacity(0.3)
-                                                                    }
-                                                                }
-                                                            }
-                                                            .cornerRadius(21)
-                                                            .frame(maxWidth: deviceWidth / 3)
-                                                            .padding(.leading)
-                                                            .offset(y: 120)
-                                                            .padding(.bottom, 30)
-                                                            VStack{
-                                                                Text("👑")
-                                                                    .font(.largeTitle)
-                                                                    .scaleEffect(1.5)
-                                                                    .opacity(allTimePlayersList.count > 0 ? 1 : 0)
-                                                                    .customTextStroke()
-                                                                Circle()
-                                                                    .frame(width: 100)
-                                                                    .foregroundColor(allTimePlayersList.count > 0 ? .clear : .gray)
-                                                                    .padding([.horizontal])
-                                                                    .overlay{
-                                                                        if allTimePlayersList.count > 0 {
-                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[0].ballID}) {
-                                                                                AnyView(character.character)
-                                                                                    .scaleEffect(2)
-                                                                                    .offset(y:3)
-                                                                            } else {
-                                                                                Image(systemName: "questionmark.circle")
-                                                                                    .font(.system(size: 90))
-                                                                            }
-                                                                        }
-                                                                        
-                                                                    }
-                                                                Text("🥇")
-                                                                    .font(.largeTitle)
-                                                                    .scaleEffect(1.2)
-                                                                    .customTextStroke()
-                                                                if allTimePlayersList.count > 0 {
-                                                                    Text(allTimePlayersList[0].name)
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.title3)
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .customShadow(radius: 0.1, width: 0.6)
-                                                                        .padding(.horizontal)
-                                                                    Text(String(allTimePlayersList[0].score))
-                                                                        .customTextStroke(width: 1.5)
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.title)
-                                                                        .bold()
-                                                                        .italic()
-                                                                } else{
-                                                                    Text("-")
-                                                                        .customTextStroke()
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.largeTitle)
-                                                                        .bold()
-                                                                        .italic()
-                                                                }
-                                                            }
-                                                            .background{
-                                                                if allTimePlayersList.count > 0 {
-                                                                    if allTimePlayersList[0].currentPlayer.alias == localPlayer.alias {
-                                                                        Color.white
-                                                                            .opacity(0.3)
-                                                                    }
-                                                                }
-                                                            }
-                                                            .cornerRadius(21)
-                                                            .frame(maxWidth: deviceWidth / 3)
-                                                            VStack{
-                                                                Circle()
-                                                                    .frame(width: 90)
-                                                                    .foregroundColor(allTimePlayersList.count > 1  ? .clear : .gray)
-                                                                    .padding([.horizontal, .top])
-                                                                    .overlay{
-                                                                        if allTimePlayersList.count > 1 {
-                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[1].ballID}) {
-                                                                                AnyView(character.character)
-                                                                                    .scaleEffect(2)
-                                                                                    .offset(y:3)
-                                                                            } else {
-                                                                                Image(systemName: "questionmark.circle")
-                                                                                    .font(.system(size: 90))
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                Text("🥈")
-                                                                    .font(.largeTitle)
-                                                                    .scaleEffect(1.2)
-                                                                    .customTextStroke()
-                                                                if allTimePlayersList.count > 1 {
-                                                                    Text(allTimePlayersList[1].name)
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.title3)
-                                                                        .bold()
-                                                                        .italic()
-                                                                        .customShadow(radius: 0.1, width: 0.6)
-                                                                        .padding(.horizontal)
-                                                                    Text(String(allTimePlayersList[1].score))
-                                                                        .customTextStroke(width: 1.5)
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.title)
-                                                                        .bold()
-                                                                        .italic()
-                                                                    //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
-                                                                } else{
-                                                                    Text("-")
-                                                                        .customTextStroke()
-                                                                        .multilineTextAlignment(.center)
-                                                                        .font(.largeTitle)
-                                                                        .bold()
-                                                                        .italic()
-                                                                    //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
-                                                                }
-                                                            }
-                                                            .background{
-                                                                if allTimePlayersList.count > 1 {
-                                                                    if allTimePlayersList[1].currentPlayer.alias == localPlayer.alias {
-                                                                        Color.white
-                                                                            .opacity(0.3)
-                                                                    }
-                                                                }
-                                                            }
-                                                            .cornerRadius(21)
-                                                            .frame(maxWidth: deviceWidth / 3)
-                                                            .padding(.trailing)
-                                                            .offset(y: 120)
-                                                            .padding(.bottom, 30)
-                                                        }
-                                                        .padding(.bottom, 60)
-                                                        .background{
-                                                            RotatingSunView()
-                                                                .offset(y:240)
-                                                        }
-                                                        //                                                    .frame(height: 270)
-                                                        LazyVStack {
-                                                            List {
-                                                                ForEach(4...50, id: \.self) { num in
-                                                                    ZStack{
-                                                                        HStack{
-                                                                            Text("\(num)")
-                                                                                .customTextStroke()
-                                                                                .bold()
-                                                                                .italic()
-                                                                            VStack(alignment: .leading){
-                                                                                if allTimePlayersList.count > num - 1 {
-                                                                                    Text(allTimePlayersList[num - 1].name)
-                                                                                        .font(.caption)
-                                                                                        .customTextStroke()
-                                                                                        .bold()
-                                                                                        .italic()
-                                                                                }
-                                                                                
-                                                                            }
-                                                                            .offset(x: 80)
-                                                                            Spacer()
-                                                                            Text(allTimePlayersList.count > num - 1 ? String(allTimePlayersList[num - 1].score) : "-")
-                                                                                .customTextStroke()
-                                                                                .bold()
-                                                                                .italic()
-                                                                            //                                                                        .foregroundColor(.white)
-                                                                            //                                                                        .shadow(color: .black, radius: 1, x: -1, y: 1)
-                                                                        }
-                                                                        if allTimePlayersList.count > num - 1 {
-                                                                            if let character = model.characters.first(where: {$0.characterID.hash == allTimePlayersList[num - 1].ballID}) {
-                                                                                AnyView(character.character)
-                                                                                    .position(x: 55, y: 30)
-                                                                            } else {
-                                                                                Image(systemName: "questionmark.circle")
-                                                                                    .font(.system(size: 40))
-                                                                                    .position(x: 55, y: 30)
-                                                                            }
-                                                                        } else {
-                                                                            WhiteBallView()
-                                                                                .opacity(0.5)
-                                                                                .position(x: 55, y: 30)
-                                                                        }
-                                                                        
-                                                                    }
-                                                                    .listRowBackground(RandomGradientView())
-                                                                }
-                                                                
-                                                            }
-                                                            .allowsHitTesting(false)
-                                                            .frame(width: self.idiom == .pad ? deviceWidth / 1.5 : deviceWidth, height: 3400, alignment: .center)
-                                                            .scrollContentBackground(.hidden)
-                                                        }
-                                                    }
-                                                }
-                                                .refreshable {
-                                                    Task{
-                                                        await gameCenter.loadLeaderboard()
-                                                    }
-                                                }
-                                                if allTimePlayersList.isEmpty{
                                                     ProgressView()
                                                         .scaleEffect(3)
                                                 }
