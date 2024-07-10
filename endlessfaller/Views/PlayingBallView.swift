@@ -67,7 +67,7 @@ struct PlayingBallView: View {
                     }
                     .frame(width: 120)
                     .rotationEffect(.degrees(180))
-                    .offset(y:18)
+                    .offset(y:39)
                 }
                 ZStack{
                     if userPersistedData.selectedBag != "nobag" {

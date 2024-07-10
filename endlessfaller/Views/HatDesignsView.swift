@@ -12,8 +12,6 @@ struct HatDesignsView: View {
     var body: some View {
         ZStack{
             JetPack()
-            ShockedBall()
-                .scaleEffect(1.5)
         }
     }
 }
@@ -63,14 +61,21 @@ struct PropellerHat: View {
 
 struct JetPack: View {
     var body: some View {
-        HStack{
-            Image("jetengine")
-                .resizable()
-            Image("jetengine")
-                .resizable()
+        ZStack{
+            HStack{
+                Image("jetengine")
+                    .resizable()
+                Image("jetengine")
+                    .resizable()
+            }
+            .frame(width: 120, height: 90)
+            .offset(x:-1, y:9)
+            .mask{
+                Rectangle()
+                    .frame(width: 100,height: 45)
+                    .offset(y: -8)
+            }
         }
-        .frame(width: 120, height: 90)
-        .offset(x:-1, y:9)
     }
 }
 
