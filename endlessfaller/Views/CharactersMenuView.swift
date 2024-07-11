@@ -179,7 +179,7 @@ struct CharacterButton: View {
                     }
                     if character.characterID == userPersistedData.selectedCharacter {
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.black, lineWidth: 3)
+                            .stroke(Color.black, lineWidth: 5)
                     }
                 }
                 .accentColor(.black)

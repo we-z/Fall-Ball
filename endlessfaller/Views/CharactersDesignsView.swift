@@ -12,9 +12,10 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                BoinsView()
+                YellowDemonView()
+                BDSMFlagView()
             }
-            .scaleEffect(6)
+            .scaleEffect(3)
         }
     }
 }
@@ -974,6 +975,30 @@ struct BDSMFlagView: View {
                             .frame(width: 46)
                     )
             )
+    }
+}
+
+struct YellowDemonView: View {
+    var body: some View {
+        Image("yellowdemon")
+            .resizable()
+            .frame(width: 47, height: 47)
+    }
+}
+
+struct PinkDemonView: View {
+    var body: some View {
+        Image("pinkdemon")
+            .resizable()
+            .frame(width: 47, height: 47)
+    }
+}
+
+struct TealDemonView: View {
+    var body: some View {
+        Image("tealdemon")
+            .resizable()
+            .frame(width: 47, height: 47)
     }
 }
 
