@@ -13,52 +13,53 @@ struct AppStoreScreenShotsView: View {
             LinearGradient(gradient: Gradient(colors: [.pink,.purple,.blue]), startPoint: UnitPoint(x: 0, y: 0.6), endPoint: UnitPoint(x: 0.6, y: 0.2))
                 .ignoresSafeArea()
             RotatingSunView()
+                .scaleEffect(1.9)
                 .offset(y: -90)
             VStack{
                 Spacer()
                 HStack{
                     WizardBall()
-                        .scaleEffect(1.5)
+                        .scaleEffect(2.1)
                         .padding(30)
                     Spacer()
                     NinjaBallView()
-                        .scaleEffect(1.5)
+                        .scaleEffect(2.1)
                         .padding(30)
                 }
-                .frame(width: deviceWidth, height: 300)
+                .frame(width: deviceWidth/1.2, height: 500)
                 
                 
                 HStack{
                     UnicornView()
-                        .scaleEffect(1.5)
+                        .scaleEffect(2.1)
                         .padding(30)
                     Spacer()
                     AirBallView()
-                        .scaleEffect(1.5)
+                        .scaleEffect(2.1)
                         .padding(30)
                 }
-                .frame(width: deviceWidth, height: 300)
+                .frame(width: deviceWidth/1.2, height: 500)
                 Spacer()
-                HStack{
+                HStack(spacing: 30){
                     SouthKoreaView()
                     AmericaView()
                     FallBallLaughBall()
                     LGBTQFlagView()
                     ChinaView()
                 }
-                .scaleEffect(1.5)
+                .scaleEffect(2.1)
             }
             .offset(y: -50)
             VStack{
                 Text("Fall Ball")
-                    .font(.system(size: 100))
+                    .font(.system(size: 120))
                     .bold()
                     .italic()
-                    .customTextStroke(width: 3.3)
+                    .customTextStroke(width: 4)
                     
                 DollarsignBallView()
-                    .scaleEffect(7)
-                    .padding(110)
+                    .scaleEffect(9)
+                    .padding(180)
                 VStack{
                     VStack{
                         Text("Swipe up \nto play!")
@@ -68,15 +69,14 @@ struct AppStoreScreenShotsView: View {
                         Image(systemName: "arrow.up")
                     }
                     .bold()
-                    .font(.largeTitle)
-                    .scaleEffect(1.5)
+                    .font(.system(size: 60))
                     SwipeUpHand()
                         .offset(x: 60, y:60)
                 }
-                .frame(width: 300, height: 400)
-                .customTextStroke(width: 2.7)
+                .frame(width: 300, height: 450)
+                .customTextStroke(width: 4)
                 .scaleEffect(0.75)
-                .offset(y: -60)
+                .offset(y: -90)
             }
             .offset(y:30)
         }

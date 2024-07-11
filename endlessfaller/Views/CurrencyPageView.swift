@@ -164,9 +164,13 @@ struct CurrencyPageView: View {
                                         .padding(.top, 3)
                                     }
                                     Button {
-                                        isProcessingPurchase = true
-                                        Task {
-                                            await buySubscription(bundle: bundle)
+                                        if storeKit.purchasedSubscriptions.isEmpty {
+                                            isProcessingPurchase = true
+                                            Task {
+                                                await buySubscription(bundle: bundle)
+                                            }
+                                        } else {
+                                            self.showManageSubscriptions = true
                                         }
                                     } label: {
                                         Rectangle()
