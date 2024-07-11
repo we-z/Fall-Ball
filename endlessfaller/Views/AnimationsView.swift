@@ -10,7 +10,7 @@ import Vortex
 
 struct AnimationsView: View {
     var body: some View {
-        BoinCollectedView()
+        NewBestScore()
     }
 }
 
@@ -1232,14 +1232,14 @@ struct NewBestScore: View {
                     .bold()
                     .italic()
                     .multilineTextAlignment(.center)
-                    .padding()
+                    .padding(21)
                     .font(.largeTitle)
-                    .customTextStroke()
+                    .customTextStroke(width: 1.8)
                     .allowsHitTesting(false)
             }
         }
         .background(Color.green)
-        .cornerRadius(15)
+        .cornerRadius(27)
         .flashing()
         .onAppear{
             DispatchQueue.main.asyncAfter(deadline: .now() + 3){
