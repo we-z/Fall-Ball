@@ -163,10 +163,6 @@ struct ContentView: View {
                 }
             }
         }
-        .sheet(isPresented: self.$showNewsBanner){
-            NewsBannerView()
-                .presentationDetents([.height(390)])
-        }
     }
 }
 

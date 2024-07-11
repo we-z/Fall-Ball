@@ -9,23 +9,20 @@
 /* Begin PBXBuildFile section */
 		762E44932C3356120034D989 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
 		763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */; };
+		76F49C8B2C40578D00FD8BED /* PlayersPlaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
-		7A0BB1C62B4F5EB70048B247 /* SharePlayActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */; };
-		7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */; };
 		7A0BB1CA2B4FD1A20048B247 /* HomeButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */; };
 		7A0BB1CC2B4FD4590048B247 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */; };
 		7A0BB1CE2B51C4DC0048B247 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */; };
 		7A0BB1D02B51CA580048B247 /* GameOverScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */; };
-		7A0BF2D52C190ADC00163668 /* SubscriptionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0BF2D42C190ADC00163668 /* SubscriptionOptions.swift */; };
 		7A16C4492B6AF63C00B6D3B1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A16C4482B6AF63C00B6D3B1 /* UserData.swift */; };
 		7A1B4B322BC660D500C58084 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */; };
 		7A2201342AB6739000DF04D7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2201332AB6739000DF04D7 /* GameCenter.swift */; };
 		7A2F39BA2BA0E4C400B15E5E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */; };
 		7A327D542AD3E700002700DD /* SecretShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A327D532AD3E700002700DD /* SecretShopView.swift */; };
 		7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */; };
-		7A38B5992B85723400DDD280 /* GKScoreChallengeTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */; };
 		7A38B59C2B85727000DDD280 /* Vortex in Frameworks */ = {isa = PBXBuildFile; productRef = 7A38B59B2B85727000DDD280 /* Vortex */; };
 		7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9B682B80E9800097D3F9 /* HUDView.swift */; };
 		7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */; };
@@ -34,7 +31,6 @@
 		7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2312AA3E0440099AFB6 /* QRView.swift */; };
 		7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A43B2332AA566A50099AFB6 /* TitleView.swift */; };
 		7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */; };
-		7A4773B12BD9A076001A2278 /* NewsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4773B02BD9A076001A2278 /* NewsBannerView.swift */; };
 		7A5CE0CB2C0044E500F2ABD2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5CE0CA2C0044E500F2ABD2 /* WidgetKit.framework */; };
 		7A5CE0CD2C0044E500F2ABD2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5CE0CC2C0044E500F2ABD2 /* SwiftUI.framework */; };
 		7A5CE0D02C0044E500F2ABD2 /* LeaderboardBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5CE0CF2C0044E500F2ABD2 /* LeaderboardBundle.swift */; };
@@ -55,7 +51,6 @@
 		7AB05CE52A65C67A00EE4D7B /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB05CE42A65C67A00EE4D7B /* ProductList.plist */; };
 		7ABA579A2BA4CD36000E5907 /* RandomGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABA57992BA4CD36000E5907 /* RandomGradientView.swift */; };
 		7AC089392B7EC818008DD71D /* BallAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC089382B7EC818008DD71D /* BallAnimationManager.swift */; };
-		7AC672AD2BA5072B0055CCDE /* InfiniteBoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */; };
 		7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */; };
 		7AD234412A5F824800ED626D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234402A5F824800ED626D /* ContentView.swift */; };
 		7AD234432A5F824900ED626D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234422A5F824900ED626D /* Assets.xcassets */; };
@@ -67,20 +62,11 @@
 		7AD2346F2A62019800ED626D /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2346E2A62019700ED626D /* TempView.swift */; };
 		7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */; };
 		7AD234752A64533700ED626D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD234742A64533700ED626D /* AppModel.swift */; };
-		7AE879AB2ACF28FE002CDD4F /* PlayersPlaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */; };
 		7AE879AD2ACF3F21002CDD4F /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE879AC2ACF3F21002CDD4F /* ShareView.swift */; };
 		7AEA1AB22AE46BDE00FE6DB5 /* CurrencyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA1AB12AE46BDE00FE6DB5 /* CurrencyPageView.swift */; };
 		7AEA1AB42AE5C9CA00FE6DB5 /* ContinuePlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA1AB32AE5C9CA00FE6DB5 /* ContinuePlayingView.swift */; };
 		7AF3EC662B8C2F2D003FE015 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
-		7AF3EC682B8FFB22003FE015 /* NBQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC672B8FFB22003FE015 /* NBQRView.swift */; };
 		7AFDA55F2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7AFDA55E2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7AFDA5642AC1592800D3A1F0 /* FallBallWatchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5632AC1592800D3A1F0 /* FallBallWatchOSApp.swift */; };
-		7AFDA5662AC1592800D3A1F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5652AC1592800D3A1F0 /* ContentView.swift */; };
-		7AFDA5682AC1592900D3A1F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AFDA5672AC1592900D3A1F0 /* Assets.xcassets */; };
-		7AFDA56B2AC1592900D3A1F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AFDA56A2AC1592900D3A1F0 /* Preview Assets.xcassets */; };
-		7AFDA5752AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5742AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift */; };
-		7AFDA57F2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA57E2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift */; };
-		7AFDA5812AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA5802AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift */; };
 		7AFFE22A2B95AE590039214C /* LevelsToPassPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -166,23 +152,20 @@
 
 /* Begin PBXFileReference section */
 		763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoinInfoView.swift; sourceTree = "<group>"; };
+		76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersPlaqueView.swift; path = "../../../../Library/Mobile Documents/.Trash/PlayersPlaqueView.swift"; sourceTree = "<group>"; };
 		7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fall-Ball-Info.plist"; sourceTree = "<group>"; };
 		7A053E4F2B553EA8007485A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7A0598072B08976E0053646D /* Boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boing.mp3; sourceTree = "<group>"; };
 		7A0598082B08976E0053646D /* DingDingDing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDingDing.mp3; sourceTree = "<group>"; };
-		7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePlayActivity.swift; sourceTree = "<group>"; };
-		7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySharingViewController.swift; sourceTree = "<group>"; };
 		7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonsView.swift; sourceTree = "<group>"; };
 		7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
 		7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenView.swift; sourceTree = "<group>"; };
-		7A0BF2D42C190ADC00163668 /* SubscriptionOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionOptions.swift; sourceTree = "<group>"; };
 		7A16C4482B6AF63C00B6D3B1 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		7A2201332AB6739000DF04D7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 		7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7A327D532AD3E700002700DD /* SecretShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretShopView.swift; sourceTree = "<group>"; };
 		7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterLeaderboardView.swift; sourceTree = "<group>"; };
-		7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKScoreChallengeTesterView.swift; sourceTree = "<group>"; };
 		7A3C9B682B80E9800097D3F9 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingBallView.swift; sourceTree = "<group>"; };
 		7A3CEA6A2A8AB1E100A79E65 /* pokeball.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pokeball.gif; sourceTree = "<group>"; };
@@ -192,16 +175,6 @@
 		7A43B2312AA3E0440099AFB6 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		7A43B2332AA566A50099AFB6 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreScreenShotsView.swift; sourceTree = "<group>"; };
-		7A4773B02BD9A076001A2278 /* NewsBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBannerView.swift; sourceTree = "<group>"; };
-		7A48042A2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipApp.swift; sourceTree = "<group>"; };
-		7A48042C2B54EF6500B6CE87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		7A48042E2B54EF6600B6CE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7A4804312B54EF6600B6CE87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		7A4804332B54EF6600B6CE87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A4804342B54EF6600B6CE87 /* Fall_Bal_App_Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fall_Bal_App_Clip.entitlements; sourceTree = "<group>"; };
-		7A48043D2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipTests.swift; sourceTree = "<group>"; };
-		7A4804472B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITests.swift; sourceTree = "<group>"; };
-		7A4804492B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_Bal_App_ClipUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7A58426E2BA2B8AC00EC70D2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7A5CE0C92C0044E500F2ABD2 /* LeaderboardExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LeaderboardExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A5CE0CA2C0044E500F2ABD2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -223,7 +196,6 @@
 		7AB05CE42A65C67A00EE4D7B /* ProductList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ProductList.plist; sourceTree = "<group>"; };
 		7ABA57992BA4CD36000E5907 /* RandomGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGradientView.swift; sourceTree = "<group>"; };
 		7AC089382B7EC818008DD71D /* BallAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallAnimationManager.swift; sourceTree = "<group>"; };
-		7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteBoinsView.swift; sourceTree = "<group>"; };
 		7AD2343B2A5F824800ED626D /* Fall Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fall Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD2343E2A5F824800ED626D /* endlessfallerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endlessfallerApp.swift; sourceTree = "<group>"; };
 		7AD234402A5F824800ED626D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -239,23 +211,14 @@
 		7AD2346E2A62019700ED626D /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersMenuView.swift; sourceTree = "<group>"; };
 		7AD234742A64533700ED626D /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
-		7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersPlaqueView.swift; sourceTree = "<group>"; };
 		7AE879AC2ACF3F21002CDD4F /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		7AEA1AB12AE46BDE00FE6DB5 /* CurrencyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPageView.swift; sourceTree = "<group>"; };
 		7AEA1AB32AE5C9CA00FE6DB5 /* ContinuePlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuePlayingView.swift; sourceTree = "<group>"; };
 		7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitUtility.swift; sourceTree = "<group>"; };
-		7AF3EC672B8FFB22003FE015 /* NBQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBQRView.swift; sourceTree = "<group>"; };
 		7AFDA5592AC1592800D3A1F0 /* FallBallWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallBallWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFDA55E2AC1592800D3A1F0 /* FallBallWatchOS Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FallBallWatchOS Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AFDA5632AC1592800D3A1F0 /* FallBallWatchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOSApp.swift; sourceTree = "<group>"; };
-		7AFDA5652AC1592800D3A1F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		7AFDA5672AC1592900D3A1F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7AFDA56A2AC1592900D3A1F0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7AFDA5702AC1592900D3A1F0 /* FallBallWatchOS Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FallBallWatchOS Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AFDA5742AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOS_Watch_AppTests.swift; sourceTree = "<group>"; };
 		7AFDA57A2AC1592A00D3A1F0 /* FallBallWatchOS Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FallBallWatchOS Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AFDA57E2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOS_Watch_AppUITests.swift; sourceTree = "<group>"; };
-		7AFDA5802AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallBallWatchOS_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsToPassPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -337,44 +300,6 @@
 			path = Gifs;
 			sourceTree = "<group>";
 		};
-		7A4804292B54EF6500B6CE87 /* Fall Bal App Clip */ = {
-			isa = PBXGroup;
-			children = (
-				7A48042A2B54EF6500B6CE87 /* Fall_Bal_App_ClipApp.swift */,
-				7A48042C2B54EF6500B6CE87 /* ContentView.swift */,
-				7A48042E2B54EF6600B6CE87 /* Assets.xcassets */,
-				7A4804332B54EF6600B6CE87 /* Info.plist */,
-				7A4804342B54EF6600B6CE87 /* Fall_Bal_App_Clip.entitlements */,
-				7A4804302B54EF6600B6CE87 /* Preview Content */,
-			);
-			path = "Fall Bal App Clip";
-			sourceTree = "<group>";
-		};
-		7A4804302B54EF6600B6CE87 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				7A4804312B54EF6600B6CE87 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		7A48043C2B54EF6600B6CE87 /* Fall Bal App ClipTests */ = {
-			isa = PBXGroup;
-			children = (
-				7A48043D2B54EF6600B6CE87 /* Fall_Bal_App_ClipTests.swift */,
-			);
-			path = "Fall Bal App ClipTests";
-			sourceTree = "<group>";
-		};
-		7A4804462B54EF6600B6CE87 /* Fall Bal App ClipUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7A4804472B54EF6600B6CE87 /* Fall_Bal_App_ClipUITests.swift */,
-				7A4804492B54EF6600B6CE87 /* Fall_Bal_App_ClipUITestsLaunchTests.swift */,
-			);
-			path = "Fall Bal App ClipUITests";
-			sourceTree = "<group>";
-		};
 		7A5CE0CE2C0044E500F2ABD2 /* Leaderboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,7 +320,6 @@
 				7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7A43B2312AA3E0440099AFB6 /* QRView.swift */,
-				7AF3EC672B8FFB22003FE015 /* NBQRView.swift */,
 				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
 				7A0598072B08976E0053646D /* Boing.mp3 */,
@@ -421,21 +345,17 @@
 				7AD234722A63A1FA00ED626D /* CharactersMenuView.swift */,
 				7A35C1792AC385B200A3D754 /* GameCenterLeaderboardView.swift */,
 				7A0BB1CF2B51CA580048B247 /* GameOverScreenView.swift */,
-				7A38B5982B85723400DDD280 /* GKScoreChallengeTesterView.swift */,
 				7AA3F7C62ADE2EBA002AD6CC /* HatDesignsView.swift */,
 				7A0BB1C92B4FD1A20048B247 /* HomeButtonsView.swift */,
 				7A3C9B682B80E9800097D3F9 /* HUDView.swift */,
-				7AC672AC2BA5072B0055CCDE /* InfiniteBoinsView.swift */,
 				7A0BB1CD2B51C4DC0048B247 /* LandingPageView.swift */,
 				7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */,
 				7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */,
-				7A4773B02BD9A076001A2278 /* NewsBannerView.swift */,
-				7AE879AA2ACF28FE002CDD4F /* PlayersPlaqueView.swift */,
 				7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */,
+				76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */,
 				7ABA57992BA4CD36000E5907 /* RandomGradientView.swift */,
 				7AE879AC2ACF3F21002CDD4F /* ShareView.swift */,
 				7A327D532AD3E700002700DD /* SecretShopView.swift */,
-				7A0BF2D42C190ADC00163668 /* SubscriptionOptions.swift */,
 				7AD2346E2A62019700ED626D /* TempView.swift */,
 			);
 			path = Views;
@@ -445,7 +365,6 @@
 			isa = PBXGroup;
 			children = (
 				7AB05CE32A65C65500EE4D7B /* products.storekit */,
-				7A0BB1C72B4F5ECE0048B247 /* ActivitySharingViewController.swift */,
 				7AD234742A64533700ED626D /* AppModel.swift */,
 				7A0BB1CB2B4FD4590048B247 /* AudioManager.swift */,
 				7AC089382B7EC818008DD71D /* BallAnimationManager.swift */,
@@ -454,7 +373,6 @@
 				7A2F39B92BA0E4C400B15E5E /* NotificationManager.swift */,
 				7AB05CE42A65C67A00EE4D7B /* ProductList.plist */,
 				7AB05CE12A65C5AC00EE4D7B /* StoreKitManager.swift */,
-				7A0BB1C52B4F5EB70048B247 /* SharePlayActivity.swift */,
 				7A16C4482B6AF63C00B6D3B1 /* UserData.swift */,
 			);
 			path = Configs;
@@ -467,12 +385,6 @@
 				7AD2343D2A5F824800ED626D /* endlessfaller */,
 				7AD2344F2A5F824900ED626D /* endlessfallerTests */,
 				7AD234592A5F824900ED626D /* endlessfallerUITests */,
-				7AFDA5622AC1592800D3A1F0 /* FallBallWatchOS Watch App */,
-				7AFDA5732AC1592A00D3A1F0 /* FallBallWatchOS Watch AppTests */,
-				7AFDA57D2AC1592A00D3A1F0 /* FallBallWatchOS Watch AppUITests */,
-				7A4804292B54EF6500B6CE87 /* Fall Bal App Clip */,
-				7A48043C2B54EF6600B6CE87 /* Fall Bal App ClipTests */,
-				7A4804462B54EF6600B6CE87 /* Fall Bal App ClipUITests */,
 				7A5CE0CE2C0044E500F2ABD2 /* Leaderboard */,
 				7AD2343C2A5F824800ED626D /* Products */,
 				7A053E4E2B553EA8007485A0 /* Frameworks */,
@@ -530,42 +442,6 @@
 				7AD2345C2A5F824900ED626D /* endlessfallerUITestsLaunchTests.swift */,
 			);
 			path = endlessfallerUITests;
-			sourceTree = "<group>";
-		};
-		7AFDA5622AC1592800D3A1F0 /* FallBallWatchOS Watch App */ = {
-			isa = PBXGroup;
-			children = (
-				7AFDA5632AC1592800D3A1F0 /* FallBallWatchOSApp.swift */,
-				7AFDA5652AC1592800D3A1F0 /* ContentView.swift */,
-				7AFDA5672AC1592900D3A1F0 /* Assets.xcassets */,
-				7AFDA5692AC1592900D3A1F0 /* Preview Content */,
-			);
-			path = "FallBallWatchOS Watch App";
-			sourceTree = "<group>";
-		};
-		7AFDA5692AC1592900D3A1F0 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				7AFDA56A2AC1592900D3A1F0 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		7AFDA5732AC1592A00D3A1F0 /* FallBallWatchOS Watch AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				7AFDA5742AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift */,
-			);
-			path = "FallBallWatchOS Watch AppTests";
-			sourceTree = "<group>";
-		};
-		7AFDA57D2AC1592A00D3A1F0 /* FallBallWatchOS Watch AppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7AFDA57E2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift */,
-				7AFDA5802AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift */,
-			);
-			path = "FallBallWatchOS Watch AppUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -844,8 +720,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AFDA56B2AC1592900D3A1F0 /* Preview Assets.xcassets in Resources */,
-				7AFDA5682AC1592900D3A1F0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,7 +757,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AB05CE22A65C5AC00EE4D7B /* StoreKitManager.swift in Sources */,
-				7AF3EC682B8FFB22003FE015 /* NBQRView.swift in Sources */,
 				7AD234412A5F824800ED626D /* ContentView.swift in Sources */,
 				7AB05CDF2A64EC4F00EE4D7B /* CharactersDesignsView.swift in Sources */,
 				7A689B392BA7853F006D3AA5 /* LeaderboardInfoView.swift in Sources */,
@@ -896,22 +769,18 @@
 				7AA3F7C72ADE2EBA002AD6CC /* HatDesignsView.swift in Sources */,
 				7AC089392B7EC818008DD71D /* BallAnimationManager.swift in Sources */,
 				7ABA579A2BA4CD36000E5907 /* RandomGradientView.swift in Sources */,
-				7AC672AD2BA5072B0055CCDE /* InfiniteBoinsView.swift in Sources */,
 				7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */,
-				7A0BB1C62B4F5EB70048B247 /* SharePlayActivity.swift in Sources */,
 				7AEA1AB42AE5C9CA00FE6DB5 /* ContinuePlayingView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
+				76F49C8B2C40578D00FD8BED /* PlayersPlaqueView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
 				7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */,
-				7A4773B12BD9A076001A2278 /* NewsBannerView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
 				7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */,
-				7A38B5992B85723400DDD280 /* GKScoreChallengeTesterView.swift in Sources */,
 				7A43B2322AA3E0440099AFB6 /* QRView.swift in Sources */,
-				7A0BB1C82B4F5ECE0048B247 /* ActivitySharingViewController.swift in Sources */,
 				7A0BB1CE2B51C4DC0048B247 /* LandingPageView.swift in Sources */,
 				7A43B2342AA566A50099AFB6 /* TitleView.swift in Sources */,
 				7A0BB1CC2B4FD4590048B247 /* AudioManager.swift in Sources */,
@@ -922,8 +791,6 @@
 				7A0BB1D02B51CA580048B247 /* GameOverScreenView.swift in Sources */,
 				7AEA1AB22AE46BDE00FE6DB5 /* CurrencyPageView.swift in Sources */,
 				7AE879AD2ACF3F21002CDD4F /* ShareView.swift in Sources */,
-				7AE879AB2ACF28FE002CDD4F /* PlayersPlaqueView.swift in Sources */,
-				7A0BF2D52C190ADC00163668 /* SubscriptionOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,8 +815,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AFDA5662AC1592800D3A1F0 /* ContentView.swift in Sources */,
-				7AFDA5642AC1592800D3A1F0 /* FallBallWatchOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,7 +822,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AFDA5752AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,8 +829,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AFDA5812AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITestsLaunchTests.swift in Sources */,
-				7AFDA57F2AC1592A00D3A1F0 /* FallBallWatchOS_Watch_AppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1458,7 +1320,6 @@
 		7AFDA5872AC1592A00D3A1F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1479,7 +1340,6 @@
 		7AFDA5882AC1592A00D3A1F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1500,7 +1360,6 @@
 		7AFDA58A2AC1592A00D3A1F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1526,7 +1385,6 @@
 		7AFDA58B2AC1592A00D3A1F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1552,7 +1410,6 @@
 		7AFDA58D2AC1592A00D3A1F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1577,7 +1434,6 @@
 		7AFDA58E2AC1592A00D3A1F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

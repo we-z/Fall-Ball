@@ -382,16 +382,6 @@ class AppModel: ObservableObject {
         Character(name: "gold ball", character: AnyView(GoldBallView()), cost: "700", characterID: "io.endlessfall.gold"),
         Character(name: "diamond ball", character: AnyView(DiamondBallView()), cost: "1000", characterID: "io.endlessfall.diamond")
     ]
-    
-    func startSharing() {
-        Task {
-            do {
-                _ = try await SharePlayActivity().activate()
-            } catch {
-                print("Failed to activate SharePlay activity: \(error)")
-            }
-        }
-    }
 }
 
 struct Character: Hashable {

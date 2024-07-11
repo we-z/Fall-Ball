@@ -226,9 +226,6 @@ struct HomeButtonsView: View {
         .sheet(isPresented: self.$showLeaderBoard){
             GameCenterLeaderboardView()
         }
-        .sheet(isPresented: $isActivitySharingSheetPresented) {
-            ActivitySharingViewController(activity: SharePlayActivity())
-        }
         .sheet(isPresented: self.$showCurrencyPage){
             CurrencyPageView()
         }
