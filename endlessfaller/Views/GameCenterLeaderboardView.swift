@@ -179,7 +179,7 @@ struct GameCenterLeaderboardView: View {
                                                             }
                                                             .background{
                                                                 if allTimePlayersList.count > 2 {
-                                                                    if allTimePlayersList[2].currentPlayer.alias == localPlayer.alias {
+                                                                    if allTimePlayersList[2].currentPlayerAlias == localPlayer.alias {
                                                                         Color.white
                                                                             .opacity(0.3)
                                                                     }
@@ -242,7 +242,7 @@ struct GameCenterLeaderboardView: View {
                                                             }
                                                             .background{
                                                                 if allTimePlayersList.count > 0 {
-                                                                    if allTimePlayersList[0].currentPlayer.alias == localPlayer.alias {
+                                                                    if allTimePlayersList[0].currentPlayerAlias == localPlayer.alias {
                                                                         Color.white
                                                                             .opacity(0.3)
                                                                     }
@@ -298,7 +298,7 @@ struct GameCenterLeaderboardView: View {
                                                             }
                                                             .background{
                                                                 if allTimePlayersList.count > 1 {
-                                                                    if allTimePlayersList[1].currentPlayer.alias == localPlayer.alias {
+                                                                    if allTimePlayersList[1].currentPlayerAlias == localPlayer.alias {
                                                                         Color.white
                                                                             .opacity(0.3)
                                                                     }
@@ -436,7 +436,7 @@ struct GameCenterLeaderboardView: View {
                                                             }
                                                             .background{
                                                                 if todaysPlayersList.count > 2 {
-                                                                    if todaysPlayersList[2].currentPlayer.alias == localPlayer.alias {
+                                                                    if todaysPlayersList[2].currentPlayerAlias == localPlayer.alias {
                                                                         Color.white
                                                                             .opacity(0.3)
                                                                     }
@@ -500,7 +500,7 @@ struct GameCenterLeaderboardView: View {
                                                             }
                                                             .background{
                                                                 if todaysPlayersList.count > 0 {
-                                                                    if todaysPlayersList[0].currentPlayer.alias == localPlayer.alias {
+                                                                    if todaysPlayersList[0].currentPlayerAlias == localPlayer.alias {
                                                                         Color.white
                                                                             .opacity(0.3)
                                                                     }
@@ -557,7 +557,7 @@ struct GameCenterLeaderboardView: View {
                                                             }
                                                             .background{
                                                                 if todaysPlayersList.count > 1 {
-                                                                    if todaysPlayersList[1].currentPlayer.alias == localPlayer.alias {
+                                                                    if todaysPlayersList[1].currentPlayerAlias == localPlayer.alias {
                                                                         Color.white
                                                                             .opacity(0.3)
                                                                     }
@@ -645,7 +645,7 @@ struct GameCenterLeaderboardView: View {
                         .ignoresSafeArea()
                 }
             }
-            if !GKLocalPlayer.local.isAuthenticated {
+            if allTimePlayersList.isEmpty {
                 Button {
                     impactHeavy.impactOccurred()
                     openSettings()

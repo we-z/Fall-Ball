@@ -37,7 +37,7 @@ struct LevelsToPassPlayerView: View {
     var body: some View {
         let todaysPlayersList = gameCenter.todaysPlayersList
         if todaysPlayersList.count > 0 {
-            if todaysPlayersList[0].currentPlayer != GKLocalPlayer.local 
+            if todaysPlayersList[0].currentPlayerAlias != GKLocalPlayer.local.alias
                 && gameCenter.nextPlayerIndex > -1
                 && todaysPlayersList[gameCenter.nextPlayerIndex].score >= appModel.score {
                 VStack{
