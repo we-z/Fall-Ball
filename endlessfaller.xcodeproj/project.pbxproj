@@ -10,6 +10,8 @@
 		762E44932C3356120034D989 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
 		763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */; };
 		76F49C8B2C40578D00FD8BED /* PlayersPlaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */; };
+		76F49C8D2C41772900FD8BED /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8C2C41772900FD8BED /* EventCardView.swift */; };
+		76F49C8F2C41891400FD8BED /* EventPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8E2C41891400FD8BED /* EventPageView.swift */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
 		7A0598092B08976E0053646D /* Boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598072B08976E0053646D /* Boing.mp3 */; };
 		7A05980A2B08976E0053646D /* DingDingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0598082B08976E0053646D /* DingDingDing.mp3 */; };
@@ -153,6 +155,8 @@
 /* Begin PBXFileReference section */
 		763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoinInfoView.swift; sourceTree = "<group>"; };
 		76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersPlaqueView.swift; path = "../../../../Library/Mobile Documents/.Trash/PlayersPlaqueView.swift"; sourceTree = "<group>"; };
+		76F49C8C2C41772900FD8BED /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
+		76F49C8E2C41891400FD8BED /* EventPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPageView.swift; sourceTree = "<group>"; };
 		7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fall-Ball-Info.plist"; sourceTree = "<group>"; };
 		7A053E4F2B553EA8007485A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7A0598072B08976E0053646D /* Boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boing.mp3; sourceTree = "<group>"; };
@@ -318,6 +322,8 @@
 			children = (
 				7A3CEA692A8AB1D100A79E65 /* Gifs */,
 				7A45C6032B86CB3A004E0986 /* AppStoreScreenShotsView.swift */,
+				76F49C8C2C41772900FD8BED /* EventCardView.swift */,
+				76F49C8E2C41891400FD8BED /* EventPageView.swift */,
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7A43B2312AA3E0440099AFB6 /* QRView.swift */,
 				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
@@ -777,6 +783,7 @@
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
 				7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
+				76F49C8D2C41772900FD8BED /* EventCardView.swift in Sources */,
 				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
 				7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */,
 				7A45C6042B86CB3A004E0986 /* AppStoreScreenShotsView.swift in Sources */,
@@ -787,6 +794,7 @@
 				7AFFE22A2B95AE590039214C /* LevelsToPassPlayerView.swift in Sources */,
 				7A35C17A2AC385B200A3D754 /* GameCenterLeaderboardView.swift in Sources */,
 				7A16C4492B6AF63C00B6D3B1 /* UserData.swift in Sources */,
+				76F49C8F2C41891400FD8BED /* EventPageView.swift in Sources */,
 				7A0BB1CA2B4FD1A20048B247 /* HomeButtonsView.swift in Sources */,
 				7A0BB1D02B51CA580048B247 /* GameOverScreenView.swift in Sources */,
 				7AEA1AB22AE46BDE00FE6DB5 /* CurrencyPageView.swift in Sources */,
