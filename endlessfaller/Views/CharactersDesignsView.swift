@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
-import Vortex
 
 struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
                 YellowDemonView()
-                BDSMFlagView()
+                PinkDemonView()
+                TealDemonView()
             }
-            .scaleEffect(3)
+            .scaleEffect(2)
         }
     }
 }
@@ -980,25 +980,69 @@ struct BDSMFlagView: View {
 
 struct YellowDemonView: View {
     var body: some View {
-        Image("yellowdemon")
-            .resizable()
-            .frame(width: 47, height: 47)
+        ZStack{
+            Image("yellowdemon")
+                .resizable()
+                .frame(width: 47, height: 47)
+            HStack(spacing: 21){
+                Image("yellowhorn")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .rotationEffect(.degrees(45))
+                Image("yellowhorn")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .flipped(.horizontal)
+                    .rotationEffect(.degrees(-45))
+            }
+            .offset(y: -2)
+        }
+        .frame(width: 47, height: 47)
     }
 }
 
 struct PinkDemonView: View {
     var body: some View {
-        Image("pinkdemon")
-            .resizable()
-            .frame(width: 47, height: 47)
+        ZStack{
+            Image("pinkdemon")
+                .resizable()
+                .frame(width: 47, height: 47)
+            HStack(spacing: 0){
+                Image("redhorn")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                Image("redhorn")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .flipped(.horizontal)
+            }
+            .offset(y: -21)
+        }
+        .frame(width: 47, height: 47)
     }
 }
 
 struct TealDemonView: View {
     var body: some View {
+        ZStack{
         Image("tealdemon")
             .resizable()
             .frame(width: 47, height: 47)
+            HStack(spacing: 0){
+                Image("bluehorn")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .rotationEffect(.degrees(90))
+                    .flipped(.horizontal)
+                Image("bluehorn")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .rotationEffect(.degrees(90))
+                    
+            }
+            .offset(y: -18)
+        }
+        .frame(width: 47, height: 47)
     }
 }
 
