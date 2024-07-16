@@ -984,16 +984,16 @@ struct YellowDemonView: View {
             Image("yellowdemon")
                 .resizable()
                 .frame(width: 47, height: 47)
-            HStack(spacing: 21){
+            HStack(spacing: 15){
                 Image("yellowhorn")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .rotationEffect(.degrees(45))
+                    .rotationEffect(.degrees(30))
                 Image("yellowhorn")
                     .resizable()
                     .frame(width: 30, height: 30)
                     .flipped(.horizontal)
-                    .rotationEffect(.degrees(-45))
+                    .rotationEffect(.degrees(-30))
             }
             .offset(y: -2)
         }
