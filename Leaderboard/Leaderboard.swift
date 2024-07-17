@@ -113,14 +113,15 @@ struct Leaderboard: Widget {
             LeaderboardEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
+        .supportedFamilies([.systemSmall, .systemLarge])
         .contentMarginsDisabled()
     }
 }
 
 extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
+    fileprivate static var allTime: ConfigurationAppIntent {
         let intent = ConfigurationAppIntent()
-        intent.currentPodium = "😀"
+        intent.currentPodium = "🏆"
         return intent
     }
 }
@@ -128,5 +129,5 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemLarge) {
     Leaderboard()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
+    SimpleEntry(date: .now, configuration: .allTime)
 }

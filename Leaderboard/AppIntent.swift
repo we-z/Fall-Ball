@@ -13,6 +13,6 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
     static var description = IntentDescription("This is an example widget.")
 
     // An example configurable parameter.
-    @Parameter(title: "All Time Leaderboard Podium", default: "🏆")
+    @Parameter(title: "All Time Podium", default: "🏆")
     var currentPodium: String
 }
