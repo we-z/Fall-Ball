@@ -7,6 +7,7 @@
 import SwiftUI
 import CloudKit
 import GameKit
+import WidgetKit
 
 struct GameCenterLeaderboardView: View {
     @ObservedObject private var model = AppModel.sharedAppModel
@@ -692,6 +693,7 @@ struct GameCenterLeaderboardView: View {
             do {
                 try data.write(to: url)
                 print("Image saved successfully.")
+                WidgetCenter.shared.reloadAllTimelines()
             } catch {
                 print("Error saving image: \(error)")
             }
