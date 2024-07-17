@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		761E35902C44AD16004BC1BC /* LeaderBoardWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761E358F2C44AD16004BC1BC /* LeaderBoardWidgetView.swift */; };
+		761E35912C460E84004BC1BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234422A5F824900ED626D /* Assets.xcassets */; };
 		762E44932C3356120034D989 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
 		763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */; };
 		76F49C8B2C40578D00FD8BED /* PlayersPlaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */; };
@@ -155,6 +156,7 @@
 
 /* Begin PBXFileReference section */
 		761E358F2C44AD16004BC1BC /* LeaderBoardWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardWidgetView.swift; sourceTree = "<group>"; };
+		761E35922C48160A004BC1BC /* LeaderboardExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeaderboardExtension.entitlements; sourceTree = "<group>"; };
 		763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoinInfoView.swift; sourceTree = "<group>"; };
 		76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersPlaqueView.swift; path = "../../../../Library/Mobile Documents/.Trash/PlayersPlaqueView.swift"; sourceTree = "<group>"; };
 		76F49C8C2C41772900FD8BED /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		7AD234322A5F824800ED626D = {
 			isa = PBXGroup;
 			children = (
+				761E35922C48160A004BC1BC /* LeaderboardExtension.entitlements */,
 				7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */,
 				7AD2343D2A5F824800ED626D /* endlessfaller */,
 				7AD2344F2A5F824900ED626D /* endlessfallerTests */,
@@ -684,6 +687,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				761E35912C460E84004BC1BC /* Assets.xcassets in Resources */,
 				7A5CE0D82C0044E600F2ABD2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -886,6 +890,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LeaderboardExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -920,6 +925,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LeaderboardExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;

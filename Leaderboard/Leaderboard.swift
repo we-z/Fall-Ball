@@ -41,12 +41,18 @@ struct LeaderboardEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        ZStack{
-            RandomGradientView()
-            Text("Ball is Life 🏀")
-                .italic()
-                .bold()
-                .customTextStroke()
+        if let imageUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.FallBallGroup")?.appendingPathComponent("allTimePodium.png"),
+                   let imageData = try? Data(contentsOf: imageUrl),
+                   let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+        } else {
+            VStack{
+                Text("Loading Leaderboard...")
+                    .italic()
+                    .bold()
+            }
         }
     }
 }
@@ -318,7 +324,7 @@ let backgroundColors: [String] = [
     "#FFD700" // Ferrari Yellow
 ]
 
-#Preview(as: .systemSmall) {
+#Preview(as: .systemLarge) {
     Leaderboard()
 } timeline: {
     SimpleEntry(date: .now, configuration: .smiley)

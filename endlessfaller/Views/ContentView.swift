@@ -19,8 +19,6 @@ struct ContentView: View {
     @StateObject var audioController = AudioManager.sharedAudioManager
     @Environment(\.scenePhase) var scenePhase
     @ObservedObject var userPersistedData = UserPersistedData()
-    @State var showNewsBanner = false
-    @GestureState private var translation: CGFloat = 0
     
     func boinFound() {
         appModel.showBoinFoundAnimation = true

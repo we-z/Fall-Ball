@@ -91,7 +91,7 @@ class StoreKitManager: ObservableObject {
                     newSubscriptions.append(product)
                 default:
                     //Ignore this product.
-                    print("Unknown product")
+                    print(product.id)
                 }
             }
             
