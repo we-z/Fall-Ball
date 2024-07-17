@@ -208,6 +208,9 @@ struct HUDView: View {
             if let image = renderAllTimePodiumView() {
                 saveImageToDisk(image: image, fileName: "allTimePodium.png")
             }
+            if let image = renderTodaysPodiumView() {
+                saveImageToDisk(image: image, fileName: "todaysPodium.png")
+            }
         }
     }
     
@@ -217,6 +220,16 @@ struct HUDView: View {
     private func renderAllTimePodiumView() -> UIImage?{
         
         let renderer = ImageRenderer(content: allTimePodiumView())
+
+        renderer.scale = displayScale
+     
+        return renderer.uiImage
+    }
+    
+    @MainActor
+    private func renderTodaysPodiumView() -> UIImage?{
+        
+        let renderer = ImageRenderer(content: todaysPodiumView())
 
         renderer.scale = displayScale
      
@@ -436,7 +449,7 @@ struct HUDView: View {
         .frame(width: 330, height: 330)
     }
     
-    func todayPodiumView () -> some View {
+    func todaysPodiumView () -> some View {
         let todaysPlayersList = gameCenter.todaysPlayersList
         return ZStack{
             LinearGradient(gradient: Gradient(colors: [.pink,.purple,.blue]), startPoint: UnitPoint(x: 0, y: 1), endPoint: UnitPoint(x: 1, y: 0))
