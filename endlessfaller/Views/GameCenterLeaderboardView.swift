@@ -704,7 +704,7 @@ struct GameCenterLeaderboardView: View {
     func allTimePodiumView () -> some View {
         let allTimePlayersList = gameCenter.allTimePlayersList
         return ZStack{
-            LinearGradient(gradient: Gradient(colors: [.red,.teal,.purple]), startPoint: UnitPoint(x: 0, y: 1), endPoint: UnitPoint(x: 1, y: 0))
+            LinearGradient(gradient: Gradient(colors: [.pink,.purple,.blue]), startPoint: UnitPoint(x: 0, y: 1), endPoint: UnitPoint(x: 1, y: 0))
                 .frame(width: 330, height: 330)
             RotatingSunView()
                 .offset(y: 180)
