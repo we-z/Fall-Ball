@@ -49,7 +49,7 @@ struct LeaderboardEntryView : View {
                         .aspectRatio(contentMode: .fill)
         } else {
             VStack{
-                Text("Loading Leaderboard...")
+                Text("Sign in Game Center")
                     .italic()
                     .bold()
             }

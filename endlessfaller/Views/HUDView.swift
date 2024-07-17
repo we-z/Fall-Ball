@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import WidgetKit
+import GameKit
 
 struct HUDView: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
@@ -13,6 +15,9 @@ struct HUDView: View {
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var userPersistedData = UserPersistedData()
     @State var pauseButtonPressed = false
+    @ObservedObject var gameCenter = GameCenter.shared
+    private var localPlayer = GKLocalPlayer.local
+    
     var body: some View {
         ZStack{
             
@@ -199,5 +204,235 @@ struct HUDView: View {
                 DailyBoinCollectedView()
             }
         }
+        .onChange(of: gameCenter.allTimePlayersList) { newList in
+            if let image = renderAllTimePodiumView() {
+                saveImageToDisk(image: image, fileName: "allTimePodium.png")
+            }
+        }
+    }
+    
+    @Environment(\.displayScale) var displayScale
+    
+    @MainActor
+    private func renderAllTimePodiumView() -> UIImage?{
+        
+        let renderer = ImageRenderer(content: allTimePodiumView())
+
+        renderer.scale = displayScale
+     
+        return renderer.uiImage
+    }
+    
+    private func saveImageToDisk(image: UIImage, fileName: String) {
+        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.FallBallGroup") else {
+            print("Error: Could not find container URL for the app group.")
+            return
+        }
+        
+        let url = containerURL.appendingPathComponent(fileName)
+        
+        if let data = image.pngData() {
+            do {
+                try data.write(to: url)
+                print("Image saved successfully.")
+                WidgetCenter.shared.reloadAllTimelines()
+            } catch {
+                print("Error saving image: \(error)")
+            }
+        } else {
+            print("Error: Could not convert image to PNG data.")
+        }
+    }
+    
+    func allTimePodiumView () -> some View {
+        let allTimePlayersList = gameCenter.allTimePlayersList
+        return ZStack{
+            LinearGradient(gradient: Gradient(colors: [.pink,.purple,.blue]), startPoint: UnitPoint(x: 0, y: 1), endPoint: UnitPoint(x: 1, y: 0))
+                .frame(width: 330, height: 330)
+            RotatingSunView()
+                .offset(y: 180)
+            HStack{
+                VStack{
+                    Circle()
+                        .frame(width: 90)
+                        .foregroundColor(allTimePlayersList.count > 2 ? .clear : .gray)
+                        .padding([.horizontal, .top])
+                        .overlay{
+                            if allTimePlayersList.count > 2 {
+                                if let character = appModel.characters.first(where: {$0.characterID.hash == allTimePlayersList[2].ballID}) {
+                                    AnyView(character.character)
+                                        .scaleEffect(2)
+                                        .offset(y:3)
+                                } else {
+                                    Image(systemName: "questionmark.circle")
+                                        .font(.system(size: 90))
+                                }
+                            }
+                        }
+                    Text("🥉")
+                        .font(.largeTitle)
+                        .scaleEffect(1.2)
+                        .customTextStroke()
+                    if allTimePlayersList.count > 2 {
+                        Text(allTimePlayersList[2].name)
+                            .multilineTextAlignment(.center)
+                            .font(.title3)
+                            .bold()
+                            .italic()
+                            .customShadow(radius: 0.1, width: 0.6)
+                            .padding(.horizontal)
+                        Text(String(allTimePlayersList[2].score))
+                            .customTextStroke(width: 1.5)
+                            .multilineTextAlignment(.center)
+                            .font(.title)
+                            .bold()
+                            .italic()
+                    } else{
+                        Text("-")
+                            .customTextStroke()
+                            .multilineTextAlignment(.center)
+                            .font(.largeTitle)
+                            .bold()
+                            .italic()
+                        //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                    }
+                }
+                .background{
+                    if allTimePlayersList.count > 2 {
+                        if allTimePlayersList[2].currentPlayerAlias == localPlayer.alias {
+                            Color.white
+                                .opacity(0.3)
+                        }
+                    }
+                }
+                .cornerRadius(21)
+                .frame(maxWidth: deviceWidth / 3)
+                .padding(.leading)
+                .offset(y: 120)
+                .padding(.bottom, 30)
+                VStack{
+                    Text("👑")
+                        .font(.largeTitle)
+                        .scaleEffect(1.5)
+                        .opacity(allTimePlayersList.count > 0 ? 1 : 0)
+                        .customTextStroke()
+                    Circle()
+                        .frame(width: 100)
+                        .foregroundColor(allTimePlayersList.count > 0 ? .clear : .gray)
+                        .padding([.horizontal])
+                        .overlay{
+                            if allTimePlayersList.count > 0 {
+                                if let character = appModel.characters.first(where: {$0.characterID.hash == allTimePlayersList[0].ballID}) {
+                                    AnyView(character.character)
+                                        .scaleEffect(2)
+                                        .offset(y:3)
+                                } else {
+                                    Image(systemName: "questionmark.circle")
+                                        .font(.system(size: 90))
+                                }
+                            }
+                            
+                        }
+                    Text("🥇")
+                        .font(.largeTitle)
+                        .scaleEffect(1.2)
+                        .customTextStroke()
+                    if allTimePlayersList.count > 0 {
+                        Text(allTimePlayersList[0].name)
+                            .multilineTextAlignment(.center)
+                            .font(.title3)
+                            .bold()
+                            .italic()
+                            .customShadow(radius: 0.1, width: 0.6)
+                            .padding(.horizontal)
+                        Text(String(allTimePlayersList[0].score))
+                            .customTextStroke(width: 1.5)
+                            .multilineTextAlignment(.center)
+                            .font(.title)
+                            .bold()
+                            .italic()
+                    } else{
+                        Text("-")
+                            .customTextStroke()
+                            .multilineTextAlignment(.center)
+                            .font(.largeTitle)
+                            .bold()
+                            .italic()
+                    }
+                }
+                .background{
+                    if allTimePlayersList.count > 0 {
+                        if allTimePlayersList[0].currentPlayerAlias == localPlayer.alias {
+                            Color.white
+                                .opacity(0.3)
+                        }
+                    }
+                }
+                .cornerRadius(21)
+                .frame(maxWidth: deviceWidth / 3)
+                VStack{
+                    Circle()
+                        .frame(width: 90)
+                        .foregroundColor(allTimePlayersList.count > 1  ? .clear : .gray)
+                        .padding([.horizontal, .top])
+                        .overlay{
+                            if allTimePlayersList.count > 1 {
+                                if let character = appModel.characters.first(where: {$0.characterID.hash == allTimePlayersList[1].ballID}) {
+                                    AnyView(character.character)
+                                        .scaleEffect(2)
+                                        .offset(y:3)
+                                } else {
+                                    Image(systemName: "questionmark.circle")
+                                        .font(.system(size: 90))
+                                }
+                            }
+                        }
+                    Text("🥈")
+                        .font(.largeTitle)
+                        .scaleEffect(1.2)
+                        .customTextStroke()
+                    if allTimePlayersList.count > 1 {
+                        Text(allTimePlayersList[1].name)
+                            .multilineTextAlignment(.center)
+                            .font(.title3)
+                            .bold()
+                            .italic()
+                            .customShadow(radius: 0.1, width: 0.6)
+                            .padding(.horizontal)
+                        Text(String(allTimePlayersList[1].score))
+                            .customTextStroke(width: 1.5)
+                            .multilineTextAlignment(.center)
+                            .font(.title)
+                            .bold()
+                            .italic()
+                        //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                    } else{
+                        Text("-")
+                            .customTextStroke()
+                            .multilineTextAlignment(.center)
+                            .font(.largeTitle)
+                            .bold()
+                            .italic()
+                        //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
+                    }
+                }
+                .background{
+                    if allTimePlayersList.count > 1 {
+                        if allTimePlayersList[1].currentPlayerAlias == localPlayer.alias {
+                            Color.white
+                                .opacity(0.3)
+                        }
+                    }
+                }
+                .cornerRadius(21)
+                .frame(maxWidth: deviceWidth / 3)
+                .padding(.trailing)
+                .offset(y: 120)
+                .padding(.bottom, 30)
+            }
+            .scaleEffect(0.7)
+            .offset(y: -45)
+        }
+        .frame(width: 330, height: 330)
     }
 }
