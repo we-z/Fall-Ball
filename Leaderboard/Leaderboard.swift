@@ -41,14 +41,23 @@ struct LeaderboardEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        if let imageUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.FallBallGroup")?.appendingPathComponent("allTimePodium.png"),
-                   let imageData = try? Data(contentsOf: imageUrl),
-                   let uiImage = UIImage(data: imageData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+        let imageName: String = {
+            switch entry.configuration.podiumType {
+            case .allTime:
+                return "allTimePodium.png"
+            case .todays:
+                return "todaysPodium.png"
+            }
+        }()
+
+        if let imageUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.FallBallGroup")?.appendingPathComponent(imageName),
+           let imageData = try? Data(contentsOf: imageUrl),
+           let uiImage = UIImage(data: imageData) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
         } else {
-            VStack{
+            VStack {
                 Text("Sign in Game Center")
                     .italic()
                     .bold()
@@ -71,9 +80,14 @@ struct Leaderboard: Widget {
 }
 
 extension ConfigurationAppIntent {
-    fileprivate static var allTime: ConfigurationAppIntent {
+    fileprivate static var allTimePodium: ConfigurationAppIntent {
         let intent = ConfigurationAppIntent()
-        intent.currentPodium = "🏆"
+        intent.podiumType = .allTime
+        return intent
+    }
+    fileprivate static var todaysPodium: ConfigurationAppIntent {
+        let intent = ConfigurationAppIntent()
+        intent.podiumType = .todays
         return intent
     }
 }
@@ -81,5 +95,5 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemLarge) {
     Leaderboard()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .allTime)
+    SimpleEntry(date: .now, configuration: .allTimePodium)
 }

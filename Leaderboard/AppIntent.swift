@@ -13,6 +13,22 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
     static var description = IntentDescription("This is an example widget.")
 
     // An example configurable parameter.
-    @Parameter(title: "All Time Podium", default: "🏆")
-    var currentPodium: String
+    @Parameter(title: "Podium Type", default: .allTime)
+    var podiumType: PodiumType
+}
+
+enum PodiumType: String, AppEnum {
+    case allTime = "All Time"
+    case todays = "Today's"
+
+    static var typeDisplayRepresentation: TypeDisplayRepresentation {
+        "Podium Type"
+    }
+
+    static var caseDisplayRepresentations: [PodiumType: DisplayRepresentation] {
+        [
+            .allTime: "All Time Podium",
+            .todays: "Today's Podium"
+        ]
+    }
 }
