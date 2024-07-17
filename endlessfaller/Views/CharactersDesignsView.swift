@@ -1028,19 +1028,19 @@ struct TealDemonView: View {
         Image("tealdemon")
             .resizable()
             .frame(width: 47, height: 47)
-            HStack(spacing: 0){
+            HStack(spacing: -2){
                 Image("bluehorn")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .rotationEffect(.degrees(90))
+                    .rotationEffect(.degrees(60))
                     .flipped(.horizontal)
                 Image("bluehorn")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .rotationEffect(.degrees(90))
+                    .rotationEffect(.degrees(60))
                     
             }
-            .offset(y: -18)
+            .offset(y: -19)
         }
         .frame(width: 47, height: 47)
     }
