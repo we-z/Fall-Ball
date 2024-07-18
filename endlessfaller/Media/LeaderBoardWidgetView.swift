@@ -32,11 +32,12 @@ struct LeaderBoardWidgetView: View {
                 .offset(y: 180)
             VStack{
                 Text("🏆 Podium 🏆")
-                    .font(.system(size: 40))
+                    .font(.system(size: 36))
                     .bold()
                     .italic()
                     .customShadow(width: 1.5)
-                    .padding(.top, 50)
+                    .padding(.top, 90)
+                Spacer()
                 HStack{
                     VStack{
                         Circle()
@@ -216,10 +217,9 @@ struct LeaderBoardWidgetView: View {
                     .offset(y: 120)
                     .padding(.bottom, 30)
                 }
-                .offset(y: -18)
+                .offset(y: -180)
             }
             .scaleEffect(0.7)
-            .offset(y: -45)
         }
         .frame(width: 330, height: 330)
     }
