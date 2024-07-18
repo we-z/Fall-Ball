@@ -317,14 +317,6 @@ struct HUDView: View {
                             //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                         }
                     }
-                    .background{
-                        if allTimePlayersList.count > 2 {
-                            if allTimePlayersList[2].currentPlayerAlias == localPlayer.alias {
-                                Color.white
-                                    .opacity(0.3)
-                            }
-                        }
-                    }
                     .cornerRadius(21)
                     .frame(maxWidth: deviceWidth / 3)
                     .padding(.leading)
@@ -380,14 +372,6 @@ struct HUDView: View {
                                 .italic()
                         }
                     }
-                    .background{
-                        if allTimePlayersList.count > 0 {
-                            if allTimePlayersList[0].currentPlayerAlias == localPlayer.alias {
-                                Color.white
-                                    .opacity(0.3)
-                            }
-                        }
-                    }
                     .cornerRadius(21)
                     .frame(maxWidth: deviceWidth / 3)
                     VStack{
@@ -434,14 +418,6 @@ struct HUDView: View {
                                 .bold()
                                 .italic()
                             //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
-                        }
-                    }
-                    .background{
-                        if allTimePlayersList.count > 1 {
-                            if allTimePlayersList[1].currentPlayerAlias == localPlayer.alias {
-                                Color.white
-                                    .opacity(0.3)
-                            }
                         }
                     }
                     .cornerRadius(21)
@@ -518,14 +494,6 @@ struct HUDView: View {
                             //                                                                    .shadow(color: .black, radius: 1, x: -3, y: 3)
                         }
                     }
-                    .background{
-                        if todaysPlayersList.count > 2 {
-                            if todaysPlayersList[2].currentPlayerAlias == localPlayer.alias {
-                                Color.white
-                                    .opacity(0.3)
-                            }
-                        }
-                    }
                     .frame(maxWidth: deviceWidth / 3)
                     .cornerRadius(21)
                     .padding(.leading)
@@ -582,14 +550,6 @@ struct HUDView: View {
                                 .italic()
                         }
                     }
-                    .background{
-                        if todaysPlayersList.count > 0 {
-                            if todaysPlayersList[0].currentPlayerAlias == localPlayer.alias {
-                                Color.white
-                                    .opacity(0.3)
-                            }
-                        }
-                    }
                     .cornerRadius(21)
                     .frame(maxWidth: deviceWidth / 3)
                     
@@ -637,14 +597,6 @@ struct HUDView: View {
                                 .font(.largeTitle)
                                 .bold()
                                 .italic()
-                        }
-                    }
-                    .background{
-                        if todaysPlayersList.count > 1 {
-                            if todaysPlayersList[1].currentPlayerAlias == localPlayer.alias {
-                                Color.white
-                                    .opacity(0.3)
-                            }
                         }
                     }
                     .frame(maxWidth: deviceWidth / 3)
