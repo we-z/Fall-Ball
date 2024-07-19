@@ -121,7 +121,11 @@ struct ContentView: View {
                                 appModel.liftBall(difficultyInput: newIndex)
                             }
                             DispatchQueue.main.async {
-                                appModel.score += 1
+                                if userPersistedData.strategyModeEnabled {
+                                    appModel.score += 2
+                                } else {
+                                    appModel.score += 1
+                                }
                                 if audioController.musicPlayer.rate < 2 {
                                     audioController.musicPlayer.rate += 0.001
                                 }
