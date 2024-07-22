@@ -214,10 +214,15 @@ struct HomeButtonsView: View {
                     }
                 }
                 .cornerRadius(30)
-                
                 .frame(width: 300, height: 300)
                 .customTextStroke(width: 3)
+                .onOpenURL { url in
+                    if url.scheme == "FallBallWidget" && url.host == "open" {
+                        showLeaderBoard = true
+                    }
+                }
             }
+            
         }
         .ignoresSafeArea()
         .sheet(isPresented: self.$showCharactersMenu){

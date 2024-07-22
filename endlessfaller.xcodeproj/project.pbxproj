@@ -11,7 +11,6 @@
 		761E35912C460E84004BC1BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234422A5F824900ED626D /* Assets.xcassets */; };
 		762E44932C3356120034D989 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
 		763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */; };
-		76F49C8B2C40578D00FD8BED /* PlayersPlaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */; };
 		76F49C8D2C41772900FD8BED /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8C2C41772900FD8BED /* EventCardView.swift */; };
 		76F49C8F2C41891400FD8BED /* EventPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F49C8E2C41891400FD8BED /* EventPageView.swift */; };
 		7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A053E4F2B553EA8007485A0 /* StoreKit.framework */; };
@@ -158,7 +157,6 @@
 		761E358F2C44AD16004BC1BC /* LeaderBoardWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardWidgetView.swift; sourceTree = "<group>"; };
 		761E35922C48160A004BC1BC /* LeaderboardExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeaderboardExtension.entitlements; sourceTree = "<group>"; };
 		763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoinInfoView.swift; sourceTree = "<group>"; };
-		76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersPlaqueView.swift; path = "../../../../Library/Mobile Documents/.Trash/PlayersPlaqueView.swift"; sourceTree = "<group>"; };
 		76F49C8C2C41772900FD8BED /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
 		76F49C8E2C41891400FD8BED /* EventPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPageView.swift; sourceTree = "<group>"; };
 		7A053E4D2B553E8A007485A0 /* Fall-Ball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fall-Ball-Info.plist"; sourceTree = "<group>"; };
@@ -363,7 +361,6 @@
 				7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */,
 				7AFFE2292B95AE590039214C /* LevelsToPassPlayerView.swift */,
 				7A3C9B6A2B80FF310097D3F9 /* PlayingBallView.swift */,
-				76F49C8A2C40578D00FD8BED /* PlayersPlaqueView.swift */,
 				7ABA57992BA4CD36000E5907 /* RandomGradientView.swift */,
 				7AE879AC2ACF3F21002CDD4F /* ShareView.swift */,
 				7A327D532AD3E700002700DD /* SecretShopView.swift */,
@@ -786,7 +783,6 @@
 				7AEA1AB42AE5C9CA00FE6DB5 /* ContinuePlayingView.swift in Sources */,
 				7AD234732A63A1FA00ED626D /* CharactersMenuView.swift in Sources */,
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
-				76F49C8B2C40578D00FD8BED /* PlayersPlaqueView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
 				7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */,
 				761E35902C44AD16004BC1BC /* LeaderBoardWidgetView.swift in Sources */,

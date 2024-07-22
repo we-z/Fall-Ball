@@ -95,19 +95,19 @@ struct CharactersMenuView: View {
                             self.showSecretShop = true
                         } label: {
                             Text("Secret Shop 🤫")
-                                .padding(6)
+                                .padding(9)
                                 .padding(.horizontal, 6)
-                                .customTextStroke()
-                                .font(.system(size: 21))
+                                .customTextStroke(width: 1.8)
+                                .font(.system(size: 30))
                                 .bold()
                                 .italic()
                                 .background(RandomGradientView())
                                 .overlay{
-                                    RoundedRectangle(cornerRadius: 12)
+                                    RoundedRectangle(cornerRadius: 18)
                                         .stroke(Color.black, lineWidth: 3)
                                         .padding(1)
                                 }
-                                .cornerRadius(12)
+                                .cornerRadius(18)
                                 .padding()
                         }
                         .buttonStyle(.roundedAndShadow6)

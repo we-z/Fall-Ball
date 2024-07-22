@@ -252,10 +252,6 @@ struct GameOverScreenView: View {
                 appModel.showNewBestScore = false
             }
         }
-        .sheet(isPresented: self.$showPlaqueShare){
-            PlayersPlaqueView()
-                .presentationDetents([.height(450)])
-        }
         
     }
 }
