@@ -64,7 +64,6 @@ class GameCenter: ObservableObject {
                 print(error?.localizedDescription ?? "")
                 return
             }
-            self.userPersistedData.gameCenterLoggedIn = true
             Task {
                 await self.loadLeaderboard()
             }

@@ -151,9 +151,7 @@ struct ContentView: View {
             .edgesIgnoringSafeArea(.all)
             .scrollDisabled(appModel.freezeScrolling)
             .onAppear {
-                if userPersistedData.gameCenterLoggedIn {
-                    gameCenter.authenticateUser()
-                }
+                gameCenter.authenticateUser()
                 appModel.playedCharacter = userPersistedData.selectedCharacter
                 appModel.checkIfAppOpenToday()
                 appModel.setFirstRandomSkin()
