@@ -11,9 +11,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                YellowDemonView()
-                PinkDemonView()
-                TealDemonView()
+                EvilBall()
             }
             .scaleEffect(2)
         }
@@ -370,8 +368,8 @@ struct EvilBall: View {
 //                    .offset(y:-9)
 //            )
         }
-        
         .frame(width: 46, height: 46)
+        .customTextStroke()
     }
 }
 
