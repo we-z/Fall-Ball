@@ -13,7 +13,7 @@ struct CharactersDesignsView: View {
             HStack{
                 EvilBall()
             }
-            .scaleEffect(2)
+            .scaleEffect(6)
         }
     }
 }
@@ -369,7 +369,7 @@ struct EvilBall: View {
 //            )
         }
         .frame(width: 46, height: 46)
-        .customTextStroke()
+        .customShadow(radius: 0.05, width: 0.4)
     }
 }
 
