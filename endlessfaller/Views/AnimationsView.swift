@@ -681,10 +681,6 @@ struct DailyBoinCollectedView: View {
             VStack {
                 BoinsView()
                     .scaleEffect(scale ? 1.5 : 1.8)
-                    
-//                    .scaleEffect(animationEnding ? 0.2 : 1)
-//                    .offset(x: animationEnding ? deviceWidth : 0, y: (-(deviceHeight / 2)) + 90 )
-                    
                 Text("Daily Boin\nCollected!")
                     .italic()
                     .bold()

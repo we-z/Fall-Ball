@@ -1136,7 +1136,8 @@ public extension UIDevice {
     
     static let isSmallDevice: Bool = {
         let oldDeviceNames = [
-            "iPhone 13 mini"
+            "iPhone 13 mini",
+            "iPhone 12 mini"
         ]
     return oldDeviceNames.contains(modelName)
     }()
