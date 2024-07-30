@@ -18,11 +18,9 @@ class NotificationManager: ObservableObject {
         "You're missed!",
         "Hello again! ✨",
         "Guess who's back? 🌟",
-        "Your world awaits 🌍",
-        "Adventure time! 🚀",
-        "Ready for a challenge? 🎯",
-        "Let's make today special! 🎉",
-        "Unseen wonders await! 🌈"
+        "Ball is Life 🌍",
+        "Swipe time! 🚀",
+        "Ready for a challenge? 🎯"
     ]
     
     // Updated bodies to mention "boins" in each message
@@ -32,10 +30,8 @@ class NotificationManager: ObservableObject {
         "A surprise boin is waiting for you 🎁",
         "It's time for your daily boin!",
         "Unlock your daily boin reward now!",
-        "Embark on a new quest today for more boins!",
         "Special boin reward for special players like you! 🏆",
         "Your favorite game misses you. Return for a surprise boin! ✨",
-        "Epic boin adventures await your return!",
         "Your journey for boins continues today. Don't miss out! 🌟"
     ]
     

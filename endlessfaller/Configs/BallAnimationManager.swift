@@ -34,7 +34,6 @@ class BallAnimationManager: ObservableObject {
         } else {
             self.screenCeiling = 90
          }
-        print("screenCeiling: \(self.screenCeiling)")
     }
     
     func startTimer(speed: Double) {
