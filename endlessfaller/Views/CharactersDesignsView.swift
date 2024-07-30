@@ -369,7 +369,7 @@ struct EvilBall: View {
 //            )
         }
         .frame(width: 46, height: 46)
-        .customShadow(radius: 0.05, width: 0.4)
+        .customShadow(radius: 0.1, width: 0.4)
     }
 }
 

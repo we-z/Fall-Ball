@@ -12,9 +12,7 @@ struct endlessfallerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-//                .preferredColorScheme(.light)
                 .environment(\.sizeCategory, .medium)
-//                .defersSystemGestures(on: .bottom)
         }
     }
 }

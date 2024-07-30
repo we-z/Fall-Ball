@@ -1,5 +1,5 @@
 {
-  "originHash" : "9fb6fb7a160e65996554354f24322cb0b2b859e7187a972ce27251f0edf7478b",
+  "originHash" : "187799d587755b5971debde049dda235bdf9bdf31aaef35d76a48ae97835862a",
   "pins" : [
     {
       "identity" : "circular-progress",
@@ -107,15 +107,6 @@
       "state" : {
         "revision" : "e029f75f9c43e52e351528a78e293a997200b9f8",
         "version" : "2.0.0"
-      }
-    },
-    {
-      "identity" : "swizzleswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Amzd/SwizzleSwift",
-      "state" : {
-        "revision" : "e2d31c646182bf94a496b173c6ee5ad191230e9a",
-        "version" : "1.0.0"
       }
     },
     {

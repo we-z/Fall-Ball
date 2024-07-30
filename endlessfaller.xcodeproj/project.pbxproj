@@ -44,7 +44,6 @@
 		7A5CE0DC2C0044E600F2ABD2 /* LeaderboardExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7A5CE0C92C0044E500F2ABD2 /* LeaderboardExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A675CED2B835E74001DEF29 /* BoingNotification.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */; };
 		7A689B392BA7853F006D3AA5 /* LeaderboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A689B382BA7853F006D3AA5 /* LeaderboardInfoView.swift */; };
-		7A689B3C2BA79AE1006D3AA5 /* SwizzleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */; };
 		7A7D3C562A86BDFB00F52F26 /* AnimationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D3C552A86BDFB00F52F26 /* AnimationsView.swift */; };
 		7A9755D62B78717200473737 /* CloudStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9755D52B78717200473737 /* CloudStorage */; };
 		7AA3F7C52ADB9C18002AD6CC /* BallsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA3F7C42ADB9C18002AD6CC /* BallsDetailsView.swift */; };
@@ -244,7 +243,6 @@
 			files = (
 				7A9755D62B78717200473737 /* CloudStorage in Frameworks */,
 				7A053E502B553EA8007485A0 /* StoreKit.framework in Frameworks */,
-				7A689B3C2BA79AE1006D3AA5 /* SwizzleSwift in Frameworks */,
 				7A38B59C2B85727000DDD280 /* Vortex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,7 +490,6 @@
 			packageProductDependencies = (
 				7A9755D52B78717200473737 /* CloudStorage */,
 				7A38B59B2B85727000DDD280 /* Vortex */,
-				7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */,
 			);
 			productName = endlessfaller;
 			productReference = 7AD2343B2A5F824800ED626D /* Fall Ball.app */;
@@ -660,7 +657,6 @@
 				7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */,
 				7A1E4F762B7AFBCC00CDF00F /* XCRemoteSwiftPackageReference "circular-progress" */,
 				7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */,
-				7A689B3A2BA79AE1006D3AA5 /* XCRemoteSwiftPackageReference "SwizzleSwift" */,
 				7AA5F9732BBCFF2F0003B2AD /* XCRemoteSwiftPackageReference "SwiftFX" */,
 			);
 			productRefGroup = 7AD2343C2A5F824800ED626D /* Products */;
@@ -1588,14 +1584,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		7A689B3A2BA79AE1006D3AA5 /* XCRemoteSwiftPackageReference "SwizzleSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Amzd/SwizzleSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		7A9755D42B7867C100473737 /* XCRemoteSwiftPackageReference "CloudStorage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nonstrict-hq/CloudStorage.git";
@@ -1627,11 +1615,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A38B59A2B85727000DDD280 /* XCRemoteSwiftPackageReference "Vortex" */;
 			productName = Vortex;
-		};
-		7A689B3B2BA79AE1006D3AA5 /* SwizzleSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7A689B3A2BA79AE1006D3AA5 /* XCRemoteSwiftPackageReference "SwizzleSwift" */;
-			productName = SwizzleSwift;
 		};
 		7A9755D52B78717200473737 /* CloudStorage */ = {
 			isa = XCSwiftPackageProductDependency;

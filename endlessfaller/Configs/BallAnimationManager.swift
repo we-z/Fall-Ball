@@ -32,11 +32,7 @@ class BallAnimationManager: ObservableObject {
         if self.idiom == .pad {
             self.screenCeiling = 60
         } else {
-             if UIDevice.current.hasDynamicIsland {
-                 self.screenCeiling = 90
-             } else {
-                 self.screenCeiling = 80
-             }
+            self.screenCeiling = 90
          }
         print("screenCeiling: \(self.screenCeiling)")
     }
