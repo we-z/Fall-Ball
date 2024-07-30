@@ -18,7 +18,7 @@ struct LandingPageView: View {
                 Image(systemName: "arrow.up")
             }
             .bold()
-            .font(.largeTitle)
+            .font(.system(size: 36))
             .scaleEffect(1.5)
             SwipeUpHand()
                 .offset(x: 60, y:60)

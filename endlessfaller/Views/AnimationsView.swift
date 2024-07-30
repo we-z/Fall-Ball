@@ -271,7 +271,7 @@ struct SwipeUpHand: View {
                 .foregroundColor(.yellow)
                 .offset(x:0.3)
         }
-        .font(.largeTitle)
+        .font(.system(size: 30))
         .scaleEffect(2)
     }
 }
