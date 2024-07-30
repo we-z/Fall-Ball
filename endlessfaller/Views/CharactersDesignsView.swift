@@ -11,7 +11,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                EvilBall()
+                BoinsView()
             }
             .scaleEffect(6)
         }
@@ -75,7 +75,7 @@ struct BoinsView: View {
             .frame(width: 30, height: 30)
             .offset(y: 2)
             .rotationEffect(.degrees(90))
-            .customTextStroke()
+            .customTextStroke(width: 1.5)
     }
 }
 

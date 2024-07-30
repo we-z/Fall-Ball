@@ -92,9 +92,7 @@ struct HUDView: View {
                         if userPersistedData.strategyModeEnabled{
                             HStack{
                                 Text("+3")
-                                    .font(.system(size: 40))
-                                Text("🎉")
-                                    .font(.system(size: 30))
+                                    .font(.system(size: 60))
                             }
                                 .bold()
                                 .italic()
