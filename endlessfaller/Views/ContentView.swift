@@ -122,7 +122,7 @@ struct ContentView: View {
                             }
                             DispatchQueue.main.async {
                                 if userPersistedData.strategyModeEnabled {
-                                    appModel.score += 2
+                                    appModel.score += 3
                                 } else {
                                     appModel.score += 1
                                 }
