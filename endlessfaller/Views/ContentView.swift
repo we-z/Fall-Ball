@@ -135,6 +135,9 @@ struct ContentView: View {
                             appModel.highestLevelInRound = newIndex
                         }
                         appModel.FlashTriangles()
+                        if userPersistedData.strategyModeEnabled{
+                            appModel.plus3Animation()
+                        }
                         heavyHaptic.notificationOccurred(.success)
                         if appModel.score > userPersistedData.bestScore && newIndex > 30 {
                             appModel.showNewBestScore = true

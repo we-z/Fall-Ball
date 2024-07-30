@@ -83,12 +83,23 @@ struct HUDView: View {
                             .bold()
                             .italic()
                             .font(.system(size: 100))
-                            .padding(36)
+                            .padding([.horizontal, .top], 36)
                             .padding(.top, UIDevice.isOldDevice ? 0 : 30)
                             .allowsHitTesting(false)
                         Spacer()
-                        //                                    Text("\(speedFactor)")
-                        //                                        .padding()
+                    }
+                    HStack{
+                        if userPersistedData.strategyModeEnabled{
+                            Text("+3")
+                                .bold()
+                                .italic()
+                                .font(.system(size: 60))
+                                .customTextStroke(width: 2.7)
+                                .scaleEffect(appModel.plus3Scale)
+                                .rotationEffect(.degrees(appModel.plus3Rotation))
+                                .padding(.horizontal, 30)
+                        }
+                        Spacer()
                     }
                     Spacer()
                     HStack{

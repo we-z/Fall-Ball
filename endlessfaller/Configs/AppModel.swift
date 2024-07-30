@@ -32,6 +32,8 @@ class AppModel: ObservableObject {
     @Published var isWasted = false
     @Published var ballSpeed: Double = 0.0
     @Published var triangleScale: CGFloat = 1.0
+    @Published var plus3Scale: CGFloat = 1.0
+    @Published var plus3Rotation: CGFloat = 0.0
     @Published var triangleColor = Color.black
     @Published var showDailyBoinCollectedAnimation = false
     @Published var ballIsStrobing = false
@@ -138,6 +140,17 @@ class AppModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.triangleScale = 1
             self.triangleColor = Color.black
+        }
+    }
+    
+    func plus3Animation() {
+        plus3Scale = 0 // Increase the scale factor
+        plus3Rotation = -45
+        DispatchQueue.main.async {
+            withAnimation(){
+                self.plus3Scale = 1
+                self.plus3Rotation = 30
+            }
         }
     }
     
