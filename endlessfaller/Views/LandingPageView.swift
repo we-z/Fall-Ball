@@ -11,7 +11,7 @@ struct LandingPageView: View {
     var body: some View {
         VStack{
             VStack{
-                Text("Swipe up \nto play!")
+                Text("Swipe up\nto play!")
                     .italic()
                     .multilineTextAlignment(.center)
                     .padding()
@@ -25,7 +25,7 @@ struct LandingPageView: View {
         }
         .frame(width: 300, height: 400)
         .animatedOffset(speed: 1)
-        .customShadow(width: 1.8)
+        .customTextStroke(width: 3)
     }
 }
 
