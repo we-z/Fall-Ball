@@ -10,7 +10,7 @@ import Vortex
 
 struct AnimationsView: View {
     var body: some View {
-        WastedView()
+        DailyBoinCollectedView()
     }
 }
 
@@ -689,7 +689,7 @@ struct DailyBoinCollectedView: View {
                     .italic()
                     .bold()
                     .multilineTextAlignment(.center)
-                    .font(.title)
+                    .font(.system(size: 27))
                     .customTextStroke(width: 1.8)
                     .padding(15)
             }
