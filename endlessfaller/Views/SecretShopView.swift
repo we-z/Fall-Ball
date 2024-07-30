@@ -23,10 +23,10 @@ struct SecretShopView: View {
                     .opacity(0.3)
                 HStack{
                     Text("🤫 Secret Shop 🤫")
-                        .customTextStroke(width: 1.8)
+                        .customTextStroke(width: 2.1)
                         .italic()
                         .bold()
-                        .font(.largeTitle)
+                        .font(.system(size: 36))
                 }
                 Divider()
                     .frame(height: 3)
@@ -40,7 +40,7 @@ struct SecretShopView: View {
                                 .customTextStroke(width: 1.8)
                                 .italic()
                                 .bold()
-                                .font(.largeTitle)
+                                .font(.system(size: 39))
                         }
                         ForEach(0..<model.hats.count/3, id: \.self) { rowIndex in
                             HStack {
@@ -94,7 +94,7 @@ struct SecretShopView: View {
                                 .customTextStroke(width: 1.8)
                                 .italic()
                                 .bold()
-                                .font(.largeTitle)
+                                .font(.system(size: 39))
                         }
                         ForEach(0..<model.bags.count/2, id: \.self) { rowIndex in
                             HStack {

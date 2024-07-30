@@ -12,7 +12,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            LeaderboardRewardView()
+            PodiumView()
         }
     }
 }
@@ -458,7 +458,7 @@ struct GoBerzerk: View {
             .allowsHitTesting(false)
             .multilineTextAlignment(.center)
             .padding()
-            .font(.largeTitle)
+            .font(.system(size: 39))
             .customTextStroke(width: 2.1)
             .flashing()
     }

@@ -56,8 +56,8 @@ struct GameCenterLeaderboardView: View {
                     Text("🏆 LEADERBOARD 🏆")
                         .bold()
                         .italic()
-                        .font(.title)
-                        .customTextStroke(width: 2.3)
+                        .font(.system(size: 30))
+                        .customTextStroke(width: 2.4)
                         .offset(y: 6)
                 }
                 VStack{

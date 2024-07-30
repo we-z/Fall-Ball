@@ -27,8 +27,8 @@ struct ContinuePlayingView: View {
                         Text(userPersistedData.infiniteBoinsUnlocked ? "∞" : String(userPersistedData.boinBalance))
                             .bold()
                             .italic()
-                            .font(userPersistedData.infiniteBoinsUnlocked ? .largeTitle : .title)
-                            .customTextStroke(width: 1.5)
+                            .font(.system(size: 21))
+                            .customTextStroke(width: 1.2)
                     }
                     .padding(.horizontal, 9)
                     .padding(.top, 12)
@@ -50,9 +50,9 @@ struct ContinuePlayingView: View {
                 Text("Continue?")
                     .bold()
                     .italic()
-                    .font(.largeTitle)
+                    .font(.system(size: 39))
                     .padding(.bottom, 27)
-                    .customTextStroke(width: 2.1)
+                    .customTextStroke(width: 2.4)
                 Button {
                     if userPersistedData.boinBalance >= appModel.costToContinue || userPersistedData.infiniteBoinsUnlocked {
                         userPersistedData.decrementBalance(amount: appModel.costToContinue)
@@ -67,9 +67,9 @@ struct ContinuePlayingView: View {
                         Text("\(appModel.costToContinue)")
                             .bold()
                             .italic()
-                            .font(.largeTitle)
+                            .font(.system(size: 30))
                             .scaleEffect(1.2)
-                            .padding(.trailing, 3)
+                            .padding(.trailing, 9)
                             .customTextStroke(width: 1.8)
                         BoinsView()
                         Spacer()
@@ -132,9 +132,9 @@ struct ContinuePlayingView: View {
             }
             .padding(60)
             .bold()
-            .font(.largeTitle)
+            .font(.system(size: 36))
             .animatedOffset(speed: 1)
-            .customTextStroke(width: 1.8)
+            .customTextStroke(width: 2.1)
             .scaleEffect(1.2)
         }
         .offset(y: UIDevice.isOldDevice ? 60 : 90)

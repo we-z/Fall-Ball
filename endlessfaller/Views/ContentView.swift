@@ -60,7 +60,7 @@ struct ContentView: View {
                                     Image(systemName: "arrow.up")
                                 }
                                 .animatedOffset(speed: 1)
-                                .font(.largeTitle)
+                                .font(.system(size: 36))
                                 .bold()
                                 .italic()
                                 .multilineTextAlignment(.center)

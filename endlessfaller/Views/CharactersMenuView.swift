@@ -46,17 +46,18 @@ struct CharactersMenuView: View {
                     .opacity(0.3)
                 HStack {
                     Text("🌍 Ball Shop 🌍")
-                        .customTextStroke(width: 1.8)
+                        .customTextStroke(width: 2.4)
                         .italic()
                         .bold()
-                        .font(.largeTitle)
-                        .scaleEffect(1.1)
+                        .font(.system(size: 39))
                 }
                 TextField("", text: $searchText)
+                    .font(.system(size: 30))
                     .overlay {
                         if searchText.isEmpty {
                             HStack {
                                 Text("Search Balls...")
+                                    .font(.system(size: 30))
                                     .foregroundColor(.black)
                                     .allowsHitTesting(false)
                                 Spacer()

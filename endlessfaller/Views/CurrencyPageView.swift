@@ -75,11 +75,10 @@ struct CurrencyPageView: View {
                     .foregroundColor(.black)
                     .opacity(0.3)
                     Text("💰🤩 Boins 🤩💰")
-                        .customTextStroke(width: 1.8)
+                    .customTextStroke(width: 2.4)
                         .italic()
                         .bold()
-                        .font(.largeTitle)
-                        .scaleEffect(1.1)
+                        .font(.system(size: 39))
                     ScrollView(showsIndicators: false){
                         ForEach(0..<boinBundles.count, id: \.self) { index in
                                 let bundle = boinBundles[index]

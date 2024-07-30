@@ -66,15 +66,16 @@ struct BallsDetailsView: View {
                         Text(ballIndex < 9 || userPersistedData.purchasedSkins.contains(ball.characterID) ? "EQUIP" : "OBTAIN:")
                             .bold()
                             .italic()
-                            .font(.title)
+                            .font(.system(size: 27))
                             .customTextStroke(width: 1.8)
                             .padding(.vertical)
                         if ballIndex > 8 && !userPersistedData.purchasedSkins.contains(ball.characterID) {
                             BoinsView()
+                                .padding(.leading, 15)
                             Text("\(ball.cost)")
                                 .bold()
                                 .italic()
-                                .font(.title)
+                                .font(.system(size: 30))
                                 .customTextStroke(width: 1.8)
                         }
                         Spacer()

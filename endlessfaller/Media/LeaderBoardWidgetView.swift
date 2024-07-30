@@ -57,13 +57,13 @@ struct LeaderBoardWidgetView: View {
                                 }
                             }
                         Text("🥉")
-                            .font(.largeTitle)
+                            .font(.system(size: 30))
                             .scaleEffect(1.2)
                             .customTextStroke()
                         if allTimePlayersList.count > 2 {
                             Text(allTimePlayersList[2].name)
                                 .multilineTextAlignment(.center)
-                                .font(.title3)
+                                .font(.system(size: 21))
                                 .bold()
                                 .italic()
                                 .customShadow(radius: 0.1, width: 0.6)

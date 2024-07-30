@@ -11,7 +11,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                BoinsView()
+                SoccerBall()
             }
             .scaleEffect(6)
         }
