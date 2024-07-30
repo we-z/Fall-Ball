@@ -90,10 +90,14 @@ struct HUDView: View {
                     }
                     HStack{
                         if userPersistedData.strategyModeEnabled{
-                            Text("+3")
+                            HStack{
+                                Text("+3")
+                                    .font(.system(size: 40))
+                                Text("🎉")
+                                    .font(.system(size: 30))
+                            }
                                 .bold()
                                 .italic()
-                                .font(.system(size: 60))
                                 .customTextStroke(width: 2.7)
                                 .scaleEffect(appModel.plus3Scale)
                                 .rotationEffect(.degrees(appModel.plus3Rotation))

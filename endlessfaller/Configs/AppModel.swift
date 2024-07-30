@@ -145,7 +145,7 @@ class AppModel: ObservableObject {
     
     func plus3Animation() {
         plus3Scale = 0 // Increase the scale factor
-        plus3Rotation = -45
+        plus3Rotation = -30
         DispatchQueue.main.async {
             withAnimation(){
                 self.plus3Scale = 1

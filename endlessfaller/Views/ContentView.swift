@@ -78,7 +78,7 @@ struct ContentView: View {
                                 GameOverScreenView()
                                     .offset(y: deviceHeight * 0.045)
                                     .scaleEffect(UIDevice.isOldDevice ? 0.8 : 1)
-                                    .scaleEffect(UIDevice.isSmallDevice ? 0.9 : 1)
+                                    .scaleEffect(UIDevice.isSmallDevice ? 0.8 : 1)
                             } else {
                                 LandingPageView()
                             }
