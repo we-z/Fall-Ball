@@ -74,7 +74,7 @@ struct Leaderboard: Widget {
             LeaderboardEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .supportedFamilies([.systemSmall, .systemLarge])
+        .supportedFamilies([])
         .contentMarginsDisabled()
     }
 }
