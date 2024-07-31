@@ -176,7 +176,7 @@ struct HomeButtonsView: View {
                     Button {
                         showLeaderBoard = true
                     } label: {
-                        PodiumView()
+                        PodiumButtonView()
                             .foregroundColor(.black)
                             .padding(36)
                             .scaleEffect(1.2)

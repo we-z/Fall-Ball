@@ -12,7 +12,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            PodiumView()
+            PodiumButtonView()
         }
     }
 }
@@ -188,7 +188,7 @@ struct KeepSwiping: View {
     }
 }
 
-struct PodiumView: View {
+struct PodiumButtonView: View {
     var body: some View {
         HStack(alignment: .bottom, spacing: 0){
             ZStack{
