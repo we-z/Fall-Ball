@@ -7,9 +7,7 @@ import CloudStorage
 class GameCenter: ObservableObject {
     
     @Published var nextPlayerIndex = -1
-    
-    @Published var timeLeft = TimeInterval()
-    
+        
     @AppStorage("todaysPlayersList") private var todaysPlayersListData: Data = Data()
     @AppStorage("allTimePlayersList") private var allTimePlayersListData: Data = Data()
     
@@ -112,7 +110,6 @@ class GameCenter: ObservableObject {
             if let leaderboard = leaderboards.filter({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
                 let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
                 if allPlayers.1.count > 0 {
-                    self.timeLeft = leaderboard.nextStartDate!.timeIntervalSinceNow
                     allPlayers.1.forEach { leaderboardEntry in
                         todaysPlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score: leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
                         todaysPlayersListTemp.sort {

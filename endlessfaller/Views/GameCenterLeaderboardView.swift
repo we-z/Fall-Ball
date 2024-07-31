@@ -395,6 +395,11 @@ struct GameCenterLeaderboardView: View {
                 }
             }
         }
+        .refreshable {
+            Task{
+                await gameCenter.loadLeaderboard()
+            }
+        }
     }
     
     func openSettings() {

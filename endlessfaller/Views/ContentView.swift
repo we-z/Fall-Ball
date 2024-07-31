@@ -120,6 +120,9 @@ struct ContentView: View {
                             } else {
                                 appModel.liftBall(difficultyInput: newIndex)
                             }
+                            if userPersistedData.strategyModeEnabled{
+                                appModel.plus3Animation()
+                            }
                             DispatchQueue.main.async {
                                 if userPersistedData.strategyModeEnabled {
                                     appModel.score += 3
@@ -135,9 +138,6 @@ struct ContentView: View {
                             appModel.highestLevelInRound = newIndex
                         }
                         appModel.FlashTriangles()
-                        if userPersistedData.strategyModeEnabled{
-                            appModel.plus3Animation()
-                        }
                         heavyHaptic.notificationOccurred(.success)
                         if appModel.score > userPersistedData.bestScore && newIndex > 30 {
                             appModel.showNewBestScore = true

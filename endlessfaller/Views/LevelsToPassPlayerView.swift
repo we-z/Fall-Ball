@@ -38,8 +38,7 @@ struct LevelsToPassPlayerView: View {
         let todaysPlayersList = gameCenter.todaysPlayersList
         if todaysPlayersList.count > 0 {
             if todaysPlayersList[0].currentPlayerAlias != GKLocalPlayer.local.alias
-                && gameCenter.nextPlayerIndex > -1
-                && todaysPlayersList[gameCenter.nextPlayerIndex].score >= appModel.score {
+                && gameCenter.nextPlayerIndex > -1 {
                 VStack{
                     Text("\(todaysPlayersList[gameCenter.nextPlayerIndex].score - appModel.score) to pass")
                         .bold()
@@ -78,7 +77,9 @@ struct LevelsToPassPlayerView: View {
                                 firstPlaceOnLeaderboardReward()
                             }
                         }
-                        gameCenter.nextPlayerIndex -= 1
+                        DispatchQueue.main.async {
+                            gameCenter.nextPlayerIndex -= 1
+                        }
                     }
                 }
             }
