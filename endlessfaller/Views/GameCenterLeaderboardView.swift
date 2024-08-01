@@ -150,7 +150,8 @@ struct GameCenterLeaderboardView: View {
                                 .tag(0)
                                 VStack{
                                    Text(timeLeft)
-                                       .customTextStroke()
+                                        .font(.system(size: 21))
+                                        .customTextStroke(width: 1.5)
                                        .bold()
                                        .italic()
                                        .padding(.top, 3)
@@ -365,7 +366,7 @@ struct GameCenterLeaderboardView: View {
                                     Spacer()
                                     Text(PlayersList.count > num - 1 ? String(PlayersList[num - 1].score) : "-")
                                         .font(.system(size: 21))
-                                        .customTextStroke(width: 1.2)
+                                        .customTextStroke(width: 1.5)
                                         .bold()
                                         .italic()
                                 }
