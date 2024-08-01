@@ -120,12 +120,10 @@ struct ContentView: View {
                             } else {
                                 appModel.liftBall(difficultyInput: newIndex)
                             }
-                            if userPersistedData.strategyModeEnabled{
-                                appModel.plus3Animation()
-                            }
                             DispatchQueue.main.async {
                                 if userPersistedData.strategyModeEnabled {
                                     appModel.score += 3
+                                    appModel.plus3Animation()
                                 } else {
                                     appModel.score += 1
                                 }
