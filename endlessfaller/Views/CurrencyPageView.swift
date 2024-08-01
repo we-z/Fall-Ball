@@ -101,7 +101,7 @@ struct CurrencyPageView: View {
                                         .lineLimit(1)
                                         .italic()
                                         .bold()
-                                        .customShadow(width: 1)
+                                        .customTextStroke(width: 1.5)
 
                                 }
                                 .frame(width: 90)
