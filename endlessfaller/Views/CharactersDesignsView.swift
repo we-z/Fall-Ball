@@ -11,7 +11,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                WizardBall()
+                PeaceView()
             }
             .scaleEffect(6)
         }
@@ -112,20 +112,27 @@ struct DjkhaledView: View {
 
 struct PeaceView: View {
     var body: some View {
-        Image("peacesign")
-            .resizable()
-            
-            .frame(width: 46, height: 46)
-            .customTextStroke()
+        ZStack{
+            Circle()
+                .foregroundColor(.black)
+                .frame(width: 50, height: 50)
+            Image("peacesign")
+                .resizable()
+                .frame(width: 46, height: 46)
+        }
     }
 }
 
 struct WizardBall: View {
     var body: some View {
-        Image("wizard")
-            .resizable()
-            .frame(width: 46, height: 46)
-            .customShadow(width: 0.1)
+        ZStack{
+            Circle()
+                .foregroundColor(.black)
+                .frame(width: 48, height: 48)
+            Image("wizard")
+                .resizable()
+                .frame(width: 46, height: 46)
+        }
     }
 }
 
@@ -224,8 +231,12 @@ struct AlienBall: View {
     var body: some View {
         Text("👽")
             .font(.system(size: 48))
+            .customShadow(radius: 0.1, width: 0.5)
             .frame(width: 50, height: 50)
-            .customTextStroke()
+            .mask{
+                Circle()
+                
+            }
     }
 }
 
