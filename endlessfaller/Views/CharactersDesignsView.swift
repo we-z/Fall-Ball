@@ -11,7 +11,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                SoccerBall()
+                WizardBall()
             }
             .scaleEffect(6)
         }
@@ -114,7 +114,9 @@ struct PeaceView: View {
     var body: some View {
         Image("peacesign")
             .resizable()
+            
             .frame(width: 46, height: 46)
+            .customTextStroke()
     }
 }
 
@@ -123,6 +125,7 @@ struct WizardBall: View {
         Image("wizard")
             .resizable()
             .frame(width: 46, height: 46)
+            .customShadow(width: 0.1)
     }
 }
 
@@ -221,8 +224,8 @@ struct AlienBall: View {
     var body: some View {
         Text("👽")
             .font(.system(size: 48))
-            .offset(x:-1)
             .frame(width: 50, height: 50)
+            .customTextStroke()
     }
 }
 
