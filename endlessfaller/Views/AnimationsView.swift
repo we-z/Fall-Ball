@@ -12,14 +12,62 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            PodiumButtonView()
+            BoostAnimation()
         }
     }
 }
 
+struct BoostAnimation: View {
+    @State var cardYposition = 0.0
+    @StateObject var userPersistedData = UserPersistedData()
+    var body: some View {
+        ZStack{
+            Rectangle()
+                .foregroundColor(.black)
+            VStack{
+                Text("Boost!")
+                    .bold()
+                    .italic()
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .customShadow(width: 1.2)
+                HStack{
+                    Image(systemName: "arrow.up")
+                    Image(systemName: "arrow.up")
+                    Image(systemName: "arrow.up")
+                }
+                .customShadow(width: 1.2)
+                .bold()
+            }
+            .frame(width: 150, height: 150)
+            .background(.blue)
+            .cornerRadius(30)
+            .font(.system(size: 30))
+        }
+        .frame(width: 159, height: 159)
+        .cornerRadius(33)
+        .offset(y: cardYposition)
+        .allowsHitTesting(false)
+        .onAppear{
+            self.cardYposition = deviceHeight/2
+            self.userPersistedData.selectedBag = "jetpack"
+            withAnimation(.linear(duration: 0.6)) {
+                self.cardYposition = 0
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                self.userPersistedData.selectedBag = ""
+                withAnimation(.linear(duration: 1)) {
+                    self.cardYposition = -(deviceHeight*2)
+                }
+            }
+        }
+        .animatedOffset(speed: 1, distance: 0)
+    }
+}
 
 struct AnimatedOffsetModifier: ViewModifier {
     let speed: CGFloat
+    var distance: CGFloat
     @State private var offsetAmount: CGFloat = 30
 
     func body(content: Content) -> some View {
@@ -27,15 +75,15 @@ struct AnimatedOffsetModifier: ViewModifier {
             .offset(y: offsetAmount)
             .onAppear {
                 withAnimation(Animation.easeInOut(duration: speed).repeatForever(autoreverses: true)) {
-                    offsetAmount = -30
+                    offsetAmount = distance
                 }
             }
     }
 }
 
 extension View {
-    func animatedOffset(speed amount: CGFloat) -> some View {
-        self.modifier(AnimatedOffsetModifier(speed: amount))
+    func animatedOffset(speed amount: CGFloat, distance: CGFloat = -30) -> some View {
+        self.modifier(AnimatedOffsetModifier(speed: amount, distance: distance))
     }
 }
 

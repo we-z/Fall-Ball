@@ -21,6 +21,7 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("leaderboardWonToday") var leaderboardWonToday: Bool = false
     @CloudStorage("firstGameEverPlayed") var firstGameEverPlayed: Bool = false
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
+    @CloudStorage("boostIntervalCounter") var boostIntervalCounter: Int = 0
     @CloudStorage("infiniteBoinsUnlocked") var infiniteBoinsUnlocked: Bool = false
     @CloudStorage("strategyModeEnabled") var strategyModeEnabled: Bool = false
     @CloudStorage("hasSharedFallBall") var hasSharedFallBall: Bool = false
@@ -43,6 +44,14 @@ class UserPersistedData: ObservableObject {
     }
     
     func resetBoinIntervalCounter() {
+        boinIntervalCounter = 0
+    }
+    
+    func incrementBoostIntervalCounter() {
+        boinIntervalCounter += 1
+    }
+    
+    func resetBoostIntervalCounter() {
         boinIntervalCounter = 0
     }
     

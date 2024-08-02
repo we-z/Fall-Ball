@@ -11,9 +11,9 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                PeaceView()
+                KaiView()
             }
-            .scaleEffect(6)
+            .scaleEffect(5)
         }
     }
 }
@@ -165,7 +165,7 @@ struct OnepieceView: View {
         Image("onepiece")
             .resizable()
             .frame(width: 46, height: 46)
-            .scaleEffect(1.1)
+            .customShadow(radius: 0.15, width: 0.01)
     }
 }
 
@@ -532,6 +532,7 @@ struct KaiView: View {
         Image("kaiball")
             .resizable()
             .frame(width: 56, height: 48)
+            .customShadow(width: 0.1)
             
     }
 }
