@@ -421,7 +421,7 @@ struct SwipeAsFastAsYouCan: View {
             }
             .animatedOffset(speed: 0.5)
         }
-        .frame(width: 210, height: 410)
+        .frame(width: 210, height: 450)
         .customTextStroke(width: 3)
         .allowsHitTesting(false)
     }
