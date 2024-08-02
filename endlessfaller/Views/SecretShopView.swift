@@ -35,13 +35,6 @@ struct SecretShopView: View {
                 HStack{
                     Spacer()
                     ScrollView(showsIndicators: false){
-                        HStack{
-                            Text("🎩 Hats 🎩")
-                                .customTextStroke(width: 1.8)
-                                .italic()
-                                .bold()
-                                .font(.system(size: 39))
-                        }
                         ForEach(0..<model.hats.count/3, id: \.self) { rowIndex in
                             HStack {
                                 Spacer()
