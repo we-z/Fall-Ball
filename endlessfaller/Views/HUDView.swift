@@ -204,6 +204,12 @@ struct HUDView: View {
                     WastedView()
                 }
             }
+            if appModel.showBoostAnimation{
+                BoostAnimation()
+                    .onAppear{
+                        audioController.dingsSoundEffect.play()
+                    }
+            }
             if appModel.showBoinFoundAnimation{
                 BoinCollectedView()
                     .onAppear{

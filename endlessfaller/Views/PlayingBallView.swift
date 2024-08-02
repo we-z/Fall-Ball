@@ -17,14 +17,13 @@ struct PlayingBallView: View {
     
     var body: some View {
         let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
-        let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
         let currentCharacter = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) ?? appModel.characters.first(where: { $0.characterID == "io.endlessfall.shocked"})
 
         if appModel.score >= 0 && appModel.currentIndex >= 0 {
             ZStack{
                 if !appModel.isWasted || !appModel.ballIsStrobing {
                     
-                    if !appModel.paused && userPersistedData.selectedBag != "jetpack" {
+                    if !appModel.paused && appModel.jetPackOn {
                         VortexView(colourTrail()) {
                             Circle()
                                 .fill(.white)
@@ -44,7 +43,7 @@ struct PlayingBallView: View {
                             .tag("circle")
                     }
                 }
-                if userPersistedData.selectedBag == "jetpack" && !appModel.ballIsStrobing {
+                if appModel.jetPackOn && !appModel.ballIsStrobing {
                     HStack{
                         VortexView(.fire) {
                             Circle()
@@ -70,8 +69,8 @@ struct PlayingBallView: View {
                     .offset(y:30)
                 }
                 ZStack{
-                    if userPersistedData.selectedBag != "nobag" {
-                        AnyView(bag!.bag)
+                    if appModel.jetPackOn {
+                        JetPack()
                     }
                     AnyView(currentCharacter!.character)
                         .scaleEffect(1.5)

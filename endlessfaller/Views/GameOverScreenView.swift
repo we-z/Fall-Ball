@@ -45,12 +45,7 @@ struct GameOverScreenView: View {
                     .italic()
                 if let character = appModel.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter}) {
                     let hat = appModel.hats.first(where: { $0.hatID == userPersistedData.selectedHat})
-                    let bag = appModel.bags.first(where: { $0.bagID == userPersistedData.selectedBag})
                     ZStack{
-                        if userPersistedData.selectedBag != "nobag" {
-                            AnyView(bag!.bag)
-                                .frame(maxWidth: 180, maxHeight: 60)
-                        }
                         AnyView(character.character)
                             .scaleEffect(1.5)
                         if userPersistedData.selectedHat != "nohat" {

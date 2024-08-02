@@ -119,6 +119,11 @@ struct ContentView: View {
                                 self.BallAnimator.pushBallUp(newBallSpeed: 3)
                             } else {
                                 appModel.liftBall(difficultyInput: newIndex)
+                                userPersistedData.incrementBoostIntervalCounter()
+                                if userPersistedData.boostIntervalCounter > 600 {
+                                    appModel.showBoostAnimation = true
+                                    userPersistedData.resetBoostIntervalCounter()
+                                }
                             }
                             DispatchQueue.main.async {
                                 if userPersistedData.strategyModeEnabled {

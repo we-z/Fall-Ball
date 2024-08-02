@@ -13,7 +13,6 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("boinBalance") var boinBalance: Int = 0
     @CloudStorage("purchasedSkins") var purchasedSkins: String = ""
     @CloudStorage("selectedCharacter") var selectedCharacter: String = "io.endlessfall.shocked"
-    @CloudStorage("selectedBag") var selectedBag: String = "nobag"
     @CloudStorage("selectedHat") var selectedHat: String = "nohat"
     @CloudStorage("lastLaunch") var lastLaunch: String = ""
     @CloudStorage("lastBoinRenewal") var lastBoinRenewal: String = ""
@@ -82,9 +81,5 @@ class UserPersistedData: ObservableObject {
     func selectNewHat(hat: String) {
         selectedHat = hat
     }
-    
-    func selectNewBag(bag: String) {
-        selectedBag = bag
-    }
-    
+
 }

@@ -89,60 +89,6 @@ struct SecretShopView: View {
                                 Spacer()
                             }
                         }
-                        HStack{
-                            Text("🎒 Bags 🎒")
-                                .customTextStroke(width: 1.8)
-                                .italic()
-                                .bold()
-                                .font(.system(size: 39))
-                        }
-                        ForEach(0..<model.bags.count/2, id: \.self) { rowIndex in
-                            HStack {
-                                Spacer()
-                                ForEach(0..<2, id: \.self) { columnIndex in
-                                    let index = rowIndex * 2 + columnIndex
-                                    if index < model.bags.count {
-                                        let character = model.characters.first(where: { $0.characterID == userPersistedData.selectedCharacter})
-                                        let bag = model.bags[index]
-                                        Button {
-                                            userPersistedData.selectNewBag(bag: model.bags[index].bagID)
-                                        } label: {
-                                            Rectangle()
-                                                .fill(.clear)
-                                                .cornerRadius(20)
-                                                .frame(width: idiom == .pad ? deviceWidth / 3.2 : deviceWidth / 2.2, height: idiom == .pad ? 270 : 180)
-                                                .background(RandomGradientView())
-                                                .cornerRadius(20)
-                                                .overlay{
-                                                    if model.bags[index].bagID == userPersistedData.selectedBag {
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(Color.black, lineWidth: 6)
-                                                    }
-                                                }
-                                                .overlay{
-                                                    ZStack{
-                                                        AnyView(bag.bag)
-                                                        if model.bags[index].bagID == userPersistedData.selectedBag && index != 0 {
-                                                            AnyView(character?.character)
-                                                                .scaleEffect(1.5)
-                                                            if userPersistedData.selectedHat != "nohat" {
-                                                                if let hat = model.hats.first(where: { $0.hatID == userPersistedData.selectedHat}) {
-                                                                    AnyView(hat.hat)
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                .accentColor(.black)
-                                                .padding(1)
-                                        }
-                                        .buttonStyle(.characterMenu)
-                                        
-                                    }
-                                }
-                                Spacer()
-                            }
-                        }
                     }
                     Spacer()
                 }

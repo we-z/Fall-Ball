@@ -19,7 +19,7 @@ struct AnimationsView: View {
 
 struct BoostAnimation: View {
     @State var cardYposition = 0.0
-    @StateObject var userPersistedData = UserPersistedData()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
     var body: some View {
         ZStack{
             Rectangle()
@@ -50,15 +50,18 @@ struct BoostAnimation: View {
         .allowsHitTesting(false)
         .onAppear{
             self.cardYposition = deviceHeight/2
-            self.userPersistedData.selectedBag = "jetpack"
+            self.appModel.jetPackOn = true
             withAnimation(.linear(duration: 0.6)) {
                 self.cardYposition = 0
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                self.userPersistedData.selectedBag = ""
+                self.appModel.jetPackOn = false
                 withAnimation(.linear(duration: 1)) {
                     self.cardYposition = -(deviceHeight*2)
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                self.appModel.showBoostAnimation = false
             }
         }
         .animatedOffset(speed: 1, distance: 0)
@@ -618,7 +621,7 @@ struct BoinCollectedView: View {
     
     let deviceHeight = UIScreen.main.bounds.height
     let deviceWidth = UIScreen.main.bounds.width
-    
+    @ObservedObject private var appModel = AppModel.sharedAppModel
     
     var body: some View {
         ZStack {
@@ -661,6 +664,9 @@ struct BoinCollectedView: View {
                     withAnimation(.linear(duration: 0.5)){
                         self.animationEnding = true
                     }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+                    appModel.showBoinFoundAnimation = false
                 }
             }
         }

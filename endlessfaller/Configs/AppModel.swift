@@ -27,6 +27,7 @@ class AppModel: ObservableObject {
     @Published var highestLevelInRound = -1
     @Published var firstGamePlayed = false
     @Published var showBoinFoundAnimation = false
+    @Published var showBoostAnimation = false
     @Published var freezeScrolling = false
     @Published var showWastedScreen = false
     @Published var isWasted = false
@@ -41,6 +42,7 @@ class AppModel: ObservableObject {
     @Published var showedNewBestScoreOnce = false
     @Published var show5boinsAnimation = false
     @Published var paused = false
+    @Published var jetPackOn = false
     @Published var pausedYposition = 0.0
     @Published var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
@@ -175,7 +177,7 @@ class AppModel: ObservableObject {
             
             self.ballSpeed = Double.random(in: fastest...slowest)
         } else {
-            if userPersistedData.selectedBag == "jetpack" {
+            if jetPackOn == true {
                 self.ballSpeed = 1
             } else {
                 self.ballSpeed = 2 * exp(-0.27 * log(Double(difficultyInput) - 1))
