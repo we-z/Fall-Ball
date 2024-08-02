@@ -25,7 +25,7 @@ struct LandingPageView: View {
         }
         .frame(width: 300, height: 400)
         .animatedOffset(speed: 1)
-        .customTextStroke(width: 3)
+        .customTextStroke(width: 3.1)
     }
 }
 
