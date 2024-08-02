@@ -18,7 +18,6 @@ struct AnimationsView: View {
 }
 
 struct BoostAnimation: View {
-    @State var cardYposition = 0.0
     @ObservedObject private var appModel = AppModel.sharedAppModel
     var body: some View {
         ZStack{
@@ -30,29 +29,26 @@ struct BoostAnimation: View {
                     .italic()
                     .multilineTextAlignment(.center)
                     .padding()
-                    .customShadow(width: 1.2)
+                    .customTextStroke(width: 2.3)
                 HStack{
                     Image(systemName: "arrow.up")
                     Image(systemName: "arrow.up")
                     Image(systemName: "arrow.up")
                 }
-                .customShadow(width: 1.2)
+                .customTextStroke(width: 2.3)
                 .bold()
             }
-            .frame(width: 150, height: 150)
+            .frame(width: 180, height: 180)
             .background(.blue)
             .cornerRadius(30)
-            .font(.system(size: 30))
+            .font(.system(size: 39))
         }
-        .frame(width: 159, height: 159)
-        .cornerRadius(33)
-        .offset(y: cardYposition)
+        .frame(width: 191, height: 191)
+        .cornerRadius(34)
+        .flashing()
         .onAppear{
-            self.cardYposition = deviceHeight/1.5
             self.appModel.jetPackOn = true
-            withAnimation(.linear(duration: 6)) {
-                self.cardYposition = -(deviceHeight/1.5)
-            }
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 self.appModel.jetPackOn = false
                 self.appModel.showBoostAnimation = false
