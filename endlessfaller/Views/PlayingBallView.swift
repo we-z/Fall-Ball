@@ -23,7 +23,7 @@ struct PlayingBallView: View {
             ZStack{
                 if !appModel.isWasted || !appModel.ballIsStrobing {
                     
-                    if !appModel.paused && appModel.jetPackOn {
+                    if !appModel.paused && !appModel.jetPackOn {
                         VortexView(colourTrail()) {
                             Circle()
                                 .fill(.white)
