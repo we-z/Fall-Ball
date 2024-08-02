@@ -132,7 +132,6 @@ struct ContentView: View {
                                     appModel.plus3Animation()
                                 } else {
                                     if appModel.jetPackOn {
-                                        appModel.plus10Animation()
                                         appModel.score += 10
                                     } else {
                                         appModel.score += 1

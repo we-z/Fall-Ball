@@ -47,24 +47,19 @@ struct BoostAnimation: View {
         .frame(width: 159, height: 159)
         .cornerRadius(33)
         .offset(y: cardYposition)
-        .allowsHitTesting(false)
         .onAppear{
-            self.cardYposition = deviceHeight/2
+            self.cardYposition = deviceHeight/1.5
             self.appModel.jetPackOn = true
-            withAnimation(.linear(duration: 0.6)) {
-                self.cardYposition = 0
+            withAnimation(.linear(duration: 6)) {
+                self.cardYposition = -(deviceHeight/1.5)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 self.appModel.jetPackOn = false
-                withAnimation(.linear(duration: 1)) {
-                    self.cardYposition = -(deviceHeight*2)
-                }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
                 self.appModel.showBoostAnimation = false
+                
             }
         }
-        .animatedOffset(speed: 1, distance: 0)
+        .allowsHitTesting(false)
     }
 }
 
@@ -399,7 +394,7 @@ struct JustFaster: View {
             }
             .animatedOffset(speed: 0.5)
         }
-        .frame(width: 180, height: 330)
+        .frame(width: 180, height: 360)
         .customTextStroke(width: 3)
         .allowsHitTesting(false)
     }

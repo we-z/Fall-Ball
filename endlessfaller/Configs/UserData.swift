@@ -51,7 +51,7 @@ class UserPersistedData: ObservableObject {
     }
     
     func resetBoostIntervalCounter() {
-        boinIntervalCounter = 0
+        boostIntervalCounter = 0
     }
     
     func incrementBalance(amount: Int) {

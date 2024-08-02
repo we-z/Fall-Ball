@@ -158,17 +158,6 @@ class AppModel: ObservableObject {
         }
     }
     
-    func plus10Animation() {
-        plus10Scale = 0 // Increase the scale factor
-        plus10Rotation = -30
-        DispatchQueue.main.async {
-            withAnimation(){
-                self.plus10Scale = 1
-                self.plus10Rotation = 30
-            }
-        }
-    }
-    
     func liftBall(difficultyInput: Int) {
         /*
          level 1 is anywhere between 0.5 and 1.5 seconds
