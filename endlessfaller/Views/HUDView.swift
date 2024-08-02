@@ -103,7 +103,7 @@ struct HUDView: View {
                         }
                         if appModel.jetPackOn{
                             HStack{
-                                Text("+10")
+                                Text("+5")
                                     .font(.system(size: 60))
                             }
                             .bold()
