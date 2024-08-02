@@ -109,8 +109,8 @@ struct HUDView: View {
                             .bold()
                             .italic()
                             .customTextStroke(width: 2.7)
-                            .scaleEffect(appModel.plus3Scale)
-                            .rotationEffect(.degrees(appModel.plus3Rotation))
+                            .scaleEffect(appModel.plus10Scale)
+                            .rotationEffect(.degrees(appModel.plus10Rotation))
                             .padding(.horizontal, 30)
                         }
                         Spacer()
