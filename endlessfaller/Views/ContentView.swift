@@ -120,7 +120,8 @@ struct ContentView: View {
                             } else {
                                 appModel.liftBall(difficultyInput: newIndex)
                                 userPersistedData.incrementBoostIntervalCounter()
-                                if userPersistedData.boostIntervalCounter > 600 {
+                                print("Boost counter \(userPersistedData.boostIntervalCounter)")
+                                if userPersistedData.boostIntervalCounter > 50 {
                                     appModel.showBoostAnimation = true
                                     userPersistedData.resetBoostIntervalCounter()
                                 }
@@ -130,7 +131,12 @@ struct ContentView: View {
                                     appModel.score += 3
                                     appModel.plus3Animation()
                                 } else {
-                                    appModel.score += 1
+                                    if appModel.jetPackOn {
+                                        appModel.plus10Animation()
+                                        appModel.score += 10
+                                    } else {
+                                        appModel.score += 1
+                                    }
                                 }
                                 if audioController.musicPlayer.rate < 2 {
                                     audioController.musicPlayer.rate += 0.001

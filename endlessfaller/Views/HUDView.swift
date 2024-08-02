@@ -94,12 +94,24 @@ struct HUDView: View {
                                 Text("+3")
                                     .font(.system(size: 60))
                             }
-                                .bold()
-                                .italic()
-                                .customTextStroke(width: 2.7)
-                                .scaleEffect(appModel.plus3Scale)
-                                .rotationEffect(.degrees(appModel.plus3Rotation))
-                                .padding(.horizontal, 30)
+                            .bold()
+                            .italic()
+                            .customTextStroke(width: 2.7)
+                            .scaleEffect(appModel.plus3Scale)
+                            .rotationEffect(.degrees(appModel.plus3Rotation))
+                            .padding(.horizontal, 30)
+                        }
+                        if appModel.jetPackOn{
+                            HStack{
+                                Text("+10")
+                                    .font(.system(size: 60))
+                            }
+                            .bold()
+                            .italic()
+                            .customTextStroke(width: 2.7)
+                            .scaleEffect(appModel.plus3Scale)
+                            .rotationEffect(.degrees(appModel.plus3Rotation))
+                            .padding(.horizontal, 30)
                         }
                         Spacer()
                     }
