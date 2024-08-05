@@ -343,52 +343,45 @@ struct GameCenterLeaderboardView: View {
                 LazyVStack {
                     List {
                         ForEach(4...50, id: \.self) { num in
-                            ZStack{
-                                HStack{
-                                    Text("\(num)")
-                                        .customTextStroke(width: 1.5)
-                                        .bold()
-                                        .italic()
-                                        .font(.system(size: 21))
-                                        .frame(width: 30)
-                                        .offset(x: -6)
-                                    VStack(alignment: .leading){
-                                        if PlayersList.count > num - 1 {
-                                            Text(PlayersList[num - 1].name)
-                                                .customTextStroke()
-                                                .font(.system(size: 12))
-                                                .bold()
-                                                .italic()
+                            HStack{
+                                Text("\(num)")
+                                    .customTextStroke(width: 1.5)
+                                    .bold()
+                                    .italic()
+                                    .font(.system(size: 21))
+                                    .frame(width: 30)
+                                    .offset(x: -6)
+                                ZStack{
+                                    if PlayersList.count > num - 1 {
+                                        if let character = appModel.characters.first(where: {$0.characterID.hash == PlayersList[num - 1].ballID}) {
+                                            AnyView(character.character)
+                                        } else {
+                                            Image(systemName: "questionmark.circle")
+                                                .font(.system(size: 40))
                                         }
-                                        
+                                    } else {
+                                        WhiteBallView()
+                                            .opacity(0.5)
                                     }
-                                    .offset(x: 60)
-                                    Spacer()
-                                    Text(PlayersList.count > num - 1 ? String(PlayersList[num - 1].score) : "-")
-                                        .font(.system(size: 21))
-                                        .customTextStroke(width: 1.5)
+                                }
+                                .frame(width: 40)
+                                if PlayersList.count > num - 1 {
+                                    Text(PlayersList[num - 1].name)
+                                        .customTextStroke()
+                                        .font(.system(size: 12))
                                         .bold()
                                         .italic()
+                                        .padding(.leading, 9)
                                 }
-                                if PlayersList.count > num - 1 {
-                                    if let character = appModel.characters.first(where: {$0.characterID.hash == PlayersList[num - 1].ballID}) {
-                                        AnyView(character.character)
-                                            .position(x: 60, y: 30)
-                                    } else {
-                                        Image(systemName: "questionmark.circle")
-                                            .font(.system(size: 40))
-                                            .position(x: 60, y: 30)
-                                    }
-                                } else {
-                                    WhiteBallView()
-                                        .opacity(0.5)
-                                        .position(x: 55, y: 30)
-                                }
-                                
+                                Spacer()
+                                Text(PlayersList.count > num - 1 ? String(PlayersList[num - 1].score) : "-")
+                                    .font(.system(size: 21))
+                                    .customTextStroke(width: 1.5)
+                                    .bold()
+                                    .italic()
                             }
                             .listRowBackground(RandomGradientView())
-                        }
-                        
+                    }
                     }
                     .allowsHitTesting(false)
                     .frame(width: self.idiom == .pad ? deviceWidth / 1.5 : deviceWidth, height: 3400, alignment: .center)

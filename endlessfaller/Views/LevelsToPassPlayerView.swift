@@ -59,7 +59,7 @@ struct LevelsToPassPlayerView: View {
                         .bold()
                         .italic()
                         .padding([.horizontal, .bottom])
-                        .customShadow(radius: 0.1, width: 0.6)
+//                        .customShadow(radius: 0.1, width: 0.6)
                 }
                 .frame(width: 127)
                 .background(Color.black.opacity(0.1))
