@@ -108,7 +108,7 @@ class GameCenter: ObservableObject {
             var todaysPlayersListTemp: [Player] = []
             let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.leaderboardIdentifier])
             if let leaderboard = leaderboards.filter({ $0.baseLeaderboardID == self.leaderboardIdentifier }).first {
-                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
+                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...10))
                 if allPlayers.1.count > 0 {
                     allPlayers.1.forEach { leaderboardEntry in
                         todaysPlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score: leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
@@ -128,7 +128,7 @@ class GameCenter: ObservableObject {
             var allTimePlayersListTemp: [Player] = []
             let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [self.allTimeLeaderboardIdentifier])
             if let leaderboard = leaderboards.filter({ $0.baseLeaderboardID == self.allTimeLeaderboardIdentifier }).first {
-                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...50))
+                let allPlayers = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...10))
                 if allPlayers.1.count > 0 {
                     allPlayers.1.forEach { leaderboardEntry in
                         allTimePlayersListTemp.append(Player(name: leaderboardEntry.player.displayName, score: leaderboardEntry.score, ballID: leaderboardEntry.context, currentPlayer: leaderboardEntry.player, rank: leaderboardEntry.rank))
