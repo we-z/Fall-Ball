@@ -12,7 +12,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            BoostAnimation()
+            KeepSwiping()
         }
     }
 }
@@ -225,7 +225,7 @@ struct KeepSwiping: View {
         }
         .frame(width: 300, height: 450)
         
-        .customShadow(width: 2)
+        .customTextStroke(width: 2.7)
         .allowsHitTesting(false)
     }
 }

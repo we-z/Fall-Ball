@@ -11,7 +11,7 @@ struct CharactersDesignsView: View {
     var body: some View {
         VStack {
             HStack{
-                OnepieceView()
+                KaiView()
             }
             .scaleEffect(5)
         }
@@ -230,7 +230,7 @@ struct AlienBall: View {
     var body: some View {
         Text("👽")
             .font(.system(size: 48))
-            .customShadow(radius: 0.1, width: 0.5)
+            .customTextStroke(width: 1)
             .frame(width: 50, height: 50)
             .mask{
                 Circle()
@@ -382,7 +382,7 @@ struct EvilBall: View {
 //            )
         }
         .frame(width: 46, height: 46)
-        .customShadow(radius: 0.1, width: 0.4)
+        .customTextStroke(width: 1)
     }
 }
 
@@ -531,7 +531,7 @@ struct KaiView: View {
         Image("kaiball")
             .resizable()
             .frame(width: 56, height: 48)
-            .customShadow(width: 0.1)
+            .customTextStroke(width: 1)
             
     }
 }
