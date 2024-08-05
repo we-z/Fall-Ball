@@ -342,7 +342,7 @@ struct GameCenterLeaderboardView: View {
                 }
                 LazyVStack {
                     List {
-                        ForEach(4...50, id: \.self) { num in
+                        ForEach(4...10, id: \.self) { num in
                             HStack{
                                 Text("\(num)")
                                     .customTextStroke(width: 1.5)
@@ -384,7 +384,7 @@ struct GameCenterLeaderboardView: View {
                     }
                     }
                     .allowsHitTesting(false)
-                    .frame(width: self.idiom == .pad ? deviceWidth / 1.5 : deviceWidth, height: 3400, alignment: .center)
+                    .frame(width: self.idiom == .pad ? deviceWidth / 1.5 : deviceWidth, height: 600, alignment: .center)
                     .scrollContentBackground(.hidden)
                 }
             }
