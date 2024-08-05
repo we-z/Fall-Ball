@@ -24,6 +24,10 @@ struct BoostAnimation: View {
         ZStack{
             Rectangle()
                 .foregroundColor(.black)
+            Rectangle()
+                .foregroundColor(.blue)
+                .frame(width: 180, height: 180)
+                .cornerRadius(30)
             VStack{
                 Text("Boost!")
                     .bold()
@@ -37,21 +41,20 @@ struct BoostAnimation: View {
                 }
                 .bold()
             }
-//            .customTextStroke(width: 2.3)
-            .frame(width: 180, height: 180)
-            .background(.blue)
-            .cornerRadius(30)
             .font(.system(size: 39))
+            .compositingGroup()
+            .customTextStroke(width: 2.3)
         }
         .frame(width: 191, height: 191)
         .cornerRadius(34)
-        .flashing()
         .offset(y: cardYposition)
         .onAppear{
             self.appModel.jetPackOn = true
             cardYposition = deviceHeight/1.5
-            withAnimation(.linear(duration: 9)) {
-                cardYposition = -(deviceHeight/1.5)
+            DispatchQueue.main.async {
+                withAnimation(.linear(duration: 9)) {
+                    cardYposition = -(deviceHeight/1.5)
+                }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
                 self.appModel.jetPackOn = false
@@ -60,6 +63,7 @@ struct BoostAnimation: View {
             }
         }
         .allowsHitTesting(false)
+        
     }
 }
 
