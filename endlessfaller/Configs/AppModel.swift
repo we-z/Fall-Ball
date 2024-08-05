@@ -180,7 +180,7 @@ class AppModel: ObservableObject {
             self.ballSpeed = Double.random(in: fastest...slowest)
         } else {
             if jetPackOn == true {
-                self.ballSpeed = 1
+                self.ballSpeed = 2
             } else {
                 self.ballSpeed = 2 * exp(-0.27 * log(Double(difficultyInput) - 1))
             }
