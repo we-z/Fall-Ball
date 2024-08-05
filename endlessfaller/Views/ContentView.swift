@@ -121,7 +121,7 @@ struct ContentView: View {
                                 appModel.liftBall(difficultyInput: newIndex)
                                 userPersistedData.incrementBoostIntervalCounter()
                                 print("Boost counter \(userPersistedData.boostIntervalCounter)")
-                                if userPersistedData.boostIntervalCounter > 300 {
+                                if userPersistedData.boostIntervalCounter > 150 {
                                     appModel.showBoostAnimation = true
                                     userPersistedData.resetBoostIntervalCounter()
                                 }

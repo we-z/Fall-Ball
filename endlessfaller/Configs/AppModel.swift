@@ -258,6 +258,7 @@ class AppModel: ObservableObject {
         }
         self.firstGamePlayed = true
         self.showBoostAnimation = false
+        self.jetPackOn = false
         audioController.punchSoundEffect.play()
         playedCharacter = userPersistedData.selectedCharacter
         startGameOverTimer()
