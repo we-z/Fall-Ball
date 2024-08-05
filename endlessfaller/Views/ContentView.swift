@@ -121,7 +121,7 @@ struct ContentView: View {
                                 appModel.liftBall(difficultyInput: newIndex)
                                 userPersistedData.incrementBoostIntervalCounter()
                                 print("Boost counter \(userPersistedData.boostIntervalCounter)")
-                                if userPersistedData.boostIntervalCounter > 600 {
+                                if userPersistedData.boostIntervalCounter > 150 {
                                     appModel.showBoostAnimation = true
                                     userPersistedData.resetBoostIntervalCounter()
                                 }
@@ -132,7 +132,7 @@ struct ContentView: View {
                                     appModel.plus3Animation()
                                 } else {
                                     if appModel.jetPackOn {
-                                        appModel.score += 5
+                                        appModel.score += 3
                                     } else {
                                         appModel.score += 1
                                     }
