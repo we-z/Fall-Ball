@@ -45,12 +45,13 @@ struct BoostAnimation: View {
         }
         .frame(width: 191, height: 191)
         .cornerRadius(34)
+        .flashing()
         .offset(y: cardYposition)
         .onAppear{
             self.appModel.jetPackOn = true
-            self.cardYposition = deviceHeight/1.5
+            cardYposition = deviceHeight/1.5
             withAnimation(.linear(duration: 9)) {
-                self.cardYposition = -(deviceHeight/1.5)
+                cardYposition = -(deviceHeight/1.5)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
                 self.appModel.jetPackOn = false
