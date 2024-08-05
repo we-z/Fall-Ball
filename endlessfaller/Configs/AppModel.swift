@@ -257,6 +257,7 @@ class AppModel: ObservableObject {
             self.BallAnimator.ballYPosition = 90
         }
         self.firstGamePlayed = true
+        self.showBoostAnimation = false
         audioController.punchSoundEffect.play()
         playedCharacter = userPersistedData.selectedCharacter
         startGameOverTimer()
