@@ -12,13 +12,14 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            KeepSwiping()
+            BoostAnimation()
         }
     }
 }
 
 struct BoostAnimation: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
+    @State var cardYposition = 0.0
     var body: some View {
         ZStack{
             Rectangle()
@@ -29,15 +30,14 @@ struct BoostAnimation: View {
                     .italic()
                     .multilineTextAlignment(.center)
                     .padding()
-                    .customTextStroke(width: 2.3)
                 HStack{
                     Image(systemName: "arrow.up")
                     Image(systemName: "arrow.up")
                     Image(systemName: "arrow.up")
                 }
-                .customTextStroke(width: 2.3)
                 .bold()
             }
+//            .customTextStroke(width: 2.3)
             .frame(width: 180, height: 180)
             .background(.blue)
             .cornerRadius(30)
@@ -45,11 +45,14 @@ struct BoostAnimation: View {
         }
         .frame(width: 191, height: 191)
         .cornerRadius(34)
-        .flashing()
+        .offset(y: cardYposition)
         .onAppear{
             self.appModel.jetPackOn = true
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            self.cardYposition = deviceHeight/1.5
+            withAnimation(.linear(duration: 9)) {
+                self.cardYposition = -(deviceHeight/1.5)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
                 self.appModel.jetPackOn = false
                 self.appModel.showBoostAnimation = false
                 
