@@ -52,11 +52,11 @@ struct BoostAnimation: View {
             self.appModel.jetPackOn = true
             cardYposition = deviceHeight/1.5
             DispatchQueue.main.async {
-                withAnimation(.linear(duration: 9)) {
+                withAnimation(.linear(duration: 6)) {
                     cardYposition = -(deviceHeight/1.5)
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 self.appModel.jetPackOn = false
                 self.appModel.showBoostAnimation = false
                 
