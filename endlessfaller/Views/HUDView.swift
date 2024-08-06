@@ -14,13 +14,11 @@ struct HUDView: View {
     @StateObject var audioController = AudioManager.sharedAudioManager
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var userPersistedData = UserPersistedData()
-    @State var pauseButtonPressed = false
     @ObservedObject var gameCenter = GameCenter.shared
     private var localPlayer = GKLocalPlayer.local
     
     var body: some View {
         ZStack{
-            
             // rewards
             if appModel.currentIndex >= 0 && !appModel.isWasted {
                 if !appModel.showNewBestScore {
@@ -74,7 +72,6 @@ struct HUDView: View {
                     }
                 }
             }
-            
             if appModel.score >= 0 && appModel.currentIndex >= 0 {
                 VStack{
                     HStack{
@@ -121,7 +118,7 @@ struct HUDView: View {
                                 if !appModel.paused {
                                     appModel.pauseGame()
                                 } else {
-                                    appModel.continueGame()
+                                    appModel.startCountdown()
                                 }
                             } label: {
                                 
@@ -234,16 +231,6 @@ struct HUDView: View {
                 DailyBoinCollectedView()
             }
         }
-//        .onChange(of: gameCenter.allTimePlayersList) { newList in
-//            Task{
-//                if let image = renderAllTimePodiumView() {
-//                    saveImageToDisk(image: image, fileName: "allTimePodium.png")
-//                }
-//                if let image = renderTodaysPodiumView() {
-//                    saveImageToDisk(image: image, fileName: "todaysPodium.png")
-//                }
-//            }
-//        }
     }
     
     @Environment(\.displayScale) var displayScale

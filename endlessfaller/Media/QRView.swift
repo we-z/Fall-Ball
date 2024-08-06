@@ -12,41 +12,45 @@ struct QRView: View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [.pink,.purple,.blue]), startPoint: UnitPoint(x: 0, y: 0.6), endPoint: UnitPoint(x: 0.6, y: 0.2))
             RotatingSunView()
-            Circle()
-                .stroke(lineWidth: 6)
-                .frame(width: 424)
-            VStack(spacing: 240){
-                Text("Download")
+            VStack{
+                Text("Download Fall Ball!")
                     .bold()
                     .italic()
-                    .font(.system(size: 45))
-                    .customTextStroke(width: 3)
-                Text("FALL BALL")
-                    .bold()
-                    .italic()
-                    .font(.system(size: 45))
-                    .customTextStroke(width: 3)
+                    .font(.system(size: 33))
+                    .customTextStroke(width: 1.5)
+                    .offset(y:18)
+                    .scaleEffect(1.2)
+                HStack {
+                    VStack(spacing: 30){
+                        DollarsignBallView()
+                        ShockedBall()
+                    }
+                    .scaleEffect(1.2)
+                    ZStack{
+                        Rectangle()
+                            .frame(width:221, height: 221)
+                        Image("fallballQR")
+                            .resizable()
+                            .frame(width: 210, height: 210)
+                            .cornerRadius(30)
+                    }
+                    .cornerRadius(36)
+                    .scaleEffect(0.9)
+                    VStack(spacing: 30){
+                        WizardBall()
+                        IceSpiceView()
+                    }
+                    .scaleEffect(1.2)
+                }
+                HStack(spacing: 30) {
+                    KaiView()
+                    HeartEyeBallView()
+                    EvilBall()
+                    MortyView()
+                }
+                .scaleEffect(1.2)
             }
-            HStack(spacing: 270) {
-                ShockedBall()
-                    .scaleEffect(1.5)
-                FallBallLaughBall()
-                    .scaleEffect(1.5)
-            }
-            ZStack{
-                Rectangle()
-                    .frame(width:221, height: 221)
-                Image("fallballQR")
-                    .resizable()
-                    .frame(width: 210, height: 210)
-                    .cornerRadius(30)
-            }
-            .cornerRadius(36)
         }
-        .mask(
-            Circle()
-                .frame(width: deviceWidth)
-        )
         .ignoresSafeArea()
     }
 }

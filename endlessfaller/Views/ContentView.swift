@@ -121,9 +121,11 @@ struct ContentView: View {
                                 appModel.liftBall(difficultyInput: newIndex)
                                 userPersistedData.incrementBoostIntervalCounter()
                                 print("Boost counter \(userPersistedData.boostIntervalCounter)")
-                                if userPersistedData.boostIntervalCounter > 150 {
-                                    appModel.showBoostAnimation = true
-                                    userPersistedData.resetBoostIntervalCounter()
+                                if !userPersistedData.strategyModeEnabled {
+                                    if userPersistedData.boostIntervalCounter > 150 {
+                                        appModel.showBoostAnimation = true
+                                        userPersistedData.resetBoostIntervalCounter()
+                                    }
                                 }
                             }
                             DispatchQueue.main.async {
@@ -157,6 +159,13 @@ struct ContentView: View {
                     .allowsHitTesting(!appModel.freezeScrolling)
                     HUDView()
                     PlayingBallView()
+                    if let countdown = appModel.countdown {
+                        Text("\(countdown)")
+                            .font(.system(size: 150))
+                            .bold()
+                            .italic()
+                            .customTextStroke(width: 4)
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.all)

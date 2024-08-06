@@ -8,45 +8,48 @@
 import SwiftUI
 
 struct TempView: View {
-    @State private var title: String = ""
-        @State private var category: String = ""
-        @State private var type: String = ""
-        
+    @State private var countdown: Int? = nil
+        @State private var timer: Timer? = nil
+
         var body: some View {
             VStack {
-                Text("DevTechie Courses")
-                    .font(.largeTitle)
-                
-                VStack(alignment: .leading) {
-                    Text("Enter new course title")
-                        .font(.title3)
-                    
-                    TextField("Course title", text: $title)
-                        .padding(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.orange)
-                        )
-                        .foregroundColor(Color.green)
-                        
-                    TextField("Course category", text: $category)
-                        .padding(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.teal)
-                        )
-                        .foregroundColor(Color.blue)
-                        
-                    TextField("Course type", text: $type)
-                        .padding(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.pink)
-                        )
-                        .foregroundColor(Color.purple)
-                    
-                }.padding(.top, 20)
-            }.padding()
+                if let countdown = countdown {
+                    Text("\(countdown)")
+                        .font(.largeTitle)
+                        .padding()
+                }
+
+                Button(action: {
+                    startCountdown()
+                }) {
+                    Text("Start Countdown")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+            }
+        }
+
+        private func startCountdown() {
+            // Invalidate the current timer if it exists
+            timer?.invalidate()
+            timer = nil
+
+            // Start a new countdown
+            countdown = 3
+
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                if let currentCount = countdown {
+                    if currentCount > 0 {
+                        countdown = currentCount - 1
+                    } else {
+                        timer.invalidate()
+                        self.timer = nil
+                        countdown = nil
+                    }
+                }
+            }
         }
 }
 

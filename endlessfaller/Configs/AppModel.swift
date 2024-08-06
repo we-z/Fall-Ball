@@ -46,6 +46,9 @@ class AppModel: ObservableObject {
     @Published var paused = false
     @Published var jetPackOn = false
     @Published var pausedYposition = 0.0
+    @Published var countdown: Int? = nil
+    @Published var isCountingDown = false
+    @Published var countdownTimer: Timer? = nil
     @Published var colors: [Color] = (1...levels).map { _ in
         Color(hex: backgroundColors.randomElement()!)!
     }
@@ -62,6 +65,30 @@ class AppModel: ObservableObject {
         BallAnimator.endingYPosition = pausedYposition
         BallAnimator.startTimer(speed: BallAnimator.ballSpeed)
         paused = false
+    }
+    
+    func startCountdown() {
+        countdown = 3
+        paused = false
+        if isCountingDown {
+            countdownTimer?.invalidate()
+            countdownTimer = nil
+        } else {
+            isCountingDown = true
+            
+            countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                if let currentCount = self.countdown {
+                    if currentCount > 1 {
+                        self.countdown = currentCount - 1
+                    } else {
+                        timer.invalidate()
+                        self.countdown = nil
+                        self.isCountingDown = false
+                        self.continueGame()
+                    }
+                }
+            }
+        }
     }
     
     var gameOverDispatchTimer: DispatchSourceTimer?

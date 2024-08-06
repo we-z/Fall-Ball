@@ -12,7 +12,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            BoostAnimation()
+            Instruction3()
         }
     }
 }
@@ -343,10 +343,13 @@ struct Instruction3: View {
                 .bold()
                 .padding()
         }
-        .customTextStroke(width: 2.7)
+        
         .allowsHitTesting(false)
         .font(.system(size: 36))
+        
+        .frame(height: 420)
         .animatedOffset(speed: 1)
+        .customTextStroke(width: 2.7)
     }
 }
 
