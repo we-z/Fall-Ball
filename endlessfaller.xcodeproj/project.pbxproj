@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		761E35902C44AD16004BC1BC /* LeaderBoardWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761E358F2C44AD16004BC1BC /* LeaderBoardWidgetView.swift */; };
 		761E35912C460E84004BC1BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD234422A5F824900ED626D /* Assets.xcassets */; };
 		762E44932C3356120034D989 /* CloudKitUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF3EC652B8C2F2D003FE015 /* CloudKitUtility.swift */; };
 		763B4F642C2F4A250033A5A9 /* BoinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */; };
@@ -153,7 +152,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		761E358F2C44AD16004BC1BC /* LeaderBoardWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardWidgetView.swift; sourceTree = "<group>"; };
 		761E35922C48160A004BC1BC /* LeaderboardExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeaderboardExtension.entitlements; sourceTree = "<group>"; };
 		763B4F632C2F4A250033A5A9 /* BoinInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoinInfoView.swift; sourceTree = "<group>"; };
 		76F49C8C2C41772900FD8BED /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
@@ -327,7 +325,6 @@
 				7AD2346C2A60A9E100ED626D /* IconView.swift */,
 				7A43B2312AA3E0440099AFB6 /* QRView.swift */,
 				7A43B2332AA566A50099AFB6 /* TitleView.swift */,
-				761E358F2C44AD16004BC1BC /* LeaderBoardWidgetView.swift */,
 				7AD234422A5F824900ED626D /* Assets.xcassets */,
 				7A0598072B08976E0053646D /* Boing.mp3 */,
 				7A675CEB2B835BB4001DEF29 /* BoingNotification.caf */,
@@ -781,7 +778,6 @@
 				7AD2346D2A60A9E100ED626D /* IconView.swift in Sources */,
 				7AD2346F2A62019800ED626D /* TempView.swift in Sources */,
 				7A3C9B692B80E9800097D3F9 /* HUDView.swift in Sources */,
-				761E35902C44AD16004BC1BC /* LeaderBoardWidgetView.swift in Sources */,
 				7AD2343F2A5F824800ED626D /* endlessfallerApp.swift in Sources */,
 				76F49C8D2C41772900FD8BED /* EventCardView.swift in Sources */,
 				7A3C9B6B2B80FF310097D3F9 /* PlayingBallView.swift in Sources */,
@@ -1069,7 +1065,7 @@
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1098,7 +1094,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1123,7 +1119,7 @@
 				CODE_SIGN_ENTITLEMENTS = endlessfaller/endlessfaller.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"endlessfaller/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y2Y4CJNN6;
@@ -1152,7 +1148,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.endlessfall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

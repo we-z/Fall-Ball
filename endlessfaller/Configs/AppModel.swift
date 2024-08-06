@@ -68,27 +68,30 @@ class AppModel: ObservableObject {
     }
     
     func startCountdown() {
-        countdown = 3
-        paused = false
-        if isCountingDown {
-            countdownTimer?.invalidate()
-            countdownTimer = nil
-        } else {
-            isCountingDown = true
-            
-            countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                if let currentCount = self.countdown {
-                    if currentCount > 1 {
-                        self.countdown = currentCount - 1
-                    } else {
-                        timer.invalidate()
-                        self.countdown = nil
-                        self.isCountingDown = false
-                        self.continueGame()
-                    }
+        self.countdown = 3
+        self.paused = false
+        self.isCountingDown = true
+        self.countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            if let currentCount = self.countdown {
+                if currentCount > 1 {
+                    self.countdown = currentCount - 1
+                } else {
+                    timer.invalidate()
+                    self.countdown = nil
+                    self.isCountingDown = false
+                    self.continueGame()
                 }
             }
         }
+    }
+    
+    func stopCountDown() {
+        print("stopCountDown called")
+        self.paused = true
+        self.countdownTimer?.invalidate()
+        self.countdownTimer = nil
+        self.countdown = nil
+        self.isCountingDown = false
     }
     
     var gameOverDispatchTimer: DispatchSourceTimer?

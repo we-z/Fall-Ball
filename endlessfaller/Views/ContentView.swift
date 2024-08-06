@@ -161,10 +161,10 @@ struct ContentView: View {
                     PlayingBallView()
                     if let countdown = appModel.countdown {
                         Text("\(countdown)")
-                            .font(.system(size: 150))
+                            .font(.system(size: 180))
                             .bold()
                             .italic()
-                            .customTextStroke(width: 4)
+                            .customTextStroke(width: 5)
                     }
                 }
             }

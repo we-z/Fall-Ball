@@ -115,10 +115,14 @@ struct HUDView: View {
                     HStack{
                         if userPersistedData.strategyModeEnabled && !appModel.isWasted {
                             Button {
-                                if !appModel.paused {
-                                    appModel.pauseGame()
+                                if appModel.isCountingDown {
+                                    appModel.stopCountDown()
                                 } else {
-                                    appModel.startCountdown()
+                                    if !appModel.paused {
+                                        appModel.pauseGame()
+                                    } else {
+                                        appModel.startCountdown()
+                                    }
                                 }
                             } label: {
                                 
