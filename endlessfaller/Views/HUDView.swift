@@ -219,7 +219,7 @@ struct HUDView: View {
             if appModel.showBoostAnimation{
                 BoostAnimation()
                     .onAppear{
-                        audioController.dingsSoundEffect.play()
+                        audioController.boingSoundEffect.play()
                     }
             }
             if appModel.showBoinFoundAnimation{
