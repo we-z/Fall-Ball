@@ -237,6 +237,7 @@ struct GameOverScreenView: View {
                 
             if let data = render(), let url = URL(string: "https://apple.co/48036v5") {
                 ShareView(image: data, url: url)
+                    .ignoresSafeArea()
             }
             
         })
