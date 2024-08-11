@@ -28,10 +28,12 @@ class ActivityItemProvider: NSObject, UIActivityItemSource {
 
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
         let metadata = LPLinkMetadata()
+        let appIcon = UIImage(named: "AppIcon")
         metadata.originalURL = url
         metadata.url = url
         metadata.title = "Play Fall Ball with me!"
         metadata.imageProvider = NSItemProvider(object: image)
+        metadata.iconProvider = NSItemProvider(object: appIcon!)
         return metadata
     }
 }
