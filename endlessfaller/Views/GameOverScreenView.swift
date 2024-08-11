@@ -235,10 +235,8 @@ struct GameOverScreenView: View {
         }
         .sheet(isPresented: $sheetPresented, content: {
                 
-            if let data = render() {
-       
-                ShareView(activityItems: [data, "Play Fall Ball with me!\n\nhttps://apple.co/48036v5"])
-           
+            if let data = render(), let url = URL(string: "https://apple.co/48036v5") {
+                ShareView(image: data, url: url)
             }
             
         })

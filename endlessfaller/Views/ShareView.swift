@@ -6,16 +6,46 @@
 //
 
 import SwiftUI
+import LinkPresentation
+import UniformTypeIdentifiers
+
+class ActivityItemProvider: NSObject, UIActivityItemSource {
+    let image: UIImage
+    let url: URL
+
+    init(image: UIImage, url: URL) {
+        self.image = image
+        self.url = url
+    }
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return image
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return url
+    }
+
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+        metadata.originalURL = url
+        metadata.url = url
+        metadata.title = "Play Fall Ball with me!"
+        metadata.imageProvider = NSItemProvider(object: image)
+        return metadata
+    }
+}
 
 struct ShareView: UIViewControllerRepresentable {
-    let activityItems: [Any]
-    let applicationActivities: [UIActivity]? = nil
+    let image: UIImage
+    let url: URL
     @ObservedObject var userPersistedData = UserPersistedData()
 
     func makeUIViewController(context: Context) -> UIActivityViewController {
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        let activityItems = [ActivityItemProvider(image: image, url: url)]
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+
         activityViewController.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
-            // Handle completion here
             if completed {
                 print("Share completed successfully!")
                 if !userPersistedData.hasSharedFallBall {
@@ -26,11 +56,12 @@ struct ShareView: UIViewControllerRepresentable {
                 print("User canceled the share.")
             }
         }
+
         return activityViewController
     }
 
     func updateUIViewController(_ uiViewController: UIActivityViewController,
-               context: UIViewControllerRepresentableContext<ShareView>) {
-        // empty
+            context: UIViewControllerRepresentableContext<ShareView>) {
+        // No updates needed
     }
 }
