@@ -20,7 +20,7 @@ struct RandomGradientView: View {
             .edgesIgnoringSafeArea(.all)
             .onAppear{
                 // Animate the change
-                if !UIDevice.isOldDevice {
+                if #available(iOS 17, *) {
                     withAnimation(.linear(duration: 3)) {
                         self.gradient = self.randomGradient()
                     }
@@ -29,7 +29,7 @@ struct RandomGradientView: View {
             .onReceive(timer) { _ in
                 // Generate a new gradient
                 // Animate the change
-                if !UIDevice.isOldDevice {
+                if #available(iOS 17, *) {
                     withAnimation(.linear(duration: 3)) {
                         self.gradient = self.randomGradient()
                     }
