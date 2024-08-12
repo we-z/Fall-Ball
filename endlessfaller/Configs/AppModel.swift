@@ -1165,16 +1165,6 @@ public extension UIDevice {
             "iPhone SE",
             "iPhone SE (2nd generation)",
             "iPhone SE (3rd generation)",
-            "iPad (3rd generation)",
-            "iPad (4th generation)",
-            "iPad (5th generation)",
-            "iPad (6th generation)",
-            "iPad (7th generation)",
-            "iPad (8th generation)",
-            "iPad (9th generation)",
-            "iPad Air",
-            "iPad Air 2",
-            "iPad mini"
         ]
     return oldDeviceNames.contains(modelName)
     }()
