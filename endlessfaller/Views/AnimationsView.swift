@@ -12,14 +12,13 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            Instruction3()
+            BoostAnimation()
         }
     }
 }
 
 struct BoostAnimation: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
-    @State var cardYposition = 0.0
     var body: some View {
         ZStack{
             Rectangle()
@@ -47,15 +46,9 @@ struct BoostAnimation: View {
         }
         .frame(width: 191, height: 191)
         .cornerRadius(34)
-        .offset(y: cardYposition)
+        .flashing()
         .onAppear{
             self.appModel.jetPackOn = true
-            cardYposition = deviceHeight/1.5
-            DispatchQueue.main.async {
-                withAnimation(.linear(duration: 6)) {
-                    cardYposition = -(deviceHeight/1.5)
-                }
-            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 self.appModel.jetPackOn = false
                 self.appModel.showBoostAnimation = false
