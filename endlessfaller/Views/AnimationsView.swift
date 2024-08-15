@@ -12,7 +12,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            BoostAnimation()
+            ThirdPlaceRewardView()
         }
     }
 }
@@ -725,7 +725,7 @@ struct DailyBoinCollectedView: View {
     }
 }
 
-struct LeaderboardRewardView: View {
+struct FirstPlaceRewardView: View {
     @ObservedObject var userPersistedData = UserPersistedData()
     @ObservedObject private var appModel = AppModel.sharedAppModel
     @State var animationXoffset = 0.0
@@ -748,7 +748,109 @@ struct LeaderboardRewardView: View {
             .onAppear {
                 self.isAnimating = true
             }
-            Text("#1 Place! 🏎️💨")
+            Text("1st Place! 🏎️💨\n5 Boins!")
+                .multilineTextAlignment(.center)
+                .font(.system(size: 39))
+                .bold()
+                .italic()
+                .customTextStroke(width: 2.4)
+                .padding(.top, 90)
+            
+        }
+        .scaleEffect(scaleSize)
+        .offset(x: animationXoffset, y: animationYoffset)
+        .allowsHitTesting(false)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 2)) {
+                animationYoffset = 0
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                withAnimation(.easeInOut(duration: 2)) {
+                    animationYoffset = -(deviceHeight / 1.5)
+                    animationXoffset = -deviceWidth / 1.5
+                    scaleSize = 0
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                userPersistedData.incrementBalance(amount: 5)
+                appModel.show5boinsAnimation = false
+            }
+        }
+    }
+}
+
+struct SecondPlaceRewardView: View {
+    @ObservedObject var userPersistedData = UserPersistedData()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
+    @State var animationXoffset = 0.0
+    @State var animationYoffset = -(deviceHeight / 1.5)
+    @State var scaleSize = 1.0
+    @State private var rotationAngle: Double = 0
+    @State private var isAnimating = false
+    var body: some View {
+        VStack {
+            ZStack {
+                ForEach(0..<3, id: \.self) { index in
+                    BoinsView()
+                        .scaleEffect(1.5)
+                        .offset(y: -50)
+                        .rotationEffect(.degrees(Double(index) / Double(3) * 360))
+                }
+            }
+            .rotationEffect(.degrees(isAnimating ? 360 : 0))
+            .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false), value: isAnimating)
+            .onAppear {
+                self.isAnimating = true
+            }
+            Text("2nd Place! 🧗‍♂️\n3 Boins reward!")
+                .multilineTextAlignment(.center)
+                .font(.system(size: 39))
+                .bold()
+                .italic()
+                .customTextStroke(width: 2.4)
+                .padding(.top, 90)
+            
+        }
+        .scaleEffect(scaleSize)
+        .offset(x: animationXoffset, y: animationYoffset)
+        .allowsHitTesting(false)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 2)) {
+                animationYoffset = 0
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                withAnimation(.easeInOut(duration: 2)) {
+                    animationYoffset = -(deviceHeight / 1.5)
+                    animationXoffset = -deviceWidth / 1.5
+                    scaleSize = 0
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                userPersistedData.incrementBalance(amount: 5)
+                appModel.show5boinsAnimation = false
+            }
+        }
+    }
+}
+
+struct ThirdPlaceRewardView: View {
+    @ObservedObject var userPersistedData = UserPersistedData()
+    @ObservedObject private var appModel = AppModel.sharedAppModel
+    @State var animationXoffset = 0.0
+    @State var animationYoffset = -(deviceHeight / 1.5)
+    @State var scaleSize = 1.0
+    @State private var rotationAngle: Double = 0
+    @State private var isAnimating = false
+    var body: some View {
+        VStack {
+            BoinsView()
+                .scaleEffect(3)
+            
+            .onAppear {
+                self.isAnimating = true
+            }
+            Text("3rd Place! 🥉\n1 Boin reward!")
+                .multilineTextAlignment(.center)
                 .font(.system(size: 39))
                 .bold()
                 .italic()

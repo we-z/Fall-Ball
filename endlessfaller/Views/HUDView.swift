@@ -229,7 +229,7 @@ struct HUDView: View {
                     }
             }
             if appModel.show5boinsAnimation {
-                LeaderboardRewardView()
+                FirstPlaceRewardView()
             }
             if appModel.showDailyBoinCollectedAnimation {
                 DailyBoinCollectedView()
