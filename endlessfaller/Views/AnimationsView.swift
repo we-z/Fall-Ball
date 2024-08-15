@@ -47,7 +47,7 @@ struct BoostAnimation: View {
         }
         .frame(width: 191, height: 191)
         .cornerRadius(34)
-        
+        .animatedOffset(speed: 1)
         .onAppear{
             self.appModel.jetPackOn = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
@@ -70,8 +70,10 @@ struct AnimatedOffsetModifier: ViewModifier {
         content
             .offset(y: offsetAmount)
             .onAppear {
-                withAnimation(Animation.easeInOut(duration: speed).repeatForever(autoreverses: true)) {
-                    offsetAmount = distance
+                DispatchQueue.main.async {
+                    withAnimation(Animation.easeInOut(duration: speed).repeatForever(autoreverses: true)) {
+                        offsetAmount = distance
+                    }
                 }
             }
     }
