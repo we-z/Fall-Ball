@@ -37,6 +37,7 @@ class BallAnimationManager: ObservableObject {
     }
     
     func startTimer(speed: Double) {
+        print("startTimer called")
         // Invalidate the existing display link
         self.displayLink?.invalidate()
         
@@ -64,6 +65,47 @@ class BallAnimationManager: ObservableObject {
         pushUp = true
     }
     
+    func jetpackLiftOff() {
+        // Invalidate the existing display link to reset the animation
+        self.displayLink?.invalidate()
+        
+        // Set the starting position to just above the bottom of the screen
+        startingYPosition = deviceHeight * 0.9
+        ballYPosition = startingYPosition
+        
+        // Set the ending position to the screen ceiling
+        endingYPosition = screenCeiling
+        
+        // Determine the speed for the lift off based on the distance to travel
+        let liftOffSpeed: CFTimeInterval = 6 // Adjust this value to control the speed of the lift-off animation
+        
+        // Set the start time for the animation
+        startTime = CACurrentMediaTime()
+        targetDuration = liftOffSpeed
+        
+        // Create a new display link for the animation
+        displayLink = CADisplayLink(target: self, selector: #selector(updateLiftOff(_:)))
+        displayLink?.add(to: .current, forMode: .common)
+    }
+    
+    @objc private func updateLiftOff(_ displayLink: CADisplayLink) {
+        let currentTime = CACurrentMediaTime()
+        let elapsedTime = currentTime - startTime
+        
+        // Calculate the ball position based on elapsed time and lift-off speed
+        if elapsedTime < targetDuration {
+            ballYPosition = startingYPosition - ((CGFloat(elapsedTime / targetDuration) * (startingYPosition - screenCeiling)))
+        } else {
+            // Once the lift-off animation is complete, set the ballYPosition to screenCeiling
+            ballYPosition = screenCeiling
+            // Invalidate the display link to stop the animation
+            displayLink.invalidate()
+            startingYPosition = screenCeiling
+            startTimer(speed: ballSpeed)
+        }
+    }
+    
+    
     @objc func update(_ displayLink: CADisplayLink) {
         let currentTime = CACurrentMediaTime()
         let elapsedTime = currentTime - startTime
@@ -88,6 +130,12 @@ class BallAnimationManager: ObservableObject {
             } else {
                 ballYPosition = endingYPosition + (CGFloat(elapsedTime / targetDuration) * (UIScreen.main.bounds.height))
             }
+        }
+        
+        if !userPersistedData.strategyModeEnabled && self.ballYPosition > deviceHeight * 0.9 && userPersistedData.boostIntervalCounter > 150 {
+            AppModel.sharedAppModel.showBoostAnimation = true
+            self.jetpackLiftOff()
+            userPersistedData.resetBoostIntervalCounter()
         }
 
         if deviceHeight - 60 < self.ballYPosition || (self.ballYPosition < self.screenCeiling && self.userPersistedData.strategyModeEnabled) {

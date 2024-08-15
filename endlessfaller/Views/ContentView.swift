@@ -118,14 +118,10 @@ struct ContentView: View {
                             } else if newIndex == 1 {
                                 self.BallAnimator.pushBallUp(newBallSpeed: 3)
                             } else {
-                                appModel.liftBall(difficultyInput: newIndex)
-                                userPersistedData.incrementBoostIntervalCounter()
-                                print("Boost counter \(userPersistedData.boostIntervalCounter)")
-                                if !userPersistedData.strategyModeEnabled {
-                                    if userPersistedData.boostIntervalCounter > 150 {
-                                        appModel.showBoostAnimation = true
-                                        userPersistedData.resetBoostIntervalCounter()
-                                    }
+                                if !appModel.jetPackOn{
+                                    appModel.liftBall(difficultyInput: newIndex)
+                                    userPersistedData.incrementBoostIntervalCounter()
+                                    print("Boost counter \(userPersistedData.boostIntervalCounter)")
                                 }
                             }
                             DispatchQueue.main.async {

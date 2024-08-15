@@ -21,7 +21,7 @@ struct GameCenterLeaderboardView: View {
     @State var timeLeft = ""
     
     
-    func startTimer() {
+    func start5AMTimer() {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             timeLeft = formatTimeUntilNext5AM()
         }
@@ -163,7 +163,7 @@ struct GameCenterLeaderboardView: View {
                         }
                     }
                     .onAppear {
-                        startTimer()
+                        start5AMTimer()
                     }
                     .ignoresSafeArea()
                 }

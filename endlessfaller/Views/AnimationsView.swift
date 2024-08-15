@@ -19,6 +19,7 @@ struct AnimationsView: View {
 
 struct BoostAnimation: View {
     @ObservedObject private var appModel = AppModel.sharedAppModel
+    @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     var body: some View {
         ZStack{
             Rectangle()
@@ -46,13 +47,13 @@ struct BoostAnimation: View {
         }
         .frame(width: 191, height: 191)
         .cornerRadius(34)
-        .flashing()
+        
         .onAppear{
             self.appModel.jetPackOn = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 self.appModel.jetPackOn = false
                 self.appModel.showBoostAnimation = false
-                
+//                BallAnimator.startTimer(speed: BallAnimator.ballSpeed)
             }
         }
         .allowsHitTesting(false)

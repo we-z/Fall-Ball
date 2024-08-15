@@ -13,6 +13,7 @@ struct PlayingBallView: View {
     @ObservedObject var BallAnimator = BallAnimationManager.sharedBallManager
     @StateObject var userPersistedData = UserPersistedData()
     @State var deviceCeiling = 0.0
+    @State var jetPackOffset = 0.0
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
     
     var body: some View {
@@ -67,10 +68,18 @@ struct PlayingBallView: View {
                     .frame(width: 120, height: 300)
                     .rotationEffect(.degrees(180))
                     .offset(y:30)
+                    .offset(y: jetPackOffset)
                 }
                 ZStack{
                     if appModel.jetPackOn {
                         JetPack()
+                            .offset(y: jetPackOffset)
+                            .onAppear{
+                                jetPackOffset = deviceHeight * 0.1
+                                withAnimation(){
+                                    jetPackOffset = 0
+                                }
+                            }
                     }
                     AnyView(currentCharacter!.character)
                         .scaleEffect(1.5)
