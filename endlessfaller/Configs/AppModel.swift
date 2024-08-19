@@ -42,7 +42,9 @@ class AppModel: ObservableObject {
     @Published var ballIsStrobing = false
     @Published var grabbingBoins = false
     @Published var showedNewBestScoreOnce = false
-    @Published var show5boinsAnimation = false
+    @Published var show5boinsRewardAnimation = false
+    @Published var show3boinsRewardAnimation = false
+    @Published var show1boinRewardAnimation = false
     @Published var paused = false
     @Published var jetPackOn = false
     @Published var pausedYposition = 0.0
@@ -150,7 +152,9 @@ class AppModel: ObservableObject {
             //Today's First Launch
             print("first open of the day")
             userPersistedData.updateLastLaunch(date: openToday)
-            userPersistedData.leaderboardWonToday = false
+            userPersistedData.firstPlaceWonToday = false
+            userPersistedData.secondPlaceWonToday = false
+            userPersistedData.thirdPlaceWonToday = false
             dailyBoinCollected()
         }
     }

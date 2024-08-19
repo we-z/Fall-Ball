@@ -29,9 +29,18 @@ struct LevelsToPassPlayerView: View {
     }
     
     func firstPlaceOnLeaderboardReward() {
-        userPersistedData.leaderboardWonToday = true
-        appModel.show5boinsAnimation = true
-        
+        userPersistedData.firstPlaceWonToday = true
+        appModel.show5boinsRewardAnimation = true
+    }
+    
+    func secondPlaceOnLeaderboardReward() {
+        userPersistedData.secondPlaceWonToday = true
+        appModel.show3boinsRewardAnimation = true
+    }
+    
+    func thirdPlaceOnLeaderboardReward() {
+        userPersistedData.thirdPlaceWonToday = true
+        appModel.show1boinRewardAnimation = true
     }
     
     var body: some View {
@@ -69,11 +78,18 @@ struct LevelsToPassPlayerView: View {
                 .offset(x: cardXoffset, y: cardYoffset)
                 .onChange(of: appModel.score) { newScore in
                     if newScore >= todaysPlayersList[gameCenter.nextPlayerIndex].score {
-                        if gameCenter.nextPlayerIndex > 0 {
-                            print("nextPlayerIndex should be modified")
-                            cardPassAnimation()
-                        } else {
-                            if !userPersistedData.leaderboardWonToday {
+                        print("nextPlayerIndex should be modified")
+                        cardPassAnimation()
+                        if gameCenter.nextPlayerIndex == 1 {
+                            if !userPersistedData.thirdPlaceWonToday {
+                                thirdPlaceOnLeaderboardReward()
+                            }
+                        } else if gameCenter.nextPlayerIndex == 0 {
+                            if !userPersistedData.secondPlaceWonToday {
+                                secondPlaceOnLeaderboardReward()
+                            }
+                        } else if gameCenter.nextPlayerIndex == -1 {
+                            if !userPersistedData.firstGameEverPlayed {
                                 firstPlaceOnLeaderboardReward()
                             }
                         }

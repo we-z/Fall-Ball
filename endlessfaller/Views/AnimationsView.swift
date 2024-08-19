@@ -773,7 +773,7 @@ struct FirstPlaceRewardView: View {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 userPersistedData.incrementBalance(amount: 5)
-                appModel.show5boinsAnimation = false
+                appModel.show5boinsRewardAnimation = false
             }
         }
     }
@@ -827,7 +827,7 @@ struct SecondPlaceRewardView: View {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 userPersistedData.incrementBalance(amount: 5)
-                appModel.show5boinsAnimation = false
+                appModel.show3boinsRewardAnimation = false
             }
         }
     }
@@ -874,7 +874,7 @@ struct ThirdPlaceRewardView: View {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 userPersistedData.incrementBalance(amount: 5)
-                appModel.show5boinsAnimation = false
+                appModel.show1boinRewardAnimation = false
             }
         }
     }

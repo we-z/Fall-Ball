@@ -228,8 +228,14 @@ struct HUDView: View {
                         audioController.boingSoundEffect.play()
                     }
             }
-            if appModel.show5boinsAnimation {
+            if appModel.show5boinsRewardAnimation {
                 FirstPlaceRewardView()
+            }
+            if appModel.show3boinsRewardAnimation {
+                SecondPlaceRewardView()
+            }
+            if appModel.show1boinRewardAnimation {
+                ThirdPlaceRewardView()
             }
             if appModel.showDailyBoinCollectedAnimation {
                 DailyBoinCollectedView()

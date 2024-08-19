@@ -17,7 +17,9 @@ class UserPersistedData: ObservableObject {
     @CloudStorage("lastLaunch") var lastLaunch: String = ""
     @CloudStorage("lastBoinRenewal") var lastBoinRenewal: String = ""
     @CloudStorage("purchasedSubscriptionAmount") var purchasedSubscriptionAmount: Int = 0
-    @CloudStorage("leaderboardWonToday") var leaderboardWonToday: Bool = false
+    @CloudStorage("leaderboardWonToday") var firstPlaceWonToday: Bool = false
+    @CloudStorage("leaderboardWonToday") var secondPlaceWonToday: Bool = false
+    @CloudStorage("leaderboardWonToday") var thirdPlaceWonToday: Bool = false
     @CloudStorage("firstGameEverPlayed") var firstGameEverPlayed: Bool = false
     @CloudStorage("boinIntervalCounter") var boinIntervalCounter: Int = 0
     @CloudStorage("boostIntervalCounter") var boostIntervalCounter: Int = 0
