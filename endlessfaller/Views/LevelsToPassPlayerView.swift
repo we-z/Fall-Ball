@@ -80,15 +80,15 @@ struct LevelsToPassPlayerView: View {
                     if newScore >= todaysPlayersList[gameCenter.nextPlayerIndex].score {
                         print("nextPlayerIndex should be modified")
                         cardPassAnimation()
-                        if gameCenter.nextPlayerIndex == 1 {
+                        if gameCenter.nextPlayerIndex == 2 {
                             if !userPersistedData.thirdPlaceWonToday {
                                 thirdPlaceOnLeaderboardReward()
                             }
-                        } else if gameCenter.nextPlayerIndex == 0 {
+                        } else if gameCenter.nextPlayerIndex == 1 {
                             if !userPersistedData.secondPlaceWonToday {
                                 secondPlaceOnLeaderboardReward()
                             }
-                        } else if gameCenter.nextPlayerIndex == -1 {
+                        } else if gameCenter.nextPlayerIndex == 0 {
                             if !userPersistedData.firstGameEverPlayed {
                                 firstPlaceOnLeaderboardReward()
                             }
