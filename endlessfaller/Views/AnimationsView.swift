@@ -12,7 +12,7 @@ struct AnimationsView: View {
     var body: some View {
         ZStack{
             RandomGradientView()
-            ThirdPlaceRewardView()
+            CelebrationEffect()
         }
     }
 }

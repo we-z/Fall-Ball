@@ -109,7 +109,7 @@ struct ContentView: View {
                             appModel.gameOverOperations()
                         }
                         userPersistedData.incrementBoinIntervalCounter()
-                        if userPersistedData.boinIntervalCounter > 1000 {
+                        if userPersistedData.boinIntervalCounter > 600 {
                             boinFound()
                         }
                         if newIndex > appModel.highestLevelInRound {
